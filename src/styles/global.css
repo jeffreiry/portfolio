@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-neutral-50: #f5f4f6;
+  --color-neutral-100: #f2f2f2;
+  --color-neutral-200: #e6e6e6;
+  --color-neutral-400: #a7a7a7;
+  --color-neutral-500: #8e8e8e;
+  --color-neutral-700: #383838;
+  --color-neutral-800: #212121;
+  --color-neutral-900: #1a1a1a;
+
+  /* Accent — orange */
+  --color-accent-tint: #fff7ef;
+  --color-accent-300: #ff8532;
+  --color-accent-400: #ff620a;
+  --color-accent-500: #ff4800;
+
+  /* Case card pastels */
+  --color-pastel-blue: #ecf0f3;
+  --color-pastel-slate: #d0dfe6;
+  --color-pastel-lavender: #efedff;
+  --color-pastel-lime: #f9fbe7;
+  --color-pastel-sky: #e1f5fe;
+  --color-pastel-steel: #d4e2e8;
+  --color-pastel-powder: #afdced;
+  --color-pastel-periwinkle: #c6d0f7;
+  --color-pastel-peach: #e0ac90;
+  --color-pastel-yellow: #ebee58;
+
+  /* Typography */
+  --font-display: "Manrope", "Manrope Placeholder", sans-serif;
+  --font-body: "Inter", "Inter Placeholder", sans-serif;
+
+  /* Radii */
+  --radius-card: 32px;
+
+  /* Container */
+  --container-max: 1200px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-neutral-900);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
