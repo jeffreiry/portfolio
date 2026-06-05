@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  slug: string;
+  role: string;
+  year: number;
+  tags: string[];
+  accent?: string;
+  cover?: string;
+  lang?: string;
+}
+
+const {
+  title,
+  summary,
+  slug,
+  role,
+  year,
+  tags,
+  accent = '#ecf0f3',
+  cover,
+  lang = 'en',
+} = Astro.props;
+
+const base = lang === 'en' ? '' : '/pt';
+const href = `${base}/work/${slug}`;
+---
+
+<a
+  href={href}
+  class="group flex flex-col overflow-hidden rounded-[32px] transition-transform duration-300 hover:-translate-y-1"
+  style={`background-color: ${accent};`}
+>
+  <!-- Cover image area -->
+  <div class="aspect-[16/9] w-full overflow-hidden bg-black/5">
+    {cover
+      ? <img
+          src={cover}
+          alt={title}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      : <div class="h-full w-full" />
+    }
+  </div>
+
+  <!-- Card body -->
+  <div class="flex flex-col gap-3 p-8">
+    <div class="flex items-center justify-between gap-4">
+      <span class="text-xs font-medium uppercase tracking-widest text-neutral-500">
+        {role}
+      </span>
+      <span class="text-xs text-neutral-400">{year}</span>
+    </div>
+
+    <h2 class="font-display text-xl font-semibold leading-snug text-neutral-900">
+      {title}
+    </h2>
+
+    <p class="text-sm leading-relaxed text-neutral-600 line-clamp-2">
+      {summary}
+    </p>
+
+    <div class="mt-1 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span class="rounded-full bg-black/8 px-3 py-1 text-xs text-neutral-700">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</a>

@@ -23,7 +23,6 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Fonts: Manrope (display) + Inter (body) via Fontshare/Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,6 +31,8 @@ const {
     />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- View Transitions API (native browser, Astro 6) -->
+    <meta name="view-transition" content="same-origin" />
   </head>
   <body>
     <slot />

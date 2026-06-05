@@ -1,15 +1,68 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import CaseCard from '../../components/CaseCard.astro';
+
+const cases = [
+  {
+    title: 'Assistente de IA para Conhecimento Corporativo',
+    summary: 'Escalou um MVP de assistente com IA onde a rastreabilidade de fontes se tornou o produto central.',
+    slug: 'enterprise-ai-assistant',
+    role: 'Product Designer',
+    year: 2025,
+    tags: ['Enterprise', 'IA conversacional', 'Design de informação'],
+    accent: '#efedff',
+  },
+  {
+    title: 'Plataforma de Otimização de Capacidade de Carga',
+    summary: 'Um timeline visual transformou planilhas dispersas em uma plataforma que revela oportunidades de carga em tempo real.',
+    slug: 'shipping-capacity-platform',
+    role: 'Product Designer',
+    year: 2025,
+    tags: ['Enterprise', 'DataViz', 'Simulação operacional'],
+    accent: '#e1f5fe',
+  },
+  {
+    title: 'Arezzo&Co · Sistema de Anúncios',
+    summary: 'Um sistema, três jornadas — arquitetura de informação por papel para Marketing, Gestores e Lojistas.',
+    slug: 'arezzo-ad-management',
+    role: 'UX · UI · Pesquisa',
+    year: 2023,
+    tags: ['Retail', 'Multi-perfil', 'Design de sistema'],
+    accent: '#ecf0f3',
+  },
+  {
+    title: 'Cartela de Cores',
+    summary: 'Transformou um PDF estático de consultoria de coloração em um sistema que pontua peças do guarda-roupa em tempo real.',
+    slug: 'cartela-cores',
+    role: 'Product Designer',
+    year: 2024,
+    tags: ['Web app', 'Algoritmo de cor', 'Design system'],
+    accent: '#fff7ef',
+  },
+];
 ---
 
 <Base title="Jeferson Freiry — Product Designer" lang="pt">
-  <main class="flex min-h-screen flex-col items-center justify-center gap-4 p-8">
-    <h1 class="font-display text-4xl font-semibold text-neutral-900">
-      Jeferson Freiry
-    </h1>
-    <p class="text-neutral-500">Product Designer · Portfólio em construção</p>
-    <span class="mt-2 rounded-full bg-accent-500 px-4 py-1 text-sm text-white">
-      Fase 1 — Fundação ✓
-    </span>
+  <Header lang="pt" currentPath="/" />
+
+  <main class="flex flex-col gap-6 pb-24">
+    <Hero
+      headline="Product Designer criando experiências digitais que equilibram clareza, craft e impacto."
+      sub1="Atuo end-to-end — da pesquisa e arquitetura de informação ao design de interação e implementação."
+    />
+
+    <!-- Grade de cases -->
+    <section class="mx-auto w-full max-w-[1200px] px-6">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {cases.map((c) => (
+          <CaseCard {...c} lang="pt" />
+        ))}
+      </div>
+    </section>
   </main>
+
+  <Footer lang="pt" />
 </Base>

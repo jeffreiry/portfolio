@@ -1,0 +1,46 @@
+---
+interface Props {
+  headline: string;
+  sub1?: string;
+  sub2?: string;
+}
+const { headline, sub1, sub2 } = Astro.props;
+---
+
+<!--
+  Dark hero card — #383838, 32px radius, 160px padding-top (desktop)
+  Matches the Framer site's hero section style
+-->
+<section class="w-full px-6 pt-6">
+  <div
+    class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[32px] bg-neutral-700 px-16 pb-16 pt-40"
+    style="opacity: 0.9;"
+  >
+    <div class="flex flex-col gap-4">
+      <h1
+        class="font-display text-[clamp(28px,5vw,60px)] font-semibold leading-[1.2] text-white"
+        style="max-width: 640px;"
+      >
+        {headline}
+      </h1>
+
+      {sub1 && (
+        <p
+          class="text-lg leading-relaxed text-white/70"
+          style="max-width: 560px;"
+        >
+          {sub1}
+        </p>
+      )}
+
+      {sub2 && (
+        <p
+          class="text-lg leading-relaxed text-white/70"
+          style="max-width: 560px;"
+        >
+          {sub2}
+        </p>
+      )}
+    </div>
+  </div>
+</section>

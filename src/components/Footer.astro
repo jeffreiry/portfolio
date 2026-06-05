@@ -1,0 +1,37 @@
+---
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const isEN = lang === 'en';
+---
+
+<footer class="border-t border-neutral-200 bg-white">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col gap-1">
+      <span class="font-display text-sm font-semibold text-neutral-900">
+        Jeferson Freiry
+      </span>
+      <span class="text-sm text-neutral-400">
+        {isEN ? 'Product Designer' : 'Product Designer'}
+      </span>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <a
+        href="https://linkedin.com/in/jefersonfreiry"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+      >
+        LinkedIn
+      </a>
+      <a
+        href="mailto:jfreiry@gmail.com"
+        class="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+      >
+        {isEN ? 'Email' : 'E-mail'}
+      </a>
+    </div>
+  </div>
+</footer>

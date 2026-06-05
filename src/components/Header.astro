@@ -1,0 +1,54 @@
+---
+interface Props {
+  lang?: string;
+  currentPath?: string;
+}
+
+const { lang = 'en', currentPath = '/' } = Astro.props;
+
+const isEN = lang === 'en';
+const base = isEN ? '' : '/pt';
+
+const nav = isEN
+  ? [
+      { label: 'Work', href: `${base}/` },
+      { label: 'About', href: `${base}/about` },
+    ]
+  : [
+      { label: 'Trabalhos', href: `${base}/` },
+      { label: 'Sobre', href: `${base}/about` },
+    ];
+
+const altLang = isEN
+  ? { label: 'PT', href: currentPath.replace(/^\/pt/, '') || '/' }
+  : { label: 'EN', href: `/pt${currentPath}` };
+---
+
+<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-5">
+    <a
+      href={`${base}/`}
+      class="font-display text-sm font-semibold tracking-tight text-neutral-900 hover:text-accent-500 transition-colors"
+    >
+      Jeferson Freiry
+    </a>
+
+    <nav class="flex items-center gap-6">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+
+      <a
+        href={altLang.href}
+        class="text-sm font-medium text-neutral-400 hover:text-accent-500 transition-colors"
+      >
+        {altLang.label}
+      </a>
+    </nav>
+  </div>
+</header>

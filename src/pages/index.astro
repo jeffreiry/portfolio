@@ -1,15 +1,68 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import CaseCard from '../components/CaseCard.astro';
+
+const cases = [
+  {
+    title: 'Enterprise AI Knowledge Assistant',
+    summary: 'Scaled an AI assistant MVP into an internal knowledge platform where source traceability became the product.',
+    slug: 'enterprise-ai-assistant',
+    role: 'Product Designer',
+    year: 2025,
+    tags: ['Enterprise', 'Conversational AI', 'Information design'],
+    accent: '#efedff',
+  },
+  {
+    title: 'Shipping Capacity Optimization Platform',
+    summary: 'A visual timeline turned scattered spreadsheets into a platform that surfaces cargo opportunities in real time.',
+    slug: 'shipping-capacity-platform',
+    role: 'Product Designer',
+    year: 2025,
+    tags: ['Enterprise', 'DataViz', 'Operational simulation'],
+    accent: '#e1f5fe',
+  },
+  {
+    title: 'Arezzo&Co · Social Media Ad System',
+    summary: 'One system, three journeys — role-based information architecture for Marketing, Traffic Managers, and Store Owners.',
+    slug: 'arezzo-ad-management',
+    role: 'UX · UI · Research',
+    year: 2023,
+    tags: ['Retail', 'Multi-role', 'System design'],
+    accent: '#ecf0f3',
+  },
+  {
+    title: 'Cartela de Cores',
+    summary: 'Turned a static color-analysis PDF into a living system that scores wardrobe items against a personal palette.',
+    slug: 'cartela-cores',
+    role: 'Product Designer',
+    year: 2024,
+    tags: ['Web app', 'Color algorithm', 'Design system'],
+    accent: '#fff7ef',
+  },
+];
 ---
 
 <Base title="Jeferson Freiry — Product Designer">
-  <main class="flex min-h-screen flex-col items-center justify-center gap-4 p-8">
-    <h1 class="font-display text-4xl font-semibold text-neutral-900">
-      Jeferson Freiry
-    </h1>
-    <p class="text-neutral-500">Product Designer · Portfolio in progress</p>
-    <span class="mt-2 rounded-full bg-accent-500 px-4 py-1 text-sm text-white">
-      Phase 1 — Foundation ✓
-    </span>
+  <Header lang="en" currentPath="/" />
+
+  <main class="flex flex-col gap-6 pb-24">
+    <Hero
+      headline="Product Designer building digital experiences that balance clarity, craft, and impact."
+      sub1="I work end-to-end — from research and information architecture to interaction design and implementation."
+    />
+
+    <!-- Cases grid -->
+    <section class="mx-auto w-full max-w-[1200px] px-6">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {cases.map((c) => (
+          <CaseCard {...c} lang="en" />
+        ))}
+      </div>
+    </section>
   </main>
+
+  <Footer lang="en" />
 </Base>
