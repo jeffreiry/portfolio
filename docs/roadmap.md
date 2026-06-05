@@ -26,19 +26,22 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Deploy na Vercel + repositório `github.com/jeffreiry/portfolio`
 - [x] Domínio `portfolio.jefersonfreiry.com` apontado via CNAME no Cloudflare
 
-### Fase 2 — Design system em código
+### Fase 2 — Design system em código ✅
 
-- [ ] Tokens de cor, tipografia e espaçamento como tema Tailwind (`@theme`)
-- [ ] Componentes base: botão, link, tag, card de case, seção
-- [ ] Hero (card escuro `#383838`, cantos `32px`)
-- [ ] View Transitions API entre páginas
+- [x] Tokens de cor, tipografia e espaçamento como tema Tailwind (`@theme` em `global.css`)
+- [x] `Header.astro` — nav sticky com logo, links Work/About e switcher EN↔PT
+- [x] `Footer.astro` — nome, LinkedIn e e-mail
+- [x] `Hero.astro` — card escuro `#383838`, cantos `32px`, headline + subtitle
+- [x] `CaseCard.astro` — acento pastel, imagem, título, role, ano e tags
+- [x] Home EN + PT com Hero + grade 2 colunas de cases (→ 1 coluna no mobile)
+- [x] View Transitions — native browser API (`<meta name="view-transition">`, Astro 6)
 
 ### Fase 3 — Páginas core
 
 - [ ] Schema do frontmatter de case (Zod) em `src/content/config.ts`
-- [ ] Home: hero + intro + showcase (grade 2 col → 1 col) + footer
-- [ ] Template de página de case
-- [ ] Página "Sobre"
+- [ ] Template de página de case (`src/pages/work/[slug].astro`)
+- [ ] Página "About" (`src/pages/about.astro` + `/pt/about`)
+- [ ] Home refinada: seção "intro" entre Hero e grade de cases
 
 ### Fase 4 — Conteúdo ⚡ parcialmente adiantado
 
