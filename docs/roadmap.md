@@ -15,15 +15,16 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Escrever arquivos de instrução (`CLAUDE.md`, `docs/`)
 - [x] Escrever e revisar todos os cases em PT e EN ([cases-portfolio.md](cases-portfolio.md))
 
-### Fase 1 — Fundação
+### Fase 1 — Fundação ✅
 
-- [ ] Scaffolding do Astro 5 + TypeScript
-- [ ] Tailwind CSS v4 com os tokens do [design-system.md](design-system.md)
-- [ ] Carregar fontes Manrope + Inter localmente (woff2)
-- [ ] Integração Svelte 5 (ilhas)
-- [ ] i18n routing (PT padrão `/`, EN em `/en`)
-- [ ] Layout base + header + footer
-- [ ] Deploy inicial na Vercel (página em branco no ar — validar pipeline)
+- [x] Scaffolding do Astro 5 + TypeScript (strict)
+- [x] Tailwind CSS v4 com os tokens do [design-system.md](design-system.md)
+- [x] Fontes Manrope + Inter via Google Fonts (`display=swap`)
+- [x] Integração Svelte 5 (ilhas)
+- [x] i18n routing — EN na raiz (`/`), PT em `/pt`
+- [x] Layout base (`src/layouts/Base.astro`)
+- [x] Deploy na Vercel + repositório `github.com/jeffreiry/portfolio`
+- [x] Domínio `portfolio.jefersonfreiry.com` apontado via CNAME no Cloudflare
 
 ### Fase 2 — Design system em código
 
@@ -73,7 +74,7 @@ cada case para seu arquivo `.md` individual e reunir os assets visuais.
 - [ ] Acessibilidade: foco visível, contraste WCAG AA, navegação por teclado, leitor de tela
 - [ ] SEO: meta tags, Open Graph, sitemap.xml, canonical, hreflang PT/EN
 - [ ] Lighthouse 95+ em todas as métricas (Performance, A11y, Best Practices, SEO)
-- [ ] Domínio próprio + apontar DNS
+- [x] Domínio `portfolio.jefersonfreiry.com` + DNS apontado
 - [ ] Analytics (ver Questões em aberto)
 - [ ] Lançar e redirecionar `jefersonfreiry.framer.website` para o novo domínio
 
@@ -107,8 +108,8 @@ branches, suporte a output estático.
 
 Decisões que dependem do autor antes/durante o build:
 
-- ⬜ **Domínio:** comprar domínio próprio? Qual? (ex.: jefersonfreiry.com)
-- ⬜ **Idioma padrão:** PT como raiz (`/`) e EN em `/en`, ou o contrário? (vagas podem ser internacionais)
+- ✅ **Domínio:** `portfolio.jefersonfreiry.com` — Cloudflare + Vercel, HTTPS ativo
+- ✅ **Idioma padrão:** EN na raiz (`/`), PT em `/pt`
 - ⬜ **Cases no lançamento:** dos 8 prontos, quais priorizar para o v1? Sugestão: começar com os 4 mais recentes e de maior impacto (Enterprise AI, Shipping, Arezzo&Co, Cartela_Cores).
 - ⬜ **Métricas dos cases:** preencher os `⬜` de impacto em [cases-portfolio.md](cases-portfolio.md) antes de publicar.
 - ⬜ **Currículo:** link para PDF, página dedicada, ou só LinkedIn?
