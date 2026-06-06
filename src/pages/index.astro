@@ -50,9 +50,49 @@ const cases = [
 
   <main class="flex flex-col gap-6 pb-24">
     <Hero
-      headline="Product Designer building digital experiences that balance clarity, craft, and impact."
-      sub1="I work end-to-end — from research and information architecture to interaction design and implementation."
+      headline="Jeferson Freiry"
+      role="Senior Product Designer focused on complex enterprise systems."
+      body="I design data-driven products and AI-powered platforms that help organizations access knowledge, streamline workflows, and make better decisions."
     />
+
+    <!-- About -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <h2 class="font-display text-2xl font-semibold text-neutral-900">About</h2>
+        <p class="text-lg leading-relaxed text-neutral-600">
+          I am a Product Designer with over 5 years of experience designing digital products, following nearly a decade working in marketing and communication.
+        </p>
+        <p class="text-lg leading-relaxed text-neutral-600">
+          My work focuses on complex enterprise environments where users interact with large volumes of information and technical processes. I specialize in transforming complex systems into clear and usable experiences.
+        </p>
+      </div>
+    </section>
+
+    <!-- Career -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
+      <div class="flex flex-col gap-6">
+        <h2 class="font-display text-2xl font-semibold text-neutral-900">Career</h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {[
+            { company: 'eSales', role: 'Product Designer', period: '2020 — 2021', description: 'Led discovery for a new financial product and improved core digital platforms.' },
+            { company: 'Intelipost', role: 'UX Researcher', period: '2021 — 2022', description: 'Mapped the end-to-end user journey from product acquisition to daily use.' },
+            { company: 'CWI', role: 'Product Designer', period: '2022 — 2023', description: 'Designed digital products for large companies across discovery and delivery phases.' },
+            { company: 'ilegra', role: 'Product Designer', period: '2023 — 2025', description: 'Delivered enterprise product design through consulting engagements.' },
+            { company: 'Braskem', role: 'Product Designer', period: '2025 — Present', description: 'Designing enterprise platforms and AI-powered knowledge systems.' },
+          ].map((item) => (
+            <div class="flex flex-col gap-2 rounded-2xl bg-neutral-50 p-5">
+              <span class="text-sm font-semibold text-neutral-400">{item.company}</span>
+              <span class="font-display text-lg font-semibold text-neutral-900">{item.role}</span>
+              <span class="text-sm text-neutral-400">{item.period}</span>
+              <p class="text-sm leading-relaxed text-neutral-600">{item.description}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-neutral-400">
+          For a complete overview, visit my <a href="https://linkedin.com/in/jeffreiry" class="text-neutral-700 underline underline-offset-2" target="_blank" rel="noopener">LinkedIn →</a>
+        </p>
+      </div>
+    </section>
 
     <!-- Cases grid -->
     <section class="mx-auto w-full max-w-[1200px] px-6">
