@@ -1,0 +1,159 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('casesEn', ({ data }) => !data.draft);
+  return cases.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, summary, role, company, year, tags, accent, metrics, url } = entry.data;
+
+// Replace <!-- IMAGE: ... --> comments with empty state placeholders
+---
+
+<Base title={`${title} — Jeferson Freiry`} description={summary}>
+  <Header lang="en" currentPath={`/work/${entry.data.slug}`} />
+
+  <main class="pb-24">
+    <!-- Hero do case -->
+    <section class="w-full px-6 pt-6">
+      <div
+        class="mx-auto w-full max-w-[1200px] overflow-hidden rounded-[32px] px-8 pb-16 pt-40 md:px-16"
+        style={`background-color: ${accent};`}
+      >
+        <div class="flex flex-col gap-4 max-w-[720px]">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="rounded-full border border-neutral-300 px-3 py-1 text-xs font-medium text-neutral-600">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1 class="font-display text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-neutral-900">
+            {title}
+          </h1>
+          <p class="text-lg leading-relaxed text-neutral-600 max-w-[560px]">{summary}</p>
+          <div class="flex flex-wrap gap-6 pt-2 text-sm text-neutral-500">
+            <span><strong class="text-neutral-700">Role</strong> — {role}</span>
+            <span><strong class="text-neutral-700">Company</strong> — {company}</span>
+            <span><strong class="text-neutral-700">Year</strong> — {year}</span>
+            {url && (
+              <a href={url} target="_blank" rel="noopener" class="text-accent-500 underline underline-offset-2">
+                View live →
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cover image empty state -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-6">
+      <div class="flex h-[480px] w-full items-center justify-center rounded-2xl bg-neutral-100 border-2 border-dashed border-neutral-200">
+        <div class="flex flex-col items-center gap-2 text-neutral-400">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span class="text-sm font-medium">Cover image</span>
+          <span class="text-xs">Suggested: hero screenshot or key screen · 1200×600px</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics -->
+    {metrics && metrics.length > 0 && (
+      <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {metrics.map((m) => (
+            <div class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-5">
+              <span class="font-display text-2xl font-bold text-neutral-900">{m.value}</span>
+              <span class="text-sm text-neutral-500">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Case content -->
+    <article class="mx-auto w-full max-w-[720px] px-6 pt-16 case-content">
+      <Content
+        components={{
+        }}
+      />
+    </article>
+  </main>
+
+  <Footer lang="en" />
+</Base>
+
+<style is:global>
+  .case-content h2 {
+    font-family: var(--font-display, 'Manrope', sans-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #171717;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  .case-content h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #262626;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .case-content p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #404040;
+    margin-bottom: 1rem;
+  }
+  .case-content strong {
+    color: #171717;
+    font-weight: 600;
+  }
+  .case-content ul, .case-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: #404040;
+    line-height: 1.75;
+  }
+  .case-content li {
+    margin-bottom: 0.25rem;
+  }
+  .case-content code {
+    font-size: 0.875em;
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    color: #171717;
+  }
+  .case-content hr {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 2.5rem 0;
+  }
+  /* Image empty state from comments */
+  .case-content .image-placeholder {
+    display: flex;
+    height: 320px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #f5f5f5;
+    border: 2px dashed #e5e5e5;
+    margin: 2rem 0;
+    flex-direction: column;
+    gap: 8px;
+    color: #a3a3a3;
+  }
+</style>
