@@ -20,8 +20,8 @@ const nav = isEN
     ];
 
 const altLang = isEN
-  ? { label: 'PT', href: currentPath.replace(/^\/pt/, '') || '/' }
-  : { label: 'EN', href: `/pt${currentPath}` };
+  ? { label: 'PT', href: `/pt${currentPath}` }
+  : { label: 'EN', href: currentPath.replace(/^\/pt/, '') || '/' };
 ---
 
 <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm">
