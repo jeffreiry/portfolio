@@ -36,38 +36,32 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Home EN + PT com Hero + grade 2 colunas de cases (→ 1 coluna no mobile)
 - [x] View Transitions — native browser API (`<meta name="view-transition">`, Astro 6)
 
-### Fase 3 — Páginas core
+### Fase 3 — Páginas core ✅ (parcial)
 
-- [ ] Schema do frontmatter de case (Zod) em `src/content/config.ts`
-- [ ] Template de página de case (`src/pages/work/[slug].astro`)
-- [ ] Página "About" (`src/pages/about.astro` + `/pt/about`)
-- [ ] Home refinada: seção "intro" entre Hero e grade de cases
+- [x] Schema do frontmatter de case (Zod) em `src/content.config.ts`
+- [x] Template de página de case (`src/pages/work/[slug].astro` + `/pt/work/[slug].astro`)
+- [x] Home refinada: seções About, Career e Education entre Hero e grade de cases
+- [x] Home lendo da content collection (`getCollection`) — sem array hardcoded
+- [ ] Página "About" dedicada (`src/pages/about.astro` + `/pt/about`) — conteúdo existe na home, página separada ainda não criada
 
-### Fase 4 — Conteúdo ⚡ parcialmente adiantado
+### Fase 4 — Conteúdo ⚡ quase completa
 
-O conteúdo dos cases foi escrito integralmente durante a Fase 0 — PT e EN —
-em [cases-portfolio.md](cases-portfolio.md). O trabalho restante é recortar
-cada case para seu arquivo `.md` individual e reunir os assets visuais.
+**Cases com arquivo `.md` criado (PT + EN):**
 
-**Cases prontos para publicar (texto completo PT+EN):**
+| # | Case | Slug | Status |
+|---|------|------|--------|
+| 1 | Enterprise AI Knowledge Assistant | `enterprise-ai-assistant` | ✅ PT + EN |
+| 2 | Shipping Capacity Optimization Platform | `shipping-capacity-platform` | ✅ PT + EN |
+| 3 | Arezzo&Co · Sistema de Anúncios | `arezzo-ad-management` | ✅ PT + EN |
+| 4 | Cartela de Cores | `cartela-cores` | ✅ PT + EN |
+| 5 | Painel Saúde | `painel-saude` | ✅ PT + EN |
+| 6 | Del Valle · Redesign de Site | `del-valle-website` | ✅ PT + EN |
+| 7 | Hypera Pharma · HYPERGESTOR | `hypera-hypergestor` | ✅ PT + EN |
+| 8 | Del Valle Kapo · Redesign de Site | `del-valle-kapo` | ✅ PT + EN |
 
-| # | Case | Slug sugerido |
-|---|------|---------------|
-| 1 | Cartela_Cores | `cartela-cores` |
-| 2 | Painel Saúde | `painel-saude` |
-| 3 | Enterprise AI Knowledge Assistant | `enterprise-ai-assistant` |
-| 4 | Shipping Capacity Optimization Platform | `shipping-capacity-platform` |
-| 5 | Arezzo&Co · Sistema de Anúncios | `arezzo-ad-management` |
-| 6 | Del Valle · Redesign de Site | `del-valle-website` |
-| 7 | Hypera Pharma · HYPERGESTOR | `hypera-hypergestor` |
-| 8 | Del Valle Kapo · Redesign de Site | `del-valle-kapo` |
-
-**Pendente para cada case:**
-- [ ] Criar `src/content/cases/pt/<slug>.md` com frontmatter + body do case
-- [ ] Criar `src/content/cases/en/<slug>.md` (par PT/EN)
+**Pendente (igual para todos os cases):**
 - [ ] Preencher os `⬜` de métricas com dados reais
 - [ ] Reunir e otimizar imagens em `public/cases/<slug>/` (webp/avif + alt bilíngue)
-- [ ] Definir `accent` (pastel do card) e `featured` para cada case
 
 **⬜ Quantos e quais cases entram no lançamento?** — ver Questões em aberto.
 

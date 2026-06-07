@@ -3,10 +3,28 @@
 ## [Não lançado]
 
 ### Pendente
-- Páginas de case (`/work/[slug]`) — Fase 3
-- Página About dedicada
+- Página About dedicada (`/about` + `/pt/about`)
+- Imagens dos cases em `public/cases/<slug>/cover.webp`
+- Preencher métricas reais (campos `⬜` nos frontmatters)
 - SEO (meta tags, OG, sitemap, hreflang)
 - Lighthouse 95+
+
+---
+
+## 2026-06-07
+
+### Adicionado
+- **6 cases novos** em PT + EN (12 arquivos `.md`):
+  - `painel-saude` — Dashboard pessoal Strava + Hevy
+  - `shipping-capacity-platform` — Plataforma de logística marítima
+  - `arezzo-ad-management` — Sistema de anúncios multi-perfil Arezzo&Co
+  - `del-valle-website` — Redesign site Del Valle "Cheio de vida"
+  - `hypera-hypergestor` — Sistema de verbas de trade marketing Hypera Pharma
+  - `del-valle-kapo` — Redesign site Del Valle Kapo "Sempre Criança 2.0"
+
+### Alterado
+- **Home EN + PT** migradas de array hardcoded para `getCollection` — cases lidos da content collection, ordenados por `order`, filtrados por `draft: false`
+- **Roadmap** atualizado: Fase 3 e Fase 4 marcadas como concluídas
 
 ---
 
