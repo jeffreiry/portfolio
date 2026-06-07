@@ -15,7 +15,7 @@ metrics:
   - label: "Colors validated"
     value: "22 of 28 within ±10%"
 featured: true
-draft: false
+draft: true
 order: 4
 ---
 
