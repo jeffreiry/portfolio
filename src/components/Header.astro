@@ -1,54 +1,70 @@
 ---
 interface Props {
-  lang?: string;
+  lang?: 'en' | 'pt';
   currentPath?: string;
 }
 
 const { lang = 'en', currentPath = '/' } = Astro.props;
 
-const isEN = lang === 'en';
-const base = isEN ? '' : '/pt';
+const isEn = lang === 'en';
 
-const nav = isEN
-  ? [
-      { label: 'Work', href: `${base}/` },
-      { label: 'About', href: `${base}/about` },
-    ]
-  : [
-      { label: 'Trabalhos', href: `${base}/` },
-      { label: 'Sobre', href: `${base}/about` },
-    ];
+const workHref = isEn ? '/' : '/pt/';
+const aboutHref = isEn ? '/about' : '/pt/about';
 
-const altLang = isEN
-  ? { label: 'PT', href: `/pt${currentPath}` }
-  : { label: 'EN', href: currentPath.replace(/^\/pt/, '') || '/' };
+const switchLangHref = isEn
+  ? `/pt${currentPath === '/' ? '' : currentPath}`
+  : currentPath.replace(/^\/pt/, '') || '/';
 ---
 
-<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm">
-  <div class="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-5">
+<header class="sticky top-0 z-50 w-full border-b border-neutral-100 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-6">
+    <!-- Logo -->
     <a
-      href={`${base}/`}
-      class="font-display text-sm font-semibold tracking-tight text-neutral-900 hover:text-accent-500 transition-colors"
+      href={workHref}
+      class="text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
     >
       Jeferson Freiry
     </a>
 
-    <nav class="flex items-center gap-6">
-      {nav.map((item) => (
-        <a
-          href={item.href}
-          class="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-        >
-          {item.label}
-        </a>
-      ))}
-
+    <!-- Nav -->
+    <nav class="flex items-center gap-6" aria-label="Main navigation">
       <a
-        href={altLang.href}
-        class="text-sm font-medium text-neutral-400 hover:text-accent-500 transition-colors"
+        href={workHref}
+        class="text-sm text-neutral-700 transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+        aria-current={currentPath === '/' || currentPath === '/pt/' ? 'page' : undefined}
       >
-        {altLang.label}
+        {isEn ? 'Work' : 'Trabalho'}
       </a>
+      <a
+        href={aboutHref}
+        class="text-sm text-neutral-700 transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+        aria-current={currentPath.includes('/about') ? 'page' : undefined}
+      >
+        {isEn ? 'About' : 'Sobre'}
+      </a>
+
+      <span class="h-4 w-px bg-neutral-200" aria-hidden="true" />
+
+      <!-- Language switcher -->
+      <div class="flex items-center gap-1 text-xs font-medium">
+        <span
+          class={isEn ? 'text-neutral-900' : 'text-neutral-400'}
+          aria-label={isEn ? 'Current language: English' : undefined}
+        >
+          EN
+        </span>
+        <span class="text-neutral-300" aria-hidden="true">·</span>
+        <a
+          href={switchLangHref}
+          hreflang={isEn ? 'pt' : 'en'}
+          aria-label={isEn ? 'Mudar para Português' : 'Switch to English'}
+          class={`transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-1 ${
+            !isEn ? 'text-neutral-900' : 'text-neutral-400 hover:text-neutral-600'
+          }`}
+        >
+          PT
+        </a>
+      </div>
     </nav>
   </div>
 </header>

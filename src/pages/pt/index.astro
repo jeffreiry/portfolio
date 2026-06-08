@@ -10,7 +10,11 @@ const allCases = await getCollection('casesPt', ({ data }) => !data.draft);
 const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Jeferson Freiry — Product Designer" lang="pt">
+<Base
+  title="Jeferson Freiry — Product Designer"
+  description="Senior Product Designer especializado em sistemas enterprise complexos. Projeto produtos orientados a dados e plataformas com IA que ajudam organizações a acessar conhecimento, otimizar fluxos e tomar melhores decisões."
+  lang="pt"
+>
   <Header lang="pt" currentPath="/" />
 
   <main class="flex flex-col gap-6 pb-24">
@@ -54,7 +58,7 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
           ))}
         </div>
         <p class="text-sm text-neutral-400">
-          Para uma visão completa, acesse meu <a href="https://linkedin.com/in/jeffreiry" class="text-neutral-700 underline underline-offset-2" target="_blank" rel="noopener">LinkedIn →</a>
+          Para uma visão completa, acesse meu <a href="https://linkedin.com/in/jefersonfreiry" class="text-neutral-700 underline underline-offset-2 transition-colors hover:text-neutral-900" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
         </p>
       </div>
     </section>

@@ -29,18 +29,45 @@ const href = `${base}/work/${slug}`;
 
 <a
   href={href}
-  class="group flex flex-col overflow-hidden rounded-[32px] transition-transform duration-300 hover:-translate-y-1"
+  class="group flex flex-col overflow-hidden rounded-[32px] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-4"
   style={`background-color: ${accent};`}
 >
   <!-- Cover image area -->
-  <div class="aspect-[16/9] w-full overflow-hidden bg-black/5">
+  <div class="aspect-[16/9] w-full overflow-hidden">
     {cover
-      ? <img
+      ? (
+        <img
           src={cover}
           alt={title}
           class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
         />
-      : <div class="h-full w-full" />
+      )
+      : (
+        <div
+          class="relative h-full w-full overflow-hidden"
+          style={`background: linear-gradient(135deg, ${accent} 0%, color-mix(in srgb, ${accent} 60%, #000) 100%);`}
+        >
+          <div
+            class="absolute inset-0 opacity-10"
+            style="background-image: linear-gradient(#00000022 1px, transparent 1px), linear-gradient(90deg, #00000022 1px, transparent 1px); background-size: 32px 32px;"
+          />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="opacity-20"
+            >
+              <rect x="6" y="6" width="36" height="36" rx="8" stroke="#000" stroke-width="2"/>
+              <rect x="13" y="13" width="10" height="10" rx="2" fill="#000"/>
+              <rect x="13" y="27" width="22" height="2.5" rx="1.25" fill="#000"/>
+              <rect x="13" y="32" width="16" height="2.5" rx="1.25" fill="#000"/>
+            </svg>
+          </div>
+        </div>
+      )
     }
   </div>
 
@@ -63,7 +90,7 @@ const href = `${base}/work/${slug}`;
 
     <div class="mt-1 flex flex-wrap gap-2">
       {tags.map((tag) => (
-        <span class="rounded-full bg-black/8 px-3 py-1 text-xs text-neutral-700">
+        <span class="rounded-full bg-black/10 px-3 py-1 text-xs text-neutral-700">
           {tag}
         </span>
       ))}
