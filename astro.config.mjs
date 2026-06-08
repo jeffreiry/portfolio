@@ -5,7 +5,7 @@ import svelte from '@astrojs/svelte';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  output: 'static',
+  output: 'hybrid',
   adapter: vercel({ webAnalytics: { enabled: true } }),
 
   i18n: {

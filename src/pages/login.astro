@@ -1,0 +1,89 @@
+---
+export const prerender = false;
+
+import '../styles/global.css';
+
+const next = Astro.url.searchParams.get('next') ?? '/';
+const error = Astro.url.searchParams.get('error') === '1';
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Access — Jeferson Freiry</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-neutral-50 text-neutral-900 antialiased">
+    <div class="flex min-h-screen items-center justify-center px-6">
+      <div class="w-full max-w-sm">
+
+        <div class="mb-8">
+          <a
+            href="/"
+            class="font-display text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-60"
+          >
+            Jeferson Freiry
+          </a>
+        </div>
+
+        <div class="rounded-[24px] bg-white p-8 shadow-sm ring-1 ring-neutral-100">
+          <h1 class="font-display text-xl font-semibold text-neutral-900 mb-1">
+            Restricted access
+          </h1>
+          <p class="text-sm text-neutral-500 mb-6">
+            This case study is protected. Enter the password to continue.
+          </p>
+
+          {error && (
+            <div class="mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
+              Incorrect password. Please try again.
+            </div>
+          )}
+
+          <form method="POST" action="/api/login" class="flex flex-col gap-4">
+            <input type="hidden" name="next" value={next} />
+
+            <div class="flex flex-col gap-1.5">
+              <label for="password" class="text-xs font-medium text-neutral-500 uppercase tracking-widest">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autofocus
+                autocomplete="current-password"
+                placeholder="••••••••"
+                class="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-300 focus:border-neutral-400 focus:bg-white"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+            >
+              Enter
+            </button>
+          </form>
+        </div>
+
+        <p class="mt-6 text-center text-xs text-neutral-400">
+          Don't have the password?
+          <a href="mailto:jfreiry@gmail.com" class="underline underline-offset-2 hover:text-neutral-600">
+            Get in touch
+          </a>
+        </p>
+
+      </div>
+    </div>
+  </body>
+</html>
