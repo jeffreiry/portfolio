@@ -5,6 +5,7 @@ interface Props {
   body?: string;
   contactLabel?: string;
   contactHref?: string;
+  eyebrow?: string;
 }
 
 const {
@@ -13,39 +14,61 @@ const {
   body,
   contactLabel = 'Get in touch →',
   contactHref = 'mailto:jfreiry@gmail.com',
+  eyebrow = 'Product Designer · Porto Alegre, BR',
 } = Astro.props;
+
+const [firstName, ...rest] = headline.split(' ');
+const lastName = rest.join(' ');
 ---
 
-<section class="w-full px-6 pt-6">
+<section class="w-full px-5 pt-5">
   <div
-    class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[32px] bg-neutral-700/90 px-8 pb-16 pt-40 md:px-16"
+    class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-10 pb-11 pt-10"
+    style="background-color: var(--color-cha-mate);"
   >
-    <div class="flex flex-col gap-5">
-      <h1
-        class="font-display text-[clamp(32px,5vw,60px)] font-semibold leading-[1.15] text-white"
-        style="max-width: 640px;"
+    <!-- Eyebrow -->
+    <p
+      class="mb-3 text-[10px] font-medium uppercase tracking-[0.16em]"
+      style="color: rgba(255,255,255,0.35); font-family: var(--font-body);"
+    >
+      {eyebrow}
+    </p>
+
+    <!-- Nome: display condensado, sobrenome em Jambu -->
+    <h1
+      class="font-display"
+      style="font-size: clamp(48px, 7vw, 80px); line-height: 0.92; color: #fff;"
+    >
+      {firstName}<br />
+      <span style="color: var(--color-jambu);">{lastName}</span>
+    </h1>
+
+    <!-- Corpo: role + body em bloco único -->
+    {(role || body) && (
+      <p
+        class="mt-4 max-w-[400px] leading-relaxed"
+        style="font-size: 14px; font-weight: 300; font-family: var(--font-body); color: rgba(255,255,255,0.55);"
       >
-        {headline}
-      </h1>
+        {body || role}
+      </p>
+    )}
 
-      {role && (
-        <p class="text-base font-medium text-white/60" style="max-width: 560px;">
-          {role}
-        </p>
-      )}
-
-      {body && (
-        <p class="text-lg leading-relaxed text-white/70" style="max-width: 560px;">
-          {body}
-        </p>
-      )}
-
-      <a
-        href={contactHref}
-        class="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-700"
-      >
-        {contactLabel}
-      </a>
-    </div>
+    <!-- CTA -->
+    <a
+      href={contactHref}
+      class="mt-5 inline-flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+      style="
+        background-color: var(--color-jambu);
+        border-radius: var(--radius-pill);
+        padding: 9px 20px;
+        font-size: 12px;
+        font-weight: 500;
+        font-family: var(--font-body);
+        color: #fff;
+        letter-spacing: 0.02em;
+      "
+    >
+      {contactLabel}
+    </a>
   </div>
 </section>

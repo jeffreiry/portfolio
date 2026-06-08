@@ -1,56 +1,128 @@
 @import "tailwindcss";
 
 @theme {
-  /* Neutrals */
-  --color-white: #ffffff;
-  --color-neutral-50: #f5f4f6;
-  --color-neutral-100: #f2f2f2;
-  --color-neutral-200: #e6e6e6;
-  --color-neutral-400: #a7a7a7;
-  --color-neutral-500: #8e8e8e;
-  --color-neutral-700: #383838;
-  --color-neutral-800: #212121;
-  --color-neutral-900: #1a1a1a;
+  /* --- Paleta Premium Brasileira --- */
+  --color-cha-mate:        #5c2d11;
+  --color-cha-mate-light:  #7a3f1e;
+  --color-azul-pantanal:   #153c52;
+  --color-figo:            #4d6046;
+  --color-jambu:           #ed6707;
+  --color-sol-jalapao:     #f26b3a;
+  --color-fogueira:        #8c2f0d;
 
-  /* Accent — orange */
-  --color-accent-tint: #fff7ef;
-  --color-accent-300: #ff8532;
-  --color-accent-400: #ff620a;
-  --color-accent-500: #ff4800;
+  /* --- Superfícies --- */
+  --color-page-bg:         #f5f2ee;
+  --color-surface:         #ede8e2;
+  --color-surface-2:       #e2dbd3;
+  --color-border:          #d9d2c8;
 
-  /* Case card pastels */
-  --color-pastel-blue: #ecf0f3;
-  --color-pastel-slate: #d0dfe6;
-  --color-pastel-lavender: #efedff;
-  --color-pastel-lime: #f9fbe7;
-  --color-pastel-sky: #e1f5fe;
-  --color-pastel-steel: #d4e2e8;
-  --color-pastel-powder: #afdced;
+  /* --- Neutrals --- */
+  --color-white:           #ffffff;
+  --color-ink:             #1a1a1a;
+  --color-muted:           #7a6a60;
+  --color-faint:           #a89890;
+
+  /* --- Tags por categoria --- */
+  --color-tag-enterprise-bg:   #fde3d0;
+  --color-tag-enterprise-text: #8c2f0d;
+  --color-tag-research-bg:     #d8e8ef;
+  --color-tag-research-text:   #153c52;
+  --color-tag-dataviz-bg:      #dde4db;
+  --color-tag-dataviz-text:    #2e4029;
+  --color-tag-personal-bg:     #f0e4d8;
+  --color-tag-personal-text:   #5c2d11;
+
+  /* --- Pastéis de cover (compatibilidade) --- */
+  --color-pastel-blue:       #ecf0f3;
+  --color-pastel-slate:      #d0dfe6;
+  --color-pastel-lavender:   #efedff;
+  --color-pastel-lime:       #f9fbe7;
+  --color-pastel-sky:        #e1f5fe;
+  --color-pastel-steel:      #d4e2e8;
+  --color-pastel-powder:     #afdced;
   --color-pastel-periwinkle: #c6d0f7;
-  --color-pastel-peach: #e0ac90;
-  --color-pastel-yellow: #ebee58;
+  --color-pastel-peach:      #e0ac90;
+  --color-pastel-yellow:     #ebee58;
+  --color-pastel-sand:       #e8e4dc;
+  --color-pastel-figo:       #dde4db;
 
-  /* Typography */
-  --font-display: "Manrope", "Manrope Placeholder", sans-serif;
-  --font-body: "Inter", "Inter Placeholder", sans-serif;
+  /* --- Tipografia --- */
+  --font-display: "Barlow Condensed", "Barlow Condensed Placeholder", sans-serif;
+  --font-body:    "Barlow", "Barlow Placeholder", sans-serif;
 
-  /* Radii */
-  --radius-card: 32px;
+  /* --- Radii --- */
+  --radius-card:  20px;
+  --radius-hero:  24px;
+  --radius-pill:  999px;
+  --radius-tag:   999px;
 
-  /* Container */
+  /* --- Container --- */
   --container-max: 1200px;
 }
 
+/* --- Base --- */
 @layer base {
   html {
+    scroll-behavior: smooth;
+  }
+
+  body {
     font-family: var(--font-body);
-    color: var(--color-neutral-900);
-    background-color: var(--color-white);
+    font-weight: 300;
+    background-color: var(--color-page-bg);
+    color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.0;
+  }
+}
+
+/* --- Utilitários globais --- */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-muted {
+    color: var(--color-muted);
+  }
+
+  .text-faint {
+    color: var(--color-faint);
+  }
+
+  .bg-page {
+    background-color: var(--color-page-bg);
+  }
+
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+
+  .border-subtle {
+    border: 0.5px solid var(--color-border);
+  }
+
+  .accent-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--color-jambu);
   }
 }

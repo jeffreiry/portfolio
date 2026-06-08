@@ -18,22 +18,48 @@ const {
   role,
   year,
   tags,
-  accent = '#ecf0f3',
+  accent = '#e8e4dc',
   cover,
   lang = 'en',
 } = Astro.props;
 
 const base = lang === 'en' ? '' : '/pt';
 const href = `${base}/work/${slug}`;
+
+const tagColorMap: Record<string, { bg: string; text: string }> = {
+  'Enterprise':       { bg: '#fde3d0', text: '#8c2f0d' },
+  'AI / LLM':         { bg: '#fde3d0', text: '#8c2f0d' },
+  'Info design':      { bg: '#fde3d0', text: '#8c2f0d' },
+  'Multi-role':       { bg: '#fde3d0', text: '#8c2f0d' },
+  'Research':         { bg: '#d8e8ef', text: '#153c52' },
+  'UX Research':      { bg: '#d8e8ef', text: '#153c52' },
+  'DataViz':          { bg: '#dde4db', text: '#2e4029' },
+  'Dashboard':        { bg: '#dde4db', text: '#2e4029' },
+  'System design':    { bg: '#dde4db', text: '#2e4029' },
+  'Personal':         { bg: '#f0e4d8', text: '#5c2d11' },
+  'Side project':     { bg: '#f0e4d8', text: '#5c2d11' },
+  'Web app':          { bg: '#f0e4d8', text: '#5c2d11' },
+  'Consumer':         { bg: '#d8e8ef', text: '#153c52' },
+  'Retail':           { bg: '#d8e8ef', text: '#153c52' },
+  'Mobile':           { bg: '#dde4db', text: '#2e4029' },
+  'Digital branding': { bg: '#dde4db', text: '#2e4029' },
+  'Visual design':    { bg: '#dde4db', text: '#2e4029' },
+};
+
+function getTagStyle(tag: string) {
+  const match = tagColorMap[tag];
+  if (match) return `background:${match.bg}; color:${match.text};`;
+  return 'background:#ede8e2; color:#5a4a40;';
+}
 ---
 
 <a
   href={href}
-  class="group flex flex-col overflow-hidden rounded-[32px] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-4"
-  style={`background-color: ${accent};`}
+  class="group flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+  style={`border-radius: var(--radius-card); background-color: ${accent}; --tw-ring-color: var(--color-cha-mate);`}
 >
-  <!-- Cover image area -->
-  <div class="aspect-[16/9] w-full overflow-hidden">
+  <!-- Cover -->
+  <div class="relative aspect-[16/9] w-full overflow-hidden">
     {cover
       ? (
         <img
@@ -45,52 +71,67 @@ const href = `${base}/work/${slug}`;
       : (
         <div
           class="relative h-full w-full overflow-hidden"
-          style={`background: linear-gradient(135deg, ${accent} 0%, color-mix(in srgb, ${accent} 60%, #000) 100%);`}
+          style={`background: linear-gradient(135deg, ${accent} 0%, color-mix(in srgb, ${accent} 55%, #2a1a0e) 100%);`}
         >
           <div
-            class="absolute inset-0 opacity-10"
-            style="background-image: linear-gradient(#00000022 1px, transparent 1px), linear-gradient(90deg, #00000022 1px, transparent 1px); background-size: 32px 32px;"
+            class="absolute inset-0"
+            style="opacity:0.06; background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 24px 24px;"
           />
           <div class="absolute inset-0 flex items-center justify-center">
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="opacity-20"
-            >
-              <rect x="6" y="6" width="36" height="36" rx="8" stroke="#000" stroke-width="2"/>
-              <rect x="13" y="13" width="10" height="10" rx="2" fill="#000"/>
-              <rect x="13" y="27" width="22" height="2.5" rx="1.25" fill="#000"/>
-              <rect x="13" y="32" width="16" height="2.5" rx="1.25" fill="#000"/>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.18;">
+              <rect x="4" y="4" width="32" height="32" rx="7" stroke="#000" stroke-width="2"/>
+              <rect x="10" y="10" width="9" height="9" rx="2" fill="#000"/>
+              <rect x="10" y="23" width="20" height="2.5" rx="1.25" fill="#000"/>
+              <rect x="10" y="28" width="14" height="2.5" rx="1.25" fill="#000"/>
             </svg>
           </div>
         </div>
       )
     }
+    <!-- Accent bar Jambu -->
+    <div
+      class="absolute bottom-0 left-0 right-0"
+      style="height: 3px; background-color: var(--color-jambu);"
+    />
   </div>
 
-  <!-- Card body -->
-  <div class="flex flex-col gap-3 p-8">
-    <div class="flex items-center justify-between gap-4">
-      <span class="text-xs font-medium uppercase tracking-widest text-neutral-500">
+  <!-- Body -->
+  <div class="flex flex-col gap-2 p-5">
+    <div class="flex items-center justify-between gap-2">
+      <span
+        class="text-[10px] font-medium uppercase tracking-[0.09em]"
+        style="color: var(--color-jambu); font-family: var(--font-body);"
+      >
         {role}
       </span>
-      <span class="text-xs text-neutral-400">{year}</span>
+      <span
+        class="text-[10px]"
+        style="color: var(--color-faint); font-family: var(--font-body);"
+      >
+        {year}
+      </span>
     </div>
 
-    <h2 class="font-display text-xl font-semibold leading-snug text-neutral-900">
+    <h2
+      class="font-display leading-[1.05]"
+      style="font-size: 20px; color: var(--color-cha-mate);"
+    >
       {title}
     </h2>
 
-    <p class="text-sm leading-relaxed text-neutral-600 line-clamp-2">
+    <p
+      class="line-clamp-2 leading-relaxed"
+      style="font-size: 12px; font-weight: 300; font-family: var(--font-body); color: var(--color-muted);"
+    >
       {summary}
     </p>
 
-    <div class="mt-1 flex flex-wrap gap-2">
+    <div class="mt-1 flex flex-wrap gap-1.5">
       {tags.map((tag) => (
-        <span class="rounded-full bg-black/10 px-3 py-1 text-xs text-neutral-700">
+        <span
+          class="rounded-full px-2.5 py-1 text-[10px] font-medium"
+          style={getTagStyle(tag)}
+        >
           {tag}
         </span>
       ))}

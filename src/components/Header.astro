@@ -8,7 +8,7 @@ const { lang = 'en', currentPath = '/' } = Astro.props;
 
 const isEn = lang === 'en';
 
-const workHref = isEn ? '/' : '/pt/';
+const workHref  = isEn ? '/' : '/pt/';
 const aboutHref = isEn ? '/about' : '/pt/about';
 
 const switchLangHref = isEn
@@ -16,55 +16,83 @@ const switchLangHref = isEn
   : currentPath.replace(/^\/pt/, '') || '/';
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-neutral-100 bg-white/80 backdrop-blur-md">
-  <div class="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-6">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 w-full transition-colors duration-200"
+  style="background: color-mix(in srgb, var(--color-page-bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 0.5px solid var(--color-border);"
+>
+  <div class="mx-auto flex h-[52px] max-w-[1200px] items-center justify-between px-5">
+
     <!-- Logo -->
     <a
       href={workHref}
-      class="text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+      class="font-display text-[15px] tracking-[0.04em] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      style="color: var(--color-cha-mate); --tw-ring-color: var(--color-cha-mate);"
+      aria-label="Jeferson Freiry — home"
     >
-      Jeferson Freiry
+      JF
     </a>
 
     <!-- Nav -->
-    <nav class="flex items-center gap-6" aria-label="Main navigation">
+    <nav class="flex items-center gap-5" aria-label="Main navigation">
       <a
         href={workHref}
-        class="text-sm text-neutral-700 transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
         aria-current={currentPath === '/' || currentPath === '/pt/' ? 'page' : undefined}
       >
         {isEn ? 'Work' : 'Trabalho'}
       </a>
+
       <a
         href={aboutHref}
-        class="text-sm text-neutral-700 transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
         aria-current={currentPath.includes('/about') ? 'page' : undefined}
       >
         {isEn ? 'About' : 'Sobre'}
       </a>
 
-      <span class="h-4 w-px bg-neutral-200" aria-hidden="true" />
+      <!-- Separador -->
+      <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
 
       <!-- Language switcher -->
-      <div class="flex items-center gap-1 text-xs font-medium">
+      <div class="flex items-center gap-1 text-[11px] font-medium" style="font-family: var(--font-body);">
         <span
-          class={isEn ? 'text-neutral-900' : 'text-neutral-400'}
+          style={isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}
           aria-label={isEn ? 'Current language: English' : undefined}
         >
           EN
         </span>
-        <span class="text-neutral-300" aria-hidden="true">·</span>
+        <span style="color: var(--color-border);">·</span>
         <a
           href={switchLangHref}
-          hreflang={isEn ? 'pt' : 'en'}
+          class="transition-colors hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
+          style={!isEn
+            ? 'color: var(--color-cha-mate); --tw-ring-color: var(--color-cha-mate);'
+            : 'color: var(--color-faint); --tw-ring-color: var(--color-cha-mate);'}
           aria-label={isEn ? 'Mudar para Português' : 'Switch to English'}
-          class={`transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-1 ${
-            !isEn ? 'text-neutral-900' : 'text-neutral-400 hover:text-neutral-600'
-          }`}
+          hreflang={isEn ? 'pt' : 'en'}
         >
           PT
         </a>
       </div>
     </nav>
   </div>
+
+  <!-- Accent bar Jambu — aparece ao fazer scroll -->
+  <div
+    id="header-accent"
+    class="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 transition-transform duration-300"
+    style="background-color: var(--color-jambu);"
+    aria-hidden="true"
+  />
 </header>
+
+<script>
+  const accent = document.getElementById('header-accent');
+  window.addEventListener('scroll', () => {
+    if (!accent) return;
+    accent.style.transform = window.scrollY > 20 ? 'scaleX(1)' : 'scaleX(0)';
+  }, { passive: true });
+</script>

@@ -1,37 +1,46 @@
 ---
 interface Props {
-  lang?: string;
+  lang?: 'en' | 'pt';
 }
 const { lang = 'en' } = Astro.props;
-const isEN = lang === 'en';
 ---
 
-<footer class="border-t border-neutral-200 bg-white">
-  <div class="mx-auto flex max-w-[1200px] flex-col gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
-    <div class="flex flex-col gap-1">
-      <span class="font-display text-sm font-semibold text-neutral-900">
-        Jeferson Freiry
-      </span>
-      <span class="text-sm text-neutral-400">
-        {isEN ? 'Product Designer' : 'Product Designer'}
-      </span>
-    </div>
+<footer
+  class="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-5"
+  style="border-top: 0.5px solid var(--color-border); margin-top: 2rem;"
+>
+  <span
+    class="font-display text-[12px] tracking-[0.06em]"
+    style="color: var(--color-faint);"
+  >
+    JEFERSON FREIRY © {new Date().getFullYear()}
+  </span>
 
-    <div class="flex items-center gap-6">
-      <a
-        href="https://linkedin.com/in/jefersonfreiry"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-      >
-        LinkedIn
-      </a>
-      <a
-        href="mailto:jfreiry@gmail.com"
-        class="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-      >
-        {isEN ? 'Email' : 'E-mail'}
-      </a>
-    </div>
-  </div>
+  <nav class="flex gap-4" aria-label="Footer links">
+    <a
+      href="https://linkedin.com/in/jefersonfreiry"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-[11px] transition-opacity hover:opacity-80"
+      style="color: var(--color-faint); font-family: var(--font-body);"
+    >
+      LinkedIn
+    </a>
+    <a
+      href="https://github.com/jeffreiry"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-[11px] transition-opacity hover:opacity-80"
+      style="color: var(--color-faint); font-family: var(--font-body);"
+    >
+      GitHub
+    </a>
+    <a
+      href="mailto:jfreiry@gmail.com"
+      class="text-[11px] transition-opacity hover:opacity-80"
+      style="color: var(--color-faint); font-family: var(--font-body);"
+    >
+      {lang === 'en' ? 'Email' : 'E-mail'}
+    </a>
+  </nav>
 </footer>
