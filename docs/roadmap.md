@@ -65,14 +65,23 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 
 **⬜ Quantos e quais cases entram no lançamento?** — ver Questões em aberto.
 
+### Fase 4.5 — Segurança ✅
+
+- [x] Output `hybrid` (Vercel SSR) para suportar middleware
+- [x] Middleware de proteção por senha (`/work/*` + `/pt/work/*`)
+- [x] Login page (`/login`) + API POST (`/api/login`, `/api/logout`)
+- [x] Páginas de case convertidas para SSR (sem `getStaticPaths`)
+- [ ] **Ação necessária:** adicionar `PORTFOLIO_PASSWORD` no painel Vercel
+
 ### Fase 5 — Polish & lançamento
 
 - [ ] Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
 - [ ] Acessibilidade: foco visível, contraste WCAG AA, navegação por teclado, leitor de tela
-- [ ] SEO: meta tags, Open Graph, sitemap.xml, canonical, hreflang PT/EN
+- [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
+- [ ] Sitemap.xml
 - [ ] Lighthouse 95+ em todas as métricas (Performance, A11y, Best Practices, SEO)
 - [x] Domínio `portfolio.jefersonfreiry.com` + DNS apontado
-- [ ] Analytics (ver Questões em aberto)
+- [x] Analytics (Vercel Web Analytics ativo)
 - [ ] Lançar e redirecionar `jefersonfreiry.framer.website` para o novo domínio
 
 ---

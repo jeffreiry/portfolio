@@ -11,6 +11,25 @@
 
 ---
 
+## 2026-06-07 (2)
+
+### Adicionado
+- **Proteção por senha nos cases** via middleware SSR + cookie httpOnly:
+  - `src/middleware.ts` — intercepta `/work/*` e `/pt/work/*`, verifica cookie `portfolio_auth`
+  - `src/pages/api/login.ts` — POST que valida senha e define cookie de 30 dias
+  - `src/pages/api/logout.ts` — POST que apaga o cookie e redireciona para `/`
+  - `src/pages/login.astro` — tela de login com tratamento de erro
+- **`astro.config.mjs`** — output `static` → `hybrid` para suportar SSR no middleware
+
+### Alterado
+- `src/pages/work/[slug].astro` — convertido para SSR: removido `getStaticPaths()`, adicionado `export const prerender = false`, carrega entry dinamicamente via `Astro.params.slug`
+- `src/pages/pt/work/[slug].astro` — mesma conversão para SSR
+
+### Próximo passo obrigatório
+- Adicionar variável `PORTFOLIO_PASSWORD` no painel Vercel (Settings → Environment Variables → Production) para ativar a proteção
+
+---
+
 ## 2026-06-07
 
 ### Adicionado
