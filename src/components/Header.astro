@@ -31,11 +31,12 @@ const switchLangHref = isEn
     <!-- Logo -->
     <a
       href={homeHref}
-      class="font-display text-[15px] tracking-[0.04em] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-      style="color: var(--color-cha-mate); --tw-ring-color: var(--color-cha-mate);"
+      class="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      style="--tw-ring-color: var(--color-cha-mate);"
       aria-label="Jeferson Freiry — home"
     >
-      JF
+      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" style="height: 28px; width: auto; display: block;" />
+      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 28px; width: auto; display: none;" />
     </a>
 
     <!-- Nav -->
@@ -110,6 +111,11 @@ const switchLangHref = isEn
     aria-hidden="true"
   />
 </header>
+
+<style>
+  html[data-theme="dark"] .logo-black { display: none !important; }
+  html[data-theme="dark"] .logo-white { display: block !important; }
+</style>
 
 <script>
   const accent = document.getElementById('header-accent');
