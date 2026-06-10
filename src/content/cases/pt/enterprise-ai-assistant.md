@@ -6,7 +6,7 @@ summary: "Escalou um MVP de assistente com IA para uma plataforma de conheciment
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png
-bgImage: "https://images.unsplash.com/photo-rNH2Pcgg888?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1694903089438-bf28d4697d9a?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#efedff"
 tags: ["Enterprise", "IA conversacional", "Design de informação", "Transparência"]
 metrics:

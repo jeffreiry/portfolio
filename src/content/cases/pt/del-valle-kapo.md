@@ -6,7 +6,7 @@ summary: "Redesign completo do site Del Valle Kapo para a campanha Sempre Crian√
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2022
 cover: /cases/del-valle-kapo/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-DqgMHzeio7g?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
 tags: ["Branding digital", "Consumer", "Plataforma de conte√∫do", "Coca-Cola"]
 featured: false
