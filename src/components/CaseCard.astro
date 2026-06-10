@@ -26,6 +26,10 @@ const {
 const base = lang === 'en' ? '' : '/pt';
 const href = `${base}/work/${slug}`;
 
+const imgSrc = cover ?? `https://picsum.photos/seed/${slug}/800/450`;
+
+const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
+
 const tagColorMap: Record<string, { bg: string; text: string }> = {
   'Enterprise':       { bg: '#fde3d0', text: '#8c2f0d' },
   'AI / LLM':         { bg: '#fde3d0', text: '#8c2f0d' },
@@ -64,34 +68,25 @@ function getTagStyle(tag: string) {
 >
   <!-- Cover -->
   <div class="relative aspect-[16/9] w-full overflow-hidden">
-    {cover
-      ? (
-        <img
-          src={cover}
-          alt={title}
-          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-        />
-      )
-      : (
-        <div
-          class="relative h-full w-full overflow-hidden"
-          style={`background: linear-gradient(135deg, ${accent} 0%, color-mix(in srgb, ${accent} 55%, #2a1a0e) 100%);`}
-        >
-          <div
-            class="absolute inset-0"
-            style="opacity:0.06; background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 24px 24px;"
-          />
-          <div class="absolute inset-0 flex items-center justify-center">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.18;">
-              <rect x="4" y="4" width="32" height="32" rx="7" stroke="#000" stroke-width="2"/>
-              <rect x="10" y="10" width="9" height="9" rx="2" fill="#000"/>
-              <rect x="10" y="23" width="20" height="2.5" rx="1.25" fill="#000"/>
-              <rect x="10" y="28" width="14" height="2.5" rx="1.25" fill="#000"/>
-            </svg>
-          </div>
-        </div>
-      )
-    }
+    <!-- Imagem (real ou placeholder) -->
+    <img
+      src={imgSrc}
+      alt={title}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+    />
+
+    <!-- Vinheta escura no fundo para dar profundidade -->
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style="background: linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.28) 100%);"
+    />
+
+    <!-- Textura grain -->
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`}
+    />
+
     <!-- Accent bar Jambu -->
     <div
       class="absolute bottom-0 left-0 right-0"
