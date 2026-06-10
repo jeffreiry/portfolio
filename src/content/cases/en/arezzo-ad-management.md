@@ -5,6 +5,7 @@ role: "UX Researcher · UX Designer · UI Designer"
 summary: "Redesign of the Arezzo&Co group's social media ad management system — three profiles with radically different needs, one platform with role-based information architecture."
 company: "Arezzo&Co (via CWI)"
 year: 2023
+cover: /cases/arezzo-ad-management/cover.jpg
 accent: "#ecf0f3"
 tags: ["Retail", "Multi-role", "System design", "Dashboard", "Mobile"]
 featured: true
