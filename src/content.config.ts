@@ -9,6 +9,7 @@ const caseSchema = z.object({
   company: z.string(),
   year: z.number(),
   cover: z.string().optional(),
+  bgImage: z.string().optional(),
   accent: z.string(),
   tags: z.array(z.string()),
   url: z.string().optional(),

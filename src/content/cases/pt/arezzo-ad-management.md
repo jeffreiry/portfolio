@@ -6,6 +6,7 @@ summary: "Redesenho do sistema de gerenciamento de anúncios em redes sociais do
 company: "Arezzo&Co (via CWI)"
 year: 2023
 cover: /cases/arezzo-ad-management/cover.jpg
+bgImage: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#ecf0f3"
 tags: ["Retail", "Multi-perfil", "Design de sistema", "Dashboard", "Mobile"]
 featured: true

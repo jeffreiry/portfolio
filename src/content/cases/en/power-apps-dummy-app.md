@@ -5,6 +5,7 @@ role: "UX Designer · Design Systems, 2025"
 summary: "Turning isolated Design System components into a functional mobile reference app — bridging the gap between design intent and low-code implementation in Microsoft Power Apps."
 company: "Large industrial company (confidential)"
 year: 2025
+bgImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#e8f0fe"
 tags: ["Design Systems", "Mobile", "Low-code", "Power Apps", "Microsoft"]
 metrics:
