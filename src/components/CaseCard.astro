@@ -37,98 +37,70 @@ const hash = slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
 const imgSrc = cover ?? placeholders[hash % placeholders.length];
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
-
-const tagColorMap: Record<string, { bg: string; text: string }> = {
-  'Enterprise':       { bg: '#fde3d0', text: '#8c2f0d' },
-  'AI / LLM':         { bg: '#fde3d0', text: '#8c2f0d' },
-  'Info design':      { bg: '#fde3d0', text: '#8c2f0d' },
-  'Multi-role':       { bg: '#fde3d0', text: '#8c2f0d' },
-  'Research':         { bg: '#d8e8ef', text: '#153c52' },
-  'UX Research':      { bg: '#d8e8ef', text: '#153c52' },
-  'DataViz':          { bg: '#dde4db', text: '#2e4029' },
-  'Dashboard':        { bg: '#dde4db', text: '#2e4029' },
-  'System design':    { bg: '#dde4db', text: '#2e4029' },
-  'Personal':         { bg: '#f0e4d8', text: '#5c2d11' },
-  'Side project':     { bg: '#f0e4d8', text: '#5c2d11' },
-  'Web app':          { bg: '#f0e4d8', text: '#5c2d11' },
-  'Consumer':         { bg: '#d8e8ef', text: '#153c52' },
-  'Retail':           { bg: '#d8e8ef', text: '#153c52' },
-  'Mobile':           { bg: '#dde4db', text: '#2e4029' },
-  'Digital branding': { bg: '#dde4db', text: '#2e4029' },
-  'Visual design':    { bg: '#dde4db', text: '#2e4029' },
-};
-
-function getTagStyle(tag: string) {
-  const match = tagColorMap[tag];
-  if (match) return `background:${match.bg}; color:${match.text};`;
-  return 'background:#ede8e2; color:#5a4a40;';
-}
 ---
 
 <a
   href={href}
-  class="group flex flex-col overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
-  style={`border-radius: var(--radius-card); background-color: ${accent}; --tw-ring-color: var(--color-cha-mate); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
-  onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
+  class="group relative flex flex-col justify-end overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+  style={`border-radius: var(--radius-card); aspect-ratio: 4/3; --tw-ring-color: var(--color-cha-mate); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
+  onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.28)'"
   onmouseout="this.style.transform='';this.style.boxShadow=''"
-  onfocus="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
+  onfocus="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.28)'"
   onblur="this.style.transform='';this.style.boxShadow=''"
 >
-  <!-- Cover -->
-  <div class="relative aspect-[16/9] w-full overflow-hidden">
-    <!-- Imagem (real ou placeholder) -->
-    <img
-      src={imgSrc}
-      alt={title}
-      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-    />
+  <!-- Imagem de fundo -->
+  <img
+    src={imgSrc}
+    alt={title}
+    class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+    loading="lazy"
+  />
 
-    <!-- Sobreposição escura igual ao Hero -->
-    <div
-      class="absolute inset-0 pointer-events-none"
-      style="background: linear-gradient(135deg, rgba(10,5,2,0.72) 0%, rgba(30,14,6,0.58) 100%);"
-    />
+  <!-- Overlay escuro igual ao Hero -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: linear-gradient(135deg, rgba(10,5,2,0.72) 0%, rgba(30,14,6,0.58) 100%);"
+  />
 
-    <!-- Textura grain -->
-    <div
-      class="absolute inset-0 pointer-events-none"
-      style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`}
-    />
+  <!-- Grain -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`}
+  />
 
-    <!-- Accent bar Jambu -->
-    <div
-      class="absolute bottom-0 left-0 right-0"
-      style="height: 3px; background-color: var(--color-jambu);"
-    />
-  </div>
+  <!-- Accent bar Jambu -->
+  <div
+    class="absolute bottom-0 left-0 right-0 pointer-events-none"
+    style="height: 3px; background-color: var(--color-jambu);"
+  />
 
-  <!-- Body -->
-  <div class="flex flex-col gap-2 p-5">
+  <!-- Conteúdo sobre a imagem -->
+  <div class="relative flex flex-col gap-2 p-6 pb-7">
     <div class="flex items-center justify-between gap-2">
       <span
         class="text-[10px] font-medium uppercase tracking-[0.09em]"
-        style="color: var(--color-jambu); font-family: var(--font-body);"
+        style="color: rgba(255,255,255,0.55); font-family: var(--font-body);"
       >
         {role}
       </span>
       <span
         class="text-[10px]"
-        style="color: var(--color-faint); font-family: var(--font-body);"
+        style="color: rgba(255,255,255,0.4); font-family: var(--font-body);"
       >
         {year}
       </span>
     </div>
 
     <h2
-      class="font-display leading-[1.05]"
-      style="font-size: 20px; color: var(--color-cha-mate);"
+      class="font-display"
+      style="font-size: 22px; line-height: 1.1; color: #fff;"
     >
       {title}
     </h2>
 
     <p
       class="line-clamp-2 leading-relaxed"
-      style="font-size: 12px; font-weight: 500; font-family: var(--font-body); color: var(--color-muted);"
+      style="font-size: 12px; font-weight: 500; font-family: var(--font-body); color: rgba(255,255,255,0.65);"
     >
       {summary}
     </p>
@@ -137,7 +109,7 @@ function getTagStyle(tag: string) {
       {tags.map((tag) => (
         <span
           class="rounded-full px-2.5 py-1 text-[10px] font-medium"
-          style={getTagStyle(tag)}
+          style="background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); backdrop-filter: blur(4px);"
         >
           {tag}
         </span>
