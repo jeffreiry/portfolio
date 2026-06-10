@@ -20,7 +20,7 @@ bilíngues (PT/EN) em Markdown, hospedado na Vercel.
 | Conteúdo | Content Collections (Markdown) |
 | i18n | Astro i18n routing (EN raiz + PT em /pt) |
 | Hospedagem | Vercel (output hybrid) |
-| Fontes | Barlow Condensed (display) + Barlow (corpo) |
+| Fontes | Cactus Regular (display) + Barlow (corpo) |
 | Email | Resend (formulário de contato) |
 | Versionamento | Git → GitHub |
 
@@ -101,7 +101,7 @@ com `⬜`. Detalhes do modelo e o template completo em
 
 Formalizada em [docs/design-system.md](docs/design-system.md):
 
-- **Tipografia:** Barlow Condensed 700 (títulos uppercase) + Barlow 300–500 (corpo)
+- **Tipografia:** Cactus Regular (títulos uppercase, via @font-face em `public/fonts/`) + Barlow 300–500 (corpo)
 - **Acento:** laranja jambu `#ed6707`
 - **Fundo:** off-white `#f5f2ee` (light) · warm dark `#18120e` (dark)
 - **Texto principal:** cha-mate `#5c2d11` (light) · `#e8ddd5` (dark)

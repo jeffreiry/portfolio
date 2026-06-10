@@ -46,18 +46,18 @@ Usados como fundo individual de cada projeto, dando cor própria a cada case.
 
 ## Tipografia
 
-Duas famílias, ambas já em uso no Framer:
+Duas famílias:
 
-- **Manrope** — títulos e display (pesos 400 / 500 / 600 / 700 / 800)
-- **Inter** — corpo e fallback (pesos 400 / 700)
+- **Cactus Regular** — títulos e display (arquivo local `public/fonts/Cactus Regular.otf`, via `@font-face`)
+- **Barlow** — corpo (pesos 300 / 400 / 500, Google Fonts)
 
 ### Escala (desktop · tablet · mobile)
 
 | Estilo | Fonte / peso | Desktop | Tablet (810–1199) | Mobile (≤809) |
 |--------|--------------|---------|-------------------|----------------|
-| H1 / Display | Manrope 600 | 60 / 72 | 48 / 60 | 28 / 36 |
-| H2 | Manrope 600 | 36 / 44 | 36 / 44 | 36 / 44 |
-| Corpo | Manrope 400 | 18 / 28 | 18 / 28 | 16 / 24 |
+| H1 / Display | Cactus 400 | 60 / 72 | 48 / 60 | 28 / 36 |
+| H2 | Cactus 400 | 36 / 44 | 36 / 44 | 36 / 44 |
+| Corpo | Barlow 300 | 18 / 28 | 18 / 28 | 16 / 24 |
 
 *(formato: `tamanho / line-height` em px)*
 
