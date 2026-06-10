@@ -31,11 +31,6 @@ Large organizations accumulate extensive technical and regulatory documentation 
 
 **Prior state:** accurate corporate knowledge, but inaccessible — and an MVP that answered questions but wasn't trusted.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Before / After</strong>
-  <span>MVP search interface → conversational platform with source panel</span>
-</div>
 
 ---
 
@@ -59,11 +54,7 @@ Discovery revealed two linked problems, not one. The first: the MVP's search int
 
 **The turning point:** the product didn't need better search. It needed to eliminate the need to search — and it needed to make the source of each answer as visible as the answer itself.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Discovery synthesis</strong>
-  <span>Clarity session recordings showing drop-off points in the MVP — where users left to confirm answers elsewhere</span>
-</div>
+![](/cases/enterprise-ai-assistant/02-user-research.jpg)
 
 ---
 
@@ -77,11 +68,7 @@ Discovery revealed two linked problems, not one. The first: the MVP's search int
 
 **4. Integration model — problem:** corporate knowledge didn't live in a single base — separate systems, each with authority over distinct areas. **Options:** assistant responding from a consolidated base (simpler, less faithful to origin) vs. distributed query with per-source citation for each excerpt (more complex, traceability preserved). **Choice:** distributed integration with source citation per excerpt. **Why:** hiding the plurality of sources in a consolidated base would reduce trust — the user needs to know whether an answer comes from the IT policy or the compliance manual.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Main interface</strong>
-  <span>Conversational interface with source panel — answer + traceability side by side</span>
-</div>
+![](/cases/enterprise-ai-assistant/03-main-interface.jpg)
 
 ---
 
@@ -95,11 +82,6 @@ A centralized platform for accessing corporate knowledge. Users open a single in
 - **Explore related documents** — additional context without leaving the interface.
 - **Resume previous conversations** — chat history for continuity between sessions.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>System overview</strong>
-  <span>Empty state with suggested prompts → conversation → source panel → related documents</span>
-</div>
 
 ---
 
@@ -109,11 +91,7 @@ A centralized platform for accessing corporate knowledge. Users open a single in
 - The **source panel** is a persistent lateral column, not a modal or tooltip: it stays available without interrupting the reading of the response. A badge with the source count on each message signals traceability before the panel is even opened.
 - The **response structure** visually separates the AI synthesis from access to sources — clear hierarchy between "what the assistant concluded" and "where that comes from."
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Craft detail</strong>
-  <span>Empty state chips · source count badge · response / sources hierarchy</span>
-</div>
+![](/cases/enterprise-ai-assistant/01-file-source.jpg)
 
 ---
 

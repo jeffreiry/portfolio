@@ -31,11 +31,6 @@ Grandes organizações acumulam documentação técnica e regulatória distribu�
 
 **Estado anterior:** conhecimento corporativo correto, mas inacessível — e um MVP que respondia mas não era confiado.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Antes / Depois</strong>
-  <span>Interface de busca do MVP → plataforma conversacional com painel de fontes</span>
-</div>
 
 ---
 
@@ -59,11 +54,7 @@ A discovery revelou dois problemas encadeados, não um. O primeiro: a interface 
 
 **A virada:** o produto não precisava melhorar a busca. Precisava eliminar a necessidade de buscar — e precisava fazer a fonte da resposta tão visível quanto a própria resposta.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Síntese da discovery</strong>
-  <span>Gravações do Clarity mostrando os pontos de abandono no MVP — onde os usuários saíam para confirmar respostas em outro sistema</span>
-</div>
+![](/cases/enterprise-ai-assistant/02-user-research.jpg)
 
 ---
 
@@ -77,11 +68,7 @@ A discovery revelou dois problemas encadeados, não um. O primeiro: a interface 
 
 **4. Modelo de integração — problema:** o conhecimento corporativo não vivia em uma base única — eram sistemas distintos, com autoridade sobre áreas distintas. **Opções:** assistente respondendo de uma base consolidada (mais simples, menos fiel à origem) vs. consulta distribuída com citação por fonte de cada trecho (mais complexo, rastreabilidade preservada). **Escolha:** integração distribuída com citação de origem por trecho. **Porquê:** esconder a pluralidade das fontes numa base consolidada reduziria a confiança — o usuário precisa saber se aquela resposta vem da política de TI ou do manual de compliance.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Interface principal</strong>
-  <span>Interface conversacional com painel de fontes — resposta e rastreabilidade lado a lado</span>
-</div>
+![](/cases/enterprise-ai-assistant/03-main-interface.jpg)
 
 ---
 
@@ -95,11 +82,6 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - **Explorar documentos relacionados** — contexto adicional sem sair da interface.
 - **Retomar conversas anteriores** — histórico de chat para continuidade entre sessões.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Visão geral do sistema</strong>
-  <span>Estado vazio com prompts sugeridos → conversa → painel de fontes → documentos relacionados</span>
-</div>
 
 ---
 
@@ -109,11 +91,7 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - O **painel de fontes** é uma coluna lateral persistente, não um modal ou tooltip: permanece disponível sem interromper a leitura da resposta. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel.
 - A **estrutura da resposta** separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Detalhe de craft</strong>
-  <span>Chips do estado vazio · badge de contagem de fontes · hierarquia resposta / fontes</span>
-</div>
+![](/cases/enterprise-ai-assistant/01-file-source.jpg)
 
 ---
 
