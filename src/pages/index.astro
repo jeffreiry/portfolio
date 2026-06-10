@@ -4,10 +4,13 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import CaseCard from '../components/CaseCard.astro';
+import ContactForm from '../components/ContactForm.svelte';
 import { getCollection } from 'astro:content';
 
 const allCases = await getCollection('casesEn', ({ data }) => !data.draft);
 const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const whatsappHref = 'https://wa.me/5551984741888';
 ---
 
 <Base
@@ -23,11 +26,11 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
       role="Senior Product Designer · UX & AI-Powered Systems"
       body="I design data-driven products and AI-integrated platforms that transform complex enterprise processes into clear, usable experiences — from discovery to delivery."
       contactLabel="Get in touch →"
-      contactHref="/contact"
+      contactHref="#contact"
     />
 
     <!-- About -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
+    <section id="about" class="mx-auto w-full max-w-[1200px] px-6 py-10">
       <div class="flex flex-col gap-4 max-w-[720px]">
         <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">About</h2>
         <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
@@ -51,7 +54,7 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
     </section>
 
     <!-- Career -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
+    <section id="career" class="mx-auto w-full max-w-[1200px] px-6 py-10">
       <div class="flex flex-col gap-6">
         <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Career</h2>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -94,13 +97,47 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
     </section>
 
     <!-- Cases grid -->
-    <section class="mx-auto w-full max-w-[1200px] px-6">
+    <section id="cases" class="mx-auto w-full max-w-[1200px] px-6">
       <div class="grid gap-6 sm:grid-cols-2">
         {cases.map((c, i) => (
           <div data-animate style={`--animate-delay: ${i * 90}ms`}>
             <CaseCard {...c.data} lang="en" />
           </div>
         ))}
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="mx-auto w-full max-w-[1200px] px-6 py-16">
+      <div class="grid gap-16 lg:grid-cols-2 lg:gap-24">
+
+        <div class="flex flex-col gap-6 max-w-[480px]">
+          <div class="flex flex-col gap-3">
+            <h2 data-animate class="font-display text-4xl font-bold text-neutral-900">Let's talk</h2>
+            <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed" style="color: var(--color-muted);">
+              I'm open to senior product design roles, consulting projects, and interesting conversations about UX and AI.
+            </p>
+          </div>
+          <div data-animate style="--animate-delay: 160ms" class="flex flex-col gap-4">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-faint);">Email</span>
+              <a href="mailto:jfreiry@gmail.com" class="text-base font-medium transition-opacity hover:opacity-70" style="color: var(--color-cha-mate);">jfreiry@gmail.com</a>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-faint);">LinkedIn</span>
+              <a href="https://linkedin.com/in/jefersonfreiry" target="_blank" rel="noopener noreferrer" class="text-base font-medium transition-opacity hover:opacity-70" style="color: var(--color-cha-mate);">linkedin.com/in/jefersonfreiry</a>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-faint);">Location</span>
+              <span class="text-base" style="color: var(--color-muted);">Porto Alegre, RS · Brazil</span>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate style="--animate-delay: 120ms">
+          <ContactForm lang="en" {whatsappHref} client:load />
+        </div>
+
       </div>
     </section>
   </main>

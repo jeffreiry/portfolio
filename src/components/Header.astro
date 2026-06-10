@@ -10,9 +10,10 @@ const { lang = 'en', currentPath = '/' } = Astro.props;
 
 const isEn = lang === 'en';
 
-const workHref    = isEn ? '/' : '/pt/';
-const aboutHref   = isEn ? '/about' : '/pt/about';
-const contactHref = isEn ? '/contact' : '/pt/contact';
+const homeHref    = isEn ? '/' : '/pt/';
+const aboutHref   = isEn ? '/#about'   : '/pt/#about';
+const careerHref  = isEn ? '/#career'  : '/pt/#career';
+const contactHref = isEn ? '/#contact' : '/pt/#contact';
 
 const switchLangHref = isEn
   ? `/pt${currentPath === '/' ? '' : currentPath}`
@@ -28,7 +29,7 @@ const switchLangHref = isEn
 
     <!-- Logo -->
     <a
-      href={workHref}
+      href={homeHref}
       class="font-display text-[15px] tracking-[0.04em] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       style="color: var(--color-cha-mate); --tw-ring-color: var(--color-cha-mate);"
       aria-label="Jeferson Freiry — home"
@@ -39,28 +40,25 @@ const switchLangHref = isEn
     <!-- Nav -->
     <nav class="flex items-center gap-5" aria-label="Main navigation">
       <a
-        href={workHref}
-        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
-        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
-        aria-current={currentPath === '/' || currentPath === '/pt/' ? 'page' : undefined}
-      >
-        {isEn ? 'Work' : 'Trabalho'}
-      </a>
-
-      <a
         href={aboutHref}
         class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
-        aria-current={currentPath.includes('/about') ? 'page' : undefined}
       >
         {isEn ? 'About' : 'Sobre'}
+      </a>
+
+      <a
+        href={careerHref}
+        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
+      >
+        {isEn ? 'Career' : 'Carreira'}
       </a>
 
       <a
         href={contactHref}
         class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
-        aria-current={currentPath.includes('/contact') ? 'page' : undefined}
       >
         {isEn ? 'Contact' : 'Contato'}
       </a>
