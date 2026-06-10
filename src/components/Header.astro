@@ -21,94 +21,97 @@ const switchLangHref = isEn
   : currentPath.replace(/^\/pt/, '') || '/';
 ---
 
-<!-- Wrapper não-sticky: contém logo (some ao scrollar) + nav sticky -->
-<div class="w-full">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 w-full"
+>
+  <div class="mx-auto relative flex max-w-[1200px] items-center justify-between px-6">
 
-  <!-- Logo — scrollável, some com a página -->
-  <div class="mx-auto flex max-w-[1200px] items-center px-6 pt-5 pb-2">
+    <!-- Logo — some ao scrollar -->
     <a
+      id="header-logo"
       href={homeHref}
-      class="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      class="relative z-10 transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       style="--tw-ring-color: var(--color-cha-mate);"
       aria-label="Jeferson Freiry — home"
     >
-      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" style="height: 40px; width: auto; display: block;" />
-      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 40px; width: auto; display: none;" />
+      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" style="height: 80px; width: auto; display: block;" />
+      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 80px; width: auto; display: none;" />
     </a>
-  </div>
 
-  <!-- Nav row — sticky: gruda ao topo quando logo sai de vista -->
-  <div
-    id="site-header"
-    class="sticky top-0 z-50 w-full py-2"
-  >
-    <div class="mx-auto flex max-w-[1200px] items-center justify-between px-5">
+    <!-- Nav pill — centralizado absolutamente, sempre visível -->
+    <nav
+      class="nav-pill absolute left-1/2 -translate-x-1/2 flex items-center gap-1"
+      style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 6px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
+      aria-label="Main navigation"
+    >
+      <a href={aboutHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
+        {isEn ? 'About' : 'Sobre'}
+      </a>
+      <a href={careerHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
+        {isEn ? 'Career' : 'Carreira'}
+      </a>
+      <a href={casesHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
+        Cases
+      </a>
+      <a href={contactHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
+        {isEn ? 'Contact' : 'Contato'}
+      </a>
+    </nav>
 
-      <!-- Spacer esquerdo (balanceia o controls pill à direita) -->
-      <div class="controls-spacer" aria-hidden="true" />
-
-      <!-- Nav pill flutuante (centro) -->
-      <nav
-        class="nav-pill flex items-center gap-1"
-        style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 6px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
-        aria-label="Main navigation"
-      >
-        <a href={aboutHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
-          style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
-          {isEn ? 'About' : 'Sobre'}
-        </a>
-        <a href={careerHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
-          style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
-          {isEn ? 'Career' : 'Carreira'}
-        </a>
-        <a href={casesHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
-          style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
-          Cases
-        </a>
-        <a href={contactHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
-          style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
-          {isEn ? 'Contact' : 'Contato'}
-        </a>
-      </nav>
-
-      <!-- Controles pill (direita) -->
-      <div
-        id="controls-pill"
-        class="controls-pill flex items-center gap-2"
-        style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 10px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
-      >
-        <ThemeToggle client:load />
-        <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
-        <div class="flex items-center gap-1 text-[11px] font-medium" style="font-family: var(--font-body);">
-          <span style={isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}>EN</span>
-          <span style="color: var(--color-border);">·</span>
-          <a
-            href={switchLangHref}
-            class="transition-colors hover:opacity-80 focus-visible:outline-none"
-            style={!isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}
-            aria-label={isEn ? 'Mudar para Português' : 'Switch to English'}
-            hreflang={isEn ? 'pt' : 'en'}
-          >PT</a>
-        </div>
+    <!-- Controls pill — direita, sempre visível -->
+    <div
+      class="controls-pill relative z-10 flex items-center gap-2"
+      style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 10px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
+    >
+      <ThemeToggle client:load />
+      <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
+      <div class="flex items-center gap-1 text-[11px] font-medium" style="font-family: var(--font-body);">
+        <span style={isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}>EN</span>
+        <span style="color: var(--color-border);">·</span>
+        <a
+          href={switchLangHref}
+          class="transition-colors hover:opacity-80 focus-visible:outline-none"
+          style={!isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}
+          aria-label={isEn ? 'Mudar para Português' : 'Switch to English'}
+          hreflang={isEn ? 'pt' : 'en'}
+        >PT</a>
       </div>
-
     </div>
-  </div>
 
-</div>
+  </div>
+</header>
 
 <style>
   html[data-theme="dark"] .logo-black { display: none !important; }
   html[data-theme="dark"] .logo-white { display: block !important; }
 
-  /* Spacer esquerdo espelha a largura do controls pill */
-  .controls-spacer {
-    width: 0;
+  /* Header: altura via padding, comprime ao scrollar */
+  #site-header {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    transition: padding 0.35s cubic-bezier(0.16,1,0.3,1);
   }
-  #controls-pill {
-    /* JS vai ler a largura real e espelhar no spacer */
+  #site-header.scrolled {
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
+  /* Logo: fade + slide para cima ao scrollar */
+  #header-logo {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #site-header.scrolled #header-logo {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+  }
+
+  /* Hover nos links de nav */
   .nav-link:hover {
     background: color-mix(in srgb, var(--color-cha-mate) 8%, transparent);
     color: var(--color-cha-mate) !important;
@@ -123,20 +126,8 @@ const switchLangHref = isEn
 
 <script>
   const header = document.getElementById('site-header');
-  const controlsPill = document.getElementById('controls-pill');
-  const spacer = document.querySelector('.controls-spacer') as HTMLElement | null;
-
-  // Espelha largura do controls pill no spacer para manter nav centrado
-  function syncSpacer() {
-    if (controlsPill && spacer) {
-      spacer.style.width = controlsPill.offsetWidth + 'px';
-    }
-  }
-  syncSpacer();
-  window.addEventListener('resize', syncSpacer);
-
   window.addEventListener('scroll', () => {
     if (!header) return;
-    header.classList.toggle('scrolled', window.scrollY > 20);
+    header.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 </script>
