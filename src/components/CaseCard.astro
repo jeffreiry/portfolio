@@ -55,8 +55,12 @@ function getTagStyle(tag: string) {
 
 <a
   href={href}
-  class="group flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
-  style={`border-radius: var(--radius-card); background-color: ${accent}; --tw-ring-color: var(--color-cha-mate);`}
+  class="group flex flex-col overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+  style={`border-radius: var(--radius-card); background-color: ${accent}; --tw-ring-color: var(--color-cha-mate); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
+  onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
+  onmouseout="this.style.transform='';this.style.boxShadow=''"
+  onfocus="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
+  onblur="this.style.transform='';this.style.boxShadow=''"
 >
   <!-- Cover -->
   <div class="relative aspect-[16/9] w-full overflow-hidden">
@@ -65,7 +69,7 @@ function getTagStyle(tag: string) {
         <img
           src={cover}
           alt={title}
-          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
         />
       )
       : (

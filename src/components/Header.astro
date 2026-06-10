@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.svelte';
+
 interface Props {
   lang?: 'en' | 'pt';
   currentPath?: string;
@@ -8,8 +10,9 @@ const { lang = 'en', currentPath = '/' } = Astro.props;
 
 const isEn = lang === 'en';
 
-const workHref  = isEn ? '/' : '/pt/';
-const aboutHref = isEn ? '/about' : '/pt/about';
+const workHref    = isEn ? '/' : '/pt/';
+const aboutHref   = isEn ? '/about' : '/pt/about';
+const contactHref = isEn ? '/contact' : '/pt/contact';
 
 const switchLangHref = isEn
   ? `/pt${currentPath === '/' ? '' : currentPath}`
@@ -53,8 +56,20 @@ const switchLangHref = isEn
         {isEn ? 'About' : 'Sobre'}
       </a>
 
+      <a
+        href={contactHref}
+        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
+        aria-current={currentPath.includes('/contact') ? 'page' : undefined}
+      >
+        {isEn ? 'Contact' : 'Contato'}
+      </a>
+
       <!-- Separador -->
       <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
+
+      <!-- Theme toggle -->
+      <ThemeToggle client:load />
 
       <!-- Language switcher -->
       <div class="flex items-center gap-1 text-[11px] font-medium" style="font-family: var(--font-body);">

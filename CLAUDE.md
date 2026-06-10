@@ -8,9 +8,8 @@ Estas instruções têm prioridade sobre o comportamento padrão.
 ## O que é este projeto
 
 Portfólio pessoal de **Jeferson Freiry — Product Designer Sênior**, voltado a
-candidaturas para vagas sênior. Substitui o site atual feito no Framer
-(`jefersonfreiry.framer.website`) por um site **próprio, em código**, com mais
-controle de identidade, performance e conteúdo.
+candidaturas para vagas sênior. Site próprio, em código, acessado via
+`portfolio.jefersonfreiry.com`, com controle total de identidade, performance e conteúdo.
 
 Objetivo de negócio: o portfólio é a peça central de recrutamento. Cada decisão
 deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
@@ -78,8 +77,32 @@ de arquitetura nova, registrá-la na seção "Decisões técnicas" do roadmap.
 
 ---
 
+## Decisões de produto fechadas
+
+| Decisão | Escolha |
+|---|---|
+| Currículo | PDF linkado, versões PT e EN (`public/curriculo-pt.pdf` e `public/resume-en.pdf`) |
+| Contato | Formulário (envia para `jfreiry@gmail.com`) + botão WhatsApp |
+| Modo escuro | Sim, com toggle claro/escuro |
+| Microinterações | Expressivas — scroll reveals, hover com personalidade, transições de página |
+
+---
+
+## Variáveis de ambiente necessárias
+
+| Variável | Onde usar | Para quê |
+|---|---|---|
+| `PORTFOLIO_PASSWORD` | Vercel → Settings → Env Vars | Proteção por senha nas páginas de case |
+| `RESEND_API_KEY` | Vercel → Settings → Env Vars | Envio de email do formulário de contato |
+
+O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o domínio precisa ser verificado no painel do Resend antes do envio funcionar em produção.
+
+---
+
 ## Estado atual
 
-**Fase de planejamento.** Por enquanto este repositório contém **apenas
-arquivos de instrução** — nenhum código de aplicação foi criado ainda.
-Não fazer scaffolding (package.json, componentes, etc.) até o autor pedir.
+**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Próximas ações: responsividade fina e Lighthouse 95+.
+
+Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
+`src/content/cases/{pt,en}/` (8 cases × 2 idiomas), `src/middleware.ts`
+(proteção por senha), `src/pages/api/login.ts` + `logout.ts`.

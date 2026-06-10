@@ -20,36 +20,58 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
   <main class="flex flex-col gap-6 pb-24">
     <Hero
       headline="Jeferson Freiry"
-      role="Senior Product Designer especializado em sistemas enterprise complexos."
-      body="Eu projeto produtos orientados a dados e plataformas com IA que ajudam organizações a acessar conhecimento, otimizar fluxos de trabalho e tomar melhores decisões."
+      role="Product Designer Sênior · UX & Sistemas com IA"
+      body="Projeto produtos orientados a dados e plataformas integradas com IA que transformam processos enterprise complexos em experiências claras e utilizáveis — da descoberta à entrega."
+      contactLabel="Entrar em contato →"
+      contactHref="/pt/contact"
     />
 
     <!-- Sobre -->
     <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
       <div class="flex flex-col gap-4 max-w-[720px]">
-        <h2 class="font-display text-2xl font-semibold text-neutral-900">Sobre</h2>
-        <p class="text-lg leading-relaxed text-neutral-600">
-          Sou Product Designer com mais de 5 anos de experiência em produtos digitais, após quase uma década atuando em marketing e comunicação.
+        <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Sobre</h2>
+        <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
+          Sou Product Designer Sênior com mais de 5 anos em UX/UI e mais de 10 anos em marketing e comunicação digital — uma trajetória que molda como penso sobre marca, narrativa e contexto de negócio além da usabilidade.
         </p>
-        <p class="text-lg leading-relaxed text-neutral-600">
-          Meu trabalho é focado em ambientes enterprise complexos, onde usuários lidam com grandes volumes de informação e processos técnicos. Especializo-me em transformar sistemas complexos em experiências claras e utilizáveis.
+        <p data-animate style="--animate-delay: 160ms" class="text-lg leading-relaxed text-neutral-600">
+          Meu foco atual é em sistemas enterprise e plataformas com IA: ambientes onde usuários navegam grandes volumes de informação, fluxos complexos e processos com impacto operacional real. Na Braskem, lidero práticas de UX e estruturo fluxos de design integrados com IA para plataformas de escala industrial.
         </p>
+        <div data-animate style="--animate-delay: 240ms" class="flex flex-wrap gap-3 pt-1">
+          <a
+            href="/Jeferson_Freiry_PT.pdf"
+            download
+            class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-neutral-100"
+            style="border-color: var(--color-border); color: var(--color-cha-mate); font-family: var(--font-body);"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Currículo PT
+          </a>
+          <a
+            href="/Jeferson_Freiry_EN.pdf"
+            download
+            class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-neutral-100"
+            style="border-color: var(--color-border); color: var(--color-cha-mate); font-family: var(--font-body);"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Resume EN
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- Carreira -->
     <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
       <div class="flex flex-col gap-6">
-        <h2 class="font-display text-2xl font-semibold text-neutral-900">Carreira</h2>
+        <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Carreira</h2>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
-            { company: 'eSales', role: 'Product Designer', period: '2020 — 2021', description: 'Liderou a descoberta de um novo produto financeiro e melhorou plataformas digitais centrais.' },
+            { company: 'eSales', role: 'Product Designer', period: '2021', description: 'Pesquisa com usuários, mapeamento de jornadas e product discovery para soluções digitais.' },
             { company: 'Intelipost', role: 'UX Researcher', period: '2021 — 2022', description: 'Mapeou a jornada end-to-end do usuário desde a aquisição do produto até o uso diário.' },
-            { company: 'CWI', role: 'Product Designer', period: '2022 — 2023', description: 'Projetou produtos digitais para grandes empresas nas fases de discovery e delivery.' },
-            { company: 'ilegra', role: 'Product Designer', period: '2023 — 2025', description: 'Entregou design de produto enterprise em engajamentos de consultoria.' },
-            { company: 'Braskem', role: 'Product Designer', period: '2025 — Presente', description: 'Projetando plataformas enterprise e sistemas de conhecimento com IA.' },
-          ].map((item) => (
-            <div class="flex flex-col gap-2 rounded-2xl bg-neutral-50 p-5">
+            { company: 'CWI', role: 'Product Designer', period: '2022 — 2023', description: 'Design UX end-to-end para grandes clientes de Moda, Alimentos e Telecomunicações.' },
+            { company: 'ilegra', role: 'Product Designer', period: '2023 — 2025', description: 'Design de produto enterprise e pesquisa UX em projetos industriais, financeiros e de consultoria.' },
+            { company: 'Braskem', role: 'Product Designer', period: '2025 — Presente', description: 'Liderando práticas de UX e fluxos de design integrados com IA para plataformas de escala industrial.' },
+          ].map((item, i) => (
+            <div data-animate style={`--animate-delay: ${i * 70}ms`} class="flex flex-col gap-2 rounded-2xl bg-neutral-50 p-5">
               <span class="text-sm font-semibold text-neutral-400">{item.company}</span>
               <span class="font-display text-lg font-semibold text-neutral-900">{item.role}</span>
               <span class="text-sm text-neutral-400">{item.period}</span>
@@ -66,15 +88,15 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
     <!-- Formação -->
     <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
       <div class="flex flex-col gap-6">
-        <h2 class="font-display text-2xl font-semibold text-neutral-900">Formação</h2>
+        <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Formação</h2>
         <div class="grid gap-4 sm:grid-cols-2">
-          <div class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-5">
+          <div data-animate style="--animate-delay: 70ms" class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-5">
             <span class="font-display text-base font-semibold text-neutral-900">Bacharelado em Publicidade e Propaganda</span>
-            <span class="text-sm text-neutral-400">Universidade Feevale</span>
+            <span class="text-sm text-neutral-400">Universidade Feevale · 2016</span>
           </div>
-          <div class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-5">
-            <span class="font-display text-base font-semibold text-neutral-900">Pós-graduação em User Experience</span>
-            <span class="text-sm text-neutral-400">Uniritter</span>
+          <div data-animate style="--animate-delay: 140ms" class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-5">
+            <span class="font-display text-base font-semibold text-neutral-900">Especialização em User Experience</span>
+            <span class="text-sm text-neutral-400">Uniritter · 2021</span>
           </div>
         </div>
       </div>
@@ -83,8 +105,10 @@ const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99
     <!-- Grade de cases -->
     <section class="mx-auto w-full max-w-[1200px] px-6">
       <div class="grid gap-6 sm:grid-cols-2">
-        {cases.map((c) => (
-          <CaseCard {...c.data} lang="pt" />
+        {cases.map((c, i) => (
+          <div data-animate style={`--animate-delay: ${i * 90}ms`}>
+            <CaseCard {...c.data} lang="pt" />
+          </div>
         ))}
       </div>
     </section>

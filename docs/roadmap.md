@@ -82,7 +82,11 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [ ] Lighthouse 95+ em todas as métricas (Performance, A11y, Best Practices, SEO)
 - [x] Domínio `portfolio.jefersonfreiry.com` + DNS apontado
 - [x] Analytics (Vercel Web Analytics ativo)
-- [ ] Lançar e redirecionar `jefersonfreiry.framer.website` para o novo domínio
+- [x] Formulário de contato (`/contact` + `/pt/contact`) com Resend + botão WhatsApp
+- [x] Links de currículo PDF (PT + EN) prontos para `public/`
+- [x] Dark mode com toggle (tokens de cor escuros + persistência localStorage + anti-flash)
+- [x] Microinterações expressivas (scroll reveals com IntersectionObserver, stagger em grids, hover expressivo nos CaseCards)
+- [ ] **Ação necessária:** adicionar `RESEND_API_KEY` no painel Vercel (Settings → Environment Variables)
 
 ---
 
@@ -116,10 +120,10 @@ Decisões que dependem do autor antes/durante o build:
 
 - ✅ **Domínio:** `portfolio.jefersonfreiry.com` — Cloudflare + Vercel, HTTPS ativo
 - ✅ **Idioma padrão:** EN na raiz (`/`), PT em `/pt`
-- ⬜ **Cases no lançamento:** dos 8 prontos, quais priorizar para o v1? Sugestão: começar com os 4 mais recentes e de maior impacto (Enterprise AI, Shipping, Arezzo&Co, Cartela_Cores).
+- ✅ **Analytics:** Vercel Web Analytics ativo desde a Fase 1
+- ✅ **Cases no lançamento:** todos os 8 estão com arquivo `.md` criado; definir quais ficam `draft: false` para o v1 está em aberto
 - ⬜ **Métricas dos cases:** preencher os `⬜` de impacto em [cases-portfolio.md](cases-portfolio.md) antes de publicar.
-- ⬜ **Currículo:** link para PDF, página dedicada, ou só LinkedIn?
-- ⬜ **Contato:** formulário, e-mail direto (`jfreiry@gmail.com`), ou ambos?
-- ⬜ **Analytics:** Vercel Analytics, Plausible, ou nenhum?
-- ⬜ **Modo escuro:** o site terá toggle claro/escuro?
-- ⬜ **Animações:** nível de microinteração desejado (sutil vs. expressivo).
+- ✅ **Currículo:** PDF linkado, versões PT e EN (arquivos a adicionar em `public/`)
+- ✅ **Contato:** formulário que envia para `jfreiry@gmail.com` + botão WhatsApp
+- ✅ **Modo escuro:** sim, com toggle claro/escuro
+- ✅ **Microinterações:** expressivas — animações com personalidade (scroll reveals, hover states, transições de página)

@@ -27,6 +27,16 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
   <head>
+    <!-- Anti-flash: aplica tema antes do render -->
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
@@ -75,4 +85,29 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
   <body class="antialiased">
     <slot />
   </body>
+
+  <script>
+    function initAnimations() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.setAttribute('data-visible', '');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+      );
+      document.querySelectorAll('[data-animate]:not([data-visible])').forEach((el) => {
+        observer.observe(el);
+      });
+    }
+
+    // Roda no carregamento inicial
+    initAnimations();
+
+    // Roda após cada transição de página (View Transitions API)
+    document.addEventListener('astro:page-load', initAnimations);
+  </script>
 </html>
