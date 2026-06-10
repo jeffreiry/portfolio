@@ -1,0 +1,14 @@
+# Binary files — prevent CRLF/encoding conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.mp4 binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary
+*.otf binary
+*.ttf binary
