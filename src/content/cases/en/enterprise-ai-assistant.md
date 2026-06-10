@@ -5,6 +5,7 @@ role: "Product Designer, product team, 6 months"
 summary: "Scaled an AI assistant MVP into an internal knowledge platform where source traceability became the product."
 company: "Enterprise (confidential)"
 year: 2025
+cover: /cases/enterprise-ai-assistant/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#efedff"
 tags: ["Enterprise", "Conversational AI", "Information design", "Transparency"]
