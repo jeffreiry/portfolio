@@ -5,7 +5,6 @@ role: "Product Designer, solo, end-to-end"
 summary: "Dashboard pessoal que unifica corrida (Strava) e força (Hevy) em uma narrativa única de progresso rumo a uma maratona em 2028, com dados que se atualizam automaticamente todo dia."
 company: "Projeto pessoal"
 year: 2025
-cover: /cases/painel-saude/cover.webp
 accent: "#e8f5e9"
 tags: ["Dashboard", "Design de informação", "Integração de APIs", "DataViz"]
 url: "https://painel-saude-zeta.vercel.app"

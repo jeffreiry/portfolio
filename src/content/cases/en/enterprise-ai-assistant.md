@@ -5,7 +5,6 @@ role: "Product Designer, product team, 6 months"
 summary: "Scaled an AI assistant MVP into an internal knowledge platform where source traceability became the product."
 company: "Enterprise (confidential)"
 year: 2025
-cover: /cases/enterprise-ai-assistant/cover.webp
 accent: "#efedff"
 tags: ["Enterprise", "Conversational AI", "Information design", "Transparency"]
 metrics:

@@ -5,7 +5,6 @@ role: "UX · UI · Visual Designer"
 summary: "Redesign completo do site Del Valle Kapo para a campanha Sempre Criança 2.0 — com decisões de arquitetura de informação orientadas por Google Analytics e uma linguagem visual de recorte de papel."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2022
-cover: /cases/del-valle-kapo/cover.webp
 accent: "#fff3e0"
 tags: ["Branding digital", "Consumer", "Plataforma de conteúdo", "Coca-Cola"]
 featured: false

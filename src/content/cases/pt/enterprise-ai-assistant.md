@@ -5,7 +5,6 @@ role: "Product Designer, time de produto, 6 meses"
 summary: "Escalou um MVP de assistente com IA para uma plataforma de conhecimento interno onde a rastreabilidade de fontes se tornou o produto."
 company: "Enterprise (confidencial)"
 year: 2025
-cover: /cases/enterprise-ai-assistant/cover.webp
 accent: "#efedff"
 tags: ["Enterprise", "IA conversacional", "Design de informação", "Transparência"]
 metrics:

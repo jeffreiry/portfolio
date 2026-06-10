@@ -5,7 +5,6 @@ role: "Product Designer, product team, 6 months"
 summary: "MVP of a cargo capacity optimization platform for maritime logistics — replacing scattered spreadsheets with a visual timeline that turns operational data into commercial opportunities in real time."
 company: "Enterprise (confidential)"
 year: 2025
-cover: /cases/shipping-capacity-platform/cover.webp
 accent: "#e1f5fe"
 tags: ["Enterprise", "Maritime logistics", "DataViz", "Operational simulation"]
 metrics:

@@ -5,7 +5,6 @@ role: "UX Designer · UI Designer"
 summary: "Creation of HYPERGESTOR, Hypera Pharma's internal trade marketing fund management system — centralizing into a traceable pipeline the flow that previously ran across spreadsheets, emails, and manual SAP/SEV integration."
 company: "Hypera Pharma (via ilegra)"
 year: 2024
-cover: /cases/hypera-hypergestor/cover.webp
 accent: "#f3e5f5"
 tags: ["Enterprise", "Trade marketing", "Finops", "System design", "B2B"]
 featured: false

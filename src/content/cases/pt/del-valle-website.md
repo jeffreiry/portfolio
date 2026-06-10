@@ -5,7 +5,6 @@ role: "UX · UI · Visual Designer"
 summary: "Redesign da homepage e página de produtos do site Del Valle (Coca-Cola) a partir de uma nova identidade visual global — traduzindo a campanha 'Cheio de vida' para o digital com as frutas brasileiras como protagonistas."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
-cover: /cases/del-valle-website/cover.webp
 accent: "#fff9e6"
 tags: ["Branding digital", "Visual design", "Consumer", "Coca-Cola"]
 featured: false

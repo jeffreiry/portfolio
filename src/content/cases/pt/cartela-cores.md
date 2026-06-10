@@ -5,7 +5,6 @@ role: "Product Designer, solo, end-to-end"
 summary: "Transformou um PDF estático de consultoria de coloração em um sistema vivo que pontua peças do guarda-roupa em tempo real."
 company: "Projeto pessoal"
 year: 2024
-cover: /cases/cartela-cores/cover.webp
 accent: "#fff7ef"
 tags: ["Web app", "Algoritmo de cor", "Design system", "Acessibilidade"]
 url: ""

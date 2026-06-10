@@ -5,7 +5,6 @@ role: "Product Designer, solo, end-to-end"
 summary: "A personal dashboard that unifies running (Strava) and strength (Hevy) into a single progress narrative toward a 2028 marathon, with data that refreshes itself every day."
 company: "Personal project"
 year: 2025
-cover: /cases/painel-saude/cover.webp
 accent: "#e8f5e9"
 tags: ["Dashboard", "Information design", "API integration", "DataViz"]
 url: "https://painel-saude-zeta.vercel.app"

@@ -5,7 +5,6 @@ role: "UX Researcher · UX Designer · UI Designer"
 summary: "Redesenho do sistema de gerenciamento de anúncios em redes sociais do grupo Arezzo&Co — três perfis com necessidades radicalmente diferentes atendidos por uma única plataforma com arquitetura de informação adaptada por papel."
 company: "Arezzo&Co (via CWI)"
 year: 2023
-cover: /cases/arezzo-ad-management/cover.webp
 accent: "#ecf0f3"
 tags: ["Retail", "Multi-perfil", "Design de sistema", "Dashboard", "Mobile"]
 featured: true

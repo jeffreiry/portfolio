@@ -5,7 +5,6 @@ role: "Product Designer, solo, end-to-end"
 summary: "Turned a static color-analysis PDF into a living system that scores wardrobe items against a personal palette in real time."
 company: "Personal project"
 year: 2024
-cover: /cases/cartela-cores/cover.webp
 accent: "#fff7ef"
 tags: ["Web app", "Color algorithm", "Design system", "Accessibility"]
 url: ""
