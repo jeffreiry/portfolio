@@ -23,27 +23,31 @@ const switchLangHref = isEn
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full transition-colors duration-200"
-  style="background: color-mix(in srgb, var(--color-page-bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 0.5px solid var(--color-border);"
+  class="sticky top-0 z-50 w-full"
+  style="padding: 12px 0;"
 >
-  <div class="mx-auto flex h-[52px] max-w-[1200px] items-center justify-between px-5">
+  <div class="mx-auto flex max-w-[1200px] items-center justify-between px-5">
 
-    <!-- Logo -->
+    <!-- Logo solto — pill sutil para legibilidade sobre o hero escuro -->
     <a
       href={homeHref}
-      class="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-      style="--tw-ring-color: var(--color-cha-mate);"
+      class="header-logo flex items-center transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      style="border-radius: 10px; padding: 6px 8px; --tw-ring-color: var(--color-cha-mate);"
       aria-label="Jeferson Freiry — home"
     >
-      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" style="height: 28px; width: auto; display: block;" />
-      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 28px; width: auto; display: none;" />
+      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" style="height: 24px; width: auto; display: block;" />
+      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 24px; width: auto; display: none;" />
     </a>
 
-    <!-- Nav -->
-    <nav class="flex items-center gap-5" aria-label="Main navigation">
+    <!-- Nav pill flutuante -->
+    <nav
+      class="nav-pill flex items-center gap-1"
+      style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 6px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
+      aria-label="Main navigation"
+    >
       <a
         href={aboutHref}
-        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
       >
         {isEn ? 'About' : 'Sobre'}
@@ -51,7 +55,7 @@ const switchLangHref = isEn
 
       <a
         href={careerHref}
-        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
       >
         {isEn ? 'Career' : 'Carreira'}
@@ -59,7 +63,7 @@ const switchLangHref = isEn
 
       <a
         href={casesHref}
-        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
       >
         Cases
@@ -67,19 +71,20 @@ const switchLangHref = isEn
 
       <a
         href={contactHref}
-        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
       >
         {isEn ? 'Contact' : 'Contato'}
       </a>
+    </nav>
 
-      <!-- Separador -->
-      <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
-
-      <!-- Theme toggle -->
+    <!-- Controles pill — tema + idioma -->
+    <div
+      class="controls-pill flex items-center gap-2"
+      style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 10px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
+    >
       <ThemeToggle client:load />
-
-      <!-- Language switcher -->
+      <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
       <div class="flex items-center gap-1 text-[11px] font-medium" style="font-family: var(--font-body);">
         <span
           style={isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}
@@ -100,27 +105,46 @@ const switchLangHref = isEn
           PT
         </a>
       </div>
-    </nav>
-  </div>
+    </div>
 
-  <!-- Accent bar Jambu — aparece ao fazer scroll -->
-  <div
-    id="header-accent"
-    class="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 transition-transform duration-300"
-    style="background-color: var(--color-jambu);"
-    aria-hidden="true"
-  />
+  </div>
 </header>
 
 <style>
+  /* Alternância de logo por tema */
   html[data-theme="dark"] .logo-black { display: none !important; }
   html[data-theme="dark"] .logo-white { display: block !important; }
+
+  /* Logo: backdrop sutil apenas quando scrollado (JS adiciona classe) */
+  .header-logo {
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+  #site-header.scrolled .header-logo {
+    background: color-mix(in srgb, var(--color-page-bg) 80%, transparent);
+  }
+
+  /* Nav e controls: sombra suave ao scrollar */
+  .nav-pill,
+  .controls-pill {
+    transition: box-shadow 0.2s ease;
+  }
+  #site-header.scrolled .nav-pill,
+  #site-header.scrolled .controls-pill {
+    box-shadow: 0 2px 16px -4px rgba(0,0,0,0.10);
+  }
+
+  /* Hover nos links de nav */
+  .nav-link:hover {
+    background: color-mix(in srgb, var(--color-cha-mate) 8%, transparent);
+    color: var(--color-cha-mate) !important;
+  }
 </style>
 
 <script>
-  const accent = document.getElementById('header-accent');
+  const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
-    if (!accent) return;
-    accent.style.transform = window.scrollY > 20 ? 'scaleX(1)' : 'scaleX(0)';
+    if (!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 </script>
