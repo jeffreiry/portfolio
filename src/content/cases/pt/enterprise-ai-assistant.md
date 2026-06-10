@@ -5,7 +5,7 @@ role: "Product Designer, time de produto, 6 meses"
 summary: "Escalou um MVP de assistente com IA para uma plataforma de conhecimento interno onde a rastreabilidade de fontes se tornou o produto."
 company: "Enterprise (confidencial)"
 year: 2025
-cover: /cases/enterprise-ai-assistant/visao-geral.jpg
+cover: /cases/enterprise-ai-assistant/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#efedff"
 tags: ["Enterprise", "IA conversacional", "Design de informação", "Transparência"]
@@ -54,7 +54,7 @@ A discovery revelou dois problemas encadeados, não um. O primeiro: a interface 
 
 **A virada:** o produto não precisava melhorar a busca. Precisava eliminar a necessidade de buscar — e precisava fazer a fonte da resposta tão visível quanto a própria resposta.
 
-![](/cases/enterprise-ai-assistant/02-user-research.jpg)
+![](/cases/enterprise-ai-assistant/02-user-research.png)
 
 ---
 
@@ -68,7 +68,7 @@ A discovery revelou dois problemas encadeados, não um. O primeiro: a interface 
 
 **4. Modelo de integração — problema:** o conhecimento corporativo não vivia em uma base única — eram sistemas distintos, com autoridade sobre áreas distintas. **Opções:** assistente respondendo de uma base consolidada (mais simples, menos fiel à origem) vs. consulta distribuída com citação por fonte de cada trecho (mais complexo, rastreabilidade preservada). **Escolha:** integração distribuída com citação de origem por trecho. **Porquê:** esconder a pluralidade das fontes numa base consolidada reduziria a confiança — o usuário precisa saber se aquela resposta vem da política de TI ou do manual de compliance.
 
-![](/cases/enterprise-ai-assistant/03-main-interface.jpg)
+![](/cases/enterprise-ai-assistant/03-main-interface.png)
 
 ---
 
@@ -91,7 +91,7 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - O **painel de fontes** é uma coluna lateral persistente, não um modal ou tooltip: permanece disponível sem interromper a leitura da resposta. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel.
 - A **estrutura da resposta** separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
 
-![](/cases/enterprise-ai-assistant/01-file-source.jpg)
+![](/cases/enterprise-ai-assistant/01-file-source.png)
 
 ---
 

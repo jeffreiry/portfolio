@@ -5,7 +5,7 @@ role: "Product Designer, product team, 6 months"
 summary: "Scaled an AI assistant MVP into an internal knowledge platform where source traceability became the product."
 company: "Enterprise (confidential)"
 year: 2025
-cover: /cases/enterprise-ai-assistant/visao-geral.jpg
+cover: /cases/enterprise-ai-assistant/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#efedff"
 tags: ["Enterprise", "Conversational AI", "Information design", "Transparency"]
@@ -54,7 +54,7 @@ Discovery revealed two linked problems, not one. The first: the MVP's search int
 
 **The turning point:** the product didn't need better search. It needed to eliminate the need to search — and it needed to make the source of each answer as visible as the answer itself.
 
-![](/cases/enterprise-ai-assistant/02-user-research.jpg)
+![](/cases/enterprise-ai-assistant/02-user-research.png)
 
 ---
 
@@ -68,7 +68,7 @@ Discovery revealed two linked problems, not one. The first: the MVP's search int
 
 **4. Integration model — problem:** corporate knowledge didn't live in a single base — separate systems, each with authority over distinct areas. **Options:** assistant responding from a consolidated base (simpler, less faithful to origin) vs. distributed query with per-source citation for each excerpt (more complex, traceability preserved). **Choice:** distributed integration with source citation per excerpt. **Why:** hiding the plurality of sources in a consolidated base would reduce trust — the user needs to know whether an answer comes from the IT policy or the compliance manual.
 
-![](/cases/enterprise-ai-assistant/03-main-interface.jpg)
+![](/cases/enterprise-ai-assistant/03-main-interface.png)
 
 ---
 
@@ -91,7 +91,7 @@ A centralized platform for accessing corporate knowledge. Users open a single in
 - The **source panel** is a persistent lateral column, not a modal or tooltip: it stays available without interrupting the reading of the response. A badge with the source count on each message signals traceability before the panel is even opened.
 - The **response structure** visually separates the AI synthesis from access to sources — clear hierarchy between "what the assistant concluded" and "where that comes from."
 
-![](/cases/enterprise-ai-assistant/01-file-source.jpg)
+![](/cases/enterprise-ai-assistant/01-file-source.png)
 
 ---
 
