@@ -11,7 +11,7 @@ metrics:
   - label: "Platform"
     value: "Power Apps"
   - label: "Scope"
-    value: "⬜ components"
+    value: "10+ components"
   - label: "Reach"
     value: "Org-wide"
 featured: false
@@ -98,7 +98,7 @@ Beyond the specific deliverable, the project established a pattern for how the D
 
 | | |
 |---|---|
-| Components showcased | ⬜ |
+| Components showcased | 10+ |
 | Published as org-wide template | ✅ |
 | Production apps built on top | ≥ 1 |
 | Cross-functional collaborators | Design Chapter + Low-code Platforms |

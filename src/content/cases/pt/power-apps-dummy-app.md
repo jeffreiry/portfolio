@@ -11,7 +11,7 @@ metrics:
   - label: "Plataforma"
     value: "Power Apps"
   - label: "Escopo"
-    value: "⬜ componentes"
+    value: "+10 componentes"
   - label: "Alcance"
     value: "Toda a organização"
 featured: false
@@ -98,7 +98,7 @@ Além da entrega específica, o projeto estabeleceu um padrão de como o Design 
 
 | | |
 |---|---|
-| Componentes apresentados | ⬜ |
+| Componentes apresentados | +10 |
 | Publicado como template org-wide | ✅ |
 | Produtos em produção construídos sobre ele | ≥ 1 |
 | Colaboradores cross-funcionais | Design Chapter + Low-code Platforms |
