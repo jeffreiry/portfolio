@@ -6,7 +6,7 @@ summary: "Scaled an AI assistant MVP into an internal knowledge platform where s
 company: "Enterprise (confidential)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png
-bgImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-rNH2Pcgg888?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#efedff"
 tags: ["Enterprise", "Conversational AI", "Information design", "Transparency"]
 metrics:

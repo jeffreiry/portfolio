@@ -6,7 +6,7 @@ summary: "Redesign da homepage e página de produtos do site Del Valle (Coca-Col
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-website/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-U03C49bNwe4?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
 tags: ["Branding digital", "Visual design", "Consumer", "Coca-Cola"]
 featured: false
