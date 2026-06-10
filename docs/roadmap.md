@@ -19,7 +19,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 
 - [x] Scaffolding do Astro 5 + TypeScript (strict)
 - [x] Tailwind CSS v4 com os tokens do [design-system.md](design-system.md)
-- [x] Fontes Manrope + Inter via Google Fonts (`display=swap`)
+- [x] Fontes Limelight (display) + Barlow (corpo, peso 500) via Google Fonts (`display=swap`)
 - [x] Integração Svelte 5 (ilhas)
 - [x] i18n routing — EN na raiz (`/`), PT em `/pt`
 - [x] Layout base (`src/layouts/Base.astro`)
