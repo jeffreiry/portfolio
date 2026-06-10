@@ -37,7 +37,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
         <!-- About -->
         <div id="about" class="flex flex-col gap-4">
-          <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">About</h2>
+          <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900">About</h2>
           <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
             I am a Senior Product Designer with 5+ years in UX/UI and 10+ years in marketing and digital communication — a background that shapes how I think about brand, narrative, and business context alongside usability.
           </p>
@@ -61,13 +61,13 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
           <!-- Formação -->
           <div class="flex flex-col gap-3 pt-2">
-            <h3 data-animate style="--animate-delay: 320ms" class="font-display text-lg font-semibold text-neutral-900">Education</h3>
+            <h3 data-animate style="--animate-delay: 320ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-faint);">Education</h3>
             <div data-animate style="--animate-delay: 360ms" class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-4">
-              <span class="font-display text-sm font-semibold text-neutral-900">Bachelor's in Advertising and Marketing</span>
+              <span class="text-sm font-semibold text-neutral-900">Bachelor's in Advertising and Marketing</span>
               <span class="text-xs text-neutral-400">Universidade Feevale · 2016</span>
             </div>
             <div data-animate style="--animate-delay: 400ms" class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-4">
-              <span class="font-display text-sm font-semibold text-neutral-900">Specialization in User Experience</span>
+              <span class="text-sm font-semibold text-neutral-900">Specialization in User Experience</span>
               <span class="text-xs text-neutral-400">Uniritter · 2021</span>
             </div>
           </div>
@@ -75,7 +75,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
         <!-- Career -->
         <div id="career" class="flex flex-col gap-4">
-          <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Career</h2>
+          <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900">Career</h2>
           <div class="grid gap-3 sm:grid-cols-2">
             {[
               { company: 'Braskem', logo: '/logos/braskem.avif', role: 'Product Designer', period: '2025 — Present', description: 'Leading UX practices and AI-integrated design workflows for industrial-scale platforms.' },
@@ -91,7 +91,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
                   class="h-7 w-[50px] object-contain object-left"
                   loading="lazy"
                 />
-                <span class="font-display text-base text-neutral-900">{item.role}</span>
+                <span class="text-sm font-semibold text-neutral-900">{item.role}</span>
                 <span class="text-sm text-neutral-400">{item.period}</span>
                 <p class="text-sm leading-relaxed text-neutral-600">{item.description}</p>
               </div>
@@ -106,7 +106,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
               class="flex flex-col justify-center gap-1 rounded-2xl border p-5 transition-colors hover:bg-neutral-50"
               style="border-color: var(--color-border);"
             >
-              <span class="font-display text-base text-neutral-900">Full history</span>
+              <span class="text-sm font-semibold text-neutral-900">Full history</span>
               <span class="text-sm" style="color: var(--color-muted);">linkedin.com/in/jefersonfreiry →</span>
             </a>
           </div>
@@ -117,7 +117,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
     <!-- Cases grid -->
     <section id="cases" class="mx-auto w-full max-w-[1200px] px-6">
-      <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900 mb-6">Cases</h2>
+      <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900 mb-6">Cases</h2>
       <div class="grid gap-6 sm:grid-cols-2">
         {cases.map((c, i) => (
           <div data-animate style={`--animate-delay: ${i * 90}ms`}>
@@ -133,7 +133,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
         <div class="flex flex-col gap-6 max-w-[480px]">
           <div class="flex flex-col gap-3">
-            <h2 data-animate class="font-display text-4xl font-bold text-neutral-900">Let's talk</h2>
+            <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900">Let's talk</h2>
             <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed" style="color: var(--color-muted);">
               I'm open to senior product design roles, consulting projects, and interesting conversations about UX and AI.
             </p>
