@@ -1,12 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Cactus";
-  src: url("/fonts/Cactus Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 @theme {
   /* --- Paleta Premium Brasileira --- */
@@ -55,8 +48,8 @@
   --color-pastel-figo:       #dde4db;
 
   /* --- Tipografia --- */
-  --font-display: "Cactus", "Barlow Condensed", sans-serif;
-  --font-body:    "Barlow", "Barlow Placeholder", sans-serif;
+  --font-display: "Limelight", sans-serif;
+  --font-body:    "Barlow", sans-serif;
 
   /* --- Radii --- */
   --radius-card:  20px;
@@ -112,7 +105,7 @@ html[data-theme="dark"] {
 
   body {
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 500;
     background-color: var(--color-page-bg);
     color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
