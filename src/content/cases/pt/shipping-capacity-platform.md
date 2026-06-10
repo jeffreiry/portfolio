@@ -5,7 +5,7 @@ role: "Product Designer, time de produto, 6 meses"
 summary: "MVP de plataforma de otimização de capacidade de carga para logística marítima — substituindo planilhas dispersas por um timeline visual que transforma dados operacionais em oportunidades comerciais em tempo real."
 company: "Enterprise (confidencial)"
 year: 2025
-cover: /cases/shipping-capacity-platform/visao-geral.jpg
+cover: /cases/shipping-capacity-platform/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#e1f5fe"
 tags: ["Enterprise", "Logística marítima", "DataViz", "Simulação operacional"]
@@ -33,11 +33,6 @@ Em logística marítima, navios frequentemente partem com capacidade de carga di
 
 **Estado anterior:** oportunidades comerciais existiam na operação, mas eram invisíveis sem análise manual — e o processo de gerenciar pedidos de parceiros era conduzido por e-mail, sem rastreabilidade.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Antes / Depois</strong>
-  <span>Planilhas dispersas → timeline visual unificado de capacidade por navio e rota</span>
-</div>
 
 ---
 
@@ -73,11 +68,7 @@ Os especialistas em logística sabiam onde estavam as oportunidades — mas esse
 
 **4. Vista de oportunidades — problema:** o timeline completo mostra tudo — incluindo navios já no limite da capacidade. Para identificar oportunidades comerciais rapidamente, o operador não quer analisar o todo; quer ver só o que tem espaço. **Opções:** filtros no timeline principal (flexível, mas exige interação) vs. vista dedicada de "capacidade disponível" (menos flexível, mais imediata para o caso de uso principal). **Escolha:** vista dedicada de oportunidades que agrega os períodos com capacidade disponível por rota e navio, separada do monitoramento geral. **Porquê:** o fluxo de identificação de oportunidades é diferente do fluxo de monitoramento operacional — misturá-los num único painel sacrifica a velocidade de ambos.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Timeline principal</strong>
-  <span>Movimentos entre portos com janelas de capacidade e restrições operacionais codificadas por cor</span>
-</div>
+![](/cases/shipping-capacity-platform/01-route-calendar.png)
 
 ---
 
@@ -91,6 +82,8 @@ Uma plataforma unificada para equipes de logística monitorarem a operação e a
 - **Acompanhar pedidos de parceiros** por um workflow estruturado com etapas explícitas de negociação e aprovação.
 - **Avaliar impacto operacional** antes de confirmar qualquer oportunidade comercial.
 
+![](/cases/shipping-capacity-platform/02-route-opportunities.png)
+
 ---
 
 ## Craft & Acessibilidade
@@ -99,6 +92,8 @@ Uma plataforma unificada para equipes de logística monitorarem a operação e a
 - O **módulo de simulação** mantém o estado atual e o cenário simulado em comparação lado a lado, para que o operador veja o delta, não apenas o resultado final.
 - O **workflow de pedidos** estrutura cada solicitação com histórico de etapas e responsável por ação — o operador sabe o que está pendente *dele*, não apenas o status geral.
 - ⬜ Decisões de acessibilidade (contraste, foco por teclado, comportamento com daltonismo no uso de cor para capacidade) — preencher.
+
+![](/cases/shipping-capacity-platform/03-route-simulation.png)
 
 ---
 

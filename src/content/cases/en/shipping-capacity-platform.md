@@ -5,7 +5,7 @@ role: "Product Designer, product team, 6 months"
 summary: "MVP of a cargo capacity optimization platform for maritime logistics — replacing scattered spreadsheets with a visual timeline that turns operational data into commercial opportunities in real time."
 company: "Enterprise (confidential)"
 year: 2025
-cover: /cases/shipping-capacity-platform/visao-geral.jpg
+cover: /cases/shipping-capacity-platform/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#e1f5fe"
 tags: ["Enterprise", "Maritime logistics", "DataViz", "Operational simulation"]
@@ -33,11 +33,6 @@ In maritime logistics, ships frequently depart with available cargo space that c
 
 **Prior state:** commercial opportunities existed within the operation, but were invisible without manual analysis — and the process for managing partner requests ran through email, with no structured traceability.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Before / After</strong>
-  <span>Scattered spreadsheets → unified visual timeline of capacity per vessel and route</span>
-</div>
 
 ---
 
@@ -73,11 +68,7 @@ The logistics specialists knew where the opportunities were — but that knowled
 
 **4. Opportunity view — problem:** the full timeline shows everything — including vessels already at capacity. To identify commercial opportunities quickly, operators don't want to analyze the whole picture; they want to see only what has space. **Options:** filters on the main timeline (flexible, but requires interaction) vs. a dedicated "available capacity" view (less flexible, more immediate for the primary use case). **Choice:** a dedicated opportunity view aggregating available-capacity windows by route and vessel, separate from general monitoring. **Why:** the opportunity identification flow is different from the operational monitoring flow — merging them into a single panel sacrifices the speed of both.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Main timeline</strong>
-  <span>Port-to-port movements with color-coded capacity windows and operational constraints</span>
-</div>
+![](/cases/shipping-capacity-platform/01-route-calendar.png)
 
 ---
 
@@ -91,6 +82,8 @@ A unified platform for logistics teams to monitor operations and evaluate new ca
 - **Track partner requests** through a structured workflow with explicit negotiation and approval stages.
 - **Evaluate operational impact** before confirming any commercial opportunity.
 
+![](/cases/shipping-capacity-platform/02-route-opportunities.png)
+
 ---
 
 ## Craft & Accessibility
@@ -99,6 +92,8 @@ A unified platform for logistics teams to monitor operations and evaluate new ca
 - The **simulation module** keeps the current state and simulated scenario in side-by-side comparison, so the operator sees the delta, not just the final result.
 - The **request workflow** structures each solicitation with a step history and action owner — the operator knows what is pending *from them*, not just the general status.
 - ⬜ Accessibility decisions (contrast, keyboard focus, color-blindness-safe capacity encoding) — to fill.
+
+![](/cases/shipping-capacity-platform/03-route-simulation.png)
 
 ---
 
