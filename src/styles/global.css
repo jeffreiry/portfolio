@@ -112,7 +112,7 @@ html[data-theme="dark"] {
 
   body {
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     background-color: var(--color-page-bg);
     color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
