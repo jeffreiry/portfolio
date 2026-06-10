@@ -31,12 +31,12 @@ const whatsappHref = 'https://wa.me/5551984741888';
       bgImage="https://images.unsplash.com/photo-1742647338510-53378767ecd7?w=1400&q=80"
     />
 
-    <!-- About -->
-    <section id="about" class="mx-auto w-full max-w-[1200px] px-6 py-10">
-      <div class="grid items-end gap-10 lg:grid-cols-2 lg:gap-16">
+    <!-- About + Career lado a lado -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 py-10">
+      <div class="grid gap-16 lg:grid-cols-2 lg:gap-20">
 
-        <!-- Texto -->
-        <div class="flex flex-col gap-4">
+        <!-- About -->
+        <div id="about" class="flex flex-col gap-4">
           <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">About</h2>
           <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
             I am a Senior Product Designer with 5+ years in UX/UI and 10+ years in marketing and digital communication — a background that shapes how I think about brand, narrative, and business context alongside usability.
@@ -60,47 +60,41 @@ const whatsappHref = 'https://wa.me/5551984741888';
           </div>
         </div>
 
-        <!-- Foto -->
-        <div data-animate style="--animate-delay: 120ms" class="hidden lg:flex items-end justify-center">
-          <img
-            src="/jeferson-running.jpg"
-            alt="Jeferson Freiry running a road race"
-            class="max-h-[480px] w-auto object-contain drop-shadow-xl"
-            loading="lazy"
-          />
+        <!-- Career -->
+        <div id="career" class="flex flex-col gap-4">
+          <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Career</h2>
+          <div class="flex flex-col gap-2">
+            {[
+              { company: 'eSales', logo: '/logos/esales.png', role: 'Product Designer', period: '2021', description: 'User research, journey mapping, and product discovery for digital solutions.' },
+              { company: 'Intelipost', logo: '/logos/intelipost.avif', role: 'UX Researcher', period: '2021 — 2022', description: 'Mapped the end-to-end user journey from product acquisition to daily use.' },
+              { company: 'CWI', logo: '/logos/cwi.avif', role: 'Product Designer', period: '2022 — 2023', description: 'End-to-end UX for large clients in Fashion, Food & Beverage, and Telecommunications.' },
+              { company: 'ilegra', logo: '/logos/ilegra.png', role: 'Product Designer', period: '2023 — 2025', description: 'Enterprise product design and UX research across industrial, financial, and consulting.' },
+              { company: 'Braskem', logo: '/logos/braskem.avif', role: 'Product Designer', period: '2025 — Present', description: 'Leading UX practices and AI-integrated design workflows for industrial-scale platforms.' },
+            ].map((item, i) => (
+              <div data-animate style={`--animate-delay: ${i * 60}ms`} class="flex items-center gap-4 rounded-2xl bg-neutral-50 px-4 py-3">
+                <div class="shrink-0 w-[56px] flex items-center">
+                  <img
+                    src={item.logo}
+                    alt={item.company}
+                    class="h-6 w-full object-contain object-left"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="min-w-0 flex flex-col gap-0.5">
+                  <div class="flex items-baseline gap-2 flex-wrap">
+                    <span class="font-display text-sm font-semibold text-neutral-900">{item.role}</span>
+                    <span class="text-xs text-neutral-400">{item.period}</span>
+                  </div>
+                  <p class="text-xs leading-relaxed text-neutral-500 line-clamp-2">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-neutral-400">
+            Full history on <a href="https://linkedin.com/in/jefersonfreiry" class="text-neutral-600 underline underline-offset-2 transition-colors hover:text-neutral-900" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+          </p>
         </div>
 
-      </div>
-    </section>
-
-    <!-- Career -->
-    <section id="career" class="mx-auto w-full max-w-[1200px] px-6 py-10">
-      <div class="flex flex-col gap-6">
-        <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Career</h2>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {[
-            { company: 'eSales', logo: '/logos/esales.png', role: 'Product Designer', period: '2021', description: 'Conducted user research, journey mapping, and product discovery for digital solutions.' },
-            { company: 'Intelipost', logo: '/logos/intelipost.avif', role: 'UX Researcher', period: '2021 — 2022', description: 'Mapped the end-to-end user journey from product acquisition to daily use.' },
-            { company: 'CWI', logo: '/logos/cwi.avif', role: 'Product Designer', period: '2022 — 2023', description: 'End-to-end UX for large clients in Fashion, Food & Beverage, and Telecommunications.' },
-            { company: 'ilegra', logo: '/logos/ilegra.png', role: 'Product Designer', period: '2023 — 2025', description: 'Enterprise product design and UX research across industrial, financial, and consulting engagements.' },
-            { company: 'Braskem', logo: '/logos/braskem.avif', role: 'Product Designer', period: '2025 — Present', description: 'Leading UX practices and AI-integrated design workflows for industrial-scale platforms.' },
-          ].map((item, i) => (
-            <div data-animate style={`--animate-delay: ${i * 70}ms`} class="flex flex-col gap-3 rounded-2xl bg-neutral-50 p-5">
-              <img
-                src={item.logo}
-                alt={item.company}
-                class="h-7 w-[50px] object-contain object-left"
-                loading="lazy"
-              />
-              <span class="font-display text-lg text-neutral-900">{item.role}</span>
-              <span class="text-sm text-neutral-400">{item.period}</span>
-              <p class="text-sm leading-relaxed text-neutral-600">{item.description}</p>
-            </div>
-          ))}
-        </div>
-        <p class="text-sm text-neutral-400">
-          For a complete overview, visit my <a href="https://linkedin.com/in/jefersonfreiry" class="text-neutral-700 underline underline-offset-2 transition-colors hover:text-neutral-900" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
-        </p>
       </div>
     </section>
 
