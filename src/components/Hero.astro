@@ -6,6 +6,7 @@ interface Props {
   contactLabel?: string;
   contactHref?: string;
   eyebrow?: string;
+  bgImage?: string;
 }
 
 const {
@@ -15,60 +16,88 @@ const {
   contactLabel = 'Get in touch →',
   contactHref = 'mailto:jfreiry@gmail.com',
   eyebrow = 'Product Designer · Porto Alegre, BR',
+  bgImage,
 } = Astro.props;
 
 const [firstName, ...rest] = headline.split(' ');
 const lastName = rest.join(' ');
+
+const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
 ---
 
 <section class="w-full px-5 pt-5">
   <div
     class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-10 pb-11 pt-10"
-    style="background-color: var(--color-cha-mate);"
+    style={bgImage ? '' : 'background-color: var(--color-cha-mate);'}
   >
-    <!-- Eyebrow -->
-    <p
-      class="mb-3 text-[10px] font-medium uppercase tracking-[0.16em]"
-      style="color: #fff; font-family: var(--font-body);"
-    >
-      {eyebrow}
-    </p>
-
-    <!-- Nome: display condensado, sobrenome em Jambu -->
-    <h1
-      class="font-display"
-      style="font-size: clamp(48px, 7vw, 80px); line-height: 0.92; color: #fff;"
-    >
-      {firstName}<br />
-      <span style="color: #fff;">{lastName}</span>
-    </h1>
-
-    <!-- Corpo: role + body em bloco único -->
-    {(role || body) && (
-      <p
-        class="mt-4 max-w-[400px] leading-relaxed"
-        style="font-size: 14px; font-weight: 500; font-family: var(--font-body); color: #fff;"
-      >
-        {body || role}
-      </p>
+    <!-- Imagem de fundo (opcional) -->
+    {bgImage && (
+      <div
+        class="absolute inset-0"
+        style={`background-image: url('${bgImage}'); background-size: cover; background-position: center;`}
+      />
     )}
 
-    <!-- CTA -->
-    <a
-      href={contactHref}
-      class="mt-5 inline-flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
-      style="
-        background-color: var(--color-jambu);
-        border-radius: var(--radius-pill);
-        padding: 9px 20px;
-        font-size: 12px;
-        font-weight: 500;
-        font-family: var(--font-body);
-        color: #fff;
-        letter-spacing: 0.02em;
-      "
-    >
-      {contactLabel}
-    </a>
+    <!-- Overlay escuro sobre a imagem -->
+    {bgImage && (
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(135deg, rgba(10,5,2,0.72) 0%, rgba(30,14,6,0.58) 100%);"
+      />
+    )}
+
+    <!-- Textura grain -->
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`}
+    />
+
+    <!-- Conteúdo -->
+    <div class="relative">
+      <!-- Eyebrow -->
+      <p
+        class="mb-3 text-[10px] font-medium uppercase tracking-[0.16em]"
+        style="color: #fff; font-family: var(--font-body);"
+      >
+        {eyebrow}
+      </p>
+
+      <!-- Nome -->
+      <h1
+        class="font-display"
+        style="font-size: clamp(48px, 7vw, 80px); line-height: 0.92; color: #fff;"
+      >
+        {firstName}<br />
+        <span style="color: #fff;">{lastName}</span>
+      </h1>
+
+      <!-- Corpo -->
+      {(role || body) && (
+        <p
+          class="mt-4 max-w-[400px] leading-relaxed"
+          style="font-size: 14px; font-weight: 500; font-family: var(--font-body); color: #fff;"
+        >
+          {body || role}
+        </p>
+      )}
+
+      <!-- CTA -->
+      <a
+        href={contactHref}
+        class="mt-5 inline-flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+        style="
+          background-color: var(--color-jambu);
+          border-radius: var(--radius-pill);
+          padding: 9px 20px;
+          font-size: 12px;
+          font-weight: 500;
+          font-family: var(--font-body);
+          color: #fff;
+          letter-spacing: 0.02em;
+        "
+      >
+        {contactLabel}
+      </a>
+    </div>
   </div>
 </section>
