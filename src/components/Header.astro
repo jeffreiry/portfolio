@@ -13,6 +13,7 @@ const isEn = lang === 'en';
 const homeHref    = isEn ? '/' : '/pt/';
 const aboutHref   = isEn ? '/#about'   : '/pt/#about';
 const careerHref  = isEn ? '/#career'  : '/pt/#career';
+const casesHref   = isEn ? '/#cases'   : '/pt/#cases';
 const contactHref = isEn ? '/#contact' : '/pt/#contact';
 
 const switchLangHref = isEn
@@ -53,6 +54,14 @@ const switchLangHref = isEn
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
       >
         {isEn ? 'Career' : 'Carreira'}
+      </a>
+
+      <a
+        href={casesHref}
+        class="text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+        style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em; --tw-ring-color: var(--color-cha-mate);"
+      >
+        Cases
       </a>
 
       <a
