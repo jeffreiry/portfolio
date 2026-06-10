@@ -79,15 +79,15 @@ const whatsappHref = 'https://wa.me/5551984741888';
         <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Career</h2>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
-            { company: 'eSales', domain: 'esales.com.br', role: 'Product Designer', period: '2021', description: 'Conducted user research, journey mapping, and product discovery for digital solutions.' },
-            { company: 'Intelipost', domain: 'intelipost.com.br', role: 'UX Researcher', period: '2021 — 2022', description: 'Mapped the end-to-end user journey from product acquisition to daily use.' },
-            { company: 'CWI', domain: 'cwi.com.br', role: 'Product Designer', period: '2022 — 2023', description: 'End-to-end UX for large clients in Fashion, Food & Beverage, and Telecommunications.' },
-            { company: 'ilegra', domain: 'ilegra.com', role: 'Product Designer', period: '2023 — 2025', description: 'Enterprise product design and UX research across industrial, financial, and consulting engagements.' },
-            { company: 'Braskem', domain: 'braskem.com', role: 'Product Designer', period: '2025 — Present', description: 'Leading UX practices and AI-integrated design workflows for industrial-scale platforms.' },
+            { company: 'eSales', logo: '/logos/esales.png', role: 'Product Designer', period: '2021', description: 'Conducted user research, journey mapping, and product discovery for digital solutions.' },
+            { company: 'Intelipost', logo: '/logos/intelipost.png', role: 'UX Researcher', period: '2021 — 2022', description: 'Mapped the end-to-end user journey from product acquisition to daily use.' },
+            { company: 'CWI', logo: '/logos/cwi.png', role: 'Product Designer', period: '2022 — 2023', description: 'End-to-end UX for large clients in Fashion, Food & Beverage, and Telecommunications.' },
+            { company: 'ilegra', logo: '/logos/ilegra.png', role: 'Product Designer', period: '2023 — 2025', description: 'Enterprise product design and UX research across industrial, financial, and consulting engagements.' },
+            { company: 'Braskem', logo: '/logos/braskem.png', role: 'Product Designer', period: '2025 — Present', description: 'Leading UX practices and AI-integrated design workflows for industrial-scale platforms.' },
           ].map((item, i) => (
             <div data-animate style={`--animate-delay: ${i * 70}ms`} class="flex flex-col gap-3 rounded-2xl bg-neutral-50 p-5">
               <img
-                src={`https://logo.clearbit.com/${item.domain}`}
+                src={item.logo}
                 alt={item.company}
                 class="h-7 w-auto object-contain object-left"
                 loading="lazy"
