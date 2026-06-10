@@ -32,25 +32,43 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
     <!-- Sobre -->
     <section id="about" class="mx-auto w-full max-w-[1200px] px-6 py-10">
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Sobre</h2>
-        <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
-          Sou Product Designer Sênior com mais de 5 anos em UX/UI e mais de 10 anos em marketing e comunicação digital — uma trajetória que molda como penso sobre marca, narrativa e contexto de negócio além da usabilidade.
-        </p>
-        <p data-animate style="--animate-delay: 160ms" class="text-lg leading-relaxed text-neutral-600">
-          Meu foco atual é em sistemas enterprise e plataformas com IA: ambientes onde usuários navegam grandes volumes de informação, fluxos complexos e processos com impacto operacional real. Na Braskem, lidero práticas de UX e estruturo fluxos de design integrados com IA para plataformas de escala industrial.
-        </p>
-        <div data-animate style="--animate-delay: 240ms" class="flex flex-wrap gap-3 pt-1">
-          <a
-            href="/Jeferson_Freiry_PT.pdf"
-            download
-            class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-neutral-100"
-            style="border-color: var(--color-border); color: var(--color-cha-mate); font-family: var(--font-body);"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Currículo PT
-          </a>
+      <div class="grid items-end gap-10 lg:grid-cols-2 lg:gap-16">
+
+        <!-- Texto -->
+        <div class="flex flex-col gap-4">
+          <h2 data-animate class="font-display text-2xl font-semibold text-neutral-900">Sobre</h2>
+          <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
+            Sou Product Designer Sênior com mais de 5 anos em UX/UI e mais de 10 anos em marketing e comunicação digital — uma trajetória que molda como penso sobre marca, narrativa e contexto de negócio além da usabilidade.
+          </p>
+          <p data-animate style="--animate-delay: 160ms" class="text-lg leading-relaxed text-neutral-600">
+            Meu foco atual é em sistemas enterprise e plataformas com IA: ambientes onde usuários navegam grandes volumes de informação, fluxos complexos e processos com impacto operacional real. Na Braskem, lidero práticas de UX e estruturo fluxos de design integrados com IA para plataformas de escala industrial.
+          </p>
+          <p data-animate style="--animate-delay: 200ms" class="text-base leading-relaxed text-neutral-500">
+            Fora do trabalho, corro — me mantém focado e orientado a metas.
+          </p>
+          <div data-animate style="--animate-delay: 280ms" class="flex flex-wrap gap-3 pt-1">
+            <a
+              href="/Jeferson_Freiry_PT.pdf"
+              download
+              class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-neutral-100"
+              style="border-color: var(--color-border); color: var(--color-cha-mate); font-family: var(--font-body);"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Currículo PT
+            </a>
+          </div>
         </div>
+
+        <!-- Foto -->
+        <div data-animate style="--animate-delay: 120ms" class="hidden lg:flex items-end justify-center">
+          <img
+            src="/jeferson-running.png"
+            alt="Jeferson Freiry correndo em uma prova de rua"
+            class="max-h-[480px] w-auto object-contain drop-shadow-xl"
+            loading="lazy"
+          />
+        </div>
+
       </div>
     </section>
 
