@@ -186,4 +186,34 @@ html[data-theme="dark"] {
     height: 3px;
     background-color: var(--color-jambu);
   }
+
+  /* Color utilities (explicit aliases for @theme tokens) */
+  .text-jambu    { color: var(--color-jambu); }
+  .text-cha-mate { color: var(--color-cha-mate); }
+  .text-ink      { color: var(--color-ink); }
+  .bg-jambu      { background-color: var(--color-jambu); }
+  .bg-cha-mate   { background-color: var(--color-cha-mate); }
+  .border-border { border-color: var(--color-border); }
+
+  /* Skip navigation link */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-jambu);
+    color: #fff;
+    border-radius: var(--radius-pill);
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.1s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
 }

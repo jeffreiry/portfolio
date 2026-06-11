@@ -45,15 +45,15 @@ const switchLangHref = isEn
       style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 6px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
       aria-label="Main navigation"
     >
-      <a href={aboutHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+      <a href={aboutHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
         {isEn ? 'About' : 'Sobre'}
       </a>
-<a href={casesHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+      <a href={casesHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
         Cases
       </a>
-      <a href={contactHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors focus-visible:outline-none"
+      <a href={contactHref} class="nav-link rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors"
         style="color: var(--color-muted); font-family: var(--font-body); letter-spacing: 0.02em;">
         {isEn ? 'Contact' : 'Contato'}
       </a>
@@ -111,6 +111,13 @@ const switchLangHref = isEn
   .nav-link:hover {
     background: color-mix(in srgb, var(--color-cha-mate) 8%, transparent);
     color: var(--color-cha-mate) !important;
+  }
+
+  /* Focus visível nos links de nav */
+  .nav-link:focus-visible {
+    outline: 2px solid var(--color-cha-mate);
+    outline-offset: 2px;
+    background: color-mix(in srgb, var(--color-cha-mate) 8%, transparent);
   }
 
   /* Sombra suave nas pills ao scrollar */

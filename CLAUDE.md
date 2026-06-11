@@ -101,7 +101,7 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 ## Estado atual
 
-**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Próximas ações: responsividade fina e Lighthouse 95+.
+**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Acessibilidade parcialmente implementada (skip nav, foco visível, contraste de títulos). Hero.mp4 com carregamento condicional (mobile/slow-connection recebe fallback de imagem). Seções da home reordenadas: Hero → Cases → About/Career → Contact. Cases relacionados ao final de cada página de case. Próximas ações: responsividade fina e Lighthouse 95+.
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
 `src/content/cases/{pt,en}/` (8 cases × 2 idiomas), `src/middleware.ts`

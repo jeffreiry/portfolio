@@ -76,7 +76,8 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 ### Fase 5 — Polish & lançamento
 
 - [ ] Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
-- [ ] Acessibilidade: foco visível, contraste WCAG AA, navegação por teclado, leitor de tela
+- [x] Acessibilidade (parcial): skip navigation link (`Base.astro`), foco visível nos nav links (outline `var(--color-cha-mate)`), contraste dos títulos de cards (#fff em vez de jambu sobre fundo escuro)
+- [ ] Acessibilidade (pendente): contraste WCAG AA geral, leitor de tela end-to-end, teclado em formulário
 - [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
 - [ ] Sitemap.xml
 - [ ] Lighthouse 95+ em todas as métricas (Performance, A11y, Best Practices, SEO)
@@ -111,6 +112,23 @@ Mesmo racional do Painel Saúde. CMS só se justificaria com múltiplos editores
 **Por que Vercel?**
 Mesmo fluxo de deploy do Painel Saúde. Deploy automático por push, preview de
 branches, suporte a output estático.
+
+**Vídeo hero com carregamento condicional (hero.mp4, ~12MB)**
+O vídeo tem `preload="none"` e o `src` é injetado via JS apenas quando:
+(1) viewport ≥ 768px, (2) `prefers-reduced-motion: no-preference`, (3) conexão não é `slow-2g` ou `2g`.
+A imagem Unsplash (`bgImage`) é sempre renderizada como camada de fallback — garante
+visual para mobile, reduced-motion e conexões lentas sem flash de fundo vazio.
+Script em `Hero.astro`, reutilizável via evento `astro:page-load` (View Transitions).
+
+**Ordem das seções da home: Hero → Cases → About/Career → Contact**
+Decisão motivada por critério de recrutamento: o portfólio é aberto para avaliar cases.
+Mover a grade de cases para logo após o hero maximiza o tempo de exposição aos trabalhos
+antes do scroll depth necessário para ver About/Career.
+
+**Classes utilitárias de cor (`global.css`)**
+As tokens `@theme` (`.text-jambu`, `.text-cha-mate`, `.bg-jambu`, etc.) são registradas
+explicitamente em `@layer utilities` para evitar dependência de purge no Tailwind v4 e
+eliminar o mix de `style="color: var(--color-jambu)"` inline com classes Tailwind.
 
 ---
 

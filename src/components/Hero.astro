@@ -33,24 +33,25 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-10 pb-11 pt-10"
     style={hasBg ? '' : 'background-color: var(--color-cha-mate);'}
   >
-    <!-- Vídeo de fundo -->
+    <!-- Imagem de fundo (sempre presente; fallback para mobile e prefers-reduced-motion) -->
+    {bgImage && (
+      <div
+        class="absolute inset-0"
+        style={`background-image: url('${bgImage}'); background-size: cover; background-position: center;`}
+      />
+    )}
+
+    <!-- Vídeo de fundo — src injetado via JS apenas em desktop com conexão rápida -->
     {bgVideo && (
       <video
+        id="hero-video"
         class="absolute inset-0 h-full w-full object-cover"
-        src={bgVideo}
-        autoplay
+        data-src={bgVideo}
         muted
         loop
         playsinline
         aria-hidden="true"
-      />
-    )}
-
-    <!-- Imagem de fundo (fallback quando não há vídeo) -->
-    {bgImage && !bgVideo && (
-      <div
-        class="absolute inset-0"
-        style={`background-image: url('${bgImage}'); background-size: cover; background-position: center;`}
+        preload="none"
       />
     )}
 
@@ -113,3 +114,22 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     </div>
   </div>
 </section>
+
+<script>
+  function initHeroVideo() {
+    const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+    if (!video || video.src) return;
+    const src = video.dataset.src;
+    if (!src) return;
+    const mq = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
+    const conn = (navigator as any).connection;
+    const isSlow = conn && ['slow-2g', '2g'].includes(conn.effectiveType);
+    if (mq.matches && !isSlow) {
+      video.src = src;
+      video.load();
+      video.play().catch(() => {});
+    }
+  }
+  initHeroVideo();
+  document.addEventListener('astro:page-load', initHeroVideo);
+</script>
