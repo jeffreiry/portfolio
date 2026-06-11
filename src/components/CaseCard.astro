@@ -35,57 +35,44 @@ const placeholders = [
 ];
 const hash = slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
 const imgSrc = cover ?? placeholders[hash % placeholders.length];
-
-const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
 ---
 
 <a
   href={href}
-  class="group relative flex flex-col justify-end overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
-  style={`border-radius: var(--radius-card); aspect-ratio: 4/3; --tw-ring-color: var(--color-cha-mate); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
-  onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.28)'"
+  class="group flex flex-col overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+  style={`border-radius: var(--radius-card); --tw-ring-color: var(--color-cha-mate); background-color: var(--color-surface); border: 0.5px solid var(--color-border); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
+  onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
   onmouseout="this.style.transform='';this.style.boxShadow=''"
-  onfocus="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.28)'"
+  onfocus="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
   onblur="this.style.transform='';this.style.boxShadow=''"
 >
-  <!-- Imagem de fundo -->
-  <img
-    src={imgSrc}
-    alt={title}
-    class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-    loading="lazy"
-  />
+  <!-- Imagem — zona superior, altura fixa -->
+  <div class="relative w-full overflow-hidden" style="height: 200px;">
+    <img
+      src={imgSrc}
+      alt={title}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+      loading="lazy"
+    />
+    <!-- Accent bar Jambu no bottom da imagem -->
+    <div
+      class="absolute bottom-0 left-0 right-0 pointer-events-none"
+      style="height: 3px; background-color: var(--color-jambu);"
+    />
+  </div>
 
-  <!-- Overlay: gradiente de baixo pra cima para enfatizar o texto -->
-  <div
-    class="absolute inset-0 pointer-events-none"
-    style="background: linear-gradient(to top, rgba(10,5,2,0.98) 0%, rgba(10,5,2,0.90) 45%, rgba(10,5,2,0.55) 100%);"
-  />
-
-  <!-- Grain -->
-  <div
-    class="absolute inset-0 pointer-events-none"
-    style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`}
-  />
-
-  <!-- Accent bar Jambu -->
-  <div
-    class="absolute bottom-0 left-0 right-0 pointer-events-none"
-    style="height: 3px; background-color: var(--color-jambu);"
-  />
-
-  <!-- Conteúdo sobre a imagem -->
-  <div class="relative flex flex-col gap-2 p-6 pb-7">
+  <!-- Conteúdo — zona inferior, fundo sólido -->
+  <div class="flex flex-col gap-2 p-5 pb-6">
     <div class="flex items-center justify-between gap-2">
       <span
         class="text-[10px] uppercase tracking-[0.09em]"
-        style="color: #fff; font-weight: 500; font-family: var(--font-body);"
+        style="color: var(--color-faint); font-weight: 600; font-family: var(--font-body);"
       >
         {role}
       </span>
       <span
         class="text-[10px]"
-        style="color: #fff; font-weight: 500; font-family: var(--font-body);"
+        style="color: var(--color-faint); font-weight: 500; font-family: var(--font-body);"
       >
         {year}
       </span>
@@ -93,24 +80,24 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
     <h2
       class="font-display"
-      style="font-size: 24px; line-height: 1.1; color: #fff;"
+      style="font-size: 20px; line-height: 1.1; color: var(--color-ink);"
     >
       {title}
     </h2>
 
     <p
       class="line-clamp-2 leading-relaxed"
-      style="font-size: 12px; font-weight: 500; font-family: var(--font-body); color: rgba(255,255,255,0.72);"
+      style="font-size: 13px; font-weight: 400; font-family: var(--font-body); color: var(--color-muted);"
     >
       {summary}
     </p>
 
-    <div class="mt-1 flex items-center justify-between gap-3">
+    <div class="mt-2 flex items-end justify-between gap-2">
       <div class="flex flex-wrap gap-1.5">
-        {tags.map((tag) => (
+        {tags.slice(0, 3).map((tag) => (
           <span
             class="rounded-full px-2.5 py-1 text-[10px] font-medium"
-            style="background: rgba(255,255,255,0.12); color: #fff; font-weight: 500; backdrop-filter: blur(4px);"
+            style="background: var(--color-surface-2); color: var(--color-muted); font-family: var(--font-body);"
           >
             {tag}
           </span>
