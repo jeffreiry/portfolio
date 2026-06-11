@@ -118,7 +118,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
     <!-- Cases grid -->
     <section id="cases" class="mx-auto w-full max-w-[1200px] px-6">
       <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900 mb-6">Cases</h2>
-      <div class="grid gap-6 sm:grid-cols-2">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => (
           <div data-animate style={`--animate-delay: ${i * 90}ms`}>
             <CaseCard {...c.data} lang="en" />
