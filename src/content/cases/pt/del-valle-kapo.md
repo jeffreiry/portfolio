@@ -4,14 +4,14 @@ slug: del-valle-kapo
 role: "UX · UI · Visual Designer"
 summary: "Redesign do site Del Valle Kapo para campanha de Dia das Crianças com IA orientada por Analytics."
 company: "Del Valle / Coca-Cola (via CWI)"
-year: 2022
+year: 2023
 cover: /cases/del-valle-kapo/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
 tags: ["Branding digital", "Consumer", "Plataforma de conteúdo", "Coca-Cola"]
 featured: false
 draft: false
-order: 8
+order: 9
 ---
 
 ## Mais plataforma de brincadeiras do que site de produto: como dados de acesso e recortes de papel guiaram o redesign do Kapo
@@ -60,13 +60,17 @@ A análise do Google Analytics revelou algo que a marca não esperava: a seção
 
 ## Processo & Decisões
 
+A decisão que mais me custou foi o seletor de produto estilo videogame. A metáfora fazia sentido para as crianças — mas quem navega no site de produto é o pai, a mãe. Fiquei me perguntando se a referência de videogame ia parecer brilhante ou estranha para um adulto de 35 anos que quer ver os sabores disponíveis.
+
 **1. Arquitetura de informação orientada por dados — problema:** o site anterior tinha múltiplas páginas, e a decisão de o que manter ou descartar no redesign era subjetiva. **Opções:** manter tudo por segurança (sem custo de decisão, site mais complexo) vs. cortar baseado em dados de acesso reais. **Escolha:** uso do Google Analytics para identificar as páginas com maior e menor acesso, eliminando as sem tráfego significativo e elevando as de alto acesso na hierarquia de navegação. A estrutura resultante foi: Home → Sempre Criança (campanha) → Volta às Aulas (sazonal) → Hora de Brincar (repositório de atividades) → Nossos Produtos → Compre Agora. **Porquê:** arquitetura de informação baseada em comportamento real é mais honesta — e mais eficiente — do que intuição sobre o que "deve" estar no site.
 
 **2. Hora de Brincar como sistema de conteúdo estruturado — problema:** o repositório de brincadeiras tinha dezenas de atividades de tipos muito diferentes. Sem organização, era uma lista indiferenciada. **Opções:** listagem simples com busca textual vs. sistema de categorias por perfil de brincadeira com filtros por idade e número de participantes. **Escolha:** 5 categorias temáticas com identidade visual própria (Imaginação Divertida, Saindo do Sofá, Aprender Brincando, Ritmo de Brincadeira, Hora do Jogo), cada uma com filtros de Idade (a partir de 3, 4, 5, 6, 7, 8 anos) e Participantes (duplas até 4 ou mais). **Porquê:** uma brincadeira para 2 pessoas de 4 anos é completamente diferente de uma para grupos de 8 anos — sem filtros, a biblioteca é inutilizável para quem tem uma necessidade específica.
 
 **3. Página de brincadeira no formato de ficha — problema:** cada atividade tinha materiais necessários e instruções de como fazer — o mesmo problema de qualquer receita. Uma página de texto corrido não serviria para consulta rápida no meio da brincadeira. **Opções:** texto corrido vs. ficha estruturada com metadados no topo (participantes, faixa etária, duração) + seções fixas (Material necessário / Como brincar). **Escolha:** ficha de atividade com os metadados no topo em destaque, seções tipografadas com cores da categoria, ícones de Compartilhar / Imprimir / Download no topo e produto Kapo contextualizado ao final. **Porquê:** a mãe ou o pai que abre a página vai querer ver rapidamente se aquela atividade funciona para os filhos dela (participantes, idade) antes de ler qualquer instrução — os metadados no topo respondem isso em segundos.
 
-**4. Seletor de produto como seleção de personagem — problema:** mostrar os 5 sabores do Kapo sem criar uma grade genérica ou um carrossel apático. **Opções:** grade de produtos (todos visíveis, sem hierarquia) vs. carrossel centrado no sabor ativo, com os demais em escala menor e dessaturados nas laterais, referenciando a mecânica de seleção de personagem de videogame. **Escolha:** seletor com o sabor ativo em destaque central, colorido e maior; os outros em círculos menores e em escala de cinza nas laterais, com setas de navegação. **Porquê:** a metáfora de videogame é completamente familiar para o público de crianças e aproxima o produto de um universo lúdico — além de criar hierarquia visual clara sem esconder os outros sabores.
+**4. Seletor de produto como seleção de personagem** — a versão inicial era uma grade simples: 5 sabores em círculos, todos visíveis. Funcionava. Mas era genérica demais para um produto que se posiciona como "mais plataforma de brincadeiras do que site de produto".
+
+Converti para um carrossel centrado no estilo de seleção de personagem de videogame — sabor ativo no centro, colorido e maior; os outros dessaturados e menores nos lados, com setas de navegação. A dessaturação comunica "disponível mas não selecionado" sem precisar de texto. E a metáfora de videogame é completamente familiar para o público infantil. O adulto que navega também entende — é o mesmo padrão de um seletor de avatar.
 
 <div class="image-placeholder">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -105,15 +109,16 @@ Pipeline de design: `análise Google Analytics → decisões de IA (quais págin
 
 ---
 
-## Impacto
+## O que eu faria diferente
 
-- **Entrega:** site completo com home, campanha, promoção sazonal, repositório de brincadeiras e catálogo de produtos em web e mobile.
-- ⬜ Variação no tráfego da seção Hora de Brincar após o redesign — preencher.
-- ⬜ Engajamento no quiz "Descubra seu perfil criança" — preencher.
-- ⬜ Avaliação da equipe de marca da Coca-Cola — preencher.
+Entreguei site completo com home, campanha, promoção sazonal, repositório de brincadeiras e catálogo em web e mobile. Mas o projeto terminou no handoff — não tive acesso a dados pós-lançamento.
+
+O que eu queria ter acompanhado: se o tráfego da "Hora de Brincar" cresceu ou se o redesign só redistribuiu o mesmo comportamento. O dado de Analytics foi o insight fundador de todo o projeto — ter os dados pós-lançamento teria fechado o ciclo e validado (ou questionado) a aposta de colocar a plataforma de brincadeiras como eixo do site.
 
 ---
 
 ## Aprendizados
 
-A análise de dados antes do wireframe foi a decisão mais importante do projeto — e provavelmente a menos óbvia para um projeto de redesign visual. Sem o Google Analytics, a "Hora de Brincar" teria sido tratada como conteúdo de suporte; com os dados, ela se tornou o eixo do redesign. **Lição:** em projetos de redesign, os dados de comportamento existentes são uma pesquisa de usuário gratuita que já foi feita — ignorá-los em favor de intuição ou preferência de marca é um desperdício que o designer tem a obrigação de evitar.
+A análise de dados antes do wireframe foi a decisão mais importante do projeto — e provavelmente a menos óbvia para um projeto de redesign visual. Sem o Google Analytics, a "Hora de Brincar" teria sido tratada como conteúdo de suporte; com os dados, ela se tornou o eixo do redesign.
+
+O que fico é isso: às vezes o produto mais valioso já existe dentro do que o cliente pensa ser um site institucional. Os dados só precisam de alguém disposto a olhar antes de começar a redesenhar.

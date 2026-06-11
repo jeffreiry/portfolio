@@ -11,7 +11,7 @@ accent: "#ecf0f3"
 tags: ["Retail", "Multi-role", "System design", "Dashboard", "Mobile"]
 featured: true
 draft: false
-order: 3
+order: 7
 ---
 
 ## One system, three journeys: how role-based information architecture unlocked ad management at Arezzo&Co Group
@@ -60,13 +60,17 @@ The interviews revealed that the problem wasn't missing functionality — it was
 
 ## Process & Decisions
 
+The decision that cost me the most was the three distinct homes — the worry was that building separate experiences per role would create friction for anyone who, in practice, wore more than one hat. A regional manager who also tracked their own ads wouldn't feel at home in either view.
+
 **1. Role-based information architecture — problem:** a single IA for three profiles forced every user to ignore most of the system. **Options:** preference-based personalization (user chooses what to see — more flexible, more complex to maintain) vs. fixed role-based architecture (routes and screens defined at login — simpler, more appropriate for a corporate context). **Choice:** differentiated information architecture per role, with distinct lateral navigation for each — Marketing (Home, Approvals, Panel, Metrics, Budget, Register, Notifications), Traffic Managers (Home, Reports, Feed, New, Submissions, Notifications), and Store Owners (Home, New, My Submissions, Feed, Notifications). **Why:** each profile's context is mutually exclusive — mixing them on a single screen harms all three.
 
 **2. Home as a contextual control panel — problem:** the home needed to answer different questions for each profile without becoming a generic, useless screen. **Options:** single home with role filters (complex, confusing) vs. three distinct homes optimized for each role's primary task. **Choice:** differentiated homes — Marketing sees consolidated budget, investment distribution (Invested/Provisioned/Remaining), active store performance metrics, and Revenue Impacted; Traffic Managers see the stores they're responsible for, focused on tactical decisions; Store Owners see their available balance, their active ads with inline results, and an alert banner when budget is unused. **Why:** the home is the first screen of every session — it needs to immediately answer each profile's most frequent question without requiring navigation.
 
 **3. Approval workflow with compound filters — problem:** Traffic Managers receive ads from multiple stores simultaneously; without efficient filtering, the approval queue becomes noise. **Options:** linear list with simple search vs. visual grid with compound filters (Store, Status, Budget, Positioning, Archive) and quick-access chips. **Choice:** ad grid with cascading filters — selecting "Status" reveals sub-statuses with counts (New: 5, Approved: 10, Rejected: 2); date, active status, and ordering chips always visible at the top. **Why:** the Traffic Manager needs to prioritize the queue, not just scroll through it — seeing counts by status before filtering allows a decision about where to start.
 
-**4. Funnel metrics for Marketing — problem:** the consolidated performance view needed to communicate not just volume, but conversion between steps — from impression to sale. **Options:** isolated KPI cards (each metric in its own box, no visual relationship between them) vs. funnel visualization with consumer journey stages. **Choice:** visual funnel (Impressions → Engagement → Clicks → Conversations → Sales) with stage numbers below the bars, complemented by Revenue Impacted, Average Ticket, and ROAS cards. **Why:** Marketing needs to see where the chain loses efficiency — an isolated "Conversations: 20" card says nothing; "Impressions 3,538 → Conversations 20" says everything.
+**4. Funnel metrics for Marketing** — the first wireframes had isolated KPI cards. Revenue Impacted. ROAS. Average Ticket. Each number in its own box. I did an internal presentation and the feedback was too polite to be honest — people agreed it was "clear" but couldn't say what the dashboard actually *said* about ad health.
+
+The problem was that isolated cards show state, not relationship. What Marketing needed to understand was: where does the chain lose efficiency? "Conversations: 20" doesn't answer that. "Impressions 3,538 → Conversations 20" does. I replaced the cards with a visual funnel (Impressions → Engagement → Clicks → Conversations → Sales) — the KPI cards stayed as complement, not protagonist.
 
 <div class="image-placeholder">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -104,15 +108,16 @@ Research and design pipeline: `per-profile interviews → journey mapping + benc
 
 ---
 
-## Impact
+## What I'd Do Differently
 
-- **Delivery:** web and mobile interfaces for all three profiles, covering all journeys mapped in research.
-- ⬜ User satisfaction change after the redesign (post-launch satisfaction survey) — to fill.
-- ⬜ Reduction in average ad approval time — to fill.
-- ⬜ Increase in budget utilization rate among Store Owners — to fill.
+I delivered web and mobile interfaces for all three profiles, covering all journeys from the research. But we measured nothing after launch — no satisfaction by role, no approval time, no budget utilization rate for Store Owners.
+
+If I were doing it again: before closing the scope, I would have negotiated a validation round with real users from each role on the navigable prototype — not to change the architecture, but to confirm whether each profile's contextual home actually answered their most frequent question, or whether I'd gotten the information hierarchy wrong somewhere. Role-based design seems right in theory. Without post-launch feedback, I don't know where I missed.
 
 ---
 
 ## Learnings
 
-The greatest risk in multi-role projects is falling into the trap of "the system serves everyone" — which in practice means it serves no one well. The decision to define role-based information architecture before drawing any screen was what determined the outcome: each user entered a product designed for what they actually needed to do. **Lesson:** when a product serves profiles with radically different goals, information architecture isn't a process artifact — it's the most important design decision in the project.
+The greatest risk in multi-role projects is falling into the trap of "the system serves everyone" — which in practice means it serves no one well. The decision to define role-based information architecture before drawing any screen was what determined the outcome: each user entered a product designed for what they actually needed to do.
+
+What I still think about: whether a Regional Manager who also tracks their own stores would be able to orient themselves in this system. They weren't the primary persona. But they weren't impossible either. That's the kind of thing that only surfaces once the product is in people's hands.

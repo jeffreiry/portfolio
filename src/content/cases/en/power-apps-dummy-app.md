@@ -18,7 +18,7 @@ metrics:
     value: "Org-wide"
 featured: false
 draft: false
-order: 6
+order: 5
 ---
 
 ## From component library to working product: making the Design System real in Power Apps
@@ -46,6 +46,8 @@ The first step was understanding which components were being actively used in Po
 The goal wasn't to document everything — it was to find the **20% of components that covered 80% of real product scenarios**.
 
 ### 2. Defining the app's scope
+
+The decision that worried me most was the scope. A demo app that covers too much stops being a reference and becomes overhead. But if it's too simple, it doesn't answer developers' real questions.
 
 With a component inventory in hand, the next question was: what kind of app would give these components the most meaningful context? The answer was a **standard enterprise mobile product** — the kind the organization builds most often.
 
@@ -104,3 +106,11 @@ Beyond the specific deliverable, the project established a pattern for how the D
 | Published as org-wide template | ✅ |
 | Production apps built on top | ≥ 1 |
 | Cross-functional collaborators | Design Chapter + Low-code Platforms |
+
+---
+
+## Learnings
+
+Knowing that another team used the Dummy App as the foundation for a production product was when the project made real sense. A design system isn't documentation — it's infrastructure. And infrastructure only proves it works when someone builds on top of it.
+
+What I'd do differently: I would have tracked which components were copied most frequently. That information would have fed the library's evolution roadmap better than any planning meeting.

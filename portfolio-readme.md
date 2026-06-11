@@ -159,3 +159,4 @@ com Resend, dark mode e microinterações expressivas.
 - Lighthouse 95+ em todas as métricas
 - Preencher métricas reais (`⬜`) nos frontmatters dos cases
 - Reunir e otimizar imagens de cada case em `public/cases/<slug>/`
+- ~~**Revisão de voz dos cases**~~ ✅ concluída (2026-06-11) — todos os 9 cases (18 arquivos PT+EN) reescritos com base no case-writing-guide: AI tells removidos, dúvida expressa, estrutura variada, Impact sections vazias substituídas por "O que eu faria diferente", endings pessoais

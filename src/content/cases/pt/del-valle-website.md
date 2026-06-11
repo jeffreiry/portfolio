@@ -11,7 +11,7 @@ accent: "#fff9e6"
 tags: ["Branding digital", "Visual design", "Consumer", "Coca-Cola"]
 featured: false
 draft: false
-order: 6
+order: 8
 ---
 
 ## Quando a fruta é o cenário: como traduzi a nova identidade global da Del Valle em uma experiência digital com personalidade
@@ -60,11 +60,15 @@ O manual de identidade trazia formas orgânicas, paleta de cores associadas a ca
 
 ## Processo & Decisões
 
+A decisão que mais me pesou foi manter as formas orgânicas em toda a sua irregularidade. O argumento conservador fazia sentido: manchas irregulares são difíceis de adaptar para mobile sem parecer acidente. Mas normalizar as formas em geométricas limpas seria destruir exatamente o que a campanha precisava comunicar.
+
 **1. Formas orgânicas vs. geométricas — problema:** a campanha usava manchas irregulares de cor como elemento de identidade. Simplificadas para formas geométricas ficaria mais limpo e consistente; mantidas em sua irregularidade preservaria a personalidade. **Opções:** normalizar as manchas em formas geométricas controladas (mais limpo, menos expressivo) vs. recriar as manchas orgânicas com variação intencional (mais complexo de executar, fiel à identidade). **Escolha:** formas orgânicas recriadas em Illustrator, posicionadas assimetricamente e em tamanhos variados — nunca simétricas, nunca iguais entre si. **Porquê:** a imperfeição é parte da mensagem; regularizar as formas transmite exatamente o oposto do que a marca quer dizer sobre o processo natural das frutas.
 
 **2. Sistema de cor por seção vs. paleta única — problema:** a identidade associa cores específicas a cada fruta (laranja ao laranja, roxo à uva, verde ao caju e à natureza, rosa à família). Usar uma paleta única simplificaria a produção; usar múltiplas paletas por seção exigiria mais decisão a cada bloco. **Opções:** cor única de marca em todo o site vs. cor por seção vinculada ao conteúdo. **Escolha:** cada seção e cada fruta tem seu background e suas manchas em cores associadas — lime green para a seção institucional, creme para produtos, verde+laranja para "Fruta toda hora", rosa para "Da nossa família para a sua". **Porquê:** a diversidade de frutas brasileiras é um dos argumentos centrais da campanha — um site monocromático contradiz visualmente o que o texto afirma.
 
-**3. Frutas como protagonistas visuais — problema:** o padrão de sites de bebidas é colocar o produto (a embalagem) como centro. A campanha pedia o oposto — a fruta antes do produto. **Opções:** abrir o site com o produto em destaque (mais convencional para a categoria) vs. abrir com estilo de vida e frutas em primeiro plano. **Escolha:** o hero da página usa uma foto de lifestyle (pessoa consumindo o produto em ambiente doméstico) e a seção de exploração de frutas mostra a Laranja, Uva, Caju e Manga em escala total antes de qualquer embalagem. As embalagens aparecem na página de produtos, não na home. **Porquê:** a proposta de valor da campanha — "sabemos de onde vem cada fruta" — precisa ser estabelecida antes da oferta comercial.
+**3. Frutas como protagonistas visuais** — a primeira pergunta que recebi do cliente foi: "onde fica o produto?" A resposta padrão para site de bebidas é no hero, grande, bem iluminado. Mas a campanha se chamava "Cheio de vida" — não "Cheio de embalagem". A proposta de valor — "sabemos de onde vem cada fruta" — precisava ser estabelecida antes da oferta comercial, ou ela virava só texto decorativo.
+
+Coloquei uma foto de lifestyle no hero e guardei as embalagens para a página de produtos. A fruta aparece em tamanho real antes de qualquer packaging. O cliente aprovou. Mas foi uma escolha que eu teria que justificar se a primeira pergunta viesse de alguém diferente.
 
 **4. Cards de exploração de frutas com carrossel — problema:** cada fruta tem múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta tem uma célula com foto em tela cheia e uma célula com card branco que carrossel por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convida à exploração sem forçar leitura — o usuário que quer saber a origem navega; o que só quer ver a fruta, vê.
 
@@ -103,14 +107,16 @@ Pipeline de design: `estudo do manual de identidade + referências da campanha �
 
 ---
 
-## Impacto
+## O que eu faria diferente
 
-- **Entrega:** home e página de produtos em web e mobile, alinhadas à nova identidade global da campanha "Cheio de vida".
-- ⬜ Métricas de engajamento do site pós-lançamento (tempo na página, scroll depth, cliques em "Saiba mais") — preencher.
-- ⬜ Avaliação da aprovação da identidade visual junto ao time de marca da Coca-Cola — preencher.
+Entreguei home e página de produtos em web e mobile, alinhadas à campanha "Cheio de vida". Mas o projeto terminou no handoff — não tive acesso a nenhuma métrica pós-lançamento.
+
+O que eu queria ter acompanhado: se os usuários navegavam pelos cards de exploração de frutas ou pulavam direto para os produtos. Essa interação era o coração da proposta de valor narrativa — "sabemos de onde vem cada fruta". Se ninguém abrisse aquele carrossel, a decisão de colocar a fruta no center stage teria sido mais aposta do que argumento.
 
 ---
 
 ## Aprendizados
 
-Projetos de redesign orientados por campanha têm uma armadilha específica: a tentação de "segurar" a expressividade em nome da usabilidade — reduzir as formas irregulares, neutralizar as cores, colocar os elementos no grid. Resistir a isso foi o trabalho. **Lição:** quando a identidade de uma marca é carregada de personalidade, a fidelidade à irregularidade *é* a decisão de UX — porque é o que faz o usuário sentir que chegou ao lugar certo antes de ler uma palavra.
+Projetos de redesign orientados por campanha têm uma armadilha específica: a tentação de "segurar" a expressividade em nome da usabilidade — reduzir as formas irregulares, neutralizar as cores, colocar os elementos no grid. Resistir a isso foi o trabalho.
+
+O que ficou comigo: é fácil defender a irregularidade numa apresentação de conceito. Mas o momento que define se você realmente acredita nisso é quando você está adaptando as manchas orgânicas para um breakpoint de 375px e a opção limpa e segura está ali do lado. Eu fiquei com a irregularidade. Não me arrependo.

@@ -16,7 +16,7 @@ metrics:
     value: "6 meses"
 featured: true
 draft: false
-order: 2
+order: 3
 ---
 
 ## O navio parte com espaço vazio: como um timeline visual transformou dados operacionais em oportunidades comerciais
@@ -60,9 +60,13 @@ Os especialistas em logística sabiam onde estavam as oportunidades — mas esse
 
 ## Processo & Decisões
 
+De todas as decisões desse projeto, a que eu estava menos seguro foi o módulo de simulação — a dúvida real era se os operadores iriam usar aquela camada ou se ficariam só no monitoramento, onde a curva de aprendizado era menor.
+
 **1. Representação temporal das rotas — problema:** tabelas e listas de rotas obrigam o operador a reconstruir mentalmente a sequência de eventos ao longo do tempo. A análise de disponibilidade numa tabela é uma operação cognitiva; num timeline, é uma leitura. **Opções:** lista de rotas com filtros (familiar, sem curva de aprendizado) vs. timeline visual por navio e período (mais complexo de construir, muito mais rápido de interpretar). **Escolha:** timeline visual representando movimentos entre portos, janelas de capacidade disponível e restrições operacionais. **Porquê:** o principal ganho da plataforma era transformar análise em percepção — e isso só é possível com uma representação temporal.
 
-**2. Módulo de simulação — problema:** avaliar o impacto de uma nova alocação de carga exigia considerar múltiplas variáveis simultaneamente (capacidade residual, tempo de trânsito, compatibilidade de porto). Fazer isso manualmente em planilha demorava e produzia erros. **Opções:** plataforma só de leitura (monitoramento sem experimentação) vs. simulação integrada com visualização do impacto em tempo real. **Escolha:** módulo de simulação que permite ao usuário testar alocações hipotéticas e visualizar o impacto na capacidade e no cronograma antes de confirmar qualquer decisão. **Porquê:** a resistência a adotar novas oportunidades comerciais vinha do risco percebido de "e se der errado operacionalmente" — a simulação torna o experimento seguro e o julgamento mais rápido.
+**2. Módulo de simulação** — havia uma tensão real aqui. Fazer a plataforma só de monitoramento era o caminho mais seguro: menos curva de aprendizado, mais fácil de adotar. Mas o problema que os operadores descreviam não era só visibilidade — era incerteza antes de agir. Antes de confirmar uma alocação nova, eles queriam saber: "se eu aceitar esse pedido, o que muda no restante da rota?" Essa pergunta não tem resposta numa plataforma de leitura.
+
+Construir a simulação integrada era o caminho mais longo. Mas era o único que tornava o julgamento mais rápido em vez de só mais visível. Fui com a simulação — o usuário testa o hipotético antes de confirmar, e o delta entre o estado atual e o simulado fica visível lado a lado.
 
 **3. Workflow de pedidos de parceiros — problema:** solicitações de espaço de carga chegavam por e-mail, sem estrutura, sem histórico centralizado e sem visibilidade sobre o estágio de cada negociação. **Opções:** integrar e-mail (menor mudança de comportamento, não resolve rastreabilidade) vs. workflow estruturado dentro da plataforma com etapas explícitas (mudança maior, resolve o problema na raiz). **Escolha:** workflow centralizado com etapas de recebimento, avaliação, aprovação e acompanhamento, substituindo o e-mail como canal principal de gestão. **Porquê:** o problema não era o volume de pedidos — era a invisibilidade do status de cada um. Um canal estruturado torna o pipeline comercial gerenciável sem depender de memória individual.
 
@@ -103,16 +107,16 @@ Pipeline de discovery e design: `reviews de workflow com especialistas em logís
 
 ---
 
-## Impacto
+## O que eu faria diferente
 
-- **Lançamento:** o MVP foi disponibilizado para equipes internas de logística e stakeholders externos selecionados.
-- **Feedback inicial:** reações positivas à consolidação das informações operacionais em um único ambiente e à possibilidade de explorar oportunidades de forma mais eficiente.
-- ⬜ Redução do tempo de avaliação de oportunidades de carga — preencher.
-- ⬜ Volume de pedidos gerenciados pelo workflow vs. e-mail — preencher.
-- ⬜ Número de usuários externos onboardados na fase inicial — preencher.
+O MVP foi disponibilizado para equipes internas e stakeholders externos selecionados, com feedback positivo sobre a consolidação da informação operacional. Mas tem uma coisa que eu não consegui medir: se o módulo de simulação foi adotado de verdade ou se os operadores usaram apenas o monitoramento e a vista de oportunidades.
+
+A simulação é a parte mais cara do design e a mais difícil de validar antes do lançamento. Se eu pudesse refazer, teria definido uma métrica de adoção específica para a simulação na fase de discovery — não para justificar o feature, mas para entender se a hipótese de que "tornar o experimento seguro muda o comportamento de decisão" se confirmou na prática.
 
 ---
 
 ## Aprendizados
 
-Ferramentas operacionais para domínios complexos têm um desafio duplo: o designer precisa entender o suficiente do domínio para não simplificar o que não pode ser simplificado — e precisa simplificar o suficiente para que o sistema seja utilizável sem treinamento extenso. A validação recorrente com especialistas não foi uma formalidade metodológica; foi o que garantiu que o timeline e a simulação representassem restrições reais, não aproximações. **Lição:** em produtos operacionais de alta complexidade, a fidelidade ao domínio não é um detalhe de conteúdo — é o que determina se a ferramenta será confiada ou contornada.
+Ferramentas operacionais para domínios complexos têm um desafio duplo: o designer precisa entender o suficiente do domínio para não simplificar o que não pode ser simplificado — e precisa simplificar o suficiente para que o sistema seja utilizável sem treinamento extenso. A validação recorrente com especialistas não foi uma formalidade metodológica; foi o que garantiu que o timeline e a simulação representassem restrições reais, não aproximações.
+
+O que fico é isso: a oportunidade estava nos dados o tempo todo. Ela só precisava de uma superfície. Às vezes o trabalho do designer é menos sobre inventar e mais sobre fazer o existente aparecer.

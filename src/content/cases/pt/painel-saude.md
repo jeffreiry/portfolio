@@ -4,7 +4,7 @@ slug: painel-saude
 role: "Product Designer, solo, end-to-end"
 summary: "Dashboard unificando Strava e Hevy em uma visão de progresso diária rumo à maratona de 2028."
 company: "Projeto pessoal"
-year: 2025
+year: 2026
 accent: "#e8f5e9"
 tags: ["Dashboard", "Design de informação", "Integração de APIs", "DataViz"]
 url: "https://painel-saude-zeta.vercel.app"
@@ -15,7 +15,7 @@ metrics:
     value: "Mar/2025 → presente"
 featured: false
 draft: true
-order: 5
+order: 1
 ---
 
 ## Um único painel para uma jornada de 3 anos rumo à maratona
@@ -70,13 +70,17 @@ O valor não estava em **mais um gráfico**, e sim em **integração + projeçã
 
 ## Processo & Decisões
 
+A decisão que mais me custou foi começar com 8 abas — a dúvida era se isso era design de produto ou acúmulo de funcionalidade. O critério que usei foi este: se cada aba responde uma pergunta diferente, é design. Se ela só adiciona mais dados, é ruído.
+
 **1. Arquitetura de dados — problema:** dashboards "de verdade" pedem banco e API server, o que custa dinheiro e manutenção. **Opções:** banco + backend (tempo real, caro) vs. JSON estático versionado no Git (não-tempo-real, grátis). **Escolha:** JSON estático como fonte única de verdade, atualizado por um sync diário. **Porquê:** o painel é leitura, single-user; dados versionados no Git são auditáveis, custam zero e rodam em qualquer CDN. Trade-off consciente: abro mão de tempo real por simplicidade e custo zero.
 
 **2. Sync automático — problema:** dados estáticos envelhecem. **Escolha:** GitHub Actions roda todo dia às 06h (BRT), puxa Strava + Hevy, commita só os JSONs que mudaram, e o push dispara um novo deploy na Vercel. **Porquê:** frescor diário sem servidor e sem eu tocar em nada.
 
 **3. SvelteKit sem SSR — problema:** Chart.js precisa do DOM e os dados já são estáticos no build. **Escolha:** sem SSR, mas com `adapter-vercel` (não `adapter-static`). **Porquê:** SSR não agregaria valor aqui, mas o adapter-vercel deixa a porta aberta para uma rota de API futura (ex: webhook do Strava para sync em tempo real) sem migração.
 
-**4. Design de informação — problema:** dado demais vira ruído. **Escolha:** cada aba responde **uma** pergunta. *Semana:* estou cumprindo o plano? *Meta:* estou no caminho da maratona de 2028? *Atenção:* força e corrida estão equilibradas? *Clima:* o calor explica meu pace? *Provas:* como evoluí entre corridas? **Porquê:** a estrutura segue as perguntas do usuário, não as fontes de dados.
+**4. Design de informação** — o primeiro rascunho tinha o dado organizado por fonte: tudo do Strava numa aba, tudo do Hevy em outra. Parecia lógico. Mas quando abri aquele protótipo depois de um treino longo, percebi que estava fazendo exatamente o que os apps separados já faziam — me forçando a navegar entre fontes para chegar numa resposta.
+
+Reorganizei em torno de perguntas: *Estou cumprindo o plano esta semana?* *Estou no caminho para a maratona de 2028?* *Força e corrida estão equilibradas?* Cada aba responde uma pergunta. Se uma aba não respondia uma pergunta, ela sumia.
 
 **5. Confiabilidade do dado — problema:** a mesma corrida pode vir de fontes diferentes. **Escolha:** prioridade explícita nos realizados — **manual > Strava > Hevy > nulo**. **Porquê:** a fonte mais confiável vence; o registro manual sempre tem a palavra final.
 
@@ -113,10 +117,13 @@ Pipeline: `Strava/Hevy API → scripts de sync → JSON → build do SvelteKit �
 - **Autonomia operacional:** atualização **100% automática**, diária, sem intervenção manual.
 - **Cobertura:** histórico contínuo de **Mar/2025 até o presente**, integrando duas modalidades em uma narrativa.
 - **Projeção:** estimativas de prova sempre ancoradas no recorde real e atualizadas sozinhas.
-- ⬜ Métricas de acesso/uso — preencher.
+
+É um projeto pessoal — métricas de uso seriam eu mesmo. Mas a medida que importa é outra: eu abro o painel antes de cada semana de treino. Se eu parasse de abrir, o projeto teria falhado.
 
 ---
 
 ## Aprendizados
 
-Tratar dados como **fonte única de verdade versionada** transformou simplicidade em feature: auditável, reproduzível e barata. **Lição:** a decisão arquitetural mais "chata" (JSON no Git) foi a mais acertada — escolher a complexidade que o problema realmente exige, e não a que impressiona.
+Tratar dados como **fonte única de verdade versionada** transformou simplicidade em feature: auditável, reproduzível e barata. A decisão arquitetural mais "chata" (JSON no Git) foi a mais acertada.
+
+O que ficou: a maratona de 2028 ainda está no futuro. Mas agora eu tenho um registro de como cheguei até aqui — cada treino, cada projeção, cada semana. Se eu terminar a prova, vai ter valido muito mais do que resolver um problema técnico interessante.

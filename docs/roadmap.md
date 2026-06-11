@@ -132,6 +132,59 @@ eliminar o mix de `style="color: var(--color-jambu)"` inline com classes Tailwin
 
 ---
 
+## Revisão de voz dos cases (case-writing-guide) ✅
+
+Concluída em 2026-06-11. Todos os 9 cases (18 arquivos PT+EN) reescritos com base em [case-writing-guide.md](../case-writing-guide.md).
+
+**O que foi feito em todos os cases:**
+- AI tells removidos (enterprise-ai-assistant tinha 5 frases literais do guia)
+- Dúvida expressa adicionada (rule 2) — frase "a decisão que eu estava menos certo"
+- Pelo menos 1 decisão por case convertida de P→O→C→W para narrativa (rule 3)
+- Impact sections com `⬜` vazios substituídas por "O que eu faria diferente" (rule 7)
+- Endings pessoais em todos os cases (rule 8)
+- Anos e ordem dos cards corrigidos no frontmatter
+
+### ~~🔴 Crítico — Enterprise AI Assistant (PT + EN)~~
+
+O guia foi derivado diretamente desse case. Ele contém as frases citadas como exemplos de AI tells:
+
+- EN: substituir `"Trust is non-negotiable in enterprise"` → nomear o custo concreto (rule 5)
+- EN: substituir `"reduces blank-screen anxiety"` → frase mais específica (tabela Quick reference)
+- EN: substituir `"collected via CSAT and in-product feedback mechanisms"` → remover ou virar "What I'd Do Differently" (rule 7)
+- EN: substituir `"that's enough to stall adoption"` → `"that's enough to kill it"` (tabela Quick reference)
+- EN: reescrever ending — `"Visible traceability isn't a UX detail; it's the condition for a correct answer to actually be used."` é literalmente o **AI version** do rule 8
+- PT: equivalentes das frases acima em português
+- Ambos: adicionar uma frase de dúvida ("a decisão que eu estava menos certo" — rule 2)
+- Ambos: variar estrutura de pelo menos 1 das 4 decisões P→O→C→W (rule 3)
+- Ambos: mencionar o que não foi validado (rule 6)
+
+### 🟠 Alto — Shipping, Arezzo, Hypera (PT + EN cada)
+
+**Problema compartilhado — Impact section vazia (rule 7):**
+Todos têm 3 de 3–4 métricas quantitativas como `⬜`. Impact section sem números é pior que nenhuma Impact section.
+Decisão a tomar para cada: ou preencher com dados reais, ou substituir a seção por "O que eu faria diferente".
+
+- `shipping-capacity-platform`: 3 métricas ⬜ no Impact
+- `arezzo-ad-management`: 3 métricas ⬜ no Impact
+- `hypera-hypergestor`: 3 métricas ⬜ no Impact
+
+**Outros issues comuns nesses três:**
+- Adicionar dúvida expressa (rule 2)
+- Variar estrutura de pelo menos 1 decisão (rule 3)
+
+### 🟡 Médio — todos os outros cases (PT + EN)
+
+Issues sistêmicos que afetam todos os 8 cases:
+
+1. **Nenhum case expressa dúvida** (rule 2) — uma frase por case: "essa foi a decisão em que eu estava menos certo"
+2. **Estrutura P→O→C→W 100% idêntica em todas as decisões** (rule 3) — variar pelo menos 1 decisão por case: narrativa, raciocínio primeiro, ou "o que não validei"
+3. **Endings todos conclusivos, nenhum pessoal** (rule 8) — a última frase de Aprendizados deve soar como quem fechou o computador e pensou no caminho de volta
+4. **Nenhum case menciona o que não foi validado** (rule 6)
+
+Cartela Cores é o melhor case (tem métricas reais, tem limite honesto do modelo). Del Valle Kapo tem o melhor "momento de surpresa" (dado do GA). Esses dois são referência para os outros.
+
+---
+
 ## Questões em aberto
 
 Decisões que dependem do autor antes/durante o build:

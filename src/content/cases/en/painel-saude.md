@@ -4,7 +4,7 @@ slug: painel-saude
 role: "Product Designer, solo, end-to-end"
 summary: "A dashboard unifying Strava and Hevy data into a single progress view toward a 2028 marathon."
 company: "Personal project"
-year: 2025
+year: 2026
 accent: "#e8f5e9"
 tags: ["Dashboard", "Information design", "API integration", "DataViz"]
 url: "https://painel-saude-zeta.vercel.app"
@@ -15,7 +15,7 @@ metrics:
     value: "Mar 2025 → present"
 featured: false
 draft: true
-order: 5
+order: 1
 ---
 
 ## One dashboard for a 3-year journey toward a marathon
@@ -70,13 +70,17 @@ The value wasn't in **one more chart**, but in **integration + projection**. Cro
 
 ## Process & Decisions
 
+The decision that cost me the most was starting with 8 tabs — the worry was whether that was product design or feature accumulation. The criterion I used: if each tab answers a different question, it's design. If it just adds more data, it's noise.
+
 **1. Data architecture — problem:** "real" dashboards call for a database and an API server, which cost money and maintenance. **Options:** database + backend (real-time, expensive) vs. static JSON versioned in Git (non-real-time, free). **Choice:** static JSON as the single source of truth, updated by a daily sync. **Why:** the panel is read-only, single-user; Git-versioned data is auditable, costs nothing, and runs on any CDN. A conscious trade-off: I give up real-time for simplicity and zero cost.
 
 **2. Automated sync — problem:** static data goes stale. **Choice:** GitHub Actions runs daily at 6am (BRT), pulls Strava + Hevy, commits only the JSONs that changed, and the push triggers a fresh Vercel deploy. **Why:** daily freshness with no server and no manual touch.
 
 **3. SvelteKit without SSR — problem:** Chart.js needs the DOM, and the data is already static at build time. **Choice:** no SSR, but `adapter-vercel` (not `adapter-static`). **Why:** SSR adds no value here, but adapter-vercel keeps the door open for a future API route (e.g., a Strava webhook for real-time sync) with no migration.
 
-**4. Information design — problem:** too much data becomes noise. **Choice:** each tab answers **one** question. *Week:* am I on plan? *Goal:* am I on track for the 2028 marathon? *Attention:* are strength and running balanced? *Weather:* does the heat explain my pace? *Races:* how have I evolved between runs? **Why:** the structure follows the user's questions, not the data sources.
+**4. Information design** — the first draft had data organized by source: everything from Strava in one tab, everything from Hevy in another. It felt logical. But when I opened that prototype after a long run, I realized I was doing exactly what the separate apps already did — forcing myself to navigate between sources to get to an answer.
+
+I reorganized around questions: *Am I on plan this week? Am I on track for the 2028 marathon? Are strength and running balanced?* Each tab answers one question. If a tab didn't answer a question, it disappeared.
 
 **5. Data reliability — problem:** the same run can arrive from different sources. **Choice:** explicit priority on completed entries — **manual > Strava > Hevy > null**. **Why:** the most reliable source wins; the manual record always has the final say.
 
@@ -113,10 +117,13 @@ Pipeline: `Strava/Hevy API → sync scripts → JSON → SvelteKit build → Ver
 - **Operational autonomy:** **100% automated**, daily updates, no manual intervention.
 - **Coverage:** a continuous history from **Mar 2025 to present**, integrating two disciplines into one narrative.
 - **Projection:** race estimates always anchored on the real PR and self-updating.
-- ⬜ Access/usage metrics — to fill.
+
+It's a personal project — usage metrics would be myself. But the measure that matters is different: I open the dashboard before every training week. If I stopped opening it, the project would have failed.
 
 ---
 
 ## Learnings
 
-Treating data as a **versioned single source of truth** turned simplicity into a feature: auditable, reproducible, and cheap. **Lesson:** the most "boring" architectural decision (JSON in Git) was the most correct — pick the complexity the problem actually demands, not the one that impresses.
+Treating data as a **versioned single source of truth** turned simplicity into a feature: auditable, reproducible, and cheap. The most "boring" architectural decision (JSON in Git) was the most correct.
+
+What I carry: the 2028 marathon is still in the future. But now I have a record of how I got here — every training session, every projection, every week. If I finish that race, it'll have meant more than solving an interesting technical problem.

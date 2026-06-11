@@ -16,7 +16,7 @@ metrics:
     value: "6 meses"
 featured: true
 draft: false
-order: 1
+order: 4
 ---
 
 ## Dez repositórios, uma conversa: como a rastreabilidade de fontes se tornou o produto
@@ -31,7 +31,6 @@ Grandes organizações acumulam documentação técnica e regulatória distribu�
 
 **Estado anterior:** conhecimento corporativo correto, mas inacessível — e um MVP que respondia mas não era confiado.
 
-
 ---
 
 ## Meu papel
@@ -43,16 +42,18 @@ Product Designer responsável pelo scale-up: conduzi as atividades de discovery 
 ## Restrições
 
 - **Produto existente com base de usuários ativa** — as decisões de design precisavam evoluir o MVP sem quebrar os fluxos que já funcionavam.
-- **Confiança não é opcional em enterprise** — uma resposta errada de IA tem custo real: decisão incorreta, risco de conformidade. A experiência precisava tornar a origem da informação inegociável.
+- **Uma resposta errada de IA tem custo real** — decisão incorreta, risco de conformidade. Os usuários precisavam enxergar a origem de uma resposta antes de agir sobre ela. Esse era o problema de design, não o modelo.
 - **Escopo fechado de 6 meses** — priorizar entre o que seria escalado agora e o que ficaria para iterações seguintes.
 
 ---
 
 ## Descoberta & Insight
 
-A discovery revelou dois problemas encadeados, não um. O primeiro: a interface de busca do MVP pedia que os usuários *navegassem* pela documentação quando o que eles queriam era *perguntar* — a busca é uma tarefa intermediária que as pessoas executam só porque não têm alternativa. O segundo: mesmo quando a IA respondia bem, os usuários não acionavam a resposta porque não sabiam de onde ela vinha. Sem rastreabilidade, a resposta certa e a resposta errada têm a mesma aparência — e em contexto de compliance, isso é suficiente para paralisar a adoção.
+Os registros do Clarity foram o ponto de virada. Víamos exatamente onde as pessoas paravam: liam a resposta, abriam uma nova aba. Toda vez. Não porque a resposta estava errada. Porque não sabiam de onde ela tinha vindo.
 
-**A virada:** o produto não precisava melhorar a busca. Precisava eliminar a necessidade de buscar — e precisava fazer a fonte da resposta tão visível quanto a própria resposta.
+Era o segundo problema — e o mais profundo. O primeiro era a própria interface de busca: ela pedia que os usuários *navegassem* pela documentação quando o que queriam era *perguntar*. Busca é uma tarefa que as pessoas executam só porque não têm alternativa.
+
+**A virada:** o produto não precisava melhorar a busca. Precisava eliminar a necessidade de buscar — e fazer a fonte de cada resposta tão visível quanto a resposta em si.
 
 ![](/cases/enterprise-ai-assistant/02-user-research.png)
 
@@ -60,13 +61,19 @@ A discovery revelou dois problemas encadeados, não um. O primeiro: a interface 
 
 ## Processo & Decisões
 
+De todas as decisões desse projeto, a que eu estava menos certo foi o painel lateral de fontes — a dúvida real era se os usuários iriam abri-lo, ou se viraria um ornamento de confiança sem mudar o comportamento de fato.
+
 **1. Paradigma de interface — problema:** melhorar a busca existente (filtros mais precisos, ranking melhor) era a saída de menor risco. **Opções:** otimizar a busca (esforço menor, impacto incremental) vs. substituir a busca por uma interface conversacional (maior mudança, potencial de eliminar a fricção na raiz). **Escolha:** interface conversacional inspirada em LLMs modernos, com input em linguagem natural e prompts sugeridos como ponto de entrada para novos usuários. **Porquê:** otimizar a busca resolve um problema que o usuário não quer ter — ele quer a resposta, não um buscador melhor.
 
-**2. Visibilidade das fontes — problema:** respostas sem origem não eram acionadas. Os usuários abriam outro sistema para confirmar, anulando o ganho de produtividade do assistente. **Opções:** ocultar fontes (interface mais limpa, confiança menor) vs. citações inline no texto (fragmentado, dificulta leitura) vs. painel dedicado sempre acessível (mais informação disponível, contexto preservado). **Escolha:** painel lateral de fontes, acessível diretamente a partir de cada resposta, com os documentos originais e a possibilidade de explorar relacionados. **Porquê:** separar a resposta da sua rastreabilidade mantém a leitura fluida e deixa a verificação disponível para quem precisa dela — sem forçar quem já confia.
+**2. Visibilidade das fontes** — as respostas sem origem não eram acionadas. Os usuários abriam outro sistema para confirmar antes de agir, cancelando o ganho de produtividade do assistente.
+
+O problema não era preferência de UX. Era a condição para que a resposta fosse usada. Uma resposta sem fonte visível não estava incompleta — estava inutilizável.
+
+Três opções na mesa: ocultar fontes (interface mais limpa, menos confiança); citações inline no texto (mantém conexão com o trecho, mas fragmenta a leitura); ou painel lateral permanente acessível de cada resposta. Fui com o painel. Mantém a leitura fluida e a verificação disponível — sem forçar quem já confia, sem esconder de quem ainda não confia.
 
 **3. Redução de barreira — problema:** usuários novos não sabiam o que perguntar a um assistente que integra bases técnica, regulatória e operacional ao mesmo tempo. **Opções:** onboarding textual (tutorial, tooltips) vs. prompts sugeridos contextuais na tela inicial (ação imediata, sem leitura prévia). **Escolha:** prompts sugeridos derivados dos padrões reais de busca identificados nas sessões do Clarity — não genéricos, mas calibrados às perguntas mais frequentes da organização. **Porquê:** o usuário aprende o que o assistente pode fazer ao ver um exemplo concreto, não ao ler uma descrição.
 
-**4. Modelo de integração — problema:** o conhecimento corporativo não vivia em uma base única — eram sistemas distintos, com autoridade sobre áreas distintas. **Opções:** assistente respondendo de uma base consolidada (mais simples, menos fiel à origem) vs. consulta distribuída com citação por fonte de cada trecho (mais complexo, rastreabilidade preservada). **Escolha:** integração distribuída com citação de origem por trecho. **Porquê:** esconder a pluralidade das fontes numa base consolidada reduziria a confiança — o usuário precisa saber se aquela resposta vem da política de TI ou do manual de compliance.
+**4. Modelo de integração — problema:** o conhecimento corporativo não vivia em uma base única — eram sistemas distintos, com autoridade sobre áreas distintas. **Opções:** assistente respondendo de uma base consolidada (mais simples, menos fiel à origem) vs. consulta distribuída com citação por fonte de cada trecho (mais complexo, rastreabilidade preservada). **Escolha:** integração distribuída com citação de origem por trecho. **Porquê:** o usuário precisa saber se aquela resposta vem da política de TI ou do manual de compliance. Esconder essa pluralidade numa base consolidada teria destruído a confiança pela raiz.
 
 ![](/cases/enterprise-ai-assistant/03-main-interface.png)
 
@@ -82,12 +89,11 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - **Explorar documentos relacionados** — contexto adicional sem sair da interface.
 - **Retomar conversas anteriores** — histórico de chat para continuidade entre sessões.
 
-
 ---
 
 ## Craft & Acessibilidade
 
-- O **estado inicial vazio** da interface exibe os prompts sugeridos como chips clicáveis — reduz a ansiedade da tela em branco e demonstra o escopo do assistente em vez de descrevê-lo.
+- O **estado inicial vazio** exibe prompts sugeridos como chips clicáveis — as pessoas não sabem por onde começar com um assistente que integra três bases de conhecimento ao mesmo tempo. Os prompts mostram isso sem exigir leitura prévia.
 - O **painel de fontes** é uma coluna lateral persistente, não um modal ou tooltip: permanece disponível sem interromper a leitura da resposta. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel.
 - A **estrutura da resposta** separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
 
@@ -97,17 +103,22 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 
 ## Colaboração técnica
 
-Pipeline de discovery e design: `gravações Clarity + heatmaps → entrevistas com usuários do MVP → síntese em Mural → oportunidades priorizadas → wireframes Figma → protótipo navegável → validação com engenharia → handoff`. As gravações do Clarity foram determinantes: mostraram os pontos exatos de abandono no MVP — onde os usuários paravam, saíam para confirmar ou repetiam a mesma busca de forma diferente.
+Pipeline de discovery e design: `gravações Clarity + heatmaps → entrevistas com usuários do MVP → síntese em Mural → oportunidades priorizadas → wireframes Figma → protótipo navegável → validação com engenharia → handoff`. As gravações foram determinantes: mostraram os pontos exatos de abandono no MVP — onde os usuários paravam, saíam para confirmar ou repetiam a mesma busca de forma diferente.
+
+Seis meses para projetar e lançar uma plataforma de uso corporativo amplo — sem conseguir validar todas as hipóteses com usuários reais antes do lançamento — é apertado. Inferimos bastante a partir do comportamento no MVP e de benchmarking de produtos similares. A maior parte se confirmou.
 
 ---
 
-## Impacto
+## O que eu faria diferente
 
-- **Lançamento:** a plataforma foi lançada como parte do ecossistema digital interno da organização.
-- **Feedback inicial:** coletado via CSAT e mecanismos de feedback integrados ao produto.
+A plataforma foi lançada e o feedback foi positivo. Mas tem uma coisa que eu queria ter medido e não consegui: se o painel de fontes mudou o comportamento real dos usuários, ou só fez as pessoas se sentirem mais seguras com um comportamento que já tinham. Tem uma diferença entre uma feature que constrói confiança e uma que sinaliza confiança. Eu acredito que seja a primeira. Não consegui provar.
 
 ---
 
 ## Aprendizados
 
-Este é um case de scale-up, não de 0→1 — e isso muda o tipo de julgamento exigido. Algumas decisões de arquitetura já estavam tomadas pelo MVP; o trabalho foi identificar o que estava errado *na camada de experiência*, não na tecnologia. O que descobri: o assistente tinha a resposta certa, mas a experiência errada. **Lição:** em produtos de IA corporativa, a confiança não emerge da precisão do modelo — ela é um problema de design. Rastreabilidade visível não é um detalhe de UX; é a condição para que a resposta certa seja usada.
+Este é um case de scale-up, não de 0→1 — e isso muda o tipo de julgamento exigido. Algumas decisões de arquitetura já estavam tomadas pelo MVP; o trabalho foi identificar o que estava errado *na camada de experiência*, não na tecnologia.
+
+O que descobri: o assistente tinha a resposta certa, mas a experiência errada. Em produtos de IA corporativa, confiança não emerge da precisão do modelo. É um problema de design. Resolve-se da mesma forma que qualquer problema de design — tornando o invisível visível.
+
+É isso que vou carregar desse projeto.

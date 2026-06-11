@@ -18,7 +18,7 @@ metrics:
     value: "Toda a organização"
 featured: false
 draft: false
-order: 6
+order: 5
 ---
 
 ## Do componente ao produto: tornando o Design System real no Power Apps
@@ -46,6 +46,8 @@ O primeiro passo foi entender quais componentes estavam sendo ativamente utiliza
 O objetivo não era documentar tudo — era encontrar os **20% de componentes que cobriam 80% dos cenários reais de produto**.
 
 ### 2. Definição do escopo do aplicativo
+
+A decisão que mais me preocupou foi o escopo. Um app de demonstração que cobre demais deixa de ser referência e vira sobrecarga. Mas se ele for simples demais, não responde as perguntas reais dos desenvolvedores.
 
 Com o inventário de componentes em mãos, a próxima questão foi: que tipo de aplicativo daria o contexto mais significativo a esses componentes? A resposta foi um **produto mobile enterprise padrão** — o tipo que a organização constrói com mais frequência.
 
@@ -104,3 +106,11 @@ Além da entrega específica, o projeto estabeleceu um padrão de como o Design 
 | Publicado como template org-wide | ✅ |
 | Produtos em produção construídos sobre ele | ≥ 1 |
 | Colaboradores cross-funcionais | Design Chapter + Low-code Platforms |
+
+---
+
+## Aprendizados
+
+Saber que outra equipe usou o Dummy App como base para um produto em produção foi o momento em que o projeto fez sentido de verdade. Design system não é documentação — é infraestrutura. E infraestrutura só prova que funciona quando alguém constrói em cima.
+
+O que faria diferente: teria instrumentado melhor o app de demonstração para entender quais componentes eram copiados com mais frequência. Essa informação teria alimentado a prioridade de evolução da biblioteca melhor do que qualquer reunião de planejamento.

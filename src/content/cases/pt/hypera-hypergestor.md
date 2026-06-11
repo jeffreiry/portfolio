@@ -4,14 +4,14 @@ slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
 summary: "Criou o HYPERGESTOR — centralizando as verbas de trade da Hypera Pharma em um pipeline rastreável."
 company: "Hypera Pharma (via ilegra)"
-year: 2024
+year: 2023
 cover: /cases/hypera-hypergestor/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#f3e5f5"
 tags: ["Enterprise", "Trade marketing", "Finops", "Design de sistema", "B2B"]
 featured: false
 draft: false
-order: 7
+order: 6
 ---
 
 ## Do orçamento à comprovação: como transformei o ciclo de verbas de trade marketing da Hypera Pharma em um pipeline rastreável
@@ -60,11 +60,15 @@ O mapeamento das jornadas revelou que o problema não era nenhuma etapa em isola
 
 ## Processo & Decisões
 
+A decisão que mais pesou foi o checkpoint de liberação para o SAP. O produto ficaria mais rápido e menos friccionado sem aquele gate de confirmação. E quanto mais fricção você coloca, maior o risco de resistência na adoção. A dúvida era: que nível de deliberação é design, e que nível é obstáculo?
+
 **1. Modal vs. página dedicada para criação — problema:** os fluxos de cadastro (orçamento, verba, distribuição) tinham muitos campos e sub-objetos; abrir em página nova perdia o contexto da listagem. **Opções:** navegação para página dedicada (mais espaço, perde contexto) vs. modal sobre a listagem (mantém contexto, exige scroll interno). **Escolha:** modal persistente sobre a listagem para todas as operações de criação e edição. **Porquê:** o usuário frequentemente precisa consultar outras verbas da lista enquanto cria uma nova — o modal permite isso sem navegação adicional.
 
 **2. Hierarquia de distribuição dentro do mesmo modal — problema:** um orçamento pode ter múltiplos sub-orçamentos, cada um com sua própria hierarquia de vendas. Exibir isso em etapas separadas fragmentaria o fluxo. **Opções:** wizard multi-etapa (uma tela por nível) vs. accordion inline dentro do mesmo modal. **Escolha:** accordion expansível dentro do modal de cadastro — cada distribuição pode ser expandida para mostrar sua hierarquia completa (Região → Escritório → Equipe → Supervisor), com ações de "Editar" e "Copiar Distribuição" sem sair do contexto. **Porquê:** o usuário precisa ver e comparar distribuições simultâneas; o accordion mantém tudo acessível sem forçar navegação entre telas.
 
-**3. Distribuição Sugerida com "Copiar" — problema:** gestores de trade marketing frequentemente replicam distribuições de períodos anteriores com ajustes mínimos. Criar cada distribuição do zero seria lento e propenso a erro. **Opções:** criação manual completa vs. sugestão automática de distribuição baseada no histórico com opção de copiar e ajustar. **Escolha:** seção "Distribuição Sugerida" no modal de distribuição de verba, mostrando a última distribuição relevante com todos os parâmetros (valor, supervisor, hierarquia de vendas) e um botão "Copiar Distribuição" que pré-preenche o formulário. **Porquê:** a maior parte das distribuições segue o mesmo padrão — o design deve acelerar o caso comum e não tratar todo fluxo como se fosse novo.
+**3. Distribuição Sugerida com "Copiar"** — o fluxo de criação de distribuição era longo. Campos de hierarquia em cascata, valores por nível, supervisor responsável. Quando entrei em campo com os gestores de trade, a primeira coisa que todos disseram foi variações da mesma frase: "eu copio do mês passado e ajusto."
+
+Isso não era preguiça — era o padrão real de trabalho. Coloquei uma seção "Distribuição Sugerida" no modal mostrando a última distribuição relevante e um botão "Copiar Distribuição" que pré-preenchia o formulário inteiro. O fluxo de criação ficou da metade para o caso comum. O fluxo do caso excepcional ficou exatamente igual.
 
 **4. Checkpoint de integração SAP/SEV — problema:** a comprovação de verbas alimenta diretamente o SAP; um dado incorreto ou incompleto nessa etapa tem impacto financeiro real. **Opções:** integração automática ao salvar (mais ágil, menos controle) vs. gate explícito com confirmação manual antes da liberação. **Escolha:** campo "Pode ser liberada para aprovação da integração?" com padrão "Não" — o usuário precisa marcar "Sim" conscientemente para liberar a verba para o SAP. Campo "Haverá mais comprovação?" permite indicar que a apuração ainda não está completa sem bloquear o salvamento parcial. **Porquê:** em sistemas com integração financeira, um erro de liberação pode gerar inconsistência entre o sistema interno e o ERP — o gate de confirmação cria um momento deliberado de revisão antes do ponto de não retorno.
 
@@ -103,15 +107,16 @@ Pipeline de design: `benchmarking + mapeamento de jornadas por perfil → arquit
 
 ---
 
-## Impacto
+## O que eu faria diferente
 
-- **Entrega:** sistema completo com módulos de Orçamentos, Verbas, Distribuição e Apuração, com interfaces para cada perfil.
-- ⬜ Redução do tempo de ciclo de comprovação de verbas — preencher.
-- ⬜ Redução de erros de integração SAP/SEV após implementação do gate de confirmação — preencher.
-- ⬜ Satisfação dos usuários com o novo sistema vs. processo anterior — preencher.
+Entreguei o sistema completo com os quatro módulos e interfaces para cada perfil. Mas o projeto terminou antes de eu conseguir medir qualquer coisa pós-lançamento — ciclo de comprovação, erros de integração SAP, satisfação.
+
+O que eu queria ter feito: uma sessão de teste de usabilidade com o fluxo de distribuição antes do handoff. Os accordions aninhados e a hierarquia de vendas em cascata são a parte mais densa do sistema. Validei o modelo via mapeamento de jornada e benchmarking — mas não sentei com um gestor real para ver se ele conseguia criar uma distribuição pela primeira vez sem ajuda. Em sistemas financeiros, esse é o momento que importa.
 
 ---
 
 ## Aprendizados
 
-Sistemas financeiros internos têm um trade-off específico entre agilidade e controle: tornar tudo rápido demais remove as salvaguardas que o processo exige; tornar tudo deliberado demais cria resistência de adoção. O gate de liberação para o SAP é o exemplo mais claro desse trade-off no projeto — e a decisão de mantê-lo como confirmação explícita (não automático) foi a certa. **Lição:** em sistemas com integração financeira, o design de fluxo precisa saber onde colocar atrito de propósito — não todo clique deve ser rápido.
+Sistemas financeiros internos têm um trade-off específico entre agilidade e controle: tornar tudo rápido demais remove as salvaguardas que o processo exige; tornar tudo deliberado demais cria resistência de adoção. O gate de liberação para o SAP é o exemplo mais claro desse trade-off no projeto — e a decisão de mantê-lo como confirmação explícita (não automático) foi a certa.
+
+O que fico pensando: o usuário que vai usar esse sistema todos os dias vai sentir esse gate como proteção ou como burocracia? Não sei a resposta. Mas é a pergunta certa, e é o tipo de coisa que só se descobre depois que o produto está nas mãos de quem realmente precisa dele.

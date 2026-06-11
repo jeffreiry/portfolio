@@ -4,7 +4,7 @@ slug: cartela-cores
 role: "Product Designer, solo, end-to-end"
 summary: "Turned a static color PDF into a system that scores wardrobe items against a personal palette."
 company: "Personal project"
-year: 2024
+year: 2026
 accent: "#fff7ef"
 tags: ["Web app", "Color algorithm", "Design system", "Accessibility"]
 url: ""
@@ -15,7 +15,7 @@ metrics:
     value: "22 of 28 within ±10%"
 featured: true
 draft: true
-order: 4
+order: 2
 ---
 
 ## From a dead PDF to a wardrobe that matches itself
@@ -66,7 +66,9 @@ The turning point was reframing the question. "Does this color match?" sounds su
 
 ## Process & Decisions
 
-**1. Color space — problem:** RGB and HSL aren't perceptually uniform (the same numeric difference means different visual differences across the spectrum). **Options:** stay in RGB (simple) vs. convert to CIE L\*a\*b\* (complex). **Choice:** L\*a\*b\* + ΔE. **Why:** it's the only space where "distance" maps to human perception. I validated the score against manual ratings: **4.8% average error**, with 22 of 28 colors within ±10%.
+The part that cost me the most was the color space decision — the real risk wasn't technical complexity, it was that I didn't know whether any mathematical model could capture what a human consultant feels about a color. The hypothesis was that it could. I needed to test it.
+
+**1. Color space** — I started in RGB because it's simple. It worked poorly: the same numeric difference produced completely different perceptions depending on where you were in the spectrum. Similar greens looked the same; very different yellows got mixed up. I migrated to CIE L\*a\*b\*, which is designed so that numeric distance corresponds to human perception — and validated the score against manual ratings: **4.8% average error**, with 22 of 28 colors within ±10%. The hypothesis held. The honest limit showed up too: cool colors are overestimated.
 
 **2. What makes an item a "wildcard" — problem:** "versatile" is vague. **Choice:** I turned it into an explicit rule — score ≥ 85% **and** a neutral palette color **and** plain/subtle pattern **and** works in ≥ 3 occasions. **Why:** an accent-color piece (burnt orange, wine) is beautiful but limits combinations — so it's "versatile", not a "wildcard". This is designing a rule system, not just screens.
 
@@ -127,4 +129,6 @@ Color pipeline I implemented: `HEX → linear RGB → XYZ (D65) → CIE L*a*b* �
 
 ## Learnings
 
-The model has an honest limit: ΔE doesn't capture **perceptual temperature**, so cool colors (pure white, cool pink, neon yellow) are overestimated by ~15–23% vs. manual judgment. I've already mapped the fix — a penalty for *hue* > 150° — and the next step: extracting the dominant color from the photo automatically (ColorThief) instead of manual selection. **Lesson:** acknowledging where the model fails and having the correction planned is worth more than pretending total accuracy.
+The model has an honest limit: ΔE doesn't capture **perceptual temperature**, so cool colors (pure white, cool pink, neon yellow) are overestimated by ~15–23% vs. manual judgment. I've already mapped the fix — a penalty for *hue* > 150° — and the next step: extracting the dominant color from the photo automatically (ColorThief) instead of manual selection.
+
+This project changed how I think about product metrics. Getting to a number — 4.8% error — and being able to say honestly "here's what this model gets wrong, and why" is more useful than a system that hides its edges. That's what I want from any product I build: clarity about what works and what doesn't, instead of a polished surface over unresolved uncertainty.

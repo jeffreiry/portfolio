@@ -16,7 +16,7 @@ metrics:
     value: "6 months"
 featured: true
 draft: false
-order: 2
+order: 3
 ---
 
 ## The ship leaves half-empty: how a visual timeline turned operational data into commercial opportunities
@@ -60,9 +60,13 @@ The logistics specialists knew where the opportunities were — but that knowled
 
 ## Process & Decisions
 
+Of all the decisions in this project, the one I was least certain about was the simulation module — the real question was whether operators would actually use that layer or just stick to monitoring, where the learning curve was lower.
+
 **1. Temporal representation of routes — problem:** tables and lists force the operator to mentally reconstruct the sequence of events over time. Assessing availability in a table is a cognitive operation; on a timeline, it's a visual scan. **Options:** filtered route list (familiar, no learning curve) vs. visual timeline per vessel and period (more complex to build, far faster to interpret). **Choice:** visual timeline representing port-to-port movements, available capacity windows, and operational constraints. **Why:** the platform's core value was turning analysis into perception — and that's only possible with a temporal representation.
 
-**2. Simulation module — problem:** assessing the impact of a new cargo allocation required considering multiple variables simultaneously (residual capacity, transit time, port compatibility). Doing this manually in a spreadsheet was slow and error-prone. **Options:** read-only platform (monitoring without experimentation) vs. integrated simulation with real-time impact visualization. **Choice:** a simulation module allowing users to test hypothetical allocations and visualize the impact on capacity and scheduling before committing to any decision. **Why:** resistance to acting on new commercial opportunities came from the perceived risk of "what if this breaks operations" — simulation makes the experiment safe and judgment faster.
+**2. Simulation module** — there was a real tension here. Making the platform monitoring-only was the safer path: lower learning curve, easier adoption. But the problem operators described wasn't just visibility — it was uncertainty before acting. Before confirming a new allocation, they wanted to know: "if I accept this request, what changes across the rest of the route?" That question has no answer in a read-only platform.
+
+Building integrated simulation was the longer path. But it was the only one that made judgment faster rather than just more visible. I went with simulation — the user tests the hypothetical before committing, and the delta between current state and simulated scenario stays visible side-by-side.
 
 **3. Partner request workflow — problem:** cargo space requests arrived by email, unstructured, with no centralized history and no visibility into the status of each negotiation. **Options:** email integration (lower behavior change, doesn't solve traceability) vs. structured workflow inside the platform with explicit stages (bigger change, solves the problem at the root). **Choice:** a centralized workflow with reception, evaluation, approval, and tracking stages, replacing email as the primary management channel. **Why:** the problem wasn't request volume — it was the invisibility of each request's status. A structured channel makes the commercial pipeline manageable without depending on individual memory.
 
@@ -103,16 +107,16 @@ Discovery and design pipeline: `workflow reviews with logistics specialists → 
 
 ---
 
-## Impact
+## What I'd Do Differently
 
-- **Launch:** the MVP was made available to internal logistics teams and selected external stakeholders.
-- **Initial feedback:** positive reactions to having a consolidated view of operational information and a more efficient way to explore cargo opportunities.
-- ⬜ Reduction in time to assess cargo opportunities — to fill.
-- ⬜ Volume of requests managed through the workflow vs. email — to fill.
-- ⬜ Number of external users onboarded in the initial phase — to fill.
+The MVP was made available to internal logistics teams and selected external stakeholders, with positive feedback about consolidating operational information in one place. But there's one thing I couldn't measure: whether the simulation module was actually adopted, or whether operators relied on monitoring and the opportunity view and left the simulation largely untouched.
+
+Simulation is the most expensive part of the design and the hardest to validate before launch. If I were doing it again, I would have defined a specific adoption metric for simulation during the discovery phase — not to justify the feature, but to understand whether the hypothesis that "making the experiment safe changes decision behavior" actually held up in practice.
 
 ---
 
 ## Learnings
 
-Operational tools for complex domains carry a double challenge: the designer needs to understand enough of the domain to avoid simplifying what cannot be simplified — and needs to simplify enough for the system to be usable without extensive training. Recurring validation with specialists wasn't a methodological formality; it was what ensured the timeline and simulation reflected real constraints, not approximations. **Lesson:** in high-complexity operational products, domain fidelity isn't a content detail — it's what determines whether the tool will be trusted or worked around.
+Operational tools for complex domains carry a double challenge: the designer needs to understand enough of the domain to avoid simplifying what cannot be simplified — and needs to simplify enough for the system to be usable without extensive training. Recurring validation with specialists wasn't a methodological formality; it was what ensured the timeline and simulation reflected real constraints, not approximations.
+
+What I take from this: the opportunity was in the data the whole time. It just needed a surface. Sometimes a designer's work is less about inventing and more about making what already exists visible.

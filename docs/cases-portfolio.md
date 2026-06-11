@@ -6,6 +6,35 @@
 
 ---
 
+## ⚠️ Revisão de voz pendente (diagnóstico 2026-06-11)
+
+Diagnóstico completo em [docs/roadmap.md](roadmap.md) (seção "Revisão de voz dos cases").
+Resumo executivo para edição direta:
+
+### Issues por prioridade
+
+**🔴 Enterprise AI Assistant (PT + EN) — resolver antes de qualquer outro**
+- [ ] EN: `"Trust is non-negotiable in enterprise"` → nomear o custo real
+- [ ] EN: `"reduces blank-screen anxiety"` → frase específica
+- [ ] EN: `"collected via CSAT and in-product feedback mechanisms"` → remover ou virar seção "What I'd Do Differently"
+- [ ] EN: `"that's enough to stall adoption"` → `"that's enough to kill it"`
+- [ ] EN + PT: reescrever ending de Aprendizados — o atual é o exemplo de "AI version" do case-writing-guide
+- [ ] EN + PT: adicionar frase de dúvida expressa
+- [ ] EN + PT: variar estrutura de ≥1 decisão (não P→O→C→W)
+- [ ] EN + PT: mencionar o que não foi validado
+
+**🟠 Shipping, Arezzo, Hypera (PT + EN cada)**
+- [ ] Impact com 3 métricas ⬜: preencher com dados reais ou substituir por "O que eu faria diferente"
+- [ ] Adicionar dúvida expressa em cada
+
+**🟡 Sistêmico — todos os 8 cases (PT + EN)**
+- [ ] Nenhum case tem dúvida expressa → adicionar 1 frase por case
+- [ ] Endings todos conclusivos → reescrever para soar pessoal (rule 8)
+- [ ] Nenhum case menciona o que não foi validado → 1 frase por case (rule 6)
+- [ ] Todas as decisões em formato P→O→C→W idêntico → variar ≥1 por case (rule 3)
+
+---
+
 ## Índice
 
 1. [Como usar este guia](#1-como-usar-este-guia)

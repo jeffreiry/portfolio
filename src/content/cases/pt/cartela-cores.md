@@ -4,7 +4,7 @@ slug: cartela-cores
 role: "Product Designer, solo, end-to-end"
 summary: "Transformou um PDF estático em sistema que avalia itens do guarda-roupa contra a paleta pessoal."
 company: "Projeto pessoal"
-year: 2024
+year: 2026
 accent: "#fff7ef"
 tags: ["Web app", "Algoritmo de cor", "Design system", "Acessibilidade"]
 url: ""
@@ -15,7 +15,7 @@ metrics:
     value: "22 de 28 dentro de ±10%"
 featured: true
 draft: true
-order: 4
+order: 2
 ---
 
 ## Do PDF morto ao guarda-roupa que se combina sozinho
@@ -66,7 +66,9 @@ A virada foi reformular a pergunta. "Essa cor combina?" parece subjetiva, mas po
 
 ## Processo & Decisões
 
-**1. Espaço de cor — problema:** RGB e HSL não são perceptualmente uniformes (a mesma diferença numérica significa diferenças visuais distintas conforme a região do espectro). **Opções:** ficar no RGB (simples) vs. converter para CIE L\*a\*b\* (complexo). **Escolha:** L\*a\*b\* + ΔE. **Porquê:** é o único espaço onde "distância" corresponde à percepção humana. Validei o score contra avaliações manuais: **erro médio de 4,8%**, com 22 de 28 cores dentro de ±10%.
+A parte que mais me custou foi a da escolha do espaço de cor — o risco real não era a complexidade técnica, era que eu não sabia se qualquer modelo matemático conseguiria capturar o que um consultor humano sente sobre uma cor. A hipótese era que conseguiria. Eu precisava testar.
+
+**1. Espaço de cor** — comecei em RGB porque é simples. Funcionou mal: a mesma diferença numérica produzia percepções completamente distintas dependendo da região do espectro. Verdes próximos pareciam iguais; amarelos muito diferentes eram confundidos. Migrei para CIE L\*a\*b\*, que é projetado para que distância numérica corresponda à percepção humana — e validei o score contra avaliações manuais: **erro médio de 4,8%**, com 22 de 28 cores dentro de ±10%. A hipótese se confirmou. E o limite honesto também: cores frias são superestimadas.
 
 **2. O que é uma peça "coringa" — problema:** "versátil" é vago. **Escolha:** transformei em regra explícita — score ≥ 85% **e** cor neutra da cartela **e** lisa/estampa discreta **e** funciona em ≥ 3 ocasiões. **Porquê:** uma peça de cor de acento (laranja queimado, vinho) é bonita mas limita combinações — então é "versátil", não "coringa". Isso é design de um sistema de regras, não só de telas.
 
@@ -127,4 +129,6 @@ Pipeline de cor implementado por mim: `HEX → RGB linear → XYZ (D65) → CIE 
 
 ## Aprendizados
 
-O modelo tem um limite honesto: ΔE não captura **temperatura perceptual**, então cores frias (branco puro, rosa frio, amarelo neon) são superestimadas em ~15–23% vs. o julgamento manual. Já mapeei a correção — uma penalidade para *hue* > 150° — e a próxima evolução: extrair a cor dominante da foto automaticamente (ColorThief) em vez de seleção manual. **Lição:** reconhecer onde o modelo erra e ter o plano de correção vale mais do que fingir precisão total.
+O modelo tem um limite honesto: ΔE não captura **temperatura perceptual**, então cores frias (branco puro, rosa frio, amarelo neon) são superestimadas em ~15–23% vs. o julgamento manual. Já mapeei a correção — uma penalidade para *hue* > 150° — e a próxima evolução: extrair a cor dominante da foto automaticamente (ColorThief) em vez de seleção manual.
+
+Esse projeto mudou como eu penso em métricas de produto. Chegar num número — 4,8% de erro — e conseguir dizer com honestidade "isso aqui o modelo erra de propósito" é mais útil do que um sistema que esconde as bordas. É o que eu quero em qualquer produto que eu construo: clareza sobre o que funciona e o que não funciona, em vez de uma superfície polida sobre incerteza não resolvida.

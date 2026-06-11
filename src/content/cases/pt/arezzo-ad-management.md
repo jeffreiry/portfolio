@@ -11,7 +11,7 @@ accent: "#ecf0f3"
 tags: ["Retail", "Multi-perfil", "Design de sistema", "Dashboard", "Mobile"]
 featured: true
 draft: false
-order: 3
+order: 7
 ---
 
 ## Um sistema, três jornadas: como a arquitetura por papel desbloqueou o gerenciamento de anúncios do grupo Arezzo&Co
@@ -60,13 +60,17 @@ As entrevistas revelaram que o problema não era de funcionalidade ausente — e
 
 ## Processo & Decisões
 
+A decisão que mais me custou foi a das três homes distintas — a dúvida era se criar experiências separadas por papel ia dificultar a vida de quem, na prática, às vezes ocupava mais de um papel. Um gestor regional que também acompanhava os próprios anúncios não ia se sentir em casa em nenhuma das homes.
+
 **1. Arquitetura de informação por papel — problema:** uma única IA para três perfis obrigava cada usuário a ignorar a maior parte do sistema. **Opções:** personalização por preferência (usuário escolhe o que ver — mais flexível, mais complexo de manter) vs. arquitetura fixa por papel (rotas e telas definidas no login — mais simples, mais adequada ao contexto corporativo). **Escolha:** arquitetura de informação diferenciada por papel, com navegação lateral distinta para cada perfil — Marketing (Home, Aprovações, Painel, Métricas, Orçamento, Cadastro, Notificações), Gestores de Tráfego (Home, Relatórios, Feed, Novo, Envios, Notificações) e Lojistas (Home, Novo, Meus Envios, Feed, Notificações). **Porquê:** o contexto de cada perfil é mutuamente exclusivo — misturá-los numa tela única prejudica todos.
 
 **2. Home como painel de controle contextual — problema:** a home precisava responder perguntas diferentes para cada perfil sem virar uma tela genérica inútil. **Opções:** home única com filtros por papel (complexo, confuso) vs. três homes distintas otimizadas para a tarefa primária de cada papel. **Escolha:** homes diferenciadas — Marketing vê orçamento consolidado, distribuição de investimento (Investido/Provisionado/Restante), métricas de performance das lojas ativas e Receita Impactada; Gestores de Tráfego veem as lojas sob sua responsabilidade com foco em decisões táticas; Lojistas veem seu valor disponível, seus anúncios ativos com resultados inline e um banner de alerta quando há orçamento não utilizado. **Porquê:** a home é a primeira tela de cada sessão — ela precisa responder imediatamente à pergunta mais frequente de cada papel, sem exigir navegação.
 
 **3. Fluxo de aprovação com filtros compostos — problema:** o Gestor de Tráfego recebe anúncios de múltiplas lojas simultaneamente; sem filtragem eficiente, a fila de aprovações vira ruído. **Opções:** lista linear com busca simples vs. grid visual com filtros compostos (Loja, Status, Orçamento, Posicionamento, Arquivo) e chips de acesso rápido. **Escolha:** grid de anúncios com filtros em cascata — ao selecionar "Status", os sub-status aparecem com contagem (Novo: 5, Aprovado: 10, Reprovado: 2); chips de data, status ativo e ordenação sempre visíveis no topo. **Porquê:** o Gestor precisa priorizar a fila, não apenas percorrê-la — ver a contagem por status antes de filtrar permite uma decisão de onde começar.
 
-**4. Métricas em funil para o Marketing — problema:** a visão consolidada de performance precisava comunicar não apenas volume, mas a conversão entre etapas — de impressão a venda. **Opções:** cards de KPIs isolados (cada métrica em sua caixa, sem relação visual entre elas) vs. visualização em funil com as etapas da jornada do consumidor. **Escolha:** funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) com os números de cada estágio abaixo das barras, complementado por cards de Receita Impactada, Ticket Médio e ROAS. **Porquê:** o Marketing precisa ver onde a cadeia perde eficiência — um card isolado de "Conversas: 20" não diz nada; "Impressões 3.538 → Conversas 20" diz tudo.
+**4. Métricas em funil para o Marketing** — os primeiros wireframes tinham cards de KPIs isolados. Receita Impactada. ROAS. Ticket Médio. Cada número numa caixa separada. Fiz uma apresentação interna e o feedback foi educado demais para ser sincero — as pessoas concordavam que estava "claro" mas não conseguiam dizer o que o dashboard *dizia* sobre a saúde dos anúncios.
+
+O problema era que cards isolados mostram estado, não relação. O que o Marketing precisava entender era: em que ponto a cadeia perde eficiência? "Conversas: 20" não responde isso. "Impressões 3.538 → Conversas 20" responde. Substituí os cards por um funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) — os KPIs ficaram como complemento, não como protagonistas.
 
 <div class="image-placeholder">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -104,15 +108,16 @@ Pipeline de pesquisa e design: `entrevistas por perfil → mapeamento de jornada
 
 ---
 
-## Impacto
+## O que eu faria diferente
 
-- **Entrega:** interfaces web e mobile para os três perfis, cobrindo todas as jornadas mapeadas na pesquisa.
-- ⬜ Variação de satisfação dos usuários após o redesenho (pesquisa de satisfação pós-lançamento) — preencher.
-- ⬜ Redução do tempo médio de aprovação de anúncios — preencher.
-- ⬜ Aumento na taxa de uso do orçamento disponível pelos Lojistas — preencher.
+Entreguei interfaces web e mobile para os três perfis, cobrindo todas as jornadas da pesquisa. Mas não medimos nada depois do lançamento — sem satisfação por papel, sem tempo de aprovação, sem taxa de uso de orçamento pelos Lojistas.
+
+Se pudesse refazer: antes de fechar o escopo, teria negociado uma rodada de validação com usuários reais de cada papel em cima do protótipo navegável — não para mudar a arquitetura, mas para confirmar se a home contextual de cada perfil respondia mesmo à pergunta mais frequente, ou se eu tinha errado a hierarquia de informação em algum caso. O design-por-papel parece certo na teoria. Sem feedback pós-lançamento, não sei onde errei.
 
 ---
 
 ## Aprendizados
 
-O maior risco em projetos multi-perfil é cair na armadilha do "o sistema serve todo mundo" — que na prática significa que não serve ninguém bem. A decisão de definir a arquitetura de informação por papel antes de desenhar qualquer tela foi o que determinou o resultado: cada usuário entrava num produto desenhado para o que ele realmente precisava fazer. **Lição:** quando o produto serve perfis com objetivos radicalmente diferentes, a arquitetura de informação não é um artefato de processo — é a decisão de design mais importante do projeto.
+O maior risco em projetos multi-perfil é cair na armadilha do "o sistema serve todo mundo" — que na prática significa que não serve ninguém bem. A decisão de definir a arquitetura de informação por papel antes de desenhar qualquer tela foi o que determinou o resultado: cada usuário entrava num produto desenhado para o que ele realmente precisava fazer.
+
+O que fico pensando ainda é se um Gestor Regional que também acompanha suas próprias lojas conseguiria se situar nesse sistema. Ele não era o persona principal. Mas também não era impossível. Isso é o tipo de coisa que só aparece depois que o produto está nas mãos das pessoas.

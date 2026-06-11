@@ -11,7 +11,7 @@ accent: "#fff9e6"
 tags: ["Digital branding", "Visual design", "Consumer", "Coca-Cola"]
 featured: false
 draft: false
-order: 6
+order: 8
 ---
 
 ## When the fruit is the scenery: how I translated Del Valle's new global identity into a digital experience with personality
@@ -60,11 +60,15 @@ The identity manual featured organic shapes, a palette associating colors with e
 
 ## Process & Decisions
 
+The decision that weighed on me most was keeping the organic shapes in their full irregularity. The conservative argument made sense: irregular blobs are hard to adapt for mobile without looking like accidents. But normalizing the shapes into clean geometric forms would destroy exactly what the campaign needed to communicate.
+
 **1. Organic vs. geometric shapes — problem:** the campaign used irregular color blobs as an identity element. Simplifying them into geometric shapes would be cleaner and more consistent; keeping their irregularity would preserve personality. **Options:** normalize blobs into controlled geometric forms (cleaner, less expressive) vs. recreate organic blobs with intentional variation (more complex to execute, faithful to identity). **Choice:** organic shapes recreated in Illustrator, placed asymmetrically and in varying sizes — never symmetrical, never identical to each other. **Why:** the imperfection is part of the message; regularizing the shapes communicates exactly the opposite of what the brand wants to say about the natural process of fruit.
 
 **2. Color system per section vs. single palette — problem:** the identity associates specific colors with each fruit (orange for laranja, purple for uva, green for caju and nature, pink for family). A single palette would simplify production; multiple palettes per section would require more decisions per block. **Options:** single brand color throughout the site vs. section-specific color tied to content. **Choice:** each section and each fruit has its background and blobs in associated colors — lime green for the institutional section, cream for products, green+orange for "Fruta toda hora", pink for "Da nossa família para a sua". **Why:** the diversity of Brazilian fruits is one of the campaign's central arguments — a monochromatic site visually contradicts what the copy claims.
 
-**3. Fruits as visual protagonists — problem:** the beverage category standard is to put the product (the packaging) at center stage. The campaign asked for the opposite — fruit before product. **Options:** open the site with product in the spotlight (more conventional for the category) vs. open with lifestyle and fruits in the foreground. **Choice:** the hero uses a lifestyle photo (person consuming the product in a home setting) and the fruit exploration section shows Laranja, Uva, Caju, and Manga at full scale before any packaging appears. Packaging shows up on the products page, not the home. **Why:** the campaign's value proposition — "we know where every fruit comes from" — needs to be established before the commercial offer.
+**3. Fruits as visual protagonists** — the first question I got from the client was: "where does the product go?" The standard answer for a beverage site is in the hero, large and well-lit. But the campaign was called "Cheio de vida" — not "full of packaging." The value proposition — "we know where every fruit comes from" — needed to be established before the commercial offer, or it would just be decorative copy.
+
+I put a lifestyle photo in the hero and saved the packaging for the products page. The fruit appears at full scale before any product shot. The client approved it. But it was a choice I would have had to defend if the first question had come from someone else.
 
 **4. Fruit exploration cards with carousel — problem:** each fruit has multiple information dimensions (geographic origin, number of producers, harvest period, fun fact). Displaying everything at once would weigh down the page; showing only the photo would be superficial. **Options:** fixed text below each fruit vs. card carousel with one dimension per screen. **Choice:** alternating grid — each fruit has a full-screen photo cell and a white card cell that carousels through 4 dimensions (Where it comes from / Number of Producers / Harvest season / Curiosity), with illustrated icon and navigation dots. **Why:** the carousel invites exploration without forcing reading — users who want the origin navigate; those who just want to see the fruit, see it.
 
@@ -103,14 +107,16 @@ Design pipeline: `identity manual study + campaign references → sitemap → Fi
 
 ---
 
-## Impact
+## What I'd Do Differently
 
-- **Delivery:** home and products page in web and mobile, aligned with the new global "Cheio de vida" campaign identity.
-- ⬜ Post-launch site engagement metrics (time on page, scroll depth, "Saiba mais" clicks) — to fill.
-- ⬜ Brand team approval assessment from Coca-Cola — to fill.
+I delivered home and products page in web and mobile, aligned to the "Cheio de vida" campaign. But the project ended at handoff — I had no access to any post-launch metrics.
+
+What I'd have wanted to track: whether users actually navigated the fruit exploration cards or skipped straight to products. That interaction was the heart of the narrative value proposition — "we know where every fruit comes from." If nobody opened that carousel, the decision to put the fruit center stage would have been more of a bet than an argument.
 
 ---
 
 ## Learnings
 
-Campaign-driven redesign projects have a specific trap: the temptation to "hold back" expressiveness in the name of usability — toning down the irregular shapes, neutralizing the colors, putting elements back in the grid. Resisting that was the work. **Lesson:** when a brand's identity is loaded with personality, faithfulness to irregularity *is* the UX decision — because it's what makes users feel they've arrived in the right place before reading a single word.
+Campaign-driven redesign projects have a specific trap: the temptation to "hold back" expressiveness in the name of usability — toning down the irregular shapes, neutralizing the colors, putting elements back in the grid. Resisting that was the work.
+
+What I carry: it's easy to defend irregularity in a concept presentation. But the moment that reveals whether you actually believe it is when you're adapting organic blobs to a 375px breakpoint and the clean, safe option is right there. I stayed with the irregularity. No regrets.

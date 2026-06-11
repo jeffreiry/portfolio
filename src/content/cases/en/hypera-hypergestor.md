@@ -4,14 +4,14 @@ slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
 summary: "Built HYPERGESTOR — replacing Hypera Pharma's spreadsheet-based trade fund flow with a traceable pipeline."
 company: "Hypera Pharma (via ilegra)"
-year: 2024
+year: 2023
 cover: /cases/hypera-hypergestor/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#f3e5f5"
 tags: ["Enterprise", "Trade marketing", "Finops", "System design", "B2B"]
 featured: false
 draft: false
-order: 7
+order: 6
 ---
 
 ## From budget to proof: how I turned Hypera Pharma's trade marketing fund cycle into a traceable pipeline
@@ -60,11 +60,15 @@ Journey mapping revealed that the problem wasn't any single step in isolation �
 
 ## Process & Decisions
 
+The decision that weighed on me most was the SAP release checkpoint. The product would be faster and less friction-heavy without that confirmation gate. And the more friction you add, the higher the adoption resistance risk. The question was: what level of deliberation is design, and what level is obstacle?
+
 **1. Modal vs. dedicated page for creation — problem:** the creation flows (budget, fund, distribution) had many fields and sub-objects; navigating to a new page would lose list context. **Options:** navigate to a dedicated page (more space, loses context) vs. modal overlay on the listing (maintains context, requires internal scroll). **Choice:** persistent modal over the listing for all creation and editing operations. **Why:** users frequently need to reference other funds in the list while creating a new one — the modal allows this without additional navigation.
 
 **2. Distribution hierarchy inside the same modal — problem:** a budget can have multiple sub-budgets, each with its own sales hierarchy. Presenting this in separate steps would fragment the flow. **Options:** multi-step wizard (one screen per level) vs. inline accordion within the same modal. **Choice:** expandable accordion inside the creation modal — each distribution can be expanded to show its complete hierarchy (Region → Office → Team → Supervisor), with "Edit" and "Copy Distribution" actions without leaving the context. **Why:** users need to see and compare distributions simultaneously; the accordion keeps everything accessible without forcing navigation between screens.
 
-**3. Suggested Distribution with "Copy" — problem:** trade marketing managers frequently replicate distributions from previous periods with minimal adjustments. Creating each distribution from scratch would be slow and error-prone. **Options:** fully manual creation vs. automatic distribution suggestion based on history with option to copy and adjust. **Choice:** a "Suggested Distribution" section in the fund distribution modal, showing the last relevant distribution with all parameters (value, supervisor, sales hierarchy) and a "Copy Distribution" button that pre-fills the form. **Why:** most distributions follow the same pattern — the design should accelerate the common case and not treat every flow as if it were new.
+**3. Suggested Distribution with "Copy"** — the distribution creation flow was long. Cascading hierarchy fields, values per level, responsible supervisor. When I sat with trade marketing managers, the first thing everyone said was some variation of the same phrase: "I just copy from last month and adjust."
+
+That wasn't laziness — it was the real work pattern. I added a "Suggested Distribution" section in the modal showing the last relevant distribution and a "Copy Distribution" button that pre-filled the entire form. The common-case creation flow was cut in half. The exceptional case stayed exactly as it was.
 
 **4. SAP/SEV integration checkpoint — problem:** fund verification feeds directly into SAP; incorrect or incomplete data at this step has real financial impact. **Options:** automatic integration on save (faster, less control) vs. explicit gate with manual confirmation before release. **Choice:** field "Can it be released for integration approval?" defaulting to "No" — the user must consciously mark "Yes" to release the fund to SAP. Field "Will there be more verification?" allows indicating incomplete auditing without blocking partial save. **Why:** in systems with financial integration, a release error can create inconsistency between the internal system and the ERP — the confirmation gate creates a deliberate review moment before the point of no return.
 
@@ -103,15 +107,16 @@ Design pipeline: `benchmarking + per-profile journey mapping → information arc
 
 ---
 
-## Impact
+## What I'd Do Differently
 
-- **Delivery:** complete system with Budget, Fund, Distribution, and Verification modules, with interfaces for each user profile.
-- ⬜ Reduction in fund verification cycle time — to fill.
-- ⬜ Reduction in SAP/SEV integration errors after implementing the confirmation gate — to fill.
-- ⬜ User satisfaction with the new system vs. previous process — to fill.
+I delivered the complete system with all four modules and interfaces for each profile. But the project ended before I could measure anything post-launch — verification cycle time, SAP integration errors, user satisfaction.
+
+What I'd have done: a usability test session on the distribution flow before handoff. The nested accordions and cascading sales hierarchy are the densest part of the system. I validated the model through journey mapping and benchmarking — but I never sat with a real manager to watch them create a distribution for the first time without help. In financial systems, that's the moment that matters.
 
 ---
 
 ## Learnings
 
-Internal financial systems have a specific trade-off between speed and control: making everything too fast removes the safeguards the process requires; making everything too deliberate creates adoption resistance. The SAP release gate is the clearest example of this trade-off in the project — and the decision to keep it as explicit confirmation (not automatic) was the right one. **Lesson:** in systems with financial integration, flow design needs to know where to put intentional friction — not every click should be fast.
+Internal financial systems have a specific trade-off between speed and control: making everything too fast removes the safeguards the process requires; making everything too deliberate creates adoption resistance. The SAP release gate is the clearest example of this trade-off in the project — and the decision to keep it as explicit confirmation (not automatic) was the right one.
+
+What I keep thinking about: will the person using this system every day experience that gate as protection, or as bureaucracy? I don't know the answer. But it's the right question — and the kind of thing you only find out once the product is in the hands of the people who actually need it.
