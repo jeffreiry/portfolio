@@ -66,7 +66,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
   </div>
 
   <!-- Conteúdo — zona inferior, fundo sólido -->
-  <div class="flex flex-col gap-2 p-5 pb-6">
+  <div class="flex flex-col gap-3 p-5">
     <div class="flex items-center justify-between gap-2">
       <span
         class="text-[10px] uppercase tracking-[0.09em]"
@@ -96,21 +96,21 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
       {summary}
     </p>
 
-    <div class="mt-2 flex flex-col gap-2">
-      <div class="flex flex-wrap gap-1.5">
-        {tags.slice(0, 2).map((tag) => (
-          <span
-            class="rounded-full px-2.5 py-1 text-[10px] font-medium"
-            style="background: var(--color-surface-2); color: var(--color-muted); font-family: var(--font-body);"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div style="height: 0.5px; background: var(--color-border);" />
+    <div class="flex flex-wrap gap-1.5">
+      {tags.slice(0, 2).map((tag) => (
+        <span
+          class="rounded-full px-2.5 py-1 text-[10px] font-medium"
+          style="background: var(--color-surface-2); color: var(--color-muted); font-family: var(--font-body);"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <div class="flex justify-center">
       <span
-        class="text-[11px] font-medium tracking-wide"
-        style="color: var(--color-jambu); font-family: var(--font-body);"
+        class="inline-flex items-center justify-center"
+        style="background-color: var(--color-jambu); border-radius: var(--radius-pill); padding: 9px 28px; font-size: 12px; font-weight: 600; font-family: var(--font-body); color: #fff; letter-spacing: 0.02em;"
       >
         {lang === 'en' ? 'View case →' : 'Ver case →'}
       </span>
