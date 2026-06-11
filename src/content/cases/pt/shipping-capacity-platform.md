@@ -5,7 +5,6 @@ role: "Product Designer, time de produto, 6 meses"
 summary: "MVP de plataforma de otimização de capacidade de carga para logística marítima — substituindo planilhas dispersas por um timeline visual que transforma dados operacionais em oportunidades comerciais em tempo real."
 company: "Enterprise (confidencial)"
 year: 2025
-thumbnail: /cases/shipping-capacity-platform/thumbnail.png
 cover: /cases/shipping-capacity-platform/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&w=1400&q=80&auto=format&fit=crop"
 accent: "#e1f5fe"
