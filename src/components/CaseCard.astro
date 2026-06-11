@@ -96,7 +96,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
       {summary}
     </p>
 
-    <div class="mt-2 flex items-end justify-between gap-4">
+    <div class="mt-2 flex flex-col gap-2">
       <div class="flex flex-wrap gap-1.5">
         {tags.slice(0, 2).map((tag) => (
           <span
@@ -107,8 +107,9 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
           </span>
         ))}
       </div>
+      <div style="height: 0.5px; background: var(--color-border);" />
       <span
-        class="shrink-0 text-[11px] font-medium tracking-wide"
+        class="text-[11px] font-medium tracking-wide"
         style="color: var(--color-jambu); font-family: var(--font-body);"
       >
         {lang === 'en' ? 'View case →' : 'Ver case →'}
