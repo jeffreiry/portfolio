@@ -2,7 +2,7 @@
 title: "Del Valle · Website Redesign"
 slug: del-valle-website
 role: "UX · UI · Visual Designer"
-summary: "Redesign of Del Valle's (Coca-Cola) homepage and products page following a new global visual identity — translating the 'Cheio de vida' campaign into digital with Brazilian fruits as the protagonists."
+summary: "Redesigned Del Valle's homepage translating a new global visual identity into digital."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-website/visao-geral.jpg

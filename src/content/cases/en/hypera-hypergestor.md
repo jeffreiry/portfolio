@@ -2,7 +2,7 @@
 title: "Hypera Pharma · HYPERGESTOR"
 slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
-summary: "Creation of HYPERGESTOR, Hypera Pharma's internal trade marketing fund management system — centralizing into a traceable pipeline the flow that previously ran across spreadsheets, emails, and manual SAP/SEV integration."
+summary: "Built HYPERGESTOR — replacing Hypera Pharma's spreadsheet-based trade fund flow with a traceable pipeline."
 company: "Hypera Pharma (via ilegra)"
 year: 2024
 cover: /cases/hypera-hypergestor/visao-geral.jpg

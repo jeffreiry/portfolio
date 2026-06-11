@@ -2,7 +2,7 @@
 title: "Arezzo&Co · Social Media Ad System"
 slug: arezzo-ad-management
 role: "UX Researcher · UX Designer · UI Designer"
-summary: "Redesign of the Arezzo&Co group's social media ad management system — three profiles with radically different needs, one platform with role-based information architecture."
+summary: "Redesigned Arezzo&Co's ad platform for three distinct user profiles on a unified system."
 company: "Arezzo&Co (via CWI)"
 year: 2023
 cover: /cases/arezzo-ad-management/visao-geral.jpg

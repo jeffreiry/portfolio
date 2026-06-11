@@ -2,7 +2,7 @@
 title: "Power Apps · Design System Demo App"
 slug: power-apps-dummy-app
 role: "UX Designer · Design Systems, 2025"
-summary: "Turning isolated Design System components into a functional mobile reference app — bridging the gap between design intent and low-code implementation in Microsoft Power Apps."
+summary: "Turned isolated Design System components into a full mobile reference app in Microsoft Power Apps."
 company: "Large industrial company (confidential)"
 year: 2025
 cover: /cases/power-apps-dummy-app/visao-geral.jpg

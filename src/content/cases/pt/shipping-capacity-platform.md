@@ -2,7 +2,7 @@
 title: "Shipping Capacity Optimization Platform"
 slug: shipping-capacity-platform
 role: "Product Designer, time de produto, 6 meses"
-summary: "MVP de plataforma de otimização de capacidade de carga para logística marítima — substituindo planilhas dispersas por um timeline visual que transforma dados operacionais em oportunidades comerciais em tempo real."
+summary: "Substituiu planilhas dispersas por um timeline visual para otimizar capacidade de carga marítima."
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png

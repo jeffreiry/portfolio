@@ -2,7 +2,7 @@
 title: "Painel Saúde"
 slug: painel-saude
 role: "Product Designer, solo, end-to-end"
-summary: "Dashboard pessoal que unifica corrida (Strava) e força (Hevy) em uma narrativa única de progresso rumo a uma maratona em 2028, com dados que se atualizam automaticamente todo dia."
+summary: "Dashboard unificando Strava e Hevy em uma visão de progresso diária rumo à maratona de 2028."
 company: "Projeto pessoal"
 year: 2025
 accent: "#e8f5e9"

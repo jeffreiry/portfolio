@@ -2,7 +2,7 @@
 title: "Hypera Pharma · HYPERGESTOR"
 slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
-summary: "Criação do HYPERGESTOR, sistema interno de gerenciamento de verbas de trade marketing da Hypera Pharma — centralizando em um pipeline rastreável o fluxo que ia de planilhas e e-mails até a comprovação com integração SAP."
+summary: "Criou o HYPERGESTOR — centralizando as verbas de trade da Hypera Pharma em um pipeline rastreável."
 company: "Hypera Pharma (via ilegra)"
 year: 2024
 cover: /cases/hypera-hypergestor/visao-geral.jpg
