@@ -12,7 +12,6 @@ const isEn = lang === 'en';
 
 const homeHref    = isEn ? '/' : '/pt/';
 const aboutHref   = isEn ? '/#about'   : '/pt/#about';
-const careerHref  = isEn ? '/#career'  : '/pt/#career';
 const casesHref   = isEn ? '/#cases'   : '/pt/#cases';
 const contactHref = isEn ? '/#contact' : '/pt/#contact';
 
@@ -39,7 +38,7 @@ const switchLangHref = isEn
       <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 80px; width: auto; display: none;" />
     </a>
 
-    <!-- Nav pill — centralizado absolutamente, sempre visível -->
+    <!-- Nav pill — centralizado absolutamente -->
     <nav
       class="nav-pill absolute left-1/2 -translate-x-1/2 flex items-center gap-1"
       style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 6px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
@@ -59,24 +58,34 @@ const switchLangHref = isEn
       </a>
     </nav>
 
-    <!-- Controls pill — direita, sempre visível -->
-    <div
-      class="controls-pill relative z-10 flex items-center gap-2"
-      style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 10px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
-    >
-      <ThemeToggle client:load />
-      <span class="h-3.5 w-px" style="background: var(--color-border);" aria-hidden="true" />
-      <div class="flex items-center gap-1 text-[11px] font-medium" style="font-family: var(--font-body);">
-        <span style={isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}>EN</span>
-        <span style="color: var(--color-border);">·</span>
-        <a
-          href={switchLangHref}
-          class="transition-colors hover:opacity-80 focus-visible:outline-2 focus-visible:outline focus-visible:rounded-sm"
-          style={!isEn ? 'color: var(--color-cha-mate); outline-color: var(--color-cha-mate);' : 'color: var(--color-faint); outline-color: var(--color-cha-mate);'}
-          aria-label={isEn ? 'Mudar para Português' : 'Switch to English'}
-          hreflang={isEn ? 'pt' : 'en'}
-        >PT</a>
+    <!-- Controls — direita: dois pills separados -->
+    <div class="controls-right relative z-10 flex items-center gap-2">
+
+      <!-- Theme toggle em pill próprio -->
+      <div
+        class="theme-pill flex items-center justify-center"
+        style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
+      >
+        <ThemeToggle client:load />
       </div>
+
+      <!-- Language switch — pill com indicador de seleção -->
+      <div
+        class="lang-switch flex items-center"
+        role="group"
+        aria-label={isEn ? 'Language selection' : 'Seleção de idioma'}
+        style="border-radius: 999px; border: 0.5px solid var(--color-border); padding: 5px 6px; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg) 85%, transparent);"
+      >
+        {isEn
+          ? <span class="lang-option lang-active" aria-current="page">EN</span>
+          : <a href={switchLangHref} class="lang-option lang-inactive" hreflang="en" aria-label="Switch to English">EN</a>
+        }
+        {!isEn
+          ? <span class="lang-option lang-active" aria-current="page">PT</span>
+          : <a href={switchLangHref} class="lang-option lang-inactive" hreflang="pt" aria-label="Mudar para Português">PT</a>
+        }
+      </div>
+
     </div>
 
   </div>
@@ -122,8 +131,46 @@ const switchLangHref = isEn
 
   /* Sombra suave nas pills ao scrollar */
   #site-header.scrolled .nav-pill,
-  #site-header.scrolled .controls-pill {
+  #site-header.scrolled .theme-pill,
+  #site-header.scrolled .lang-switch {
     box-shadow: 0 2px 16px -4px rgba(0,0,0,0.10);
+  }
+
+  /* Language switch — opções (mesma altura que os nav-links) */
+  .lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* Idioma ativo — pill interno preenchido */
+  .lang-active {
+    background: var(--color-cha-mate);
+    color: var(--color-page-bg);
+  }
+
+  /* Idioma inativo — link discreto */
+  .lang-inactive {
+    color: var(--color-faint);
+    transition: color 0.15s;
+  }
+
+  .lang-inactive:hover {
+    color: var(--color-cha-mate);
+  }
+
+  .lang-inactive:focus-visible {
+    outline: 2px solid var(--color-cha-mate);
+    outline-offset: 2px;
+    border-radius: 999px;
   }
 
   /* Mobile (≤809px): ocultar nav pill, reduzir logo */

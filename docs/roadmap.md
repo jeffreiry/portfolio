@@ -58,6 +58,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 | 6 | Del Valle · Redesign de Site | `del-valle-website` | ✅ PT + EN |
 | 7 | Hypera Pharma · HYPERGESTOR | `hypera-hypergestor` | ✅ PT + EN |
 | 8 | Del Valle Kapo · Redesign de Site | `del-valle-kapo` | ✅ PT + EN |
+| 9 | Microsoft Power Apps · Dummy App | `power-apps-dummy-app` | ✅ PT + EN |
 
 **Pendente (igual para todos os cases):**
 - [ ] Preencher os `⬜` de métricas com dados reais
@@ -80,7 +81,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [ ] Acessibilidade (pendente): contraste WCAG AA geral, leitor de tela end-to-end, teclado em formulário
 - [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
 - [ ] Sitemap.xml
-- [ ] Lighthouse 95+ em todas as métricas (Performance, A11y, Best Practices, SEO)
+- [ ] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100 (performance mobile abaixo da meta — Google Fonts render-blocking 2.270ms, LCP via background-image sem fetchpriority, Speed Index 10s)
 - [x] Domínio `portfolio.jefersonfreiry.com` + DNS apontado
 - [x] Analytics (Vercel Web Analytics ativo)
 - [x] Formulário de contato (`/contact` + `/pt/contact`) com Resend + botão WhatsApp
@@ -192,7 +193,7 @@ Decisões que dependem do autor antes/durante o build:
 - ✅ **Domínio:** `portfolio.jefersonfreiry.com` — Cloudflare + Vercel, HTTPS ativo
 - ✅ **Idioma padrão:** EN na raiz (`/`), PT em `/pt`
 - ✅ **Analytics:** Vercel Web Analytics ativo desde a Fase 1
-- ✅ **Cases no lançamento:** todos os 8 estão com arquivo `.md` criado; definir quais ficam `draft: false` para o v1 está em aberto
+- ✅ **Cases no lançamento:** todos os 9 estão com arquivo `.md` criado; 7 publicados (`draft: false`), 2 em draft (`cartela-cores`, `painel-saude`)
 - ⬜ **Métricas dos cases:** preencher os `⬜` de impacto em [cases-portfolio.md](cases-portfolio.md) antes de publicar.
 - ✅ **Currículo:** PDF linkado, versões PT e EN (arquivos a adicionar em `public/`)
 - ✅ **Contato:** formulário que envia para `jfreiry@gmail.com` + botão WhatsApp

@@ -38,21 +38,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    border: 1px solid var(--color-border);
+    border: none;
     background: transparent;
     color: var(--color-muted);
     cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+    transition: background 0.15s, color 0.15s, transform 0.1s;
     flex-shrink: 0;
   }
 
   .toggle-btn:hover {
-    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-cha-mate) 10%, transparent);
     color: var(--color-cha-mate);
-    border-color: var(--color-muted);
     transform: rotate(15deg);
   }
 

@@ -6,8 +6,35 @@
 - Página About dedicada (`/about` + `/pt/about`)
 - Imagens dos cases em `public/cases/<slug>/cover.webp`
 - Preencher métricas reais (campos `⬜` nos frontmatters)
-- SEO (meta tags, OG, sitemap, hreflang)
-- Lighthouse 95+
+- Sitemap.xml (meta tags, OG, canonical, hreflang já implementados)
+- Lighthouse performance mobile 95+ (atual: 73) — corrigir: Google Fonts render-blocking, LCP via background-image sem `fetchpriority`, contraste footer (#6a5a52 / #18120e = 2.82:1 → necessita 4.5:1)
+
+---
+
+## 2026-06-11 (2)
+
+### Alterado
+- **Header** — toggle de tema e switcher de idioma separados em dois pills independentes (era um único `controls-pill`)
+- **Language switcher** — redesenhado como switch segmentado: idioma ativo com pill interno preenchido (`--color-cha-mate` bg + `--color-page-bg` text), idioma inativo como link discreto com hover; ambos os idiomas são links quando não selecionados
+- **ThemeToggle** — borda circular própria removida; pill do header é o container visual; tamanho ajustado de 30 → 28px
+- **Career logos** — dark mode: `filter: brightness(0) invert(1)` + `opacity: 0.85` (coloridos no light, brancos no dark); bounding box `22×94px` (era `28×50px`); logos atualizados: `cwi.avif` → `cwi.png`, `intelipost.avif` → `Intelipost.png` (fundo transparente)
+
+---
+
+## 2026-06-11
+
+### Adicionado
+- **Case #9: Microsoft Power Apps · Dummy App** (`power-apps-dummy-app`) — PT + EN, `draft: false`
+
+### Concluído
+- **Revisão de voz dos cases** — 9 cases (18 arquivos PT+EN) reescritos com base no case-writing-guide: AI tells removidos, dúvida expressa adicionada, Impact sections vazias substituídas por "O que eu faria diferente", endings pessoais, anos e ordem dos cards corrigidos no frontmatter
+
+### Auditado
+- **Lighthouse** em produção (`portfolio.jefersonfreiry.com`):
+  - Desktop: Performance **99** · Acessibilidade **95** · Best Practices **100** · SEO **100** ✅
+  - Mobile: Performance **73** · Acessibilidade **95** · Best Practices **100** · SEO **100** ⚠️
+  - Causas da performance mobile baixa: Google Fonts render-blocking 2.270ms, LCP element (background-image Unsplash) sem `fetchpriority`, Speed Index 10.0s, FCP 3.1s, LCP 4.0s
+  - A11y pendente: `color-contrast` footer/seletor de idioma, `label-content-name-mismatch` link PT, 2 logos sem dimensões explícitas
 
 ---
 

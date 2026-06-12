@@ -40,8 +40,8 @@ Portfolio/
 │   ├── content.config.ts           # Schema Zod do frontmatter dos cases
 │   ├── content/
 │   │   └── cases/
-│   │       ├── pt/                 # 8 cases em português (.md)
-│   │       └── en/                 # 8 cases em inglês (.md)
+│   │       ├── pt/                 # 9 cases em português (.md)
+│   │       └── en/                 # 9 cases em inglês (.md)
 │   ├── components/
 │   │   ├── Header.astro            # Nav sticky com logo, links, toggle dark e switcher EN↔PT
 │   │   ├── Hero.astro              # Card escuro com headline + CTA
@@ -149,14 +149,14 @@ npm run preview
 
 ## Estado atual
 
-**Fase 5 em andamento · Deploy ativo.** O site está em produção com 8 cases
-bilíngues (6 publicados, 2 em draft), proteção por senha, formulário de contato
+**Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases
+bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato
 com Resend, dark mode e microinterações expressivas.
 
 **Pendente (Fase 5):**
 - Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
 - Acessibilidade: foco, contraste WCAG AA, leitor de tela
-- Lighthouse 95+ em todas as métricas
+- Lighthouse performance mobile 95+ (atual: **73**) — desktop: 99/95/100/100 ✅ · mobile: 73/95/100/100 ⚠️ (auditado 2026-06-11)
 - Preencher métricas reais (`⬜`) nos frontmatters dos cases
 - Reunir e otimizar imagens de cada case em `public/cases/<slug>/`
 - ~~**Revisão de voz dos cases**~~ ✅ concluída (2026-06-11) — todos os 9 cases (18 arquivos PT+EN) reescritos com base no case-writing-guide: AI tells removidos, dúvida expressa, estrutura variada, Impact sections vazias substituídas por "O que eu faria diferente", endings pessoais

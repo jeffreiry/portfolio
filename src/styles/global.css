@@ -97,6 +97,19 @@ html[data-theme="dark"] {
   --color-neutral-950: #f8f5f2;
 }
 
+/* --- Career logos: coloridos no light, brancos no dark --- */
+/* Logos com fundo transparente → tudo branco */
+html[data-theme="dark"] .career-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+/* Logos com fundo branco opaco → dessatura, inverte e amplifica para forçar branco;
+   fundo branco vira preto e some com opacity sobre o card escuro */
+html[data-theme="dark"] .career-logo.career-logo-opaque {
+  filter: saturate(0) invert(1) brightness(2);
+  opacity: 0.80;
+}
+
 /* --- Base --- */
 @layer base {
   html {

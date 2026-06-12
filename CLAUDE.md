@@ -28,7 +28,7 @@ deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
 | Conteúdo | **Content Collections (Markdown)** | Cases em Markdown puro, versionados no Git |
 | i18n | **Astro i18n routing** | PT (padrão) + EN |
 | Deploy | **Vercel** | Mesmo fluxo do projeto Painel Saúde |
-| Fontes | **DM Serif Display** (display) + **Barlow 500** (corpo) | Google Fonts; DM Serif Display para títulos (mixed case, letter-spacing -0.01em), Barlow peso 500 para todo o corpo |
+| Fontes | **Cactus Regular** (display) + **Barlow 300–500** (corpo) | Cactus Regular via `@font-face` em `public/fonts/` (títulos uppercase); Barlow via Google Fonts para corpo |
 
 > A stack foi decidida pelo Claude a pedido do autor. O racional completo e as
 > alternativas consideradas estão em [docs/roadmap.md](docs/roadmap.md).
@@ -101,8 +101,8 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 ## Estado atual
 
-**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Acessibilidade parcialmente implementada (skip nav, foco visível, contraste de títulos). Hero.mp4 com carregamento condicional (mobile/slow-connection recebe fallback de imagem). Seções da home reordenadas: Hero → Cases → About/Career → Contact. Cases relacionados ao final de cada página de case. Próximas ações: responsividade fina e Lighthouse 95+.
+**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Acessibilidade parcialmente implementada (skip nav, foco visível, contraste de títulos). Hero.mp4 com carregamento condicional (mobile/slow-connection recebe fallback de imagem). Seções da home reordenadas: Hero → Cases → About/Career → Contact. Cases relacionados ao final de cada página de case. Revisão de voz concluída em 2026-06-11 (9 cases × 18 arquivos). Lighthouse auditado em 2026-06-11: Desktop 99/95/100/100 ✅, Mobile 73/95/100/100 ⚠️. Header: toggle e language switcher em pills separados; switcher redesenhado como switch segmentado. Career logos: dark mode branco via CSS filter, logos atualizados com fundo transparente. Próximas ações: performance mobile, responsividade fina.
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
-`src/content/cases/{pt,en}/` (8 cases × 2 idiomas), `src/middleware.ts`
+`src/content/cases/{pt,en}/` (9 cases × 2 idiomas — 7 publicados + 2 draft), `src/middleware.ts`
 (proteção por senha), `src/pages/api/login.ts` + `logout.ts`.
