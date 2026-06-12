@@ -71,8 +71,8 @@ const switchLangHref = isEn
         <span style="color: var(--color-border);">·</span>
         <a
           href={switchLangHref}
-          class="transition-colors hover:opacity-80 focus-visible:outline-none"
-          style={!isEn ? 'color: var(--color-cha-mate);' : 'color: var(--color-faint);'}
+          class="transition-colors hover:opacity-80 focus-visible:outline-2 focus-visible:outline focus-visible:rounded-sm"
+          style={!isEn ? 'color: var(--color-cha-mate); outline-color: var(--color-cha-mate);' : 'color: var(--color-faint); outline-color: var(--color-cha-mate);'}
           aria-label={isEn ? 'Mudar para Português' : 'Switch to English'}
           hreflang={isEn ? 'pt' : 'en'}
         >PT</a>
@@ -124,6 +124,16 @@ const switchLangHref = isEn
   #site-header.scrolled .nav-pill,
   #site-header.scrolled .controls-pill {
     box-shadow: 0 2px 16px -4px rgba(0,0,0,0.10);
+  }
+
+  /* Mobile (≤809px): ocultar nav pill, reduzir logo */
+  @media (max-width: 809px) {
+    .nav-pill {
+      display: none;
+    }
+    #header-logo img {
+      height: 52px !important;
+    }
   }
 </style>
 

@@ -30,7 +30,7 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     <!-- Hero do case -->
     <section class="w-full px-5 pt-5">
       <div
-        class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-8 pb-16 pt-40 md:px-16"
+        class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-8 pb-12 pt-24 md:pb-16 md:pt-40 md:px-16"
         style={bgImage ? '' : `background-color: ${accent};`}
       >
         {bgImage && (
@@ -143,87 +143,3 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   <Footer lang="pt" />
 </Base>
 
-<style is:global>
-  .case-content h2 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #171717;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-  }
-  .case-content h3 {
-    font-family: var(--font-body);
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #262626;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-  }
-  .case-content p,
-  .case-content ul,
-  .case-content ol,
-  .case-content li {
-    font-family: var(--font-body);
-  }
-  .case-content p {
-    font-size: 1.0625rem;
-    line-height: 1.75;
-    color: #404040;
-    margin-bottom: 1rem;
-  }
-  .case-content strong {
-    color: #171717;
-    font-weight: 600;
-  }
-  .case-content ul, .case-content ol {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-    color: #404040;
-    line-height: 1.75;
-  }
-  .case-content li {
-    margin-bottom: 0.25rem;
-  }
-  .case-content code {
-    font-size: 0.875em;
-    background: #f5f5f5;
-    border-radius: 4px;
-    padding: 0.1em 0.35em;
-    color: #171717;
-  }
-  .case-content hr {
-    border: none;
-    border-top: 1px solid #e5e5e5;
-    margin: 2.5rem 0;
-  }
-  .case-content img {
-    width: 100%;
-    border-radius: 12px;
-    margin: 2rem 0;
-    display: block;
-  }
-  .case-content .image-placeholder {
-    display: flex;
-    height: 320px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    background: #f5f5f5;
-    border: 2px dashed #e5e5e5;
-    margin: 2rem 0;
-    flex-direction: column;
-    gap: 8px;
-    color: #a3a3a3;
-    text-align: center;
-  }
-  .case-content .image-placeholder strong {
-    color: #737373;
-    font-size: 0.9375rem;
-  }
-  .case-content .image-placeholder span {
-    font-size: 0.8125rem;
-    max-width: 400px;
-  }
-</style>

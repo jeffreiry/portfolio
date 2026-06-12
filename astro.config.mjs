@@ -3,8 +3,10 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import svelte from '@astrojs/svelte';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
+  site: 'https://portfolio.jefersonfreiry.com',
   output: 'static',
   adapter: vercel({ webAnalytics: { enabled: true } }),
 
@@ -20,5 +22,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [svelte()],
+  integrations: [svelte(), sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en-US', pt: 'pt-BR' } } })],
 });

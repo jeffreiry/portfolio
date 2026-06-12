@@ -158,9 +158,10 @@
     font-size: 15px;
     font-family: var(--font-body);
     color: var(--color-ink);
-    background: #fff;
+    background: var(--color-surface);
     transition: border-color 0.15s, box-shadow 0.15s;
-    outline: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
     resize: vertical;
   }
 
@@ -169,10 +170,11 @@
     color: var(--color-faint, #b0a8a0);
   }
 
-  input:focus,
-  textarea:focus {
+  input:focus-visible,
+  textarea:focus-visible {
     border-color: var(--color-jambu);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-jambu) 15%, transparent);
+    outline-color: var(--color-jambu);
   }
 
   input:disabled,
@@ -208,6 +210,11 @@
   .btn-submit:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .btn-submit:focus-visible {
+    outline: 2px solid var(--color-jambu);
+    outline-offset: 3px;
   }
 
   /* Feedback states */
@@ -265,6 +272,11 @@
   .btn-retry:hover {
     border-color: var(--color-cha-mate);
     color: var(--color-cha-mate);
+  }
+
+  .btn-retry:focus-visible {
+    outline: 2px solid var(--color-cha-mate);
+    outline-offset: 3px;
   }
 
   @keyframes fade-in {
