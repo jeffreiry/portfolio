@@ -34,8 +34,8 @@ const switchLangHref = isEn
       style="--tw-ring-color: var(--color-cha-mate);"
       aria-label="Jeferson Freiry — home"
     >
-      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" style="height: 80px; width: auto; display: block;" />
-      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" style="height: 80px; width: auto; display: none;" />
+      <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" width="78" height="80" style="height: 80px; width: auto; display: block;" />
+      <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" width="78" height="80" style="height: 80px; width: auto; display: none;" />
     </a>
 
     <!-- Nav pill — centralizado absolutamente -->
@@ -78,11 +78,11 @@ const switchLangHref = isEn
       >
         {isEn
           ? <span class="lang-option lang-active" aria-current="page">EN</span>
-          : <a href={switchLangHref} class="lang-option lang-inactive" hreflang="en" aria-label="Switch to English">EN</a>
+          : <a href={switchLangHref} class="lang-option lang-inactive" hreflang="en" aria-label="EN — Switch to English">EN</a>
         }
         {!isEn
           ? <span class="lang-option lang-active" aria-current="page">PT</span>
-          : <a href={switchLangHref} class="lang-option lang-inactive" hreflang="pt" aria-label="Mudar para Português">PT</a>
+          : <a href={switchLangHref} class="lang-option lang-inactive" hreflang="pt" aria-label="PT — Mudar para Português">PT</a>
         }
       </div>
 
@@ -157,9 +157,9 @@ const switchLangHref = isEn
     color: var(--color-page-bg);
   }
 
-  /* Idioma inativo — link discreto */
+  /* Idioma inativo — usa muted (contraste WCAG AA em dark: ~6.2:1) */
   .lang-inactive {
-    color: var(--color-faint);
+    color: var(--color-muted);
     transition: color 0.15s;
   }
 

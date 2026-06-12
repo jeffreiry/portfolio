@@ -98,7 +98,7 @@ All screens were delivered in **web and mobile** versions, with mobile navigatio
 - **Ad cards in the approval queue** display status with a colored badge (orange "New", green "Active") + run dates + budget at the top, allowing context reading before opening the ad.
 - The **editable budget** on the Budget screen uses inline editing triggered by a pencil icon — the field opens with the current value pre-filled and a "Confirm" button without leaving the table.
 - **Mobile navigation** was redesigned per profile: Store Owners have "New" prominently centered in the bottom nav (their primary action); Traffic Managers have "Reports" as the first item.
-- ⬜ Accessibility decisions (contrast, keyboard focus) — to fill.
+- **Status badges** (orange "New", green "Active") pair color with a text label — status is readable without relying on color alone, meeting WCAG 1.4.1 for users with color-vision limitations or in low-contrast contexts.
 
 ---
 

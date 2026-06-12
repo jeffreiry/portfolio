@@ -70,6 +70,7 @@ Portfolio/
 ├── public/
 │   ├── Jeferson_Freiry_PT.pdf      # Currículo em português
 │   ├── Jeferson_Freiry_EN.pdf      # Resume in English
+│   ├── fonts/                      # Woff2 self-hosted: DM Serif Display + Barlow (5 arquivos, latin)
 │   ├── cases/                      # Imagens de cover por case (a preencher)
 │   └── favicon.svg
 ├── astro.config.mjs                # output: hybrid, adapter Vercel, i18n
@@ -153,10 +154,13 @@ npm run preview
 bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato
 com Resend, dark mode e microinterações expressivas.
 
-**Pendente (Fase 5):**
-- Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
-- Acessibilidade: foco, contraste WCAG AA, leitor de tela
-- Lighthouse performance mobile 95+ (atual: **73**) — desktop: 99/95/100/100 ✅ · mobile: 73/95/100/100 ⚠️ (auditado 2026-06-11)
-- Preencher métricas reais (`⬜`) nos frontmatters dos cases
+**Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%):**
+- 🔴 **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases (afeta 11/11 vagas-alvo)
+- 🔴 **Métricas de impacto** (`⬜`) — Enterprise AI, Shipping, Arezzo, Hypera (afeta 11/11 vagas-alvo)
+- 🟠 **Acessibilidade documentada** — enterprise cases precisam de 1 decisão WCAG; Cartela Cores é a referência (afeta 8/11 vagas)
+- 🟠 **Lighthouse performance mobile 95+** (atual: **73**) — desktop: 99/95/100/100 ✅ · mobile: 73/95/100/100 ⚠️ (auditado 2026-06-11)
+- 🟡 **Mobile como plataforma** — Arezzo tem tag "Mobile" sem narrativa de decisões (afeta 4/11 vagas)
+- 🟡 **Responsividade fina** nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
+- 🟡 Acessibilidade de interface — foco, contraste WCAG AA, leitor de tela
 - Reunir e otimizar imagens de cada case em `public/cases/<slug>/`
-- ~~**Revisão de voz dos cases**~~ ✅ concluída (2026-06-11) — todos os 9 cases (18 arquivos PT+EN) reescritos com base no case-writing-guide: AI tells removidos, dúvida expressa, estrutura variada, Impact sections vazias substituídas por "O que eu faria diferente", endings pessoais
+- ~~**Revisão de voz dos cases**~~ ✅ concluída (2026-06-11) — 9 cases × 18 arquivos PT+EN

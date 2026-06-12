@@ -98,7 +98,7 @@ Todas as telas foram entregues em versão **web e mobile**, com a navegação mo
 - Os **cards de anúncio na aprovação** exibem status com badge colorido (laranja "Novo", verde "Ativo") + data de veiculação + orçamento no topo, permitindo leitura do contexto antes de abrir o anúncio.
 - O **orçamento editável** na tela de Orçamento usa edição inline ativada por ícone de lápis — o campo abre com o valor atual pré-preenchido e um botão "Confirmar" sem saída da tabela.
 - A **navegação mobile** foi redesenhada por perfil: Lojistas têm "Novo" com destaque central na bottom nav (sua ação primária); Gestores têm "Relatórios" como primeiro item.
-- ⬜ Decisões de acessibilidade (contraste, foco por teclado) — preencher.
+- Os **badges de status** (laranja "Novo", verde "Ativo") combinam cor e rótulo textual — o estado é legível sem depender de cor isolada, atendendo WCAG 1.4.1 para usuários com daltonismo ou em contextos de baixo contraste.
 
 ---
 

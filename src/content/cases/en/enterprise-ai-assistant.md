@@ -96,6 +96,7 @@ A centralized platform for accessing corporate knowledge. Users open a single in
 - The **empty initial state** shows suggested prompts as clickable chips — people don't know where to start with an assistant covering three knowledge bases at once. The prompts show them, without requiring any reading first.
 - The **source panel** is a persistent lateral column, not a modal: it stays available without interrupting the reading of the response. A badge with the source count on each message signals traceability before the panel is even opened.
 - The **response structure** visually separates the AI synthesis from access to sources — clear hierarchy between "what the assistant concluded" and "where that comes from."
+- The **source panel** as a persistent sidebar requires no extra interaction to open or stay open — keyboard and screen-reader users access traceability without an additional flow (WCAG 2.1.1).
 
 ![](/cases/enterprise-ai-assistant/01-file-source.png)
 

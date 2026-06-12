@@ -1,3 +1,10 @@
+# ~~BENCHMARK~~ → Deprecado
+
+> Conteúdo migrado para [`Bench_job_applications/sap-concur-tripit.md`](Bench_job_applications/sap-concur-tripit.md).
+> Este arquivo pode ser deletado com segurança.
+
+---
+
 # BENCHMARK — SAP Concur · Senior UX Designer (TripIt)
 
 Referência de qualidade para decisões de conteúdo e priorização do portfolio.

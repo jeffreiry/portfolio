@@ -6,32 +6,26 @@
 
 ---
 
-## ⚠️ Revisão de voz pendente (diagnóstico 2026-06-11)
+## ✅ Revisão de voz concluída (2026-06-11)
 
-Diagnóstico completo em [docs/roadmap.md](roadmap.md) (seção "Revisão de voz dos cases").
-Resumo executivo para edição direta:
+Todos os 9 cases (18 arquivos PT+EN) reescritos. Diagnóstico original e detalhes em [docs/roadmap.md](roadmap.md).
 
-### Issues por prioridade
+**O que foi resolvido:**
+- AI tells removidos em todos os cases (Enterprise AI tinha 5 frases literais do guia)
+- Dúvida expressa adicionada em todos os 9 cases (rule 2)
+- Pelo menos 1 decisão por case em formato narrativo, não P→O→C→W (rule 3)
+- Impact sections vazias (`⬜`) substituídas por "O que eu faria diferente" (rule 7)
+- Endings pessoais em todos os cases (rule 8)
+- Anos e ordem dos cards corrigidos no frontmatter
 
-**🔴 Enterprise AI Assistant (PT + EN) — resolver antes de qualquer outro**
-- [ ] EN: `"Trust is non-negotiable in enterprise"` → nomear o custo real
-- [ ] EN: `"reduces blank-screen anxiety"` → frase específica
-- [ ] EN: `"collected via CSAT and in-product feedback mechanisms"` → remover ou virar seção "What I'd Do Differently"
-- [ ] EN: `"that's enough to stall adoption"` → `"that's enough to kill it"`
-- [ ] EN + PT: reescrever ending de Aprendizados — o atual é o exemplo de "AI version" do case-writing-guide
-- [ ] EN + PT: adicionar frase de dúvida expressa
-- [ ] EN + PT: variar estrutura de ≥1 decisão (não P→O→C→W)
-- [ ] EN + PT: mencionar o que não foi validado
+**Pendências de conteúdo — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%):**
 
-**🟠 Shipping, Arezzo, Hypera (PT + EN cada)**
-- [ ] Impact com 3 métricas ⬜: preencher com dados reais ou substituir por "O que eu faria diferente"
-- [ ] Adicionar dúvida expressa em cada
-
-**🟡 Sistêmico — todos os 8 cases (PT + EN)**
-- [ ] Nenhum case tem dúvida expressa → adicionar 1 frase por case
-- [ ] Endings todos conclusivos → reescrever para soar pessoal (rule 8)
-- [ ] Nenhum case menciona o que não foi validado → 1 frase por case (rule 6)
-- [ ] Todas as decisões em formato P→O→C→W idêntico → variar ≥1 por case (rule 3)
+- 🔴 **Artefatos visíveis** (11/11 vagas) — todos os cases descrevem processo sem expor telas, flows ou wireframes; recrutadores não conseguem avaliar craft sem ver os artefatos
+- 🔴 **Métricas de impacto** (`⬜`) (11/11 vagas) — Enterprise AI, Shipping, Arezzo, Hypera; preencher com dados reais ou substituir os campos por "O que eu faria diferente"
+- 🟠 **Acessibilidade documentada** (`⬜`) (8/11 vagas) — Enterprise AI e Shipping têm seção Craft vazia; Cartela Cores tem a decisão certa (score multicanal = WCAG 1.4.1), replicar o raciocínio nos enterprise cases
+- 🟡 **Mobile como plataforma** (4/11 vagas) — Arezzo tem tag "Mobile" mas sem narrativa de decisões de design mobile na seção Processo
+- 🟡 **Mentoria/liderança** (2/11 vagas) — não aparece em nenhum case; se houver histórico (onboarding, revisões de design, apresentações), documentar em pelo menos 1 case
+- Stack técnica da plataforma (`⬜`) — Shipping e Enterprise AI, preencher se aplicável
 
 ---
 

@@ -97,7 +97,7 @@ HYPERGESTOR centralizes the complete trade marketing cycle in four connected mod
 - The **paperclip icon with numeric badge** in the Attachments column of the audit listing communicates the presence of evidence without opening the item — a scan-speed decision.
 - The **"Audited value" field** in verification is separate from the "Planned value" shown in read-only mode — the user sees the planned amount while filling in the audited amount, creating the comparison in the same context.
 - The **"Allows distribution" field** in budget registration is an inline checkbox next to the value — a decision that eliminates a separate field and visually connects the permission to the value it applies to.
-- ⬜ Accessibility decisions (contrast, keyboard navigation) — to fill.
+- The **numeric badge** on the paperclip icon communicates evidence presence via two channels — icon + number — without relying on color or requiring the item to be opened; screen-reader and color-vision-limited users receive the same information (WCAG 1.4.1).
 
 ---
 

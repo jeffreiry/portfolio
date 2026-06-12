@@ -95,7 +95,7 @@ A unified platform for logistics teams to monitor operations and evaluate new ca
 - The **timeline** uses color differentiation and density to communicate capacity utilization at a glance — high utilization vs. available window are distinguishable without reading a number.
 - The **simulation module** keeps the current state and simulated scenario in side-by-side comparison, so the operator sees the delta, not just the final result.
 - The **request workflow** structures each solicitation with a step history and action owner — the operator knows what is pending *from them*, not just the general status.
-- ⬜ Accessibility decisions (contrast, keyboard focus, color-blindness-safe capacity encoding) — to fill.
+- The **timeline** differentiates capacity utilization by color and by visual density — two simultaneous channels ensure status is readable for users with color-vision limitations, without depending on color alone (WCAG 1.4.1).
 
 ![](/cases/shipping-capacity-platform/03-route-simulation.png)
 

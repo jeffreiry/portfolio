@@ -77,6 +77,18 @@ de arquitetura nova, registrá-la na seção "Decisões técnicas" do roadmap.
 
 ---
 
+## Ao escrever ou reescrever cases
+
+Antes de redigir ou revisar qualquer case, fazer as perguntas abaixo ao autor. São derivadas dos gaps transversais identificados em [Bench_job_applications/_index.md](Bench_job_applications/_index.md) — cada resposta preenchida aumenta o score de aderência em todas as vagas:
+
+1. **Artefatos** — "Tem telas, flows ou wireframes disponíveis? (screenshots do Figma, Notion ou exportações)"
+2. **Métricas** — "Há algum número de resultado real? (tempo economizado, usuários impactados, taxa de adoção, redução de erros)"
+3. **Acessibilidade** — "Houve alguma decisão de acessibilidade no projeto? (contraste, daltonismo, leitor de tela, navegação por teclado)"
+4. **Mobile** — "O produto tinha versão mobile ou responsiva? Houve decisões específicas de design para mobile?"
+5. **Mentoria/liderança** — "Neste projeto, você fez onboarding de alguém, revisou o trabalho de outro designer, ou apresentou decisões de design internamente?"
+
+---
+
 ## Decisões de produto fechadas
 
 | Decisão | Escolha |
@@ -101,7 +113,7 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 ## Estado atual
 
-**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Acessibilidade parcialmente implementada (skip nav, foco visível, contraste de títulos). Hero.mp4 com carregamento condicional (mobile/slow-connection recebe fallback de imagem). Seções da home reordenadas: Hero → Cases → About/Career → Contact. Cases relacionados ao final de cada página de case. Revisão de voz concluída em 2026-06-11 (9 cases × 18 arquivos). Lighthouse auditado em 2026-06-11: Desktop 99/95/100/100 ✅, Mobile 73/95/100/100 ⚠️. Header: toggle e language switcher em pills separados; switcher redesenhado como switch segmentado. Career logos: dark mode branco via CSS filter, logos atualizados com fundo transparente. Próximas ações: performance mobile, responsividade fina.
+**Fase 5 em andamento.** Formulário de contato, dark mode e microinterações expressivas implementados. PDFs de currículo em `public/`. Acessibilidade parcialmente implementada (skip nav, foco visível, contraste de títulos). Hero.mp4 com carregamento condicional (mobile/slow-connection recebe fallback de imagem). Revisão de voz concluída em 2026-06-11 (9 cases × 18 arquivos). Lighthouse auditado em 2026-06-11: Desktop 99/95/100/100 ✅, Mobile 73/95/100/100 ⚠️. Bench de 11 vagas concluído em 2026-06-12: score médio 60%; ver [Bench_job_applications/_index.md](Bench_job_applications/_index.md). **Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise, 🟠 performance mobile (Lighthouse 73→95+), 🟡 narrativa mobile.
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
 `src/content/cases/{pt,en}/` (9 cases × 2 idiomas — 7 publicados + 2 draft), `src/middleware.ts`

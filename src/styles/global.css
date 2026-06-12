@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+/* --- Fontes self-hosted (latin subset) — elimina round-trip Google Fonts no mobile --- */
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-serif-display.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-serif-display-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/barlow-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/barlow-500-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/barlow-800.woff2') format('woff2');
+}
+
 
 @theme {
   /* --- Paleta Premium Brasileira --- */
@@ -71,7 +108,7 @@ html[data-theme="dark"] {
   --color-ink:           #f0ebe4;
   --color-cha-mate:      #e8ddd5;
   --color-muted:         #a89080;
-  --color-faint:         #6a5a52;
+  --color-faint:         #8a7a70;
 
   /* Tags — versão escura */
   --color-tag-enterprise-bg:   #3d1f10;

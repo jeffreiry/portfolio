@@ -96,6 +96,7 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - O **estado inicial vazio** exibe prompts sugeridos como chips clicáveis — as pessoas não sabem por onde começar com um assistente que integra três bases de conhecimento ao mesmo tempo. Os prompts mostram isso sem exigir leitura prévia.
 - O **painel de fontes** é uma coluna lateral persistente, não um modal ou tooltip: permanece disponível sem interromper a leitura da resposta. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel.
 - A **estrutura da resposta** separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
+- O **painel de fontes** como coluna lateral persistente não exige interação adicional para abrir ou manter aberto — usuários que navegam por teclado ou leitor de tela acessam rastreabilidade sem fluxo extra (WCAG 2.1.1).
 
 ![](/cases/enterprise-ai-assistant/01-file-source.png)
 

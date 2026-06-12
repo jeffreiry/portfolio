@@ -126,6 +126,9 @@ Decisão motivada por critério de recrutamento: o portfólio é aberto para ava
 Mover a grade de cases para logo após o hero maximiza o tempo de exposição aos trabalhos
 antes do scroll depth necessário para ver About/Career.
 
+**Fontes self-hosted (DM Serif Display + Barlow) — 2026-06-12**
+Migrado de Google Fonts async (`media="print"`) para self-hosted em `public/fonts/` (5 arquivos woff2, subset latin). Motivação: eliminar round-trip DNS + stylesheet request para `fonts.googleapis.com` (~2.3s no mobile, Lighthouse audit 2026-06-11). `@font-face` declarado em `global.css`; `rel="preload"` para os dois críticos (`barlow-500` e `dm-serif-display`) em `Base.astro`.
+
 **Classes utilitárias de cor (`global.css`)**
 As tokens `@theme` (`.text-jambu`, `.text-cha-mate`, `.bg-jambu`, etc.) são registradas
 explicitamente em `@layer utilities` para evitar dependência de purge no Tailwind v4 e
@@ -159,30 +162,32 @@ O guia foi derivado diretamente desse case. Ele contém as frases citadas como e
 - Ambos: variar estrutura de pelo menos 1 das 4 decisões P→O→C→W (rule 3)
 - Ambos: mencionar o que não foi validado (rule 6)
 
-### 🟠 Alto — Shipping, Arezzo, Hypera (PT + EN cada)
+### ~~🟠 Alto — Shipping, Arezzo, Hypera (PT + EN cada)~~ ✅ concluído 2026-06-11
 
-**Problema compartilhado — Impact section vazia (rule 7):**
-Todos têm 3 de 3–4 métricas quantitativas como `⬜`. Impact section sem números é pior que nenhuma Impact section.
-Decisão a tomar para cada: ou preencher com dados reais, ou substituir a seção por "O que eu faria diferente".
+~~**Problema compartilhado — Impact section vazia (rule 7):**~~
+~~Todos têm 3 de 3–4 métricas quantitativas como `⬜`. Impact section sem números é pior que nenhuma Impact section.~~
+~~Decisão a tomar para cada: ou preencher com dados reais, ou substituir a seção por "O que eu faria diferente".~~
 
-- `shipping-capacity-platform`: 3 métricas ⬜ no Impact
-- `arezzo-ad-management`: 3 métricas ⬜ no Impact
-- `hypera-hypergestor`: 3 métricas ⬜ no Impact
+~~- `shipping-capacity-platform`: 3 métricas ⬜ no Impact~~
+~~- `arezzo-ad-management`: 3 métricas ⬜ no Impact~~
+~~- `hypera-hypergestor`: 3 métricas ⬜ no Impact~~
 
-**Outros issues comuns nesses três:**
-- Adicionar dúvida expressa (rule 2)
-- Variar estrutura de pelo menos 1 decisão (rule 3)
+~~**Outros issues comuns nesses três:**~~
+~~- Adicionar dúvida expressa (rule 2)~~
+~~- Variar estrutura de pelo menos 1 decisão (rule 3)~~
 
-### 🟡 Médio — todos os outros cases (PT + EN)
+**Resolvido:** Impact sections substituídas por "O que eu faria diferente" + dúvida expressa adicionada nos 3 cases.
 
-Issues sistêmicos que afetam todos os 8 cases:
+### ~~🟡 Médio — todos os outros cases (PT + EN)~~ ✅ concluído 2026-06-11
 
-1. **Nenhum case expressa dúvida** (rule 2) — uma frase por case: "essa foi a decisão em que eu estava menos certo"
-2. **Estrutura P→O→C→W 100% idêntica em todas as decisões** (rule 3) — variar pelo menos 1 decisão por case: narrativa, raciocínio primeiro, ou "o que não validei"
-3. **Endings todos conclusivos, nenhum pessoal** (rule 8) — a última frase de Aprendizados deve soar como quem fechou o computador e pensou no caminho de volta
-4. **Nenhum case menciona o que não foi validado** (rule 6)
+~~Issues sistêmicos que afetam todos os 8 cases:~~
 
-Cartela Cores é o melhor case (tem métricas reais, tem limite honesto do modelo). Del Valle Kapo tem o melhor "momento de surpresa" (dado do GA). Esses dois são referência para os outros.
+~~1. **Nenhum case expressa dúvida** (rule 2) — uma frase por case: "essa foi a decisão em que eu estava menos certo"~~
+~~2. **Estrutura P→O→C→W 100% idêntica em todas as decisões** (rule 3) — variar pelo menos 1 decisão por case: narrativa, raciocínio primeiro, ou "o que não validei"~~
+~~3. **Endings todos conclusivos, nenhum pessoal** (rule 8) — a última frase de Aprendizados deve soar como quem fechou o computador e pensou no caminho de volta~~
+~~4. **Nenhum case menciona o que não foi validado** (rule 6)~~
+
+**Resolvido:** dúvida expressa, endings pessoais e pelo menos 1 decisão narrativa em todos os 9 cases. Cartela Cores e Del Valle Kapo mantidos como referência de voz.
 
 ---
 
@@ -199,3 +204,20 @@ Decisões que dependem do autor antes/durante o build:
 - ✅ **Contato:** formulário que envia para `jfreiry@gmail.com` + botão WhatsApp
 - ✅ **Modo escuro:** sim, com toggle claro/escuro
 - ✅ **Microinterações:** expressivas — animações com personalidade (scroll reveals, hover states, transições de página)
+
+---
+
+## Melhorias críticas de conteúdo · bench 2026-06-12
+
+Baseado em [Bench_job_applications/_index.md](../Bench_job_applications/_index.md) — 11 vagas analisadas, score médio **60%**, meta: **75%+**.
+
+| Pri | Ação | Vagas afetadas |
+|---|---|---|
+| 🔴 1 | **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases | Todas (11/11) |
+| 🔴 2 | **Métricas de impacto** — preencher `⬜` em Enterprise AI, Shipping, Arezzo, Hypera | Todas (11/11) |
+| 🟠 3 | **Acessibilidade documentada** — enterprise cases precisam de 1 decisão WCAG; Cartela Cores é a referência | 8/11 |
+| 🟠 4 | **Performance mobile** — Lighthouse 95+ (atual: 73); Google Fonts render-blocking é o principal bloqueador | Todas |
+| 🟡 5 | **Mobile como plataforma** — Arezzo tem tag "Mobile" sem narrativa de decisões mobile | 4/11 |
+| 🟡 6 | **Mentoria/liderança** — não aparece em nenhum case; se houver histórico, documentar em 1 case | 2/11 |
+
+Artefatos e métricas são pré-condição para avançar do score 60% — cada vaga desconta diretamente nesses dois campos.

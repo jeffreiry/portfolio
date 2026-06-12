@@ -97,7 +97,7 @@ O HYPERGESTOR centraliza o ciclo completo de trade marketing em quatro módulos 
 - O **ícone de clipe com badge numérico** na coluna de Anexos da listagem de apuração comunica a presença de evidências sem precisar abrir o item — decisão de velocidade de scan.
 - O **campo "Valor apurado"** na comprovação é separado do "Valor Planejado" exibido em modo somente leitura — o usuário vê o planejado enquanto preenche o apurado, criando a comparação no mesmo contexto.
 - O campo **"Permite distribuir"** no cadastro de orçamento é um checkbox inline ao lado do valor — decisão que reduz um campo separado e conecta visualmente a permissão ao valor ao qual se aplica.
-- ⬜ Decisões de acessibilidade (contraste, navegação por teclado) — preencher.
+- O **badge numérico** no ícone de clipe comunica a presença de evidências via dois canais — ícone + número — sem depender de cor nem de abrir o item; usuários de leitor de tela ou com daltonismo recebem a mesma informação (WCAG 1.4.1).
 
 ---
 

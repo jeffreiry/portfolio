@@ -33,11 +33,16 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-10 pb-11 pt-10"
     style={hasBg ? '' : 'background-color: var(--color-cha-mate);'}
   >
-    <!-- Imagem de fundo (sempre presente; fallback para mobile e prefers-reduced-motion) -->
+    <!-- Imagem de fundo — img tag com fetchpriority para LCP correto -->
     {bgImage && (
-      <div
-        class="absolute inset-0"
-        style={`background-image: url('${bgImage}'); background-size: cover; background-position: center;`}
+      <img
+        src={bgImage}
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover"
       />
     )}
 
