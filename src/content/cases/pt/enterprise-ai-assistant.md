@@ -6,7 +6,7 @@ summary: "Evoluiu um MVP de assistente IA em plataforma de conhecimento centrada
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png
-bgImage: "https://images.unsplash.com/photo-1762330465857-07e4c81c0dfa?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1762330465857-07e4c81c0dfa?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#efedff"
 tags: ["Enterprise", "IA conversacional", "Design de informação", "Transparência"]
 metrics:

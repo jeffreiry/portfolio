@@ -6,7 +6,7 @@ summary: "Replaced scattered spreadsheets with a visual timeline for maritime ca
 company: "Enterprise (confidential)"
 year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png
-bgImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#e1f5fe"
 tags: ["Enterprise", "Maritime logistics", "DataViz", "Operational simulation"]
 metrics:

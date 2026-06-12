@@ -6,7 +6,7 @@ summary: "Transformou componentes do Design System em um app mobile de referênc
 company: "Grande empresa industrial (confidencial)"
 year: 2025
 cover: /cases/power-apps-dummy-app/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#e8f0fe"
 tags: ["Design Systems", "Mobile", "Low-code", "Power Apps", "Microsoft"]
 metrics:

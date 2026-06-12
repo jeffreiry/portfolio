@@ -6,7 +6,7 @@ summary: "Redesigned Del Valle Kapo's site for a Children's Day campaign, with I
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-kapo/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
 tags: ["Digital branding", "Consumer", "Content platform", "Coca-Cola"]
 featured: false

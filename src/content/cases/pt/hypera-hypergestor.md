@@ -6,7 +6,7 @@ summary: "Criou o HYPERGESTOR — centralizando as verbas de trade da Hypera Pha
 company: "Hypera Pharma (via ilegra)"
 year: 2023
 cover: /cases/hypera-hypergestor/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#f3e5f5"
 tags: ["Enterprise", "Trade marketing", "Finops", "Design de sistema", "B2B"]
 featured: false

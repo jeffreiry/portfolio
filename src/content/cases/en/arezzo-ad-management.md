@@ -6,7 +6,7 @@ summary: "Redesigned Arezzo&Co's ad platform for three distinct user profiles on
 company: "Arezzo&Co (via CWI)"
 year: 2023
 cover: /cases/arezzo-ad-management/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#ecf0f3"
 tags: ["Retail", "Multi-role", "System design", "Dashboard", "Mobile"]
 featured: true

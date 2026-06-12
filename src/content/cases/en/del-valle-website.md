@@ -6,7 +6,7 @@ summary: "Redesigned Del Valle's homepage translating a new global visual identi
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-website/visao-geral.jpg
-bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=1400&q=80&auto=format&fit=crop"
+bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
 tags: ["Digital branding", "Visual design", "Consumer", "Coca-Cola"]
 featured: false
