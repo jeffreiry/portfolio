@@ -1,0 +1,114 @@
+---
+interface Props {
+  lang: 'en' | 'pt';
+}
+
+const { lang } = Astro.props;
+
+let distKm: number | null = null;
+let gearModel: string | null = null;
+let dateLabel: string | null = null;
+
+try {
+  const res = await fetch('https://painel-saude-zeta.vercel.app/api/last-run');
+  if (res.ok) {
+    const data = await res.json();
+    if (data) {
+      distKm = Math.round(data.dist_km);
+      gearModel = data.gear_model ?? null;
+
+      const date = new Date(data.dateISO + 'T00:00:00');
+      dateLabel = date.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', {
+        day: 'numeric',
+        month: 'short',
+      });
+    }
+  }
+} catch {
+  // silently skip if fetch fails at build time
+}
+---
+
+{distKm !== null && (
+  <div
+    data-animate
+    style="--animate-delay: 240ms"
+    class="run-widget mt-1 flex items-center gap-4 rounded-2xl p-4 self-start"
+    aria-label={lang === 'pt' ? `Última corrida: ${distKm} km` : `Last run: ${distKm} km`}
+  >
+    <!-- Strava icon -->
+    <div class="flex-shrink-0">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M10.5 3L6 13.5h3.9L12 9l2.1 4.5H18L13.5 3H10.5z" fill="#FC4C02"/>
+        <path d="M14.1 13.5L12 17.7l-2.1-4.2H6.9L12 21l5.1-7.5H14.1z" fill="#FC4C02" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="flex flex-col leading-none">
+      <div class="run-widget__label">
+        {lang === 'pt' ? 'Última corrida' : 'Last run'}
+        {dateLabel && <span class="run-widget__date"> · {dateLabel}</span>}
+      </div>
+      <div class="run-widget__distance">
+        <span class="run-widget__number">{distKm}</span>
+        <span class="run-widget__unit"> km</span>
+      </div>
+      {gearModel && (
+        <div class="run-widget__gear">{gearModel}</div>
+      )}
+    </div>
+  </div>
+)}
+
+<style>
+  .run-widget {
+    background: #1a1a1a;
+    border: 1px solid #2e2e2e;
+    max-width: fit-content;
+  }
+
+  .run-widget__label {
+    font-family: var(--font-body, 'Barlow', sans-serif);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin-bottom: 4px;
+  }
+
+  .run-widget__date {
+    color: #4a4a4a;
+  }
+
+  .run-widget__distance {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    line-height: 1;
+  }
+
+  .run-widget__number {
+    font-family: var(--font-display, 'Cactus Regular', serif);
+    font-size: 40px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .run-widget__unit {
+    font-family: var(--font-body, 'Barlow', sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: #FC4C02;
+    letter-spacing: 0;
+  }
+
+  .run-widget__gear {
+    font-family: var(--font-body, 'Barlow', sans-serif);
+    font-size: 11px;
+    font-weight: 400;
+    color: #5a5a5a;
+    margin-top: 4px;
+  }
+</style>
