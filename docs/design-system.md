@@ -48,16 +48,16 @@ Usados como fundo individual de cada projeto, dando cor própria a cada case.
 
 Duas famílias:
 
-- **Cactus Regular** — títulos e display (arquivo local `public/fonts/Cactus Regular.otf`, via `@font-face`)
-- **Barlow** — corpo (pesos 300 / 400 / 500, Google Fonts)
+- **DM Serif Display** — títulos e display (arquivo local `public/fonts/`, self-hosted para eliminar round-trip HTTP no mobile)
+- **Barlow** — corpo (pesos 500 e 800, self-hosted)
 
 ### Escala (desktop · tablet · mobile)
 
 | Estilo | Fonte / peso | Desktop | Tablet (810–1199) | Mobile (≤809) |
 |--------|--------------|---------|-------------------|----------------|
-| H1 / Display | Cactus 400 | 60 / 72 | 48 / 60 | 28 / 36 |
-| H2 | Cactus 400 | 36 / 44 | 36 / 44 | 36 / 44 |
-| Corpo | Barlow 300 | 18 / 28 | 18 / 28 | 16 / 24 |
+| H1 / Display | DM Serif Display 400 | 60 / 72 | 48 / 60 | 28 / 36 |
+| H2 | DM Serif Display 400 | 36 / 44 | 36 / 44 | 36 / 44 |
+| Corpo | Barlow 500 | 18 / 28 | 18 / 28 | 16 / 24 |
 
 *(formato: `tamanho / line-height` em px)*
 

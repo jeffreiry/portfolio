@@ -28,7 +28,7 @@ deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
 | Conteúdo | **Content Collections (Markdown)** | Cases em Markdown puro, versionados no Git |
 | i18n | **Astro i18n routing** | PT (padrão) + EN |
 | Deploy | **Vercel** | Mesmo fluxo do projeto Painel Saúde |
-| Fontes | **Cactus Regular** (display) + **Barlow 300–500** (corpo) | Cactus Regular via `@font-face` em `public/fonts/` (títulos uppercase); Barlow via Google Fonts para corpo |
+| Fontes | **DM Serif Display** (display) + **Barlow 500/800** (corpo) | Ambas self-hosted em `public/fonts/` com subset latin para performance mobile |
 
 > A stack foi decidida pelo Claude a pedido do autor. O racional completo e as
 > alternativas consideradas estão em [docs/roadmap.md](docs/roadmap.md).
