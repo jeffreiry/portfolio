@@ -6,7 +6,7 @@ summary: "Transformou um PDF estático em sistema que avalia itens do guarda-rou
 company: "Projeto pessoal"
 year: 2026
 accent: "#fff7ef"
-tags: ["Web app", "Algoritmo de cor", "Design system", "Acessibilidade"]
+tags: ["Design System", "Projetos Pessoais"]
 url: ""
 metrics:
   - label: "Precisão do score"

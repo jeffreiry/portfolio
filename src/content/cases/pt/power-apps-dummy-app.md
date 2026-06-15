@@ -8,7 +8,7 @@ year: 2025
 cover: /cases/power-apps-dummy-app/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#e8f0fe"
-tags: ["Design Systems", "Mobile", "Low-code", "Power Apps", "Microsoft"]
+tags: ["Enterprise", "Design System", "Mobile"]
 metrics:
   - label: "Plataforma"
     value: "Power Apps"

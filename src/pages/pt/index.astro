@@ -131,15 +131,67 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
     <!-- Grade de cases -->
     <section id="cases" class="mx-auto w-full max-w-[1200px] px-6">
-      <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900 mb-6">Cases</h2>
+      <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900 mb-4">Cases</h2>
+
+      <!-- Barra de filtros -->
+      <div data-animate style="--animate-delay: 80ms" class="filter-bar flex flex-wrap gap-2 mb-6">
+        <button class="filter-btn filter-btn--active" data-filter="all">Todos</button>
+        {["Enterprise", "AI & Automation", "UX Research", "Design System", "Branding", "Mobile", "Data & Analytics"].map(tag => (
+          <button class="filter-btn" data-filter={tag}>{tag}</button>
+        ))}
+      </div>
+
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => (
-          <div data-animate style={`--animate-delay: ${i * 90}ms`}>
+          <div data-animate style={`--animate-delay: ${i * 90}ms`} class="case-card-wrapper" data-tags={c.data.tags.join(',')}>
             <CaseCard {...c.data} lang="pt" />
           </div>
         ))}
       </div>
     </section>
+
+    <script>
+      const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+      const caseCards  = document.querySelectorAll<HTMLElement>('.case-card-wrapper');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+          btn.classList.add('filter-btn--active');
+          const filter = btn.dataset.filter!;
+          caseCards.forEach(card => {
+            const tags = card.dataset.tags?.split(',') ?? [];
+            const show = filter === 'all' || tags.includes(filter);
+            card.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    </script>
+
+    <style>
+      .filter-btn {
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--color-border);
+        color: var(--color-muted);
+        background: transparent;
+        cursor: pointer;
+        transition: color 0.15s, background 0.15s, border-color 0.15s;
+      }
+      .filter-btn:hover {
+        color: var(--color-cha-mate);
+        border-color: var(--color-cha-mate);
+      }
+      .filter-btn--active {
+        background: var(--color-cha-mate);
+        color: var(--color-page-bg);
+        border-color: var(--color-cha-mate);
+      }
+    </style>
 
     <!-- Contato -->
     <section id="contact" class="mx-auto w-full max-w-[1200px] px-6 py-16">

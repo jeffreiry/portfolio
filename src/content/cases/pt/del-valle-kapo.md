@@ -8,7 +8,7 @@ year: 2023
 cover: /cases/del-valle-kapo/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
-tags: ["Branding digital", "Consumer", "Plataforma de conteúdo", "Coca-Cola"]
+tags: ["Design System", "Branding", "Mobile"]
 featured: false
 draft: false
 order: 9

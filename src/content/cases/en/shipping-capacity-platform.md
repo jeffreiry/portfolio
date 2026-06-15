@@ -8,7 +8,7 @@ year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#e1f5fe"
-tags: ["Enterprise", "Maritime logistics", "DataViz", "Operational simulation"]
+tags: ["Enterprise", "Data & Analytics"]
 metrics:
   - label: "Scope"
     value: "Full MVP end-to-end"

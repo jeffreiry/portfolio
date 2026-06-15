@@ -8,7 +8,7 @@ year: 2023
 cover: /cases/del-valle-website/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
-tags: ["Digital branding", "Visual design", "Consumer", "Coca-Cola"]
+tags: ["Design System", "Branding", "Mobile"]
 featured: false
 draft: false
 order: 8

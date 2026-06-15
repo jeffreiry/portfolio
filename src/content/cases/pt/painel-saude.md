@@ -6,7 +6,7 @@ summary: "Dashboard unificando Strava e Hevy em uma visão de progresso diária 
 company: "Projeto pessoal"
 year: 2026
 accent: "#e8f5e9"
-tags: ["Dashboard", "Design de informação", "Integração de APIs", "DataViz"]
+tags: ["Data & Analytics", "Projetos Pessoais"]
 url: "https://painel-saude-zeta.vercel.app"
 metrics:
   - label: "Autonomia operacional"

@@ -6,7 +6,7 @@ summary: "Turned a static color PDF into a system that scores wardrobe items aga
 company: "Personal project"
 year: 2026
 accent: "#fff7ef"
-tags: ["Web app", "Color algorithm", "Design system", "Accessibility"]
+tags: ["Design System", "Projetos Pessoais"]
 url: ""
 metrics:
   - label: "Score accuracy"
