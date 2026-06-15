@@ -36,7 +36,7 @@ const runLabel  = lang === 'pt' ? 'Última corrida' : 'Last run';
   <div
     data-animate
     style="--animate-delay: 240ms"
-    class="run-widget"
+    class="run-widget w-full"
     aria-label={lang === 'pt' ? `Última corrida: ${distKm} km` : `Last run: ${distKm} km`}
   >
     <!-- Header row -->
@@ -88,7 +88,7 @@ const runLabel  = lang === 'pt' ? 'Última corrida' : 'Last run';
     border: 1px solid #2a2a2a;
     border-radius: 16px;
     padding: 12px 16px;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 4px;
