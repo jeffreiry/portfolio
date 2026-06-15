@@ -10,8 +10,7 @@ const { lang = 'en' } = Astro.props;
   style="border-top: 0.5px solid var(--color-border); margin-top: 2rem;"
 >
   <div class="flex items-center gap-3">
-    <img src="/jeferson-black.png" alt="Jeferson Freiry" class="logo-black" width="17" height="18" style="height: 18px; width: auto; opacity: 0.35;" />
-    <img src="/jeferson-white.png" alt="Jeferson Freiry" class="logo-white" width="17" height="18" style="height: 18px; width: auto; display: none; opacity: 0.35;" />
+    <img src="/jeferson-black.png" alt="Jeferson Freiry" class="footer-logo" width="17" height="18" style="height: 18px; width: auto; opacity: 0.35;" />
     <span class="text-[11px]" style="color: var(--color-muted); font-family: var(--font-body);">© {new Date().getFullYear()}</span>
   </div>
 
@@ -45,6 +44,5 @@ const { lang = 'en' } = Astro.props;
 </footer>
 
 <style>
-  html[data-theme="dark"] .logo-black { display: none !important; }
-  html[data-theme="dark"] .logo-white { display: block !important; }
+  html[data-theme="dark"] .footer-logo { filter: brightness(0) invert(1); }
 </style>
