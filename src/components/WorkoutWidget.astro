@@ -45,7 +45,7 @@ const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
 
 <style>
   .workout-widget {
-    background: var(--color-surface);
+    background: #fafafa;
     border-radius: 16px;
     padding: 16px 20px;
     display: flex;
@@ -63,6 +63,10 @@ const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
   .workout-widget__logo {
     object-fit: contain;
     flex-shrink: 0;
+  }
+
+  :global(html[data-theme="dark"]) .workout-widget {
+    background: var(--color-surface);
   }
 
   :global(html[data-theme="dark"]) .workout-widget__logo {

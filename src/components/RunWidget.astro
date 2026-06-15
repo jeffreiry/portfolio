@@ -45,7 +45,7 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 
 <style>
   .run-widget {
-    background: var(--color-surface);
+    background: #fafafa;
     border-radius: 16px;
     padding: 16px 20px;
     display: flex;
@@ -66,6 +66,10 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
     font-weight: 700;
     color: #FC4C02;
     line-height: 1.2;
+  }
+
+  :global(html[data-theme="dark"]) .run-widget {
+    background: var(--color-surface);
   }
 
   :global(html[data-theme="dark"]) .run-widget__title {
