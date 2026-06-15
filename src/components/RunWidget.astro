@@ -26,11 +26,7 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
   <div class="run-widget" aria-label={`${title}: ${totalKm} km`}>
     <div class="run-widget__top">
       <span class="run-widget__title">{title}</span>
-      <!-- Strava logo -->
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="run-widget__logo">
-        <path d="M10.5 3L6 13.5h3.9L12 9l2.1 4.5H18L13.5 3H10.5z" fill="#FC4C02"/>
-        <path d="M14.1 13.5L12 17.7l-2.1-4.2H6.9L12 21l5.1-7.5H14.1z" fill="#FC4C02" opacity="0.6"/>
-      </svg>
+      <img src="/logos/strava.png" alt="Strava" width="28" height="28" class="run-widget__logo" />
     </div>
 
     <div class="run-widget__number">
@@ -63,7 +59,7 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 
   .run-widget__title {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: #FC4C02;
     line-height: 1.2;
@@ -100,7 +96,7 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 
   .run-widget__count {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #FC4C02;
   }
@@ -111,7 +107,7 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 
   .run-widget__sync {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: #FC4C02;
     white-space: nowrap;
@@ -119,5 +115,14 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 
   :global(html[data-theme="dark"]) .run-widget__sync {
     color: var(--color-ink);
+  }
+
+  .run-widget__logo {
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  :global(html[data-theme="dark"]) .run-widget__logo {
+    filter: brightness(0) invert(1);
   }
 </style>

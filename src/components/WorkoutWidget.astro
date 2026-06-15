@@ -26,16 +26,7 @@ const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
   <div class="workout-widget" aria-label={`${title}: ${totalVolume} kg`}>
     <div class="workout-widget__top">
       <span class="workout-widget__title">{title}</span>
-      <!-- Hevy logo approximation -->
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="workout-widget__logo">
-        <path d="M5 8 C5 5.8 6.8 4 9 4 L9 4 C9 6.2 7.2 8 5 8Z" fill="currentColor"/>
-        <path d="M19 8 C16.8 8 15 6.2 15 4 L15 4 C17.2 4 19 5.8 19 8Z" fill="currentColor"/>
-        <path d="M5 16 C7.2 16 9 17.8 9 20 L9 20 C6.8 20 5 18.2 5 16Z" fill="currentColor"/>
-        <path d="M19 16 C19 18.2 17.2 20 15 20 L15 20 C15 17.8 16.8 16 19 16Z" fill="currentColor"/>
-        <rect x="4" y="7" width="2" height="10" rx="1" fill="currentColor"/>
-        <rect x="18" y="7" width="2" height="10" rx="1" fill="currentColor"/>
-        <rect x="8" y="11" width="8" height="2" rx="1" fill="currentColor"/>
-      </svg>
+      <img src="/logos/hevy.png" alt="Hevy" width="28" height="28" class="workout-widget__logo" />
     </div>
 
     <div class="workout-widget__number">
@@ -67,13 +58,17 @@ const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
   }
 
   .workout-widget__logo {
-    color: var(--color-ink);
+    object-fit: contain;
     flex-shrink: 0;
+  }
+
+  :global(html[data-theme="dark"]) .workout-widget__logo {
+    filter: brightness(0) invert(1);
   }
 
   .workout-widget__title {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--color-ink);
     line-height: 1.2;
@@ -102,14 +97,14 @@ const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
 
   .workout-widget__count {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--color-ink);
   }
 
   .workout-widget__sync {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--color-muted);
     white-space: nowrap;
