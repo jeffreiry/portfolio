@@ -2,164 +2,116 @@
 interface Props {
   lang: 'en' | 'pt';
 }
-
 const { lang } = Astro.props;
 
-let volumeKg: number | null = null;
-let dateLabel: string | null = null;
-let workoutTitle: string | null = null;
+let totalVolume: number | null = null;
+let count = 0;
 
 try {
-  const res = await fetch('https://painel-saude-zeta.vercel.app/api/last-workout');
+  const res = await fetch('https://painel-saude-zeta.vercel.app/api/weekly-workout');
   if (res.ok) {
     const data = await res.json();
-    if (data) {
-      volumeKg = data.volume_kg;
-      workoutTitle = data.title?.split('·')[1]?.trim() ?? data.title;
-
-      const date = new Date(data.date + 'T00:00:00');
-      dateLabel = date.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', {
-        day: 'numeric',
-        month: 'short',
-      });
-    }
+    if (data) { totalVolume = data.total_volume_kg; count = data.count; }
   }
-} catch {
-  // silently skip if fetch fails at build time
-}
+} catch { /* skip */ }
 
-const liveLabel    = lang === 'pt' ? 'atualiza toda noite' : 'updates nightly';
-const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
+const title    = lang === 'pt' ? 'Academia esta semana' : 'Gym This Week';
+const workouts = lang === 'pt'
+  ? `${count} ${count === 1 ? 'treino' : 'treinos'}`
+  : `${count} ${count === 1 ? 'workout' : 'workouts'}`;
+const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
 ---
 
-{volumeKg !== null && (
-  <div
-    data-animate
-    style="--animate-delay: 280ms"
-    class="workout-widget w-full"
-    aria-label={lang === 'pt' ? `Último treino: ${volumeKg} kg` : `Last workout: ${volumeKg} kg`}
-  >
-    <!-- Header -->
-    <div class="workout-widget__header">
-      <div class="workout-widget__header-left">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M6.5 6.5h1.5v11H6.5zM16 6.5h1.5v11H16z" fill="#f97316"/>
-          <rect x="4" y="10" width="4" height="4" rx="1" fill="#f97316"/>
-          <rect x="16" y="10" width="4" height="4" rx="1" fill="#f97316"/>
-          <rect x="8" y="9" width="8" height="6" rx="1" fill="#f97316" opacity="0.5"/>
-        </svg>
-        <span class="workout-widget__label">{workoutLabel}</span>
-      </div>
-      <div class="workout-widget__live">
-        <span class="workout-widget__dot" aria-hidden="true"></span>
-      </div>
+{totalVolume !== null && (
+  <div class="workout-widget" aria-label={`${title}: ${totalVolume} kg`}>
+    <div class="workout-widget__top">
+      <span class="workout-widget__title">{title}</span>
+      <!-- Hevy logo approximation -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="workout-widget__logo">
+        <path d="M5 8 C5 5.8 6.8 4 9 4 L9 4 C9 6.2 7.2 8 5 8Z" fill="currentColor"/>
+        <path d="M19 8 C16.8 8 15 6.2 15 4 L15 4 C17.2 4 19 5.8 19 8Z" fill="currentColor"/>
+        <path d="M5 16 C7.2 16 9 17.8 9 20 L9 20 C6.8 20 5 18.2 5 16Z" fill="currentColor"/>
+        <path d="M19 16 C19 18.2 17.2 20 15 20 L15 20 C15 17.8 16.8 16 19 16Z" fill="currentColor"/>
+        <rect x="4" y="7" width="2" height="10" rx="1" fill="currentColor"/>
+        <rect x="18" y="7" width="2" height="10" rx="1" fill="currentColor"/>
+        <rect x="8" y="11" width="8" height="2" rx="1" fill="currentColor"/>
+      </svg>
     </div>
 
-    <!-- Hero number -->
-    <div class="workout-widget__hero">
-      <span class="workout-widget__number">{volumeKg.toLocaleString('pt-BR')}</span>
-      <span class="workout-widget__unit">kg</span>
+    <div class="workout-widget__number">
+      {totalVolume?.toLocaleString('pt-BR')}<span class="workout-widget__unit"> kg</span>
     </div>
 
-    <!-- Secondary info -->
-    <div class="workout-widget__footer">
-      {dateLabel && <span class="workout-widget__meta">{dateLabel}</span>}
-      {workoutTitle && <span class="workout-widget__meta workout-widget__meta--title">{workoutTitle}</span>}
+    <div class="workout-widget__bottom">
+      <span class="workout-widget__count">{workouts}</span>
+      <span class="workout-widget__sync">{syncing}</span>
     </div>
   </div>
 )}
 
 <style>
   .workout-widget {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    background: var(--color-surface);
     border-radius: 16px;
-    padding: 14px;
+    padding: 16px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    aspect-ratio: 1 / 1;
+    gap: 8px;
+    width: 100%;
   }
 
-  .workout-widget__header {
+  .workout-widget__top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
-  .workout-widget__header-left {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  .workout-widget__logo {
+    color: var(--color-ink);
+    flex-shrink: 0;
   }
 
-  .workout-widget__label {
+  .workout-widget__title {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #555;
-  }
-
-  .workout-widget__live {
-    display: flex;
-    align-items: center;
-  }
-
-  .workout-widget__dot {
-    display: block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #22c55e;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.75); }
-  }
-
-  .workout-widget__hero {
-    display: flex;
-    align-items: baseline;
-    gap: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.2;
   }
 
   .workout-widget__number {
-    font-family: var(--font-display, 'Cactus Regular', serif);
-    font-size: clamp(36px, 7vw, 52px);
-    font-weight: 400;
-    color: #ffffff;
+    font-family: var(--font-body, 'Barlow', sans-serif);
+    font-size: 48px;
+    font-weight: 800;
     line-height: 1;
+    color: var(--color-ink);
     letter-spacing: -0.02em;
   }
 
   .workout-widget__unit {
-    font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 14px;
-    font-weight: 500;
-    color: #f97316;
+    font-size: 20px;
+    font-weight: 700;
   }
 
-  .workout-widget__footer {
+  .workout-widget__bottom {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
   }
 
-  .workout-widget__meta {
+  .workout-widget__count {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 11px;
-    font-weight: 400;
-    color: #555;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-ink);
   }
 
-  .workout-widget__meta--title {
-    color: #444;
+  .workout-widget__sync {
+    font-family: var(--font-body, 'Barlow', sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-muted);
+    white-space: nowrap;
   }
 </style>

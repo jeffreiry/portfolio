@@ -2,162 +2,122 @@
 interface Props {
   lang: 'en' | 'pt';
 }
-
 const { lang } = Astro.props;
 
-let distKm: number | null = null;
-let gearModel: string | null = null;
-let dateLabel: string | null = null;
+let totalKm: number | null = null;
+let count = 0;
 
 try {
-  const res = await fetch('https://painel-saude-zeta.vercel.app/api/last-run');
+  const res = await fetch('https://painel-saude-zeta.vercel.app/api/weekly-run');
   if (res.ok) {
     const data = await res.json();
-    if (data) {
-      distKm = Math.round(data.dist_km);
-      gearModel = data.gear_model ?? null;
-
-      const date = new Date(data.dateISO + 'T00:00:00');
-      dateLabel = date.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', {
-        day: 'numeric',
-        month: 'short',
-      });
-    }
+    if (data) { totalKm = data.total_km; count = data.count; }
   }
-} catch {
-  // silently skip if fetch fails at build time
-}
+} catch { /* skip */ }
 
-const liveLabel = lang === 'pt' ? 'atualiza toda noite' : 'updates nightly';
-const runLabel  = lang === 'pt' ? 'Última corrida' : 'Last run';
+const title   = lang === 'pt' ? 'Corrida esta semana' : 'Running This Week';
+const runs    = lang === 'pt'
+  ? `${count} ${count === 1 ? 'corrida' : 'corridas'}`
+  : `${count} ${count === 1 ? 'run' : 'runs'}`;
+const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 ---
 
-{distKm !== null && (
-  <div
-    data-animate
-    style="--animate-delay: 240ms"
-    class="run-widget w-full"
-    aria-label={lang === 'pt' ? `Última corrida: ${distKm} km` : `Last run: ${distKm} km`}
-  >
-    <!-- Header -->
-    <div class="run-widget__header">
-      <div class="run-widget__header-left">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M10.5 3L6 13.5h3.9L12 9l2.1 4.5H18L13.5 3H10.5z" fill="#FC4C02"/>
-          <path d="M14.1 13.5L12 17.7l-2.1-4.2H6.9L12 21l5.1-7.5H14.1z" fill="#FC4C02" opacity="0.6"/>
-        </svg>
-        <span class="run-widget__label">{runLabel}</span>
-      </div>
-      <div class="run-widget__live">
-        <span class="run-widget__dot" aria-hidden="true"></span>
-      </div>
+{totalKm !== null && (
+  <div class="run-widget" aria-label={`${title}: ${totalKm} km`}>
+    <div class="run-widget__top">
+      <span class="run-widget__title">{title}</span>
+      <!-- Strava logo -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="run-widget__logo">
+        <path d="M10.5 3L6 13.5h3.9L12 9l2.1 4.5H18L13.5 3H10.5z" fill="#FC4C02"/>
+        <path d="M14.1 13.5L12 17.7l-2.1-4.2H6.9L12 21l5.1-7.5H14.1z" fill="#FC4C02" opacity="0.6"/>
+      </svg>
     </div>
 
-    <!-- Hero number -->
-    <div class="run-widget__hero">
-      <span class="run-widget__number">{distKm}</span>
-      <span class="run-widget__unit">km</span>
+    <div class="run-widget__number">
+      {totalKm}<span class="run-widget__unit"> km</span>
     </div>
 
-    <!-- Secondary info -->
-    <div class="run-widget__footer">
-      {dateLabel && <span class="run-widget__meta">{dateLabel}</span>}
-      {gearModel && <span class="run-widget__meta run-widget__meta--gear">{gearModel}</span>}
+    <div class="run-widget__bottom">
+      <span class="run-widget__count">{runs}</span>
+      <span class="run-widget__sync">{syncing}</span>
     </div>
   </div>
 )}
 
 <style>
   .run-widget {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    background: var(--color-surface);
     border-radius: 16px;
-    padding: 14px;
+    padding: 16px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    aspect-ratio: 1 / 1;
+    gap: 8px;
+    width: 100%;
   }
 
-  .run-widget__header {
+  .run-widget__top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
-  .run-widget__header-left {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .run-widget__label {
+  .run-widget__title {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #555;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FC4C02;
+    line-height: 1.2;
   }
 
-  .run-widget__live {
-    display: flex;
-    align-items: center;
-  }
-
-  .run-widget__dot {
-    display: block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #22c55e;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.75); }
-  }
-
-  .run-widget__hero {
-    display: flex;
-    align-items: baseline;
-    gap: 3px;
+  :global(html[data-theme="dark"]) .run-widget__title {
+    color: var(--color-ink);
   }
 
   .run-widget__number {
-    font-family: var(--font-display, 'Cactus Regular', serif);
-    font-size: clamp(40px, 8vw, 56px);
-    font-weight: 400;
-    color: #ffffff;
+    font-family: var(--font-body, 'Barlow', sans-serif);
+    font-size: 48px;
+    font-weight: 800;
     line-height: 1;
+    color: #FC4C02;
     letter-spacing: -0.02em;
   }
 
+  :global(html[data-theme="dark"]) .run-widget__number {
+    color: var(--color-ink);
+  }
+
   .run-widget__unit {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .run-widget__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .run-widget__count {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 700;
     color: #FC4C02;
   }
 
-  .run-widget__footer {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  :global(html[data-theme="dark"]) .run-widget__count {
+    color: var(--color-ink);
   }
 
-  .run-widget__meta {
+  .run-widget__sync {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 11px;
-    font-weight: 400;
-    color: #555;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 12px;
+    font-weight: 500;
+    color: #FC4C02;
     white-space: nowrap;
   }
 
-  .run-widget__meta--gear {
-    color: #444;
+  :global(html[data-theme="dark"]) .run-widget__sync {
+    color: var(--color-ink);
   }
 </style>
