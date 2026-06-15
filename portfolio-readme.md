@@ -20,7 +20,7 @@ bilíngues (PT/EN) em Markdown, hospedado na Vercel.
 | Conteúdo | Content Collections (Markdown) |
 | i18n | Astro i18n routing (EN raiz + PT em /pt) |
 | Hospedagem | Vercel (output hybrid) |
-| Fontes | Cactus Regular (display) + Barlow (corpo) |
+| Fontes | DM Serif Display (display) + Barlow 500/800 (corpo) |
 | Email | Resend (formulário de contato) |
 | Versionamento | Git → GitHub |
 
@@ -47,6 +47,8 @@ Portfolio/
 │   │   ├── Hero.astro              # Card escuro com headline + CTA
 │   │   ├── CaseCard.astro          # Card de case com cover, tags e hover expressivo
 │   │   ├── Footer.astro            # Copyright e links sociais
+│   │   ├── RunWidget.astro         # Widget Strava: km mensais via painel-saude API
+│   │   ├── WorkoutWidget.astro     # Widget Hevy: horas mensais via painel-saude API
 │   │   ├── ContactForm.svelte      # Ilha Svelte: formulário com estados loading/sucesso/erro
 │   │   └── ThemeToggle.svelte      # Ilha Svelte: toggle dark/light mode
 │   ├── layouts/
@@ -71,6 +73,7 @@ Portfolio/
 │   ├── Jeferson_Freiry_PT.pdf      # Currículo em português
 │   ├── Jeferson_Freiry_EN.pdf      # Resume in English
 │   ├── fonts/                      # Woff2 self-hosted: DM Serif Display + Barlow (5 arquivos, latin)
+│   ├── logos/                      # Logos de parceiros (strava.png, hevy.png, etc.)
 │   ├── cases/                      # Imagens de cover por case (a preencher)
 │   └── favicon.svg
 ├── astro.config.mjs                # output: hybrid, adapter Vercel, i18n
@@ -102,7 +105,7 @@ com `⬜`. Detalhes do modelo e o template completo em
 
 Formalizada em [docs/design-system.md](docs/design-system.md):
 
-- **Tipografia:** Cactus Regular (títulos uppercase, via @font-face em `public/fonts/`) + Barlow 300–500 (corpo)
+- **Tipografia:** DM Serif Display (títulos, self-hosted em `public/fonts/`) + Barlow 500/800 (corpo, self-hosted)
 - **Acento:** laranja jambu `#ed6707`
 - **Fundo:** off-white `#f5f2ee` (light) · warm dark `#18120e` (dark)
 - **Texto principal:** cha-mate `#5c2d11` (light) · `#e8ddd5` (dark)
@@ -150,9 +153,7 @@ npm run preview
 
 ## Estado atual
 
-**Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases
-bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato
-com Resend, dark mode e microinterações expressivas.
+**Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook).
 
 **Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%):**
 - 🔴 **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases (afeta 11/11 vagas-alvo)

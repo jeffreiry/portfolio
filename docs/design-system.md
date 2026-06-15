@@ -87,6 +87,38 @@ Duas famílias:
 
 ---
 
+## Padrões de componente
+
+### Label de seção (eyebrow)
+
+Usado em cabeçalhos de subseção dentro do About: Education/Formação, label de hobbies.
+
+```css
+font-family: var(--font-body);
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(--color-faint);
+```
+
+### Widget de dados ao vivo (RunWidget / WorkoutWidget)
+
+Cards na seção About mostrando dados mensais de Strava (km) e Hevy (horas de treino). Dados via API `painel-saude-zeta.vercel.app`; rebuild automático via Vercel deploy hook.
+
+| Elemento | Fonte / peso | Tamanho | Cor (light) |
+|----------|-------------|---------|-------------|
+| Título | Barlow 700 | 14px | `#FC4C02` (Strava) / `var(--color-ink)` (Hevy) |
+| Número | Barlow 800 | 48px | idem |
+| Unidade | Barlow 700 | 20px | idem |
+| Contagem | Barlow 700 | 14px | idem |
+| Sync label | Barlow 500 | 12px | idem |
+| Fundo | — | — | `#fafafa` (light) · `var(--color-surface)` (dark) |
+
+Ponto pulsante verde (`#22c55e`, 6px) antes do texto "Syncing with …" indica atualização em tempo real.
+
+---
+
 ## Componentes & seções (IA observada no Framer)
 
 A home atual segue esta sequência. Manter como ponto de partida:
