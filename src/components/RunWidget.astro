@@ -35,7 +35,10 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
 
     <div class="run-widget__bottom">
       <span class="run-widget__count">{runs}</span>
-      <span class="run-widget__sync">{syncing}</span>
+      <span class="run-widget__sync">
+        <span class="run-widget__dot" aria-hidden="true"></span>
+        {syncing}
+      </span>
     </div>
   </div>
 )}
@@ -105,9 +108,28 @@ const syncing = lang === 'pt' ? 'Sincroniza com Strava' : 'Syncing with Strava';
     color: var(--color-ink);
   }
 
+  .run-widget__dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.75); }
+  }
+
   .run-widget__sync {
+    display: flex;
+    align-items: center;
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     color: #FC4C02;
     white-space: nowrap;
