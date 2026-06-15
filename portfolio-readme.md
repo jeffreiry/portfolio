@@ -153,7 +153,7 @@ npm run preview
 
 ## Estado atual
 
-**Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook).
+**Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook). Seção Cases com filtro interativo por 7 categorias; `CaseCard` exibe apenas `year` (role removido).
 
 **Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%):**
 - 🔴 **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases (afeta 11/11 vagas-alvo)

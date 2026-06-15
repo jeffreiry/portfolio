@@ -102,6 +102,21 @@ text-transform: uppercase;
 color: var(--color-faint);
 ```
 
+### CaseCard
+
+Card de case no grid da home. Exibe: imagem de cover (200px altura fixa) · barra accent Jambu (3px, bottom da imagem) · ano · título · summary (2 linhas, clamp) · tags (até 3 pills) · botão "View case →" (mobile only).
+
+- `role` não é exibido no card (redundante com o posicionamento do portfólio como Product Designer)
+- Tags são as 7 categorias de filtro: Enterprise, AI & Automation, UX Research, Design System, Branding, Mobile, Data & Analytics
+- Drafts têm tag extra "Projetos Pessoais" (não aparece como botão de filtro)
+- Hover: `translateY(-6px)` + `box-shadow` via `onmouseover` inline
+
+### Filtro de cases
+
+Barra de botões pill acima do grid de cases. JS vanilla inline filtra `[data-tags]` por `display: none/''`. "All/Todos" ativo por padrão. "Projetos Pessoais" excluído dos botões visíveis.
+
+---
+
 ### Widget de dados ao vivo (RunWidget / WorkoutWidget)
 
 Cards na seção About mostrando dados mensais de Strava (km) e Hevy (horas de treino). Dados via API `painel-saude-zeta.vercel.app`; rebuild automático via Vercel deploy hook.

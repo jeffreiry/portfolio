@@ -119,6 +119,8 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **Seção About (2026-06-15):** Education/Formação e label de hobbies usam estilo de label 11px uppercase (`font-body`, 600, 0.12em letter-spacing, `color-faint`). Botão de currículo: "Download my Resume" / "Baixe meu Currículo". Logo header: `jeferson-black.png` (light) / `jeferson-white.png` (dark).
 
+**Seção Cases (2026-06-15):** Tags reestruturadas para 7 categorias de filtro: Enterprise, AI & Automation, UX Research, Design System, Branding, Mobile, Data & Analytics. Drafts recebem tag oculta "Projetos Pessoais". Filtro interativo (JS vanilla, `<script>` inline) adicionado acima do grid em EN e PT — botões pill, "All/Todos" ativo por padrão. `CaseCard.astro` simplificado: campo `role` removido do card, exibe apenas o `year`.
+
 **Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise, 🟠 performance mobile (Lighthouse 73→95+), 🟡 narrativa mobile.
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
