@@ -8,14 +8,14 @@ let totalHours: number | null = null;
 let count = 0;
 
 try {
-  const res = await fetch('https://painel-saude-zeta.vercel.app/api/weekly-workout');
+  const res = await fetch('https://painel-saude-zeta.vercel.app/api/monthly-workout');
   if (res.ok) {
     const data = await res.json();
     if (data) { totalHours = data.total_hours; count = data.count; }
   }
 } catch { /* skip */ }
 
-const title    = lang === 'pt' ? 'Academia esta semana' : 'Gym This Week';
+const title    = lang === 'pt' ? 'Academia este mês' : 'Gym This Month';
 const workouts = lang === 'pt'
   ? `${count} ${count === 1 ? 'treino' : 'treinos'}`
   : `${count} ${count === 1 ? 'workout' : 'workouts'}`;

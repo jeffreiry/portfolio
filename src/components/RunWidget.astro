@@ -8,14 +8,14 @@ let totalKm: number | null = null;
 let count = 0;
 
 try {
-  const res = await fetch('https://painel-saude-zeta.vercel.app/api/weekly-run');
+  const res = await fetch('https://painel-saude-zeta.vercel.app/api/monthly-run');
   if (res.ok) {
     const data = await res.json();
     if (data) { totalKm = data.total_km; count = data.count; }
   }
 } catch { /* skip */ }
 
-const title   = lang === 'pt' ? 'Corrida esta semana' : 'Running This Week';
+const title   = lang === 'pt' ? 'Corrida este mês' : 'Running This Month';
 const runs    = lang === 'pt'
   ? `${count} ${count === 1 ? 'corrida' : 'corridas'}`
   : `${count} ${count === 1 ? 'run' : 'runs'}`;
