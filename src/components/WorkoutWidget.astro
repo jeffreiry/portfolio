@@ -39,10 +39,10 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
     class="workout-widget w-full"
     aria-label={lang === 'pt' ? `Último treino: ${volumeKg} kg` : `Last workout: ${volumeKg} kg`}
   >
-    <!-- Header row -->
+    <!-- Header -->
     <div class="workout-widget__header">
       <div class="workout-widget__header-left">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M6.5 6.5h1.5v11H6.5zM16 6.5h1.5v11H16z" fill="#f97316"/>
           <rect x="4" y="10" width="4" height="4" rx="1" fill="#f97316"/>
           <rect x="16" y="10" width="4" height="4" rx="1" fill="#f97316"/>
@@ -52,34 +52,19 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
       </div>
       <div class="workout-widget__live">
         <span class="workout-widget__dot" aria-hidden="true"></span>
-        <span class="workout-widget__live-label">{liveLabel}</span>
       </div>
     </div>
 
-    <!-- Data row -->
-    <div class="workout-widget__data">
-      <div class="workout-widget__stat">
-        <span class="workout-widget__number">{volumeKg}</span>
-        <span class="workout-widget__unit">kg</span>
-      </div>
+    <!-- Hero number -->
+    <div class="workout-widget__hero">
+      <span class="workout-widget__number">{volumeKg.toLocaleString('pt-BR')}</span>
+      <span class="workout-widget__unit">kg</span>
+    </div>
 
-      {dateLabel && (
-        <>
-          <div class="workout-widget__divider" aria-hidden="true"></div>
-          <div class="workout-widget__stat workout-widget__stat--secondary">
-            <span class="workout-widget__value">{dateLabel}</span>
-          </div>
-        </>
-      )}
-
-      {workoutTitle && (
-        <>
-          <div class="workout-widget__divider" aria-hidden="true"></div>
-          <div class="workout-widget__stat workout-widget__stat--secondary">
-            <span class="workout-widget__value">{workoutTitle}</span>
-          </div>
-        </>
-      )}
+    <!-- Secondary info -->
+    <div class="workout-widget__footer">
+      {dateLabel && <span class="workout-widget__meta">{dateLabel}</span>}
+      {workoutTitle && <span class="workout-widget__meta workout-widget__meta--title">{workoutTitle}</span>}
     </div>
   </div>
 )}
@@ -89,23 +74,23 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
     border-radius: 16px;
-    padding: 12px 16px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    aspect-ratio: 1 / 1;
   }
 
   .workout-widget__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
   }
 
   .workout-widget__header-left {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
 
   .workout-widget__label {
@@ -120,7 +105,6 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
   .workout-widget__live {
     display: flex;
     align-items: center;
-    gap: 5px;
   }
 
   .workout-widget__dot {
@@ -130,7 +114,6 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
     border-radius: 50%;
     background: #22c55e;
     animation: pulse-dot 2s ease-in-out infinite;
-    flex-shrink: 0;
   }
 
   @keyframes pulse-dot {
@@ -138,21 +121,7 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
     50%       { opacity: 0.4; transform: scale(0.75); }
   }
 
-  .workout-widget__live-label {
-    font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 10px;
-    font-weight: 400;
-    color: #3a3a3a;
-    white-space: nowrap;
-  }
-
-  .workout-widget__data {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .workout-widget__stat {
+  .workout-widget__hero {
     display: flex;
     align-items: baseline;
     gap: 3px;
@@ -160,7 +129,7 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
 
   .workout-widget__number {
     font-family: var(--font-display, 'Cactus Regular', serif);
-    font-size: 36px;
+    font-size: clamp(36px, 7vw, 52px);
     font-weight: 400;
     color: #ffffff;
     line-height: 1;
@@ -169,30 +138,28 @@ const workoutLabel = lang === 'pt' ? 'Último treino' : 'Last workout';
 
   .workout-widget__unit {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: #f97316;
   }
 
-  .workout-widget__divider {
-    width: 1px;
-    height: 28px;
-    background: #2e2e2e;
-    flex-shrink: 0;
+  .workout-widget__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
-  .workout-widget__stat--secondary {
-    align-items: center;
-  }
-
-  .workout-widget__value {
+  .workout-widget__meta {
     font-family: var(--font-body, 'Barlow', sans-serif);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 400;
-    color: #666;
+    color: #555;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 120px;
+  }
+
+  .workout-widget__meta--title {
+    color: #444;
   }
 </style>
