@@ -4,14 +4,14 @@ interface Props {
 }
 const { lang } = Astro.props;
 
-let totalVolume: number | null = null;
+let totalHours: number | null = null;
 let count = 0;
 
 try {
   const res = await fetch('https://painel-saude-zeta.vercel.app/api/weekly-workout');
   if (res.ok) {
     const data = await res.json();
-    if (data) { totalVolume = data.total_volume_kg; count = data.count; }
+    if (data) { totalHours = data.total_hours; count = data.count; }
   }
 } catch { /* skip */ }
 
@@ -22,15 +22,15 @@ const workouts = lang === 'pt'
 const syncing  = lang === 'pt' ? 'Sincroniza com Hevy' : 'Syncing with Hevy';
 ---
 
-{totalVolume !== null && (
-  <div class="workout-widget" aria-label={`${title}: ${totalVolume} kg`}>
+{totalHours !== null && (
+  <div class="workout-widget" aria-label={`${title}: ${totalHours}h`}>
     <div class="workout-widget__top">
       <span class="workout-widget__title">{title}</span>
       <img src="/logos/hevy.png" alt="Hevy" width="28" height="28" class="workout-widget__logo" />
     </div>
 
     <div class="workout-widget__number">
-      {totalVolume?.toLocaleString('pt-BR')}<span class="workout-widget__unit"> kg</span>
+      {totalHours}<span class="workout-widget__unit">h</span>
     </div>
 
     <div class="workout-widget__bottom">
