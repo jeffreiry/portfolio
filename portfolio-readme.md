@@ -162,6 +162,6 @@ npm run preview
 - 🟠 **Lighthouse performance mobile 95+** (atual: **73**) — desktop: 99/95/100/100 ✅ · mobile: 73/95/100/100 ⚠️ (auditado 2026-06-11)
 - 🟡 **Mobile como plataforma** — Arezzo tem tag "Mobile" sem narrativa de decisões (afeta 4/11 vagas)
 - 🟡 **Responsividade fina** nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
-- 🟡 Acessibilidade de interface — foco, contraste WCAG AA, leitor de tela
+- 🟡 Acessibilidade de interface — ~~contraste WCAG AA~~ ✅ (2026-06-15: tokens auditados e corrigidos) · ~~teclado/validação no formulário~~ ✅ · pendente: passada completa de leitor de tela
 - Reunir e otimizar imagens de cada case em `public/cases/<slug>/`
 - ~~**Revisão de voz dos cases**~~ ✅ concluída (2026-06-11) — 9 cases × 18 arquivos PT+EN

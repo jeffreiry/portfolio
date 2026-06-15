@@ -45,6 +45,8 @@
   --color-azul-pantanal:   #153c52;
   --color-figo:            #4d6046;
   --color-jambu:           #ed6707;
+  --color-jambu-text:      #a8480c; /* jambu legível como texto/borda sobre fundo claro — AA */
+  --color-jambu-deep:      #a8480c; /* fundo de botão com texto branco — AA (white 5.84:1) */
   --color-sol-jalapao:     #f26b3a;
   --color-fogueira:        #8c2f0d;
 
@@ -58,7 +60,7 @@
   --color-white:           #ffffff;
   --color-ink:             #0d0d0d;
   --color-muted:           #7a6a60;
-  --color-faint:           #a89890;
+  --color-faint:           #776559; /* AA: 4.97:1 pageBg, 4.55:1 surface */
 
   /* --- Tags por categoria --- */
   --color-tag-enterprise-bg:   #fde3d0;
@@ -108,7 +110,8 @@ html[data-theme="dark"] {
   --color-ink:           #f0ebe4;
   --color-cha-mate:      #e8ddd5;
   --color-muted:         #a89080;
-  --color-faint:         #8a7a70;
+  --color-faint:         #998a7e; /* AA: 5.13:1 surface, 4.70:1 surface2 */
+  --color-jambu-text:    var(--color-jambu); /* jambu puro já lê bem como texto no escuro (5.34:1) */
 
   /* Tags — versão escura */
   --color-tag-enterprise-bg:   #3d1f10;
@@ -360,7 +363,7 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     left: 1rem;
     z-index: 9999;
     padding: 0.5rem 1.25rem;
-    background: var(--color-jambu);
+    background: var(--color-jambu-deep);
     color: #fff;
     border-radius: var(--radius-pill);
     font-size: 0.875rem;

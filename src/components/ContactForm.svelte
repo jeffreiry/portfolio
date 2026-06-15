@@ -24,17 +24,57 @@
       : 'Não foi possível enviar sua mensagem. Tente novamente ou fale pelo WhatsApp.',
     whatsapp:    isEn ? 'Chat on WhatsApp' : 'Falar pelo WhatsApp',
     orDivider:   isEn ? 'or' : 'ou',
+    errName:     isEn ? 'Please enter your name.'           : 'Informe seu nome.',
+    errEmail:    isEn ? 'Please enter a valid email.'       : 'Informe um e-mail válido.',
+    errMessage:  isEn ? 'Please enter a message.'           : 'Escreva uma mensagem.',
   };
 
   type Status = 'idle' | 'loading' | 'success' | 'error';
   let status = $state<Status>('idle');
 
+  // Erros de validação por campo (string vazia = sem erro)
+  let errors = $state<{ name: string; email: string; message: string }>({ name: '', email: '', message: '' });
+
+  // Refs para foco gerenciado
+  let nameEl = $state<HTMLInputElement>();
+  let emailEl = $state<HTMLInputElement>();
+  let messageEl = $state<HTMLTextAreaElement>();
+  let feedbackEl = $state<HTMLDivElement>();
+
+  // Move o foco para o alerta de sucesso/erro quando ele aparece
+  $effect(() => {
+    if ((status === 'success' || status === 'error') && feedbackEl) {
+      feedbackEl.focus();
+    }
+  });
+
+  function validate(data: FormData): boolean {
+    const name = (data.get('name') as string ?? '').trim();
+    const email = (data.get('email') as string ?? '').trim();
+    const message = (data.get('message') as string ?? '').trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    errors = {
+      name:    name ? '' : labels.errName,
+      email:   emailOk ? '' : labels.errEmail,
+      message: message ? '' : labels.errMessage,
+    };
+
+    // Move o foco para o primeiro campo inválido
+    if (errors.name)         { nameEl?.focus(); return false; }
+    if (errors.email)        { emailEl?.focus(); return false; }
+    if (errors.message)      { messageEl?.focus(); return false; }
+    return true;
+  }
+
   async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-    status = 'loading';
 
     const form = e.currentTarget as HTMLFormElement;
     const body = new FormData(form);
+    if (!validate(body)) return;
+
+    status = 'loading';
     body.set('lang', lang);
 
     try {
@@ -48,7 +88,7 @@
 
 <div class="contact-wrap">
   {#if status === 'success'}
-    <div class="feedback feedback--success" role="alert">
+    <div class="feedback feedback--success" role="alert" tabindex="-1" bind:this={feedbackEl}>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
         <path d="M7.5 12.5l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -60,7 +100,7 @@
     </div>
 
   {:else if status === 'error'}
-    <div class="feedback feedback--error" role="alert">
+    <div class="feedback feedback--error" role="alert" tabindex="-1" bind:this={feedbackEl}>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
         <path d="M12 7v6M12 16.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -84,9 +124,16 @@
           type="text"
           autocomplete="name"
           required
+          aria-required="true"
+          aria-invalid={errors.name ? 'true' : undefined}
+          aria-describedby={errors.name ? 'cf-name-error' : undefined}
           placeholder={isEn ? 'Your name' : 'Seu nome'}
           disabled={status === 'loading'}
+          bind:this={nameEl}
         />
+        {#if errors.name}
+          <p id="cf-name-error" class="field-error">{errors.name}</p>
+        {/if}
       </div>
 
       <div class="field">
@@ -97,9 +144,16 @@
           type="email"
           autocomplete="email"
           required
+          aria-required="true"
+          aria-invalid={errors.email ? 'true' : undefined}
+          aria-describedby={errors.email ? 'cf-email-error' : undefined}
           placeholder={isEn ? 'your@email.com' : 'seu@email.com'}
           disabled={status === 'loading'}
+          bind:this={emailEl}
         />
+        {#if errors.email}
+          <p id="cf-email-error" class="field-error">{errors.email}</p>
+        {/if}
       </div>
 
       <div class="field">
@@ -109,9 +163,16 @@
           name="message"
           rows="5"
           required
+          aria-required="true"
+          aria-invalid={errors.message ? 'true' : undefined}
+          aria-describedby={errors.message ? 'cf-message-error' : undefined}
           placeholder={isEn ? 'Tell me about your project or opportunity…' : 'Conte sobre seu projeto ou oportunidade…'}
           disabled={status === 'loading'}
+          bind:this={messageEl}
         ></textarea>
+        {#if errors.message}
+          <p id="cf-message-error" class="field-error">{errors.message}</p>
+        {/if}
       </div>
 
       <button type="submit" class="btn-submit" disabled={status === 'loading'} aria-busy={status === 'loading'}>
@@ -119,6 +180,11 @@
       </button>
     </form>
   {/if}
+
+  <!-- Anúncio de estado para leitores de tela -->
+  <p class="sr-only" role="status" aria-live="polite">
+    {status === 'loading' ? labels.sending : ''}
+  </p>
 </div>
 
 <style>
@@ -183,10 +249,34 @@
     cursor: not-allowed;
   }
 
+  input[aria-invalid="true"],
+  textarea[aria-invalid="true"] {
+    border-color: var(--color-jambu-text);
+  }
+
+  .field-error {
+    font-size: 12.5px;
+    font-family: var(--font-body);
+    color: var(--color-jambu-text);
+    margin: 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .btn-submit {
     padding: 13px 24px;
     border-radius: 999px;
-    background: var(--color-jambu);
+    background: var(--color-jambu-deep);
     color: #fff;
     font-size: 14px;
     font-weight: 600;
@@ -234,7 +324,7 @@
 
   .feedback--error {
     background: color-mix(in srgb, var(--color-jambu) 10%, transparent);
-    color: var(--color-jambu);
+    color: var(--color-jambu-text);
   }
 
   .feedback svg {

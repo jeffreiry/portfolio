@@ -121,6 +121,8 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **Seção Cases (2026-06-15):** Tags reestruturadas para 7 categorias de filtro: Enterprise, AI & Automation, UX Research, Design System, Branding, Mobile, Data & Analytics. Drafts recebem tag oculta "Projetos Pessoais". Filtro interativo (JS vanilla, `<script>` inline) adicionado acima do grid em EN e PT — botões pill, "All/Todos" ativo por padrão. `CaseCard.astro` simplificado: campo `role` removido do card, exibe apenas o `year`.
 
+**Acessibilidade WCAG AA (2026-06-15):** Auditoria de contraste por script (`f(c)` luminância relativa). Tokens novos: `--color-jambu-text` (#a8480c light / jambu dark) para jambu como texto/borda; `--color-jambu-deep` (#a8480c) para texto branco sobre laranja (Hero CTA, submit, skip-link). `--color-faint` escurecido em ambos os modos para ≥4.5:1. Bars decorativas mantêm `--color-jambu`. Formulário de contato: validação acessível (`aria-invalid`/`aria-describedby`/erros inline), foco gerenciado, `aria-live`. **Ao criar elementos novos: nunca usar `--color-jambu` como texto sobre fundo claro nem texto branco sobre `--color-jambu` — usar os tokens `-text`/`-deep`.** Pendente: passada de leitor de tela end-to-end.
+
 **Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise, 🟠 performance mobile (Lighthouse 73→95+), 🟡 narrativa mobile.
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,

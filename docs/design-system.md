@@ -32,6 +32,22 @@ registrá-las aqui primeiro.
 | `accent-400` | `#ff620a` | Laranja médio |
 | `accent-500` | `#ff4800` | **Primária** — CTAs, links em destaque |
 
+### Laranja jambu — variantes por contraste (WCAG AA)
+
+`--color-jambu` (#ed6707) **não passa AA como texto** sobre fundos claros (≈2.6–2.9:1) nem carrega texto branco (3.21:1). Use as variantes conforme o papel:
+
+| Token | Light | Dark | Uso |
+|-------|-------|------|-----|
+| `--color-jambu` | `#ed6707` | `#ed6707` | **Só decorativo** — accent bars, fundos grandes (elementos não-texto, isentos da 1.4.3) |
+| `--color-jambu-text` | `#a8480c` | `#ed6707` | Jambu como **texto ou borda** sobre fundo (ex: botão "View case →", erros de formulário) |
+| `--color-jambu-deep` | `#a8480c` | `#a8480c` | **Fundo de botão com texto branco** (Hero CTA, submit, skip-link) — white 5.84:1 |
+
+> Regra: nunca usar `--color-jambu` puro como cor de texto sobre fundo claro, nem texto branco sobre `--color-jambu`. Auditado por script em 2026-06-15.
+
+### Neutros de texto — contraste
+
+`--color-faint` foi escurecido (light `#776559`, dark `#998a7e`) para ≥4.5:1 — carrega texto pequeno real (ano dos cases, eyebrows, labels). `--color-muted` passa AA sobre `page-bg`/`surface`; sobre `surface-2` (fundo de tag) fica em 3.77:1 (AA-large only) — aceitável para as pills de tag.
+
 ### Pastéis (fundos de card por case)
 
 Usados como fundo individual de cada projeto, dando cor própria a cada case.

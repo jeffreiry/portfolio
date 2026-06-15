@@ -78,7 +78,9 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 
 - [ ] Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
 - [x] Acessibilidade (parcial): skip navigation link (`Base.astro`), foco visível nos nav links (outline `var(--color-cha-mate)`), contraste dos títulos de cards (#fff em vez de jambu sobre fundo escuro)
-- [ ] Acessibilidade (pendente): contraste WCAG AA geral, leitor de tela end-to-end, teclado em formulário
+- [x] Acessibilidade — contraste WCAG AA (2026-06-15): auditoria de tokens via script. Corrigidos: `--color-faint` (#a89890→#776559 light, #8a7a70→#998a7e dark; era 2.0–2.5:1, agora ≥4.5:1) usado em ano/labels/eyebrows; jambu como texto/borda no "View case →" → novo token `--color-jambu-text` (#a8480c light, jambu no dark); botões brancos-sobre-laranja (Hero CTA, submit, skip-link, era 3.21:1) → `--color-jambu-deep` #a8480c (white 5.84:1). Bars decorativas mantêm `--color-jambu` (exemptas).
+- [x] Acessibilidade — formulário de contato (2026-06-15): validação client-side acessível (`aria-invalid`, `aria-describedby`, mensagens inline), foco movido para 1º campo inválido, foco movido para o alerta de sucesso/erro (`tabindex=-1`), região `aria-live="polite"` anunciando "Enviando…".
+- [ ] Acessibilidade (pendente): leitor de tela end-to-end (passada completa NVDA/VoiceOver), contraste de `muted` em tags sobre surface-2 (3.77:1, AA-large only)
 - [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
 - [ ] Sitemap.xml
 - [ ] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100 (performance mobile abaixo da meta — Google Fonts render-blocking 2.270ms, LCP via background-image sem fetchpriority, Speed Index 10s)
