@@ -1,5 +1,16 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-06-18
+
+### Alterado
+- **Hero video** — substituído `hero.mp4` por `Gh011011.mp4` (vídeo de autoria própria) em EN e PT
+- **RunWidget + WorkoutWidget** — bottom row alterado de `flex-row space-between` para `flex-column`, evitando quebra do "Syncing with" ao lado da contagem no mobile
+
+### Corrigido
+- **Vite watcher** — adicionado `**/.vercel/**` ao `server.watch.ignored` no `astro.config.mjs` para evitar `ELOOP: too many symbolic links` na pasta `.vercel/output/` ao rodar `dev` localmente
+
+---
+
 ## [Não lançado]
 
 ### Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%)
