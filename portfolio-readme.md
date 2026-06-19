@@ -57,6 +57,7 @@ Portfolio/
 │   ├── middleware.ts               # Proteção por senha em /work/* e /pt/work/*
 │   ├── pages/
 │   │   ├── index.astro             # Home EN (raiz)
+│   │   ├── jobanalysis.astro       # Bench de candidaturas (PT, noindex, fora do sitemap)
 │   │   ├── login.astro             # Tela de login (proteção de cases)
 │   │   ├── contact.astro           # Página de contato EN
 │   │   ├── api/

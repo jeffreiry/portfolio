@@ -8,6 +8,7 @@ interface Props {
   ogType?: 'website' | 'article';
   canonicalURL?: string;
   lang?: 'en' | 'pt';
+  noindex?: boolean;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   ogType = 'website',
   canonicalURL = Astro.url.href,
   lang = 'en',
+  noindex = false,
 } = Astro.props;
 
 const siteURL = 'https://portfolio.jefersonfreiry.com';
@@ -44,6 +46,7 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
     <!-- Title & Description -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Canonical & hreflang -->
     <link rel="canonical" href={canonicalURL} />

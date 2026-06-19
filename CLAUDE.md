@@ -120,6 +120,8 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **Dev local (2026-06-18):** `astro.config.mjs` exclui `**/.vercel/**` do Vite watcher para evitar `ELOOP: too many symbolic links` ao rodar `npm run dev`.
 
+**Página /jobanalysis (2026-06-18):** Rota PT única (`src/pages/jobanalysis.astro`) com os resultados do bench (`Bench_job_applications/_index.md`): resumo, ranking de aderência por vaga (barra de score), gaps transversais e metodologia. Dados embutidos na frontmatter (não vem do content collection). **Análise interna:** `noindex={true}` no `Base.astro` (nova prop, injeta `<meta name="robots" content="noindex, nofollow">`) e excluída do sitemap via `filter` em `astro.config.mjs`. Ao atualizar o bench, sincronizar o array `vagas`/`gaps` da página.
+
 **Seção About (2026-06-15):** Education/Formação e label de hobbies usam estilo de label 11px uppercase (`font-body`, 600, 0.12em letter-spacing, `color-faint`). Botão de currículo: "Download my Resume" / "Baixe meu Currículo". Logo header: `jeferson-black.png` (light) / `jeferson-white.png` (dark).
 
 **Seção Cases (2026-06-15):** Tags reestruturadas para 7 categorias de filtro: Enterprise, AI & Automation, UX Research, Design System, Branding, Mobile, Data & Analytics. Drafts recebem tag oculta "Projetos Pessoais". Filtro interativo (JS vanilla, `<script>` inline) adicionado acima do grid em EN e PT — botões pill, "All/Todos" ativo por padrão. `CaseCard.astro` simplificado: campo `role` removido do card, exibe apenas o `year`.

@@ -27,5 +27,12 @@ export default defineConfig({
     },
   },
 
-  integrations: [svelte(), sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en-US', pt: 'pt-BR' } } })],
+  integrations: [
+    svelte(),
+    sitemap({
+      i18n: { defaultLocale: 'en', locales: { en: 'en-US', pt: 'pt-BR' } },
+      // /jobanalysis é noindex (análise interna) — fora do sitemap
+      filter: (page) => !page.includes('/jobanalysis'),
+    }),
+  ],
 });

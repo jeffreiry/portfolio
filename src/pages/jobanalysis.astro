@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Resultados do bench de candidaturas — fonte: Bench_job_applications/_index.md
+// Análise interna (noindex). Atualizado em 2026-06-12.
+type Banda = 'parcial' | 'baixa' | 'muito-baixa';
+
+interface Vaga {
+  empresa: string;
+  produto: string;
+  cargo: string;
+  score: number;
+  interpretacao: string;
+  status: string;
+  data: string;
+}
+
+const vagas: Vaga[] = [
+  { empresa: 'Grupo Boticário', produto: 'Tech Corporate', cargo: 'Product Designer III', score: 76, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'BTG Pactual', produto: 'Banking', cargo: 'Product Designer UX', score: 73, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'TOTVS', produto: 'ERP Moda', cargo: 'Analista UX/UI Sênior', score: 67, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'MJV · Alelo', produto: 'RangoDS (Design System)', cargo: 'Product Designer', score: 65, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'Méliuz', produto: 'Fintech / Cashback', cargo: 'Product Designer Sr', score: 59, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'Banco PAN', produto: 'Crédito', cargo: 'Product Designer', score: 58, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'Grupo Decolar', produto: 'Growth Tribe', cargo: 'Product Designer', score: 54, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'SAP Concur', produto: 'TripIt', cargo: 'Senior UX Designer', score: 52, interpretacao: 'Aderência baixa', status: 'Candidatura pendente', data: '2026-06-10' },
+  { empresa: 'Bridger', produto: 'Produto digital', cargo: 'Designer UX/UI Sênior', score: 50, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
+  { empresa: 'C&A', produto: 'Varejo digital', cargo: 'Product Designer Sr', score: 46, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-11' },
+  { empresa: 'Madeira Madeira', produto: 'Fintech & Credit', cargo: 'Product Designer Sr', score: 41, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
+];
+
+const media = Math.round(vagas.reduce((s, v) => s + v.score, 0) / vagas.length);
+const parciais = vagas.filter((v) => v.score >= 60).length;
+const maxScore = Math.max(...vagas.map((v) => v.score));
+
+// Banda de cor por faixa de score (alinhada à rubrica do bench)
+function banda(score: number): Banda {
+  if (score >= 60) return 'parcial';
+  if (score >= 40) return 'baixa';
+  return 'muito-baixa';
+}
+
+const bandaCor: Record<Banda, { fill: string; chipBg: string; chipText: string; label: string }> = {
+  'parcial':     { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',     chipText: 'var(--color-tag-dataviz-text)',     label: 'Aderência parcial' },
+  'baixa':       { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)',  chipText: 'var(--color-tag-enterprise-text)',  label: 'Aderência baixa' },
+  'muito-baixa': { fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)',  chipText: 'var(--color-tag-enterprise-text)',  label: 'Baixa aderência' },
+};
+
+const rubrica = [
+  { nota: '0', criterio: 'Ausente — sem evidência no portfolio' },
+  { nota: '1', criterio: 'Parcialmente evidenciado — mencionado, sem profundidade ou artefatos visíveis' },
+  { nota: '2', criterio: 'Claramente evidenciado — case completo com processo documentado' },
+  { nota: '3', criterio: 'Diferencial — evidência forte com contexto, resultados ou detalhe incomum' },
+];
+
+const gaps = [
+  { gap: 'Métricas de impacto', impacto: 'Alto', vagas: 'Todas', acao: 'Preencher campos de resultado em Enterprise AI, Shipping, Arezzo e Hypera.' },
+  { gap: 'Artefatos visíveis', impacto: 'Alto', vagas: 'Todas', acao: 'Expor telas, flows ou wireframes — hoje os cases só descrevem processo.' },
+  { gap: 'Acessibilidade', impacto: 'Médio–alto', vagas: 'SAP, BTG, Boticário', acao: 'Documentar ao menos 1 decisão real por case enterprise.' },
+  { gap: 'UX Research estruturado', impacto: 'Médio', vagas: 'C&A, SAP', acao: 'A/B testing e testes de usabilidade formais não aparecem em nenhum case.' },
+];
+---
+
+<Base
+  title="Análise de Candidaturas — Jeferson Freiry"
+  description="Bench de aderência das vagas-alvo. Scoring ponderado por Person-Job Fit para calibrar e priorizar o desenvolvimento do portfolio."
+  lang="pt"
+  noindex={true}
+>
+  <Header lang="pt" currentPath="/jobanalysis" />
+
+  <main id="main-content" class="pb-24">
+
+    <!-- Hero -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-12 md:pt-16">
+      <div data-animate class="flex flex-col gap-4 max-w-[760px]">
+        <span class="inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em]"
+          style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);">
+          Bench · Análise interna
+        </span>
+        <h1 class="font-display text-[clamp(34px,5vw,56px)] font-semibold leading-[1.1] text-neutral-900">
+          Análise de Candidaturas
+        </h1>
+        <p class="text-lg leading-relaxed text-neutral-600">
+          Bench das vagas-alvo para <strong style="color: var(--color-neutral-800);">calibrar e priorizar</strong> o
+          desenvolvimento do portfolio. Cada vaga recebe um score de aderência ponderado por
+          <em>Person-Job Fit</em> — o quanto as evidências do portfolio atendem ao que o requisito exige.
+        </p>
+      </div>
+    </section>
+
+    <!-- Resumo (stats) -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
+      <div data-animate class="grid gap-4 grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
+          <span class="font-display text-3xl font-bold text-neutral-900">{vagas.length}</span>
+          <span class="text-sm" style="color: var(--color-faint);">Vagas analisadas</span>
+        </div>
+        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
+          <span class="font-display text-3xl font-bold text-neutral-900">{media}%</span>
+          <span class="text-sm" style="color: var(--color-faint);">Média geral</span>
+        </div>
+        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
+          <span class="font-display text-3xl font-bold text-neutral-900">{maxScore}%</span>
+          <span class="text-sm" style="color: var(--color-faint);">Maior aderência</span>
+        </div>
+        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
+          <span class="font-display text-3xl font-bold text-neutral-900">{parciais}</span>
+          <span class="text-sm" style="color: var(--color-faint);">Em aderência parcial (≥60%)</span>
+        </div>
+      </div>
+      <p data-animate class="pt-3 text-[13px]" style="color: var(--color-faint);">
+        Atualizado em 12/06/2026 · Média geral <strong>{media}%</strong> — aderência baixa (borderline parcial).
+      </p>
+    </section>
+
+    <!-- Ranking de vagas -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Ranking de aderência</h2>
+      <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
+
+      <div class="flex flex-col gap-3">
+        {vagas.map((v, i) => {
+          const b = bandaCor[banda(v.score)];
+          return (
+            <article
+              data-animate
+              style={`--animate-delay: ${Math.min(i * 50, 300)}ms`}
+              class="grid grid-cols-1 sm:grid-cols-[1fr_auto] sm:items-center gap-4 rounded-2xl border p-5"
+            >
+              <div class="flex flex-col gap-2.5 min-w-0">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span class="font-display text-[19px] font-semibold text-neutral-900">{v.empresa}</span>
+                  <span class="text-sm" style="color: var(--color-faint);">· {v.produto}</span>
+                </div>
+                <span class="text-sm" style="color: var(--color-muted);">{v.cargo}</span>
+
+                <!-- Barra de score -->
+                <div class="flex items-center gap-3 pt-1">
+                  <div class="relative h-2 flex-1 overflow-hidden rounded-full" style="background: var(--color-surface-2);">
+                    <div class="absolute inset-y-0 left-0 rounded-full" style={`width: ${v.score}%; background: ${b.fill};`} />
+                  </div>
+                  <span class="font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">{v.score}%</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="rounded-full px-2.5 py-1 text-[11px] font-medium" style={`background: ${b.chipBg}; color: ${b.chipText};`}>
+                    {v.interpretacao}
+                  </span>
+                  <span class="rounded-full border px-2.5 py-1 text-[11px] font-medium" style="border-color: var(--color-border); color: var(--color-muted);">
+                    {v.status}
+                  </span>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Gaps transversais -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Gaps transversais</h2>
+      <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Pendências presentes em todas as vagas — resolver aumenta o score de todas.</p>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {gaps.map((g, i) => (
+          <div data-animate style={`--animate-delay: ${Math.min(i * 60, 300)}ms`} class="flex flex-col gap-2 rounded-2xl border p-5">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-body text-base font-semibold text-neutral-900">{g.gap}</h3>
+              <span class="shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em]"
+                style="background: var(--color-tag-enterprise-bg); color: var(--color-tag-enterprise-text);">
+                {g.impacto}
+              </span>
+            </div>
+            <span class="text-[12px] uppercase tracking-[0.08em]" style="color: var(--color-faint);">Vagas: {g.vagas}</span>
+            <p class="text-sm leading-relaxed" style="color: var(--color-muted);">{g.acao}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Metodologia -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Metodologia de score</h2>
+      <p data-animate class="text-sm mb-7 max-w-[760px] leading-relaxed" style="color: var(--color-muted);">
+        Scoring ponderado baseado em <strong style="color: var(--color-neutral-800);">Person-Job Fit</strong>
+        (Kristof, 1996; Edwards, 1991) — avalia a congruência entre as demandas da vaga e as evidências do
+        portfolio. Tipo aplicado: <em>Demands-Abilities Fit</em>. Requisitos obrigatórios pesam 2×; diferenciais
+        preferidos pesam 1×.
+      </p>
+
+      <div class="grid gap-8 lg:grid-cols-2">
+        <!-- Rubrica -->
+        <div data-animate class="rounded-2xl border p-6">
+          <h3 class="font-body text-sm font-semibold uppercase tracking-[0.1em] mb-4" style="color: var(--color-faint);">Rubrica (0–3)</h3>
+          <ul class="flex flex-col gap-3">
+            {rubrica.map((r) => (
+              <li class="flex gap-3">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold"
+                  style="background: var(--color-surface-2); color: var(--color-neutral-900);">{r.nota}</span>
+                <span class="text-sm leading-relaxed pt-0.5" style="color: var(--color-muted);">{r.criterio}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Interpretação -->
+        <div data-animate style="--animate-delay: 80ms" class="rounded-2xl border p-6">
+          <h3 class="font-body text-sm font-semibold uppercase tracking-[0.1em] mb-4" style="color: var(--color-faint);">Interpretação do score</h3>
+          <ul class="flex flex-col gap-3">
+            <li class="flex items-baseline gap-3">
+              <span class="font-display font-bold tabular-nums text-neutral-900" style="min-width: 6ch;">80–100%</span>
+              <span class="text-sm" style="color: var(--color-muted);">Alta aderência — submeter.</span>
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="font-display font-bold tabular-nums text-neutral-900" style="min-width: 6ch;">60–79%</span>
+              <span class="text-sm" style="color: var(--color-muted);">Parcial — gaps endereçáveis, resolver antes de submeter.</span>
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="font-display font-bold tabular-nums text-neutral-900" style="min-width: 6ch;">40–59%</span>
+              <span class="text-sm" style="color: var(--color-muted);">Baixa — gaps significativos, trabalhar portfolio.</span>
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="font-display font-bold tabular-nums text-neutral-900" style="min-width: 6ch;">&lt; 40%</span>
+              <span class="text-sm" style="color: var(--color-muted);">Desalinhamento estrutural — reavaliar.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer lang="pt" />
+</Base>
+
+<style>
+  article[data-animate],
+  section .rounded-2xl.border {
+    border-color: var(--color-border);
+    background: color-mix(in srgb, var(--color-surface) 40%, transparent);
+  }
+</style>
