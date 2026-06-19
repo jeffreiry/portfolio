@@ -437,10 +437,13 @@ const statusOptions = [
   </dialog>
 
   <!-- Modal: Nova Vaga -->
-  <dialog id="modal-nova-vaga" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-md">
+  <dialog id="modal-nova-vaga" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-lg">
     <form id="form-nova-vaga" class="flex flex-col gap-4 p-6">
       <div class="flex items-start justify-between gap-4">
-        <h2 class="font-display text-lg font-semibold text-neutral-900">Nova Vaga</h2>
+        <div>
+          <h2 class="font-display text-lg font-semibold text-neutral-900">Nova Vaga</h2>
+          <p class="text-sm mt-0.5" style="color: var(--color-faint);">Cole a descrição da vaga — a IA gera a análise completa.</p>
+        </div>
         <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
           aria-label="Fechar" style="color: var(--color-faint);">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -449,61 +452,20 @@ const statusOptions = [
         </button>
       </div>
 
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="flex flex-col gap-1.5 sm:col-span-2">
-          <label for="nv-empresa" class="text-sm font-medium text-neutral-900">Empresa <span aria-hidden="true">*</span></label>
-          <input id="nv-empresa" name="empresa" type="text" required class="ja-input rounded-lg border px-3 py-2 text-sm"
-            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
-            placeholder="Ex: Nubank" />
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label for="nv-produto" class="text-sm font-medium text-neutral-900">Produto</label>
-          <input id="nv-produto" name="produto" type="text" class="ja-input rounded-lg border px-3 py-2 text-sm"
-            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
-            placeholder="Ex: Cartão de crédito" />
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label for="nv-cargo" class="text-sm font-medium text-neutral-900">Cargo <span aria-hidden="true">*</span></label>
-          <input id="nv-cargo" name="cargo" type="text" required class="ja-input rounded-lg border px-3 py-2 text-sm"
-            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
-            placeholder="Ex: Product Designer Sr" />
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label for="nv-score" class="text-sm font-medium text-neutral-900">Score (%) <span aria-hidden="true">*</span></label>
-          <input id="nv-score" name="score" type="number" min="0" max="100" required class="ja-input rounded-lg border px-3 py-2 text-sm"
-            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
-            placeholder="Ex: 65" />
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label for="nv-data" class="text-sm font-medium text-neutral-900">Data da vaga</label>
-          <input id="nv-data" name="data" type="date" class="ja-input rounded-lg border px-3 py-2 text-sm"
-            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);" />
-        </div>
-        <div class="flex flex-col gap-1.5 sm:col-span-2">
-          <label for="nv-interpretacao" class="text-sm font-medium text-neutral-900">Interpretação / resumo</label>
-          <textarea id="nv-interpretacao" name="interpretacao" rows="2" class="ja-input rounded-lg border px-3 py-2 text-sm resize-none"
-            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
-            placeholder="Ex: Aderência parcial — forte em DS, gap em mobile nativo."></textarea>
-        </div>
-      </div>
-
-      <fieldset class="flex gap-4">
-        <legend class="text-sm font-medium text-neutral-900 mb-2">Candidatura enviada?</legend>
-        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
-          <input type="radio" name="candidatura" value="Sim" class="accent-neutral-900" /> Sim
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
-          <input type="radio" name="candidatura" value="Não" checked class="accent-neutral-900" /> Não
-        </label>
-      </fieldset>
+      <textarea id="nv-jd" name="jd" rows="12" required
+        class="ja-input rounded-lg border px-3 py-2.5 text-sm resize-y"
+        style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface); min-height: 200px;"
+        placeholder="Cole aqui o título, empresa e descrição completa da vaga..."></textarea>
 
       <div id="modal-nova-error" class="hidden text-sm text-red-600"></div>
 
-      <div class="flex gap-2 justify-end pt-1">
+      <div class="flex gap-2 justify-end">
         <button type="button" class="modal-close rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
           style="border-color: var(--color-border); color: var(--color-muted);">Cancelar</button>
-        <button type="submit" id="btn-criar-vaga" class="rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
-          style="background: var(--color-neutral-900); color: #fff;">Criar</button>
+        <button type="submit" id="btn-criar-vaga" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: var(--color-neutral-900); color: #fff;">
+          <span id="btn-criar-label">Analisar com IA</span>
+        </button>
       </div>
     </form>
   </dialog>
@@ -673,9 +635,6 @@ const statusOptions = [
   document.getElementById('btn-nova-vaga')?.addEventListener('click', () => {
     formNovaVaga.reset();
     modalNovaErr.classList.add('hidden');
-    // Pré-preenche data com hoje
-    const dataInput = formNovaVaga.querySelector<HTMLInputElement>('#nv-data');
-    if (dataInput) dataInput.value = new Date().toISOString().split('T')[0];
     openModal(modalNovaVaga);
   });
 
@@ -768,31 +727,24 @@ const statusOptions = [
   formNovaVaga.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(formNovaVaga);
-    const payload = {
-      empresa:       (data.get('empresa') as string).trim(),
-      produto:       (data.get('produto') as string)?.trim() ?? '',
-      cargo:         (data.get('cargo') as string).trim(),
-      score:         Number(data.get('score')),
-      data:          data.get('data') as string,
-      interpretacao: (data.get('interpretacao') as string)?.trim() ?? '',
-      candidatura:   data.get('candidatura') as string ?? 'Não',
-    };
+    const jd = (data.get('jd') as string)?.trim();
 
-    if (!payload.empresa || !payload.cargo || isNaN(payload.score)) {
-      modalNovaErr.textContent = 'Preencha os campos obrigatórios.';
+    if (!jd) {
+      modalNovaErr.textContent = 'Cole a descrição da vaga.';
       modalNovaErr.classList.remove('hidden');
       return;
     }
 
-    const btn = formNovaVaga.querySelector<HTMLButtonElement>('#btn-criar-vaga')!;
+    const btn    = formNovaVaga.querySelector<HTMLButtonElement>('#btn-criar-vaga')!;
+    const label  = document.getElementById('btn-criar-label')!;
     btn.disabled = true;
-    btn.textContent = 'Criando…';
+    label.textContent = 'Analisando…';
 
     try {
-      const res = await fetch('/api/jobanalysis-create', {
+      const res = await fetch('/api/jobanalysis-analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ jd }),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
 
@@ -822,12 +774,12 @@ const statusOptions = [
       updateStats();
       modalNovaVaga.close();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Erro ao criar';
+      const msg = err instanceof Error ? err.message : 'Erro ao analisar';
       modalNovaErr.textContent = msg;
       modalNovaErr.classList.remove('hidden');
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Criar';
+      label.textContent = 'Analisar com IA';
     }
   });
 </script>
