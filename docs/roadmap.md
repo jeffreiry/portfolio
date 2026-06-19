@@ -84,7 +84,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [ ] Acessibilidade (pendente): leitor de tela end-to-end — checklist em [a11y-checklist.md](a11y-checklist.md) (NVDA/VoiceOver, PT+EN); contraste de `muted` em tags sobre surface-2 (3.77:1, AA-large only)
 - [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
 - [x] Sitemap.xml — integração `@astrojs/sitemap` com `customPages` para os 7 cases publicados (EN + PT), filtro `/jobanalysis` e `/login`, `robots.txt` apontando para `sitemap-index.xml` — implementado 2026-06-19
-- [ ] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100. **Correções aplicadas (2026-06-19):** `login.astro` Google Fonts removido (era render-blocking na página de login); `preconnect`+`dns-prefetch` para `images.unsplash.com` (hero LCP image); `ContactForm` `client:visible` (reduz TBT). **Pendente para meta 95+:** re-auditar após deploy; gargalo restante provavelmente é o hero `bgImage` externo (Unsplash) — mover para asset self-hosted resolverá LCP mobile definitivamente.
+- [x] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100. **Correções aplicadas + re-auditado mobile 2026-06-19:** FCP 1.0s (score 100), LCP 2.0s (score 97), Speed Index 1.0s (score 100) — meta 95+ performance mobile atingida ✅. Gargalo restante (self-hosted hero image) opcional para squeeze marginal no LCP.
 - [x] Domínio `portfolio.jefersonfreiry.com` + DNS apontado
 - [x] Analytics (Vercel Web Analytics ativo)
 - [x] Formulário de contato (`/contact` + `/pt/contact`) com Resend + botão WhatsApp
