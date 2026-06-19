@@ -92,6 +92,40 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Microinterações expressivas (scroll reveals com IntersectionObserver, stagger em grids, hover expressivo nos CaseCards)
 - [ ] **Ação necessária:** adicionar `RESEND_API_KEY` no painel Vercel (Settings → Environment Variables)
 
+### Fase 6 — Maturidade do design system (paridade com Apex)
+
+Objetivo: elevar o DS ao nível de governança do **Apex** ([DESIGN.md](../../Apex/docs/DESIGN.md), 16.7 KB), a referência interna mais madura. Diagnóstico comparativo (2026-06-18): o portfólio já **lidera em acessibilidade** (contraste AA auditado por script) e em **performance de fontes** (self-hosted) — mas perde para o Apex em arquitetura de tokens, tokenização de tipografia/motion e formalização de componentes. Esta fase fecha esses gaps.
+
+**6.1 — Arquitetura de tokens em duas camadas (primitivos → semânticos)**
+- [ ] Separar primitivos de cor (`--color-jambu`, `--color-cha-mate`, `--color-azul-pantanal`…) das variáveis semânticas de papel (`--bg`, `--surface`, `--text-primary`, `--accent`, `--border`)
+- [ ] Mapear os semânticos por tema em `:root` (light) e `html[data-theme="dark"]`, como o Apex faz em `:root` / `html.light`
+- [ ] Componentes passam a referenciar **só semânticos** — primitivo nunca aparece no markup
+- Racional: hoje o `global.css` mistura tokens de papel (`page-bg`, `surface`, `muted`) com primitivos usados direto (`jambu`, `cha-mate`) — tanto que o dark mode precisa re-tematizar o primitivo `--color-cha-mate` (#e8ddd5) por ele atuar como cor de texto. A indireção semântica é o que torna o tema trocável e o DS escalável — é a principal diferença estrutural para o Apex.
+
+**6.2 — Escala tipográfica tokenizada** _(maior gap)_
+- [ ] Converter a escala do [design-system.md](design-system.md) (H1/Display, H2, Corpo × desktop/tablet/mobile) em tokens `@theme` `--text-*` com `line-height` **e** `letter-spacing` pareados, como o Apex (`--text-display-xl` + `--line-height` + `--letter-spacing`)
+- [ ] Nomes semânticos: `--text-display`, `--text-h2`, `--text-body`, `--text-eyebrow`, `--text-caption`
+- [ ] Remover tamanhos px soltos de `global.css` (`.case-content h2/h3/p`) → trocar por tokens
+- Racional: hoje os tamanhos vivem inline em `.case-content` e numa tabela no doc, não em `@theme`. Tokenizar elimina a duplicação doc↔código e cria uma régua tipográfica única.
+
+**6.3 — Tokens de motion**
+- [ ] Tokenizar durações e easings hoje hardcoded em `[data-animate]` (`--duration-fast/base/slow`, `--ease-out-expo` = `cubic-bezier(0.16,1,0.3,1)`)
+- [ ] Tabela de micro-interações no doc (hover de card, scroll reveal, page transition) com duração/easing — espelhar o formato da tabela de animações do Apex
+
+**6.4 — Raios e espaçamento**
+- [ ] Expandir raios: já há `card/hero/pill/tag`; adicionar `--radius-input` e `--radius-modal` para cobrir formulário e contato
+- [ ] Tokenizar espaçamento (gaps `16/24/32/40/64`, paddings de seção `48/64/96`) em `--space-*` no lugar de valores soltos
+
+**6.5 — Catálogo de componentes no doc** _(paridade de governança)_
+- [ ] Matriz de botões por variante × tema (primary/secondary/ghost), como o Apex
+- [ ] Catálogo de estados de UI: empty, loading, error, success (hoje ausente)
+- [ ] Formalizar iconografia (biblioteca + tamanhos) — Apex padroniza Phosphor
+- [ ] Atualizar [design-system.md](design-system.md) com 6.1–6.4, mantendo-o como fonte de verdade única (registrar token **antes** de usar)
+
+**Não copiar do Apex** (decisões já melhores no portfólio):
+- Manter fontes **self-hosted** — o Apex ainda carrega via Google Fonts (round-trip que o portfólio já eliminou na Fase 5)
+- Manter o rigor de **contraste AA auditado** — o fluxo correto é portar essa disciplina **para** o Apex, não regredir aqui
+
 ---
 
 ## Decisões técnicas
