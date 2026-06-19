@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
@@ -127,9 +127,9 @@ Gere EXATAMENTE neste formato (markdown puro, sem blocos de código):
 {"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":{número inteiro},"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote, sem aspas internas}","candidatura":"Não"}`;
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.ANTHROPIC_API_KEY;
+  const apiKey = import.meta.env.GOOGLE_AI_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'ANTHROPIC_API_KEY não configurada no .env' }), {
+    return new Response(JSON.stringify({ error: 'GOOGLE_AI_API_KEY não configurada no .env' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -144,16 +144,14 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const client = new Anthropic({ apiKey });
-
-    const message = await client.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 3000,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: `Analise esta descrição de vaga:\n\n${jd}` }],
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.0-flash',
+      systemInstruction: SYSTEM_PROMPT,
     });
 
-    const raw = (message.content[0] as { type: string; text: string }).text;
+    const result = await model.generateContent(`Analise esta descrição de vaga:\n\n${jd}`);
+    const raw = result.response.text();
 
     // Separa conteúdo .md do bloco de metadados
     const [mdContent, metaRaw] = raw.split('---METADATA---');

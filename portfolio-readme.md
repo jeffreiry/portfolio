@@ -69,7 +69,8 @@ Portfolio/
 │   │   │   ├── logout.ts                 # POST — apaga cookie
 │   │   │   ├── contact.ts                # POST — envia email via Resend
 │   │   │   ├── jobanalysis-update.ts     # POST — atualiza Candidatura/Status em arquivo .md
-│   │   │   └── jobanalysis-create.ts     # POST — cria novo arquivo .md de análise de vaga
+│   │   │   ├── jobanalysis-create.ts     # POST — cria novo arquivo .md de análise de vaga (manual)
+│   │   │   └── jobanalysis-analyze.ts    # POST — analisa JD com Google Gemini e gera .md completo
 │   │   ├── work/[slug].astro       # Página de case EN (SSR)
 │   │   └── pt/
 │   │       ├── index.astro         # Home PT
