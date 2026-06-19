@@ -58,4 +58,9 @@
   .toggle-btn:active {
     transform: rotate(15deg) scale(0.92);
   }
+
+  .toggle-btn:focus-visible {
+    outline: 2px solid var(--color-cha-mate);
+    outline-offset: 2px;
+  }
 </style>

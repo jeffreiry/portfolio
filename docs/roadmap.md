@@ -80,10 +80,11 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Acessibilidade (parcial): skip navigation link (`Base.astro`), foco visível nos nav links (outline `var(--color-cha-mate)`), contraste dos títulos de cards (#fff em vez de jambu sobre fundo escuro)
 - [x] Acessibilidade — contraste WCAG AA (2026-06-15): auditoria de tokens via script. Corrigidos: `--color-faint` (#a89890→#776559 light, #8a7a70→#998a7e dark; era 2.0–2.5:1, agora ≥4.5:1) usado em ano/labels/eyebrows; jambu como texto/borda no "View case →" → novo token `--color-jambu-text` (#a8480c light, jambu no dark); botões brancos-sobre-laranja (Hero CTA, submit, skip-link, era 3.21:1) → `--color-jambu-deep` #a8480c (white 5.84:1). Bars decorativas mantêm `--color-jambu` (exemptas).
 - [x] Acessibilidade — formulário de contato (2026-06-15): validação client-side acessível (`aria-invalid`, `aria-describedby`, mensagens inline), foco movido para 1º campo inválido, foco movido para o alerta de sucesso/erro (`tabindex=-1`), região `aria-live="polite"` anunciando "Enviando…".
+- [x] Acessibilidade — segunda passada de código (2026-06-19): `login.astro` Google Fonts → self-hosted, `role="alert"` + `aria-required` no login; filter buttons com `aria-pressed` + live region de resultados; CaseCard `h2` → `h3` (hierarquia correta dentro de seção `h2`); "Other activities" `<p>` → `<h3>`; ThemeToggle com `focus-visible`; `prefers-reduced-motion` nos dots pulsantes dos widgets; `ContactForm` `client:load` → `client:visible`. Checklist atualizado em [a11y-checklist.md](a11y-checklist.md).
 - [ ] Acessibilidade (pendente): leitor de tela end-to-end — checklist em [a11y-checklist.md](a11y-checklist.md) (NVDA/VoiceOver, PT+EN); contraste de `muted` em tags sobre surface-2 (3.77:1, AA-large only)
 - [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
-- [ ] Sitemap.xml
-- [ ] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100 (performance mobile abaixo da meta — Google Fonts render-blocking 2.270ms, LCP via background-image sem fetchpriority, Speed Index 10s)
+- [x] Sitemap.xml — integração `@astrojs/sitemap` com `customPages` para os 7 cases publicados (EN + PT), filtro `/jobanalysis` e `/login`, `robots.txt` apontando para `sitemap-index.xml` — implementado 2026-06-19
+- [ ] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100. **Correções aplicadas (2026-06-19):** `login.astro` Google Fonts removido (era render-blocking na página de login); `preconnect`+`dns-prefetch` para `images.unsplash.com` (hero LCP image); `ContactForm` `client:visible` (reduz TBT). **Pendente para meta 95+:** re-auditar após deploy; gargalo restante provavelmente é o hero `bgImage` externo (Unsplash) — mover para asset self-hosted resolverá LCP mobile definitivamente.
 - [x] Domínio `portfolio.jefersonfreiry.com` + DNS apontado
 - [x] Analytics (Vercel Web Analytics ativo)
 - [x] Formulário de contato (`/contact` + `/pt/contact`) com Resend + botão WhatsApp
@@ -96,31 +97,33 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 
 Objetivo: elevar o DS ao nível de governança do **Apex** ([DESIGN.md](../../Apex/docs/DESIGN.md), 16.7 KB), a referência interna mais madura. Diagnóstico comparativo (2026-06-18): o portfólio já **lidera em acessibilidade** (contraste AA auditado por script) e em **performance de fontes** (self-hosted) — mas perde para o Apex em arquitetura de tokens, tokenização de tipografia/motion e formalização de componentes. Esta fase fecha esses gaps.
 
-**6.1 — Arquitetura de tokens em duas camadas (primitivos → semânticos)**
-- [ ] Separar primitivos de cor (`--color-jambu`, `--color-cha-mate`, `--color-azul-pantanal`…) das variáveis semânticas de papel (`--bg`, `--surface`, `--text-primary`, `--accent`, `--border`)
-- [ ] Mapear os semânticos por tema em `:root` (light) e `html[data-theme="dark"]`, como o Apex faz em `:root` / `html.light`
-- [ ] Componentes passam a referenciar **só semânticos** — primitivo nunca aparece no markup
-- Racional: hoje o `global.css` mistura tokens de papel (`page-bg`, `surface`, `muted`) com primitivos usados direto (`jambu`, `cha-mate`) — tanto que o dark mode precisa re-tematizar o primitivo `--color-cha-mate` (#e8ddd5) por ele atuar como cor de texto. A indireção semântica é o que torna o tema trocável e o DS escalável — é a principal diferença estrutural para o Apex.
+**6.1 — Arquitetura de tokens em duas camadas (primitivos → semânticos)** — implementado 2026-06-19
+- [x] Camada semântica criada em `:root` após `@theme`: `--text-heading`, `--text-primary`, `--text-secondary`, `--text-subtle`, `--bg-page`, `--bg-surface`, `--bg-surface-alt`, `--border-default`, `--accent-deco`, `--accent-text`, `--accent-btn`
+- [x] `.case-content` migrado para tokens semânticos (era `--color-neutral-*` com hex fallback)
+- [ ] **Pendente (migração incremental):** componentes legados (`CaseCard`, `Header`, `index.astro`) ainda referenciam primitivos diretamente — migrar por componente em sessões futuras
+- Racional: camada semântica adicionada sem breaking change; primitivos continuam funcionando em componentes legados.
 
-**6.2 — Escala tipográfica tokenizada** _(maior gap)_
-- [ ] Converter a escala do [design-system.md](design-system.md) (H1/Display, H2, Corpo × desktop/tablet/mobile) em tokens `@theme` `--text-*` com `line-height` **e** `letter-spacing` pareados, como o Apex (`--text-display-xl` + `--line-height` + `--letter-spacing`)
-- [ ] Nomes semânticos: `--text-display`, `--text-h2`, `--text-body`, `--text-eyebrow`, `--text-caption`
-- [ ] Remover tamanhos px soltos de `global.css` (`.case-content h2/h3/p`) → trocar por tokens
-- Racional: hoje os tamanhos vivem inline em `.case-content` e numa tabela no doc, não em `@theme`. Tokenizar elimina a duplicação doc↔código e cria uma régua tipográfica única.
+**6.2 — Escala tipográfica tokenizada** — implementado 2026-06-19
+- [x] Tokens `--text-*` (display, h1, h2, h3, body-lg, body, sm, xs, eyebrow, caption) em `@theme`
+- [x] Tokens `--leading-*` (tight, heading, normal, relaxed) e `--tracking-*` (heading, eyebrow, tag, caption) em `@theme`
+- [x] `.case-content` migrado para usar tokens de tipografia e espaçamento
+- [ ] **Pendente:** migrar tamanhos px inline nos componentes para os tokens (ex: `text-[28px]` → `text-h2`)
 
-**6.3 — Tokens de motion**
-- [ ] Tokenizar durações e easings hoje hardcoded em `[data-animate]` (`--duration-fast/base/slow`, `--ease-out-expo` = `cubic-bezier(0.16,1,0.3,1)`)
-- [ ] Tabela de micro-interações no doc (hover de card, scroll reveal, page transition) com duração/easing — espelhar o formato da tabela de animações do Apex
+**6.3 — Tokens de motion** — implementado 2026-06-19
+- [x] `--duration-fast/base/slow` e `--ease-out-expo` em `@theme`
+- [x] `[data-animate]` migrado para `var(--duration-slow)` e `var(--ease-out-expo)`
+- [x] Tabela de micro-interações catalogada em [design-system.md](design-system.md)
 
-**6.4 — Raios e espaçamento**
-- [ ] Expandir raios: já há `card/hero/pill/tag`; adicionar `--radius-input` e `--radius-modal` para cobrir formulário e contato
-- [ ] Tokenizar espaçamento (gaps `16/24/32/40/64`, paddings de seção `48/64/96`) em `--space-*` no lugar de valores soltos
+**6.4 — Raios e espaçamento** — implementado 2026-06-19
+- [x] `--radius-sm`, `--radius-input`, `--radius-modal`, `--radius-lg` adicionados
+- [x] `--space-4/8/16/24/32/40/48/64/96` adicionados em `@theme`
+- [x] `.case-content` migrado para usar `var(--space-*)` e `var(--radius-*)`
 
-**6.5 — Catálogo de componentes no doc** _(paridade de governança)_
-- [ ] Matriz de botões por variante × tema (primary/secondary/ghost), como o Apex
-- [ ] Catálogo de estados de UI: empty, loading, error, success (hoje ausente)
-- [ ] Formalizar iconografia (biblioteca + tamanhos) — Apex padroniza Phosphor
-- [ ] Atualizar [design-system.md](design-system.md) com 6.1–6.4, mantendo-o como fonte de verdade única (registrar token **antes** de usar)
+**6.5 — Catálogo de componentes no doc** — parcial 2026-06-19
+- [x] `design-system.md` atualizado com: tokens de tipografia, escala, line-heights, letter-spacings, radii, espaçamento, motion, arquitetura semântica completa
+- [ ] Matriz de botões por variante × tema (primary/secondary/ghost)
+- [ ] Catálogo de estados de UI: empty, loading, error, success
+- [ ] Formalizar iconografia (biblioteca + tamanhos)
 
 **Não copiar do Apex** (decisões já melhores no portfólio):
 - Manter fontes **self-hosted** — o Apex ainda carrega via Google Fonts (round-trip que o portfólio já eliminou na Fase 5)

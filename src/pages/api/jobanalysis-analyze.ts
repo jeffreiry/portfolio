@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import Groq from 'groq-sdk';
 import { writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
@@ -127,9 +127,9 @@ Gere EXATAMENTE neste formato (markdown puro, sem blocos de código):
 {"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":{número inteiro},"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote, sem aspas internas}","candidatura":"Não"}`;
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.GOOGLE_AI_API_KEY;
+  const apiKey = import.meta.env.GROQ_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'GOOGLE_AI_API_KEY não configurada no .env' }), {
+    return new Response(JSON.stringify({ error: 'GROQ_API_KEY não configurada no .env' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -144,14 +144,18 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
-      systemInstruction: SYSTEM_PROMPT,
+    const groq = new Groq({ apiKey });
+
+    const completion = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      max_tokens: 3000,
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: `Analise esta descrição de vaga:\n\n${jd}` },
+      ],
     });
 
-    const result = await model.generateContent(`Analise esta descrição de vaga:\n\n${jd}`);
-    const raw = result.response.text();
+    const raw = completion.choices[0]?.message?.content ?? '';
 
     // Separa conteúdo .md do bloco de metadados
     const [mdContent, metaRaw] = raw.split('---METADATA---');
@@ -207,7 +211,13 @@ export const POST: APIRoute = async ({ request }) => {
     );
   } catch (e) {
     console.error('[jobanalysis-analyze]', e);
-    const msg = e instanceof Error ? e.message : 'Erro interno';
+    const raw = e instanceof Error ? e.message : String(e);
+    let msg = 'Erro ao analisar. Tente novamente.';
+    if (raw.includes('429') || raw.toLowerCase().includes('quota') || raw.toLowerCase().includes('rate')) {
+      msg = 'Limite de requisições atingido. Aguarde 1 minuto e tente novamente.';
+    } else if (raw.includes('METADATA')) {
+      msg = 'A IA retornou um formato inesperado. Tente novamente.';
+    }
     return new Response(JSON.stringify({ error: msg }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

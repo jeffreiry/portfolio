@@ -86,18 +86,81 @@
   --color-pastel-sand:       #e8e4dc;
   --color-pastel-figo:       #dde4db;
 
-  /* --- Tipografia --- */
+  /* --- Tipografia (famílias) --- */
   --font-display: "DM Serif Display", serif;
   --font-body:    "Barlow", sans-serif;
 
+  /* --- Escala tipográfica --- */
+  --text-display:   clamp(1.75rem, 7vw, 5rem);  /* Hero h1 responsivo */
+  --text-h1:        3.75rem;   /* 60px */
+  --text-h2:        2.25rem;   /* 36px */
+  --text-h3:        1.25rem;   /* 20px */
+  --text-body-lg:   1.125rem;  /* 18px */
+  --text-body:      1.0625rem; /* 17px */
+  --text-sm:        0.9375rem; /* 15px */
+  --text-xs:        0.8125rem; /* 13px */
+  --text-eyebrow:   0.6875rem; /* 11px */
+  --text-caption:   0.625rem;  /* 10px */
+
+  /* --- Line-heights --- */
+  --leading-tight:   0.92;
+  --leading-heading: 1.1;
+  --leading-normal:  1.625;
+  --leading-relaxed: 1.75;
+
+  /* --- Letter-spacings --- */
+  --tracking-heading:  -0.01em;
+  --tracking-eyebrow:   0.12em;
+  --tracking-tag:       0.04em;
+  --tracking-caption:   0.09em;
+
   /* --- Radii --- */
+  --radius-sm:    8px;
   --radius-card:  20px;
   --radius-hero:  24px;
+  --radius-input: 12px;
+  --radius-modal: 24px;
+  --radius-lg:    32px;
   --radius-pill:  999px;
   --radius-tag:   999px;
 
+  /* --- Espaçamento --- */
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-16:  16px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-96:  96px;
+
+  /* --- Motion --- */
+  --duration-fast: 150ms;
+  --duration-base: 350ms;
+  --duration-slow: 600ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
   /* --- Container --- */
   --container-max: 1200px;
+}
+
+/* --- Camada semântica (papel → primitivo) ---
+   Componentes devem referenciar estes tokens, nunca os primitivos diretamente.
+   A camada semântica é transparente: como os primitivos são re-tematizados no
+   dark mode, os aliases seguem automaticamente sem declaração extra. */
+:root {
+  --text-heading:   var(--color-cha-mate);   /* títulos, CTAs, eyebrows de marca */
+  --text-primary:   var(--color-ink);        /* corpo de texto principal */
+  --text-secondary: var(--color-muted);      /* texto de apoio */
+  --text-subtle:    var(--color-faint);      /* eyebrows, metadados, labels menores */
+  --bg-page:        var(--color-page-bg);    /* fundo da página */
+  --bg-surface:     var(--color-surface);    /* cards, inputs */
+  --bg-surface-alt: var(--color-surface-2);  /* pills de tag, separadores */
+  --border-default: var(--color-border);     /* bordas padrão */
+  --accent-deco:    var(--color-jambu);      /* decorativo — bars, accents (não texto) */
+  --accent-text:    var(--color-jambu-text); /* jambu como texto/borda (AA) */
+  --accent-btn:     var(--color-jambu-deep); /* fundo de botão jambu c/ texto branco */
 }
 
 /* --- Dark mode --- */
@@ -177,8 +240,8 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
 [data-animate] {
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
   transition-delay: var(--animate-delay, 0ms);
 }
 
@@ -251,19 +314,19 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
   /* ---- Case content (Markdown rendered) ---- */
   .case-content h2 {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: var(--text-h2);
     font-weight: 600;
-    color: var(--color-neutral-900, #171717);
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    color: var(--text-heading);
+    margin-top: var(--space-48);
+    margin-bottom: var(--space-16);
   }
   .case-content h3 {
     font-family: var(--font-body);
-    font-size: 1.125rem;
+    font-size: var(--text-body-lg);
     font-weight: 600;
-    color: var(--color-neutral-800, #262626);
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    margin-top: var(--space-32);
+    margin-bottom: var(--space-8);
   }
   .case-content p,
   .case-content ul,
@@ -272,41 +335,41 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     font-family: var(--font-body);
   }
   .case-content p {
-    font-size: 1.0625rem;
-    line-height: 1.75;
-    color: var(--color-neutral-700, #404040);
-    margin-bottom: 1rem;
+    font-size: var(--text-body);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-16);
   }
   .case-content strong {
-    color: var(--color-neutral-900, #171717);
+    color: var(--text-primary);
     font-weight: 600;
   }
   .case-content ul,
   .case-content ol {
     padding-left: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-neutral-700, #404040);
-    line-height: 1.75;
+    margin-bottom: var(--space-16);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
   }
   .case-content li {
     margin-bottom: 0.25rem;
   }
   .case-content code {
     font-size: 0.875em;
-    background: var(--color-neutral-100, #f5f5f5);
-    border-radius: 4px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
     padding: 0.1em 0.35em;
-    color: var(--color-neutral-900, #171717);
+    color: var(--text-primary);
   }
   .case-content hr {
     border: none;
-    border-top: 1px solid var(--color-neutral-200, #e5e5e5);
+    border-top: 1px solid var(--border-default);
     margin: 2.5rem 0;
   }
   .case-content img {
     width: 100%;
-    border-radius: 12px;
-    margin: 2rem 0;
+    border-radius: var(--radius-input);
+    margin: var(--space-32) 0;
     display: block;
   }
   .case-content table {
@@ -314,19 +377,19 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-family: var(--font-body);
-    font-size: 0.9375rem;
+    font-size: var(--text-sm);
   }
   .case-content th {
     text-align: left;
     padding: 8px 12px;
     font-weight: 600;
-    color: var(--color-neutral-900, #171717);
-    border-bottom: 2px solid var(--color-neutral-200, #e5e5e5);
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-default);
   }
   .case-content td {
     padding: 8px 12px;
-    color: var(--color-neutral-700, #404040);
-    border-bottom: 1px solid var(--color-neutral-200, #e5e5e5);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-default);
     vertical-align: top;
   }
   .case-content tr:last-child td {
@@ -338,21 +401,21 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     width: 100%;
     align-items: center;
     justify-content: center;
-    border-radius: 16px;
-    background: var(--color-neutral-100, #f5f5f5);
-    border: 2px dashed var(--color-neutral-200, #e5e5e5);
-    margin: 2rem 0;
+    border-radius: var(--radius-input);
+    background: var(--bg-surface);
+    border: 2px dashed var(--border-default);
+    margin: var(--space-32) 0;
     flex-direction: column;
-    gap: 8px;
-    color: var(--color-neutral-400, #a3a3a3);
+    gap: var(--space-8);
+    color: var(--text-subtle);
     text-align: center;
   }
   .case-content .image-placeholder strong {
-    color: var(--color-neutral-500, #737373);
-    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
   }
   .case-content .image-placeholder span {
-    font-size: 0.8125rem;
+    font-size: var(--text-xs);
     max-width: 400px;
   }
 

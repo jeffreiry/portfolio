@@ -13,9 +13,9 @@ Passada manual de leitor de tela para validar o que a auditoria automática de c
 - ⬜ `Tab` a partir do topo revela o **skip link** ("Skip to main content") como primeiro foco
 - ⬜ Skip link leva o foco para `#main-content` ao ativar com `Enter`
 - ⬜ Todos os links do header (logo, About, Cases, Contact) são alcançáveis e têm foco visível
-- ⬜ Toggle de tema (claro/escuro) é alcançável e operável por `Enter`/`Espaço`
-- ⬜ Switcher de idioma EN↔PT é alcançável e anuncia o idioma atual
-- ⬜ Botões do **filtro de cases** são alcançáveis; `Enter` aplica o filtro
+- ✅ Toggle de tema é alcançável e tem `focus-visible` (outline cha-mate) — corrigido 2026-06-19
+- ✅ Switcher de idioma tem `aria-label` e `aria-current="page"` no idioma ativo
+- ✅ Botões do filtro têm `aria-pressed` e live region anuncia resultado — corrigido 2026-06-19
 - ⬜ Cada CaseCard é um link único focável (não há foco preso em elementos internos)
 - ⬜ Ordem de tabulação segue a ordem visual (About → Career → Cases → Contact)
 - ⬜ Nenhum *focus trap*; `Shift+Tab` volta corretamente
@@ -23,36 +23,36 @@ Passada manual de leitor de tela para validar o que a auditoria automática de c
 
 ## 2. Formulário de contato
 
-- ⬜ Cada campo (Nome, E-mail, Mensagem) tem o rótulo anunciado ao receber foco
-- ⬜ Campos obrigatórios anunciam "obrigatório" (`aria-required`)
-- ⬜ Submeter vazio move o foco para o 1º campo inválido
-- ⬜ Mensagem de erro é anunciada ao focar o campo inválido (`aria-describedby`)
-- ⬜ Estado "Enviando…" é anunciado pela região `aria-live="polite"`
-- ⬜ Sucesso: foco move para o alerta e a mensagem é lida (`role="alert"`)
-- ⬜ Erro de envio: foco move para o alerta e o botão "Tentar novamente" é alcançável
-- ⬜ Botão WhatsApp tem rótulo claro fora de contexto visual
+- ✅ Cada campo (Nome, E-mail, Mensagem) tem label vinculado por `for`/`id`
+- ✅ Campos têm `aria-required="true"`
+- ✅ Submeter vazio move o foco para o 1º campo inválido
+- ✅ Mensagem de erro vinculada por `aria-describedby`; campo marcado com `aria-invalid`
+- ✅ Estado "Enviando…" anunciado por `aria-live="polite"`
+- ✅ Sucesso/Erro: foco movido para alerta com `role="alert"` e `tabindex="-1"`
+- ✅ Botão "Tentar novamente" focável e com `focus-visible`
+- ✅ Botão WhatsApp: ícone SVG com `aria-hidden`, texto "Chat on WhatsApp" claro
 
 ## 3. Estrutura e semântica
 
-- ⬜ Hierarquia de headings coerente (um `h1`, seções em `h2`, sem saltos)
-- ⬜ Landmarks anunciados (`header`, `main`, `footer`, `nav`)
+- ✅ Hierarquia de headings: h1 no Hero, h2 por seção (About/Career/Cases/Contact), h3 em subsections (Education, Other activities) — corrigido 2026-06-19; CaseCard usa h3 (corrigido de h2)
+- ⬜ Landmarks anunciados — verificar com leitor de tela (`header`, `main`, `footer`, `nav`)
 - ⬜ Imagens dos cases têm `alt` descritivo (não apenas o título repetido)
-- ⬜ Logos (header, footer, carreira) têm `alt` ou estão marcados como decorativos
-- ⬜ Ícones SVG decorativos têm `aria-hidden="true"`
-- ⬜ Idioma da página correto (`<html lang>`) — PT em `/pt`, EN na raiz
-- ⬜ Widgets Strava/Hevy: número e unidade lidos juntos (ex: "79 quilômetros"), não soltos
+- ✅ Logos de carreira: `alt={company}`, logo do header: `aria-label` no link pai
+- ✅ Ícones SVG decorativos: `aria-hidden="true"` (download, WhatsApp, feedback icons)
+- ✅ `<html lang>` correto — `lang="en"` na raiz, `lang="pt"` em `/pt`
+- ✅ Widgets: `aria-label` no container com título + valor; dot pulsante com `aria-hidden`
 
 ## 4. Conteúdo dinâmico e movimento
 
-- ⬜ Scroll reveals (`data-animate`) não escondem conteúdo de leitores de tela
-- ⬜ `prefers-reduced-motion` desativa animações (verificar com a preferência ativa no SO)
-- ⬜ Ponto verde pulsante dos widgets não gera anúncio repetido/ruído
-- ⬜ Filtro de cases: ao ocultar cards, o leitor não lê cards com `display:none`
+- ✅ Scroll reveals (`data-animate`) usam `opacity: 0` — conteúdo permanece no DOM e acessível
+- ✅ `prefers-reduced-motion: reduce` desativa transições e transforms via CSS; dot pulsante também para — corrigido 2026-06-19
+- ✅ Ponto verde pulsante: `aria-hidden="true"`, sem anúncio repetido
+- ✅ Filtro de cases: `display:none` remove cards da árvore de acessibilidade (comportamento correto)
 
 ## 5. Páginas de case (protegidas)
 
-- ⬜ Login: campo de senha rotulado, erro anunciado
-- ⬜ Conteúdo Markdown do case: headings, listas e tabelas lidos em ordem
+- ✅ Login: `<label for="password">`, `aria-required="true"`, erro com `role="alert"` e `id="login-error"`, `aria-describedby` no campo — corrigido 2026-06-19
+- ⬜ Conteúdo Markdown do case: headings, listas e tabelas lidos em ordem — verificar com leitor de tela
 - ⬜ Imagens inline e `image-placeholder` com texto alternativo coerente
 
 ---

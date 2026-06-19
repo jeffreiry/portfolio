@@ -74,9 +74,9 @@ const whatsappHref = 'https://wa.me/5551984741888';
             </div>
           </div>
 
-          <p data-animate style="--animate-delay: 360ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-faint);">
+          <h3 data-animate style="--animate-delay: 360ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-faint);">
             Outras atividades fora do trabalho
-          </p>
+          </h3>
           <div class="grid grid-cols-2 gap-3">
             <div data-animate style="--animate-delay: 400ms">
               <RunWidget lang="pt" />
@@ -134,12 +134,13 @@ const whatsappHref = 'https://wa.me/5551984741888';
       <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900 mb-4">Cases</h2>
 
       <!-- Barra de filtros -->
-      <div data-animate style="--animate-delay: 80ms" class="filter-bar flex flex-wrap gap-2 mb-6">
-        <button class="filter-btn filter-btn--active" data-filter="all">Todos</button>
+      <div data-animate style="--animate-delay: 80ms" class="filter-bar flex flex-wrap gap-2 mb-6" role="group" aria-label="Filtrar cases por categoria">
+        <button class="filter-btn filter-btn--active" data-filter="all" aria-pressed="true">Todos</button>
         {["Enterprise", "AI & Automation", "UX Research", "Design System", "Branding", "Mobile", "Data & Analytics"].map(tag => (
-          <button class="filter-btn" data-filter={tag}>{tag}</button>
+          <button class="filter-btn" data-filter={tag} aria-pressed="false">{tag}</button>
         ))}
       </div>
+      <p id="filter-status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => (
@@ -156,14 +157,26 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+          filterBtns.forEach(b => {
+            b.classList.remove('filter-btn--active');
+            b.setAttribute('aria-pressed', 'false');
+          });
           btn.classList.add('filter-btn--active');
+          btn.setAttribute('aria-pressed', 'true');
           const filter = btn.dataset.filter!;
+          let visible = 0;
           caseCards.forEach(card => {
             const tags = card.dataset.tags?.split(',') ?? [];
             const show = filter === 'all' || tags.includes(filter);
             card.style.display = show ? '' : 'none';
+            if (show) visible++;
           });
+          const status = document.getElementById('filter-status');
+          if (status) {
+            status.textContent = filter === 'all'
+              ? `Mostrando todos os ${visible} cases`
+              : `${visible} case${visible !== 1 ? 's' : ''} em ${filter}`;
+          }
         });
       });
     </script>
@@ -227,7 +240,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
         </div>
 
         <div data-animate style="--animate-delay: 120ms">
-          <ContactForm lang="pt" {whatsappHref} client:load />
+          <ContactForm lang="pt" {whatsappHref} client:visible />
         </div>
 
       </div>

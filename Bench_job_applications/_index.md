@@ -40,6 +40,7 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 
 | Vaga | Empresa · Produto | Score | Interpretação | Status | Data |
 |---|---|---|---|---|---|
+| [Product Designer Pleno/Sênior](elevor-product-designer-pleno-senior.md) | Elevor Softwares | **55%** | Aderência baixa | A avaliar | ⬜ |
 | [Product Designer Sênior](localiza-product-designer-senior.md) | Localiza&Co · Mobilidade | **41%** | Aderência baixa | A avaliar | 2026-04-20 |
 | [Senior UX Designer — TripIt](sap-concur-tripit.md) | SAP Concur · TripIt | **52%** | Aderência baixa | Candidatura pendente | 2026-06-10 |
 | [Product Designer UX](btg-pactual.md) | BTG Pactual | **73%** | Aderência parcial | A avaliar | 2026-06-12 |
@@ -53,7 +54,7 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer — Crédito](banco-pan-product-designer-credito.md) | Banco PAN | **58%** | Aderência baixa | A avaliar | 2026-06-12 |
 | [Designer UX/UI Sênior](bridger-ux-ui-senior.md) | Bridger | **50%** | Aderência baixa | A avaliar | 2026-06-12 |
 
-**Média geral: 58%** · Aderência baixa (12 vagas)
+**Média geral: 57%** · Aderência baixa (13 vagas)
 
 ---
 

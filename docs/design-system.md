@@ -62,36 +62,82 @@ Usados como fundo individual de cada projeto, dando cor própria a cada case.
 
 ## Tipografia
 
-Duas famílias:
+Duas famílias (ambas self-hosted em `public/fonts/`, sem round-trip Google Fonts):
 
-- **DM Serif Display** — títulos e display (arquivo local `public/fonts/`, self-hosted para eliminar round-trip HTTP no mobile)
-- **Barlow** — corpo (pesos 500 e 800, self-hosted)
+- **DM Serif Display** — títulos e display
+- **Barlow** — corpo (pesos 500 e 800)
 
-### Escala (desktop · tablet · mobile)
+### Escala tokenizada (2026-06-19)
+
+Tokens CSS em `@theme` (`global.css`). **Usar sempre os tokens — nunca px soltos no markup.**
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--text-display` | `clamp(1.75rem, 7vw, 5rem)` | Hero h1 responsivo |
+| `--text-h1` | `3.75rem` (60px) | H1 de página |
+| `--text-h2` | `2.25rem` (36px) | Títulos de seção |
+| `--text-h3` | `1.25rem` (20px) | Subtítulos |
+| `--text-body-lg` | `1.125rem` (18px) | Parágrafo de intro |
+| `--text-body` | `1.0625rem` (17px) | Corpo padrão |
+| `--text-sm` | `0.9375rem` (15px) | Secundário, inputs |
+| `--text-xs` | `0.8125rem` (13px) | Labels, captions |
+| `--text-eyebrow` | `0.6875rem` (11px) | Labels uppercase |
+| `--text-caption` | `0.625rem` (10px) | Metadados, anos |
+
+### Line-heights e letter-spacings
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--leading-tight` | `0.92` | Hero h1 |
+| `--leading-heading` | `1.1` | Headings |
+| `--leading-normal` | `1.625` | Corpo compacto |
+| `--leading-relaxed` | `1.75` | Corpo de case, parágrafos longos |
+| `--tracking-heading` | `-0.01em` | DM Serif headings |
+| `--tracking-eyebrow` | `0.12em` | Labels uppercase |
+| `--tracking-tag` | `0.04em` | Filter pills |
+| `--tracking-caption` | `0.09em` | Anos nos cards |
+
+### Escala de referência (desktop · tablet · mobile)
 
 | Estilo | Fonte / peso | Desktop | Tablet (810–1199) | Mobile (≤809) |
 |--------|--------------|---------|-------------------|----------------|
-| H1 / Display | DM Serif Display 400 | 60 / 72 | 48 / 60 | 28 / 36 |
-| H2 | DM Serif Display 400 | 36 / 44 | 36 / 44 | 36 / 44 |
-| Corpo | Barlow 500 | 18 / 28 | 18 / 28 | 16 / 24 |
+| H1 / Display | DM Serif 400 | 60/72 | 48/60 | 28/36 *(clamp)* |
+| H2 | DM Serif 400 | 36/44 | 36/44 | 36/44 |
+| Corpo | Barlow 500 | 18/28 | 18/28 | 16/24 |
 
 *(formato: `tamanho / line-height` em px)*
-
-- **Links:** cor `#1a1a1a`, hover `#383838`, **sem sublinhado**.
-- `letter-spacing`: 0 em todos os estilos.
 
 ---
 
 ## Espaçamento e layout
 
+### Tokens de espaçamento
+
 | Token | Valor | Uso |
 |-------|-------|-----|
-| Container | `1200px` máx | Largura máxima do conteúdo |
-| Radius | `32px` | Cantos de cards e seções |
-| Gaps | `16 / 24 / 32 / 40 / 64px` | Espaçamento entre elementos |
-| Padding de seção (vertical) | `48 / 64 / 96px` | Respiro entre blocos |
-| Padding de seção (horizontal) | `16 → 64px` | Estreita no mobile |
-| Hero (padding-top) | `160px` | Respiro generoso acima do título |
+| `--space-4` | `4px` | Micro-gaps |
+| `--space-8` | `8px` | Gaps internos de componente |
+| `--space-16` | `16px` | Gap padrão |
+| `--space-24` | `24px` | Gap entre elementos relacionados |
+| `--space-32` | `32px` | Gap entre seções próximas |
+| `--space-40` | `40px` | Gap médio |
+| `--space-48` | `48px` | Padding de seção pequeno |
+| `--space-64` | `64px` | Padding de seção médio |
+| `--space-96` | `96px` | Padding de seção grande |
+| `--container-max` | `1200px` | Largura máxima do conteúdo |
+
+### Tokens de raio
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--radius-sm` | `8px` | Badges, code inline |
+| `--radius-input` | `12px` | Inputs, imagens inline |
+| `--radius-card` | `20px` | CaseCard |
+| `--radius-hero` | `24px` | Hero card |
+| `--radius-modal` | `24px` | Modais e overlays |
+| `--radius-lg` | `32px` | Hero original |
+| `--radius-pill` | `999px` | Botões pill, nav pills |
+| `--radius-tag` | `999px` | Pills de tag/filtro |
 
 ### Breakpoints
 
@@ -171,11 +217,68 @@ A home atual segue esta sequência. Manter como ponto de partida:
 
 ---
 
+## Motion
+
+Tokens de animação para consistência em todas as transições do site.
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--duration-fast` | `150ms` | Hover de nav links, filter pills |
+| `--duration-base` | `350ms` | Transições de header, hover de cards |
+| `--duration-slow` | `600ms` | Scroll reveals (`[data-animate]`) |
+| `--ease-out-expo` | `cubic-bezier(0.16,1,0.3,1)` | Easing padrão — entra rápido, desacelera |
+
+### Micro-interações catalogadas
+
+| Elemento | Duração | Easing | Propriedade |
+|----------|---------|--------|-------------|
+| Scroll reveal | `--duration-slow` | `--ease-out-expo` | opacity + translateY(22px) |
+| Header comprime | `350ms` | `cubic-bezier(0.16,1,0.3,1)` | padding |
+| Logo fade | `300ms` | ease | opacity + translateY(-6px) |
+| CaseCard hover | `350ms` | `cubic-bezier(0.16,1,0.3,1)` | translateY(-6px) + box-shadow |
+| Filter pill | `150ms` | ease | color + background + border-color |
+| Feedback form | `300ms` | ease | opacity + translateY(6px) |
+
+> `prefers-reduced-motion: reduce` desativa todos os `[data-animate]` via CSS e para a animação dos dots pulsantes. Verificado em global.css.
+
+---
+
+## Arquitetura de tokens em duas camadas (Fase 6 — 2026-06-19)
+
+O DS usa **indireção semântica**: componentes referenciam tokens de papel (semânticos), nunca os primitivos de cor diretamente. Isso torna o tema trocável e o dark mode escalável.
+
+### Camada 1 — Primitivos (em `@theme`)
+
+Valores de cor fixos — **não são re-tematizados no dark mode**:
+`--color-jambu`, `--color-cha-mate`, `--color-azul-pantanal`, etc.
+
+> Exceção atual: `--color-cha-mate` e `--color-faint` são re-tematizados no dark mode porque ainda são referenciados diretamente em componentes legados. A migração incremental para os tokens semânticos abaixo resolve isso.
+
+### Camada 2 — Semânticos (em `:root`, após `@theme`)
+
+Aliases de papel → primitivo. Como os primitivos são re-tematizados no `html[data-theme="dark"]`, os semânticos seguem automaticamente.
+
+| Token semântico | Light (via primitivo) | Dark (via primitivo) | Papel |
+|---|---|---|---|
+| `--text-heading` | `var(--color-cha-mate)` = `#5c2d11` | `#e8ddd5` | Títulos, eyebrows de marca |
+| `--text-primary` | `var(--color-ink)` = `#0d0d0d` | `#f0ebe4` | Corpo principal |
+| `--text-secondary` | `var(--color-muted)` = `#7a6a60` | `#a89080` | Texto de apoio |
+| `--text-subtle` | `var(--color-faint)` = `#776559` | `#998a7e` | Eyebrows, metadados |
+| `--bg-page` | `var(--color-page-bg)` = `#f5f2ee` | `#18120e` | Fundo da página |
+| `--bg-surface` | `var(--color-surface)` = `#ede8e2` | `#221a14` | Cards, inputs |
+| `--bg-surface-alt` | `var(--color-surface-2)` = `#e2dbd3` | `#2c2118` | Pills, separadores |
+| `--border-default` | `var(--color-border)` = `#d9d2c8` | `#3d2e23` | Bordas padrão |
+| `--accent-deco` | `var(--color-jambu)` = `#ed6707` | `#ed6707` | Decorativo — accent bars |
+| `--accent-text` | `var(--color-jambu-text)` = `#a8480c` | `#ed6707` | Jambu como texto/borda |
+| `--accent-btn` | `var(--color-jambu-deep)` = `#a8480c` | `#a8480c` | Fundo de botão + texto branco |
+
+**Regra:** novos componentes sempre referenciam tokens semânticos. Componentes legados serão migrados incrementalmente.
+
+---
+
 ## Como isto vira código
 
-- Cores e medidas viram **tokens do Tailwind v4** (CSS custom properties em
-  `@theme`).
-- Fontes carregadas localmente (`woff2`) ou via Fontshare/Google, com
-  `font-display: swap`.
-- Cada token desta página deve ter um nome correspondente no tema — sem hex
-  soltos no markup.
+- Cores e medidas viram **tokens do Tailwind v4** (CSS custom properties em `@theme` em `global.css`).
+- Fontes self-hosted (`woff2`, subset latin) em `public/fonts/`, com `font-display: swap` e `rel="preload"` para as duas críticas.
+- Cada token desta página deve ter um nome correspondente no tema — sem hex soltos no markup.
+- Componentes novos usam tokens **semânticos** (`--text-heading`, `--bg-surface`, etc.). Tokens primitivos aparecem apenas na camada de definição.
