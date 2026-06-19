@@ -153,11 +153,13 @@ Mesmo racional do Painel Saúde. CMS só se justificaria com múltiplos editores
 Mesmo fluxo de deploy do Painel Saúde. Deploy automático por push, preview de
 branches, suporte a output estático.
 
-**Vídeo hero com carregamento condicional (hero.mp4, ~12MB)**
-O vídeo tem `preload="none"` e o `src` é injetado via JS apenas quando:
-(1) viewport ≥ 768px, (2) `prefers-reduced-motion: no-preference`, (3) conexão não é `slow-2g` ou `2g`.
-A imagem Unsplash (`bgImage`) é sempre renderizada como camada de fallback — garante
-visual para mobile, reduced-motion e conexões lentas sem flash de fundo vazio.
+**Vídeo hero com carregamento condicional**
+O vídeo tem `preload="none"` e o `src` é injetado via JS. Duas versões em `public/`:
+- `Gh011011.mp4` (8.1MB) — desktop (≥ 768px)
+- `Gh011011_mobile.mp4` (4.8MB, 640p) — mobile (< 768px)
+
+`prefers-reduced-motion: reduce` ou conexão `slow-2g`/`2g` mantém o fallback de imagem Unsplash sem carregar vídeo.
+O `data-src-mobile` é derivado automaticamente via `.replace('.mp4', '_mobile.mp4')` — não requer prop extra.
 Script em `Hero.astro`, reutilizável via evento `astro:page-load` (View Transitions).
 
 **Ordem das seções da home: Hero → Cases → About/Career → Contact**

@@ -46,12 +46,13 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
       />
     )}
 
-    <!-- Vídeo de fundo — src injetado via JS apenas em desktop com conexão rápida -->
+    <!-- Vídeo de fundo — src injetado via JS; mobile recebe versão 640p, desktop recebe versão full -->
     {bgVideo && (
       <video
         id="hero-video"
         class="absolute inset-0 h-full w-full object-cover"
         data-src={bgVideo}
+        data-src-mobile={bgVideo.replace('.mp4', '_mobile.mp4')}
         muted
         loop
         playsinline
@@ -124,16 +125,18 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   function initHeroVideo() {
     const video = document.getElementById('hero-video') as HTMLVideoElement | null;
     if (!video || video.src) return;
-    const src = video.dataset.src;
-    if (!src) return;
-    const mq = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
+    const srcDesktop = video.dataset.src;
+    const srcMobile = video.dataset.srcMobile;
+    if (!srcDesktop) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
     const conn = (navigator as any).connection;
     const isSlow = conn && ['slow-2g', '2g'].includes(conn.effectiveType);
-    if (mq.matches && !isSlow) {
-      video.src = src;
-      video.load();
-      video.play().catch(() => {});
-    }
+    if (isSlow) return;
+    const isMobile = window.innerWidth < 768;
+    video.src = (isMobile && srcMobile) ? srcMobile : srcDesktop;
+    video.load();
+    video.play().catch(() => {});
   }
   initHeroVideo();
   document.addEventListener('astro:page-load', initHeroVideo);
