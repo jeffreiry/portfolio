@@ -21,7 +21,7 @@ deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
 
 | Camada | Tecnologia | Por quê |
 |--------|-----------|---------|
-| Framework | **Astro 5** | Site centrado em conteúdo; zero-JS por padrão; content collections tipadas; i18n nativo |
+| Framework | **Astro 6** | Site centrado em conteúdo; zero-JS por padrão; content collections tipadas; i18n nativo |
 | Linguagem | **TypeScript** | Frontmatter de cases tipado e seguro |
 | Estilo | **Tailwind CSS v4** | Tokens do design system como utilitários; rápido de iterar |
 | Interatividade | **Svelte 5 (ilhas)** | Aproveita o conhecimento do autor; só hidrata o que precisa |
@@ -120,6 +120,8 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 **Integração Painel Saúde (2026-06-15):** Widgets `RunWidget.astro` e `WorkoutWidget.astro` adicionados ao About, mostrando km mensais (Strava) e horas mensais de treino (Hevy) via API em `painel-saude-zeta.vercel.app`. Bottom row dos widgets em `flex-column` (count acima, "Syncing with" abaixo — evita quebra no mobile). Rebuild automático do portfólio via Vercel deploy hook sempre que o painel-saude detectar dados novos no sync diário (00:00 BRT). Logos em `public/logos/` (strava.png, hevy.png); brancos no dark mode via `filter: brightness(0) invert(1)`. Fundo dos widgets: `#fafafa` (light) / `var(--color-surface)` (dark) — igual aos cards de carreira. Widgets com scroll reveal (`data-animate`).
 
 **Dev local (2026-06-18):** `astro.config.mjs` exclui `**/.vercel/**` do Vite watcher para evitar `ELOOP: too many symbolic links` ao rodar `npm run dev`.
+
+**Fix formulário de contato (2026-06-19):** `POST /api/contact` retornava HTTP 405 em produção porque, com `output: 'static'`, o Astro 6 prerenderiza todo endpoint por padrão e o `src/pages/api/contact.ts` não tinha `export const prerender = false` (diferente de `login.ts`/`logout.ts`). O endpoint virava arquivo estático em vez de função serverless. **Todo endpoint de API novo deve declarar `export const prerender = false`** enquanto o `output` for `static`. Também adicionado `console.error('[contact] Resend send failed:', error)` no caminho de falha para diagnóstico via logs da Vercel. Pré-requisitos do envio (que o build estático mascarava): `RESEND_API_KEY` setada na Vercel e domínio `portfolio.jefersonfreiry.com` verificado no Resend.
 
 **Página /jobanalysis (2026-06-18):** Rota PT única (`src/pages/jobanalysis.astro`) com os resultados do bench (`Bench_job_applications/_index.md`): resumo, ranking de aderência por vaga (barra de score), gaps transversais e metodologia. Dados embutidos na frontmatter (não vem do content collection). **Protegida por senha própria** (`JOBANALYSIS_PASSWORD`, independente dos cases): `prerender = false` + lógica de áreas em `src/auth.ts` (mapeia path → cookie + senha). O bench usa cookie `jobanalysis_auth`; cases usam `portfolio_auth`. `middleware.ts` e `api/login.ts` consomem `src/auth.ts`; `api/logout.ts` limpa os dois cookies. Fallback p/ `PORTFOLIO_PASSWORD` se `JOBANALYSIS_PASSWORD` não estiver setada. Defesa em profundidade: `noindex={true}` no `Base.astro` (nova prop, injeta `<meta name="robots" content="noindex, nofollow">`) e fora do sitemap via `filter` em `astro.config.mjs`. Ao atualizar o bench, sincronizar o array `vagas`/`gaps` da página.
 
