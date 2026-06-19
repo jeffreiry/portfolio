@@ -236,7 +236,36 @@ const statusOptions = [
           Nova Vaga
         </button>
       </div>
-      <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
+      <p data-animate class="text-sm mb-4" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
+
+      <!-- Filtros -->
+      <div data-animate class="flex flex-wrap gap-x-6 gap-y-3 mb-6 pb-5" style="border-bottom: 1px solid var(--color-border);">
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Candidatura</span>
+          <div class="flex gap-1" role="group" aria-label="Filtrar por candidatura">
+            {['', 'Sim', 'Não'].map((v) => (
+              <button class={`filter-pill${v === '' ? ' filter-pill--active' : ''}`} data-filter="candidatura" data-value={v}>
+                {v === '' ? 'Todas' : v}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Aderência</span>
+          <div class="flex gap-1 flex-wrap" role="group" aria-label="Filtrar por aderência">
+            {[
+              { value: '', label: 'Todas' },
+              { value: 'parcial', label: 'Parcial' },
+              { value: 'baixa', label: 'Baixa' },
+              { value: 'muito-baixa', label: '<40%' },
+            ].map(({ value, label }) => (
+              <button class={`filter-pill${value === '' ? ' filter-pill--active' : ''}`} data-filter="banda" data-value={value}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <div id="vagas-list" class="flex flex-col gap-4">
         {vagas.map((v, i) => {
@@ -245,6 +274,8 @@ const statusOptions = [
             <article
               data-animate
               data-slug={v.slug}
+              data-candidatura={v.candidatura}
+              data-banda={banda(v.score)}
               style={`--animate-delay: ${Math.min(i * 40, 300)}ms`}
               class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
             >
@@ -310,6 +341,19 @@ const statusOptions = [
                   style="border-color: var(--color-border); color: var(--color-faint);">
                   {v.status}
                 </span>
+
+                <button
+                  class="edit-btn ml-auto flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                  style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+                  data-slug={v.slug}
+                  data-empresa={v.empresa}
+                  aria-label={`Reanalisar ${v.empresa}`}
+                >
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Editar
+                </button>
               </div>
             </article>
           );
@@ -441,8 +485,8 @@ const statusOptions = [
     <form id="form-nova-vaga" class="flex flex-col gap-4 p-6">
       <div class="flex items-start justify-between gap-4">
         <div>
-          <h2 class="font-display text-lg font-semibold text-neutral-900">Nova Vaga</h2>
-          <p class="text-sm mt-0.5" style="color: var(--color-faint);">Cole a descrição da vaga — a IA gera a análise completa.</p>
+          <h2 id="modal-nova-title" class="font-display text-lg font-semibold text-neutral-900">Nova Vaga</h2>
+          <p id="modal-nova-subtitle" class="text-sm mt-0.5" style="color: var(--color-faint);">Cole a descrição da vaga — a IA gera a análise completa.</p>
         </div>
         <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
           aria-label="Fechar" style="color: var(--color-faint);">
@@ -451,6 +495,8 @@ const statusOptions = [
           </svg>
         </button>
       </div>
+
+      <input type="hidden" id="nv-slug" name="slug" />
 
       <textarea id="nv-jd" name="jd" rows="12" required
         class="ja-input rounded-lg border px-3 py-2.5 text-sm resize-y"
@@ -503,21 +549,39 @@ const statusOptions = [
     outline: 2px solid var(--color-neutral-900);
     outline-offset: 1px;
   }
+
+  /* Filter pills */
+  .filter-pill {
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    border: none;
+    background: var(--color-surface-2);
+    color: var(--color-muted);
+  }
+  .filter-pill--active {
+    background: var(--color-neutral-900) !important;
+    color: #fff !important;
+  }
 </style>
 
 <script>
   // ---- Utilitários ----
 
   const BAND_COLORS = {
-    parcial:      { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',    chipText: 'var(--color-tag-dataviz-text)'    },
-    baixa:        { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
-    'muito-baixa':{ fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
+    parcial:       { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',    chipText: 'var(--color-tag-dataviz-text)'    },
+    baixa:         { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
+    'muito-baixa': { fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
   } as const;
 
-  function banda(score: number) {
+  function banda(score: number): 'parcial' | 'baixa' | 'muito-baixa' {
     if (score >= 60) return 'parcial';
     if (score >= 40) return 'baixa';
-    return 'muito-baixa' as const;
+    return 'muito-baixa';
   }
 
   function scoreLabel(score: number) {
@@ -554,16 +618,40 @@ const statusOptions = [
     }
   });
 
+  // ---- Filtros ----
+
+  const activeFilters = { candidatura: '', banda: '' };
+
+  function applyFilters() {
+    document.querySelectorAll<HTMLElement>('.vaga-card').forEach((card) => {
+      const cMatch = !activeFilters.candidatura || card.dataset.candidatura === activeFilters.candidatura;
+      const bMatch = !activeFilters.banda || card.dataset.banda === activeFilters.banda;
+      card.style.display = cMatch && bMatch ? '' : 'none';
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const filterType = pill.dataset.filter as 'candidatura' | 'banda';
+      const value = pill.dataset.value ?? '';
+      activeFilters[filterType] = value;
+      document.querySelectorAll<HTMLButtonElement>(`.filter-pill[data-filter="${filterType}"]`).forEach((p) => {
+        p.classList.toggle('filter-pill--active', p.dataset.value === value);
+      });
+      applyFilters();
+    });
+  });
+
   // ---- Modal Candidatura ----
 
-  const modalCandidatura = document.getElementById('modal-candidatura') as HTMLDialogElement;
-  const formCandidatura  = document.getElementById('form-candidatura') as HTMLFormElement;
+  const modalCandidatura  = document.getElementById('modal-candidatura') as HTMLDialogElement;
+  const formCandidatura   = document.getElementById('form-candidatura') as HTMLFormElement;
   const modalEmpresaLabel = document.getElementById('modal-empresa-label') as HTMLElement;
-  const modalSlugInput   = document.getElementById('modal-slug') as HTMLInputElement;
-  const modalStatusSel   = document.getElementById('modal-status') as HTMLSelectElement;
-  const modalCandErr     = document.getElementById('modal-candidatura-error') as HTMLElement;
+  const modalSlugInput    = document.getElementById('modal-slug') as HTMLInputElement;
+  const modalStatusSel    = document.getElementById('modal-status') as HTMLSelectElement;
+  const modalCandErr      = document.getElementById('modal-candidatura-error') as HTMLElement;
 
-  document.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach((btn) => {
+  function wireCandidaturaBtn(btn: HTMLButtonElement) {
     btn.addEventListener('click', () => {
       const { slug, empresa, cargo, candidatura, status } = btn.dataset;
       modalSlugInput.value = slug ?? '';
@@ -576,7 +664,9 @@ const statusOptions = [
       modalCandErr.textContent = '';
       openModal(modalCandidatura);
     });
-  });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach(wireCandidaturaBtn);
 
   formCandidatura.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -603,16 +693,16 @@ const statusOptions = [
       });
       if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
 
-      // Atualiza o card no DOM
       const card = document.querySelector<HTMLElement>(`.vaga-card[data-slug="${slug}"]`);
       if (card) {
-        const candBtn = card.querySelector<HTMLButtonElement>('.candidatura-btn')!;
+        const candBtn   = card.querySelector<HTMLButtonElement>('.candidatura-btn')!;
         const candLabel = candBtn.querySelector<HTMLElement>('.candidatura-label')!;
-        const statusLabel = card.querySelector<HTMLElement>('.status-label')!;
-        candLabel.textContent = candidatura;
+        const statusLbl = card.querySelector<HTMLElement>('.status-label')!;
+        candLabel.textContent       = candidatura;
         candBtn.dataset.candidatura = candidatura;
-        candBtn.dataset.status = status;
-        statusLabel.textContent = status;
+        candBtn.dataset.status      = status;
+        statusLbl.textContent       = status;
+        card.dataset.candidatura    = candidatura; // mantém filtro atualizado
       }
 
       modalCandidatura.close();
@@ -626,27 +716,51 @@ const statusOptions = [
     }
   });
 
-  // ---- Modal Nova Vaga ----
+  // ---- Modal Nova Vaga / Reanalisar ----
 
-  const modalNovaVaga = document.getElementById('modal-nova-vaga') as HTMLDialogElement;
-  const formNovaVaga  = document.getElementById('form-nova-vaga') as HTMLFormElement;
-  const modalNovaErr  = document.getElementById('modal-nova-error') as HTMLElement;
+  const modalNovaVaga     = document.getElementById('modal-nova-vaga') as HTMLDialogElement;
+  const formNovaVaga      = document.getElementById('form-nova-vaga') as HTMLFormElement;
+  const modalNovaErr      = document.getElementById('modal-nova-error') as HTMLElement;
+  const modalNovaTitle    = document.getElementById('modal-nova-title') as HTMLElement;
+  const modalNovaSubtitle = document.getElementById('modal-nova-subtitle') as HTMLElement;
+  const nvSlugInput       = document.getElementById('nv-slug') as HTMLInputElement;
 
   document.getElementById('btn-nova-vaga')?.addEventListener('click', () => {
+    nvSlugInput.value = '';
     formNovaVaga.reset();
+    modalNovaTitle.textContent    = 'Nova Vaga';
+    modalNovaSubtitle.textContent = 'Cole a descrição da vaga — a IA gera a análise completa.';
     modalNovaErr.classList.add('hidden');
     openModal(modalNovaVaga);
   });
+
+  function wireEditBtn(btn: HTMLButtonElement) {
+    btn.addEventListener('click', () => {
+      const { slug, empresa } = btn.dataset;
+      nvSlugInput.value = slug ?? '';
+      (document.getElementById('nv-jd') as HTMLTextAreaElement).value = '';
+      modalNovaTitle.textContent    = `Reanalisar: ${empresa}`;
+      modalNovaSubtitle.textContent = 'Cole a nova descrição — o arquivo será sobrescrito com a nova análise.';
+      modalNovaErr.classList.add('hidden');
+      openModal(modalNovaVaga);
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.edit-btn').forEach(wireEditBtn);
+
+  // ---- buildCardHTML ----
 
   function buildCardHTML(v: {
     slug: string; empresa: string; produto: string; cargo: string;
     score: number; interpretacao: string; interpretacaoTexto: string;
     status: string; candidatura: string; data: string; tags: string[];
   }): string {
-    const b = BAND_COLORS[banda(v.score)];
+    const b       = BAND_COLORS[banda(v.score)];
     const dateFmt = v.data ? formatDate(v.data) : '';
     const tagsHTML = v.tags.length
-      ? `<div class="tags-list flex flex-wrap gap-1.5">${v.tags.map((t) => `<span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);">${t}</span>`).join('')}</div>`
+      ? `<div class="tags-list flex flex-wrap gap-1.5">${v.tags.map((t) =>
+          `<span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);">${t}</span>`
+        ).join('')}</div>`
       : '';
     const interpHTML = v.interpretacaoTexto
       ? `<p class="interp-text text-sm leading-relaxed italic" style="color: var(--color-muted);">"${v.interpretacaoTexto}"</p>`
@@ -656,7 +770,9 @@ const statusOptions = [
       : '';
 
     return `
-      <article data-slug="${v.slug}" class="vaga-card rounded-2xl border p-5 flex flex-col gap-3" style="border-color: var(--color-border); background: color-mix(in srgb, var(--color-surface) 40%, transparent);">
+      <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}"
+        class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
+        style="border-color: var(--color-border); background: color-mix(in srgb, var(--color-surface) 40%, transparent);">
         <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span class="font-display text-[19px] font-semibold text-neutral-900">${v.empresa}</span>
           ${v.produto ? `<span class="text-sm" style="color: var(--color-faint);">· ${v.produto}</span>` : ''}
@@ -673,7 +789,7 @@ const statusOptions = [
         <div class="flex flex-wrap items-center gap-2 pt-1">
           ${dateHTML}
           <button class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
-            style="border-color: var(--color-border); color: var(--color-muted);"
+            style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
             data-slug="${v.slug}" data-empresa="${v.empresa}" data-cargo="${v.cargo}"
             data-candidatura="${v.candidatura}" data-status="${v.status}"
             aria-label="Editar candidatura de ${v.empresa}">
@@ -681,13 +797,23 @@ const statusOptions = [
           </button>
           <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: ${b.chipBg}; color: ${b.chipText};">${v.interpretacao}</span>
           <span class="status-label rounded-full border px-2.5 py-1 text-[11px]" style="border-color: var(--color-border); color: var(--color-faint);">${v.status}</span>
+          <button class="edit-btn ml-auto flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+            style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+            data-slug="${v.slug}" data-empresa="${v.empresa}"
+            aria-label="Reanalisar ${v.empresa}">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Editar
+          </button>
         </div>
       </article>`;
   }
 
+  // ---- updateStats ----
+
   function updateStats() {
-    const cards = document.querySelectorAll<HTMLElement>('.vaga-card');
-    const scores = Array.from(cards)
+    const scores = Array.from(document.querySelectorAll<HTMLElement>('.vaga-card'))
       .map((c) => {
         const val = c.querySelector<HTMLElement>('.score-value')?.textContent?.replace('%', '');
         return val ? parseInt(val) : null;
@@ -695,39 +821,33 @@ const statusOptions = [
       .filter((s): s is number => s !== null);
 
     if (!scores.length) return;
-    const total = scores.length;
-    const media = Math.round(scores.reduce((a, b) => a + b, 0) / total);
+    const total    = scores.length;
+    const media    = Math.round(scores.reduce((a, b) => a + b, 0) / total);
     const maxScore = Math.max(...scores);
     const parciais = scores.filter((s) => s >= 60).length;
 
     const el = (id: string) => document.getElementById(id);
-    const statTotal = el('stat-total'); if (statTotal) statTotal.textContent = String(total);
-    const statMedia = el('stat-media'); if (statMedia) statMedia.textContent = `${media}%`;
-    const statMax = el('stat-max'); if (statMax) statMax.textContent = `${maxScore}%`;
-    const statParciais = el('stat-parciais'); if (statParciais) statParciais.textContent = String(parciais);
-    const statInline = el('stat-media-inline'); if (statInline) statInline.textContent = `${media}%`;
+    const statTotal   = el('stat-total');        if (statTotal)   statTotal.textContent   = String(total);
+    const statMedia   = el('stat-media');        if (statMedia)   statMedia.textContent   = `${media}%`;
+    const statMax     = el('stat-max');          if (statMax)     statMax.textContent     = `${maxScore}%`;
+    const statParciais = el('stat-parciais');    if (statParciais) statParciais.textContent = String(parciais);
+    const statInline  = el('stat-media-inline'); if (statInline)  statInline.textContent  = `${media}%`;
   }
 
+  // ---- wireNewCard ----
+
   function wireNewCard(card: HTMLElement) {
-    card.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const { slug, empresa, cargo, candidatura, status } = btn.dataset;
-        modalSlugInput.value = slug ?? '';
-        modalEmpresaLabel.textContent = `${empresa} · ${cargo}`;
-        const radio = formCandidatura.querySelector<HTMLInputElement>(`input[value="${candidatura}"]`);
-        if (radio) radio.checked = true;
-        const opt = modalStatusSel.querySelector<HTMLOptionElement>(`option[value="${status}"]`);
-        if (opt) opt.selected = true;
-        modalCandErr.classList.add('hidden');
-        openModal(modalCandidatura);
-      });
-    });
+    card.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach(wireCandidaturaBtn);
+    card.querySelectorAll<HTMLButtonElement>('.edit-btn').forEach(wireEditBtn);
   }
+
+  // ---- Submit Nova Vaga / Reanalisar ----
 
   formNovaVaga.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = new FormData(formNovaVaga);
-    const jd = (data.get('jd') as string)?.trim();
+    const data         = new FormData(formNovaVaga);
+    const jd           = (data.get('jd') as string)?.trim();
+    const existingSlug = nvSlugInput.value.trim();
 
     if (!jd) {
       modalNovaErr.textContent = 'Cole a descrição da vaga.';
@@ -735,42 +855,56 @@ const statusOptions = [
       return;
     }
 
-    const btn    = formNovaVaga.querySelector<HTMLButtonElement>('#btn-criar-vaga')!;
-    const label  = document.getElementById('btn-criar-label')!;
-    btn.disabled = true;
-    label.textContent = 'Analisando…';
+    const btn   = formNovaVaga.querySelector<HTMLButtonElement>('#btn-criar-vaga')!;
+    const label = document.getElementById('btn-criar-label')!;
+    btn.disabled     = true;
+    label.textContent = existingSlug ? 'Reanalisando…' : 'Analisando…';
 
     try {
+      const body: Record<string, string> = { jd };
+      if (existingSlug) body.slug = existingSlug;
+
       const res = await fetch('/api/jobanalysis-analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ jd }),
+        body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
 
       const vaga = await res.json();
-
-      // Insere card no DOM ordenado por score (desc)
       const list = document.getElementById('vagas-list')!;
-      const existingCards = Array.from(list.querySelectorAll<HTMLElement>('.vaga-card'));
-      const newScore = vaga.score;
 
-      const insertBefore = existingCards.find((c) => {
-        const s = parseInt(c.querySelector<HTMLElement>('.score-value')?.textContent ?? '0');
-        return s < newScore;
-      });
-
-      const tmp = document.createElement('div');
-      tmp.innerHTML = buildCardHTML(vaga);
-      const newCard = tmp.firstElementChild as HTMLElement;
-
-      if (insertBefore) {
-        list.insertBefore(newCard, insertBefore);
+      if (existingSlug) {
+        // Modo edição: substitui o card existente
+        const oldCard = list.querySelector<HTMLElement>(`.vaga-card[data-slug="${existingSlug}"]`);
+        const tmp = document.createElement('div');
+        tmp.innerHTML = buildCardHTML(vaga);
+        const newCard = tmp.firstElementChild as HTMLElement;
+        if (oldCard) {
+          oldCard.replaceWith(newCard);
+        } else {
+          list.appendChild(newCard);
+        }
+        wireNewCard(newCard);
       } else {
-        list.appendChild(newCard);
+        // Modo criação: insere ordenado por score desc
+        const existingCards = Array.from(list.querySelectorAll<HTMLElement>('.vaga-card'));
+        const insertBefore  = existingCards.find((c) => {
+          const s = parseInt(c.querySelector<HTMLElement>('.score-value')?.textContent ?? '0');
+          return s < vaga.score;
+        });
+        const tmp = document.createElement('div');
+        tmp.innerHTML = buildCardHTML(vaga);
+        const newCard = tmp.firstElementChild as HTMLElement;
+        if (insertBefore) {
+          list.insertBefore(newCard, insertBefore);
+        } else {
+          list.appendChild(newCard);
+        }
+        wireNewCard(newCard);
       }
 
-      wireNewCard(newCard);
+      applyFilters();
       updateStats();
       modalNovaVaga.close();
     } catch (err: unknown) {
@@ -778,7 +912,7 @@ const statusOptions = [
       modalNovaErr.textContent = msg;
       modalNovaErr.classList.remove('hidden');
     } finally {
-      btn.disabled = false;
+      btn.disabled      = false;
       label.textContent = 'Analisar com IA';
     }
   });

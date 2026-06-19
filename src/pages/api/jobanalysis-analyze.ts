@@ -62,9 +62,23 @@ Scoring ponderado por **Person-Job Fit** (Demands-Abilities Fit):
 - 40–59% = Aderência baixa — gaps significativos
 - < 40% = Desalinhamento estrutural
 
-## Formato de saída
+## Regras obrigatórias — NUNCA viole estas regras
 
-Gere EXATAMENTE neste formato (markdown puro, sem blocos de código):
+1. **Extraia TODOS os requisitos da JD** — não resuma nem agrupe. Cada linha da seção de requisitos vira uma linha da tabela.
+2. **Cálculo matemático rigoroso:**
+   - soma_obrigatórios = soma das notas dos requisitos obrigatórios
+   - máx_obrigatórios = quantidade de requisitos obrigatórios × 3
+   - soma_preferidos = soma das notas dos diferenciais
+   - máx_preferidos = quantidade de diferenciais × 3
+   - total_obtido = (soma_obrigatórios × 2) + soma_preferidos
+   - total_máximo = (máx_obrigatórios × 2) + máx_preferidos
+   - score = arredondar(total_obtido / total_máximo × 100)
+3. **O {X}% no título "## Score de aderência · {X}%" e no "---METADATA---" DEVE ser exatamente igual ao score calculado matematicamente.** Não ajuste, não corrija "contextualmente", não invente outro valor.
+4. **Bloqueadores = SOMENTE requisitos obrigatórios com nota 0.** Se a nota for ≥ 1, não liste como bloqueador.
+5. **Não adicione texto explicativo sobre o score** — apenas o número.
+6. **Não use blocos de código** — markdown puro.
+
+## Formato de saída
 
 # {Empresa} · {Cargo}
 
@@ -79,15 +93,15 @@ Gere EXATAMENTE neste formato (markdown puro, sem blocos de código):
 
 ## Score de aderência · {X}%
 
-> {1–2 frases resumindo: pontos fortes e gaps principais}
+> {1–2 frases sobre pontos fortes e gaps principais — sem mencionar o número do score aqui}
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
-| {requisito extraído da JD} | {0–3} | {evidência do portfolio ou "Ausente"} |
+| {requisito extraído literalmente da JD} | {0–3} | {evidência do portfolio ou "Ausente"} |
 
-**Subtotal obrigatórios: {obtido}/{máx} × 2 = {obtido×2}/{máx×2}**
+**Subtotal obrigatórios: {soma_notas}/{máx_notas} × 2 = {soma_notas×2}/{máx_notas×2}**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -95,17 +109,17 @@ Gere EXATAMENTE neste formato (markdown puro, sem blocos de código):
 |---|---|---|
 | {diferencial extraído da JD} | {0–3} | {evidência} |
 
-**Subtotal preferidos: {obtido}/{máx}**
+**Subtotal preferidos: {soma_notas}/{máx_notas}**
 
 ### Cálculo
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | {n} | {n} |
-| Preferidos (×1) | {n} | {n} |
-| **Total** | **{n}** | **{n}** |
+| Obrigatórios (×2) | {soma_obrigatórios×2} | {máx_obrigatórios×2} |
+| Preferidos (×1) | {soma_preferidos} | {máx_preferidos} |
+| **Total** | **{total_obtido}** | **{total_máximo}** |
 
-**Score: {n}/{n} = {X}%**
+**Score: {total_obtido}/{total_máximo} = {X}%**
 
 ---
 
@@ -113,18 +127,18 @@ Gere EXATAMENTE neste formato (markdown puro, sem blocos de código):
 
 ### 🔴 Bloqueadores de candidatura
 
-{gaps com nota 0 em requisitos obrigatórios — numerados}
+{APENAS requisitos obrigatórios com nota 0 — se não houver, escreva "Nenhum bloqueador crítico identificado."}
 
 ### 🟡 Diferenciais ausentes
 
-{gaps em preferidos — numerados}
+{diferenciais com nota 0 ou 1 — numerados}
 
 ### 🟢 Boa aderência
 
-{o que está bem evidenciado — bullets}
+{requisitos e diferenciais com nota 2 ou 3 — bullets}
 
 ---METADATA---
-{"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":{número inteiro},"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote, sem aspas internas}","candidatura":"Não"}`;
+{"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":{X igual ao calculado},"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote sem aspas internas}","candidatura":"Não"}`;
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.GROQ_API_KEY;
@@ -136,7 +150,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    const { jd } = await request.json();
+    const { jd, slug: existingSlug } = await request.json();
     if (!jd?.trim()) {
       return new Response(JSON.stringify({ error: 'Cole a descrição da vaga.' }), {
         status: 400,
@@ -175,9 +189,10 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!empresa || !cargo) throw new Error('Empresa ou cargo não extraídos');
 
-    let slug = toSlug(`${empresa}-${cargo}`);
+    // Se slug existente fornecido → modo edição (sobrescreve)
+    let slug = existingSlug?.trim() || toSlug(`${empresa}-${cargo}`);
     let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
-    if (existsSync(filePath)) {
+    if (!existingSlug && existsSync(filePath)) {
       slug = `${slug}-${Date.now()}`;
       filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
     }
