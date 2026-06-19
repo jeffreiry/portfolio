@@ -57,6 +57,31 @@ function calcScore(md: string): ScoreCalc {
   return { score, somaObrig, maxObrig, somaPref, maxPref, totalObt, totalMax, ok: notasObrig.length > 0 };
 }
 
+function rewriteDiferenciaisAusentes(md: string): string {
+  const afterPref = md.split(/### Diferenciais preferidos/i)[1] ?? '';
+  const [prefSection] = afterPref.split(/### C[aá]lculo/i);
+
+  const ausentes: string[] = [];
+  const lines = (prefSection ?? '').split('\n').filter((l) => l.trim().startsWith('|'));
+  for (const line of lines) {
+    if (/Diferencial|Nota|:?---/.test(line)) continue;
+    const cells = line.split('|').map((c) => c.trim()).filter(Boolean);
+    if (cells.length >= 2) {
+      const nota = parseInt(cells[1]);
+      if (nota === 0 || nota === 1) ausentes.push(cells[0]);
+    }
+  }
+
+  const content = ausentes.length > 0
+    ? ausentes.map((d, i) => `${i + 1}. ${d}`).join('\n')
+    : 'Nenhum diferencial ausente — todos parcialmente ou plenamente evidenciados.';
+
+  return md.replace(
+    /### 🟡 Diferenciais ausentes[\s\S]*?(?=### 🟢|$)/,
+    `### 🟡 Diferenciais ausentes\n\n${content}\n\n`,
+  );
+}
+
 function rewriteBlockers(md: string): string {
   // Extrai requisitos obrigatórios com nota 0
   const afterObrig = md.split(/### Requisitos obrigat[oó]rios/i)[1] ?? '';
@@ -287,6 +312,7 @@ export const POST: APIRoute = async ({ request }) => {
     finalMd = finalMd.replace(/\*\*Data da vaga:\*\*[^\n]*/, `**Data da vaga:** ${data}`);
     if (calc.ok) finalMd = rewriteScoreSection(finalMd, calc);
     finalMd = rewriteBlockers(finalMd);
+    finalMd = rewriteDiferenciaisAusentes(finalMd);
 
     let slug = existingSlug?.trim() || toSlug(`${empresa}-${cargo}`);
     let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
