@@ -1,15 +1,14 @@
 import { defineMiddleware } from 'astro:middleware';
-
-const PROTECTED_PREFIXES = ['/work/', '/pt/work/', '/jobanalysis'];
+import { areaForPath, COOKIE, passwordFor } from './auth';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
-  const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
-  if (!isProtected) return next();
+  const area = areaForPath(pathname);
+  if (!area) return next();
 
-  const password = import.meta.env.PORTFOLIO_PASSWORD;
-  const authCookie = context.cookies.get('portfolio_auth');
+  const password = passwordFor(area);
+  const authCookie = context.cookies.get(COOKIE[area]);
 
   if (password && authCookie?.value === password) return next();
 

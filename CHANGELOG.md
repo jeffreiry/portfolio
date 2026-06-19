@@ -6,6 +6,7 @@
 - **Página `/jobanalysis`** (PT, só rota raiz) — apresenta os resultados do bench de candidaturas (`Bench_job_applications/_index.md`): resumo (11 vagas, média 60%), ranking de aderência com barra de score por vaga, gaps transversais e metodologia (rubrica + interpretação). Reusa tokens do design system. **Protegida por senha** (`PORTFOLIO_PASSWORD`) — `prerender = false` + prefixo `/jobanalysis` no `middleware.ts`. Defesa em profundidade: também `noindex, nofollow` (prop nova em `Base.astro`) e fora do sitemap (filtro em `astro.config.mjs`).
 
 ### Alterado
+- **Auth por área** — `src/auth.ts` centraliza o mapa path → cookie + senha. `/jobanalysis` agora tem senha própria (`JOBANALYSIS_PASSWORD`, fallback p/ `PORTFOLIO_PASSWORD`) e cookie `jobanalysis_auth`, isolado dos cases. `middleware.ts`, `api/login.ts` e `api/logout.ts` (limpa os dois cookies) atualizados. Copy do `login.astro` neutralizado ("This page is protected").
 - **Hero video** — substituído `hero.mp4` por `Gh011011.mp4` (vídeo de autoria própria) em EN e PT
 - **RunWidget + WorkoutWidget** — bottom row alterado de `flex-row space-between` para `flex-column`, evitando quebra do "Syncing with" ao lado da contagem no mobile
 

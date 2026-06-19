@@ -105,7 +105,8 @@ Antes de redigir ou revisar qualquer case, fazer as perguntas abaixo ao autor. S
 
 | Variável | Onde usar | Para quê |
 |---|---|---|
-| `PORTFOLIO_PASSWORD` | Vercel → Settings → Env Vars | Proteção por senha nas páginas de case |
+| `PORTFOLIO_PASSWORD` | Vercel → Settings → Env Vars | Proteção por senha nas páginas de case (`/work/*`) |
+| `JOBANALYSIS_PASSWORD` | Vercel → Settings → Env Vars | Senha do bench (`/jobanalysis`), independente dos cases. Se ausente, cai na `PORTFOLIO_PASSWORD` |
 | `RESEND_API_KEY` | Vercel → Settings → Env Vars | Envio de email do formulário de contato |
 
 O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o domínio precisa ser verificado no painel do Resend antes do envio funcionar em produção.
@@ -120,7 +121,7 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **Dev local (2026-06-18):** `astro.config.mjs` exclui `**/.vercel/**` do Vite watcher para evitar `ELOOP: too many symbolic links` ao rodar `npm run dev`.
 
-**Página /jobanalysis (2026-06-18):** Rota PT única (`src/pages/jobanalysis.astro`) com os resultados do bench (`Bench_job_applications/_index.md`): resumo, ranking de aderência por vaga (barra de score), gaps transversais e metodologia. Dados embutidos na frontmatter (não vem do content collection). **Protegida por senha** (`PORTFOLIO_PASSWORD`): `prerender = false` + prefixo `/jobanalysis` em `PROTECTED_PREFIXES` no `middleware.ts` — mesma senha dos cases. Defesa em profundidade: `noindex={true}` no `Base.astro` (nova prop, injeta `<meta name="robots" content="noindex, nofollow">`) e fora do sitemap via `filter` em `astro.config.mjs`. Ao atualizar o bench, sincronizar o array `vagas`/`gaps` da página.
+**Página /jobanalysis (2026-06-18):** Rota PT única (`src/pages/jobanalysis.astro`) com os resultados do bench (`Bench_job_applications/_index.md`): resumo, ranking de aderência por vaga (barra de score), gaps transversais e metodologia. Dados embutidos na frontmatter (não vem do content collection). **Protegida por senha própria** (`JOBANALYSIS_PASSWORD`, independente dos cases): `prerender = false` + lógica de áreas em `src/auth.ts` (mapeia path → cookie + senha). O bench usa cookie `jobanalysis_auth`; cases usam `portfolio_auth`. `middleware.ts` e `api/login.ts` consomem `src/auth.ts`; `api/logout.ts` limpa os dois cookies. Fallback p/ `PORTFOLIO_PASSWORD` se `JOBANALYSIS_PASSWORD` não estiver setada. Defesa em profundidade: `noindex={true}` no `Base.astro` (nova prop, injeta `<meta name="robots" content="noindex, nofollow">`) e fora do sitemap via `filter` em `astro.config.mjs`. Ao atualizar o bench, sincronizar o array `vagas`/`gaps` da página.
 
 **Seção About (2026-06-15):** Education/Formação e label de hobbies usam estilo de label 11px uppercase (`font-body`, 600, 0.12em letter-spacing, `color-faint`). Botão de currículo: "Download my Resume" / "Baixe meu Currículo". Logo header: `jeferson-black.png` (light) / `jeferson-white.png` (dark).
 

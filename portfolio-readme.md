@@ -139,7 +139,8 @@ npm run preview
 
 | Variável | Para quê |
 |---|---|
-| `PORTFOLIO_PASSWORD` | Proteção por senha nas páginas de case (`/work/*`) e no bench (`/jobanalysis`) |
+| `PORTFOLIO_PASSWORD` | Proteção por senha nas páginas de case (`/work/*`) |
+| `JOBANALYSIS_PASSWORD` | Senha do bench (`/jobanalysis`), independente dos cases — fallback p/ `PORTFOLIO_PASSWORD` se ausente |
 | `RESEND_API_KEY` | Envio de email do formulário de contato |
 
 ---

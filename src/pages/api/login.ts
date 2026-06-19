@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { areaForPath, COOKIE, passwordFor } from '../../auth';
 
 export const prerender = false;
 
@@ -7,14 +8,16 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const password = formData.get('password')?.toString() ?? '';
   const next = formData.get('next')?.toString() ?? '/';
 
-  const correctPassword = import.meta.env.PORTFOLIO_PASSWORD;
+  // A senha exigida depende da área de destino (cases vs. bench).
+  const area = areaForPath(next) ?? 'cases';
+  const correctPassword = passwordFor(area);
 
   if (!correctPassword) {
-    return new Response('PORTFOLIO_PASSWORD not configured', { status: 500 });
+    return new Response('Password not configured for this area', { status: 500 });
   }
 
   if (password === correctPassword) {
-    cookies.set('portfolio_auth', correctPassword, {
+    cookies.set(COOKIE[area], correctPassword, {
       httpOnly: true,
       secure: import.meta.env.PROD,
       sameSite: 'lax',
