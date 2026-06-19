@@ -3,7 +3,7 @@
 ## 2026-06-18
 
 ### Adicionado
-- **Página `/jobanalysis`** (PT, só rota raiz) — apresenta os resultados do bench de candidaturas (`Bench_job_applications/_index.md`): resumo (11 vagas, média 60%), ranking de aderência com barra de score por vaga, gaps transversais e metodologia (rubrica + interpretação). Reusa tokens do design system. Análise interna: `noindex, nofollow` e excluída do sitemap (filtro em `astro.config.mjs`). `Base.astro` ganhou prop `noindex`.
+- **Página `/jobanalysis`** (PT, só rota raiz) — apresenta os resultados do bench de candidaturas (`Bench_job_applications/_index.md`): resumo (11 vagas, média 60%), ranking de aderência com barra de score por vaga, gaps transversais e metodologia (rubrica + interpretação). Reusa tokens do design system. **Protegida por senha** (`PORTFOLIO_PASSWORD`) — `prerender = false` + prefixo `/jobanalysis` no `middleware.ts`. Defesa em profundidade: também `noindex, nofollow` (prop nova em `Base.astro`) e fora do sitemap (filtro em `astro.config.mjs`).
 
 ### Alterado
 - **Hero video** — substituído `hero.mp4` por `Gh011011.mp4` (vídeo de autoria própria) em EN e PT

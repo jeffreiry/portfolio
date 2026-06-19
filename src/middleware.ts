@@ -1,6 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 
-const PROTECTED_PREFIXES = ['/work/', '/pt/work/'];
+const PROTECTED_PREFIXES = ['/work/', '/pt/work/', '/jobanalysis'];
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;

@@ -54,10 +54,10 @@ Portfolio/
 │   │   └── ThemeToggle.svelte      # Ilha Svelte: toggle dark/light mode
 │   ├── layouts/
 │   │   └── Base.astro              # Shell HTML: SEO, meta, fonts, anti-flash dark mode
-│   ├── middleware.ts               # Proteção por senha em /work/* e /pt/work/*
+│   ├── middleware.ts               # Proteção por senha em /work/*, /pt/work/* e /jobanalysis
 │   ├── pages/
 │   │   ├── index.astro             # Home EN (raiz)
-│   │   ├── jobanalysis.astro       # Bench de candidaturas (PT, noindex, fora do sitemap)
+│   │   ├── jobanalysis.astro       # Bench de candidaturas (PT, SSR, protegido por senha)
 │   │   ├── login.astro             # Tela de login (proteção de cases)
 │   │   ├── contact.astro           # Página de contato EN
 │   │   ├── api/
@@ -139,7 +139,7 @@ npm run preview
 
 | Variável | Para quê |
 |---|---|
-| `PORTFOLIO_PASSWORD` | Proteção por senha nas páginas de case (`/work/*`) |
+| `PORTFOLIO_PASSWORD` | Proteção por senha nas páginas de case (`/work/*`) e no bench (`/jobanalysis`) |
 | `RESEND_API_KEY` | Envio de email do formulário de contato |
 
 ---
