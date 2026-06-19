@@ -4,6 +4,12 @@ import { areaForPath, COOKIE, passwordFor } from './auth';
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
+  // /jobanalysis: só local (404 em produção, sem senha em dev)
+  if (pathname.startsWith('/jobanalysis')) {
+    if (import.meta.env.PROD) return new Response('Not found', { status: 404 });
+    return next();
+  }
+
   const area = areaForPath(pathname);
   if (!area) return next();
 
