@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -84,6 +85,9 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
 
     <!-- View Transitions API (Astro 6) -->
     <meta name="view-transition" content="same-origin" />
+
+    <!-- Vercel Web Analytics -->
+    <Analytics />
   </head>
   <body class="antialiased">
     <a href="#main-content" class="skip-link">Skip to main content</a>
