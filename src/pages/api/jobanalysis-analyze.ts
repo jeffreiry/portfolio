@@ -14,6 +14,82 @@ function toSlug(text: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+// ---- Cálculo server-side ----
+
+function extractTableNotes(section: string, stopPattern: RegExp): number[] {
+  const [relevant] = section.split(stopPattern);
+  const notes: number[] = [];
+  const lines = (relevant ?? '').split('\n').filter((l) => l.trim().startsWith('|'));
+  for (const line of lines) {
+    if (/Requisito|Diferencial|Nota|:?---/.test(line)) continue;
+    const cells = line.split('|').map((c) => c.trim()).filter(Boolean);
+    if (cells.length >= 2) {
+      const nota = parseInt(cells[1]);
+      if (!isNaN(nota) && nota >= 0 && nota <= 3) notes.push(nota);
+    }
+  }
+  return notes;
+}
+
+interface ScoreCalc {
+  score: number;
+  somaObrig: number; maxObrig: number;
+  somaPref: number;  maxPref: number;
+  totalObt: number;  totalMax: number;
+  ok: boolean;
+}
+
+function calcScore(md: string): ScoreCalc {
+  const afterObrig = md.split(/### Requisitos obrigat[oó]rios/i)[1] ?? '';
+  const afterPref  = md.split(/### Diferenciais preferidos/i)[1] ?? '';
+
+  const notasObrig = extractTableNotes(afterObrig, /### Diferenciais preferidos|### C[aá]lculo/i);
+  const notasPref  = extractTableNotes(afterPref,  /### C[aá]lculo/i);
+
+  const somaObrig = notasObrig.reduce((a, b) => a + b, 0);
+  const maxObrig  = notasObrig.length * 3;
+  const somaPref  = notasPref.reduce((a, b) => a + b, 0);
+  const maxPref   = notasPref.length * 3;
+  const totalObt  = somaObrig * 2 + somaPref;
+  const totalMax  = maxObrig * 2 + maxPref;
+  const score     = totalMax > 0 ? Math.round((totalObt / totalMax) * 100) : 0;
+
+  return { score, somaObrig, maxObrig, somaPref, maxPref, totalObt, totalMax, ok: notasObrig.length > 0 };
+}
+
+function rewriteScoreSection(md: string, c: ScoreCalc): string {
+  let out = md;
+
+  out = out.replace(
+    /## Score de ader[eê]ncia[^\n]*/,
+    `## Score de aderência · ${c.score}%`,
+  );
+
+  out = out.replace(
+    /\*\*Subtotal obrigat[oó]rios:[^\n]*\*\*/,
+    `**Subtotal obrigatórios: ${c.somaObrig}/${c.maxObrig} × 2 = ${c.somaObrig * 2}/${c.maxObrig * 2}**`,
+  );
+
+  out = out.replace(
+    /\*\*Subtotal preferidos:[^\n]*\*\*/,
+    `**Subtotal preferidos: ${c.somaPref}/${c.maxPref}**`,
+  );
+
+  const calcBlock =
+    `### Cálculo\n\n` +
+    `| | Obtido | Máximo |\n|---|---|---|\n` +
+    `| Obrigatórios (×2) | ${c.somaObrig * 2} | ${c.maxObrig * 2} |\n` +
+    `| Preferidos (×1) | ${c.somaPref} | ${c.maxPref} |\n` +
+    `| **Total** | **${c.totalObt}** | **${c.totalMax}** |\n\n` +
+    `**Score: ${c.totalObt}/${c.totalMax} = ${c.score}%**`;
+
+  out = out.replace(/### C[aá]lculo[\s\S]*?\*\*Score:[^\n]*\*\*/, calcBlock);
+
+  return out;
+}
+
+// ---- Prompt ----
+
 const SYSTEM_PROMPT = `Você é um assistente que analisa descrições de vagas de emprego para o Product Designer Sênior Jeferson Freiry e gera análises de aderência em Markdown.
 
 ## Portfólio do candidato
@@ -56,27 +132,13 @@ Scoring ponderado por **Person-Job Fit** (Demands-Abilities Fit):
 - 2 = Claramente evidenciado — case completo com processo documentado
 - 3 = Diferencial — evidência forte com contexto, resultados ou detalhe incomum
 
-**Interpretação:**
-- 80–100% = Alta aderência — submeter
-- 60–79% = Aderência parcial — gaps endereçáveis
-- 40–59% = Aderência baixa — gaps significativos
-- < 40% = Desalinhamento estrutural
-
-## Regras obrigatórias — NUNCA viole estas regras
+## Regras obrigatórias
 
 1. **Extraia TODOS os requisitos da JD** — não resuma nem agrupe. Cada linha da seção de requisitos vira uma linha da tabela.
-2. **Cálculo matemático rigoroso:**
-   - soma_obrigatórios = soma das notas dos requisitos obrigatórios
-   - máx_obrigatórios = quantidade de requisitos obrigatórios × 3
-   - soma_preferidos = soma das notas dos diferenciais
-   - máx_preferidos = quantidade de diferenciais × 3
-   - total_obtido = (soma_obrigatórios × 2) + soma_preferidos
-   - total_máximo = (máx_obrigatórios × 2) + máx_preferidos
-   - score = arredondar(total_obtido / total_máximo × 100)
-3. **O {X}% no título "## Score de aderência · {X}%" e no "---METADATA---" DEVE ser exatamente igual ao score calculado matematicamente.** Não ajuste, não corrija "contextualmente", não invente outro valor.
-4. **Bloqueadores = SOMENTE requisitos obrigatórios com nota 0.** Se a nota for ≥ 1, não liste como bloqueador.
-5. **Não adicione texto explicativo sobre o score** — apenas o número.
-6. **Não use blocos de código** — markdown puro.
+2. **Bloqueadores = SOMENTE requisitos obrigatórios com nota 0.** Se a nota for ≥ 1, não liste como bloqueador.
+3. **Não adicione texto explicativo sobre o score** — apenas o número no título.
+4. **Não use blocos de código** — markdown puro.
+5. **Os valores numéricos nos subtotais e na tabela de cálculo são apenas placeholders** — o sistema vai recalculá-los automaticamente. Coloque qualquer número; apenas as notas da tabela importam.
 
 ## Formato de saída
 
@@ -101,7 +163,7 @@ Scoring ponderado por **Person-Job Fit** (Demands-Abilities Fit):
 |---|---|---|
 | {requisito extraído literalmente da JD} | {0–3} | {evidência do portfolio ou "Ausente"} |
 
-**Subtotal obrigatórios: {soma_notas}/{máx_notas} × 2 = {soma_notas×2}/{máx_notas×2}**
+**Subtotal obrigatórios: {placeholder}**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -109,17 +171,17 @@ Scoring ponderado por **Person-Job Fit** (Demands-Abilities Fit):
 |---|---|---|
 | {diferencial extraído da JD} | {0–3} | {evidência} |
 
-**Subtotal preferidos: {soma_notas}/{máx_notas}**
+**Subtotal preferidos: {placeholder}**
 
 ### Cálculo
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | {soma_obrigatórios×2} | {máx_obrigatórios×2} |
-| Preferidos (×1) | {soma_preferidos} | {máx_preferidos} |
-| **Total** | **{total_obtido}** | **{total_máximo}** |
+| Obrigatórios (×2) | {placeholder} | {placeholder} |
+| Preferidos (×1) | {placeholder} | {placeholder} |
+| **Total** | **{placeholder}** | **{placeholder}** |
 
-**Score: {total_obtido}/{total_máximo} = {X}%**
+**Score: {placeholder}**
 
 ---
 
@@ -138,7 +200,7 @@ Scoring ponderado por **Person-Job Fit** (Demands-Abilities Fit):
 {requisitos e diferenciais com nota 2 ou 3 — bullets}
 
 ---METADATA---
-{"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":{X igual ao calculado},"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote sem aspas internas}","candidatura":"Não"}`;
+{"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":0,"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote sem aspas internas}","candidatura":"Não"}`;
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.GROQ_API_KEY;
@@ -171,11 +233,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     const raw = completion.choices[0]?.message?.content ?? '';
 
-    // Separa conteúdo .md do bloco de metadados
-    const [mdContent, metaRaw] = raw.split('---METADATA---');
-    if (!mdContent || !metaRaw) {
-      throw new Error('Resposta fora do formato esperado');
-    }
+    const [mdRaw, metaRaw] = raw.split('---METADATA---');
+    if (!mdRaw || !metaRaw) throw new Error('Resposta fora do formato esperado');
 
     let meta: Record<string, unknown>;
     try {
@@ -186,10 +245,16 @@ export const POST: APIRoute = async ({ request }) => {
 
     const empresa = String(meta.empresa ?? '');
     const cargo   = String(meta.cargo ?? '');
-
     if (!empresa || !cargo) throw new Error('Empresa ou cargo não extraídos');
 
-    // Se slug existente fornecido → modo edição (sobrescreve)
+    // Calcula score pelo servidor, ignorando o que o modelo colocou
+    const calc = calcScore(mdRaw);
+    const score = calc.ok ? calc.score : Number(meta.score ?? 0);
+
+    // Reescreve as seções matemáticas com valores corretos
+    let finalMd = mdRaw.trim();
+    if (calc.ok) finalMd = rewriteScoreSection(finalMd, calc);
+
     let slug = existingSlug?.trim() || toSlug(`${empresa}-${cargo}`);
     let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
     if (!existingSlug && existsSync(filePath)) {
@@ -197,9 +262,8 @@ export const POST: APIRoute = async ({ request }) => {
       filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
     }
 
-    writeFileSync(filePath, mdContent.trim() + '\n', 'utf-8');
+    writeFileSync(filePath, finalMd + '\n', 'utf-8');
 
-    const score = Number(meta.score ?? 0);
     function scoreLabel(s: number) {
       if (s >= 80) return 'Alta aderência';
       if (s >= 60) return 'Aderência parcial';
@@ -212,17 +276,17 @@ export const POST: APIRoute = async ({ request }) => {
         ok: true,
         slug,
         empresa,
-        produto:          String(meta.produto ?? ''),
+        produto:            String(meta.produto ?? ''),
         cargo,
         score,
-        interpretacao:    scoreLabel(score),
+        interpretacao:      scoreLabel(score),
         interpretacaoTexto: String(meta.interpretacaoTexto ?? ''),
-        status:           'A avaliar',
-        candidatura:      'Não',
-        data:             String(meta.data ?? ''),
-        tags:             [],
+        status:             'A avaliar',
+        candidatura:        'Não',
+        data:               String(meta.data ?? ''),
+        tags:               [],
       }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { 'Content-Type': 'application/json' } },
     );
   } catch (e) {
     console.error('[jobanalysis-analyze]', e);
