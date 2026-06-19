@@ -66,3 +66,5 @@ Pendências presentes em todas as vagas — resolver aumenta o score de todas:
 | **Artefatos visíveis** | Alto | Todas | Expor telas, flows ou wireframes — hoje os cases só descrevem processo |
 | **Acessibilidade (`⬜`)** | Médio–alto | SAP, BTG, Boticário | Documentar ao menos 1 decisão real por case enterprise |
 | **UX Research estruturado** | Médio | C&A, SAP | A/B testing e testes de usabilidade formais não aparecem em nenhum case |
+
+> Como **apresentar** cada gap nas páginas de case (forma + sequência de execução): [Bench_designers/_insights-melhorias.md → Cruzamento com o bench de vagas](../Bench_designers/_insights-melhorias.md#cruzamento-com-o-bench-de-vagas).

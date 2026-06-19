@@ -1,53 +1,139 @@
 ---
-export const prerender = false; // SSR — gate por senha via middleware
+export const prerender = false;
 
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
 
-// Resultados do bench de candidaturas — fonte: Bench_job_applications/_index.md
-// Análise interna (noindex). Atualizado em 2026-06-12.
-type Banda = 'parcial' | 'baixa' | 'muito-baixa';
+// --- Tipos ---
 
-interface Vaga {
+interface VagaParsed {
+  slug: string;
   empresa: string;
   produto: string;
   cargo: string;
   score: number;
   interpretacao: string;
+  interpretacaoTexto: string;
   status: string;
+  candidatura: string;
   data: string;
+  tags: string[];
 }
 
-const vagas: Vaga[] = [
-  { empresa: 'Grupo Boticário', produto: 'Tech Corporate', cargo: 'Product Designer III', score: 76, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'BTG Pactual', produto: 'Banking', cargo: 'Product Designer UX', score: 73, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'TOTVS', produto: 'ERP Moda', cargo: 'Analista UX/UI Sênior', score: 67, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'MJV · Alelo', produto: 'RangoDS (Design System)', cargo: 'Product Designer', score: 65, interpretacao: 'Aderência parcial', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'Méliuz', produto: 'Fintech / Cashback', cargo: 'Product Designer Sr', score: 59, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'Banco PAN', produto: 'Crédito', cargo: 'Product Designer', score: 58, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'Grupo Decolar', produto: 'Growth Tribe', cargo: 'Product Designer', score: 54, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'SAP Concur', produto: 'TripIt', cargo: 'Senior UX Designer', score: 52, interpretacao: 'Aderência baixa', status: 'Candidatura pendente', data: '2026-06-10' },
-  { empresa: 'Bridger', produto: 'Produto digital', cargo: 'Designer UX/UI Sênior', score: 50, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
-  { empresa: 'C&A', produto: 'Varejo digital', cargo: 'Product Designer Sr', score: 46, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-11' },
-  { empresa: 'Madeira Madeira', produto: 'Fintech & Credit', cargo: 'Product Designer Sr', score: 41, interpretacao: 'Aderência baixa', status: 'A avaliar', data: '2026-06-12' },
-];
+type Banda = 'parcial' | 'baixa' | 'muito-baixa';
 
-const media = Math.round(vagas.reduce((s, v) => s + v.score, 0) / vagas.length);
+// --- Parsing ---
+
+function cleanTag(text: string): string {
+  return text
+    .replace(/\s*\([^)]*\)/g, '')
+    .replace(/[:—–→,].*/g, '')
+    .trim();
+}
+
+function scoreLabel(score: number): string {
+  if (score >= 80) return 'Alta aderência';
+  if (score >= 60) return 'Aderência parcial';
+  if (score >= 40) return 'Aderência baixa';
+  return 'Desalinhamento estrutural';
+}
+
+function parseVagaFile(filename: string, dir: string): VagaParsed | null {
+  try {
+    const content = readFileSync(join(dir, filename), 'utf-8');
+    const slug = filename.replace('.md', '');
+
+    const scoreMatch = content.match(/## Score de ader[eê]ncia[^·\n]*·\s*(\d+)%/);
+    const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+
+    const empresaMatch = content.match(/\*\*Empresa:\*\*\s*(.+)/);
+    const empresa = empresaMatch?.[1]?.trim() ?? slug;
+
+    const produtoMatch = content.match(/\*\*Produto:\*\*\s*(.+)/);
+    const produtoRaw = produtoMatch?.[1]?.trim() ?? '';
+    const produto = produtoRaw.replace(/\s*\([^)]*\).*/, '').trim();
+
+    const nivelMatch = content.match(/\*\*N[íi]vel:\*\*\s*(.+)/);
+    const nivelRaw = nivelMatch?.[1]?.trim() ?? '';
+    const cargo = nivelRaw.replace(/\s*·\s*T\d+.*/, '').replace(/\s*—.*/, '').trim();
+
+    const dataMatch = content.match(/\*\*Data da vaga:\*\*\s*(.+)/);
+    const data = dataMatch?.[1]?.trim() ?? '';
+
+    const statusMatch = content.match(/\*\*Status:\*\*\s*(.+)/);
+    const status = statusMatch?.[1]?.trim() ?? 'A avaliar';
+
+    const candidaturaMatch = content.match(/\*\*Candidatura:\*\*\s*(.+)/);
+    const candidatura =
+      candidaturaMatch?.[1]?.trim() ??
+      (status.toLowerCase().includes('pendente') ? 'Sim' : 'Não');
+
+    const blockquoteMatch = content.match(/## Score de ader[eê]ncia[^\n]*\n\n>\s*(.+)/);
+    const interpretacaoTexto = blockquoteMatch?.[1]?.trim() ?? '';
+
+    // Tags dos requisitos obrigatórios
+    const tags: string[] = [];
+    const afterReqHeader = content.split(/### Requisitos obrigat[oó]rios/)[1];
+    if (afterReqHeader) {
+      const tableLines = afterReqHeader.split('\n').filter((l) => l.startsWith('|'));
+      for (const line of tableLines) {
+        if (line.includes('Requisito') || line.includes('---')) continue;
+        const cells = line.split('|').filter((c) => c.trim());
+        if (cells[0]) {
+          const tag = cleanTag(cells[0]);
+          if (tag && tag.length > 2 && !tag.includes('⬜')) tags.push(tag);
+        }
+      }
+    }
+
+    return {
+      slug,
+      empresa,
+      produto,
+      cargo,
+      score,
+      interpretacao: scoreLabel(score),
+      interpretacaoTexto,
+      status,
+      candidatura,
+      data,
+      tags: tags.slice(0, 6),
+    };
+  } catch {
+    return null;
+  }
+}
+
+const benchDir = join(process.cwd(), 'Bench_job_applications');
+
+let vagas: VagaParsed[] = [];
+try {
+  const files = readdirSync(benchDir).filter((f) => f.endsWith('.md') && !f.startsWith('_'));
+  vagas = files
+    .map((f) => parseVagaFile(f, benchDir))
+    .filter((v): v is VagaParsed => v !== null)
+    .sort((a, b) => b.score - a.score);
+} catch {
+  // fallback vazio — não quebra o build
+}
+
+const media = vagas.length ? Math.round(vagas.reduce((s, v) => s + v.score, 0) / vagas.length) : 0;
 const parciais = vagas.filter((v) => v.score >= 60).length;
-const maxScore = Math.max(...vagas.map((v) => v.score));
+const maxScore = vagas.length ? Math.max(...vagas.map((v) => v.score)) : 0;
 
-// Banda de cor por faixa de score (alinhada à rubrica do bench)
 function banda(score: number): Banda {
   if (score >= 60) return 'parcial';
   if (score >= 40) return 'baixa';
   return 'muito-baixa';
 }
 
-const bandaCor: Record<Banda, { fill: string; chipBg: string; chipText: string; label: string }> = {
-  'parcial':     { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',     chipText: 'var(--color-tag-dataviz-text)',     label: 'Aderência parcial' },
-  'baixa':       { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)',  chipText: 'var(--color-tag-enterprise-text)',  label: 'Aderência baixa' },
-  'muito-baixa': { fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)',  chipText: 'var(--color-tag-enterprise-text)',  label: 'Baixa aderência' },
+const bandaCor: Record<Banda, { fill: string; chipBg: string; chipText: string }> = {
+  parcial:       { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',    chipText: 'var(--color-tag-dataviz-text)'    },
+  baixa:         { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
+  'muito-baixa': { fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
 };
 
 const rubrica = [
@@ -59,9 +145,26 @@ const rubrica = [
 
 const gaps = [
   { gap: 'Métricas de impacto', impacto: 'Alto', vagas: 'Todas', acao: 'Preencher campos de resultado em Enterprise AI, Shipping, Arezzo e Hypera.' },
-  { gap: 'Artefatos visíveis', impacto: 'Alto', vagas: 'Todas', acao: 'Expor telas, flows ou wireframes — hoje os cases só descrevem processo.' },
-  { gap: 'Acessibilidade', impacto: 'Médio–alto', vagas: 'SAP, BTG, Boticário', acao: 'Documentar ao menos 1 decisão real por case enterprise.' },
+  { gap: 'Artefatos visíveis',  impacto: 'Alto', vagas: 'Todas', acao: 'Expor telas, flows ou wireframes — hoje os cases só descrevem processo.' },
+  { gap: 'Acessibilidade',      impacto: 'Médio–alto', vagas: 'SAP, BTG, Boticário', acao: 'Documentar ao menos 1 decisão real por case enterprise.' },
   { gap: 'UX Research estruturado', impacto: 'Médio', vagas: 'C&A, SAP', acao: 'A/B testing e testes de usabilidade formais não aparecem em nenhum case.' },
+];
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return '';
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
+
+const statusOptions = [
+  'A avaliar',
+  'Candidatura enviada',
+  'Entrevista agendada',
+  'Em processo',
+  'Proposta recebida',
+  'Recusado',
+  'Arquivado',
 ];
 ---
 
@@ -96,65 +199,117 @@ const gaps = [
     <!-- Resumo (stats) -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
       <div data-animate class="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
-          <span class="font-display text-3xl font-bold text-neutral-900">{vagas.length}</span>
+        <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
+          <span id="stat-total" class="font-display text-3xl font-bold text-neutral-900">{vagas.length}</span>
           <span class="text-sm" style="color: var(--color-faint);">Vagas analisadas</span>
         </div>
-        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
-          <span class="font-display text-3xl font-bold text-neutral-900">{media}%</span>
+        <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
+          <span id="stat-media" class="font-display text-3xl font-bold text-neutral-900">{media}%</span>
           <span class="text-sm" style="color: var(--color-faint);">Média geral</span>
         </div>
-        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
-          <span class="font-display text-3xl font-bold text-neutral-900">{maxScore}%</span>
+        <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
+          <span id="stat-max" class="font-display text-3xl font-bold text-neutral-900">{maxScore}%</span>
           <span class="text-sm" style="color: var(--color-faint);">Maior aderência</span>
         </div>
-        <div class="flex flex-col gap-1 rounded-2xl p-5" style="background: var(--color-surface);">
-          <span class="font-display text-3xl font-bold text-neutral-900">{parciais}</span>
+        <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
+          <span id="stat-parciais" class="font-display text-3xl font-bold text-neutral-900">{parciais}</span>
           <span class="text-sm" style="color: var(--color-faint);">Em aderência parcial (≥60%)</span>
         </div>
       </div>
       <p data-animate class="pt-3 text-[13px]" style="color: var(--color-faint);">
-        Atualizado em 12/06/2026 · Média geral <strong>{media}%</strong> — aderência baixa (borderline parcial).
+        Atualizado em 12/06/2026 · Média geral <strong id="stat-media-inline">{media}%</strong> — aderência baixa (borderline parcial).
       </p>
     </section>
 
     <!-- Ranking de vagas -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
-      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Ranking de aderência</h2>
+      <div class="flex items-center justify-between gap-4 mb-1">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Ranking de aderência</h2>
+        <button
+          id="btn-nova-vaga"
+          class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: var(--color-neutral-900); color: #fff; font-family: var(--font-body);"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Nova Vaga
+        </button>
+      </div>
       <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
 
-      <div class="flex flex-col gap-3">
+      <div id="vagas-list" class="flex flex-col gap-4">
         {vagas.map((v, i) => {
           const b = bandaCor[banda(v.score)];
           return (
             <article
               data-animate
-              style={`--animate-delay: ${Math.min(i * 50, 300)}ms`}
-              class="grid grid-cols-1 sm:grid-cols-[1fr_auto] sm:items-center gap-4 rounded-2xl border p-5"
+              data-slug={v.slug}
+              style={`--animate-delay: ${Math.min(i * 40, 300)}ms`}
+              class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
             >
-              <div class="flex flex-col gap-2.5 min-w-0">
-                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <span class="font-display text-[19px] font-semibold text-neutral-900">{v.empresa}</span>
-                  <span class="text-sm" style="color: var(--color-faint);">· {v.produto}</span>
-                </div>
-                <span class="text-sm" style="color: var(--color-muted);">{v.cargo}</span>
+              <!-- Header -->
+              <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span class="font-display text-[19px] font-semibold text-neutral-900">{v.empresa}</span>
+                {v.produto && <span class="text-sm" style="color: var(--color-faint);">· {v.produto}</span>}
+              </div>
+              <span class="text-sm" style="color: var(--color-muted);">{v.cargo}</span>
 
-                <!-- Barra de score -->
-                <div class="flex items-center gap-3 pt-1">
-                  <div class="relative h-2 flex-1 overflow-hidden rounded-full" style="background: var(--color-surface-2);">
-                    <div class="absolute inset-y-0 left-0 rounded-full" style={`width: ${v.score}%; background: ${b.fill};`} />
-                  </div>
-                  <span class="font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">{v.score}%</span>
+              <!-- Score bar -->
+              <div class="flex items-center gap-3">
+                <div class="relative h-2 flex-1 overflow-hidden rounded-full" style="background: var(--color-surface-2);">
+                  <div class="score-fill absolute inset-y-0 left-0 rounded-full" style={`width: ${v.score}%; background: ${b.fill};`} />
                 </div>
+                <span class="score-value font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">{v.score}%</span>
+              </div>
 
-                <div class="flex flex-wrap gap-2 pt-1">
-                  <span class="rounded-full px-2.5 py-1 text-[11px] font-medium" style={`background: ${b.chipBg}; color: ${b.chipText};`}>
-                    {v.interpretacao}
-                  </span>
-                  <span class="rounded-full border px-2.5 py-1 text-[11px] font-medium" style="border-color: var(--color-border); color: var(--color-muted);">
-                    {v.status}
-                  </span>
+              <!-- Texto de interpretação -->
+              {v.interpretacaoTexto && (
+                <p class="interp-text text-sm leading-relaxed italic" style="color: var(--color-muted);">"{v.interpretacaoTexto}"</p>
+              )}
+
+              <!-- Tags de competências -->
+              {v.tags.length > 0 && (
+                <div class="tags-list flex flex-wrap gap-1.5">
+                  {v.tags.map((tag) => (
+                    <span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
+                      style="background: var(--color-surface-2); color: var(--color-muted); font-family: var(--font-body);">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
+              )}
+
+              <!-- Footer: data, candidatura, interpretação -->
+              <div class="flex flex-wrap items-center gap-2 pt-1">
+                {v.data && (
+                  <span class="text-[12px]" style="color: var(--color-faint);">
+                    <span aria-hidden="true">📅</span> {formatDate(v.data)}
+                  </span>
+                )}
+
+                <button
+                  class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                  style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
+                  data-slug={v.slug}
+                  data-empresa={v.empresa}
+                  data-cargo={v.cargo}
+                  data-candidatura={v.candidatura}
+                  data-status={v.status}
+                  aria-label={`Editar candidatura de ${v.empresa}`}
+                >
+                  Candidatura: <span class="candidatura-label font-semibold">{v.candidatura}</span>
+                </button>
+
+                <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium"
+                  style={`background: ${b.chipBg}; color: ${b.chipText};`}>
+                  {v.interpretacao}
+                </span>
+
+                <span class="status-label rounded-full border px-2.5 py-1 text-[11px]"
+                  style="border-color: var(--color-border); color: var(--color-faint);">
+                  {v.status}
+                </span>
               </div>
             </article>
           );
@@ -195,7 +350,6 @@ const gaps = [
       </p>
 
       <div class="grid gap-8 lg:grid-cols-2">
-        <!-- Rubrica -->
         <div data-animate class="rounded-2xl border p-6">
           <h3 class="font-body text-sm font-semibold uppercase tracking-[0.1em] mb-4" style="color: var(--color-faint);">Rubrica (0–3)</h3>
           <ul class="flex flex-col gap-3">
@@ -209,7 +363,6 @@ const gaps = [
           </ul>
         </div>
 
-        <!-- Interpretação -->
         <div data-animate style="--animate-delay: 80ms" class="rounded-2xl border p-6">
           <h3 class="font-body text-sm font-semibold uppercase tracking-[0.1em] mb-4" style="color: var(--color-faint);">Interpretação do score</h3>
           <ul class="flex flex-col gap-3">
@@ -236,13 +389,445 @@ const gaps = [
 
   </main>
 
+  <!-- Modal: Editar Candidatura -->
+  <dialog id="modal-candidatura" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-sm">
+    <form id="form-candidatura" class="flex flex-col gap-5 p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 class="font-display text-lg font-semibold text-neutral-900">Candidatura</h2>
+          <p id="modal-empresa-label" class="text-sm mt-0.5" style="color: var(--color-faint);"></p>
+        </div>
+        <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
+          aria-label="Fechar" style="color: var(--color-faint);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <input type="hidden" id="modal-slug" name="slug" />
+
+      <fieldset class="flex gap-4">
+        <legend class="text-sm font-medium text-neutral-900 mb-2">Enviou candidatura?</legend>
+        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
+          <input type="radio" name="candidatura" value="Sim" class="accent-neutral-900" /> Sim
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
+          <input type="radio" name="candidatura" value="Não" class="accent-neutral-900" /> Não
+        </label>
+      </fieldset>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="modal-status" class="text-sm font-medium text-neutral-900">Status</label>
+        <select id="modal-status" name="status" class="ja-select rounded-lg border px-3 py-2 text-sm w-full"
+          style="border-color: var(--color-border); color: var(--color-muted); background: var(--color-surface);">
+          {statusOptions.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </div>
+
+      <div id="modal-candidatura-error" class="hidden text-sm text-red-600"></div>
+
+      <div class="flex gap-2 justify-end">
+        <button type="button" class="modal-close rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
+          style="border-color: var(--color-border); color: var(--color-muted);">Cancelar</button>
+        <button type="submit" class="rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: var(--color-neutral-900); color: #fff;">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal: Nova Vaga -->
+  <dialog id="modal-nova-vaga" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-md">
+    <form id="form-nova-vaga" class="flex flex-col gap-4 p-6">
+      <div class="flex items-start justify-between gap-4">
+        <h2 class="font-display text-lg font-semibold text-neutral-900">Nova Vaga</h2>
+        <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
+          aria-label="Fechar" style="color: var(--color-faint);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.5 sm:col-span-2">
+          <label for="nv-empresa" class="text-sm font-medium text-neutral-900">Empresa <span aria-hidden="true">*</span></label>
+          <input id="nv-empresa" name="empresa" type="text" required class="ja-input rounded-lg border px-3 py-2 text-sm"
+            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
+            placeholder="Ex: Nubank" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="nv-produto" class="text-sm font-medium text-neutral-900">Produto</label>
+          <input id="nv-produto" name="produto" type="text" class="ja-input rounded-lg border px-3 py-2 text-sm"
+            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
+            placeholder="Ex: Cartão de crédito" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="nv-cargo" class="text-sm font-medium text-neutral-900">Cargo <span aria-hidden="true">*</span></label>
+          <input id="nv-cargo" name="cargo" type="text" required class="ja-input rounded-lg border px-3 py-2 text-sm"
+            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
+            placeholder="Ex: Product Designer Sr" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="nv-score" class="text-sm font-medium text-neutral-900">Score (%) <span aria-hidden="true">*</span></label>
+          <input id="nv-score" name="score" type="number" min="0" max="100" required class="ja-input rounded-lg border px-3 py-2 text-sm"
+            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
+            placeholder="Ex: 65" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="nv-data" class="text-sm font-medium text-neutral-900">Data da vaga</label>
+          <input id="nv-data" name="data" type="date" class="ja-input rounded-lg border px-3 py-2 text-sm"
+            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);" />
+        </div>
+        <div class="flex flex-col gap-1.5 sm:col-span-2">
+          <label for="nv-interpretacao" class="text-sm font-medium text-neutral-900">Interpretação / resumo</label>
+          <textarea id="nv-interpretacao" name="interpretacao" rows="2" class="ja-input rounded-lg border px-3 py-2 text-sm resize-none"
+            style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);"
+            placeholder="Ex: Aderência parcial — forte em DS, gap em mobile nativo."></textarea>
+        </div>
+      </div>
+
+      <fieldset class="flex gap-4">
+        <legend class="text-sm font-medium text-neutral-900 mb-2">Candidatura enviada?</legend>
+        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
+          <input type="radio" name="candidatura" value="Sim" class="accent-neutral-900" /> Sim
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
+          <input type="radio" name="candidatura" value="Não" checked class="accent-neutral-900" /> Não
+        </label>
+      </fieldset>
+
+      <div id="modal-nova-error" class="hidden text-sm text-red-600"></div>
+
+      <div class="flex gap-2 justify-end pt-1">
+        <button type="button" class="modal-close rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
+          style="border-color: var(--color-border); color: var(--color-muted);">Cancelar</button>
+        <button type="submit" id="btn-criar-vaga" class="rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: var(--color-neutral-900); color: #fff;">Criar</button>
+      </div>
+    </form>
+  </dialog>
+
   <Footer lang="pt" />
 </Base>
 
 <style>
-  article[data-animate],
+  .vaga-card,
   section .rounded-2xl.border {
     border-color: var(--color-border);
     background: color-mix(in srgb, var(--color-surface) 40%, transparent);
   }
+
+  .stat-card {
+    background: var(--color-surface);
+  }
+
+  /* Modais */
+  .ja-modal {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface, #fff);
+    color: inherit;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+
+  .ja-modal::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+  }
+
+  .ja-input:focus,
+  .ja-select:focus {
+    outline: 2px solid var(--color-neutral-900);
+    outline-offset: 1px;
+  }
 </style>
+
+<script>
+  // ---- Utilitários ----
+
+  const BAND_COLORS = {
+    parcial:      { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',    chipText: 'var(--color-tag-dataviz-text)'    },
+    baixa:        { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
+    'muito-baixa':{ fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
+  } as const;
+
+  function banda(score: number) {
+    if (score >= 60) return 'parcial';
+    if (score >= 40) return 'baixa';
+    return 'muito-baixa' as const;
+  }
+
+  function scoreLabel(score: number) {
+    if (score >= 80) return 'Alta aderência';
+    if (score >= 60) return 'Aderência parcial';
+    if (score >= 40) return 'Aderência baixa';
+    return 'Desalinhamento estrutural';
+  }
+
+  function formatDate(dateStr: string) {
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  }
+
+  // ---- Modal genérico ----
+
+  function openModal(dialog: HTMLDialogElement) {
+    dialog.showModal();
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    }, { once: true });
+  }
+
+  document.querySelectorAll('.modal-close').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      (btn.closest('dialog') as HTMLDialogElement)?.close();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('dialog[open]').forEach((d) => (d as HTMLDialogElement).close());
+    }
+  });
+
+  // ---- Modal Candidatura ----
+
+  const modalCandidatura = document.getElementById('modal-candidatura') as HTMLDialogElement;
+  const formCandidatura  = document.getElementById('form-candidatura') as HTMLFormElement;
+  const modalEmpresaLabel = document.getElementById('modal-empresa-label') as HTMLElement;
+  const modalSlugInput   = document.getElementById('modal-slug') as HTMLInputElement;
+  const modalStatusSel   = document.getElementById('modal-status') as HTMLSelectElement;
+  const modalCandErr     = document.getElementById('modal-candidatura-error') as HTMLElement;
+
+  document.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const { slug, empresa, cargo, candidatura, status } = btn.dataset;
+      modalSlugInput.value = slug ?? '';
+      modalEmpresaLabel.textContent = `${empresa} · ${cargo}`;
+      const radio = formCandidatura.querySelector<HTMLInputElement>(`input[value="${candidatura}"]`);
+      if (radio) radio.checked = true;
+      const opt = modalStatusSel.querySelector<HTMLOptionElement>(`option[value="${status}"]`);
+      if (opt) opt.selected = true;
+      modalCandErr.classList.add('hidden');
+      modalCandErr.textContent = '';
+      openModal(modalCandidatura);
+    });
+  });
+
+  formCandidatura.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(formCandidatura);
+    const slug        = data.get('slug') as string;
+    const candidatura = data.get('candidatura') as string;
+    const status      = data.get('status') as string;
+
+    if (!candidatura) {
+      modalCandErr.textContent = 'Selecione Sim ou Não.';
+      modalCandErr.classList.remove('hidden');
+      return;
+    }
+
+    const btn = formCandidatura.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    btn.disabled = true;
+    btn.textContent = 'Salvando…';
+
+    try {
+      const res = await fetch('/api/jobanalysis-update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, candidatura, status }),
+      });
+      if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
+
+      // Atualiza o card no DOM
+      const card = document.querySelector<HTMLElement>(`.vaga-card[data-slug="${slug}"]`);
+      if (card) {
+        const candBtn = card.querySelector<HTMLButtonElement>('.candidatura-btn')!;
+        const candLabel = candBtn.querySelector<HTMLElement>('.candidatura-label')!;
+        const statusLabel = card.querySelector<HTMLElement>('.status-label')!;
+        candLabel.textContent = candidatura;
+        candBtn.dataset.candidatura = candidatura;
+        candBtn.dataset.status = status;
+        statusLabel.textContent = status;
+      }
+
+      modalCandidatura.close();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Erro ao salvar';
+      modalCandErr.textContent = msg;
+      modalCandErr.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Salvar';
+    }
+  });
+
+  // ---- Modal Nova Vaga ----
+
+  const modalNovaVaga = document.getElementById('modal-nova-vaga') as HTMLDialogElement;
+  const formNovaVaga  = document.getElementById('form-nova-vaga') as HTMLFormElement;
+  const modalNovaErr  = document.getElementById('modal-nova-error') as HTMLElement;
+
+  document.getElementById('btn-nova-vaga')?.addEventListener('click', () => {
+    formNovaVaga.reset();
+    modalNovaErr.classList.add('hidden');
+    // Pré-preenche data com hoje
+    const dataInput = formNovaVaga.querySelector<HTMLInputElement>('#nv-data');
+    if (dataInput) dataInput.value = new Date().toISOString().split('T')[0];
+    openModal(modalNovaVaga);
+  });
+
+  function buildCardHTML(v: {
+    slug: string; empresa: string; produto: string; cargo: string;
+    score: number; interpretacao: string; interpretacaoTexto: string;
+    status: string; candidatura: string; data: string; tags: string[];
+  }): string {
+    const b = BAND_COLORS[banda(v.score)];
+    const dateFmt = v.data ? formatDate(v.data) : '';
+    const tagsHTML = v.tags.length
+      ? `<div class="tags-list flex flex-wrap gap-1.5">${v.tags.map((t) => `<span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);">${t}</span>`).join('')}</div>`
+      : '';
+    const interpHTML = v.interpretacaoTexto
+      ? `<p class="interp-text text-sm leading-relaxed italic" style="color: var(--color-muted);">"${v.interpretacaoTexto}"</p>`
+      : '';
+    const dateHTML = dateFmt
+      ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">📅</span> ${dateFmt}</span>`
+      : '';
+
+    return `
+      <article data-slug="${v.slug}" class="vaga-card rounded-2xl border p-5 flex flex-col gap-3" style="border-color: var(--color-border); background: color-mix(in srgb, var(--color-surface) 40%, transparent);">
+        <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+          <span class="font-display text-[19px] font-semibold text-neutral-900">${v.empresa}</span>
+          ${v.produto ? `<span class="text-sm" style="color: var(--color-faint);">· ${v.produto}</span>` : ''}
+        </div>
+        <span class="text-sm" style="color: var(--color-muted);">${v.cargo}</span>
+        <div class="flex items-center gap-3">
+          <div class="relative h-2 flex-1 overflow-hidden rounded-full" style="background: var(--color-surface-2);">
+            <div class="score-fill absolute inset-y-0 left-0 rounded-full" style="width: ${v.score}%; background: ${b.fill};"></div>
+          </div>
+          <span class="score-value font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">${v.score}%</span>
+        </div>
+        ${interpHTML}
+        ${tagsHTML}
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          ${dateHTML}
+          <button class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+            style="border-color: var(--color-border); color: var(--color-muted);"
+            data-slug="${v.slug}" data-empresa="${v.empresa}" data-cargo="${v.cargo}"
+            data-candidatura="${v.candidatura}" data-status="${v.status}"
+            aria-label="Editar candidatura de ${v.empresa}">
+            Candidatura: <span class="candidatura-label font-semibold">${v.candidatura}</span>
+          </button>
+          <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: ${b.chipBg}; color: ${b.chipText};">${v.interpretacao}</span>
+          <span class="status-label rounded-full border px-2.5 py-1 text-[11px]" style="border-color: var(--color-border); color: var(--color-faint);">${v.status}</span>
+        </div>
+      </article>`;
+  }
+
+  function updateStats() {
+    const cards = document.querySelectorAll<HTMLElement>('.vaga-card');
+    const scores = Array.from(cards)
+      .map((c) => {
+        const val = c.querySelector<HTMLElement>('.score-value')?.textContent?.replace('%', '');
+        return val ? parseInt(val) : null;
+      })
+      .filter((s): s is number => s !== null);
+
+    if (!scores.length) return;
+    const total = scores.length;
+    const media = Math.round(scores.reduce((a, b) => a + b, 0) / total);
+    const maxScore = Math.max(...scores);
+    const parciais = scores.filter((s) => s >= 60).length;
+
+    const el = (id: string) => document.getElementById(id);
+    const statTotal = el('stat-total'); if (statTotal) statTotal.textContent = String(total);
+    const statMedia = el('stat-media'); if (statMedia) statMedia.textContent = `${media}%`;
+    const statMax = el('stat-max'); if (statMax) statMax.textContent = `${maxScore}%`;
+    const statParciais = el('stat-parciais'); if (statParciais) statParciais.textContent = String(parciais);
+    const statInline = el('stat-media-inline'); if (statInline) statInline.textContent = `${media}%`;
+  }
+
+  function wireNewCard(card: HTMLElement) {
+    card.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const { slug, empresa, cargo, candidatura, status } = btn.dataset;
+        modalSlugInput.value = slug ?? '';
+        modalEmpresaLabel.textContent = `${empresa} · ${cargo}`;
+        const radio = formCandidatura.querySelector<HTMLInputElement>(`input[value="${candidatura}"]`);
+        if (radio) radio.checked = true;
+        const opt = modalStatusSel.querySelector<HTMLOptionElement>(`option[value="${status}"]`);
+        if (opt) opt.selected = true;
+        modalCandErr.classList.add('hidden');
+        openModal(modalCandidatura);
+      });
+    });
+  }
+
+  formNovaVaga.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(formNovaVaga);
+    const payload = {
+      empresa:       (data.get('empresa') as string).trim(),
+      produto:       (data.get('produto') as string)?.trim() ?? '',
+      cargo:         (data.get('cargo') as string).trim(),
+      score:         Number(data.get('score')),
+      data:          data.get('data') as string,
+      interpretacao: (data.get('interpretacao') as string)?.trim() ?? '',
+      candidatura:   data.get('candidatura') as string ?? 'Não',
+    };
+
+    if (!payload.empresa || !payload.cargo || isNaN(payload.score)) {
+      modalNovaErr.textContent = 'Preencha os campos obrigatórios.';
+      modalNovaErr.classList.remove('hidden');
+      return;
+    }
+
+    const btn = formNovaVaga.querySelector<HTMLButtonElement>('#btn-criar-vaga')!;
+    btn.disabled = true;
+    btn.textContent = 'Criando…';
+
+    try {
+      const res = await fetch('/api/jobanalysis-create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
+
+      const vaga = await res.json();
+
+      // Insere card no DOM ordenado por score (desc)
+      const list = document.getElementById('vagas-list')!;
+      const existingCards = Array.from(list.querySelectorAll<HTMLElement>('.vaga-card'));
+      const newScore = vaga.score;
+
+      const insertBefore = existingCards.find((c) => {
+        const s = parseInt(c.querySelector<HTMLElement>('.score-value')?.textContent ?? '0');
+        return s < newScore;
+      });
+
+      const tmp = document.createElement('div');
+      tmp.innerHTML = buildCardHTML(vaga);
+      const newCard = tmp.firstElementChild as HTMLElement;
+
+      if (insertBefore) {
+        list.insertBefore(newCard, insertBefore);
+      } else {
+        list.appendChild(newCard);
+      }
+
+      wireNewCard(newCard);
+      updateStats();
+      modalNovaVaga.close();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Erro ao criar';
+      modalNovaErr.textContent = msg;
+      modalNovaErr.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Criar';
+    }
+  });
+</script>

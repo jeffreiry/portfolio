@@ -2,7 +2,7 @@
 
 Arquivo consolidado e atualizado a cada novo benchmark. Cada insight tem referência à(s) análise(s) de origem.
 
-**Última atualização:** 19/06/2026
+**Última atualização:** 19/06/2026 (+ seção de cruzamento com o bench de vagas)
 **Benchmarks incorporados:** Sage (Emily Backes) · Agentic DS (mchiu) · 3M M\*Modal (Lawrence Zheng) · Gen AI Summaries (Nicole Roberts) · Mira.ai (sanvithi)
 
 ---
@@ -152,3 +152,27 @@ iframe do artefato real no fim do case. Justificado para cases de design system 
 | Related cases automáticos por tags | Nenhum dos 5 benchmarks tem navegação de saída tão clara |
 | Markdown puro como conteúdo | Manutenção simples, portável, rápido de publicar |
 | Cover full-width dedicada | Impacto visual imediato; melhor para social sharing |
+
+---
+
+## Cruzamento com o bench de vagas
+
+> **Gatilho de atualização próprio:** esta seção muda quando o [bench de vagas](../Bench_job_applications/_index.md) muda (novos gaps), não a cada benchmark de designer. Só ponteiros — scores e descrições de gap vivem apenas no `_index.md`.
+
+Mapeia cada insight de **forma** (como o case se apresenta) ao [gap transversal de **substância**](../Bench_job_applications/_index.md#gaps-transversais) que ele ajuda a fechar. Um insight visual só rende score de contratação quando o conteúdo que ele apresenta existe.
+
+| Insight (forma) | Gap de vaga que serve |
+|---|---|
+| Métricas serifadas + fonte · Métricas inline · Count-up animado | [Métricas de impacto](../Bench_job_applications/_index.md#gaps-transversais) |
+| Captions de decisão · Mockup interativo no hero · Entregável vivo embedado | [Artefatos visíveis](../Bench_job_applications/_index.md#gaps-transversais) |
+| Eyebrow `RESEARCH` · Seção ANALYSIS separada de OUTCOMES | [UX Research estruturado](../Bench_job_applications/_index.md#gaps-transversais) |
+| Admissão de falhas / retrospectiva · Prova social (quote de stakeholder) | Credibilidade sênior (reforça os cases enterprise listados no bench) |
+
+### Sequência de execução
+
+A ordem segue uma regra: **forma sem conteúdo não rende score.** Itens de CSS/copy que não dependem de dado novo vêm primeiro; o resto destrava só quando os `⬜` de métricas e artefatos forem preenchidos.
+
+1. **Agora — CSS/copy, sem conteúdo novo:** H1 com resultado · Pull-quote · Eyebrow labels · Métrica serifada + campo `source`.
+2. **Depois dos `⬜` de métricas:** Métricas inline · Count-up · Seção ANALYSIS.
+3. **Depois dos `⬜` de artefatos:** Captions de decisão · Mockup interativo · Entregável vivo · Scrollytelling.
+4. **Quando houver depoimento/retrospectiva coletados:** Prova social · Seção retrospectiva.
