@@ -19,7 +19,7 @@ bilíngues (PT/EN) em Markdown, hospedado na Vercel.
 | Interatividade | Svelte 5 (ilhas) |
 | Conteúdo | Content Collections (Markdown) |
 | i18n | Astro i18n routing (EN raiz + PT em /pt) |
-| Hospedagem | Vercel (output hybrid) |
+| Hospedagem | Vercel (output static + SSR por rota via `prerender = false`) |
 | Fontes | DM Serif Display (display) + Barlow 500/800 (corpo) |
 | Email | Resend (formulário de contato) |
 | Versionamento | Git → GitHub |
@@ -78,7 +78,7 @@ Portfolio/
 │   ├── logos/                      # Logos de parceiros (strava.png, hevy.png, etc.)
 │   ├── cases/                      # Imagens de cover por case (a preencher)
 │   └── favicon.svg
-├── astro.config.mjs                # output: hybrid, adapter Vercel, i18n
+├── astro.config.mjs                # output: static (+ prerender=false por rota), adapter Vercel, i18n
 ├── svelte.config.js
 └── package.json
 ```
@@ -149,7 +149,7 @@ npm run preview
 
 - **Trigger:** automático a cada push para `main`
 - **Build command:** `npm run build`
-- **Output:** hybrid (SSR para middleware e API routes, estático para o resto)
+- **Output:** `static` — estático por padrão; rotas com `export const prerender = false` viram SSR sob demanda (cases protegidos, `/jobanalysis`, `/api/contact`), o que faz middleware e API routes funcionarem. (Astro 5+ unificou o antigo `hybrid` nesse modelo.)
 - **Domínio:** `portfolio.jefersonfreiry.com` (Cloudflare DNS → Vercel)
 
 ---

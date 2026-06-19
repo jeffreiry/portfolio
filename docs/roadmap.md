@@ -68,7 +68,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 
 ### Fase 4.5 — Segurança ✅
 
-- [x] Output `hybrid` (Vercel SSR) para suportar middleware
+- [x] Output `static` + `prerender = false` por rota (Vercel SSR sob demanda) para suportar middleware — Astro 5+ unificou o antigo `hybrid` nesse modelo
 - [x] Middleware de proteção por senha (`/work/*` + `/pt/work/*`)
 - [x] Login page (`/login`) + API POST (`/api/login`, `/api/logout`)
 - [x] Páginas de case convertidas para SSR (sem `getStaticPaths`)
