@@ -44,21 +44,21 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         <div class="relative flex flex-col gap-4 max-w-[720px]">
           <div class="flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <span class={`rounded-full px-3 py-1 text-xs font-medium ${bgImage ? 'border border-white/25 text-white/80' : 'border border-neutral-300 text-neutral-600'}`}>
+              <span class={`rounded-full px-3 py-1 text-xs font-medium ${bgImage ? 'border border-white/25 text-white/80' : 'border border-default text-secondary'}`}>
                 {tag}
               </span>
             ))}
           </div>
-          <h1 class={`font-display text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] ${bgImage ? 'text-white' : 'text-neutral-900'}`}>
+          <h1 class={`font-display text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] ${bgImage ? 'text-white' : 'text-heading'}`}>
             {title}
           </h1>
-          <p class={`text-lg leading-relaxed max-w-[560px] ${bgImage ? 'text-white/80' : 'text-neutral-600'}`}>{summary}</p>
-          <div class={`flex flex-wrap gap-6 pt-2 text-sm ${bgImage ? 'text-white/60' : 'text-neutral-500'}`}>
-            <span><strong class={bgImage ? 'text-white/90' : 'text-neutral-700'}>Papel</strong> — {role}</span>
-            <span><strong class={bgImage ? 'text-white/90' : 'text-neutral-700'}>Empresa</strong> — {company}</span>
-            <span><strong class={bgImage ? 'text-white/90' : 'text-neutral-700'}>Ano</strong> — {year}</span>
+          <p class={`text-lg leading-relaxed max-w-[560px] ${bgImage ? 'text-white/80' : 'text-secondary'}`}>{summary}</p>
+          <div class={`flex flex-wrap gap-6 pt-2 text-sm ${bgImage ? 'text-white/60' : 'text-subtle'}`}>
+            <span><strong class={bgImage ? 'text-white/90' : 'text-primary'}>Papel</strong> — {role}</span>
+            <span><strong class={bgImage ? 'text-white/90' : 'text-primary'}>Empresa</strong> — {company}</span>
+            <span><strong class={bgImage ? 'text-white/90' : 'text-primary'}>Ano</strong> — {year}</span>
             {url && (
-              <a href={url} target="_blank" rel="noopener noreferrer" class={`underline underline-offset-2 hover:opacity-80 ${bgImage ? 'text-white' : 'text-neutral-700 hover:text-neutral-900'}`}>
+              <a href={url} target="_blank" rel="noopener noreferrer" class={`underline underline-offset-2 hover:opacity-80 ${bgImage ? 'text-white' : 'text-primary hover:text-heading'}`}>
                 Ver ao vivo →
               </a>
             )}
@@ -80,8 +80,8 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
       </section>
     ) : (
       <section class="mx-auto w-full max-w-[1200px] px-6 pt-6">
-        <div class="flex h-[320px] w-full items-center justify-center rounded-2xl bg-neutral-100 border border-dashed border-neutral-200">
-          <span class="text-xs text-neutral-400">Imagem de capa · 1200×600px</span>
+        <div class="flex h-[320px] w-full items-center justify-center rounded-2xl bg-surface border border-dashed border-subtle">
+          <span class="text-xs text-subtle">Imagem de capa · 1200×600px</span>
         </div>
       </section>
     )}
@@ -91,9 +91,9 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
       <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((m) => (
-            <div class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-5">
-              <span class="font-display text-2xl font-bold text-neutral-900">{m.value}</span>
-              <span class="text-sm text-neutral-500">{m.label}</span>
+            <div class="flex flex-col gap-1 rounded-2xl bg-surface p-5">
+              <span class="font-display text-2xl font-bold text-heading">{m.value}</span>
+              <span class="text-sm text-subtle">{m.label}</span>
             </div>
           ))}
         </div>
@@ -109,8 +109,8 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     {relatedCases.length > 0 && (
       <section class="mx-auto w-full max-w-[1200px] px-6 pt-20 pb-8">
         <div class="mb-8 flex items-center justify-between">
-          <h2 class="font-display text-[22px] font-semibold text-neutral-900">Mais cases</h2>
-          <a href="/pt/" class="text-sm font-medium transition-opacity hover:opacity-70" style="color: var(--color-cha-mate);">Ver todos →</a>
+          <h2 class="font-display text-[22px] font-semibold text-heading">Mais cases</h2>
+          <a href="/pt/" class="text-sm font-medium transition-opacity hover:opacity-70" style="color: var(--text-heading);">Ver todos →</a>
         </div>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {relatedCases.map((c) => {

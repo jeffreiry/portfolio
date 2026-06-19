@@ -44,7 +44,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
 <a
   href={href}
   class="group flex flex-col overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
-  style={`border-radius: var(--radius-card); --tw-ring-color: var(--color-cha-mate); background-color: var(--color-surface); border: 0.5px solid var(--color-border); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
+  style={`border-radius: var(--radius-card); --tw-ring-color: var(--text-heading); background-color: var(--bg-surface); border: 0.5px solid var(--border-default); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);`}
   onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
   onmouseout="this.style.transform='';this.style.boxShadow=''"
   onfocus="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px -8px rgba(0,0,0,0.18)'"
@@ -61,7 +61,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
     <!-- Accent bar Jambu no bottom da imagem -->
     <div
       class="absolute bottom-0 left-0 right-0 pointer-events-none"
-      style="height: 3px; background-color: var(--color-jambu);"
+      style="height: 3px; background-color: var(--accent-deco);"
     />
   </div>
 
@@ -70,7 +70,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
     <div class="flex items-center gap-2">
       <span
         class="text-[10px] uppercase tracking-[0.09em]"
-        style="color: var(--color-faint); font-weight: 600; font-family: var(--font-body);"
+        style="color: var(--text-subtle); font-weight: 600; font-family: var(--font-body);"
       >
         {year}
       </span>
@@ -78,14 +78,14 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
 
     <h3
       class="font-display"
-      style="font-size: 24px; line-height: 1.1; color: var(--color-cha-mate);"
+      style="font-size: 24px; line-height: 1.1; color: var(--text-heading);"
     >
       {title}
     </h3>
 
     <p
       class="line-clamp-2 leading-relaxed"
-      style="font-size: 13px; font-weight: 400; font-family: var(--font-body); color: var(--color-muted); min-height: calc(13px * 1.625 * 2);"
+      style="font-size: 13px; font-weight: 400; font-family: var(--font-body); color: var(--text-secondary); min-height: calc(13px * 1.625 * 2);"
     >
       {summary}
     </p>
@@ -94,7 +94,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
       {tags.slice(0, 3).map((tag) => (
         <span
           class="rounded-full px-2.5 py-1 text-[10px] font-medium"
-          style="background: var(--color-surface-2); color: var(--color-muted); font-family: var(--font-body);"
+          style="background: var(--bg-surface-alt); color: var(--text-secondary); font-family: var(--font-body);"
         >
           {tag}
         </span>
@@ -104,7 +104,7 @@ const imgSrc = thumbnail ?? bgImage ?? cover ?? placeholders[hash % placeholders
     <div class="flex justify-center mt-3 lg:hidden">
       <span
         class="inline-flex items-center justify-center"
-        style="background: transparent; border: 1.5px solid var(--color-jambu-text); border-radius: var(--radius-pill); padding: 9px 28px; font-size: 12px; font-weight: 600; font-family: var(--font-body); color: var(--color-jambu-text); letter-spacing: 0.02em;"
+        style="background: transparent; border: 1.5px solid var(--accent-text); border-radius: var(--radius-pill); padding: 9px 28px; font-size: 12px; font-weight: 600; font-family: var(--font-body); color: var(--accent-text); letter-spacing: 0.02em;"
       >
         {lang === 'en' ? 'View case →' : 'Ver case →'}
       </span>

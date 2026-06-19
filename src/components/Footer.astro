@@ -7,11 +7,11 @@ const { lang = 'en' } = Astro.props;
 
 <footer
   class="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-5"
-  style="border-top: 0.5px solid var(--color-border); margin-top: 2rem;"
+  style="border-top: 0.5px solid var(--border-default); margin-top: 2rem;"
 >
   <div class="flex items-center gap-3">
     <img src="/jeferson-black.png" alt="Jeferson Freiry" class="footer-logo" width="17" height="18" style="height: 18px; width: auto; opacity: 0.35;" />
-    <span class="text-[11px]" style="color: var(--color-muted); font-family: var(--font-body);">© {new Date().getFullYear()}</span>
+    <span class="text-[11px]" style="color: var(--text-secondary); font-family: var(--font-body);">© {new Date().getFullYear()}</span>
   </div>
 
   <nav class="flex gap-4" aria-label="Footer links">
@@ -20,7 +20,7 @@ const { lang = 'en' } = Astro.props;
       target="_blank"
       rel="noopener noreferrer"
       class="text-[11px] transition-opacity hover:opacity-80"
-      style="color: var(--color-muted); font-family: var(--font-body);"
+      style="color: var(--text-secondary); font-family: var(--font-body);"
     >
       LinkedIn
     </a>
@@ -29,14 +29,14 @@ const { lang = 'en' } = Astro.props;
       target="_blank"
       rel="noopener noreferrer"
       class="text-[11px] transition-opacity hover:opacity-80"
-      style="color: var(--color-muted); font-family: var(--font-body);"
+      style="color: var(--text-secondary); font-family: var(--font-body);"
     >
       GitHub
     </a>
     <a
       href="mailto:jfreiry@gmail.com"
       class="text-[11px] transition-opacity hover:opacity-80"
-      style="color: var(--color-muted); font-family: var(--font-body);"
+      style="color: var(--text-secondary); font-family: var(--font-body);"
     >
       {lang === 'en' ? 'Email' : 'E-mail'}
     </a>

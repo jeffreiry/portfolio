@@ -100,7 +100,7 @@ Objetivo: elevar o DS ao nível de governança do **Apex** ([DESIGN.md](../../Ap
 **6.1 — Arquitetura de tokens em duas camadas (primitivos → semânticos)** — implementado 2026-06-19
 - [x] Camada semântica criada em `:root` após `@theme`: `--text-heading`, `--text-primary`, `--text-secondary`, `--text-subtle`, `--bg-page`, `--bg-surface`, `--bg-surface-alt`, `--border-default`, `--accent-deco`, `--accent-text`, `--accent-btn`
 - [x] `.case-content` migrado para tokens semânticos (era `--color-neutral-*` com hex fallback)
-- [ ] **Pendente (migração incremental):** componentes legados (`CaseCard`, `Header`, `index.astro`) ainda referenciam primitivos diretamente — migrar por componente em sessões futuras
+- [x] **Migração incremental concluída (2026-06-19):** `CaseCard`, `Header`, `Footer`, `index.astro` (EN+PT), `work/[slug].astro` (EN+PT), `RunWidget`, `WorkoutWidget` — todos migrados para tokens semânticos. Utilities semânticas adicionadas ao `global.css` (`text-heading`, `text-primary`, `text-secondary`, `text-subtle`, `bg-surface-alt`). Primitivos removidos do markup público. Exceções intencionais: `Hero.astro` usa `--color-cha-mate` como background decorativo de marca (sem token semântico equivalente); `login.astro` e `jobanalysis.astro` são páginas internas/protegidas, fora do escopo.
 - Racional: camada semântica adicionada sem breaking change; primitivos continuam funcionando em componentes legados.
 
 **6.2 — Escala tipográfica tokenizada** — implementado 2026-06-19

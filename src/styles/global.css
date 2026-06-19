@@ -274,25 +274,23 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     font-family: var(--font-body);
   }
 
-  .text-muted {
-    color: var(--color-muted);
-  }
+  /* Semantic text utilities */
+  .text-heading   { color: var(--text-heading); }
+  .text-primary   { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-subtle    { color: var(--text-subtle); }
 
-  .text-faint {
-    color: var(--color-faint);
-  }
+  /* Semantic bg utilities */
+  .bg-page        { background-color: var(--bg-page); }
+  .bg-surface     { background-color: var(--bg-surface); }
+  .bg-surface-alt { background-color: var(--bg-surface-alt); }
 
-  .bg-page {
-    background-color: var(--color-page-bg);
-  }
+  /* Semantic border utility */
+  .border-subtle  { border: 0.5px solid var(--border-default); }
 
-  .bg-surface {
-    background-color: var(--color-surface);
-  }
-
-  .border-subtle {
-    border: 0.5px solid var(--color-border);
-  }
+  /* Legacy aliases — mantidos para não quebrar usos externos */
+  .text-muted  { color: var(--text-secondary); }
+  .text-faint  { color: var(--text-subtle); }
 
   .accent-bar {
     position: absolute;

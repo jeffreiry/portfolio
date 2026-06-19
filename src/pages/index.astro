@@ -39,11 +39,11 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
         <!-- About -->
         <div id="about" class="flex flex-col gap-4">
-          <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900">About</h2>
-          <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-neutral-600">
+          <h2 data-animate class="font-display text-[28px] font-semibold text-heading">About</h2>
+          <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed text-secondary">
             I am a Senior Product Designer with 5+ years in UX/UI and 10+ years in marketing and digital communication — a background that shapes how I think about brand, narrative, and business context alongside usability.
           </p>
-          <p data-animate style="--animate-delay: 160ms" class="text-lg leading-relaxed text-neutral-600">
+          <p data-animate style="--animate-delay: 160ms" class="text-lg leading-relaxed text-secondary">
             My current focus is enterprise systems and AI-powered platforms: environments where users navigate large volumes of information, complex workflows, and real operational stakes. At Braskem, I lead UX practices and pioneer AI-integrated design workflows for industrial-scale platforms.
           </p>
 
@@ -51,8 +51,8 @@ const whatsappHref = 'https://wa.me/5551984741888';
             <a
               href="/Jeferson_Freiry_EN.pdf"
               download
-              class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-neutral-100"
-              style="border-color: var(--color-border); color: var(--color-cha-mate); font-family: var(--font-body);"
+              class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-surface"
+              style="border-color: var(--border-default); color: var(--text-heading); font-family: var(--font-body);"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Download my Resume
@@ -61,20 +61,20 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
           <!-- Education -->
           <div class="flex flex-col gap-3 pt-2">
-            <h3 data-animate style="--animate-delay: 240ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-faint);">Education</h3>
+            <h3 data-animate style="--animate-delay: 240ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle);">Education</h3>
             <div class="grid grid-cols-2 gap-3 items-stretch">
-              <div data-animate style="--animate-delay: 280ms" class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-4 h-full">
-                <span class="text-sm font-semibold text-neutral-900">Bachelor's in Advertising and Marketing</span>
-                <span class="text-xs text-neutral-400">Universidade Feevale · 2016</span>
+              <div data-animate style="--animate-delay: 280ms" class="flex flex-col gap-1 rounded-2xl bg-surface p-4 h-full">
+                <span class="text-sm font-semibold text-primary">Bachelor's in Advertising and Marketing</span>
+                <span class="text-xs text-subtle">Universidade Feevale · 2016</span>
               </div>
-              <div data-animate style="--animate-delay: 320ms" class="flex flex-col gap-1 rounded-2xl bg-neutral-50 p-4 h-full">
-                <span class="text-sm font-semibold text-neutral-900">Specialization in User Experience</span>
-                <span class="text-xs text-neutral-400">Uniritter · 2021</span>
+              <div data-animate style="--animate-delay: 320ms" class="flex flex-col gap-1 rounded-2xl bg-surface p-4 h-full">
+                <span class="text-sm font-semibold text-primary">Specialization in User Experience</span>
+                <span class="text-xs text-subtle">Uniritter · 2021</span>
               </div>
             </div>
           </div>
 
-          <h3 data-animate style="--animate-delay: 360ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-faint);">
+          <h3 data-animate style="--animate-delay: 360ms; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle);">
             Other activities outside work
           </h3>
           <div class="grid grid-cols-2 gap-3">
@@ -89,7 +89,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
         <!-- Career -->
         <div id="career" class="flex flex-col gap-4">
-          <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900">Career</h2>
+          <h2 data-animate class="font-display text-[28px] font-semibold text-heading">Career</h2>
           <div class="grid flex-1 gap-3 sm:grid-cols-2" style="grid-auto-rows: 1fr;">
             {[
               { company: 'Braskem',    logo: '/logos/braskem.avif',    role: 'Product Designer', period: '2025 — Present', description: 'Leading UX practices and AI-integrated design workflows for industrial-scale platforms.' },
@@ -98,16 +98,16 @@ const whatsappHref = 'https://wa.me/5551984741888';
               { company: 'Intelipost', logo: '/logos/Intelipost.png', role: 'UX Researcher',    period: '2021 — 2022', description: 'Mapped the end-to-end user journey from product acquisition to daily use.' },
               { company: 'eSales',     logo: '/logos/esales.png',      role: 'Product Designer', period: '2021', description: 'User research, journey mapping, and product discovery for digital solutions.' },
             ].map((item, i) => (
-              <div data-animate style={`--animate-delay: ${i * 70}ms`} class="flex flex-col gap-3 rounded-2xl bg-neutral-50 p-5">
+              <div data-animate style={`--animate-delay: ${i * 70}ms`} class="flex flex-col gap-3 rounded-2xl bg-surface p-5">
                 <img
                   src={item.logo}
                   alt={item.company}
                   class={`career-logo${item.opaque ? ' career-logo-opaque' : ''} h-[22px] w-[94px] object-contain object-left`}
                   loading="lazy"
                 />
-                <span class="text-sm font-semibold text-neutral-900">{item.role}</span>
-                <span class="text-sm text-neutral-400">{item.period}</span>
-                <p class="text-sm leading-relaxed text-neutral-600">{item.description}</p>
+                <span class="text-sm font-semibold text-primary">{item.role}</span>
+                <span class="text-sm text-subtle">{item.period}</span>
+                <p class="text-sm leading-relaxed text-secondary">{item.description}</p>
               </div>
             ))}
             <!-- LinkedIn card sem preenchimento -->
@@ -117,11 +117,11 @@ const whatsappHref = 'https://wa.me/5551984741888';
               href="https://linkedin.com/in/jefersonfreiry"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex flex-col justify-center gap-1 rounded-2xl border p-5 transition-colors hover:bg-neutral-50"
-              style="border-color: var(--color-border);"
+              class="flex flex-col justify-center gap-1 rounded-2xl border p-5 transition-colors hover:bg-surface"
+              style="border-color: var(--border-default);"
             >
-              <span class="text-sm font-semibold text-neutral-900">Full history</span>
-              <span class="text-sm" style="color: var(--color-muted);">linkedin.com/in/jefersonfreiry →</span>
+              <span class="text-sm font-semibold text-primary">Full history</span>
+              <span class="text-sm" style="color: var(--text-secondary);">linkedin.com/in/jefersonfreiry →</span>
             </a>
           </div>
         </div>
@@ -131,7 +131,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
     <!-- Cases grid -->
     <section id="cases" class="mx-auto w-full max-w-[1200px] px-6">
-      <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900 mb-4">Cases</h2>
+      <h2 data-animate class="font-display text-[28px] font-semibold text-heading mb-4">Cases</h2>
 
       <!-- Filter bar -->
       <div data-animate style="--animate-delay: 80ms" class="filter-bar flex flex-wrap gap-2 mb-6" role="group" aria-label="Filter cases by category">
@@ -190,20 +190,20 @@ const whatsappHref = 'https://wa.me/5551984741888';
         letter-spacing: 0.04em;
         padding: 6px 14px;
         border-radius: 999px;
-        border: 1px solid var(--color-border);
-        color: var(--color-muted);
+        border: 1px solid var(--border-default);
+        color: var(--text-secondary);
         background: transparent;
         cursor: pointer;
         transition: color 0.15s, background 0.15s, border-color 0.15s;
       }
       .filter-btn:hover {
-        color: var(--color-cha-mate);
-        border-color: var(--color-cha-mate);
+        color: var(--text-heading);
+        border-color: var(--text-heading);
       }
       .filter-btn--active {
-        background: var(--color-cha-mate);
-        color: var(--color-page-bg);
-        border-color: var(--color-cha-mate);
+        background: var(--text-heading);
+        color: var(--bg-page);
+        border-color: var(--text-heading);
       }
     </style>
 
@@ -213,23 +213,23 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
         <div class="flex flex-col gap-6 max-w-[480px]">
           <div class="flex flex-col gap-3">
-            <h2 data-animate class="font-display text-[28px] font-semibold text-neutral-900">Let's talk</h2>
-            <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed" style="color: var(--color-muted);">
+            <h2 data-animate class="font-display text-[28px] font-semibold text-heading">Let's talk</h2>
+            <p data-animate style="--animate-delay: 80ms" class="text-lg leading-relaxed" style="color: var(--text-secondary);">
               I'm open to senior product design roles, consulting projects, and interesting conversations about UX and AI.
             </p>
           </div>
           <div data-animate style="--animate-delay: 160ms" class="flex flex-col gap-4">
             <div class="flex flex-col gap-1">
-              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-faint);">Email</span>
-              <a href="mailto:jfreiry@gmail.com" class="text-base font-medium transition-opacity hover:opacity-70" style="color: var(--color-cha-mate);">jfreiry@gmail.com</a>
+              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--text-subtle);">Email</span>
+              <a href="mailto:jfreiry@gmail.com" class="text-base font-medium transition-opacity hover:opacity-70" style="color: var(--text-heading);">jfreiry@gmail.com</a>
             </div>
             <div class="flex flex-col gap-1">
-              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-faint);">LinkedIn</span>
-              <a href="https://linkedin.com/in/jefersonfreiry" target="_blank" rel="noopener noreferrer" class="text-base font-medium transition-opacity hover:opacity-70" style="color: var(--color-cha-mate);">linkedin.com/in/jefersonfreiry</a>
+              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--text-subtle);">LinkedIn</span>
+              <a href="https://linkedin.com/in/jefersonfreiry" target="_blank" rel="noopener noreferrer" class="text-base font-medium transition-opacity hover:opacity-70" style="color: var(--text-heading);">linkedin.com/in/jefersonfreiry</a>
             </div>
             <div class="flex flex-col gap-1">
-              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-faint);">Location</span>
-              <span class="text-base" style="color: var(--color-muted);">Porto Alegre, RS · Brazil</span>
+              <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--text-subtle);">Location</span>
+              <span class="text-base" style="color: var(--text-secondary);">Porto Alegre, RS · Brazil</span>
             </div>
             <div class="pt-2">
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border-[1.5px] px-5 py-3 text-sm font-semibold transition-all hover:-translate-y-px" style="border-color: #25D366; color: #25D366; font-family: var(--font-body);" onmouseover="this.style.background='#25D366';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#25D366'">

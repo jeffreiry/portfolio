@@ -140,7 +140,7 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **Fase 6 — Design System maturity (fundação, 2026-06-19):** Tokens de tipografia (`--text-*`, `--leading-*`, `--tracking-*`), motion (`--duration-*`, `--ease-out-expo`), raios (`--radius-input`, `--radius-modal`, `--radius-sm`, `--radius-lg`) e espaçamento (`--space-4` a `--space-96`) adicionados ao `@theme` em `global.css`. Camada semântica criada em `:root`: `--text-heading`, `--text-primary`, `--text-secondary`, `--text-subtle`, `--bg-page`, `--bg-surface`, `--bg-surface-alt`, `--border-default`, `--accent-deco/text/btn`. `.case-content` totalmente migrado para tokens semânticos. `[data-animate]` usa `--duration-slow` e `--ease-out-expo`. `design-system.md` atualizado com toda a nova arquitetura. **Pendente (migração incremental):** componentes legados ainda usam primitivos diretamente; migrar por componente.
 
-**Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise nos cases, 🟠 passada manual de leitor de tela (NVDA/VoiceOver), 🟡 migrar componentes legados para tokens semânticos (CaseCard, Header, index.astro).
+**Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise nos cases, 🟠 passada manual de leitor de tela (NVDA/VoiceOver), 🟡 matriz de botões por variante × tema (DS 6.5), 🟡 catálogo de estados de UI.
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
 `src/content/cases/{pt,en}/` (9 cases × 2 idiomas — 7 publicados + 2 draft), `src/middleware.ts`
