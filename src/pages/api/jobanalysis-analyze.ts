@@ -249,12 +249,17 @@ export const POST: APIRoute = async ({ request }) => {
     const cargo   = String(meta.cargo ?? '');
     if (!empresa || !cargo) throw new Error('Empresa ou cargo não extraídos');
 
+    // Data: usa a da JD se informada, senão a data de criação do arquivo (hoje)
+    const today = new Date().toISOString().slice(0, 10);
+    const data  = String(meta.data ?? '').trim() || today;
+
     // Calcula score pelo servidor, ignorando o que o modelo colocou
     const calc = calcScore(mdRaw);
     const score = calc.ok ? calc.score : Number(meta.score ?? 0);
 
-    // Reescreve as seções matemáticas com valores corretos
+    // Reescreve as seções matemáticas com valores corretos + garante data preenchida
     let finalMd = mdRaw.trim();
+    finalMd = finalMd.replace(/\*\*Data da vaga:\*\*[^\n]*/, `**Data da vaga:** ${data}`);
     if (calc.ok) finalMd = rewriteScoreSection(finalMd, calc);
 
     let slug = existingSlug?.trim() || toSlug(`${empresa}-${cargo}`);

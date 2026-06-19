@@ -1,41 +1,39 @@
 # Certta · Product Designer Pleno
 
 **Empresa:** Certta
-**Produto:** Não especificado
+**Produto:** Produtos digitais da Certta
 **Nível:** Pleno
-**Data da vaga:** 
+**Data da vaga:** 2026-06-19
 **Status:** A avaliar
 **Candidatura:** Não
 
 ---
 
-## Score de aderência · 56%
+## Score de aderência · 57%
 
-> O portfolio de Jeferson Freiry apresenta fortes evidências de UX Design e UI Design, com experiência em produtos digitais complexos. No entanto, a falta de métricas de impacto nos cases e a ausência de artefatos visuais expostos são gaps relevantes para esta vaga.
+> O candidato tem experiência em UX e UI design, com habilidades em resolver problemas complexos, colaborar com times multidisciplinares e conhecimento em ferramentas de design. No entanto, há gaps em relação à experiência com IA e automação, além de necessidade de mais evidências de impacto mensurável de suas soluções.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
-| Experiência sólida em design de produtos digitais (UX e UI) | 2 | Cases publicados, mas sem métricas de impacto explícitas |
-| Portfólio que demonstre capacidade de resolver problemas complexos com soluções simples e eficazes | 2 | Cases de redesign e otimização de processos |
-| Vivência em colaboração com times multidisciplinares (produto, engenharia, negócios) | 2 | Colaboração cross-funcional mencionada em casos |
-| Habilidade para atuar em um ambiente dinâmico e em constante transformação | 2 | Projetos com diferentes durações e contextos |
-| Conhecimento em ferramentas de design (Figma, FigJam, etc.) e práticas de prototipação | 2 | Figma mencionado nos cases |
-| Capacidade de conduzir pesquisas com usuários e stakeholders | 1 | Não explicitamente documentado nos cases |
-| Projetar fluxos, wireframes, interfaces e protótipos interativos | 2 | Cases de redesenho e otimização de interfaces |
-| Colaborar com Produto, Engenharia e Dados para definir soluções de impacto | 2 | Colaboração cross-funcional mencionada |
-| Participar de testes de usabilidade, análises de métricas e processos de melhoria contínua | 1 | Não explicitamente documentado nos cases |
+| Experiência sólida em design de produtos digitais (UX e UI) | 2 | Cases de UX e UI design em produtos digitais |
+| Portfólio que demonstre capacidade de resolver problemas complexos com soluções simples e eficazes | 2 | Cases de solução de problemas complexos |
+| Vivência em colaboração com times multidisciplinares (produto, engenharia, negócios) | 2 | Experiência de colaboração com times |
+| Habilidade para atuar em um ambiente dinâmico e em constante transformação | 2 | Adaptação a ambientes dinâmicos |
+| Conhecimento em ferramentas de design (Figma, FigJam, etc.) | 2 | Conhecimento em ferramentas de design |
+| Conduzir pesquisas com usuários e stakeholders para identificar necessidades, dores e oportunidades | 1 | Parcialmente evidenciado |
+| Projetar fluxos, wireframes, interfaces e protótipos interativos | 2 | Experiência em design de interfaces e protótipos |
 
-**Subtotal obrigatórios: 16/27 × 2 = 32/54**
+**Subtotal obrigatórios: 13/21 × 2 = 26/42**
 
 ### Diferenciais preferidos (peso 1×)
 
 | Diferencial | Nota | Evidência atual |
 |---|---|---|
-| Aplicação de práticas de design centrado no usuário que gerem valor mensurável para o negócio | 1 | Não explicitamente documentado |
-| Contribuir para a evolução do Design System | 1 | Design Systems mencionados em alguns cases |
-| Apoiar iniciativas de inovação com uso de IA e automação | 1 | IA/ML products mencionados em um case |
+| Experiência com IA e automação | 0 | Ausente |
+| Conhecimento em práticas de prototipação | 1 | Parcialmente evidenciado |
+| Habilidade para equilibrar execução com pensamento estratégico | 2 | Experiência em equilibrar execução e estratégia |
 
 **Subtotal preferidos: 3/9**
 
@@ -43,11 +41,11 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 32 | 54 |
+| Obrigatórios (×2) | 26 | 42 |
 | Preferidos (×1) | 3 | 9 |
-| **Total** | **35** | **63** |
+| **Total** | **29** | **51** |
 
-**Score: 35/63 = 56%**
+**Score: 29/51 = 57%**
 
 ---
 
@@ -59,13 +57,11 @@ Nenhum bloqueador crítico identificado.
 
 ### 🟡 Diferenciais ausentes
 
-1. Experiência com testes de usabilidade e análises de métricas (não documentada)
-2. Evidência explícita de aplicação de práticas de design centrado no usuário com valor mensurável
-3. Participação em iniciativas de inovação com uso de IA e automação
+1. Experiência com IA e automação (nota 0 — diferencial, não obrigatório)
+2. Conhecimento em práticas de prototipação
 
 ### 🟢 Boa aderência
 
-* Experiência em UX Design e UI Design
-* Colaboração cross-funcional com produto, engenharia e dados
-* Conhecimento em ferramentas de design (Figma)
-* Capacidade de projetar fluxos, interfaces e protótipos
+* Experiência em UX e UI design
+* Colaboração com times multidisciplinares
+* Conhecimento em ferramentas de design
