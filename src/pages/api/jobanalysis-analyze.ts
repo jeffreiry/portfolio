@@ -57,6 +57,31 @@ function calcScore(md: string): ScoreCalc {
   return { score, somaObrig, maxObrig, somaPref, maxPref, totalObt, totalMax, ok: notasObrig.length > 0 };
 }
 
+function rewriteBlockers(md: string): string {
+  // Extrai requisitos obrigatórios com nota 0
+  const afterObrig = md.split(/### Requisitos obrigat[oó]rios/i)[1] ?? '';
+  const [obrigSection] = afterObrig.split(/### Diferenciais preferidos|### C[aá]lculo/i);
+
+  const blockers: string[] = [];
+  const lines = (obrigSection ?? '').split('\n').filter((l) => l.trim().startsWith('|'));
+  for (const line of lines) {
+    if (/Requisito|Nota|:?---/.test(line)) continue;
+    const cells = line.split('|').map((c) => c.trim()).filter(Boolean);
+    if (cells.length >= 2 && parseInt(cells[1]) === 0) {
+      blockers.push(cells[0]);
+    }
+  }
+
+  const blockersContent = blockers.length > 0
+    ? blockers.map((b) => `* ${b}`).join('\n')
+    : 'Nenhum bloqueador crítico identificado.';
+
+  return md.replace(
+    /### 🔴 Bloqueadores de candidatura[\s\S]*?(?=###\s|$)/,
+    `### 🔴 Bloqueadores de candidatura\n\n${blockersContent}\n\n`,
+  );
+}
+
 function rewriteScoreSection(md: string, c: ScoreCalc): string {
   let out = md;
 
@@ -257,10 +282,11 @@ export const POST: APIRoute = async ({ request }) => {
     const calc = calcScore(mdRaw);
     const score = calc.ok ? calc.score : Number(meta.score ?? 0);
 
-    // Reescreve as seções matemáticas com valores corretos + garante data preenchida
+    // Reescreve seções matemáticas, bloqueadores e data — tudo server-side
     let finalMd = mdRaw.trim();
     finalMd = finalMd.replace(/\*\*Data da vaga:\*\*[^\n]*/, `**Data da vaga:** ${data}`);
     if (calc.ok) finalMd = rewriteScoreSection(finalMd, calc);
+    finalMd = rewriteBlockers(finalMd);
 
     let slug = existingSlug?.trim() || toSlug(`${empresa}-${cargo}`);
     let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
