@@ -140,7 +140,7 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **Fase 6 — Design System maturity (concluída, 2026-06-19):** Tokens de tipografia (`--text-*`, `--leading-*`, `--tracking-*`), motion (`--duration-*`, `--ease-out-expo`), raios e espaçamento adicionados ao `@theme`. Camada semântica em `:root`: `--text-heading/primary/secondary/subtle`, `--bg-page/surface/surface-alt`, `--border-default`, `--accent-deco/text/btn`. Utilities CSS semânticas adicionadas ao `global.css` (`text-heading`, `text-primary`, `text-secondary`, `text-subtle`, `bg-surface-alt`). Migração incremental concluída: `CaseCard`, `Header`, `Footer`, `RunWidget`, `WorkoutWidget`, `index.astro` EN+PT, `work/[slug].astro` EN+PT — zero primitivos no markup público. Exceções intencionais: `Hero.astro` usa `--color-cha-mate` como background decorativo de marca; `login.astro` e `jobanalysis.astro` são páginas internas. **Regra:** todo componente novo referencia apenas tokens semânticos — nunca primitivos diretamente.
 
-**Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise nos cases, 🟠 passada manual de leitor de tela (NVDA/VoiceOver), 🟡 matriz de botões por variante × tema (DS 6.5), 🟡 catálogo de estados de UI.
+**Próximas ações por criticidade:** 🔴 artefatos visíveis (telas/flows nos cases), 🔴 métricas de impacto (`⬜`), 🟠 acessibilidade enterprise nos cases, 🟠 passada manual de leitor de tela (NVDA/VoiceOver).
 
 Estrutura de código real: `src/components/`, `src/layouts/`, `src/pages/`,
 `src/content/cases/{pt,en}/` (9 cases × 2 idiomas — 7 publicados + 2 draft), `src/middleware.ts`

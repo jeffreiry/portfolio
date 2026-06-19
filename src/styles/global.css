@@ -94,6 +94,8 @@
   --text-display:   clamp(1.75rem, 7vw, 5rem);  /* Hero h1 responsivo */
   --text-h1:        3.75rem;   /* 60px */
   --text-h2:        2.25rem;   /* 36px */
+  --text-section:   1.75rem;   /* 28px — headings de seção na home */
+  --text-card:      1.5rem;    /* 24px — títulos de card */
   --text-h3:        1.25rem;   /* 20px */
   --text-body-lg:   1.125rem;  /* 18px */
   --text-body:      1.0625rem; /* 17px */

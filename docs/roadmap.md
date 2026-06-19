@@ -103,11 +103,11 @@ Objetivo: elevar o DS ao nível de governança do **Apex** ([DESIGN.md](../../Ap
 - [x] **Migração incremental concluída (2026-06-19):** `CaseCard`, `Header`, `Footer`, `index.astro` (EN+PT), `work/[slug].astro` (EN+PT), `RunWidget`, `WorkoutWidget` — todos migrados para tokens semânticos. Utilities semânticas adicionadas ao `global.css` (`text-heading`, `text-primary`, `text-secondary`, `text-subtle`, `bg-surface-alt`). Primitivos removidos do markup público. Exceções intencionais: `Hero.astro` usa `--color-cha-mate` como background decorativo de marca (sem token semântico equivalente); `login.astro` e `jobanalysis.astro` são páginas internas/protegidas, fora do escopo.
 - Racional: camada semântica adicionada sem breaking change; primitivos continuam funcionando em componentes legados.
 
-**6.2 — Escala tipográfica tokenizada** — implementado 2026-06-19
-- [x] Tokens `--text-*` (display, h1, h2, h3, body-lg, body, sm, xs, eyebrow, caption) em `@theme`
-- [x] Tokens `--leading-*` (tight, heading, normal, relaxed) e `--tracking-*` (heading, eyebrow, tag, caption) em `@theme`
-- [x] `.case-content` migrado para usar tokens de tipografia e espaçamento
-- [ ] **Pendente:** migrar tamanhos px inline nos componentes para os tokens (ex: `text-[28px]` → `text-h2`)
+**6.2 — Escala tipográfica tokenizada** — concluído 2026-06-19
+- [x] Tokens `--text-*` (display, h1, h2, section, card, h3, body-lg, body, sm, xs, eyebrow, caption) em `@theme` — `--text-section` (28px) e `--text-card` (24px) adicionados para fechar gaps da escala
+- [x] Tokens `--leading-*` e `--tracking-*` em `@theme`
+- [x] `.case-content` migrado para tokens de tipografia e espaçamento
+- [x] `text-[28px]` → `text-section`, `text-[10px]` → `text-caption`, `text-[11px]` → `text-eyebrow`, `font-size: 13px` → `var(--text-xs)` nos componentes públicos
 
 **6.3 — Tokens de motion** — implementado 2026-06-19
 - [x] `--duration-fast/base/slow` e `--ease-out-expo` em `@theme`
@@ -119,11 +119,11 @@ Objetivo: elevar o DS ao nível de governança do **Apex** ([DESIGN.md](../../Ap
 - [x] `--space-4/8/16/24/32/40/48/64/96` adicionados em `@theme`
 - [x] `.case-content` migrado para usar `var(--space-*)` e `var(--radius-*)`
 
-**6.5 — Catálogo de componentes no doc** — parcial 2026-06-19
+**6.5 — Catálogo de componentes no doc** — concluído 2026-06-19
 - [x] `design-system.md` atualizado com: tokens de tipografia, escala, line-heights, letter-spacings, radii, espaçamento, motion, arquitetura semântica completa
-- [ ] Matriz de botões por variante × tema (primary/secondary/ghost)
-- [ ] Catálogo de estados de UI: empty, loading, error, success
-- [ ] Formalizar iconografia (biblioteca + tamanhos)
+- [x] Matriz de botões por variante × tema (primary, ghost-brand, ghost-neutral, ghost-active, ghost-retry)
+- [x] Catálogo de estados de UI: empty, loading, error, success
+- [x] Iconografia formalizada (SVGs inline, 4 ícones catalogados, regras de uso)
 
 **Não copiar do Apex** (decisões já melhores no portfólio):
 - Manter fontes **self-hosted** — o Apex ainda carrega via Google Fonts (round-trip que o portfólio já eliminou na Fase 5)

@@ -75,14 +75,16 @@ Tokens CSS em `@theme` (`global.css`). **Usar sempre os tokens — nunca px solt
 |-------|-------|-----|
 | `--text-display` | `clamp(1.75rem, 7vw, 5rem)` | Hero h1 responsivo |
 | `--text-h1` | `3.75rem` (60px) | H1 de página |
-| `--text-h2` | `2.25rem` (36px) | Títulos de seção |
+| `--text-h2` | `2.25rem` (36px) | Títulos grandes |
+| `--text-section` | `1.75rem` (28px) | Headings de seção na home (About, Career, Cases) |
+| `--text-card` | `1.5rem` (24px) | Títulos de card (CaseCard h3) |
 | `--text-h3` | `1.25rem` (20px) | Subtítulos |
 | `--text-body-lg` | `1.125rem` (18px) | Parágrafo de intro |
 | `--text-body` | `1.0625rem` (17px) | Corpo padrão |
 | `--text-sm` | `0.9375rem` (15px) | Secundário, inputs |
 | `--text-xs` | `0.8125rem` (13px) | Labels, captions |
-| `--text-eyebrow` | `0.6875rem` (11px) | Labels uppercase |
-| `--text-caption` | `0.625rem` (10px) | Metadados, anos |
+| `--text-eyebrow` | `0.6875rem` (11px) | Labels uppercase (eyebrows de seção) |
+| `--text-caption` | `0.625rem` (10px) | Metadados, anos nos cards |
 
 ### Line-heights e letter-spacings
 
@@ -290,6 +292,86 @@ Definidas em `@layer utilities` no `global.css`. Use como classes diretamente no
 | `border-subtle` | `0.5px solid var(--border-default)` | Bordas padrão |
 
 > Prefira estas classes a `text-neutral-*` / `bg-neutral-*` do Tailwind — elas seguem o tema automaticamente.
+
+---
+
+## Matriz de botões
+
+Todas as variantes usam `border-radius: var(--radius-pill)` e `font-family: var(--font-body)`.
+
+| Variante | Background | Border | Cor do texto | Hover | Onde usar |
+|----------|-----------|--------|-------------|-------|-----------|
+| **Primary** | `var(--accent-btn)` | nenhuma | `#fff` | `opacity: 0.88` + `translateY(-1px)` | Hero CTA, form submit |
+| **Ghost-brand** | transparente | `1.5px solid var(--accent-text)` | `var(--accent-text)` | — | "View case →", CV download |
+| **Ghost-neutral** | transparente | `1px solid var(--border-default)` | `var(--text-secondary)` | `color: var(--text-heading)` + `border-color: var(--text-heading)` | Filter pills (inativo), LinkedIn card |
+| **Ghost-active** | `var(--text-heading)` | `var(--text-heading)` | `var(--bg-page)` | — | Filter pill ativo |
+| **Ghost-retry** | transparente | `1.5px solid var(--border-default)` | `var(--text-secondary)` | `color: var(--text-heading)` + `border-color: var(--text-heading)` | "Try again" no formulário |
+
+### Anatomia do Primary (tokens)
+
+```css
+background: var(--accent-btn);       /* --color-jambu-deep: #a8480c */
+color: #fff;                          /* contraste 5.84:1 — WCAG AA */
+border-radius: var(--radius-pill);
+padding: 9px 20px;                    /* Hero CTA */
+padding: 13px 24px;                   /* Form submit */
+font-size: var(--text-sm);            /* 15px */
+font-weight: 600;
+letter-spacing: 0.02em;
+```
+
+> Nunca usar `var(--accent-deco)` como fundo de botão com texto branco — só `var(--accent-btn)` garante contraste AA.
+
+---
+
+## Estados de UI
+
+### Empty state
+
+Usado em imagens ainda não adicionadas nos cases. Definido em `.case-content .image-placeholder` no `global.css`:
+
+```css
+height: 320px;
+border: 2px dashed var(--border-default);
+background: var(--bg-surface);
+border-radius: var(--radius-input);
+color: var(--text-subtle);         /* texto descritivo */
+```
+
+Estrutura HTML:
+```html
+<div class="image-placeholder">
+  <strong>Título do artefato</strong>
+  <span>Descrição do que vai aqui · dimensões sugeridas</span>
+</div>
+```
+
+### Loading state
+
+Usado no formulário de contato durante o envio. O botão recebe `disabled` + `aria-busy="true"` e o label troca para "Sending…" / "Enviando…". Sem spinner visual — comunicado apenas pelo texto e pelo `opacity: 0.6` do estado desabilitado.
+
+### Error state
+
+**Formulário:** campo inválido recebe `aria-invalid="true"` (borda `var(--accent-text)`). Mensagem de erro aparece abaixo do campo em `<p class="field-error">` com `color: var(--accent-text)` e `role="alert"` no container. **Login:** `<div role="alert" id="login-error">` com `color: var(--accent-text)`.
+
+### Success state
+
+**Formulário:** troca o conteúdo inteiro por `.feedback--success` (fundo `color-mix(in srgb, #16a34a 10%, transparent)`, texto `#16a34a`) com mensagem e botão "Try again" em Ghost-retry.
+
+---
+
+## Iconografia
+
+O portfólio usa **SVGs inline** — sem biblioteca de ícones externa. Vantagens: zero bundle extra, controla `currentColor`, sem FOUC.
+
+| Ícone | Tamanho | Onde | Origem |
+|-------|---------|------|--------|
+| Download (seta + bandeja) | 14×14 | Botão "Download Resume" | Heroicons outline |
+| WhatsApp | 17×17 | Botão WhatsApp | SVG oficial WhatsApp |
+| Checkmark (success) | 20×20 | Feedback do formulário | Heroicons outline |
+| X circle (error) | 20×20 | Feedback do formulário | Heroicons outline |
+
+**Regra:** novos ícones devem usar `aria-hidden="true"` e o texto adjacente deve comunicar a ação (o ícone é decorativo). Tamanho padrão: 16×16 para ícones inline de texto, 20×20 para ícones de destaque.
 
 ---
 

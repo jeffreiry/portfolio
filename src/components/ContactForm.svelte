@@ -208,9 +208,9 @@
   }
 
   label {
-    font-size: 13px;
+    font-size: var(--text-xs);
     font-weight: 500;
-    color: var(--color-cha-mate);
+    color: var(--text-heading);
     font-family: var(--font-body);
     letter-spacing: 0.01em;
   }
@@ -219,12 +219,12 @@
   textarea {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    font-size: 15px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-input);
+    font-size: var(--text-sm);
     font-family: var(--font-body);
-    color: var(--color-ink);
-    background: var(--color-surface);
+    color: var(--text-primary);
+    background: var(--bg-surface);
     transition: border-color 0.15s, box-shadow 0.15s;
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -233,14 +233,14 @@
 
   input::placeholder,
   textarea::placeholder {
-    color: var(--color-faint, #b0a8a0);
+    color: var(--text-subtle);
   }
 
   input:focus-visible,
   textarea:focus-visible {
-    border-color: var(--color-jambu);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-jambu) 15%, transparent);
-    outline-color: var(--color-jambu);
+    border-color: var(--accent-deco);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-deco) 15%, transparent);
+    outline-color: var(--accent-deco);
   }
 
   input:disabled,
@@ -251,13 +251,13 @@
 
   input[aria-invalid="true"],
   textarea[aria-invalid="true"] {
-    border-color: var(--color-jambu-text);
+    border-color: var(--accent-text);
   }
 
   .field-error {
     font-size: 12.5px;
     font-family: var(--font-body);
-    color: var(--color-jambu-text);
+    color: var(--accent-text);
     margin: 0;
   }
 
@@ -275,8 +275,8 @@
 
   .btn-submit {
     padding: 13px 24px;
-    border-radius: 999px;
-    background: var(--color-jambu-deep);
+    border-radius: var(--radius-pill);
+    background: var(--accent-btn);
     color: #fff;
     font-size: 14px;
     font-weight: 600;
@@ -303,7 +303,7 @@
   }
 
   .btn-submit:focus-visible {
-    outline: 2px solid var(--color-jambu);
+    outline: 2px solid var(--accent-deco);
     outline-offset: 3px;
   }
 
@@ -323,8 +323,8 @@
   }
 
   .feedback--error {
-    background: color-mix(in srgb, var(--color-jambu) 10%, transparent);
-    color: var(--color-jambu-text);
+    background: color-mix(in srgb, var(--accent-deco) 10%, transparent);
+    color: var(--accent-text);
   }
 
   .feedback svg {
@@ -333,7 +333,7 @@
   }
 
   .feedback__head {
-    font-size: 15px;
+    font-size: var(--text-sm);
     font-weight: 600;
     font-family: var(--font-body);
     margin: 0 0 4px;
@@ -349,23 +349,23 @@
   .btn-retry {
     align-self: flex-start;
     padding: 10px 20px;
-    border-radius: 999px;
-    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-default);
     background: transparent;
-    font-size: 13px;
+    font-size: var(--text-xs);
     font-family: var(--font-body);
-    color: var(--color-muted);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: border-color 0.15s, color 0.15s;
   }
 
   .btn-retry:hover {
-    border-color: var(--color-cha-mate);
-    color: var(--color-cha-mate);
+    border-color: var(--text-heading);
+    color: var(--text-heading);
   }
 
   .btn-retry:focus-visible {
-    outline: 2px solid var(--color-cha-mate);
+    outline: 2px solid var(--text-heading);
     outline-offset: 3px;
   }
 

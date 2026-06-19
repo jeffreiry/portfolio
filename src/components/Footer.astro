@@ -11,7 +11,7 @@ const { lang = 'en' } = Astro.props;
 >
   <div class="flex items-center gap-3">
     <img src="/jeferson-black.png" alt="Jeferson Freiry" class="footer-logo" width="17" height="18" style="height: 18px; width: auto; opacity: 0.35;" />
-    <span class="text-[11px]" style="color: var(--text-secondary); font-family: var(--font-body);">© {new Date().getFullYear()}</span>
+    <span class="text-eyebrow" style="color: var(--text-secondary); font-family: var(--font-body);">© {new Date().getFullYear()}</span>
   </div>
 
   <nav class="flex gap-4" aria-label="Footer links">
@@ -19,7 +19,7 @@ const { lang = 'en' } = Astro.props;
       href="https://linkedin.com/in/jefersonfreiry"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-[11px] transition-opacity hover:opacity-80"
+      class="text-eyebrow transition-opacity hover:opacity-80"
       style="color: var(--text-secondary); font-family: var(--font-body);"
     >
       LinkedIn
@@ -28,14 +28,14 @@ const { lang = 'en' } = Astro.props;
       href="https://github.com/jeffreiry"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-[11px] transition-opacity hover:opacity-80"
+      class="text-eyebrow transition-opacity hover:opacity-80"
       style="color: var(--text-secondary); font-family: var(--font-body);"
     >
       GitHub
     </a>
     <a
       href="mailto:jfreiry@gmail.com"
-      class="text-[11px] transition-opacity hover:opacity-80"
+      class="text-eyebrow transition-opacity hover:opacity-80"
       style="color: var(--text-secondary); font-family: var(--font-body);"
     >
       {lang === 'en' ? 'Email' : 'E-mail'}
