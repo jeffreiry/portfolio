@@ -21,6 +21,13 @@ interface VagaParsed {
   candidatura: string;
   data: string;
   tags: string[];
+  bloqueadores: string[];
+  ausentes: string[];
+  boaAderencia: string[];
+  obtObrig: number;
+  maxObrigW: number;
+  obtPref: number;
+  maxPrefW: number;
 }
 
 type Banda = 'parcial' | 'baixa' | 'muito-baixa';
@@ -89,6 +96,27 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       }
     }
 
+    // Gaps
+    const gapsSection = content.split(/## Gaps prioritários/i)[1] ?? '';
+    function gapItems(pat: RegExp, strip: RegExp): string[] {
+      const m = gapsSection.match(pat);
+      const raw = m?.[1]?.trim() ?? '';
+      if (!raw || raw.toLowerCase().startsWith('nenhum')) return [];
+      return raw.split('\n').map((l) => l.replace(strip, '').trim()).filter(Boolean);
+    }
+    const bloqueadores = gapItems(/### 🔴 Bloqueadores[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\*\s*/);
+    const ausentes     = gapItems(/### 🟡 Diferenciais ausentes[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\d+\.\s*/);
+    const boaAderencia = gapItems(/### 🟢 Boa ader[eê]ncia[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\*\s*/);
+
+    // Score breakdown da tabela de cálculo
+    const calcSection = content.split(/### C[aá]lculo/i)[1] ?? '';
+    const obrigRow = calcSection.match(/Obrigat[oó]rios[^|]*\|\s*(\d+)\s*\|\s*(\d+)/);
+    const prefRow  = calcSection.match(/Preferidos[^|]*\|\s*(\d+)\s*\|\s*(\d+)/);
+    const obtObrig  = obrigRow ? parseInt(obrigRow[1]) : 0;
+    const maxObrigW = obrigRow ? parseInt(obrigRow[2]) : 0;
+    const obtPref   = prefRow  ? parseInt(prefRow[1])  : 0;
+    const maxPrefW  = prefRow  ? parseInt(prefRow[2])  : 0;
+
     return {
       slug,
       empresa,
@@ -101,6 +129,13 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       candidatura,
       data,
       tags: tags.slice(0, 6),
+      bloqueadores,
+      ausentes,
+      boaAderencia,
+      obtObrig,
+      maxObrigW,
+      obtPref,
+      maxPrefW,
     };
   } catch {
     return null;
@@ -311,49 +346,106 @@ const statusOptions = [
                 </div>
               )}
 
-              <!-- Footer: data, candidatura, interpretação -->
+              <!-- Footer -->
               <div class="flex flex-wrap items-center gap-2 pt-1">
                 {v.data && (
                   <span class="text-[12px]" style="color: var(--color-faint);">
                     <span aria-hidden="true">📅</span> {formatDate(v.data)}
                   </span>
                 )}
-
                 <button
                   class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
                   style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
-                  data-slug={v.slug}
-                  data-empresa={v.empresa}
-                  data-cargo={v.cargo}
-                  data-candidatura={v.candidatura}
-                  data-status={v.status}
+                  data-slug={v.slug} data-empresa={v.empresa} data-cargo={v.cargo}
+                  data-candidatura={v.candidatura} data-status={v.status}
                   aria-label={`Editar candidatura de ${v.empresa}`}
                 >
                   Candidatura: <span class="candidatura-label font-semibold">{v.candidatura}</span>
                 </button>
-
                 <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium"
                   style={`background: ${b.chipBg}; color: ${b.chipText};`}>
                   {v.interpretacao}
                 </span>
-
                 <span class="status-label rounded-full border px-2.5 py-1 text-[11px]"
                   style="border-color: var(--color-border); color: var(--color-faint);">
                   {v.status}
                 </span>
+                <div class="ml-auto flex items-center gap-1.5">
+                  <button
+                    class="edit-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                    style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+                    data-slug={v.slug} data-empresa={v.empresa}
+                    aria-label={`Reanalisar ${v.empresa}`}
+                  >
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Editar
+                  </button>
+                  <button
+                    class="expander-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                    style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+                    aria-expanded="false" aria-label={`Ver análise completa de ${v.empresa}`}
+                  >
+                    Ver análise
+                    <svg class="expander-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                      <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
 
-                <button
-                  class="edit-btn ml-auto flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
-                  style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
-                  data-slug={v.slug}
-                  data-empresa={v.empresa}
-                  aria-label={`Reanalisar ${v.empresa}`}
-                >
-                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Editar
-                </button>
+              <!-- Expander -->
+              <div class="expander-content" aria-hidden="true">
+                <div class="expander-inner">
+                  <div class="flex flex-col gap-4 pt-4 mt-1" style="border-top: 1px solid var(--color-border);">
+
+                    <!-- Breakdown do score -->
+                    <div class="flex flex-col gap-2">
+                      <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Breakdown do score</span>
+                      <div class="flex items-center gap-2">
+                        <span class="text-[11px] shrink-0" style="color: var(--color-muted); width: 110px;">Obrigatórios ×2</span>
+                        <div class="relative flex-1 h-1.5 rounded-full overflow-hidden" style="background: var(--color-surface-2);">
+                          <div class="absolute inset-y-0 left-0 rounded-full" style={`width: ${v.maxObrigW > 0 ? Math.round(v.obtObrig / v.maxObrigW * 100) : 0}%; background: ${b.fill};`}></div>
+                        </div>
+                        <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">{v.obtObrig}/{v.maxObrigW}</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-[11px] shrink-0" style="color: var(--color-muted); width: 110px;">Preferidos ×1</span>
+                        <div class="relative flex-1 h-1.5 rounded-full overflow-hidden" style="background: var(--color-surface-2);">
+                          <div class="absolute inset-y-0 left-0 rounded-full" style={`width: ${v.maxPrefW > 0 ? Math.round(v.obtPref / v.maxPrefW * 100) : 0}%; background: ${b.fill};`}></div>
+                        </div>
+                        <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">{v.obtPref}/{v.maxPrefW}</span>
+                      </div>
+                    </div>
+
+                    <!-- Gaps grid -->
+                    <div class="gaps-grid grid gap-3">
+                      <div class="flex flex-col gap-1.5">
+                        <span class="text-[11px] font-semibold" style="color: #b91c1c; font-family: var(--font-body);">🔴 Bloqueadores</span>
+                        {v.bloqueadores.length > 0
+                          ? <ul class="flex flex-col gap-1">{v.bloqueadores.map((item) => <li class="text-[12px] leading-snug" style="color: var(--color-muted);">• {item}</li>)}</ul>
+                          : <p class="text-[12px]" style="color: var(--color-faint);">Nenhum</p>
+                        }
+                      </div>
+                      <div class="flex flex-col gap-1.5">
+                        <span class="text-[11px] font-semibold" style="color: #b45309; font-family: var(--font-body);">🟡 Ausentes</span>
+                        {v.ausentes.length > 0
+                          ? <ul class="flex flex-col gap-1">{v.ausentes.map((item, idx) => <li class="text-[12px] leading-snug" style="color: var(--color-muted);">{idx + 1}. {item}</li>)}</ul>
+                          : <p class="text-[12px]" style="color: var(--color-faint);">Nenhum</p>
+                        }
+                      </div>
+                      <div class="flex flex-col gap-1.5">
+                        <span class="text-[11px] font-semibold" style="color: #15803d; font-family: var(--font-body);">🟢 Boa aderência</span>
+                        {v.boaAderencia.length > 0
+                          ? <ul class="flex flex-col gap-1">{v.boaAderencia.map((item) => <li class="text-[12px] leading-snug" style="color: var(--color-muted);">• {item}</li>)}</ul>
+                          : <p class="text-[12px]" style="color: var(--color-faint);">Nenhum</p>
+                        }
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </article>
           );
@@ -548,6 +640,25 @@ const statusOptions = [
   .ja-select:focus {
     outline: 2px solid var(--color-neutral-900);
     outline-offset: 1px;
+  }
+
+  /* Expander */
+  .expander-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s ease;
+  }
+  .expander-content.open {
+    grid-template-rows: 1fr;
+  }
+  .expander-inner {
+    overflow: hidden;
+  }
+  .expander-arrow {
+    transition: transform 0.2s ease;
+  }
+  .gaps-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 
   /* Filter pills */
@@ -754,9 +865,19 @@ const statusOptions = [
     slug: string; empresa: string; produto: string; cargo: string;
     score: number; interpretacao: string; interpretacaoTexto: string;
     status: string; candidatura: string; data: string; tags: string[];
+    bloqueadores?: string[]; ausentes?: string[]; boaAderencia?: string[];
+    obtObrig?: number; maxObrigW?: number; obtPref?: number; maxPrefW?: number;
   }): string {
-    const b       = BAND_COLORS[banda(v.score)];
-    const dateFmt = v.data ? formatDate(v.data) : '';
+    const b         = BAND_COLORS[banda(v.score)];
+    const dateFmt   = v.data ? formatDate(v.data) : '';
+    const blk       = v.bloqueadores  ?? [];
+    const aus       = v.ausentes      ?? [];
+    const boa       = v.boaAderencia  ?? [];
+    const obtObrig  = v.obtObrig  ?? 0;
+    const maxObrigW = v.maxObrigW ?? 0;
+    const obtPref   = v.obtPref   ?? 0;
+    const maxPrefW  = v.maxPrefW  ?? 0;
+
     const tagsHTML = v.tags.length
       ? `<div class="tags-list flex flex-wrap gap-1.5">${v.tags.map((t) =>
           `<span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);">${t}</span>`
@@ -768,6 +889,16 @@ const statusOptions = [
     const dateHTML = dateFmt
       ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">📅</span> ${dateFmt}</span>`
       : '';
+
+    const gapList = (items: string[], type: 'bloq' | 'aus' | 'boa') =>
+      items.length === 0
+        ? `<p class="text-[12px]" style="color: var(--color-faint);">Nenhum</p>`
+        : `<ul class="flex flex-col gap-1">${items.map((item, i) =>
+            `<li class="text-[12px] leading-snug" style="color: var(--color-muted);">${type === 'aus' ? `${i + 1}.` : '•'} ${item}</li>`
+          ).join('')}</ul>`;
+
+    const obrigPct  = maxObrigW > 0 ? Math.round(obtObrig  / maxObrigW  * 100) : 0;
+    const prefPct   = maxPrefW  > 0 ? Math.round(obtPref   / maxPrefW   * 100) : 0;
 
     return `
       <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}"
@@ -797,15 +928,61 @@ const statusOptions = [
           </button>
           <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: ${b.chipBg}; color: ${b.chipText};">${v.interpretacao}</span>
           <span class="status-label rounded-full border px-2.5 py-1 text-[11px]" style="border-color: var(--color-border); color: var(--color-faint);">${v.status}</span>
-          <button class="edit-btn ml-auto flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
-            style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
-            data-slug="${v.slug}" data-empresa="${v.empresa}"
-            aria-label="Reanalisar ${v.empresa}">
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Editar
-          </button>
+          <div class="ml-auto flex items-center gap-1.5">
+            <button class="edit-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+              style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+              data-slug="${v.slug}" data-empresa="${v.empresa}" aria-label="Reanalisar ${v.empresa}">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Editar
+            </button>
+            <button class="expander-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+              style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+              aria-expanded="false" aria-label="Ver análise completa de ${v.empresa}">
+              Ver análise
+              <svg class="expander-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="expander-content" aria-hidden="true">
+          <div class="expander-inner">
+            <div class="flex flex-col gap-4 pt-4 mt-1" style="border-top: 1px solid var(--color-border);">
+              <div class="flex flex-col gap-2">
+                <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Breakdown do score</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] shrink-0" style="color: var(--color-muted); width: 110px;">Obrigatórios ×2</span>
+                  <div class="relative flex-1 h-1.5 rounded-full overflow-hidden" style="background: var(--color-surface-2);">
+                    <div class="absolute inset-y-0 left-0 rounded-full" style="width: ${obrigPct}%; background: ${b.fill};"></div>
+                  </div>
+                  <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">${obtObrig}/${maxObrigW}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] shrink-0" style="color: var(--color-muted); width: 110px;">Preferidos ×1</span>
+                  <div class="relative flex-1 h-1.5 rounded-full overflow-hidden" style="background: var(--color-surface-2);">
+                    <div class="absolute inset-y-0 left-0 rounded-full" style="width: ${prefPct}%; background: ${b.fill};"></div>
+                  </div>
+                  <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">${obtPref}/${maxPrefW}</span>
+                </div>
+              </div>
+              <div class="gaps-grid grid gap-3">
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[11px] font-semibold" style="color: #b91c1c; font-family: var(--font-body);">🔴 Bloqueadores</span>
+                  ${gapList(blk, 'bloq')}
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[11px] font-semibold" style="color: #b45309; font-family: var(--font-body);">🟡 Ausentes</span>
+                  ${gapList(aus, 'aus')}
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[11px] font-semibold" style="color: #15803d; font-family: var(--font-body);">🟢 Boa aderência</span>
+                  ${gapList(boa, 'boa')}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>`;
   }
@@ -836,9 +1013,27 @@ const statusOptions = [
 
   // ---- wireNewCard ----
 
+  function wireExpanderBtns(container: HTMLElement | Document) {
+    container.querySelectorAll<HTMLButtonElement>('.expander-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card    = btn.closest('.vaga-card') as HTMLElement;
+        const content = card.querySelector<HTMLElement>('.expander-content')!;
+        const arrow   = btn.querySelector<SVGElement>('.expander-arrow') as HTMLElement;
+        const isOpen  = content.classList.contains('open');
+        content.classList.toggle('open', !isOpen);
+        content.setAttribute('aria-hidden', String(isOpen));
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+      });
+    });
+  }
+
+  wireExpanderBtns(document);
+
   function wireNewCard(card: HTMLElement) {
     card.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach(wireCandidaturaBtn);
     card.querySelectorAll<HTMLButtonElement>('.edit-btn').forEach(wireEditBtn);
+    wireExpanderBtns(card);
   }
 
   // ---- Submit Nova Vaga / Reanalisar ----

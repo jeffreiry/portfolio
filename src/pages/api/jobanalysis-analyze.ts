@@ -323,6 +323,18 @@ export const POST: APIRoute = async ({ request }) => {
 
     writeFileSync(filePath, finalMd + '\n', 'utf-8');
 
+    // Parseia gaps do markdown final para incluir no card
+    const gapsSection = finalMd.split(/## Gaps prioritários/i)[1] ?? '';
+    function gapItems(pat: RegExp, strip: RegExp): string[] {
+      const m = gapsSection.match(pat);
+      const raw = m?.[1]?.trim() ?? '';
+      if (!raw || raw.toLowerCase().startsWith('nenhum')) return [];
+      return raw.split('\n').map((l) => l.replace(strip, '').trim()).filter(Boolean);
+    }
+    const bloqueadores = gapItems(/### 🔴 Bloqueadores[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\*\s*/);
+    const ausentes     = gapItems(/### 🟡 Diferenciais ausentes[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\d+\.\s*/);
+    const boaAderencia = gapItems(/### 🟢 Boa ader[eê]ncia[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\*\s*/);
+
     function scoreLabel(s: number) {
       if (s >= 80) return 'Alta aderência';
       if (s >= 60) return 'Aderência parcial';
@@ -342,8 +354,15 @@ export const POST: APIRoute = async ({ request }) => {
         interpretacaoTexto: String(meta.interpretacaoTexto ?? ''),
         status:             'A avaliar',
         candidatura:        'Não',
-        data:               String(meta.data ?? ''),
+        data,
         tags:               [],
+        bloqueadores,
+        ausentes,
+        boaAderencia,
+        obtObrig:  calc.ok ? calc.somaObrig * 2 : 0,
+        maxObrigW: calc.ok ? calc.maxObrig  * 2 : 0,
+        obtPref:   calc.ok ? calc.somaPref      : 0,
+        maxPrefW:  calc.ok ? calc.maxPref       : 0,
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } },
     );
