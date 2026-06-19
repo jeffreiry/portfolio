@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
   const name    = (data.get('name')    as string)?.trim();
@@ -48,6 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   if (error) {
+    console.error('[contact] Resend send failed:', error);
     return new Response(JSON.stringify({ error: 'send_failed' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
