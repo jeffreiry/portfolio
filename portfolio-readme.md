@@ -37,6 +37,10 @@ Portfolio/
 │   ├── cases-portfolio.md          # Guia-mestre + modelo técnico + cases escritos (PT/EN)
 │   ├── a11y-checklist.md           # Checklist de leitor de tela (NVDA/VoiceOver)
 │   └── roadmap.md                  # Fases, decisões técnicas e questões em aberto
+├── Bench_designers/
+│   ├── _prompt-template.md         # Prompt para análise de cases no Claude (chrome/web)
+│   ├── _insights-melhorias.md      # Insights consolidados de todos os benchmarks (atualizado a cada análise)
+│   └── *.md                        # Análises individuais por case/designer benchmarkado
 ├── src/
 │   ├── content.config.ts           # Schema Zod do frontmatter dos cases
 │   ├── content/
@@ -157,6 +161,8 @@ npm run preview
 ## Estado atual
 
 **Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook). Seção Cases com filtro interativo por 7 categorias; `CaseCard` exibe apenas `year` (role removido).
+
+**Benchmark de designers (2026-06-19):** pasta `Bench_designers/` criada com 5 análises de cases de referência (Sage/Emily Backes, Agentic DS/mchiu, 3M M*Modal/Lawrence Zheng, Gen AI Summaries/Nicole Roberts, Mira.ai/sanvithi). Insights consolidados em `_insights-melhorias.md` organizados por impacto/esforço. Workflow: usar `_prompt-template.md` no Claude (chrome) para cada nova análise — o output inclui o arquivo de análise individual e a versão atualizada do `_insights-melhorias.md`.
 
 **Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%):**
 - 🔴 **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases (afeta 11/11 vagas-alvo)

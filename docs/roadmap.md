@@ -243,6 +243,27 @@ Decisões que dependem do autor antes/durante o build:
 
 ---
 
+## Benchmark de designers · 2026-06-19
+
+Pasta `Bench_designers/` criada para acumular análises de cases de portfolio de referência e derivar melhorias para as páginas de case. Workflow:
+
+1. Usar `Bench_designers/_prompt-template.md` no Claude (chrome/web) ao analisar uma nova página
+2. Salvar o `.md` de análise individual na pasta
+3. O Claude gera também a versão atualizada de `_insights-melhorias.md` com os insights novos incorporados
+
+**5 benchmarks concluídos (2026-06-19):**
+- Sage — Emily Backes (`benchmark-case-study-sage.md`)
+- Agentic Design System — mchiu (`benchmark-gap-analysis-agentic-design-system.md`)
+- 3M M*Modal — Lawrence Zheng (`critique-lawrencezheng-3m-mmodal.md`)
+- Gen AI Summaries — Nicole Roberts (`critique-nicole-roberts-genai-summaries.md`)
+- Mira.ai — sanvithi (`analise-miraai-case.md`)
+
+**Top insights por ROI** (ver `_insights-melhorias.md` para lista completa):
+- Alto/Baixo: H1 com resultado quantificado · Frame cinematic full-bleed · Pull-quote estilizado · Eyebrow labels · Metrics com número serifado + fonte
+- Alto/Médio: Métricas inline distribuídas · Campo `thesis` no frontmatter · Alternância de fundo por bloco · Sticky process nav
+
+---
+
 ## Melhorias críticas de conteúdo · bench 2026-06-12
 
 Baseado em [Bench_job_applications/_index.md](../Bench_job_applications/_index.md) — 11 vagas analisadas, score médio **60%**, meta: **75%+**.

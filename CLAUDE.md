@@ -60,6 +60,7 @@ deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
 | [docs/cases-portfolio.md](docs/cases-portfolio.md) | **Guia-mestre dos cases**: régua sênior, template, narrativa, modelo técnico no Astro (arquivos, schema, i18n) + os cases já escritos (PT/EN) |
 | [docs/a11y-checklist.md](docs/a11y-checklist.md) | Checklist de leitor de tela (NVDA/VoiceOver) — passada manual de acessibilidade |
 | [docs/roadmap.md](docs/roadmap.md) | Fases de construção, decisões técnicas e questões em aberto |
+| [Bench_designers/_insights-melhorias.md](Bench_designers/_insights-melhorias.md) | Insights consolidados de benchmark de designers — referência para melhorias nas páginas de case |
 
 Antes de implementar qualquer coisa, ler o doc relevante. Ao tomar uma decisão
 de arquitetura nova, registrá-la na seção "Decisões técnicas" do roadmap.
