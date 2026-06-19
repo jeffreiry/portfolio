@@ -9,40 +9,42 @@
 
 ---
 
-## Score de aderência · 74%
+## Score de aderência · 42%
 
-> O candidato apresenta experiência em UX Design e UI Design, além de conhecimento em design systems, o que é um ponto forte. No entanto, faltam evidências de experimentação de hipóteses e conceitos, validação por meio de pesquisa com usuários e testes A/B, além de métricas de impacto.
+> O candidato apresenta habilidades em UX Design e UI Design, com experiência em produtos enterprise B2B de alta complexidade, além de conhecimento em design systems e colaboração cross-funcional. No entanto, há gaps em relação a métricas de impacto, artefatos visuais não expostos e experiência em pesquisa com usuários.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
-| Ensino superior completo | 2 | Ausente |
-| Experiência com product discovery e concepção e/ou desenvolvimento de produtos digitais | 2 | Presente (UX Design e UI Design em casos como Enterprise AI Assistant e Shipping Capacity Platform) |
-| Domínio de métodos e técnicas de facilitação | 1 | Parcialmente evidenciado (colaboração cross-funcional em cases) |
-| Conhecimento na manutenção e escala de design system | 2 | Presente (Design Systems em casos como Power Apps Demo App e HYPERGESTOR) |
-| Domínio em ferramentas de desenho e prototipação de alta fidelidade como Figma | 2 | Presente (Figma mencionado nos casos) |
+| Ensino superior completo | 2 | Não mencionado no portfolio |
+| Domínio de métodos e técnicas de facilitação | 1 | Mencionado parcialmente nos cases |
+| Experiência com product discovery e concepção e/ou desenvolvimento de produtos digitais em um ambiente web/mobile | 2 | Evidenciado em vários cases |
+| Conhecimento na manutenção e escala de design system | 2 | Evidenciado em cases como Power Apps Demo App |
+| Domínio em ferramentas de desenho e prototipação de alta fidelidade como Figma | 2 | Mencionado, mas sem artefatos visíveis |
+| Conhecimento vasto sobre métricas de produto e principais KPIs de controle | 0 | Ausente no portfolio |
 
-**Subtotal obrigatórios: 9/12 × 2 = 18/24**
+**Subtotal obrigatórios: 9/18 × 2 = 18/36**
 
 ### Diferenciais preferidos (peso 1×)
 
 | Diferencial | Nota | Evidência atual |
 |---|---|---|
-| Conhecimento vasto sobre métricas de produto e principais KPIs de controle | 0 | Ausente |
-| Experiência com testes A/B e validação por meio de pesquisa com usuários | 0 | Ausente |
+| Experiência em pesquisa com usuários | 1 | Mencionado parcialmente, mas sem detalhes |
+| Conhecimento em testes A/B e multivariáveis | 0 | Ausente no portfolio |
+| Experiência em liderança ou mentoria de designers | 0 | Ausente no portfolio |
 
-**Subtotal preferidos: 0/4**
+**Subtotal preferidos: 1/9**
 
 ### Cálculo
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 18 | 24 |
-| Preferidos (×1) | 0 | 4 |
-| **Total** | **18** | **28** |
+| Obrigatórios (×2) | 18 | 36 |
+| Preferidos (×1) | 1 | 9 |
+| **Total** | **19** | **45** |
 
-**Score: 18/28 = 64% (considerando apenas os requisitos obrigatórios e diferenciais, nota que a porcentagem real é 74% considerando o contexto e a análise mais profunda dos requisitos e evidências apresentadas)**
+**Score: 19/45 = 42%**
 
 ---
 
@@ -50,15 +52,15 @@
 
 ### 🔴 Bloqueadores de candidatura
 
-1. Falta de evidência de ensino superior completo.
-2. Falta de experiência com testes A/B e validação por meio de pesquisa com usuários.
+* Conhecimento vasto sobre métricas de produto e principais KPIs de controle
 
 ### 🟡 Diferenciais ausentes
 
-1. Conhecimento vasto sobre métricas de produto e principais KPIs de controle.
+1. Experiência em testes A/B e multivariáveis
+2. Experiência em liderança ou mentoria de designers
 
 ### 🟢 Boa aderência
 
-* Experiência em UX Design e UI Design.
-* Conhecimento em design systems.
-* Domínio em ferramentas de desenho e prototipação de alta fidelidade como Figma.
+* Experiência em UX Design e UI Design
+* Conhecimento em design systems
+* Colaboração cross-funcional

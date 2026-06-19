@@ -65,13 +65,14 @@ function rewriteScoreSection(md: string, c: ScoreCalc): string {
     `## Score de aderência · ${c.score}%`,
   );
 
+  // Consome até o fim da linha (incluindo lixo que o modelo colocar após o **)
   out = out.replace(
-    /\*\*Subtotal obrigat[oó]rios:[^\n]*\*\*/,
+    /\*\*Subtotal obrigat[oó]rios:[^\n]*/,
     `**Subtotal obrigatórios: ${c.somaObrig}/${c.maxObrig} × 2 = ${c.somaObrig * 2}/${c.maxObrig * 2}**`,
   );
 
   out = out.replace(
-    /\*\*Subtotal preferidos:[^\n]*\*\*/,
+    /\*\*Subtotal preferidos:[^\n]*/,
     `**Subtotal preferidos: ${c.somaPref}/${c.maxPref}**`,
   );
 
@@ -83,7 +84,8 @@ function rewriteScoreSection(md: string, c: ScoreCalc): string {
     `| **Total** | **${c.totalObt}** | **${c.totalMax}** |\n\n` +
     `**Score: ${c.totalObt}/${c.totalMax} = ${c.score}%**`;
 
-  out = out.replace(/### C[aá]lculo[\s\S]*?\*\*Score:[^\n]*\*\*/, calcBlock);
+  // [^\n]* no final consome qualquer lixo que o modelo coloque após o Score
+  out = out.replace(/### C[aá]lculo[\s\S]*?\*\*Score:[^\n]*/, calcBlock);
 
   return out;
 }
