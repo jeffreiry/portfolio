@@ -272,7 +272,24 @@ Aliases de papel → primitivo. Como os primitivos são re-tematizados no `html[
 | `--accent-text` | `var(--color-jambu-text)` = `#a8480c` | `#ed6707` | Jambu como texto/borda |
 | `--accent-btn` | `var(--color-jambu-deep)` = `#a8480c` | `#a8480c` | Fundo de botão + texto branco |
 
-**Regra:** novos componentes sempre referenciam tokens semânticos. Componentes legados serão migrados incrementalmente.
+**Regra:** novos componentes sempre referenciam tokens semânticos. Migração concluída em 2026-06-19 — zero primitivos no markup público.
+
+### Utilities CSS semânticas (usáveis como classes Tailwind)
+
+Definidas em `@layer utilities` no `global.css`. Use como classes diretamente no markup:
+
+| Classe | Token semântico | Uso |
+|--------|----------------|-----|
+| `text-heading` | `var(--text-heading)` | Títulos de seção, h2, h3 de marca |
+| `text-primary` | `var(--text-primary)` | Corpo forte, spans em cards |
+| `text-secondary` | `var(--text-secondary)` | Parágrafos, texto de apoio |
+| `text-subtle` | `var(--text-subtle)` | Eyebrows, anos, metadados |
+| `bg-page` | `var(--bg-page)` | Fundo da página |
+| `bg-surface` | `var(--bg-surface)` | Cards, inputs, education cards |
+| `bg-surface-alt` | `var(--bg-surface-alt)` | Pills de tag, separadores |
+| `border-subtle` | `0.5px solid var(--border-default)` | Bordas padrão |
+
+> Prefira estas classes a `text-neutral-*` / `bg-neutral-*` do Tailwind — elas seguem o tema automaticamente.
 
 ---
 
