@@ -5,7 +5,7 @@ role: "UX · UI · Visual Designer"
 summary: "Redesign da homepage da Del Valle traduzindo uma nova identidade visual global para o digital."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
-cover: /cases/del-valle-website/visao-geral.jpg
+cover: /cases/del-valle-website/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
 tags: ["Design System", "Branding", "Mobile"]
@@ -28,11 +28,7 @@ A Del Valle lançou uma nova identidade visual global com nova paleta, sistema t
 
 **Estado anterior:** site com a identidade anterior, desconectado visualmente da nova campanha e sem a narrativa de origem das frutas que a nova posição de marca pretendia comunicar.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Antes / Depois</strong>
-  <span>Identidade anterior → "Cheio de vida": frutas como protagonistas, manchas orgânicas, paleta por seção</span>
-</div>
+![Homepage Del Valle — identidade "Cheio de vida" com frutas como protagonistas](/cases/del-valle-website/01-home.png)
 
 ---
 
@@ -72,11 +68,7 @@ Coloquei uma foto de lifestyle no hero e guardei as embalagens para a página de
 
 **4. Cards de exploração de frutas com carrossel — problema:** cada fruta tem múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta tem uma célula com foto em tela cheia e uma célula com card branco que carrossel por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convida à exploração sem forçar leitura — o usuário que quer saber a origem navega; o que só quer ver a fruta, vê.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Exploração de frutas</strong>
-  <span>Grade alternada: foto em tela cheia + card com carrossel de 4 dimensões por fruta</span>
-</div>
+![Exploração de frutas — grade alternada com carrossel de 4 dimensões por fruta em tablet](/cases/del-valle-website/02-tablet.png)
 
 ---
 
@@ -88,6 +80,8 @@ Site redesenhado em duas páginas — Home e Fruta toda hora — com sistema vis
 - **Fruta toda hora (produtos):** hero com lineup completo de embalagens sobre fundo creme com manchas coloridas e frutas reais cortadas e posicionadas organicamente + seção "Fruta toda hora" em verde com foto circular crop + seção "Da nossa família para a sua" em rosa.
 
 Ambas entregues em **web e mobile**, com os elementos gráficos orgânicos reorganizados para cada breakpoint.
+
+![Homepage Del Valle — versão mobile com manchas orgânicas e identidade "Cheio de vida"](/cases/del-valle-website/03-smarphone.png)
 
 ---
 

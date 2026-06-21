@@ -5,6 +5,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import { detectCover } from '../../../utils/cover';
 
 const { slug } = Astro.params;
 const cases = await getCollection('casesPt', ({ data }) => !data.draft);
@@ -13,7 +14,8 @@ const entry = cases.find((e) => e.data.slug === slug);
 if (!entry) return Astro.redirect('/pt/');
 
 const { Content } = await render(entry);
-const { title, summary, role, company, year, tags, accent, metrics, url, bgImage, cover } = entry.data;
+const { title, summary, role, company, year, tags, accent, metrics, url, bgImage } = entry.data;
+const cover = detectCover(slug!) ?? entry.data.cover;
 
 const relatedCases = cases
   .filter((c) => c.data.slug !== slug && c.data.tags.some((t) => tags.includes(t)))

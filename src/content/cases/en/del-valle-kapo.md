@@ -5,7 +5,7 @@ role: "UX · UI · Visual Designer"
 summary: "Redesigned Del Valle Kapo's site for a Children's Day campaign, with IA driven by Analytics."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
-cover: /cases/del-valle-kapo/visao-geral.jpg
+cover: /cases/del-valle-kapo/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
 tags: ["Design System", "Branding", "Mobile"]
@@ -28,11 +28,7 @@ Del Valle Kapo is a product aimed at children and families, with a brand positio
 
 **Prior state:** site on the previous campaign's identity, visually misaligned with the new campaign, and without clarity about which sections had real value for users.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Data insight</strong>
-  <span>Google Analytics revealed: "Hora de Brincar" was the real heart of the site, not supporting content</span>
-</div>
+![Del Valle Kapo site — mobile version](/cases/del-valle-kapo/01-smatphone.png)
 
 ---
 
@@ -72,11 +68,7 @@ The decision that cost me most was the video-game-style product selector. The me
 
 I redesigned it as a centered carousel in the style of a video game character selector — active flavor in the center, full-color and larger; others desaturated and smaller on the sides with navigation arrows. Desaturation communicates "available but not selected" without needing text. And the video game metaphor is completely familiar to kids. The adult navigating it understands too — it's the same pattern as an avatar selector.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Hora de Brincar</strong>
-  <span>5 thematic categories with distinct color + age and participant filters + recipe-format activity card</span>
-</div>
+![Hora de Brincar — thematic categories with age filters and recipe-format activity card](/cases/del-valle-kapo/02-brincadeiras.png)
 
 ---
 
@@ -90,6 +82,8 @@ Redesigned site with 6 main sections and a structured play platform:
 - **Hora de Brincar:** 130+ activity repository in 5 thematic categories, each with its own color and identity, with age and participant filters and recipe-format activity cards.
 - **Nossos Produtos:** video game-style flavor selector with links to partner e-commerce stores.
 - Complete mobile version for all pages.
+
+![Hora de Brincar — mobile version with categories and age filters](/cases/del-valle-kapo/03-brincadeiras-mobile.png)
 
 ---
 

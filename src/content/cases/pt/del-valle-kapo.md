@@ -5,7 +5,7 @@ role: "UX · UI · Visual Designer"
 summary: "Redesign do site Del Valle Kapo para campanha de Dia das Crianças com IA orientada por Analytics."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
-cover: /cases/del-valle-kapo/visao-geral.jpg
+cover: /cases/del-valle-kapo/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
 tags: ["Design System", "Branding", "Mobile"]
@@ -28,11 +28,7 @@ O Del Valle Kapo é um produto voltado para crianças e famílias, com um posici
 
 **Estado anterior:** site com a identidade da campanha anterior, desalinhado visualmente com a nova campanha e sem clareza sobre quais seções tinham valor real para os usuários.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Insight dos dados</strong>
-  <span>Google Analytics revelou: "Hora de Brincar" era o coração real do site, não um conteúdo de suporte</span>
-</div>
+![Site Del Valle Kapo — versão mobile](/cases/del-valle-kapo/01-smatphone.png)
 
 ---
 
@@ -72,11 +68,7 @@ A decisão que mais me custou foi o seletor de produto estilo videogame. A metá
 
 Converti para um carrossel centrado no estilo de seleção de personagem de videogame — sabor ativo no centro, colorido e maior; os outros dessaturados e menores nos lados, com setas de navegação. A dessaturação comunica "disponível mas não selecionado" sem precisar de texto. E a metáfora de videogame é completamente familiar para o público infantil. O adulto que navega também entende — é o mesmo padrão de um seletor de avatar.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Hora de Brincar</strong>
-  <span>5 categorias temáticas com cor própria + filtros por idade e participantes + ficha de atividade</span>
-</div>
+![Hora de Brincar — categorias temáticas com filtros por idade e ficha de atividade](/cases/del-valle-kapo/02-brincadeiras.png)
 
 ---
 
@@ -90,6 +82,8 @@ Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estr
 - **Hora de Brincar:** repositório de 130+ atividades em 5 categorias temáticas, cada uma com cor e identidade própria, com filtros de idade e participantes e fichas de atividade no formato de receita.
 - **Nossos Produtos:** seletor de sabor no estilo videogame com link para e-commerces parceiros.
 - Versão mobile completa para todas as páginas.
+
+![Hora de Brincar — versão mobile com categorias e filtros por idade](/cases/del-valle-kapo/03-brincadeiras-mobile.png)
 
 ---
 

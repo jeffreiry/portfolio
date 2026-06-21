@@ -5,7 +5,7 @@ role: "UX · UI · Visual Designer"
 summary: "Redesigned Del Valle's homepage translating a new global visual identity into digital."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
-cover: /cases/del-valle-website/visao-geral.jpg
+cover: /cases/del-valle-website/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
 tags: ["Design System", "Branding", "Mobile"]
@@ -28,11 +28,7 @@ Del Valle launched a new global visual identity with a new palette, typographic 
 
 **Prior state:** site on the previous identity, visually disconnected from the new campaign and without the fruit-origin narrative that the new brand positioning intended to communicate.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Before / After</strong>
-  <span>Previous identity → "Cheio de vida": fruits as protagonists, organic blobs, per-section color palette</span>
-</div>
+![Del Valle homepage — "Cheio de vida" identity with fruits as visual protagonists](/cases/del-valle-website/01-home.png)
 
 ---
 
@@ -72,11 +68,7 @@ I put a lifestyle photo in the hero and saved the packaging for the products pag
 
 **4. Fruit exploration cards with carousel — problem:** each fruit has multiple information dimensions (geographic origin, number of producers, harvest period, fun fact). Displaying everything at once would weigh down the page; showing only the photo would be superficial. **Options:** fixed text below each fruit vs. card carousel with one dimension per screen. **Choice:** alternating grid — each fruit has a full-screen photo cell and a white card cell that carousels through 4 dimensions (Where it comes from / Number of Producers / Harvest season / Curiosity), with illustrated icon and navigation dots. **Why:** the carousel invites exploration without forcing reading — users who want the origin navigate; those who just want to see the fruit, see it.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Fruit exploration</strong>
-  <span>Alternating grid: full-screen photo + card with 4-dimension carousel per fruit</span>
-</div>
+![Fruit exploration — alternating grid with 4-dimension carousel per fruit on tablet](/cases/del-valle-website/02-tablet.png)
 
 ---
 
@@ -88,6 +80,8 @@ Redesigned site in two pages — Home and Fruta toda hora — with a unified vis
 - **Fruta toda hora (products):** hero with full product lineup on cream background with colorful blobs and real cut fruits placed organically + "Fruta toda hora" section in green with circular-cropped photo + "Da nossa família para a sua" section in pink.
 
 Both delivered in **web and mobile**, with organic graphic elements reorganized for each breakpoint.
+
+![Del Valle homepage — mobile version with organic blobs and "Cheio de vida" identity](/cases/del-valle-website/03-smarphone.png)
 
 ---
 

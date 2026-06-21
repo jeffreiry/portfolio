@@ -5,7 +5,7 @@ role: "UX Designer · Design Systems, 2025"
 summary: "Turned isolated Design System components into a full mobile reference app in Microsoft Power Apps."
 company: "Large industrial company (confidential)"
 year: 2025
-cover: /cases/power-apps-dummy-app/visao-geral.jpg
+cover: /cases/power-apps-dummy-app/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#e8f0fe"
 tags: ["Enterprise", "Design System", "Mobile"]

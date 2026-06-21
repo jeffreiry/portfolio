@@ -8,6 +8,7 @@ import ContactForm from '../components/ContactForm.svelte';
 import RunWidget from '../components/RunWidget.astro';
 import WorkoutWidget from '../components/WorkoutWidget.astro';
 import { getCollection } from 'astro:content';
+import { detectCover } from '../utils/cover';
 
 const allCases = await getCollection('casesEn', ({ data }) => !data.draft);
 const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -146,7 +147,7 @@ const whatsappHref = 'https://wa.me/5551984741888';
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => (
           <div data-animate style={`--animate-delay: ${i * 90}ms`} class="case-card-wrapper" data-tags={c.data.tags.join(',')}>
-            <CaseCard {...c.data} lang="en" />
+            <CaseCard {...c.data} cover={detectCover(c.data.slug) ?? c.data.cover} lang="en" />
           </div>
         ))}
       </div>

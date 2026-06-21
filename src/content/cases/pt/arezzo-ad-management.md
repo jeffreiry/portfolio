@@ -5,7 +5,7 @@ role: "UX Researcher · UX Designer · UI Designer"
 summary: "Redesign da plataforma de anúncios da Arezzo&Co para três perfis distintos em um sistema unificado."
 company: "Arezzo&Co (via CWI)"
 year: 2023
-cover: /cases/arezzo-ad-management/visao-geral.jpg
+cover: /cases/arezzo-ad-management/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#ecf0f3"
 tags: ["AI & Automation", "UX Research", "Data & Analytics"]
@@ -28,11 +28,7 @@ O grupo Arezzo&Co opera múltiplas marcas (Arezzo, Schutz e outras) com centenas
 
 **Estado anterior:** um sistema único sem diferenciação de papel, onde o Lojista se perdia em métricas corporativas e o Marketing não conseguia visão consolidada sem navegar por lojas individualmente.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Arquitetura por papel</strong>
-  <span>Três navegações distintas — Marketing, Gestores de Tráfego, Lojistas — dentro de uma única plataforma</span>
-</div>
+![Lojista — painel de anúncios com orçamento disponível e resultados inline](/cases/arezzo-ad-management/01-store-view.png)
 
 ---
 
@@ -72,11 +68,7 @@ A decisão que mais me custou foi a das três homes distintas — a dúvida era 
 
 O problema era que cards isolados mostram estado, não relação. O que o Marketing precisava entender era: em que ponto a cadeia perde eficiência? "Conversas: 20" não responde isso. "Impressões 3.538 → Conversas 20" responde. Substituí os cards por um funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) — os KPIs ficaram como complemento, não como protagonistas.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Funil de conversão — Marketing</strong>
-  <span>Impressões → Engajamento → Cliques → Conversas → Vendas com contagem por estágio</span>
-</div>
+![Marketing — funil de conversão de impressões a vendas com métricas consolidadas](/cases/arezzo-ad-management/02-manager-view.png)
 
 ---
 
@@ -89,6 +81,8 @@ Uma plataforma multi-perfil de gerenciamento de anúncios com três experiência
 - **Marketing** acessa o painel consolidado com funil de conversão, gerencia o orçamento mensal por loja com edição inline, e monitora a saúde do portfólio de anúncios de toda a marca.
 
 Todas as telas foram entregues em versão **web e mobile**, com a navegação mobile adaptada ao padrão de uso de cada perfil.
+
+![Admin — gestão de orçamento e performance consolidada por loja](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 

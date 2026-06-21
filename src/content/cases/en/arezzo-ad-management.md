@@ -5,7 +5,7 @@ role: "UX Researcher · UX Designer · UI Designer"
 summary: "Redesigned Arezzo&Co's ad platform for three distinct user profiles on a unified system."
 company: "Arezzo&Co (via CWI)"
 year: 2023
-cover: /cases/arezzo-ad-management/visao-geral.jpg
+cover: /cases/arezzo-ad-management/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#ecf0f3"
 tags: ["AI & Automation", "UX Research", "Data & Analytics"]
@@ -28,11 +28,7 @@ The Arezzo&Co group operates multiple brands (Arezzo, Schutz, and others) with h
 
 **Prior state:** a single system with no role differentiation, where Store Owners got lost in corporate metrics and Marketing had no consolidated view without navigating store by store.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Role-based architecture</strong>
-  <span>Three distinct navigations — Marketing, Traffic Managers, Store Owners — within one platform</span>
-</div>
+![Store Owner — ad dashboard with available budget and inline results](/cases/arezzo-ad-management/01-store-view.png)
 
 ---
 
@@ -72,11 +68,7 @@ The decision that cost me the most was the three distinct homes — the worry wa
 
 The problem was that isolated cards show state, not relationship. What Marketing needed to understand was: where does the chain lose efficiency? "Conversations: 20" doesn't answer that. "Impressions 3,538 → Conversations 20" does. I replaced the cards with a visual funnel (Impressions → Engagement → Clicks → Conversations → Sales) — the KPI cards stayed as complement, not protagonist.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Conversion funnel — Marketing</strong>
-  <span>Impressions → Engagement → Clicks → Conversations → Sales with per-stage counts</span>
-</div>
+![Marketing — conversion funnel from impressions to sales with consolidated metrics](/cases/arezzo-ad-management/02-manager-view.png)
 
 ---
 
@@ -89,6 +81,8 @@ A multi-role ad management platform with three distinct experiences within the s
 - **Marketing** accesses the consolidated panel with a conversion funnel, manages monthly budget per store with inline editing, and monitors the health of the entire brand's ad portfolio.
 
 All screens were delivered in **web and mobile** versions, with mobile navigation adapted to each profile's usage pattern.
+
+![Admin — budget management and consolidated performance by store](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 
