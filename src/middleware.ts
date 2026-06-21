@@ -14,9 +14,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (!area) return next();
 
   const password = passwordFor(area);
-  const authCookie = context.cookies.get(COOKIE[area]);
 
-  if (password && authCookie?.value === password) return next();
+  // Sem senha configurada: libera em dev, bloqueia em prod
+  if (!password) {
+    if (import.meta.env.DEV) return next();
+    return new Response('Not found', { status: 404 });
+  }
+
+  const authCookie = context.cookies.get(COOKIE[area]);
+  if (authCookie?.value === password) return next();
 
   const loginUrl = new URL('/login', context.url);
   loginUrl.searchParams.set('next', pathname);

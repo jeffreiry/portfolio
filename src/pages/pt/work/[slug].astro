@@ -5,7 +5,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
-import { detectCover } from '../../../utils/cover';
+import { detectHero } from '../../../utils/cover';
 
 const { slug } = Astro.params;
 const cases = await getCollection('casesPt', ({ data }) => !data.draft);
@@ -15,7 +15,7 @@ if (!entry) return Astro.redirect('/pt/');
 
 const { Content } = await render(entry);
 const { title, summary, role, company, year, tags, accent, metrics, url, bgImage } = entry.data;
-const cover = detectCover(slug!) ?? entry.data.cover;
+const heroBg = detectHero(slug!) ?? entry.data.cover ?? bgImage;
 
 const relatedCases = cases
   .filter((c) => c.data.slug !== slug && c.data.tags.some((t) => tags.includes(t)))
@@ -33,12 +33,12 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     <section class="w-full px-5 pt-5">
       <div
         class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-8 pb-12 pt-24 md:pb-16 md:pt-40 md:px-16"
-        style={bgImage ? '' : `background-color: ${accent};`}
+        style={heroBg ? '' : `background-color: ${accent};`}
       >
-        {bgImage && (
-          <div class="absolute inset-0" style={`background-image: url('${bgImage}'); background-size: cover; background-position: center;`} />
+        {heroBg && (
+          <div class="absolute inset-0" style={`background-image: url('${heroBg}'); background-size: cover; background-position: center;`} />
         )}
-        {bgImage && (
+        {heroBg && (
           <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(10,5,2,0.78) 0%, rgba(30,14,6,0.64) 100%);" />
         )}
         <div class="absolute inset-0 pointer-events-none" style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`} />
@@ -46,21 +46,21 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         <div class="relative flex flex-col gap-4 max-w-[720px]">
           <div class="flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <span class={`rounded-full px-3 py-1 text-xs font-medium ${bgImage ? 'border border-white/25 text-white/80' : 'border border-default text-secondary'}`}>
+              <span class={`rounded-full px-3 py-1 text-xs font-medium ${heroBg ? 'border border-white/25 text-white/80' : 'border border-default text-secondary'}`}>
                 {tag}
               </span>
             ))}
           </div>
-          <h1 class={`font-display text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] ${bgImage ? 'text-white' : 'text-heading'}`}>
+          <h1 class={`font-display text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] ${heroBg ? 'text-white' : 'text-heading'}`}>
             {title}
           </h1>
-          <p class={`text-lg leading-relaxed max-w-[560px] ${bgImage ? 'text-white/80' : 'text-secondary'}`}>{summary}</p>
-          <div class={`flex flex-wrap gap-6 pt-2 text-sm ${bgImage ? 'text-white/60' : 'text-subtle'}`}>
-            <span><strong class={bgImage ? 'text-white/90' : 'text-primary'}>Papel</strong> — {role}</span>
-            <span><strong class={bgImage ? 'text-white/90' : 'text-primary'}>Empresa</strong> — {company}</span>
-            <span><strong class={bgImage ? 'text-white/90' : 'text-primary'}>Ano</strong> — {year}</span>
+          <p class={`text-lg leading-relaxed max-w-[560px] ${heroBg ? 'text-white/80' : 'text-secondary'}`}>{summary}</p>
+          <div class={`flex flex-wrap gap-6 pt-2 text-sm ${heroBg ? 'text-white/60' : 'text-subtle'}`}>
+            <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Papel</strong> — {role}</span>
+            <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Empresa</strong> — {company}</span>
+            <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Ano</strong> — {year}</span>
             {url && (
-              <a href={url} target="_blank" rel="noopener noreferrer" class={`underline underline-offset-2 hover:opacity-80 ${bgImage ? 'text-white' : 'text-primary hover:text-heading'}`}>
+              <a href={url} target="_blank" rel="noopener noreferrer" class={`underline underline-offset-2 hover:opacity-80 ${heroBg ? 'text-white' : 'text-primary hover:text-heading'}`}>
                 Ver ao vivo →
               </a>
             )}
@@ -68,25 +68,6 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         </div>
       </div>
     </section>
-
-    <!-- Cover image -->
-    {cover ? (
-      <section class="mx-auto w-full max-w-[1200px] px-6 pt-6">
-        <img
-          src={cover}
-          alt={`${title} — capa`}
-          class="w-full rounded-2xl object-cover"
-          style="max-height: 560px;"
-          loading="eager"
-        />
-      </section>
-    ) : (
-      <section class="mx-auto w-full max-w-[1200px] px-6 pt-6">
-        <div class="flex h-[320px] w-full items-center justify-center rounded-2xl bg-surface border border-dashed border-subtle">
-          <span class="text-xs text-subtle">Imagem de capa · 1200×600px</span>
-        </div>
-      </section>
-    )}
 
     <!-- Metrics -->
     {metrics && metrics.length > 0 && (

@@ -3,12 +3,13 @@
 ## 2026-06-20
 
 ### Adicionado
-- **Imagens dos cases** — screenshots em `public/cases/{slug}/`: `visao-geral.*` (capa) + `01-*.png / 02-*.png / 03-*.png` (inline) para arezzo-ad-management, del-valle-kapo, del-valle-website, enterprise-ai-assistant, shipping-capacity-platform e power-apps-dummy-app
-- **`src/utils/cover.ts`** — `detectCover(slug)` auto-detecta `visao-geral.*` ou `visao_geral.*` (png/jpg/jpeg/webp) em `public/cases/{slug}/` via `fs.existsSync`; elimina necessidade de `cover:` manual no frontmatter
+- **Imagens dos cases** — screenshots em `public/cases/{slug}/`: `card-home.*` (card na home) + `hero.*` (hero do case) + `01-*.png / 02-*.png / 03-*.png` (inline) para arezzo-ad-management, del-valle-kapo, del-valle-website, enterprise-ai-assistant, shipping-capacity-platform e power-apps-dummy-app
+- **`src/utils/cover.ts`** — `detectHero(slug)` detecta `hero.*` → fallback `visao-geral.*`; `detectCardImage(slug)` detecta `card-home.*` → fallback `visao-geral.*`; ambas via `fs.existsSync`, sem necessidade de `cover:` no frontmatter
 
 ### Alterado
-- **Home (EN+PT)** — CaseCard recebe `cover={detectCover(c.data.slug) ?? c.data.cover}` em vez de spreads do frontmatter
-- **`work/[slug].astro` (EN+PT)** — `cover` resolvido via `detectCover(slug!) ?? entry.data.cover` antes de renderizar o hero
+- **Home (EN+PT)** — CaseCard recebe `cover={detectCardImage(slug) ?? c.data.cover}` — usa `card-home.*` se existir
+- **`work/[slug].astro` (EN+PT)** — hero background resolvido via `detectHero(slug!) ?? entry.data.cover ?? bgImage` — usa `hero.*` se existir
+- **`src/middleware.ts`** — senha vazia em dev libera acesso sem redirecionar ao login; em prod retorna 404
 - **Cases content (EN+PT)** — placeholders `<div class="image-placeholder">` substituídos por `![alt](path)` em arezzo, del-valle-kapo e del-valle-website; 3ª imagem adicionada ao fim da seção Solução em cada um
 - **Frontmatters** — extensão `.jpg` → `.png` em arezzo-ad-management, del-valle-kapo, del-valle-website e power-apps-dummy-app
 
