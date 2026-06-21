@@ -5,7 +5,6 @@ role: "UX Designer · Design Systems, 2025"
 summary: "Turned isolated Design System components into a full mobile reference app in Microsoft Power Apps."
 company: "Large industrial company (confidential)"
 year: 2025
-cover: /cases/power-apps-dummy-app/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#e8f0fe"
 tags: ["Enterprise", "Design System", "Mobile"]
@@ -70,6 +69,8 @@ Before building, each component was reviewed and updated to meet the organizatio
 
 The app was built directly in the Power Apps environment, not as a Figma prototype. This was a deliberate choice: the reference had to work within the constraints and capabilities of the actual platform. Building in Power Apps meant confronting real technical tradeoffs — formula logic, component state management, and platform-specific interaction patterns.
 
+![Actions and modal screens from the Power Apps Dummy App](/cases/power-apps-dummy-app/02-actions.png)
+
 ### 5. Validation with the Low-code Platforms team
 
 Throughout development, the app was continuously validated with the Low-code Platforms team — the internal group responsible for the Power Apps ecosystem. Their involvement was critical for ensuring that the more complex interactions (state management, formula-driven behavior) were technically sound and replicable by other teams.
@@ -106,6 +107,10 @@ Beyond the specific deliverable, the project established a pattern for how the D
 | Published as org-wide template | ✅ |
 | Production apps built on top | ≥ 1 |
 | Cross-functional collaborators | Design Chapter + Low-code Platforms |
+
+![CSAT screen — satisfaction collection inside the demo app](/cases/power-apps-dummy-app/03-csat.png)
+
+![FAQ screen — support content integrated into the app](/cases/power-apps-dummy-app/03-faq.png)
 
 ---
 
