@@ -76,12 +76,13 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 
 ### Fase 5 — Polish & lançamento
 
-- [ ] Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
+- [x] Responsividade fina nos 3 breakpoints (≥1200 / 810–1199 / ≤809) — 2026-06-23: Education e Activities grids `grid-cols-2` fixo → `sm:grid-cols-2` (1 coluna em mobile < 640px); tables `display: block; overflow-x: auto` para evitar vazamento em mobile estreito
 - [x] Acessibilidade (parcial): skip navigation link (`Base.astro`), foco visível nos nav links (outline `var(--color-cha-mate)`), contraste dos títulos de cards (#fff em vez de jambu sobre fundo escuro)
 - [x] Acessibilidade — contraste WCAG AA (2026-06-15): auditoria de tokens via script. Corrigidos: `--color-faint` (#a89890→#776559 light, #8a7a70→#998a7e dark; era 2.0–2.5:1, agora ≥4.5:1) usado em ano/labels/eyebrows; jambu como texto/borda no "View case →" → novo token `--color-jambu-text` (#a8480c light, jambu no dark); botões brancos-sobre-laranja (Hero CTA, submit, skip-link, era 3.21:1) → `--color-jambu-deep` #a8480c (white 5.84:1). Bars decorativas mantêm `--color-jambu` (exemptas).
 - [x] Acessibilidade — formulário de contato (2026-06-15): validação client-side acessível (`aria-invalid`, `aria-describedby`, mensagens inline), foco movido para 1º campo inválido, foco movido para o alerta de sucesso/erro (`tabindex=-1`), região `aria-live="polite"` anunciando "Enviando…".
 - [x] Acessibilidade — segunda passada de código (2026-06-19): `login.astro` Google Fonts → self-hosted, `role="alert"` + `aria-required` no login; filter buttons com `aria-pressed` + live region de resultados; CaseCard `h2` → `h3` (hierarquia correta dentro de seção `h2`); "Other activities" `<p>` → `<h3>`; ThemeToggle com `focus-visible`; `prefers-reduced-motion` nos dots pulsantes dos widgets; `ContactForm` `client:load` → `client:visible`. Checklist atualizado em [a11y-checklist.md](a11y-checklist.md).
-- [ ] Acessibilidade (pendente): leitor de tela end-to-end — checklist em [a11y-checklist.md](a11y-checklist.md) (NVDA/VoiceOver, PT+EN); contraste de `muted` em tags sobre surface-2 (3.77:1, AA-large only)
+- [x] Acessibilidade — contraste de tags (2026-06-23): `CaseCard` tags `--text-secondary` → `--text-primary` sobre `--bg-surface-alt` (era ~3.5:1, agora ≥7:1 AA)
+- [ ] Acessibilidade (pendente): leitor de tela end-to-end — checklist em [a11y-checklist.md](a11y-checklist.md) (NVDA/VoiceOver, PT+EN)
 - [x] SEO: meta tags, Open Graph, canonical, hreflang PT/EN (Base.astro)
 - [x] Sitemap.xml — integração `@astrojs/sitemap` com `customPages` para os 7 cases publicados (EN + PT), filtro `/jobanalysis` e `/login`, `robots.txt` apontando para `sitemap-index.xml` — implementado 2026-06-19
 - [x] Lighthouse 95+ em todas as métricas — **auditado 2026-06-11:** Desktop ✅ 99/95/100/100 · Mobile ⚠️ 73/95/100/100. **Correções aplicadas + re-auditado mobile 2026-06-19:** FCP 1.0s (score 100), LCP 2.0s (score 97), Speed Index 1.0s (score 100) — meta 95+ performance mobile atingida ✅. Gargalo restante (self-hosted hero image) opcional para squeeze marginal no LCP.

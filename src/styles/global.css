@@ -401,6 +401,9 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     display: block;
   }
   .case-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
