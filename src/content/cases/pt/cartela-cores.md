@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cartela de Cores"
 slug: cartela-cores
 role: "Product Designer, solo, end-to-end"
@@ -6,6 +6,7 @@ summary: "Transformou um PDF estático em sistema que avalia itens do guarda-rou
 company: "Projeto pessoal"
 year: 2026
 accent: "#fff7ef"
+template: editorial
 tags: ["Design System", "Projetos Pessoais"]
 url: ""
 metrics:
@@ -14,7 +15,7 @@ metrics:
   - label: "Cores validadas"
     value: "22 de 28 dentro de ±10%"
 featured: true
-draft: true
+draft: false
 order: 2
 ---
 

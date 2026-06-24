@@ -1,4 +1,4 @@
----
+﻿---
 title: "Del Valle · Redesign de Site"
 slug: del-valle-website
 role: "UX · UI · Visual Designer"
@@ -8,6 +8,7 @@ year: 2023
 cover: /cases/del-valle-website/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
+template: brand
 tags: ["Design System", "Branding", "Mobile"]
 featured: false
 draft: false

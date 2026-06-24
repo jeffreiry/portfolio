@@ -1,4 +1,4 @@
----
+﻿---
 title: "Arezzo&Co · Social Media Ad System"
 slug: arezzo-ad-management
 role: "UX Researcher · UX Designer · UI Designer"
@@ -8,6 +8,7 @@ year: 2023
 cover: /cases/arezzo-ad-management/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#ecf0f3"
+template: brand
 tags: ["AI & Automation", "UX Research", "Data & Analytics"]
 featured: true
 draft: false

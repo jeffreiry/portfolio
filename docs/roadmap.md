@@ -129,6 +129,37 @@ Objetivo: elevar o DS ao nível de governança do **Apex** ([DESIGN.md](../../Ap
 - Manter fontes **self-hosted** — o Apex ainda carrega via Google Fonts (round-trip que o portfólio já eliminou na Fase 5)
 - Manter o rigor de **contraste AA auditado** — o fluxo correto é portar essa disciplina **para** o Apex, não regredir aqui
 
+### Fase 7 — Páginas de case: UX/UI e templates — 2026-06-23
+
+**7.1 — Melhorias de forma e interação**
+- [x] Campo `thesis` no frontmatter e no hero (frase-manifesto abaixo do H1, itálico serif)
+- [x] Campo `source` na schema de métricas (caption de contexto abaixo do valor)
+- [x] H2 thesis (primeiro `h2`) estilizado com borda esquerda jambu e itálico serif via `:first-of-type`
+- [x] H2 eyebrow (demais `h2`) como labels uppercase Barlow 800 via `:not(:first-of-type)`
+- [x] Blockquote pull-quote com fundo surface + borda esquerda accent
+- [x] Duplicação de divisor corrigida: removido `border-top` do CSS do eyebrow H2 (o `<hr>` do markdown é o único separador)
+- [x] Next case como card rico sequencial (ordem numérica via campo `order`, wrap do último ao primeiro)
+
+**7.2 — Microinterações**
+- [x] Hero entrance animation (`@keyframes caseHeroIn`, 0.65s ease-out-expo, classe `.hero-content-case`)
+- [x] Metrics stagger (`--animate-delay` por índice, `[data-animate]` scroll-reveal)
+- [x] Metric card hover lift (translateY -3px + box-shadow)
+- [x] Scroll-reveal para imagens e eyebrow H2s do conteúdo (`.will-reveal`/`.is-visible` via IntersectionObserver inline)
+- [x] **Count-up animado nas métricas** — `[data-countup]`, ease-out cúbico 1.4s, respeita `prefers-reduced-motion`
+
+**7.3 — CaseNav: sticky process nav**
+- [x] Componente Svelte 5 `CaseNav.svelte` — detecta `h2:not(:first-of-type)`, aparece após hero sair do viewport, scroll-spy com `IntersectionObserver`
+- [x] Pills numeradas: número sempre visível, label expande no item ativo (≥768px)
+- [x] Hover em item não-ativo: label expande com fundo 16% tint (secundário vs. sólido do ativo)
+- [x] Posicionado a 78px do topo (10px de gap abaixo do header)
+- [x] Habilitado em todos os templates (enterprise, brand, editorial)
+
+**7.4 — 3 templates de case**
+- [x] Campo `template: 'enterprise' | 'brand' | 'editorial'` no schema (default `enterprise`)
+- [x] **Enterprise** (enterprise-ai, shipping, hypera, power-apps): hero atual mantido, metrics grid, CaseNav, scroll-reveal
+- [x] **Brand** (`del-valle-website`, `del-valle-kapo`, `arezzo-ad-management`): `HeroBrand.astro` — hero 65vh, conteúdo empurrado ao fundo, gradiente `to top`, imagens sangram 140px fora da coluna em ≥860px, sem metrics grid
+- [x] **Editorial** (`painel-saude`, `cartela-cores`): `HeroEditorial.astro` — hero full-width sem card (sem `rounded-[24px]`), 50vh, watermark número no canto inferior direito, H2 de seção centralizados com linhas `::before`/`::after`, `<hr>` oculto (separação já no H2), drop cap no primeiro parágrafo
+
 ---
 
 ## Decisões técnicas

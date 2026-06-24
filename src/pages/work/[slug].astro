@@ -6,6 +6,9 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { detectHero } from '../../utils/cover';
+import CaseNav from '../../components/CaseNav.svelte';
+import HeroBrand from '../../components/HeroBrand.astro';
+import HeroEditorial from '../../components/HeroEditorial.astro';
 
 const { slug } = Astro.params;
 const cases = await getCollection('casesEn', ({ data }) => !data.draft);
@@ -14,69 +17,124 @@ const entry = cases.find((e) => e.data.slug === slug);
 if (!entry) return Astro.redirect('/');
 
 const { Content } = await render(entry);
-const { title, summary, role, company, year, tags, accent, metrics, url, bgImage } = entry.data;
+const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order } = entry.data;
 const heroBg = detectHero(slug!) ?? entry.data.cover ?? bgImage;
 
-const relatedCases = cases
-  .filter((c) => c.data.slug !== slug && c.data.tags.some((t) => tags.includes(t)))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
-  .slice(0, 3);
+const sortedCases = cases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const currentOrder = entry.data.order ?? 0;
+const nextCase =
+  sortedCases.find((c) => (c.data.order ?? 99) > currentOrder) ?? sortedCases[0];
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
+
+const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
+  template === 'editorial'
+    ? 'max-w-[580px] case-content--editorial'
+    : template === 'brand'
+      ? 'max-w-[720px] case-content--brand'
+      : 'max-w-[720px]'
+}`;
 ---
 
 <Base title={`${title} — Jeferson Freiry`} description={summary} lang="en">
   <Header lang="en" currentPath={`/work/${slug}`} />
 
   <main id="main-content" class="pb-24">
-    <!-- Hero do case -->
-    <section class="w-full px-5 pt-5">
-      <div
-        class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-8 pb-12 pt-24 md:pb-16 md:pt-40 md:px-16"
-        style={heroBg ? '' : `background-color: ${accent};`}
-      >
-        {heroBg && (
-          <div class="absolute inset-0" style={`background-image: url('${heroBg}'); background-size: cover; background-position: center;`} />
-        )}
-        {heroBg && (
-          <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(10,5,2,0.78) 0%, rgba(30,14,6,0.64) 100%);" />
-        )}
-        <div class="absolute inset-0 pointer-events-none" style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`} />
+    <!-- Hero: Enterprise (default) -->
+    {template === 'enterprise' && (
+      <section class="w-full px-5 pt-5">
+        <div
+          class="relative mx-auto w-full max-w-[1200px] overflow-hidden rounded-[24px] px-8 pb-12 pt-24 md:pb-16 md:pt-40 md:px-16"
+          style={heroBg ? '' : `background-color: ${accent};`}
+        >
+          {heroBg && (
+            <div class="absolute inset-0" style={`background-image: url('${heroBg}'); background-size: cover; background-position: center;`} />
+          )}
+          {heroBg && (
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(10,5,2,0.78) 0%, rgba(30,14,6,0.64) 100%);" />
+          )}
+          <div class="absolute inset-0 pointer-events-none" style={`background-image: ${noiseSvg}; opacity: 0.06; mix-blend-mode: overlay;`} />
 
-        <div class="relative flex flex-col gap-4 max-w-[720px]">
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span class={`rounded-full px-3 py-1 text-xs font-medium ${heroBg ? 'border border-white/25 text-white/80' : 'border border-default text-secondary'}`}>
-                {tag}
-              </span>
-            ))}
-          </div>
-          <h1 class={`font-display text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] ${heroBg ? 'text-white' : 'text-heading'}`}>
-            {title}
-          </h1>
-          <p class={`text-lg leading-relaxed max-w-[560px] ${heroBg ? 'text-white/80' : 'text-secondary'}`}>{summary}</p>
-          <div class={`flex flex-wrap gap-6 pt-2 text-sm ${heroBg ? 'text-white/60' : 'text-subtle'}`}>
-            <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Role</strong> — {role}</span>
-            <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Company</strong> — {company}</span>
-            <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Year</strong> — {year}</span>
-            {url && (
-              <a href={url} target="_blank" rel="noopener noreferrer" class={`underline underline-offset-2 hover:opacity-80 ${heroBg ? 'text-white' : 'text-primary hover:text-heading'}`}>
-                View live →
-              </a>
+          <div class="hero-content-case relative flex flex-col gap-4 max-w-[720px]">
+            <div class="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span class={`rounded-full px-3 py-1 text-xs font-medium ${heroBg ? 'border border-white/25 text-white/80' : 'border border-default text-secondary'}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h1 class={`font-display text-[clamp(34px,4.5vw,64px)] leading-[1.05] ${heroBg ? 'text-white' : 'text-heading'}`}>
+              {title}
+            </h1>
+            {thesis && (
+              <p class={`font-display italic text-xl leading-snug max-w-[560px] ${heroBg ? 'text-white/95' : 'text-heading'}`}>
+                {thesis}
+              </p>
             )}
+            <p class={`text-base leading-relaxed max-w-[560px] ${heroBg ? 'text-white/70' : 'text-secondary'}`}>{summary}</p>
+            <div class={`flex flex-wrap gap-6 pt-2 text-sm ${heroBg ? 'text-white/60' : 'text-subtle'}`}>
+              <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Role</strong> — {role}</span>
+              <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Company</strong> — {company}</span>
+              <span><strong class={heroBg ? 'text-white/90' : 'text-primary'}>Year</strong> — {year}</span>
+              {url && (
+                <a href={url} target="_blank" rel="noopener noreferrer" class={`underline underline-offset-2 hover:opacity-80 ${heroBg ? 'text-white' : 'text-primary hover:text-heading'}`}>
+                  View live →
+                </a>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    )}
 
-    <!-- Metrics -->
-    {metrics && metrics.length > 0 && (
+    <!-- Hero: Brand -->
+    {template === 'brand' && (
+      <HeroBrand
+        title={title}
+        thesis={thesis}
+        summary={summary}
+        role={role}
+        company={company}
+        year={year}
+        tags={tags}
+        url={url}
+        heroBg={heroBg}
+        accent={accent}
+        lang="en"
+      />
+    )}
+
+    <!-- Hero: Editorial -->
+    {template === 'editorial' && (
+      <HeroEditorial
+        title={title}
+        thesis={thesis}
+        summary={summary}
+        role={role}
+        company={company}
+        year={year}
+        tags={tags}
+        url={url}
+        heroBg={heroBg}
+        accent={accent}
+        lang="en"
+        order={order}
+      />
+    )}
+
+    <!-- Metrics: apenas Enterprise -->
+    {template === 'enterprise' && metrics && metrics.length > 0 && (
       <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m) => (
-            <div class="flex flex-col gap-1 rounded-2xl bg-surface p-5">
-              <span class="font-display text-2xl font-bold text-heading">{m.value}</span>
-              <span class="text-sm text-subtle">{m.label}</span>
+          {metrics.map((m, i) => (
+            <div
+              class="metric-card flex flex-col gap-1.5 rounded-2xl bg-surface p-5"
+              data-animate
+              style={`--animate-delay: ${100 + i * 80}ms`}
+            >
+              <span class="font-display text-4xl leading-none text-heading" data-countup={m.value}>{m.value}</span>
+              <span class="text-sm font-semibold text-primary">{m.label}</span>
+              {m.source && <span class="text-xs text-subtle mt-0.5">{m.source}</span>}
             </div>
           ))}
         </div>
@@ -84,45 +142,135 @@ const noiseSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     )}
 
     <!-- Case content -->
-    <article class="mx-auto w-full max-w-[720px] px-6 pt-16 case-content">
+    <article class={articleClass}>
       <Content />
     </article>
 
-    <!-- Related cases -->
-    {relatedCases.length > 0 && (
-      <section class="mx-auto w-full max-w-[1200px] px-6 pt-20 pb-8">
-        <div class="mb-8 flex items-center justify-between">
-          <h2 class="font-display text-[22px] font-semibold text-heading">More cases</h2>
+    <!-- Next case — card rico sequencial -->
+    {nextCase && nextCase.data.slug !== slug && (
+      <section class="mx-auto w-full max-w-[1200px] px-6 pt-24 pb-10" data-animate>
+        <div class="mb-5 flex items-center justify-between">
+          <span class="text-[11px] font-body font-extrabold uppercase tracking-[0.12em]" style="color: var(--accent-text);">Next Case</span>
           <a href="/" class="text-sm font-medium transition-opacity hover:opacity-70" style="color: var(--text-heading);">See all →</a>
         </div>
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {relatedCases.map((c) => {
-            const imgSrc = c.data.cover ?? `https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=jpg&w=800&q=80&auto=format&fit=crop`;
-            const noiseSvgSmall = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
+        <a
+          href={`/work/${nextCase.data.slug}`}
+          class="group relative flex flex-col justify-end overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+          style="border-radius: 24px; min-height: 380px; transition: box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);"
+          onmouseover="this.style.boxShadow='0 24px 60px -12px rgba(0,0,0,0.32)'"
+          onmouseout="this.style.boxShadow=''"
+        >
+          {(() => {
+            const img = nextCase.data.cover ?? `https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=jpg&w=1200&q=80&auto=format&fit=crop`;
             return (
-              <a
-                href={`/work/${c.data.slug}`}
-                class="group relative flex flex-col justify-end overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
-                style="border-radius: 16px; aspect-ratio: 4/3; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);"
-                onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px -8px rgba(0,0,0,0.24)'"
-                onmouseout="this.style.transform='';this.style.boxShadow=''"
-              >
-                <img src={imgSrc} alt={c.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
-                <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(10,5,2,0.95) 0%, rgba(10,5,2,0.6) 55%, rgba(10,5,2,0.05) 100%);" />
-                <div class="absolute inset-0 pointer-events-none" style={`background-image: ${noiseSvgSmall}; opacity: 0.06; mix-blend-mode: overlay;`} />
+              <>
+                <img src={img} alt={nextCase.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy" />
+                <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(10,5,2,0.96) 0%, rgba(10,5,2,0.65) 50%, rgba(10,5,2,0.1) 100%);" />
+                <div class="absolute inset-0 pointer-events-none" style={`background-image: ${noiseSvg}; opacity: 0.05; mix-blend-mode: overlay;`} />
                 <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height: 3px; background-color: var(--color-jambu);" />
-                <div class="relative flex flex-col gap-1.5 p-4 pb-5">
-                  <span class="text-[10px] uppercase tracking-[0.09em]" style="color: #fff; font-weight: 500; font-family: var(--font-body);">{c.data.role}</span>
-                  <h3 class="font-display leading-tight" style="font-size: 16px; color: #fff;">{c.data.title}</h3>
+                <div class="relative flex flex-col gap-3 p-8 md:p-12 max-w-[640px]">
+                  <div class="flex flex-wrap gap-2">
+                    {nextCase.data.tags.map((t) => (
+                      <span class="rounded-full border border-white/20 px-2.5 py-0.5 text-[11px] font-medium text-white/70">{t}</span>
+                    ))}
+                  </div>
+                  <h3 class="font-display leading-tight text-white" style="font-size: clamp(22px, 3vw, 36px);">{nextCase.data.title}</h3>
+                  {nextCase.data.thesis && (
+                    <p class="font-display italic text-white/80" style="font-size: 1rem; line-height: 1.5;">{nextCase.data.thesis}</p>
+                  )}
+                  {!nextCase.data.thesis && (
+                    <p class="text-sm text-white/65 leading-relaxed">{nextCase.data.summary}</p>
+                  )}
+                  {nextCase.data.metrics && nextCase.data.metrics.length > 0 && (
+                    <div class="flex flex-wrap gap-4 pt-1">
+                      {nextCase.data.metrics.slice(0, 2).map((m) => (
+                        <div class="flex flex-col gap-0.5">
+                          <span class="font-display text-2xl leading-none text-white">{m.value}</span>
+                          <span class="text-xs text-white/55">{m.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <span class="mt-1 text-sm font-semibold text-white/80 group-hover:text-white transition-colors">Read case →</span>
                 </div>
-              </a>
+              </>
             );
-          })}
-        </div>
+          })()}
+        </a>
       </section>
     )}
   </main>
 
+  <CaseNav client:load />
   <Footer lang="en" />
 </Base>
 
+<script>
+  function initCaseReveal() {
+    const targets = document.querySelectorAll<HTMLElement>(
+      '.case-content img, .case-content h2:not(:first-of-type)'
+    );
+    if (!targets.length) return;
+
+    targets.forEach((el, i) => {
+      el.classList.add('will-reveal');
+      if (el.tagName === 'IMG') el.style.setProperty('--reveal-delay', `${i * 40}ms`);
+    });
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add('is-visible');
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }
+    );
+
+    targets.forEach((el) => obs.observe(el));
+  }
+
+  function initMetricCountup() {
+    const els = document.querySelectorAll<HTMLElement>('[data-countup]');
+    if (!els.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const raw = el.dataset.countup ?? '';
+          const match = raw.match(/([\d]+(?:[.,]\d+)?)(.*)/);
+          if (!match) return;
+          const numStr = match[1].replace(',', '.');
+          const target = parseFloat(numStr);
+          if (isNaN(target)) return;
+          const prefix = raw.slice(0, raw.indexOf(match[1]));
+          const suffix = match[2];
+          const isFloat = numStr.includes('.');
+          const decimals = isFloat ? numStr.split('.')[1].length : 0;
+          const duration = 1400;
+          const start = performance.now();
+          function tick(now: number) {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const current = target * eased;
+            el.textContent = prefix + (isFloat ? current.toFixed(decimals) : Math.round(current).toString()) + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          obs.unobserve(el);
+        });
+      },
+      { threshold: 0.6 }
+    );
+    els.forEach((el) => obs.observe(el));
+  }
+
+  initCaseReveal();
+  initMetricCountup();
+  document.addEventListener('astro:after-swap', () => { initCaseReveal(); initMetricCountup(); });
+</script>

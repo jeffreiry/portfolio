@@ -264,6 +264,12 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
   }
 }
 
+/* --- Hero de case: entrada de página --- */
+@keyframes caseHeroIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* --- Utilitários globais --- */
 @layer utilities {
   .font-display {
@@ -312,21 +318,43 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
   .border-border { border-color: var(--color-border); }
 
   /* ---- Case content (Markdown rendered) ---- */
-  .case-content h2 {
+
+  /* Primeiro H2 = tese/manifesto do case (frase que carrega o resultado) */
+  .case-content h2:first-of-type {
     font-family: var(--font-display);
-    font-size: var(--text-h2);
-    font-weight: 600;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem); /* 18–24px */
+    font-weight: 400;
+    font-style: italic;
     color: var(--text-heading);
-    margin-top: var(--space-48);
-    margin-bottom: var(--space-16);
+    border-left: 3px solid var(--accent-deco);
+    padding-left: var(--space-24);
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-48);
+    line-height: 1.45;
   }
-  .case-content h3 {
+
+  /* H2s subsequentes = eyebrow labels de seção (CONTEXT · RESEARCH · SOLUTION) */
+  .case-content h2:not(:first-of-type) {
     font-family: var(--font-body);
-    font-size: var(--text-body-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-top: var(--space-32);
-    margin-bottom: var(--space-8);
+    font-size: var(--text-eyebrow); /* 11px */
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: var(--tracking-eyebrow); /* 0.12em */
+    text-transform: uppercase;
+    color: var(--accent-text); /* jambu legível, AA */
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-24);
+    line-height: var(--leading-tight);
+  }
+
+  .case-content h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-h3); /* 20px */
+    font-weight: 400;
+    color: var(--text-heading);
+    margin-top: var(--space-40);
+    margin-bottom: var(--space-12);
+    line-height: var(--leading-heading);
   }
   .case-content p,
   .case-content ul,
@@ -395,6 +423,23 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
   .case-content tr:last-child td {
     border-bottom: none;
   }
+  /* Pull-quote: blockquote estilizado com pergunta/tese norteadora */
+  .case-content blockquote {
+    margin: var(--space-48) 0;
+    padding: var(--space-24) var(--space-32);
+    border-left: 3px solid var(--accent-deco);
+    background: var(--bg-surface);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .case-content blockquote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.5;
+    color: var(--text-heading);
+    margin-bottom: 0;
+  }
+
   .case-content .image-placeholder {
     display: flex;
     height: 320px;
@@ -417,6 +462,92 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
   .case-content .image-placeholder span {
     font-size: var(--text-xs);
     max-width: 400px;
+  }
+
+  /* --- Template: Brand — imagens sangram para fora da coluna no desktop --- */
+  @media (min-width: 860px) {
+    .case-content--brand img {
+      width: calc(100% + 140px);
+      margin-left: -70px;
+      max-width: none;
+      border-radius: var(--radius-card);
+    }
+  }
+
+  /* --- Template: Editorial — coluna estreita, corpo maior, drop cap, H2 centrado --- */
+  .case-content--editorial p,
+  .case-content--editorial li {
+    font-size: clamp(1rem, 1.5vw, 1.0625rem);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* hr redundante — a separação já está no ::before/::after do H2 */
+  .case-content--editorial hr {
+    display: none;
+  }
+
+  /* H2 de seção: centrado com linhas horizontais nos dois lados */
+  .case-content--editorial h2:not(:first-of-type) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-16);
+    text-align: center;
+    justify-content: center;
+  }
+  .case-content--editorial h2:not(:first-of-type)::before,
+  .case-content--editorial h2:not(:first-of-type)::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid var(--border-default);
+  }
+
+  .case-content--editorial > p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    font-size: 4.25rem;
+    line-height: 0.82;
+    float: left;
+    margin-right: 0.08em;
+    margin-top: 0.04em;
+    color: var(--accent-text);
+  }
+
+  /* --- Microinterações: páginas de case --- */
+
+  /* Hero de case: slide-up ao carregar (animação CSS, não depende de scroll) */
+  .hero-content-case {
+    animation: caseHeroIn 0.65s var(--ease-out-expo) 0.05s both;
+  }
+
+  /* Metric card: hover lift */
+  .metric-card {
+    transition: transform var(--duration-base) var(--ease-out-expo),
+                box-shadow var(--duration-base) var(--ease-out-expo);
+  }
+  .metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Scroll-reveal para imagens e eyebrow labels — JS adiciona .will-reveal */
+  .will-reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--duration-slow) var(--ease-out-expo),
+                transform var(--duration-slow) var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .will-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content-case { animation: none !important; }
+    .will-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
   }
 
   /* Skip navigation link */

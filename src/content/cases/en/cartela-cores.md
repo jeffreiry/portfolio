@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cartela de Cores"
 slug: cartela-cores
 role: "Product Designer, solo, end-to-end"
@@ -6,6 +6,7 @@ summary: "Turned a static color PDF into a system that scores wardrobe items aga
 company: "Personal project"
 year: 2026
 accent: "#fff7ef"
+template: editorial
 tags: ["Design System", "Projetos Pessoais"]
 url: ""
 metrics:
@@ -14,7 +15,7 @@ metrics:
   - label: "Colors validated"
     value: "22 of 28 within ±10%"
 featured: true
-draft: true
+draft: false
 order: 2
 ---
 

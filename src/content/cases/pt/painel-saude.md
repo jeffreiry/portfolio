@@ -1,4 +1,4 @@
----
+﻿---
 title: "Painel Saúde"
 slug: painel-saude
 role: "Product Designer, solo, end-to-end"
@@ -6,6 +6,7 @@ summary: "Dashboard unificando Strava e Hevy em uma visão de progresso diária 
 company: "Projeto pessoal"
 year: 2026
 accent: "#e8f5e9"
+template: editorial
 tags: ["Data & Analytics", "Projetos Pessoais"]
 url: "https://painel-saude-zeta.vercel.app"
 metrics:
@@ -14,7 +15,7 @@ metrics:
   - label: "Cobertura de dados"
     value: "Mar/2025 → presente"
 featured: false
-draft: true
+draft: false
 order: 1
 ---
 

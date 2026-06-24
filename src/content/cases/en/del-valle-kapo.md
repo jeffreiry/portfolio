@@ -1,4 +1,4 @@
----
+﻿---
 title: "Del Valle Kapo · Website Redesign"
 slug: del-valle-kapo
 role: "UX · UI · Visual Designer"
@@ -8,6 +8,7 @@ year: 2023
 cover: /cases/del-valle-kapo/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"
+template: brand
 tags: ["Design System", "Branding", "Mobile"]
 featured: false
 draft: false
