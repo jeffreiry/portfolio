@@ -9,37 +9,37 @@
 
 ---
 
-## Score de aderência · 55%
+## Score de aderência · 43%
 
-> O candidato apresenta experiência em UX e UI Design, mas falta evidência de trabalhos específicos em fintech e mercado de pagamentos. Além disso, há uma falta de artefatos visuais e métricas de impacto nos cases apresentados.
+> Aderência baixa — gaps significativos. O portfolio tem base sólida em UX/UI e processos enterprise, mas o eixo central da vaga (fintech, meios de pagamentos, jornadas financeiras) está completamente ausente, assim como benchmarking, métricas de adoção e artefatos visíveis.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
-| Experiência no mercado de fintech/meios de pagamentos | 1 | Ausente |
-| Conhecimento prático das particularidades de jornadas financeiras de pagamentos digitais | 1 | Ausente |
-| Experiência em design de produto para Mobile App e Web | 2 | Parcialmente evidenciado |
-| Domínio sobre métodos de escalabilidade do design | 2 | Parcialmente evidenciado |
-| Experiência prática na utilização de Design Systems estruturados | 2 | Parcialmente evidenciado |
-| Comunicação clara, objetiva e assertiva | 2 | Parcialmente evidenciado |
-| Experiência em prototipação rápida e desenvolvimento de protótipos interativos | 2 | Parcialmente evidenciado |
-| Forte atenção aos detalhes de regras de negócio complexas | 2 | Parcialmente evidenciado |
-| Domínio de métodos de pesquisa de UX e seus respectivos entregáveis | 2 | Parcialmente evidenciado |
-| Experiência em conduzir benchmarking e pesquisa de mercado | 1 | Ausente |
-| Prática no uso de métricas de adoção, uso e satisfação | 1 | Ausente |
-| Conhecimento em processos de gerenciamento de produto | 1 | Ausente |
+| Experiência no mercado de fintech/meios de pagamentos | 0 | Ausente — nenhum case é fintech ou pagamentos |
+| Conhecimento prático das particularidades de jornadas financeiras de pagamentos digitais | 0 | Ausente — sem fluxos de contratação, cobranças ou pagamentos no portfolio |
+| Experiência em design de produto para Mobile App e Web | 2 | Web: todos os cases são produtos digitais web; mobile: limitado a tags, sem case mobile nativo |
+| Domínio sobre métodos de escalabilidade do design | 2 | Power Apps Dummy App e Cartela Cores evidenciam raciocínio de escala em Design System |
+| Experiência prática na utilização de Design Systems estruturados | 2 | Power Apps Dummy App (biblioteca enterprise, +10 componentes documentados) e Cartela Cores (tokens de cor + regras) |
+| Comunicação clara, objetiva e assertiva | 2 | Evidenciado nas narrativas dos cases: simplificação de complexidade técnica para stakeholders não-técnicos |
+| Experiência em prototipação rápida e desenvolvimento de protótipos interativos | 2 | Processo de prototipação descrito em Enterprise AI e Shipping; artefatos não expostos publicamente |
+| Forte atenção aos detalhes de regras de negócio complexas | 2 | Hypera: gate SAP/SEV com implicação financeira real; Shipping: restrições operacionais marítimas |
+| Domínio de métodos de pesquisa de UX e seus respectivos entregáveis | 2 | Enterprise AI: entrevistas + análise Clarity; Shipping: workshops recorrentes com especialistas de domínio |
+| Experiência em conduzir benchmarking e pesquisa de mercado | 0 | Ausente — benchmarking não documentado em nenhum case |
+| Prática no uso de métricas de adoção, uso e satisfação | 0 | Ausente — métricas de resultado ⬜ em todos os cases enterprise |
+| Conhecimento em processos de gerenciamento de produto | 0 | Ausente — gestão de produto não evidenciada diretamente nos cases |
 
-**Subtotal obrigatórios: 19/36 × 2 = 38/72**
+**Subtotal obrigatórios: 14/36 × 2 = 28/72**
 
 ### Diferenciais preferidos (peso 1×)
 
 | Diferencial | Nota | Evidência atual |
 |---|---|---|
-| Experiência em conduzir discovery com clientes | 2 | Parcialmente evidenciado |
-| Experiência em cocriação ativamente com o time | 2 | Parcialmente evidenciado |
-| Experiência em utilizar métodos de validação das entregas | 2 | Parcialmente evidenciado |
-| Experiência em garantir a entrega de alta qualidade | 2 | Parcialmente evidenciado |
+| Experiência em conduzir discovery com clientes | 2 | Enterprise AI: discovery com usuários via entrevistas qualitativas + Clarity; Shipping: workshops recorrentes com especialistas de domínio como fonte primária de discovery |
+| Experiência em cocriação ativamente com o time | 2 | Shipping: sessões de validação com stakeholders técnicos e de negócio; Enterprise AI: síntese de discovery compartilhada com produto e engenharia |
+| Experiência em utilizar métodos de validação das entregas | 2 | Enterprise AI: Clarity usado para validar MVP após lançamento — drop-offs identificados e decisão de redesign tomada a partir dos dados |
+| Experiência em garantir a entrega de alta qualidade | 2 | Seções de handoff técnico com engenharia documentadas em Enterprise AI e Shipping; revisões de implementação contra o design especificado |
 
 **Subtotal preferidos: 8/12**
 
@@ -47,11 +47,17 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 38 | 72 |
+| Obrigatórios (×2) | 28 | 72 |
 | Preferidos (×1) | 8 | 12 |
-| **Total** | **46** | **84** |
+| **Total** | **36** | **84** |
 
-**Score: 46/84 = 55%**
+**Score: 36/84 = 43%**
+
+---
+
+## Job description original
+
+⬜ JD não arquivada — adicionar o texto original aqui.
 
 ---
 
@@ -59,18 +65,21 @@
 
 ### 🔴 Bloqueadores de candidatura
 
-Nenhum bloqueador crítico identificado.
+1. **Fintech / meios de pagamentos** — a vaga é da Asaas, plataforma de pagamentos, e o produto é literalmente "Pague Contas". Jornadas financeiras (cobranças, pagamentos digitais, pix, boletos) são o contexto inteiro da posição. Nenhum case do portfolio toca nisso. Este é o desalinhamento de domínio mais crítico da lista de vagas.
+
+2. **Artefatos visíveis** — o recrutador de uma fintech consumer vai querer ver telas e flows de pagamento. Os cases descrevem processo sem expor wireframes ou interfaces.
+
+3. **Métricas de adoção e satisfação** — ausentes em todos os cases enterprise. Para uma plataforma de pagamentos com usuários ativos, métricas de resultado são o critério de avaliação central.
 
 ### 🟡 Diferenciais ausentes
 
-Nenhum diferencial ausente — todos parcialmente ou plenamente evidenciados.
+4. **Benchmarking e pesquisa de mercado** — não documentado em nenhum case. Se há histórico de análise competitiva ou benchmarking em algum projeto, vale incluir.
+
+5. **Mobile** — Asaas tem app mobile. O portfolio não tem evidência de design para plataforma mobile nativa ou responsiva com foco em mobile.
 
 ### 🟢 Boa aderência
 
-* Experiência em design de produto para Mobile App e Web
-* Domínio sobre métodos de escalabilidade do design
-* Experiência prática na utilização de Design Systems estruturados
-* Comunicação clara, objetiva e assertiva
-* Experiência em prototipação rápida e desenvolvimento de protótipos interativos
-* Forte atenção aos detalhes de regras de negócio complexas
-* Domínio de métodos de pesquisa de UX e seus respectivos entregáveis
+- Design System como prática real (Power Apps, Cartela Cores) — escalabilidade evidenciada
+- Regras de negócio complexas documentadas (Hypera SAP/SEV gate, Shipping restrições operacionais)
+- Pesquisa com usuários evidenciada: entrevistas no Enterprise AI, workshops no Shipping
+- Colaboração cross-funcional com produto, engenharia e negócio em múltiplos cases

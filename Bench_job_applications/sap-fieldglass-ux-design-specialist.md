@@ -11,21 +11,21 @@
 
 ## Score de aderência · 32%
 
-> O candidato apresenta fortes habilidades em UX/UI design, com experiência em interação, prototipagem e design systems, além de uma boa compreensão de princípios de design centrado no usuário. No entanto, falta evidência de experiência direta com AI-Assisted Prototyping, Responsible AI (RAI) Design e AI Output Quality Assurance.
+> Desalinhamento estrutural — os requisitos centrais da vaga (AI-Assisted Prototyping, Responsible AI Design, AI Output Quality Assurance) não aparecem no portfolio. O contexto de produto SAP Fieldglass (gestão de workforce externo) também é estruturalmente distante dos cases. Base de UX/UI é sólida, mas os eixos específicos exigidos são lacunas de 0 ponto.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
-| Boa experiência profissional em UX/UI ou design de interação | 2 | Cases publicados como Enterprise AI Assistant e Shipping Capacity Platform |
-| Experiência prática em design de interação, prototipagem e design systems | 2 | Cases mencionados acima e habilidades citadas no portfolio |
-| Proficiência em ferramentas de design modernas como Figma, Sketch ou Adobe XD | 2 | Figma mencionado nos cases |
-| Forte compreensão de princípios de design centrado no usuário | 2 | Experiência em projetos centrados no usuário nos cases |
-| Experiência trabalhando em ambientes de equipe cross-funcional | 2 | Cases mencionados acima |
-| Capacidade de realizar pesquisas de usuário básicas | 1 | Parcialmente evidenciado, com falta de detalhes |
-| Experiência com AI-Assisted Prototyping | 0 | Ausente |
-| Conhecimento de Responsible AI (RAI) Design | 0 | Ausente |
-| Experiência com AI Output Quality Assurance | 0 | Ausente |
+| Boa experiência profissional em UX/UI ou design de interação | 2 | Enterprise AI Assistant, Shipping Capacity Platform, HYPERGESTOR, Arezzo — produtos enterprise com processo de interação documentado end-to-end |
+| Experiência prática em design de interação, prototipagem e design systems | 2 | Design de interação: Enterprise AI (paradigma conversacional), Arezzo (role-based IA); DS: Power Apps Dummy App e Cartela Cores |
+| Proficiência em ferramentas de design (Figma, Sketch, Adobe XD) | 2 | Figma usado em Enterprise AI, Shipping, Arezzo, Power Apps — ferramenta central documentada, sem artefatos expostos publicamente |
+| Forte compreensão de princípios de design centrado no usuário | 2 | Entrevistas com usuários em Enterprise AI; workshops com especialistas de domínio em Shipping; decisões de design fundamentadas em comportamento real |
+| Experiência em equipes cross-funcionais | 2 | Colaboração com engenharia, produto, negócio e especialistas de domínio evidenciada em múltiplos cases com seções dedicadas de handoff |
+| Pesquisas de usuário básicas | 1 | Enterprise AI: entrevistas + análise Clarity para identificar drop-offs; Shipping: workshops recorrentes com especialistas — metodologia não formalmente documentada |
+| AI-Assisted Prototyping | 0 | Ausente — Enterprise AI usa IA como produto, não como ferramenta de prototipagem |
+| Responsible AI (RAI) Design | 0 | Ausente como disciplina explícita — Enterprise AI documenta rastreabilidade de fontes (proxy de explicabilidade), mas não enquadrado como RAI Design |
+| AI Output Quality Assurance | 0 | Ausente — avaliação de qualidade de outputs de IA não documentada em nenhum case |
 
 **Subtotal obrigatórios: 11/27 × 2 = 22/54**
 
@@ -33,11 +33,11 @@
 
 | Diferencial | Nota | Evidência atual |
 |---|---|---|
-| AI Journey Mapping | 0 | Ausente |
-| Context Engineering | 0 | Ausente |
-| Graduação em Design, HCI, Interaction Design ou campo relacionado | 0 | Ausente |
-| Familiaridade básica com HTML/CSS | 0 | Ausente |
-| Compreensão de princípios de design responsivo e abordagens mobile-first | 0 | Ausente |
+| AI Journey Mapping | 0 | Ausente como prática explícita — Enterprise AI tem jornadas de interação com IA mas não enquadradas como AI Journey Mapping |
+| Context Engineering | 0 | Ausente — design de prompts e gerenciamento de contexto de LLM não documentados como competência |
+| Graduação em Design, HCI, Interaction Design ou campo relacionado | 0 | Não documentado nos cases |
+| Familiaridade básica com HTML/CSS | 0 | Ausente nos cases |
+| Princípios de design responsivo e mobile-first | 0 | Ausente como foco explícito — cases são todos produtos web desktop |
 
 **Subtotal preferidos: 0/15**
 
@@ -53,24 +53,30 @@
 
 ---
 
+## Job description original
+
+⬜ JD não arquivada — adicionar o texto original aqui.
+
+---
+
 ## Gaps prioritários
 
 ### 🔴 Bloqueadores de candidatura
 
-* Experiência com AI-Assisted Prototyping
-* Conhecimento de Responsible AI (RAI) Design
-* Experiência com AI Output Quality Assurance
+1. **AI-Assisted Prototyping** — requisito obrigatório explícito. SAP Fieldglass está integrando IA generativa nos seus fluxos de design e quer um designer que já trabalhe com IA como ferramenta de processo. O Enterprise AI case é sobre produto de IA — não sobre usar IA no processo de design. Gap estrutural.
+
+2. **Responsible AI (RAI) Design** — requisito obrigatório explícito. Envolve privacidade, viés algorítmico e explicabilidade — princípios que não aparecem nos cases. O Enterprise AI case tem rastreabilidade de fontes (proxy de explicabilidade), mas não é enquadrado como RAI Design.
+
+3. **AI Output Quality Assurance** — requisito obrigatório explícito. Avaliar qualidade de outputs de IA (alucinações, precisão, relevância) é responsabilidade técnica específica. Não evidenciada.
 
 ### 🟡 Diferenciais ausentes
 
-1. AI Journey Mapping
-2. Context Engineering
-3. Graduação em Design, HCI, Interaction Design ou campo relacionado
-4. Familiaridade básica com HTML/CSS
-5. Compreensão de princípios de design responsivo e abordagens mobile-first
+4. **AI Journey Mapping e Context Engineering** — competências novas de design para sistemas de IA. Se há experiência com prompt design ou mapeamento de fluxos conversacionais no Enterprise AI, vale documentar com essa linguagem.
+
+5. **HTML/CSS e design responsivo/mobile-first** — pequenos gaps técnicos mas listados explicitamente.
 
 ### 🟢 Boa aderência
 
-* Experiência em UX/UI design
-* Habilidades em interação, prototipagem e design systems
-* Compreensão de princípios de design centrado no usuário
+- Core de UX/UI e design systems sólido (Power Apps, Cartela Cores)
+- Experiência em produtos enterprise complexos (Enterprise AI, Shipping Platform)
+- Colaboração cross-funcional com engenharia bem documentada

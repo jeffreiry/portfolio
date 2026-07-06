@@ -159,6 +159,19 @@ const media = vagas.length ? Math.round(vagas.reduce((s, v) => s + v.score, 0) /
 const parciais = vagas.filter((v) => v.score >= 60).length;
 const maxScore = vagas.length ? Math.max(...vagas.map((v) => v.score)) : 0;
 
+const lastVagaDate = vagas
+  .map((v) => v.data)
+  .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
+  .sort()
+  .at(-1) ?? '';
+
+function mediaLabel(s: number): string {
+  if (s >= 80) return 'alta aderência';
+  if (s >= 60) return 'aderência parcial';
+  if (s >= 40) return 'aderência baixa';
+  return 'desalinhamento estrutural';
+}
+
 function banda(score: number): Banda {
   if (score >= 60) return 'parcial';
   if (score >= 40) return 'baixa';
@@ -252,7 +265,7 @@ const statusOptions = [
         </div>
       </div>
       <p data-animate class="pt-3 text-[13px]" style="color: var(--color-faint);">
-        Atualizado em 12/06/2026 · Média geral <strong id="stat-media-inline">{media}%</strong> — aderência baixa (borderline parcial).
+        {lastVagaDate ? `Atualizado em ${formatDate(lastVagaDate)}` : 'Data não disponível'} · Média geral <strong id="stat-media-inline">{media}%</strong> — {mediaLabel(media)}.
       </p>
     </section>
 

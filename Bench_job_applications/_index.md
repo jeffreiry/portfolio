@@ -54,11 +54,17 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer — Crédito](banco-pan-product-designer-credito.md) | Banco PAN | **58%** | Aderência baixa | A avaliar | 2026-06-12 |
 | [Designer UX/UI Sênior](bridger-ux-ui-senior.md) | Bridger | **50%** | Aderência baixa | A avaliar | 2026-06-12 |
 | [Product Designer Sênior](afya-product-designer-senior.md) | Afya · Soluções para a Prática Médica | **42%** | Aderência baixa | A avaliar | 2026-04-14 |
-| [Product Designer Pleno](certta-product-designer-pleno.md) | Certta | **57%** | Aderência baixa | A avaliar | 2026-06-19 |
-| [Product Designer Sênior — Cash Out](asaas-product-designer-senior-cash-out.md) | Asaas · Pague Contas | **55%** | Aderência baixa | A avaliar | 2026-06-01 |
+| [Product Designer Pleno](certta-product-designer-pleno.md) | Certta | **61%** | Aderência parcial | A avaliar | 2026-06-19 |
+| [Product Designer Sênior — Cash Out](asaas-product-designer-senior-cash-out.md) | Asaas · Pague Contas | **43%** | Aderência baixa | A avaliar | 2026-06-01 |
 | [Designer UI/UX Pleno](clinica-experts-designer-ui-ux-pleno.md) | Clínica Experts | **39%** | Desalinhamento estrutural | A avaliar | 2026-06-19 |
+| [Product Designer (Platform)](revolut-product-designer-platform.md) | Revolut | **45%** | Aderência baixa | A avaliar | 2026-06-22 |
+| [Designer UX/UI III](youcom-designer-ux-ui-iii.md) | Youcom · Varejo Digital | **52%** | Aderência baixa | A avaliar | 2026-06-23 |
+| [UX Design Specialist](sap-fieldglass-ux-design-specialist.md) | SAP Fieldglass | **32%** | Desalinhamento estrutural | A avaliar | 2026-06-24 |
+| [Product Designer Pleno](serasa-experian-product-designer-pleno.md) | Serasa Experian | **56%** | Aderência baixa | A avaliar | 2026-06-24 |
+| [Product Designer](south-system-product-designer.md) | South System | **38%** | Desalinhamento estrutural | A avaliar | 2026-06-24 |
+| [Product Designer Sênior](duckduckgo-product-designer-senior.md) | DuckDuckGo | **54%** | Aderência baixa | A avaliar | 2026-07-03 |
 
-**Média geral: 55%** · Aderência baixa (17 vagas)
+**Média geral: 52%** · Aderência baixa (23 vagas)
 
 ---
 

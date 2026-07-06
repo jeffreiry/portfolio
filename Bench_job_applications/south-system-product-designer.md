@@ -9,37 +9,37 @@
 
 ---
 
-## Score de aderência · 33%
+## Score de aderência · 38%
 
-> O candidato tem experiência em UX Design e UI Design, com habilidades em prototipagem avançada e conhecimento de ferramentas de design e colaboração como Figma. No entanto, falta evidência de experiência com Inteligência Artificial e Design Systems.
+> Desalinhamento estrutural — IA como ferramenta de trabalho do designer (não no produto), Espanhol e domínio de setor financeiro são gaps estruturais que o portfolio atual não endereça. O inglês avançado (portfolio bilíngue PT+EN) e o Design System sobem o score, mas não o suficiente para sair da faixa de desalinhamento.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
-| Experiência comprovada como Product Designer, UX Designer ou UI/UX Designer em produtos digitais complexos | 2 | Cases publicados |
-| Experiência sólida em prototipagem avançada e domínio de ferramentas de design e colaboração, como Figma e similares | 2 | Figma mencionado nos cases |
-| Experiência com portais e aplicativos, preferencialmente em áreas logadas e produtos do setor financeiro | 1 | Ausente |
-| Perfil generalista, com capacidade de atuar em diferentes etapas do processo de design | 2 | Cases publicados |
-| Conhecimento de metodologias de Design Thinking, Design Sprint, Discovery e validação de hipóteses | 1 | Ausente |
-| Familiaridade com Design Systems e arquitetura baseada em componentes | 1 | Design Systems mencionado em um case |
-| Experiência prática utilizando ferramentas de Inteligência Artificial para apoio a processos de design, pesquisa, ideação, prototipação ou produtividade | 0 | Ausente |
-| Habilidade para trabalhar de forma colaborativa em equipes multidisciplinares e ambientes ágeis | 2 | Colaboração cross-funcional mencionada |
-| Excelente comunicação e capacidade de apresentar racional de design para diferentes públicos | 2 | Ausente, mas habilidade de comunicação mencionada |
+| Experiência comprovada como Product Designer em produtos digitais complexos | 2 | Enterprise AI Assistant, Shipping Capacity Platform e HYPERGESTOR — três produtos enterprise de alta complexidade com ownership end-to-end documentado |
+| Prototipagem avançada e domínio de ferramentas (Figma) | 1 | Figma mencionado em Enterprise AI, Shipping e Arezzo — sem protótipos ou telas expostos publicamente |
+| Portais e aplicativos, área logada, setor financeiro | 0 | Ausente — nenhum case é portal logado ou produto do setor financeiro |
+| Perfil generalista em diferentes etapas do processo de design | 2 | Discovery → síntese → ideação → prototipagem → entrega documentados em Enterprise AI e Shipping Platform |
+| Metodologias Design Thinking, Design Sprint, Discovery e validação de hipóteses | 1 | Discovery evidenciado em Enterprise AI (Clarity + entrevistas) e Shipping (workshops); facilitação estruturada não documentada explicitamente |
+| Design Systems e arquitetura baseada em componentes | 2 | Power Apps Dummy App: biblioteca enterprise com +10 componentes documentados para adoção por times; Cartela Cores: sistema de tokens de cor com regras de decisão |
+| IA para apoio a processos de design, pesquisa, ideação ou produtividade | 0 | Ausente — Enterprise AI é IA no produto, não IA como ferramenta de trabalho do designer |
+| Colaboração em equipes multidisciplinares e ambientes ágeis | 2 | Colaboração com engenharia, produto, negócio e especialistas de domínio documentada em Enterprise AI e Shipping; MVPs de 6 meses evidenciam contexto ágil |
+| Comunicação e apresentação de racional de design para diferentes públicos | 2 | Trade-offs de design com alternativas descartadas explicitadas em todos os cases; simplificação de complexidade técnica para stakeholders não-técnicos |
 | Espanhol intermediário | 0 | Ausente |
-| Inglês intermediário | 0 | Ausente |
+| Inglês intermediário | 3 | Portfolio bilíngue PT+EN publicado — inglês avançado evidenciado diretamente no site, muito além do nível intermediário exigido |
 
-**Subtotal obrigatórios: 13/33 × 2 = 26/66**
+**Subtotal obrigatórios: 15/33 × 2 = 30/66**
 
 ### Diferenciais preferidos (peso 1×)
 
 | Diferencial | Nota | Evidência atual |
 |---|---|---|
-| Experiência em empresas do setor financeiro, fintechs ou meios de pagamento | 0 | Ausente |
-| Conhecimento em acessibilidade digital (WCAG) | 0 | Ausente |
-| Experiência com métricas de produto, experimentação e testes A/B | 0 | Ausente |
-| Experiência na condução ou participação de pesquisas com usuários e testes de usabilidade | 1 | Projetos de 2–6 meses, MVP end-to-end |
-| Noções de Prompt Engineering aplicadas ao contexto de Product Design | 0 | Ausente |
+| Experiência em empresas do setor financeiro, fintechs ou meios de pagamento | 0 | Ausente — cases em pharma, logística, varejo e IA enterprise |
+| Conhecimento em acessibilidade digital (WCAG) | 0 | Seção presente nos cases enterprise mas vazia (⬜); Cartela Cores tem decisão WCAG-alinhada mas não é enquadrada como expertise de acessibilidade |
+| Experiência com métricas de produto, experimentação e testes A/B | 0 | Ausente — métricas de resultado ⬜ em todos os cases; nenhum case documenta A/B testing |
+| Experiência na condução ou participação de pesquisas com usuários e testes de usabilidade | 1 | Enterprise AI: entrevistas com usuários + análise Clarity para identificar drop-offs; Shipping: workshops recorrentes com especialistas de domínio — sem roteiro ou síntese formal exposta |
+| Noções de Prompt Engineering aplicadas ao contexto de Product Design | 0 | Ausente — Enterprise AI documenta design de UI para chat, não prompt engineering como prática do designer |
 
 **Subtotal preferidos: 1/15**
 
@@ -47,11 +47,17 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 26 | 66 |
+| Obrigatórios (×2) | 30 | 66 |
 | Preferidos (×1) | 1 | 15 |
-| **Total** | **27** | **81** |
+| **Total** | **31** | **81** |
 
-**Score: 27/81 = 33%**
+**Score: 31/81 = 38%**
+
+---
+
+## Job description original
+
+⬜ JD não arquivada — adicionar o texto original aqui.
 
 ---
 

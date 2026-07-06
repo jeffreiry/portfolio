@@ -70,7 +70,7 @@ Portfolio/
 │   │   │   ├── contact.ts                # POST — envia email via Resend
 │   │   │   ├── jobanalysis-update.ts     # POST — atualiza Candidatura/Status em arquivo .md
 │   │   │   ├── jobanalysis-create.ts     # POST — cria novo arquivo .md de análise de vaga (manual)
-│   │   │   └── jobanalysis-analyze.ts    # POST — analisa JD com Google Gemini e gera .md completo
+│   │   │   └── jobanalysis-analyze.ts    # POST — pipeline Groq (extração) + Claude Sonnet (análise) → gera .md completo
 │   │   ├── work/[slug].astro       # Página de case EN (SSR)
 │   │   └── pt/
 │   │       ├── index.astro         # Home PT
@@ -149,6 +149,7 @@ npm run preview
 | `PORTFOLIO_PASSWORD` | Proteção por senha nas páginas de case (`/work/*`) |
 | `JOBANALYSIS_PASSWORD` | Senha do bench (`/jobanalysis`), independente dos cases — fallback p/ `PORTFOLIO_PASSWORD` se ausente |
 | `RESEND_API_KEY` | Envio de email do formulário de contato |
+| `ANTHROPIC_API_KEY` | Análise de vagas com Claude Sonnet (passo 2 do pipeline em `/api/jobanalysis-analyze`) |
 
 ---
 
@@ -163,17 +164,17 @@ npm run preview
 
 ## Estado atual
 
-**Fase 5 em andamento · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook). Seção Cases com filtro interativo por 7 categorias; `CaseCard` exibe apenas `year` (role removido).
+**Fase 5 concluída · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook). Seção Cases com filtro interativo por 7 categorias; `CaseCard` exibe apenas `year` (role removido). Lighthouse mobile 100/97/100/100 ✅.
 
-**Benchmark de designers (2026-06-19):** pasta `Bench_designers/` criada com 5 análises de cases de referência (Sage/Emily Backes, Agentic DS/mchiu, 3M M*Modal/Lawrence Zheng, Gen AI Summaries/Nicole Roberts, Mira.ai/sanvithi). Insights consolidados em `_insights-melhorias.md` organizados por impacto/esforço. Workflow: usar `_prompt-template.md` no Claude (chrome) para cada nova análise — o output inclui o arquivo de análise individual e a versão atualizada do `_insights-melhorias.md`.
+**Bench de vagas (2026-07-04 · 23 vagas · score médio 52%):** Análises em `Bench_job_applications/`, método Person-Job Fit ponderado. Pipeline de análise atualizado para dois passos: Groq extrai estrutura da JD em JSON, Claude Sonnet (`claude-sonnet-4-6`) raciocina sobre aderência ao portfolio com contexto completo dos 9 cases. Score e subtotais recalculados deterministicamente no servidor. "Atualizado em" na página dinâmico (lê maior `data` dos arquivos .md).
 
-**Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%):**
-- 🔴 **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases (afeta 11/11 vagas-alvo)
-- 🔴 **Métricas de impacto** (`⬜`) — Enterprise AI, Shipping, Arezzo, Hypera (afeta 11/11 vagas-alvo)
-- 🟠 **Acessibilidade documentada** — enterprise cases precisam de 1 decisão WCAG; Cartela Cores é a referência (afeta 8/11 vagas)
-- 🟠 **Lighthouse performance mobile 95+** (atual: **73**) — desktop: 99/95/100/100 ✅ · mobile: 73/95/100/100 ⚠️ (auditado 2026-06-11)
-- 🟡 **Mobile como plataforma** — Arezzo tem tag "Mobile" sem narrativa de decisões (afeta 4/11 vagas)
-- 🟡 **Responsividade fina** nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
-- 🟡 Acessibilidade de interface — ~~contraste WCAG AA~~ ✅ (2026-06-15: tokens auditados e corrigidos) · ~~teclado/validação no formulário~~ ✅ · pendente: passada completa de leitor de tela ([docs/a11y-checklist.md](docs/a11y-checklist.md))
+**Benchmark de designers (2026-06-19):** pasta `Bench_designers/` com 5 análises de cases de referência. Insights consolidados em `_insights-melhorias.md` por impacto/esforço.
+
+**Pendente — por criticidade:**
+- 🔴 **Artefatos visíveis** — expor telas, flows ou wireframes em pelo menos 3 cases (afeta todas as vagas)
+- 🔴 **Métricas de impacto** (`⬜`) — Enterprise AI, Shipping, Arezzo, Hypera (afeta todas as vagas)
+- 🟠 **Acessibilidade documentada** — enterprise cases precisam de 1 decisão WCAG; Cartela Cores é a referência
+- 🟡 **Mobile como plataforma** — Arezzo tem tag "Mobile" sem narrativa de decisões
+- 🟡 Passada completa de leitor de tela ([docs/a11y-checklist.md](docs/a11y-checklist.md))
 - Reunir e otimizar imagens de cada case em `public/cases/<slug>/`
 - ~~**Revisão de voz dos cases**~~ ✅ concluída (2026-06-11) — 9 cases × 18 arquivos PT+EN
