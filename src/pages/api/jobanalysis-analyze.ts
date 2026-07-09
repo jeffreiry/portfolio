@@ -325,14 +325,16 @@ async function analyzeWithClaude(
 // ---- Handler principal ----
 
 export const POST: APIRoute = async ({ request }) => {
-  const groqKey     = process.env['GROQ_API_KEY']      ?? import.meta.env.GROQ_API_KEY;
-  const claudeKey   = process.env['ANTHROPIC_API_KEY'] ?? import.meta.env.ANTHROPIC_API_KEY;
+  const _env      = process.env;
+  const groqKey   = _env['GROQ_API_KEY']      ?? import.meta.env.GROQ_API_KEY;
+  const claudeKey = _env['ANTHROPIC_API_KEY'] ?? import.meta.env.ANTHROPIC_API_KEY;
 
   console.log('[jobanalysis] env check:', {
-    hasGroq:      !!process.env['GROQ_API_KEY'],
-    hasClaude:    !!process.env['ANTHROPIC_API_KEY'],
+    hasGroq:      !!_env['GROQ_API_KEY'],
+    hasClaude:    !!_env['ANTHROPIC_API_KEY'],
     hasGroqMeta:  !!import.meta.env.GROQ_API_KEY,
     hasClaudeMeta:!!import.meta.env.ANTHROPIC_API_KEY,
+    keys: Object.keys(_env).filter(k => k.includes('GROQ') || k.includes('ANTHROPIC') || k.includes('API')),
   });
 
   if (!groqKey) {
