@@ -390,15 +390,18 @@ export const POST: APIRoute = async ({ request }) => {
     finalMd = finalMd.replace(/\*\*Data da vaga:\*\*[^\n]*/, `**Data da vaga:** ${data}`);
     if (calc.ok) finalMd = rewriteScoreSection(finalMd, calc);
 
-    // Slug e escrita
+    // Slug e escrita (só funciona localmente — Vercel tem filesystem read-only)
     let slug = existingSlug?.trim() || toSlug(`${extracted.empresa}-${extracted.cargo}`);
-    let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
-    if (!existingSlug && existsSync(filePath)) {
-      slug = `${slug}-${Date.now()}`;
-      filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
+    try {
+      let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
+      if (!existingSlug && existsSync(filePath)) {
+        slug = `${slug}-${Date.now()}`;
+        filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
+      }
+      writeFileSync(filePath, finalMd + '\n', 'utf-8');
+    } catch {
+      // Silencioso em produção — filesystem read-only na Vercel
     }
-
-    writeFileSync(filePath, finalMd + '\n', 'utf-8');
 
     // Parseia gaps para retornar ao card
     const gapsSection = finalMd.split(/## Gaps prioritários/i)[1] ?? '';
