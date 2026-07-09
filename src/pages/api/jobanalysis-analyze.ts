@@ -329,15 +329,7 @@ export const POST: APIRoute = async ({ request }) => {
   const groqKey   = _env['GROQ_API_KEY']      ?? import.meta.env.GROQ_API_KEY;
   const claudeKey = _env['ANTHROPIC_API_KEY'] ?? import.meta.env.ANTHROPIC_API_KEY;
 
-  console.log('[jobanalysis] env check:', {
-    hasGroq:      !!_env['GROQ_API_KEY'],
-    hasClaude:    !!_env['ANTHROPIC_API_KEY'],
-    hasGroqMeta:  !!import.meta.env.GROQ_API_KEY,
-    hasClaudeMeta:!!import.meta.env.ANTHROPIC_API_KEY,
-    keys: Object.keys(_env).filter(k => k.includes('GROQ') || k.includes('ANTHROPIC') || k.includes('API')),
-  });
-
-  if (!groqKey) {
+if (!groqKey) {
     return new Response(JSON.stringify({ error: 'GROQ_API_KEY não configurada no .env' }), {
       status: 500, headers: { 'Content-Type': 'application/json' },
     });
