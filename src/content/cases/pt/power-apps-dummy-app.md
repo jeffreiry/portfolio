@@ -44,15 +44,19 @@ A decisão que mais me preocupou foi o escopo. Um app de demonstração que cobr
 
 Com o inventário de componentes em mãos, a próxima questão foi: que tipo de aplicativo daria o contexto mais significativo a esses componentes? A resposta foi um **produto mobile enterprise padrão** — o tipo que a organização constrói com mais frequência. O Aplicativo de Demonstração foi definido para cobrir o ciclo completo de um fluxo típico de gestão de dados: Onboarding → Home (ponto de entrada estilo dashboard) → Listagem e Detalhes → Criação e Edição → Modais → Páginas complementares (FAQ, informações).
 
+![Tela de CSAT — coleta de satisfação integrada ao app de demonstração](/cases/power-apps-dummy-app/03-csat.png)
+
 Antes de construir, cada componente foi revisado e atualizado para atender às diretrizes do Design System — cobrindo tokens visuais (cor, tipografia, espaçamento), estados de interação e considerações de acessibilidade.
 
 O aplicativo foi construído diretamente no ambiente do Power Apps, não como protótipo no Figma. Essa foi uma escolha deliberada: a referência precisava funcionar dentro das restrições e capacidades da plataforma real. Projetar no Power Apps é fundamentalmente diferente de projetar no Figma — o comportamento dos componentes é orientado por fórmulas, o gerenciamento de estados é explícito e a fronteira entre design e desenvolvimento se torna difusa. Isso criou uma curva de aprendizado, mas também produziu resultados melhores: cada interação no Aplicativo de Demonstração é algo que um desenvolvedor Power Apps real consegue replicar.
+
+![Telas de ações e modais do Power Apps Dummy App](/cases/power-apps-dummy-app/02-actions.png)
 
 Ao longo do desenvolvimento, o aplicativo foi continuamente validado com a equipe de Low-code Platforms — o grupo interno responsável pelo ecossistema Power Apps — para garantir que as interações mais complexas (gerenciamento de estados, comportamentos orientados por fórmulas) fossem tecnicamente sólidas e replicáveis por outras equipes.
 
 Após a validação, o Aplicativo de Demonstração foi documentado com materiais de apoio no SharePoint do Centro de Excelência da organização e publicado como **template no Brand Center**, tornando-o acessível para que qualquer equipe possa copiar e construir em cima.
 
-![Telas de ações e modais do Power Apps Dummy App](/cases/power-apps-dummy-app/02-actions.png)
+![Tela de FAQ — conteúdo de suporte contextualizado no app](/cases/power-apps-dummy-app/03-faq.png)
 
 ---
 
@@ -68,10 +72,6 @@ Além da entrega específica, o projeto estabeleceu um padrão de como o Design 
 | Publicado como template org-wide | ✅ |
 | Produtos em produção construídos sobre ele | ≥ 1 |
 | Colaboradores cross-funcionais | Design Chapter + Low-code Platforms |
-
-![Tela de CSAT — coleta de satisfação integrada ao app de demonstração](/cases/power-apps-dummy-app/03-csat.png)
-
-![Tela de FAQ — conteúdo de suporte contextualizado no app](/cases/power-apps-dummy-app/03-faq.png)
 
 ---
 

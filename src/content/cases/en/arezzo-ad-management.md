@@ -53,13 +53,15 @@ The decision that cost me the most was the three distinct homes — the worry wa
 
 **3. Approval workflow with compound filters — problem:** Traffic Managers receive ads from multiple stores simultaneously; without efficient filtering, the approval queue becomes noise. **Options:** linear list with simple search vs. visual grid with compound filters (Store, Status, Budget, Positioning, Archive) and quick-access chips. **Choice:** ad grid with cascading filters — selecting "Status" reveals sub-statuses with counts (New: 5, Approved: 10, Rejected: 2); date, active status, and ordering chips always visible at the top. **Why:** the Traffic Manager needs to prioritize the queue, not just scroll through it — seeing counts by status before filtering allows a decision about where to start.
 
+![Traffic Manager — ad approval queue with cascading filters (Store, Status, Budget, Positioning) and status counts before filtering: New 5, Approved 10, Rejected 2](/cases/arezzo-ad-management/03-admin-view.png)
+
 **4. Funnel metrics for Marketing** — the first wireframes had isolated KPI cards. Revenue Impacted. ROAS. Average Ticket. Each number in its own box. I did an internal presentation and the feedback was too polite to be honest — people agreed it was "clear" but couldn't say what the dashboard actually *said* about ad health.
 
 The problem was that isolated cards show state, not relationship. What Marketing needed to understand was: where does the chain lose efficiency? "Conversations: 20" doesn't answer that. "Impressions 3,538 → Conversations 20" does. I replaced the cards with a visual funnel (Impressions → Engagement → Clicks → Conversations → Sales) — the KPI cards stayed as complement, not protagonist.
 
-Research and design pipeline: per-profile interviews → journey mapping + benchmarking → role-based information architecture → Figma wireframes → internal validations → web + mobile interfaces → prototyping → handoff to partner technology company. The role-based information architecture phase happened before any screen was designed — defining which routes and modules existed per role was what made it possible to develop the interfaces without rework.
-
 ![Marketing — conversion funnel from impressions to sales with consolidated metrics](/cases/arezzo-ad-management/02-manager-view.png)
+
+Research and design pipeline: per-profile interviews → journey mapping + benchmarking → role-based information architecture → Figma wireframes → internal validations → web + mobile interfaces → prototyping → handoff to partner technology company. The role-based information architecture phase happened before any screen was designed — defining which routes and modules existed per role was what made it possible to develop the interfaces without rework.
 
 ---
 
@@ -80,8 +82,6 @@ All screens were delivered in **web and mobile**, with mobile navigation adapted
 - The **editable budget** uses inline editing triggered by a pencil icon — the field opens with the current value pre-filled and a "Confirm" button without leaving the table.
 - **Mobile navigation** was redesigned per profile: Store Owners have "New" prominently centered in the bottom nav (their primary action); Traffic Managers have "Reports" as the first item.
 - **Status badges** (orange "New", green "Active") pair color with a text label — status is readable without relying on color alone, meeting WCAG 1.4.1 for users with color-vision limitations.
-
-![Traffic Manager — ad approval queue with cascading filters (Store, Status, Budget, Positioning) and status counts before filtering: New 5, Approved 10, Rejected 2](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 

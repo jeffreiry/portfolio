@@ -53,6 +53,8 @@ Of all the decisions in this project, the one I was least certain about was the 
 
 **1. Temporal representation of routes — problem:** tables and lists force the operator to mentally reconstruct the sequence of events over time. Assessing availability in a table is a cognitive operation; on a timeline, it's a visual scan. **Options:** filtered route list (familiar, no learning curve) vs. visual timeline per vessel and period (more complex to build, far faster to interpret). **Choice:** visual timeline representing port-to-port movements, available capacity windows, and operational constraints. **Why:** the platform's core value was turning analysis into perception — and that's only possible with a temporal representation.
 
+![Route availability timeline (Calendário tab) — vessels color-coded by ship plotted across ports and dates May to June, solid lines for active routes and dashed for standby](/cases/shipping-capacity-platform/01-route-calendar.png)
+
 **2. Simulation module** — there was a real tension here. Making the platform monitoring-only was the safer path: lower learning curve, easier adoption. But the problem operators described wasn't just visibility — it was uncertainty before acting. Before confirming a new allocation, they wanted to know: "if I accept this request, what changes across the rest of the route?" That question has no answer in a read-only platform.
 
 Building integrated simulation was the longer path. But it was the only one that made judgment faster rather than just more visible. I went with simulation — the user tests the hypothetical before committing, and the delta between current state and simulated scenario stays visible side-by-side.
@@ -63,8 +65,6 @@ Building integrated simulation was the longer path. But it was the only one that
 
 The discovery-to-handoff pipeline ran through workflow reviews with logistics specialists → recurring validation sessions with stakeholders → Mural synthesis → Figma wireframes → navigable prototype → engineering validation → MVP handoff. The recurring validation sessions were structural: maritime logistics has operational constraints that don't emerge from single interviews — multiple refinement cycles with specialists were needed to ensure the timeline and simulation module represented real operational logic correctly. Microsoft Copilot was used during the hypothesis phase to stress-test the simulation module interaction model before committing to the full design direction.
 
-![Route availability timeline (Calendário tab) — vessels color-coded by ship plotted across ports and dates May to June, solid lines for active routes and dashed for standby](/cases/shipping-capacity-platform/01-route-calendar.png)
-
 ---
 
 ## Solution & Craft
@@ -72,15 +72,17 @@ The discovery-to-handoff pipeline ran through workflow reviews with logistics sp
 A unified platform for logistics teams to monitor operations and evaluate new cargo opportunities. Users can visualize routes and schedules via vessel-and-port timeline, identify available capacity in dedicated views, simulate cargo allocations before committing, track partner requests through a structured workflow, and evaluate operational impact before confirming any commercial opportunity.
 
 - The **timeline** uses color differentiation and density to communicate capacity utilization at a glance — high utilization vs. available window are distinguishable without reading a number.
+
+![Opportunity view (Movimentações tab) — card grid of vessels with available cargo space showing vessel name, cargo type, route origin/destination, occupancy (25%), and "Realizar Simulação" CTA](/cases/shipping-capacity-platform/02-route-opportunities.png)
+
 - The **simulation module** keeps the current state and simulated scenario in side-by-side comparison, so the operator sees the delta, not just the final result.
+
+![Simulation module — filter panel on the left (vessel type, ports, date range, cargo quantity and product) and card grid of routes with simulated impact (new occupancy +50%, schedule +2 days), one card expanded with before/after route comparison](/cases/shipping-capacity-platform/03-route-simulation.png)
+
 - The **request workflow** structures each solicitation with a step history and action owner — the operator knows what is pending *from them*, not just the general status.
 - The **timeline** differentiates capacity utilization by color and by visual density — two simultaneous channels ensure status is readable for users with color-vision limitations, without depending on color alone (WCAG 1.4.1).
 - **Keyboard navigation** — route browsing, the simulation module, and the partner request workflow are all fully operable via keyboard, ensuring operators using alternative input devices can access all platform functions.
 - An **accessibility guideline** covering contrast thresholds, keyboard interaction patterns, and semantic structure was defined as part of the design specification and delivered alongside the Figma handoff.
-
-![Opportunity view (Movimentações tab) — card grid of vessels with available cargo space showing vessel name, cargo type, route origin/destination, occupancy (25%), and "Realizar Simulação" CTA](/cases/shipping-capacity-platform/02-route-opportunities.png)
-
-![Simulation module — filter panel on the left (vessel type, ports, date range, cargo quantity and product) and card grid of routes with simulated impact (new occupancy +50%, schedule +2 days), one card expanded with before/after route comparison](/cases/shipping-capacity-platform/03-route-simulation.png)
 
 ---
 

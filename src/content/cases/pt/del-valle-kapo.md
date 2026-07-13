@@ -53,13 +53,13 @@ A decisão que mais me custou foi o seletor de produto estilo videogame. A metá
 
 **3. Página de brincadeira no formato de ficha — problema:** cada atividade tinha materiais necessários e instruções de como fazer — o mesmo problema de qualquer receita. Uma página de texto corrido não serviria para consulta rápida no meio da brincadeira. **Opções:** texto corrido vs. ficha estruturada com metadados no topo (participantes, faixa etária, duração) + seções fixas (Material necessário / Como brincar). **Escolha:** ficha de atividade com os metadados no topo em destaque, seções tipografadas com cores da categoria, ícones de Compartilhar / Imprimir / Download no topo e produto Kapo contextualizado ao final. **Porquê:** a mãe ou o pai que abre a página vai querer ver rapidamente se aquela atividade funciona para os filhos dela (participantes, idade) antes de ler qualquer instrução — os metadados no topo respondem isso em segundos.
 
+![Hora de Brincar — categorias temáticas com filtros por idade e ficha de atividade no formato de receita](/cases/del-valle-kapo/02-brincadeiras.png)
+
 **4. Seletor de produto como seleção de personagem** — a versão inicial era uma grade simples: 5 sabores em círculos, todos visíveis. Funcionava. Mas era genérica demais para um produto que se posiciona como "mais plataforma de brincadeiras do que site de produto".
 
 Converti para um carrossel centrado no estilo de seleção de personagem de videogame — sabor ativo no centro, colorido e maior; os outros dessaturados e menores nos lados, com setas de navegação. A dessaturação comunica "disponível mas não selecionado" sem precisar de texto. E a metáfora de videogame é completamente familiar para o público infantil. O adulto que navega também entende — é o mesmo padrão de um seletor de avatar.
 
 Pipeline de design: análise Google Analytics → decisões de IA (quais páginas manter/cortar) → benchmarking + referências visuais → sitemap → wireframes Figma → criação de elementos gráficos (Illustrator/Photoshop) → interfaces web → adaptação mobile → prototipação → validações internas → handoff. A análise de dados aconteceu antes do wireframe — o que impediu que decisões de IA fossem tomadas por intuição ou hierarquia de marca.
-
-![Hora de Brincar — categorias temáticas com filtros por idade e ficha de atividade](/cases/del-valle-kapo/02-brincadeiras.png)
 
 ---
 
@@ -79,10 +79,11 @@ Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estr
 - A **transição entre seções usa bordas onduladas em forma de papel recortado** — uma borda que simula o rasgar de papel evoca diretamente a brincadeira de recorte, tornando a metáfora visual coerente do início ao fim da página.
 - Os **títulos de seção** usam tratamento pintado à mão com splash de tinta como fundo de texto, coerente com a linguagem manuscrita da identidade Kapo.
 - Cada categoria da Hora de Brincar tem **cor de background, ícone ilustrado e tratamento tipográfico próprios** — criando um sistema de identidade por categoria sem precisar de um menu global.
-- No **seletor de produto**, o sabor ativo é colorido e centralizado; os demais ficam em escala de cinza nos círculos laterais — a dessaturação comunica "disponível mas não selecionado" sem texto.
-- O **ícone de tesoura** decorativo na hero ancora a metáfora de recorte de papel desde o primeiro segundo de navegação.
 
 ![Hora de Brincar — versão mobile com categorias e filtros por idade](/cases/del-valle-kapo/03-brincadeiras-mobile.png)
+
+- No **seletor de produto**, o sabor ativo é colorido e centralizado; os demais ficam em escala de cinza nos círculos laterais — a dessaturação comunica "disponível mas não selecionado" sem texto.
+- O **ícone de tesoura** decorativo na hero ancora a metáfora de recorte de papel desde o primeiro segundo de navegação.
 
 ---
 

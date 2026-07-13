@@ -53,13 +53,13 @@ The decision that cost me most was the video-game-style product selector. The me
 
 **3. Activity page as a structured card — problem:** each activity had required materials and step-by-step instructions — the same problem as any recipe. A running-text page wouldn't work for quick reference in the middle of the activity. **Options:** running text vs. structured card with metadata at top (participants, age range, duration) + fixed sections (Materials needed / How to play). **Choice:** activity card with metadata prominently at the top, typographically styled sections in category colors, Share / Print / Download icons at the top, and contextual Kapo product at the bottom. **Why:** the parent opening the page wants to quickly see if that activity works for their kids (participants, age) before reading any instruction — the top metadata answers that in seconds.
 
+![Hora de Brincar — thematic categories with age filters and recipe-format activity card](/cases/del-valle-kapo/02-brincadeiras.png)
+
 **4. Product selector as video game character selection** — the first version was a simple grid: 5 flavors in circles, all visible at once. It worked. But it was too generic for a product positioning itself as "more play platform than product site."
 
 I redesigned it as a centered carousel in the style of a video game character selector — active flavor in the center, full-color and larger; others desaturated and smaller on the sides with navigation arrows. Desaturation communicates "available but not selected" without needing text. And the video game metaphor is completely familiar to kids. The adult navigating it understands too — it's the same pattern as an avatar selector.
 
 Design pipeline: Google Analytics analysis → IA decisions (which pages to keep/cut) → benchmarking + visual references → sitemap → Figma wireframes → graphic element creation (Illustrator/Photoshop) → web interfaces → mobile adaptation → prototyping → internal validations → handoff. Data analysis happened before wireframing — which prevented IA decisions from being made by intuition or brand hierarchy.
-
-![Hora de Brincar — thematic categories with age filters and recipe-format activity card](/cases/del-valle-kapo/02-brincadeiras.png)
 
 ---
 
@@ -79,10 +79,11 @@ Redesigned site with 6 main sections and a structured play platform:
 - The **transition between sections uses wavy cut-paper edges** — an undulating border that simulates torn paper directly evokes paper-cutting activities, making the visual metaphor coherent from the first to the last section.
 - **Section titles use a hand-painted treatment** with a brush-stroke dark splash as a text background, consistent with Kapo's handwritten visual language.
 - Each Hora de Brincar category has its **own background color, illustrated icon, and typographic treatment** — creating a per-category identity system without requiring a global menu.
-- In the **product selector**, the active flavor is full-color and centered; the others are in greyscale smaller circles on the sides — desaturation communicates "available but not selected" without text.
-- The **decorative scissors icon** in the hero anchors the cut-paper metaphor from the very first second of browsing.
 
 ![Hora de Brincar — mobile version with categories and age filters](/cases/del-valle-kapo/03-brincadeiras-mobile.png)
+
+- In the **product selector**, the active flavor is full-color and centered; the others are in greyscale smaller circles on the sides — desaturation communicates "available but not selected" without text.
+- The **decorative scissors icon** in the hero anchors the cut-paper metaphor from the very first second of browsing.
 
 ---
 

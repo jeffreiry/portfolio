@@ -65,8 +65,6 @@ A arquitetura de integração não foi uma decisão de design. Assim que entende
 
 O pipeline do discovery ao handoff passou por gravações Clarity e heatmaps → entrevistas com usuários do MVP → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia. As gravações foram o input decisivo: mostraram os pontos exatos de abandono — onde os usuários paravam, saíam para confirmar ou repetiam a mesma busca de forma diferente. O Microsoft Copilot foi usado na fase de hipóteses para estressar o racional de design antes de definir a direção — especialmente na avaliação do modelo do painel de fontes.
 
-![Estado inicial vazio — "How can I help you?" com 6 chips de prompt sugerido derivados dos padrões de busca mais frequentes da organização](/cases/enterprise-ai-assistant/03-main-interface.png)
-
 ---
 
 ## Solução & Craft
@@ -74,10 +72,14 @@ O pipeline do discovery ao handoff passou por gravações Clarity e heatmaps →
 Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário abre uma interface única e pode perguntar em linguagem natural, receber respostas estruturadas geradas a partir dos documentos internos reais, verificar as fontes num painel lateral persistente, explorar documentos relacionados e retomar conversas anteriores.
 
 - O **estado inicial vazio** exibe prompts sugeridos como chips clicáveis — as pessoas não sabem por onde começar com um assistente que integra três bases ao mesmo tempo. Os prompts mostram isso sem exigir leitura prévia.
+
+![Estado inicial vazio — "How can I help you?" com 6 chips de prompt sugerido derivados dos padrões de busca mais frequentes da organização](/cases/enterprise-ai-assistant/03-main-interface.png)
+
 - O **painel de fontes** é uma coluna lateral persistente, não um modal: permanece disponível sem interromper a leitura. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel. A estrutura da resposta separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
-- **Acessibilidade:** todos os fluxos são operáveis por teclado, a ordem de tabulação segue a sequência de leitura e interação (WCAG 2.1.1). Indicadores de confiança e badges de fonte usam combinações de ícone + label, não apenas cor. Hierarquia de headings, ARIA roles e regiões de landmark foram especificados como parte do design — não como uma passada de QA — e entregues junto ao handoff no Figma.
 
 ![Interface conversacional — resposta com painel de Data Source aberto listando arquivos por similaridade e formulário CSAT de feedback no canto da tela](/cases/enterprise-ai-assistant/02-user-research.png)
+
+- **Acessibilidade:** todos os fluxos são operáveis por teclado, a ordem de tabulação segue a sequência de leitura e interação (WCAG 2.1.1). Indicadores de confiança e badges de fonte usam combinações de ícone + label, não apenas cor. Hierarquia de headings, ARIA roles e regiões de landmark foram especificados como parte do design — não como uma passada de QA — e entregues junto ao handoff no Figma.
 
 ![Painel de fontes — arquivos listados por similaridade com a query e opção de download individual; botão "Data Source" no rodapé da resposta reabre o painel](/cases/enterprise-ai-assistant/01-file-source.png)
 

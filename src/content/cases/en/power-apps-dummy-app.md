@@ -44,15 +44,19 @@ The decision that worried me most was the scope. A demo app that covers too much
 
 With a component inventory in hand, the next question was: what kind of app would give these components the most meaningful context? The answer was a **standard enterprise mobile product** — the kind the organization builds most often. The Dummy App was scoped to cover the full lifecycle of a typical data-management workflow: Onboarding → Home (dashboard entry point) → Listing & Detail views → Create & Edit flows → Modals → Supplementary pages (FAQ, about).
 
+![CSAT screen — satisfaction collection inside the demo app](/cases/power-apps-dummy-app/03-csat.png)
+
 Before building, each component was reviewed and updated to meet the Design System guidelines — covering visual tokens (color, typography, spacing), interaction states, and accessibility considerations.
 
 The app was built directly in the Power Apps environment, not as a Figma prototype. This was deliberate: the reference had to work within the constraints and capabilities of the actual platform. Designing in Power Apps is fundamentally different from designing in Figma — component behavior is formula-driven, state management is explicit, and the design-to-build boundary blurs. This created a learning curve, but it also produced better outcomes: every interaction in the Dummy App is something a real Power Apps developer can actually replicate.
+
+![Actions and modal screens from the Power Apps Dummy App](/cases/power-apps-dummy-app/02-actions.png)
 
 Throughout development, the app was continuously validated with the Low-code Platforms team — the internal group responsible for the Power Apps ecosystem — to ensure that complex interactions (state management, formula-driven behavior) were technically sound and replicable by other teams.
 
 After validation, the Dummy App was documented with supporting materials in the organization's Center of Excellence SharePoint and published as a **template in the Brand Center**, making it accessible for any team to copy and build on.
 
-![Actions and modal screens from the Power Apps Dummy App](/cases/power-apps-dummy-app/02-actions.png)
+![FAQ screen — support content integrated into the app](/cases/power-apps-dummy-app/03-faq.png)
 
 ---
 
@@ -68,10 +72,6 @@ Beyond the specific deliverable, the project established a pattern for how the D
 | Published as org-wide template | ✅ |
 | Production apps built on top | ≥ 1 |
 | Cross-functional collaborators | Design Chapter + Low-code Platforms |
-
-![CSAT screen — satisfaction collection inside the demo app](/cases/power-apps-dummy-app/03-csat.png)
-
-![FAQ screen — support content integrated into the app](/cases/power-apps-dummy-app/03-faq.png)
 
 ---
 

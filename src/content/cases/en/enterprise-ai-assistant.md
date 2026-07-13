@@ -65,8 +65,6 @@ The integration architecture wasn't really a design decision. Once we understood
 
 The discovery-to-handoff pipeline ran through Clarity recordings and heatmaps → user interviews → Mural synthesis → Figma wireframes → navigable prototype → engineering validation. The recordings were the decisive input: they showed exact drop-off points — where users stopped, left to confirm, or repeated the same search differently. Microsoft Copilot was used during the hypothesis phase to stress-test design rationale before committing to direction, particularly for the source panel model.
 
-![Empty initial state — "How can I help you?" with 6 suggested prompt chips drawn from the organization's most frequent search patterns](/cases/enterprise-ai-assistant/03-main-interface.png)
-
 ---
 
 ## Solution & Craft
@@ -74,10 +72,14 @@ The discovery-to-handoff pipeline ran through Clarity recordings and heatmaps �
 A centralized platform for accessing corporate knowledge. Users open a single interface and can ask in natural language, receive structured answers generated from actual internal documents, verify the sources in a persistent side panel, explore related documents, and resume previous conversations.
 
 - The **empty initial state** shows suggested prompts as clickable chips — people don't know where to start with an assistant covering three knowledge bases at once. The prompts show them, without requiring any reading first.
+
+![Empty initial state — "How can I help you?" with 6 suggested prompt chips drawn from the organization's most frequent search patterns](/cases/enterprise-ai-assistant/03-main-interface.png)
+
 - The **source panel** is a persistent lateral column, not a modal: it stays available without interrupting the reading of the response. A badge with the source count on each message signals traceability before the panel is even opened. Response structure visually separates the AI synthesis from source access — clear hierarchy between "what the assistant concluded" and "where that comes from."
-- **Accessibility:** all flows are fully operable via keyboard, tab order follows reading and interaction sequence (WCAG 2.1.1). Trust indicators and source badges use icon + label combinations, not color alone. Heading hierarchy, ARIA roles, and landmark regions were specified as part of the design — not a QA pass — and delivered alongside the Figma handoff.
 
 ![Conversational interface — response with Data Source panel open listing referenced files by similarity, and in-product CSAT feedback form in the corner](/cases/enterprise-ai-assistant/02-user-research.png)
+
+- **Accessibility:** all flows are fully operable via keyboard, tab order follows reading and interaction sequence (WCAG 2.1.1). Trust indicators and source badges use icon + label combinations, not color alone. Heading hierarchy, ARIA roles, and landmark regions were specified as part of the design — not a QA pass — and delivered alongside the Figma handoff.
 
 ![Source panel — files listed by similarity to the query with individual download option; "Data Source" button in the response footer reopens the panel](/cases/enterprise-ai-assistant/01-file-source.png)
 

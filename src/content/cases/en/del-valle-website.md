@@ -57,9 +57,9 @@ I put a lifestyle photo in the hero and saved the packaging for the products pag
 
 **4. Fruit exploration cards with carousel — problem:** each fruit has multiple information dimensions (geographic origin, number of producers, harvest period, fun fact). Displaying everything at once would weigh down the page; showing only the photo would be superficial. **Options:** fixed text below each fruit vs. card carousel with one dimension per screen. **Choice:** alternating grid — each fruit has a full-screen photo cell and a white card cell that carousels through 4 dimensions (Where it comes from / Number of Producers / Harvest season / Curiosity), with illustrated icon and navigation dots. **Why:** the carousel invites exploration without forcing reading — users who want the origin navigate; those who just want to see the fruit, see it.
 
-Design pipeline: identity manual study + campaign references → sitemap → Figma wireframes → illustration and graphic element creation (Illustrator/Photoshop) → web interface composition → mobile adaptation → prototyping → internal validations → handoff. The graphic element creation phase (blobs, fruit cutouts) was parallel to wireframing — visual decisions and layout decisions were interdependent, not sequential.
-
 ![Fruit exploration — alternating grid with 4-dimension carousel per fruit on tablet](/cases/del-valle-website/02-tablet.png)
+
+Design pipeline: identity manual study + campaign references → sitemap → Figma wireframes → illustration and graphic element creation (Illustrator/Photoshop) → web interface composition → mobile adaptation → prototyping → internal validations → handoff. The graphic element creation phase (blobs, fruit cutouts) was parallel to wireframing — visual decisions and layout decisions were interdependent, not sequential.
 
 ---
 
@@ -81,6 +81,8 @@ Both delivered in **web and mobile**, with organic graphic elements reorganized 
 - On **mobile**, the hamburger menu preserves "Cheio de vida" next to the logo; organic elements scale proportionally without disappearing.
 
 ![Del Valle homepage — mobile version with organic blobs and "Cheio de vida" identity](/cases/del-valle-website/03-smarphone.png)
+
+
 
 ---
 

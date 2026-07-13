@@ -57,9 +57,9 @@ Coloquei uma foto de lifestyle no hero e guardei as embalagens para a página de
 
 **4. Cards de exploração de frutas com carrossel — problema:** cada fruta tem múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta tem uma célula com foto em tela cheia e uma célula com card branco que carrossel por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convida à exploração sem forçar leitura — o usuário que quer saber a origem navega; o que só quer ver a fruta, vê.
 
-Pipeline de design: estudo do manual de identidade + referências da campanha → sitemap → wireframes Figma → criação de ilustrações e elementos gráficos (Illustrator/Photoshop) → composição das interfaces web → adaptação mobile → prototipação → validações internas → handoff. A etapa de criação dos elementos gráficos (manchas, recortes de fruta) foi paralela ao wireframe — as decisões visuais e as decisões de layout foram interdependentes, não sequenciais.
-
 ![Exploração de frutas — grade alternada com carrossel de 4 dimensões por fruta em tablet](/cases/del-valle-website/02-tablet.png)
+
+Pipeline de design: estudo do manual de identidade + referências da campanha → sitemap → wireframes Figma → criação de ilustrações e elementos gráficos (Illustrator/Photoshop) → composição das interfaces web → adaptação mobile → prototipação → validações internas → handoff. A etapa de criação dos elementos gráficos (manchas, recortes de fruta) foi paralela ao wireframe — as decisões visuais e as decisões de layout foram interdependentes, não sequenciais.
 
 ---
 
@@ -81,10 +81,6 @@ Ambas entregues em **web e mobile**, com os elementos gráficos orgânicos reorg
 - No **mobile**, o menu hambúrguer preserva o "Cheio de vida" ao lado do logo; os elementos orgânicos são redimensionados proporcionalmente sem desaparecer.
 
 ![Homepage Del Valle — versão mobile com manchas orgânicas e identidade "Cheio de vida"](/cases/del-valle-website/03-smarphone.png)
-
----
-
-## Aprendizados
 
 Entreguei home e página de produtos em web e mobile, alinhadas à campanha "Cheio de vida". Mas o projeto terminou no handoff — não tive acesso a nenhuma métrica pós-lançamento.
 

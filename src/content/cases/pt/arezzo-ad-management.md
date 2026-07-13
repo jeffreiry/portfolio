@@ -53,13 +53,15 @@ A decisão que mais me custou foi a das três homes distintas — a dúvida era 
 
 **3. Fluxo de aprovação com filtros compostos — problema:** o Gestor de Tráfego recebe anúncios de múltiplas lojas simultaneamente; sem filtragem eficiente, a fila de aprovações vira ruído. **Opções:** lista linear com busca simples vs. grid visual com filtros compostos (Loja, Status, Orçamento, Posicionamento, Arquivo) e chips de acesso rápido. **Escolha:** grid de anúncios com filtros em cascata — ao selecionar "Status", os sub-status aparecem com contagem (Novo: 5, Aprovado: 10, Reprovado: 2); chips de data, status ativo e ordenação sempre visíveis no topo. **Porquê:** o Gestor precisa priorizar a fila, não apenas percorrê-la — ver a contagem por status antes de filtrar permite uma decisão de onde começar.
 
+![Gestor de Tráfego — fila de aprovação de anúncios com filtros em cascata (Loja, Status, Orçamento, Posicionamento) e contagem por status antes de filtrar: Novo 5, Aprovado 10, Reprovado 2](/cases/arezzo-ad-management/03-admin-view.png)
+
 **4. Métricas em funil para o Marketing** — os primeiros wireframes tinham cards de KPIs isolados. Receita Impactada. ROAS. Ticket Médio. Cada número numa caixa separada. Fiz uma apresentação interna e o feedback foi educado demais para ser sincero — as pessoas concordavam que estava "claro" mas não conseguiam dizer o que o dashboard *dizia* sobre a saúde dos anúncios.
 
 O problema era que cards isolados mostram estado, não relação. O que o Marketing precisava entender era: em que ponto a cadeia perde eficiência? "Conversas: 20" não responde isso. "Impressões 3.538 → Conversas 20" responde. Substituí os cards por um funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) — os KPIs ficaram como complemento, não como protagonistas.
 
-Pipeline de pesquisa e design: entrevistas por perfil → mapeamento de jornadas + benchmarking → arquitetura de informação por papel → wireframes Figma → validações internas → interfaces web + mobile → prototipação → handoff para empresa parceira. A etapa de arquitetura de informação por papel foi feita antes de qualquer tela — definir quais rotas e módulos existiam para cada perfil foi o que tornou possível desenvolver as interfaces sem retrabalho.
-
 ![Marketing — funil de conversão de impressões a vendas com métricas consolidadas](/cases/arezzo-ad-management/02-manager-view.png)
+
+Pipeline de pesquisa e design: entrevistas por perfil → mapeamento de jornadas + benchmarking → arquitetura de informação por papel → wireframes Figma → validações internas → interfaces web + mobile → prototipação → handoff para empresa parceira. A etapa de arquitetura de informação por papel foi feita antes de qualquer tela — definir quais rotas e módulos existiam para cada perfil foi o que tornou possível desenvolver as interfaces sem retrabalho.
 
 ---
 
@@ -80,8 +82,6 @@ Todas as telas foram entregues em versão **web e mobile**, com a navegação mo
 - O **orçamento editável** usa edição inline ativada por ícone de lápis — o campo abre com o valor atual pré-preenchido e um botão "Confirmar" sem saída da tabela.
 - A **navegação mobile** foi redesenhada por perfil: Lojistas têm "Novo" com destaque central na bottom nav (sua ação primária); Gestores têm "Relatórios" como primeiro item.
 - Os **badges de status** (laranja "Novo", verde "Ativo") combinam cor e rótulo textual — o estado é legível sem depender de cor isolada, atendendo WCAG 1.4.1 para usuários com daltonismo.
-
-![Gestor de Tráfego — fila de aprovação de anúncios com filtros em cascata (Loja, Status, Orçamento, Posicionamento) e contagem por status antes de filtrar: Novo 5, Aprovado 10, Reprovado 2](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 
