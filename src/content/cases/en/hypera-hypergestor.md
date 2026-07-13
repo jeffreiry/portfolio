@@ -26,6 +26,10 @@ order: 6
 
 Hypera Pharma manages trade marketing investments at scale — funds that start from corporate budgets, are distributed through the sales hierarchy (region → office → team → supervisor → sales rep), and must be verified with evidence before integrating into SAP. Without a centralized system, every step of this cycle happened in isolation: budget creation was manual, fund distribution depended on emails between departments, and investment verification was done outside the system, with no traceability.
 
+I came in as UX and UI Designer responsible for the complete HYPERGESTOR design — mapping the journeys of each user profile involved in the cycle, defining the information architecture, designing all interfaces and prototypes in Figma, and collaborating with the development team on Azure over 2 months. The design had to respect Hypera Pharma's brand guidelines.
+
+Three constraints shaped the work: the cascading fund hierarchy (primary budgets → secondary budgets → multiple levels of sales hierarchy) had to be represented without creating confusion; the SAP/SEV integration required an explicit gate before releasing data to SAP, to avoid errors with real financial impact; and a 2-month timeline covered mapping, designing, and prototyping a multi-module, multi-profile system.
+
 **Prior state:** a trade marketing cycle with no end-to-end visibility — governance existed on paper, but not in the system.
 
 <div class="image-placeholder">
@@ -33,20 +37,6 @@ Hypera Pharma manages trade marketing investments at scale — funds that start 
   <strong>Unified pipeline</strong>
   <span>Budget → Fund → Distribution → Verification with evidence and SAP/SEV gate</span>
 </div>
-
----
-
-## My role
-
-UX and UI Designer responsible for the complete HYPERGESTOR design: I mapped the journeys of each user profile involved in the cycle, defined the information architecture, designed all interfaces and prototypes in Figma, and collaborated with the development team on Azure. The design had to respect Hypera Pharma's brand guidelines.
-
----
-
-## Constraints
-
-- **Hierarchy complexity** — funds flow from primary to secondary budgets, then into distributions across multiple levels of the sales hierarchy. The design had to represent this cascade without creating confusion.
-- **SAP/SEV integration** — fund verification required an explicit gate before releasing data to SAP, to avoid integration errors with real financial impact.
-- **2 months** to map, design, and prototype a multi-module, multi-profile system.
 
 ---
 
@@ -72,6 +62,8 @@ That wasn't laziness — it was the real work pattern. I added a "Suggested Dist
 
 **4. SAP/SEV integration checkpoint — problem:** fund verification feeds directly into SAP; incorrect or incomplete data at this step has real financial impact. **Options:** automatic integration on save (faster, less control) vs. explicit gate with manual confirmation before release. **Choice:** field "Can it be released for integration approval?" defaulting to "No" — the user must consciously mark "Yes" to release the fund to SAP. Field "Will there be more verification?" allows indicating incomplete auditing without blocking partial save. **Why:** in systems with financial integration, a release error can create inconsistency between the internal system and the ERP — the confirmation gate creates a deliberate review moment before the point of no return.
 
+Design pipeline: benchmarking + per-profile journey mapping → information architecture → Figma wireframes → internal validations → final interfaces → navigable prototype → development handoff (Azure). The per-profile journey mapping was the step that defined which modules existed and how they connected — without it, the risk was building disconnected screens instead of a pipeline.
+
 <div class="image-placeholder">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
   <strong>Distribution modal</strong>
@@ -80,7 +72,7 @@ That wasn't laziness — it was the real work pattern. I added a "Suggested Dist
 
 ---
 
-## Solution
+## Solution & Craft
 
 HYPERGESTOR centralizes the complete trade marketing cycle in four connected modules:
 
@@ -89,33 +81,19 @@ HYPERGESTOR centralizes the complete trade marketing cycle in four connected mod
 - **Fund Distribution** — distribution refinement by sales hierarchy level (Region → Office → Team → Supervisor), with automatic suggestion and copy action.
 - **Verification and Audit** — recording the audited value, evidence upload (xlsx, txt, pdf, jpeg), partial verification control, and SAP/SEV integration release gate.
 
----
-
-## Craft & Accessibility
-
-- The **breadcrumb** (Início / Gestão / Orçamentos; Início / Cadastro / Empresas) at the top of each screen orients the user within the system hierarchy without relying on memory of where they are.
-- The **paperclip icon with numeric badge** in the Attachments column of the audit listing communicates the presence of evidence without opening the item — a scan-speed decision.
-- The **"Audited value" field** in verification is separate from the "Planned value" shown in read-only mode — the user sees the planned amount while filling in the audited amount, creating the comparison in the same context.
-- The **"Allows distribution" field** in budget registration is an inline checkbox next to the value — a decision that eliminates a separate field and visually connects the permission to the value it applies to.
-- The **numeric badge** on the paperclip icon communicates evidence presence via two channels — icon + number — without relying on color or requiring the item to be opened; screen-reader and color-vision-limited users receive the same information (WCAG 1.4.1).
-
----
-
-## Technical collaboration
-
-Design pipeline: `benchmarking + per-profile journey mapping → information architecture → Figma wireframes → internal validations → final interfaces → navigable prototype → development handoff (Azure)`. The per-profile journey mapping was the step that defined which modules existed and how they connected — without it, the risk was building disconnected screens instead of a cycle.
-
----
-
-## What I'd Do Differently
-
-I delivered the complete system with all four modules and interfaces for each profile. But the project ended before I could measure anything post-launch — verification cycle time, SAP integration errors, user satisfaction.
-
-What I'd have done: a usability test session on the distribution flow before handoff. The nested accordions and cascading sales hierarchy are the densest part of the system. I validated the model through journey mapping and benchmarking — but I never sat with a real manager to watch them create a distribution for the first time without help. In financial systems, that's the moment that matters.
+- The **breadcrumb** at the top of each screen orients the user within the system hierarchy without relying on memory of where they are.
+- The **paperclip icon with numeric badge** in the Attachments column communicates evidence presence without opening the item — a scan-speed decision.
+- The **"Audited value" field** is separate from the "Planned value" shown in read-only mode — the user sees the planned amount while filling in the audited amount, creating the comparison in the same context.
+- The **"Allows distribution" field** is an inline checkbox next to the value — visually connecting the permission to the value it applies to.
+- The **numeric badge** on the paperclip icon communicates evidence presence via two channels — icon + number — without relying on color; screen-reader and color-vision-limited users receive the same information (WCAG 1.4.1).
 
 ---
 
 ## Learnings
+
+I delivered the complete system with all four modules and interfaces for each profile. But the project ended before I could measure anything post-launch — verification cycle time, SAP integration errors, user satisfaction.
+
+What I'd have done: a usability test session on the distribution flow before handoff. The nested accordions and cascading sales hierarchy are the densest part of the system. I validated the model through journey mapping and benchmarking — but I never sat with a real manager to watch them create a distribution for the first time without help. In financial systems, that's the moment that matters.
 
 Internal financial systems have a specific trade-off between speed and control: making everything too fast removes the safeguards the process requires; making everything too deliberate creates adoption resistance. The SAP release gate is the clearest example of this trade-off in the project — and the decision to keep it as explicit confirmation (not automatic) was the right one.
 

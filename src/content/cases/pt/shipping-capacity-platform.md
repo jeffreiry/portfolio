@@ -31,22 +31,11 @@ order: 3
 
 Em logística marítima, navios frequentemente partem com capacidade de carga disponível que poderia ser comercializada. O problema não é a falta de oportunidade — é a falta de visibilidade sobre ela. As informações de rota, disponibilidade de espaço e restrições operacionais estavam distribuídas em planilhas, e-mails e documentos internos sem nenhuma superfície unificada. Para identificar se um navio tinha espaço em uma determinada janela de tempo, um operador precisava cruzar múltiplas fontes manualmente, dependendo de experiência individual e comunicação informal com diferentes áreas.
 
+Entrei como Product Designer responsável pelo design do MVP do início ao fim — conduzindo as atividades de discovery (reviews de workflow com especialistas em logística, um workshop colaborativo usando mapeamento de jornada do usuário para definir a abordagem de solução e sessões recorrentes de validação), sintetizando os padrões operacionais em Mural e desenvolvendo todo o design da plataforma em Figma ao longo de 6 meses do discovery ao handoff.
+
+Três restrições definiram o espaço de design: o domínio de logística marítima tem restrições operacionais específicas (janelas portuárias, tempo de trânsito, compatibilidade de carga, regulações), então as decisões precisavam ser continuamente validadas com especialistas do domínio, não apenas com usuários; a plataforma tinha audiência dupla — equipes internas de logística e parceiros comerciais externos selecionados — onde a clareza da interface não era só meta de UX, era um requisito de negócio; e o escopo fechado de 6 meses exigiu cobrir monitoramento + simulação + gestão de pedidos sem comprometer a coerência da experiência geral.
+
 **Estado anterior:** oportunidades comerciais existiam na operação, mas eram invisíveis sem análise manual — e o processo de gerenciar pedidos de parceiros era conduzido por e-mail, sem rastreabilidade.
-
-
----
-
-## Meu papel
-
-Product Designer responsável pelo design do MVP do início ao fim: conduzi as atividades de discovery (reviews de workflow com especialistas em logística, um workshop colaborativo com especialistas e stakeholders operacionais usando mapeamento de jornada do usuário para definir a abordagem de solução, e sessões recorrentes de validação), sintetizei os padrões operacionais em Mural, e desenvolvi todo o design da plataforma em Figma. Atuei em colaboração com time de produto e engenharia, 6 meses, do discovery ao handoff.
-
----
-
-## Restrições
-
-- **Domínio de alta complexidade** — logística marítima tem restrições operacionais específicas (janelas portuárias, tempo de trânsito, compatibilidade de carga, regulações). O design precisava ser validado continuamente com especialistas do domínio, não apenas com usuários.
-- **MVP para audiência dupla** — a plataforma seria apresentada tanto às equipes internas de logística quanto a parceiros comerciais externos selecionados. A clareza da interface não era apenas uma meta de UX — era um requisito de negócio.
-- **Escopo fechado de 6 meses** — um sistema de monitoramento + simulação + gestão de pedidos precisava ser priorizado sem comprometer a coerência da experiência.
 
 ---
 
@@ -72,25 +61,15 @@ Construir a simulação integrada era o caminho mais longo. Mas era o único que
 
 **4. Vista de oportunidades — problema:** o timeline completo mostra tudo — incluindo navios já no limite da capacidade. Para identificar oportunidades comerciais rapidamente, o operador não quer analisar o todo; quer ver só o que tem espaço. **Opções:** filtros no timeline principal (flexível, mas exige interação) vs. vista dedicada de "capacidade disponível" (menos flexível, mais imediata para o caso de uso principal). **Escolha:** vista dedicada de oportunidades que agrega os períodos com capacidade disponível por rota e navio, separada do monitoramento geral. **Porquê:** o fluxo de identificação de oportunidades é diferente do fluxo de monitoramento operacional — misturá-los num único painel sacrifica a velocidade de ambos.
 
+O pipeline do discovery ao handoff passou por reviews de workflow com especialistas → sessões recorrentes de validação com stakeholders → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia → handoff MVP. As sessões recorrentes foram estruturais: logística marítima tem restrições operacionais que não emergem em entrevistas únicas — múltiplos ciclos de refinamento com especialistas foram necessários para que o timeline e o módulo de simulação representassem a realidade operacional corretamente. O Microsoft Copilot foi usado na fase de hipóteses para estressar o modelo de interação do módulo de simulação antes de definir a direção de design.
+
 ![](/cases/shipping-capacity-platform/01-route-calendar.png)
 
 ---
 
-## Solução
+## Solução & Craft
 
-Uma plataforma unificada para equipes de logística monitorarem a operação e avaliarem novas oportunidades de carga. Os usuários podem:
-
-- **Visualizar rotas e cronogramas** via timeline por navio e porto, com restrições operacionais representadas visualmente.
-- **Identificar capacidade disponível** em vistas dedicadas que destacam janelas de oportunidade sem exigir análise manual.
-- **Simular alocações de carga** antes de confirmar decisões, avaliando o impacto na capacidade e no cronograma.
-- **Acompanhar pedidos de parceiros** por um workflow estruturado com etapas explícitas de negociação e aprovação.
-- **Avaliar impacto operacional** antes de confirmar qualquer oportunidade comercial.
-
-![](/cases/shipping-capacity-platform/02-route-opportunities.png)
-
----
-
-## Craft & Acessibilidade
+Uma plataforma unificada para equipes de logística monitorarem a operação e avaliarem novas oportunidades de carga. Os usuários podem visualizar rotas e cronogramas via timeline por navio e porto, identificar capacidade disponível em vistas dedicadas, simular alocações de carga antes de confirmar, acompanhar pedidos de parceiros por um workflow estruturado e avaliar impacto operacional antes de confirmar qualquer oportunidade.
 
 - O **timeline** usa diferenciação por cor e densidade para comunicar utilização de capacidade de forma escanável — alta utilização vs. janela disponível são distinguíveis sem leitura de número.
 - O **módulo de simulação** mantém o estado atual e o cenário simulado em comparação lado a lado, para que o operador veja o delta, não apenas o resultado final.
@@ -99,27 +78,17 @@ Uma plataforma unificada para equipes de logística monitorarem a operação e a
 - **Navegação por teclado** — navegação de rotas, módulo de simulação e workflow de pedidos de parceiros são todos operáveis por teclado, garantindo acesso completo para operadores que utilizam dispositivos de entrada alternativos.
 - Uma **diretriz de acessibilidade** cobrindo thresholds de contraste, padrões de interação por teclado e estrutura semântica foi definida como parte da especificação de design e entregue junto ao handoff no Figma.
 
+![](/cases/shipping-capacity-platform/02-route-opportunities.png)
+
 ![](/cases/shipping-capacity-platform/03-route-simulation.png)
 
 ---
 
-## Colaboração técnica
-
-Pipeline de discovery e design: `reviews de workflow com especialistas em logística → sessões recorrentes de validação com stakeholders → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia → handoff MVP`. As sessões recorrentes de validação foram estruturais: o domínio de logística marítima tem restrições operacionais que não emergem em entrevistas únicas — precisaram de múltiplos ciclos de refinamento com especialistas para que o timeline e o módulo de simulação representassem a realidade operacional corretamente.
-
-O Microsoft Copilot foi usado na fase de hipóteses de solução — especialmente para estressar o modelo de interação do módulo de simulação antes de definir a direção de design.
-
----
-
-## O que eu faria diferente
+## Aprendizados
 
 O MVP foi disponibilizado para equipes internas e stakeholders externos selecionados, com feedback positivo sobre a consolidação da informação operacional. Mas tem uma coisa que eu não consegui medir: se o módulo de simulação foi adotado de verdade ou se os operadores usaram apenas o monitoramento e a vista de oportunidades.
 
 A simulação é a parte mais cara do design e a mais difícil de validar antes do lançamento. Se eu pudesse refazer, teria definido uma métrica de adoção específica para a simulação na fase de discovery — não para justificar o feature, mas para entender se a hipótese de que "tornar o experimento seguro muda o comportamento de decisão" se confirmou na prática.
-
----
-
-## Aprendizados
 
 Ferramentas operacionais para domínios complexos têm um desafio duplo: o designer precisa entender o suficiente do domínio para não simplificar o que não pode ser simplificado — e precisa simplificar o suficiente para que o sistema seja utilizável sem treinamento extenso. A validação recorrente com especialistas não foi uma formalidade metodológica; foi o que garantiu que o timeline e a simulação representassem restrições reais, não aproximações.
 

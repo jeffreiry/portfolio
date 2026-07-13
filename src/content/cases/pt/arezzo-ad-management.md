@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Arezzo&Co · Sistema de Anúncios"
 slug: arezzo-ad-management
 role: "UX Researcher · UX Designer · UI Designer"
@@ -27,23 +27,13 @@ order: 7
 
 O grupo Arezzo&Co opera múltiplas marcas (Arezzo, Schutz e outras) com centenas de lojas físicas, cada uma com autonomia para criar e submeter anúncios em redes sociais. A cadeia envolve três atores com objetivos distintos: o **Lojista** que cria e acompanha seus próprios anúncios, o **Gestor de Tráfego** que supervisiona um conjunto de lojas e aprova as peças, e o time de **Marketing** que monitora a performance consolidada de toda a marca e gerencia o orçamento. O sistema existente não refletia essa estrutura — todos os perfis acessavam as mesmas telas, independentemente do que precisavam fazer.
 
+Entrei como UX Researcher, UX Designer e UI Designer, responsável pelo projeto completo — conduzindo entrevistas com cada perfil de usuário, mapeando as jornadas e a arquitetura de informação por papel, e desenvolvendo todas as interfaces (web e mobile) em Figma ao longo de 3 meses. O projeto foi feito em parceria com uma empresa de tecnologia que fornecia a plataforma para o grupo.
+
+O escopo tinha três restrições fixas: a solução precisava ser uma plataforma coerente com rotas diferenciadas por papel, não três produtos separados; o mesmo sistema atendia Arezzo, Schutz e outras marcas do grupo, exigindo consistência visual sem perder a identidade de cada marca nos contextos relevantes; e 3 meses de prazo cobriram pesquisa, arquitetura, design e prototipação de web + mobile para todos os perfis.
+
 **Estado anterior:** um sistema único sem diferenciação de papel, onde o Lojista se perdia em métricas corporativas e o Marketing não conseguia visão consolidada sem navegar por lojas individualmente.
 
 ![Lojista — painel de anúncios com orçamento disponível e resultados inline](/cases/arezzo-ad-management/01-store-view.png)
-
----
-
-## Meu papel
-
-UX Researcher, UX Designer e UI Designer responsável pelo projeto completo: conduzi entrevistas com cada perfil de usuário, mapeei as jornadas e a arquitetura de informação por papel, e desenvolvi todas as interfaces — web e mobile — em Figma. O projeto foi feito em parceria com uma empresa de tecnologia que fornecia a plataforma para o grupo.
-
----
-
-## Restrições
-
-- **Três perfis, um sistema** — a solução não podia ser três produtos separados; precisava ser uma plataforma coerente com rotas e telas diferenciadas por papel sem que o custo de manutenção explodisse.
-- **Multi-marca** — o mesmo sistema atendia Arezzo, Schutz e outras marcas do grupo, exigindo consistência visual sem perder a identidade de cada marca nos contextos relevantes.
-- **3 meses de prazo** — escopo apertado para pesquisa, arquitetura, design e prototipação de web + mobile para todos os perfis.
 
 ---
 
@@ -69,11 +59,13 @@ A decisão que mais me custou foi a das três homes distintas — a dúvida era 
 
 O problema era que cards isolados mostram estado, não relação. O que o Marketing precisava entender era: em que ponto a cadeia perde eficiência? "Conversas: 20" não responde isso. "Impressões 3.538 → Conversas 20" responde. Substituí os cards por um funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) — os KPIs ficaram como complemento, não como protagonistas.
 
+Pipeline de pesquisa e design: entrevistas por perfil → mapeamento de jornadas + benchmarking → arquitetura de informação por papel → wireframes Figma → validações internas → interfaces web + mobile → prototipação → handoff para empresa parceira. A etapa de arquitetura de informação por papel foi feita antes de qualquer tela — definir quais rotas e módulos existiam para cada perfil foi o que tornou possível desenvolver as interfaces sem retrabalho.
+
 ![Marketing — funil de conversão de impressões a vendas com métricas consolidadas](/cases/arezzo-ad-management/02-manager-view.png)
 
 ---
 
-## Solução
+## Solução & Craft
 
 Uma plataforma multi-perfil de gerenciamento de anúncios com três experiências distintas dentro do mesmo sistema:
 
@@ -83,35 +75,21 @@ Uma plataforma multi-perfil de gerenciamento de anúncios com três experiência
 
 Todas as telas foram entregues em versão **web e mobile**, com a navegação mobile adaptada ao padrão de uso de cada perfil.
 
+- O **banner de alerta de orçamento disponível** no Lojista usa cor âmbar (não vermelho — não é urgência, é oportunidade) e oferece ação imediata "Saiba mais" sem forçar interação.
+- Os **cards de anúncio na aprovação** exibem status com badge colorido (laranja "Novo", verde "Ativo") + data de veiculação + orçamento no topo, permitindo leitura do contexto antes de abrir o anúncio.
+- O **orçamento editável** usa edição inline ativada por ícone de lápis — o campo abre com o valor atual pré-preenchido e um botão "Confirmar" sem saída da tabela.
+- A **navegação mobile** foi redesenhada por perfil: Lojistas têm "Novo" com destaque central na bottom nav (sua ação primária); Gestores têm "Relatórios" como primeiro item.
+- Os **badges de status** (laranja "Novo", verde "Ativo") combinam cor e rótulo textual — o estado é legível sem depender de cor isolada, atendendo WCAG 1.4.1 para usuários com daltonismo.
+
 ![Admin — gestão de orçamento e performance consolidada por loja](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 
-## Craft & Acessibilidade
-
-- O **banner de alerta de orçamento disponível** no Lojista usa cor âmbar (não vermelho — não é urgência, é oportunidade) e oferece ação imediata "Saiba mais" sem forçar interação.
-- Os **cards de anúncio na aprovação** exibem status com badge colorido (laranja "Novo", verde "Ativo") + data de veiculação + orçamento no topo, permitindo leitura do contexto antes de abrir o anúncio.
-- O **orçamento editável** na tela de Orçamento usa edição inline ativada por ícone de lápis — o campo abre com o valor atual pré-preenchido e um botão "Confirmar" sem saída da tabela.
-- A **navegação mobile** foi redesenhada por perfil: Lojistas têm "Novo" com destaque central na bottom nav (sua ação primária); Gestores têm "Relatórios" como primeiro item.
-- Os **badges de status** (laranja "Novo", verde "Ativo") combinam cor e rótulo textual — o estado é legível sem depender de cor isolada, atendendo WCAG 1.4.1 para usuários com daltonismo ou em contextos de baixo contraste.
-
----
-
-## Colaboração técnica
-
-Pipeline de pesquisa e design: `entrevistas por perfil → mapeamento de jornadas + benchmarking → arquitetura de informação por papel → wireframes Figma → validações internas → interfaces web + mobile → prototipação → handoff para empresa parceira de tecnologia`. A etapa de arquitetura de informação por papel foi feita antes de qualquer tela — definir quais rotas e módulos existiam para cada perfil foi o que tornou possível desenvolver as interfaces sem retrabalho.
-
----
-
-## O que eu faria diferente
+## Aprendizados
 
 Entreguei interfaces web e mobile para os três perfis, cobrindo todas as jornadas da pesquisa. Mas não medimos nada depois do lançamento — sem satisfação por papel, sem tempo de aprovação, sem taxa de uso de orçamento pelos Lojistas.
 
 Se pudesse refazer: antes de fechar o escopo, teria negociado uma rodada de validação com usuários reais de cada papel em cima do protótipo navegável — não para mudar a arquitetura, mas para confirmar se a home contextual de cada perfil respondia mesmo à pergunta mais frequente, ou se eu tinha errado a hierarquia de informação em algum caso. O design-por-papel parece certo na teoria. Sem feedback pós-lançamento, não sei onde errei.
-
----
-
-## Aprendizados
 
 O maior risco em projetos multi-perfil é cair na armadilha do "o sistema serve todo mundo" — que na prática significa que não serve ninguém bem. A decisão de definir a arquitetura de informação por papel antes de desenhar qualquer tela foi o que determinou o resultado: cada usuário entrava num produto desenhado para o que ele realmente precisava fazer.
 

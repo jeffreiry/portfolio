@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Del Valle Kapo · Website Redesign"
 slug: del-valle-kapo
 role: "UX · UI · Visual Designer"
@@ -27,23 +27,13 @@ order: 9
 
 Del Valle Kapo is a product aimed at children and families, with a brand positioning that goes beyond juice: the "Sempre Criança" (Always a Child) campaign positions the brand as a promoter of play and childhood. The kapo.com.br site needed to be redesigned for the new Children's Day 2022 campaign — but the scope went beyond updating colors and images. It required deciding which pages the site should have after the redesign, which meant understanding how people actually used the existing site.
 
+I came in as UX, UI, and Visual Designer responsible for the complete project — analyzing access data via Google Analytics to guide information architecture decisions, referencing the new campaign's visual identity, creating illustrations and graphic elements, and developing all interfaces (web and mobile) in Figma, Photoshop, and Illustrator over 2 months.
+
+The project had a dual constraint from the audience side: the "Sempre Criança 2.0" campaign came with pre-defined assets, palette, and tone of voice — creative freedom was in the digital translation, not in identity creation — and the site had to serve both children browsing for activities and parents buying the product and joining promotions, which meant content hierarchy had to serve both journeys simultaneously.
+
 **Prior state:** site on the previous campaign's identity, visually misaligned with the new campaign, and without clarity about which sections had real value for users.
 
 ![Del Valle Kapo site — mobile version](/cases/del-valle-kapo/01-smatphone.png)
-
----
-
-## My role
-
-UX, UI, and Visual Designer responsible for the complete project: I analyzed access data via Google Analytics to guide information architecture decisions, referenced the new campaign's visual identity, created illustrations and graphic elements, and developed all interfaces — web and mobile — in Figma, Photoshop, and Illustrator.
-
----
-
-## Constraints
-
-- **Pre-defined campaign identity** — "Sempre Criança 2.0" had its assets, palette, and tone of voice. Creative freedom was in digital translation, not identity creation.
-- **Dual audience** — children browsing for activities and parents buying the product and joining promotions. Content hierarchy had to serve both journeys.
-- **2 months** for sitemap, data analysis, graphic element creation, and full web + mobile interfaces.
 
 ---
 
@@ -69,11 +59,13 @@ The decision that cost me most was the video-game-style product selector. The me
 
 I redesigned it as a centered carousel in the style of a video game character selector — active flavor in the center, full-color and larger; others desaturated and smaller on the sides with navigation arrows. Desaturation communicates "available but not selected" without needing text. And the video game metaphor is completely familiar to kids. The adult navigating it understands too — it's the same pattern as an avatar selector.
 
+Design pipeline: Google Analytics analysis → IA decisions (which pages to keep/cut) → benchmarking + visual references → sitemap → Figma wireframes → graphic element creation (Illustrator/Photoshop) → web interfaces → mobile adaptation → prototyping → internal validations → handoff. Data analysis happened before wireframing — which prevented IA decisions from being made by intuition or brand hierarchy.
+
 ![Hora de Brincar — thematic categories with age filters and recipe-format activity card](/cases/del-valle-kapo/02-brincadeiras.png)
 
 ---
 
-## Solution
+## Solution & Craft
 
 Redesigned site with 6 main sections and a structured play platform:
 
@@ -84,35 +76,21 @@ Redesigned site with 6 main sections and a structured play platform:
 - **Nossos Produtos:** video game-style flavor selector with links to partner e-commerce stores.
 - Complete mobile version for all pages.
 
+- The **transition between sections uses wavy cut-paper edges** — an undulating border that simulates torn paper directly evokes paper-cutting activities, making the visual metaphor coherent from the first to the last section.
+- **Section titles use a hand-painted treatment** with a brush-stroke dark splash as a text background, consistent with Kapo's handwritten visual language.
+- Each Hora de Brincar category has its **own background color, illustrated icon, and typographic treatment** — creating a per-category identity system without requiring a global menu.
+- In the **product selector**, the active flavor is full-color and centered; the others are in greyscale smaller circles on the sides — desaturation communicates "available but not selected" without text.
+- The **decorative scissors icon** in the hero anchors the cut-paper metaphor from the very first second of browsing.
+
 ![Hora de Brincar — mobile version with categories and age filters](/cases/del-valle-kapo/03-brincadeiras-mobile.png)
 
 ---
 
-## Craft & Visual Design
-
-- The **transition between sections uses wavy cut-paper edges** — an undulating border that simulates torn paper directly evokes paper-cutting activities, making the visual metaphor coherent from the first to the last section of the page.
-- **Section titles use a hand-painted treatment** with a brush-stroke dark splash as a text background (as in "Hora de Brincar"), consistent with the Kapo identity's handwritten visual language.
-- Each Hora de Brincar category has its **own background color, illustrated icon, and typographic treatment** — Imaginação Divertida uses salmon/pink, Aprender Brincando uses yellow, Ritmo de Brincadeira uses light blue — creating a per-category identity system without requiring a global menu.
-- In the **product selector**, the active flavor is full-color and centered; the others are in greyscale smaller circles on the sides — desaturation communicates "available but not selected" without text.
-- The **decorative scissors icon** in the hero anchors the cut-paper metaphor from the very first second of browsing.
-
----
-
-## Technical collaboration
-
-Design pipeline: `Google Analytics analysis → IA decisions (which pages to keep/cut) → benchmarking + visual references → sitemap → Figma wireframes → graphic element creation (Illustrator/Photoshop) → web interfaces → mobile adaptation → prototyping → internal validations → handoff`. Data analysis happened before wireframing — which prevented IA decisions from being made by intuition or brand hierarchy.
-
----
-
-## What I'd Do Differently
+## Learnings
 
 I delivered the complete site with home, campaign, seasonal promotion, activity repository, and product catalog in web and mobile. But the project ended at handoff — I had no access to post-launch data.
 
 What I'd have wanted to track: whether "Hora de Brincar" traffic grew, or whether the redesign just redistributed the same behavior. The Analytics insight was the founding insight of the entire project — having post-launch data would have closed the loop and validated (or challenged) the bet of making the play platform the site's axis.
-
----
-
-## Learnings
 
 Data analysis before wireframing was the most important decision in the project — and probably the least obvious for a visual redesign. Without Google Analytics, "Hora de Brincar" would have been treated as supporting content; with the data, it became the redesign's axis.
 

@@ -26,7 +26,7 @@ order: 5
 
 ---
 
-## Contexto e Problema
+## Contexto & Problema
 
 O Design Chapter da empresa havia criado uma biblioteca de componentes para aplicativos mobile desenvolvidos no Microsoft Power Apps — plataforma usada em toda a organização para ferramentas internas em low-code. O problema: os componentes existiam de forma isolada. Designers e desenvolvedores não tinham uma referência prática de como eles se comportavam em conjunto, como se compunham em fluxos reais ou como deveriam ser aplicados em um produto completo.
 
@@ -36,62 +36,23 @@ O resultado era uma **adoção inconsistente**: equipes não sabiam que os compo
 
 ---
 
-## Processo
+## Processo & Decisões
 
-### 1. Mapeamento do ecossistema de componentes
+O primeiro passo foi entender quais componentes estavam sendo ativamente utilizados nos produtos Power Apps da organização — revisando aplicativos existentes, identificando padrões de UI recorrentes e priorizando os componentes com maior potencial de reuso. O objetivo não era documentar tudo; era encontrar os **20% de componentes que cobriam 80% dos cenários reais de produto**.
 
-O primeiro passo foi entender quais componentes estavam sendo ativamente utilizados nos produtos Power Apps da organização. Isso envolveu a revisão de aplicativos existentes, identificação de padrões de UI recorrentes e priorização dos componentes com maior potencial de reuso.
+A decisão que mais me preocupou foi o escopo. Um app de demonstração que cobre demais deixa de ser referência e vira sobrecarga. Mas se ele for simples demais, não responde as perguntas reais dos desenvolvedores. O equilíbrio foi encontrado ancorando cada decisão de design em um cenário real de produto — se uma interação não podia ser justificada por um caso de uso realista, era cortada.
 
-O objetivo não era documentar tudo — era encontrar os **20% de componentes que cobriam 80% dos cenários reais de produto**.
+Com o inventário de componentes em mãos, a próxima questão foi: que tipo de aplicativo daria o contexto mais significativo a esses componentes? A resposta foi um **produto mobile enterprise padrão** — o tipo que a organização constrói com mais frequência. O Aplicativo de Demonstração foi definido para cobrir o ciclo completo de um fluxo típico de gestão de dados: Onboarding → Home (ponto de entrada estilo dashboard) → Listagem e Detalhes → Criação e Edição → Modais → Páginas complementares (FAQ, informações).
 
-### 2. Definição do escopo do aplicativo
+Antes de construir, cada componente foi revisado e atualizado para atender às diretrizes do Design System — cobrindo tokens visuais (cor, tipografia, espaçamento), estados de interação e considerações de acessibilidade.
 
-A decisão que mais me preocupou foi o escopo. Um app de demonstração que cobre demais deixa de ser referência e vira sobrecarga. Mas se ele for simples demais, não responde as perguntas reais dos desenvolvedores.
+O aplicativo foi construído diretamente no ambiente do Power Apps, não como protótipo no Figma. Essa foi uma escolha deliberada: a referência precisava funcionar dentro das restrições e capacidades da plataforma real. Projetar no Power Apps é fundamentalmente diferente de projetar no Figma — o comportamento dos componentes é orientado por fórmulas, o gerenciamento de estados é explícito e a fronteira entre design e desenvolvimento se torna difusa. Isso criou uma curva de aprendizado, mas também produziu resultados melhores: cada interação no Aplicativo de Demonstração é algo que um desenvolvedor Power Apps real consegue replicar.
 
-Com o inventário de componentes em mãos, a próxima questão foi: que tipo de aplicativo daria o contexto mais significativo a esses componentes? A resposta foi um **produto mobile enterprise padrão** — o tipo que a organização constrói com mais frequência.
+Ao longo do desenvolvimento, o aplicativo foi continuamente validado com a equipe de Low-code Platforms — o grupo interno responsável pelo ecossistema Power Apps — para garantir que as interações mais complexas (gerenciamento de estados, comportamentos orientados por fórmulas) fossem tecnicamente sólidas e replicáveis por outras equipes.
 
-O Aplicativo de Demonstração foi definido para cobrir o ciclo completo de um fluxo típico de gestão de dados:
-
-- **Onboarding** — apresentação das principais funções do aplicativo
-- **Home** — ponto de entrada estilo dashboard
-- **Listagem e Detalhes** — navegação e leitura de itens
-- **Criação e Edição** — entrada de dados via formulários
-- **Modais** — diálogos de confirmação e ações rápidas
-- **Páginas complementares** — FAQ e informações sobre o aplicativo
-
-Esse escopo garantiu que o app fosse abrangente o suficiente para ser uma referência real, sem se tornar uma vitrine super-engenheirada.
-
-### 3. Atualização dos componentes para os padrões do Design System
-
-Antes de construir, cada componente foi revisado e atualizado para atender às diretrizes do Design System da empresa — cobrindo tokens visuais (cor, tipografia, espaçamento), estados de interação e considerações de acessibilidade.
-
-### 4. Construção dentro do Power Apps
-
-O aplicativo foi construído diretamente no ambiente do Power Apps, não como protótipo no Figma. Essa foi uma escolha deliberada: a referência precisava funcionar dentro das restrições e capacidades da plataforma real. Construir no Power Apps significou lidar com trade-offs técnicos reais — lógica de fórmulas, gerenciamento de estados de componentes e padrões de interação específicos da plataforma.
+Após a validação, o Aplicativo de Demonstração foi documentado com materiais de apoio no SharePoint do Centro de Excelência da organização e publicado como **template no Brand Center**, tornando-o acessível para que qualquer equipe possa copiar e construir em cima.
 
 ![Telas de ações e modais do Power Apps Dummy App](/cases/power-apps-dummy-app/02-actions.png)
-
-### 5. Validação com a equipe de Low-code Platforms
-
-Ao longo do desenvolvimento, o aplicativo foi continuamente validado com a equipe de Low-code Platforms — o grupo interno responsável pelo ecossistema Power Apps. O envolvimento deles foi essencial para garantir que as interações mais complexas (gerenciamento de estados, comportamentos orientados por fórmulas) fossem tecnicamente sólidas e replicáveis por outras equipes.
-
-### 6. Publicação e habilitação da adoção
-
-Após a validação, o Aplicativo de Demonstração foi:
-- Documentado com materiais de apoio no SharePoint do Centro de Excelência da organização
-- Publicado como **template no Brand Center**, tornando-o acessível para que qualquer equipe possa copiar e construir em cima
-
----
-
-## Desafios
-
-### Trabalhar dentro da plataforma, não ao redor dela
-
-Projetar no Power Apps é fundamentalmente diferente de projetar no Figma. O comportamento dos componentes é orientado por fórmulas, o gerenciamento de estados é explícito e a fronteira entre design e desenvolvimento se torna difusa. Isso criou uma curva de aprendizado — mas também produziu resultados melhores: cada interação no Aplicativo de Demonstração é algo que um desenvolvedor Power Apps real consegue replicar.
-
-### Encontrar o nível certo de complexidade
-
-Um app de demonstração corre o risco de ser raso demais (não responde perguntas reais) ou complexo demais (intimida em vez de habilitar). O equilíbrio foi encontrado ancorando cada decisão de design em um cenário real de produto — se uma interação de componente não podia ser justificada por um caso de uso realista, era cortada.
 
 ---
 

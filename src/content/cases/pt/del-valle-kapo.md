@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Del Valle Kapo · Redesign de Site"
 slug: del-valle-kapo
 role: "UX · UI · Visual Designer"
@@ -27,23 +27,13 @@ order: 9
 
 O Del Valle Kapo é um produto voltado para crianças e famílias, com um posicionamento de marca que vai além do suco: a campanha "Sempre Criança" posiciona a marca como promotora de brincadeiras e da infância. O site kapo.com.br precisava ser redesenhado para a nova campanha de Dia das Crianças 2022 — mas o escopo ia além de atualizar cores e imagens. Era necessário decidir quais páginas o site deveria ter após o redesign, o que exigia entender como as pessoas realmente usavam o site existente.
 
+Entrei como UX, UI e Visual Designer responsável pelo projeto completo — analisando os dados de acesso via Google Analytics para orientar decisões de arquitetura de informação, referenciando a nova identidade visual da campanha, criando ilustrações e elementos gráficos, e desenvolvendo todas as interfaces (web e mobile) em Figma, Photoshop e Illustrator ao longo de 2 meses.
+
+O projeto tinha uma restrição dupla pelo lado da audiência: a campanha "Sempre Criança 2.0" vinha com assets, paleta e tom de voz pré-definidos — a liberdade criativa estava na tradução digital, não na criação da identidade — e o site precisava servir tanto crianças que navegam em busca de brincadeiras quanto pais que compram o produto e participam de promoções, o que exigia que a hierarquia de conteúdo servisse às duas jornadas ao mesmo tempo.
+
 **Estado anterior:** site com a identidade da campanha anterior, desalinhado visualmente com a nova campanha e sem clareza sobre quais seções tinham valor real para os usuários.
 
 ![Site Del Valle Kapo — versão mobile](/cases/del-valle-kapo/01-smatphone.png)
-
----
-
-## Meu papel
-
-UX, UI e Visual Designer responsável pelo projeto completo: analisei os dados de acesso via Google Analytics para orientar decisões de arquitetura de informação, referenciei a nova identidade visual da campanha, criei ilustrações e elementos gráficos, e desenvolvi todas as interfaces — web e mobile — em Figma, Photoshop e Illustrator.
-
----
-
-## Restrições
-
-- **Identidade de campanha pré-definida** — "Sempre Criança 2.0" tinha seus assets, paleta e tom de voz. A liberdade criativa estava na tradução digital, não na criação da identidade.
-- **Audiência dupla** — crianças que navegam em busca de brincadeiras e pais que compram o produto e participam de promoções. A hierarquia de conteúdo precisava servir às duas jornadas.
-- **2 meses** para sitemap, análise de dados, criação de elementos gráficos, interfaces web e mobile completas.
 
 ---
 
@@ -69,11 +59,13 @@ A decisão que mais me custou foi o seletor de produto estilo videogame. A metá
 
 Converti para um carrossel centrado no estilo de seleção de personagem de videogame — sabor ativo no centro, colorido e maior; os outros dessaturados e menores nos lados, com setas de navegação. A dessaturação comunica "disponível mas não selecionado" sem precisar de texto. E a metáfora de videogame é completamente familiar para o público infantil. O adulto que navega também entende — é o mesmo padrão de um seletor de avatar.
 
+Pipeline de design: análise Google Analytics → decisões de IA (quais páginas manter/cortar) → benchmarking + referências visuais → sitemap → wireframes Figma → criação de elementos gráficos (Illustrator/Photoshop) → interfaces web → adaptação mobile → prototipação → validações internas → handoff. A análise de dados aconteceu antes do wireframe — o que impediu que decisões de IA fossem tomadas por intuição ou hierarquia de marca.
+
 ![Hora de Brincar — categorias temáticas com filtros por idade e ficha de atividade](/cases/del-valle-kapo/02-brincadeiras.png)
 
 ---
 
-## Solução
+## Solução & Craft
 
 Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estruturada:
 
@@ -84,35 +76,21 @@ Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estr
 - **Nossos Produtos:** seletor de sabor no estilo videogame com link para e-commerces parceiros.
 - Versão mobile completa para todas as páginas.
 
+- A **transição entre seções usa bordas onduladas em forma de papel recortado** — uma borda que simula o rasgar de papel evoca diretamente a brincadeira de recorte, tornando a metáfora visual coerente do início ao fim da página.
+- Os **títulos de seção** usam tratamento pintado à mão com splash de tinta como fundo de texto, coerente com a linguagem manuscrita da identidade Kapo.
+- Cada categoria da Hora de Brincar tem **cor de background, ícone ilustrado e tratamento tipográfico próprios** — criando um sistema de identidade por categoria sem precisar de um menu global.
+- No **seletor de produto**, o sabor ativo é colorido e centralizado; os demais ficam em escala de cinza nos círculos laterais — a dessaturação comunica "disponível mas não selecionado" sem texto.
+- O **ícone de tesoura** decorativo na hero ancora a metáfora de recorte de papel desde o primeiro segundo de navegação.
+
 ![Hora de Brincar — versão mobile com categorias e filtros por idade](/cases/del-valle-kapo/03-brincadeiras-mobile.png)
 
 ---
 
-## Craft & Visual Design
-
-- A **transição entre seções usa bordas onduladas em forma de papel recortado** — uma borda em zigue-zague ou onda que simula o rasgar de papel evoca diretamente a brincadeira de recorte, tornando a metáfora visual coerente do início ao fim da página.
-- Os **títulos de seção** usam tratamento de título pintado à mão com splash de tinta (brush stroke escuro como fundo para o texto "Hora de Brincar"), coerente com a linguagem manuscrita da identidade Kapo.
-- Cada categoria da Hora de Brincar tem **cor de background, ícone ilustrado e tratamento tipográfico próprios** — Imaginação Divertida usa salmão/rosa, Aprender Brincando usa amarelo, Ritmo de Brincadeira usa azul claro, criando um sistema de identidade por categoria sem precisar de um menu global.
-- No **seletor de produto**, o sabor ativo é colorido e centralizado; os demais ficam em escala de cinza nos círculos laterais — a dessaturação comunica "disponível mas não selecionado" sem texto.
-- O **ícone de tesoura** decorativo na hero é um elemento que ancora a metáfora de recorte de papel desde o primeiro segundo de navegação.
-
----
-
-## Colaboração técnica
-
-Pipeline de design: `análise Google Analytics → decisões de IA (quais páginas manter/cortar) → benchmarking + referências visuais → sitemap → wireframes Figma → criação de elementos gráficos (Illustrator/Photoshop) → interfaces web → adaptação mobile → prototipação → validações internas → handoff`. A análise de dados aconteceu antes do wireframe — o que impediu que decisões de IA fossem tomadas por intuição ou hierarquia de marca.
-
----
-
-## O que eu faria diferente
+## Aprendizados
 
 Entreguei site completo com home, campanha, promoção sazonal, repositório de brincadeiras e catálogo em web e mobile. Mas o projeto terminou no handoff — não tive acesso a dados pós-lançamento.
 
 O que eu queria ter acompanhado: se o tráfego da "Hora de Brincar" cresceu ou se o redesign só redistribuiu o mesmo comportamento. O dado de Analytics foi o insight fundador de todo o projeto — ter os dados pós-lançamento teria fechado o ciclo e validado (ou questionado) a aposta de colocar a plataforma de brincadeiras como eixo do site.
-
----
-
-## Aprendizados
 
 A análise de dados antes do wireframe foi a decisão mais importante do projeto — e provavelmente a menos óbvia para um projeto de redesign visual. Sem o Google Analytics, a "Hora de Brincar" teria sido tratada como conteúdo de suporte; com os dados, ela se tornou o eixo do redesign.
 

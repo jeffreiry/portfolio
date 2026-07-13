@@ -35,6 +35,7 @@ Todos os 9 cases (18 arquivos PT+EN) reescritos. Diagnóstico original e detalhe
 2. [A régua de um case Sênior](#2-a-régua-de-um-case-sênior)
 3. [Template-mestre do case](#3-template-mestre-do-case)
 4. [Princípios de narrativa](#4-princípios-de-narrativa)
+   - 4.1 [Voz humana — como evitar escrita que parece IA](#41-voz-humana--como-evitar-escrita-que-parece-ia)
 5. [Checklist de assets](#5-checklist-de-assets)
 6. [Fluxo de atualização](#6-fluxo-de-atualização)
 7. [Checklist de publicação](#7-checklist-de-publicação)
@@ -107,46 +108,37 @@ O que diferencia um case **Sênior** de um Pleno não é a quantidade de telas, 
 
 ## 3. Template-mestre do case
 
-Estrutura única para qualquer projeto. Rótulos em PT (EN). Preencha cada bloco; corte os que não se aplicam.
+**6 seções.** Estrutura única para qualquer projeto. Rótulos em PT (EN). Preencha cada bloco; corte os que não se aplicam.
+
+> **Por que 6 e não 11?** Cases com My Role, Constraints, Technical Collaboration e What I'd Do Differently como seções separadas fragmentam o que é o mesmo assunto. Recrutadores leem em 2–5 min — cada salto de título é atrito. A estrutura abaixo preserva todo o conteúdo relevante dentro de seções que têm coesão real.
 
 ### Cabeçalho / Header
-- **Título + subtítulo de uma linha** (*Title + one-line subtitle*)
-- **TL;DR / Overview** — papel, período, plataforma, resultado em 1 frase
-- **Tags** — tipo de produto, plataforma, área de foco
+- **H2 de tese** — uma frase que nomeia a tensão central ou o resultado inesperado do projeto
+- **TL;DR** — papel, período, desafio central em 1–2 frases
 
 ### Contexto & Problema / Context & Problem
-- Qual é o espaço do problema? Para quem? Por que importa agora?
-- Estado anterior (a dor concreta antes da solução)
-
-### Seu papel / Your role
-- O que você fez, com responsabilidade explícita
-- Time e duração (mesmo se solo — diga "solo, end-to-end")
-
-### Restrições / Constraints
-- Técnicas, de tempo, de orçamento, de dados
+- Espaço do problema: para quem, por que importa agora
+- Estado anterior (a dor concreta)
+- **Seu papel integrado:** quem você era neste projeto, o que liderou, com quem colaborou, por quanto tempo
+- **Restrições integradas:** as que moldaram as decisões (técnicas, de tempo, de público) — não como lista separada, mas como parte da narrativa do problema
 
 ### Descoberta & Insight / Discovery & Insight
 - O insight central que destrava a solução (a "virada")
+- O que você viu ou ouviu que mudou o entendimento do problema
 
 ### Processo & Decisões / Process & Decisions
-- 3 a 5 decisões-chave, cada uma no formato **problema → opções → escolha → porquê**
-- Inclua o que foi **descartado**
+- 3 a 5 decisões-chave — veja seção 4.1 para como escrever sem soar como IA
+- Inclua o que foi descartado e por quê
+- **Pipeline técnico integrado ao final:** ferramentas, sequência do processo, como o engineering validation funcionou — em 2–3 frases, não como seção separada
 
-### Solução / Solution
+### Solução & Craft / Solution & Craft
 - Os fluxos/áreas principais e como funcionam
-- Sistema: regras, componentes, tokens
-
-### Craft & Acessibilidade / Craft & Accessibility
-- Detalhes de interação, edge cases, decisões de acessibilidade
-
-### Colaboração técnica / Technical collaboration
-- Arquitetura, viabilidade, limites enfrentados
-
-### Impacto / Impact
-- Métricas (honestas) + resultado qualitativo
+- Detalhes de interação, edge cases, decisões de acessibilidade — integrados à descrição da solução, não em bullets separados
 
 ### Aprendizados / Learnings
-- Limites da solução + o que faria diferente
+- O que você **não conseguiu medir ou provar** — a incerteza honesta do projeto
+- O que faria diferente
+- A lição que é específica a este projeto (não uma máxima genérica)
 
 ---
 
@@ -158,6 +150,47 @@ Estrutura única para qualquer projeto. Rótulos em PT (EN). Preencha cada bloco
 4. **Uma ideia por bloco.** Cada parágrafo/imagem carrega uma ideia.
 5. **Hierarquia de visuais:** capa (1) → antes/depois (1) → fluxo principal (1-2) → diagrama de sistema (1) → detalhes de craft (2-3).
 6. **Primeira pessoa com ownership.** "Eu decidi", "Eu descartei X porque...".
+
+---
+
+## 4.1 Voz humana — como evitar escrita que parece IA
+
+Textos de case gerados ou revisados por IA tendem a ter os mesmos marcadores. Reconheça e quebre cada um:
+
+### Marcadores de IA e como quebrá-los
+
+**1. Fórmula uniforme em cada decisão**
+> Sinal: Problema → Opções → Escolha → Porquê × N, com o mesmo peso e extensão para cada decisão.
+
+Quebre atribuindo peso proporcional à dificuldade real. A decisão mais difícil merece mais espaço e mais honestidade. A mais óbvia pode ser uma frase. Misture formatos: uma decisão como narrativa, outra como constatação direta, outra como tensão não resolvida.
+
+**2. Incerteza performada no mesmo lugar estrutural**
+> Sinal: "De todas as decisões deste projeto, a que eu estava menos certo foi X" — a frase de abertura da seção, sempre no mesmo tom, sempre resolvida ao final do parágrafo.
+
+A incerteza real não tem timing certo. Pode aparecer no meio de uma seção, pode não se resolver. "O que ainda não sei" no meio de um parágrafo soa mais verdadeiro do que como abertura ritualizada.
+
+**3. Conclusões filosóficas que cabem em qualquer projeto**
+> Sinal: "Às vezes o trabalho do designer é menos sobre inventar e mais sobre fazer o existente aparecer." Poderia encerrar qualquer case de qualquer área.
+
+Finais fortes são específicos ao projeto. Se a frase funciona em outro case sem edição, ela não pertence a este.
+
+**4. Detalhes sem textura**
+> Sinal: "as gravações foram o ponto de virada" sem dizer *o quê* nas gravações, ou "buscas mais comuns eram previsíveis" sem um exemplo concreto.
+
+Adicione pelo menos um detalhe que só quem esteve no projeto saberia: o que exatamente apareceu no Clarity, o nome do tipo de documento que causou confusão, o momento em que o usuário saiu da plataforma.
+
+**5. Prosa limpa demais**
+> Sinal: sem nenhuma frase que revele que foi uma escolha entre opções ruins, que algo não funcionou, que houve pressão externa.
+
+Permita o enquadramento "opção menos ruim": "Fui com o painel lateral — não porque era a resposta óbvia, mas porque as outras duas resolviam a versão errada do problema." Isso soa como alguém que pensou de verdade, não alguém que sabia a resposta desde o início.
+
+### Checklist rápido antes de publicar uma seção de Processo & Decisões
+
+- [ ] As decisões têm pesos diferentes (extensões diferentes)?
+- [ ] Pelo menos uma decisão admite "opção menos ruim" ou incerteza não resolvida?
+- [ ] Há pelo menos um detalhe específico que não poderia estar em outro case?
+- [ ] O encerramento da seção é específico a este projeto?
+- [ ] Nenhuma decisão usa exatamente o mesmo padrão de frase que a anterior?
 
 ---
 

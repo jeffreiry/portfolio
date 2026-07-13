@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Arezzo&Co · Social Media Ad System"
 slug: arezzo-ad-management
 role: "UX Researcher · UX Designer · UI Designer"
@@ -27,23 +27,13 @@ order: 7
 
 The Arezzo&Co group operates multiple brands (Arezzo, Schutz, and others) with hundreds of physical stores, each with autonomy to create and submit social media ads. The chain involves three actors with distinct goals: the **Store Owner** who creates and tracks their own ads, the **Traffic Manager** who supervises a set of stores and approves the creatives, and the **Marketing** team who monitors consolidated brand performance and manages budgets. The existing system didn't reflect this structure — all profiles accessed the same screens, regardless of what they needed to do.
 
+I came in as UX Researcher, UX Designer, and UI Designer, responsible for the full project — conducting interviews with each user profile, mapping journeys and role-based information architecture, and designing all interfaces (web and mobile) in Figma over 3 months. The project was built in partnership with a technology company that provided the platform for the group.
+
+The scope had three hard constraints: the solution had to be a single coherent platform with differentiated routes per role, not three separate products; it had to serve Arezzo, Schutz, and other group brands with visual consistency without losing each brand's identity where it mattered; and a 3-month timeline covered research, architecture, design, and prototyping of web + mobile for all three profiles.
+
 **Prior state:** a single system with no role differentiation, where Store Owners got lost in corporate metrics and Marketing had no consolidated view without navigating store by store.
 
 ![Store Owner — ad dashboard with available budget and inline results](/cases/arezzo-ad-management/01-store-view.png)
-
----
-
-## My role
-
-UX Researcher, UX Designer, and UI Designer responsible for the full project: I conducted interviews with each user profile, mapped the journeys and role-based information architecture, and designed all interfaces — web and mobile — in Figma. The project was built in partnership with a technology company that provided the platform for the group.
-
----
-
-## Constraints
-
-- **Three roles, one system** — the solution couldn't be three separate products; it had to be a coherent platform with differentiated routes and screens per role without exploding maintenance cost.
-- **Multi-brand** — the same system served Arezzo, Schutz, and other group brands, requiring visual consistency without losing each brand's identity in relevant contexts.
-- **3-month timeline** — tight scope covering research, architecture, design, and prototyping of web + mobile for all profiles.
 
 ---
 
@@ -69,11 +59,13 @@ The decision that cost me the most was the three distinct homes — the worry wa
 
 The problem was that isolated cards show state, not relationship. What Marketing needed to understand was: where does the chain lose efficiency? "Conversations: 20" doesn't answer that. "Impressions 3,538 → Conversations 20" does. I replaced the cards with a visual funnel (Impressions → Engagement → Clicks → Conversations → Sales) — the KPI cards stayed as complement, not protagonist.
 
+Research and design pipeline: per-profile interviews → journey mapping + benchmarking → role-based information architecture → Figma wireframes → internal validations → web + mobile interfaces → prototyping → handoff to partner technology company. The role-based information architecture phase happened before any screen was designed — defining which routes and modules existed per role was what made it possible to develop the interfaces without rework.
+
 ![Marketing — conversion funnel from impressions to sales with consolidated metrics](/cases/arezzo-ad-management/02-manager-view.png)
 
 ---
 
-## Solution
+## Solution & Craft
 
 A multi-role ad management platform with three distinct experiences within the same system:
 
@@ -81,37 +73,23 @@ A multi-role ad management platform with three distinct experiences within the s
 - **Traffic Managers** approve or reject ads via a filtered queue, monitor stores under their responsibility, and track tactical performance reports.
 - **Marketing** accesses the consolidated panel with a conversion funnel, manages monthly budget per store with inline editing, and monitors the health of the entire brand's ad portfolio.
 
-All screens were delivered in **web and mobile** versions, with mobile navigation adapted to each profile's usage pattern.
+All screens were delivered in **web and mobile**, with mobile navigation adapted to each profile's usage pattern.
+
+- The **available budget alert banner** on the Store Owner view uses amber (not red — it's not urgency, it's opportunity) and offers an immediate "Learn more" action without forcing interaction.
+- **Ad cards in the approval queue** display status with a colored badge (orange "New", green "Active") + run dates + budget at the top, allowing context reading before opening the ad.
+- The **editable budget** uses inline editing triggered by a pencil icon — the field opens with the current value pre-filled and a "Confirm" button without leaving the table.
+- **Mobile navigation** was redesigned per profile: Store Owners have "New" prominently centered in the bottom nav (their primary action); Traffic Managers have "Reports" as the first item.
+- **Status badges** (orange "New", green "Active") pair color with a text label — status is readable without relying on color alone, meeting WCAG 1.4.1 for users with color-vision limitations.
 
 ![Admin — budget management and consolidated performance by store](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 
-## Craft & Accessibility
-
-- The **available budget alert banner** on the Store Owner view uses amber (not red — it's not urgency, it's opportunity) and offers an immediate "Learn more" action without forcing interaction.
-- **Ad cards in the approval queue** display status with a colored badge (orange "New", green "Active") + run dates + budget at the top, allowing context reading before opening the ad.
-- The **editable budget** on the Budget screen uses inline editing triggered by a pencil icon — the field opens with the current value pre-filled and a "Confirm" button without leaving the table.
-- **Mobile navigation** was redesigned per profile: Store Owners have "New" prominently centered in the bottom nav (their primary action); Traffic Managers have "Reports" as the first item.
-- **Status badges** (orange "New", green "Active") pair color with a text label — status is readable without relying on color alone, meeting WCAG 1.4.1 for users with color-vision limitations or in low-contrast contexts.
-
----
-
-## Technical collaboration
-
-Research and design pipeline: `per-profile interviews → journey mapping + benchmarking → role-based information architecture → Figma wireframes → internal validations → web + mobile interfaces → prototyping → handoff to partner technology company`. The role-based information architecture phase was completed before any screen was designed — defining which routes and modules existed per role was what made it possible to develop the interfaces without rework.
-
----
-
-## What I'd Do Differently
+## Learnings
 
 I delivered web and mobile interfaces for all three profiles, covering all journeys from the research. But we measured nothing after launch — no satisfaction by role, no approval time, no budget utilization rate for Store Owners.
 
 If I were doing it again: before closing the scope, I would have negotiated a validation round with real users from each role on the navigable prototype — not to change the architecture, but to confirm whether each profile's contextual home actually answered their most frequent question, or whether I'd gotten the information hierarchy wrong somewhere. Role-based design seems right in theory. Without post-launch feedback, I don't know where I missed.
-
----
-
-## Learnings
 
 The greatest risk in multi-role projects is falling into the trap of "the system serves everyone" — which in practice means it serves no one well. The decision to define role-based information architecture before drawing any screen was what determined the outcome: each user entered a product designed for what they actually needed to do.
 

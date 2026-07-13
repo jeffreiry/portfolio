@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Del Valle · Website Redesign"
 slug: del-valle-website
 role: "UX · UI · Visual Designer"
@@ -27,23 +27,13 @@ order: 8
 
 Del Valle launched a new global visual identity with a new palette, typographic system, and graphic language. The existing website used the previous identity and needed to be updated to reflect the new "Cheio de vida" (Full of Life) campaign — which repositioned the brand with emphasis on the Brazilian origin of its fruits, the chain of small and large producers, and the emotional connection between product and family. The challenge wasn't building an identity from scratch: it was faithfully translating a personality-rich campaign into a functional website without emptying its expressiveness in the digitization process.
 
+I came in as UX, UI, and Visual Designer responsible for the complete redesign — studying the visual identity manual and campaign references, defining the information architecture for the pages, creating illustrations and graphic elements, and developing all interfaces (web and mobile) in Figma, Photoshop, and Illustrator over 2 months. Two pages delivered: Home and "Fruta toda hora" (products).
+
+The creative space was constrained from the start: color, typography, and graphic language decisions came from Coca-Cola/Del Valle's global manual — freedom was in the translation, not in creating the system. A 2-month timeline covered sitemap, wireframes, graphic element creation, and web + mobile interfaces. And the campaign was visually rich, which meant the site had to be navigable without suffocating the identity with excessive caution.
+
 **Prior state:** site on the previous identity, visually disconnected from the new campaign and without the fruit-origin narrative that the new brand positioning intended to communicate.
 
 ![Del Valle homepage — "Cheio de vida" identity with fruits as visual protagonists](/cases/del-valle-website/01-home.png)
-
----
-
-## My role
-
-UX, UI, and Visual Designer responsible for the complete redesign: I studied the visual identity manual and campaign references, defined the information architecture for the pages, created illustrations and graphic elements, and developed all interfaces — web and mobile — in Figma, Photoshop, and Illustrator. Two pages delivered: Home and "Fruta toda hora" (products).
-
----
-
-## Constraints
-
-- **Pre-defined identity** — color, typography, and graphic language decisions came from Coca-Cola/Del Valle's global manual. Creative freedom was in the *translation*, not in creating the system.
-- **2-month timeline** for sitemap, wireframes, graphic element creation, and web + mobile interfaces.
-- **Balance between expressiveness and usability** — the campaign was visually rich; the site needed to be navigable without suffocating the identity with excessive caution.
 
 ---
 
@@ -69,11 +59,13 @@ I put a lifestyle photo in the hero and saved the packaging for the products pag
 
 **4. Fruit exploration cards with carousel — problem:** each fruit has multiple information dimensions (geographic origin, number of producers, harvest period, fun fact). Displaying everything at once would weigh down the page; showing only the photo would be superficial. **Options:** fixed text below each fruit vs. card carousel with one dimension per screen. **Choice:** alternating grid — each fruit has a full-screen photo cell and a white card cell that carousels through 4 dimensions (Where it comes from / Number of Producers / Harvest season / Curiosity), with illustrated icon and navigation dots. **Why:** the carousel invites exploration without forcing reading — users who want the origin navigate; those who just want to see the fruit, see it.
 
+Design pipeline: identity manual study + campaign references → sitemap → Figma wireframes → illustration and graphic element creation (Illustrator/Photoshop) → web interface composition → mobile adaptation → prototyping → internal validations → handoff. The graphic element creation phase (blobs, fruit cutouts) was parallel to wireframing — visual decisions and layout decisions were interdependent, not sequential.
+
 ![Fruit exploration — alternating grid with 4-dimension carousel per fruit on tablet](/cases/del-valle-website/02-tablet.png)
 
 ---
 
-## Solution
+## Solution & Craft
 
 Redesigned site in two pages — Home and Fruta toda hora — with a unified visual system:
 
@@ -82,35 +74,21 @@ Redesigned site in two pages — Home and Fruta toda hora — with a unified vis
 
 Both delivered in **web and mobile**, with organic graphic elements reorganized for each breakpoint.
 
+- **Organic blobs** are positioned to create depth: always partially cropped by the screen edge, never centered — conveying movement and the brand extending beyond the frame.
+- **Real fruits** are cut out and placed over the corresponding color blob (oranges over orange blob, grapes over purple blob), creating consistent fruit-color association without needing labels.
+- In the "Fruta toda hora" section, the **lifestyle photo is cropped in a circular shape** over a red circle — consistent with the organic visual language.
+- **CTAs follow a per-section contrast logic**: "Saiba mais" in orange on green background; "Saiba mais" in green on pink background — never a standard CTA color regardless of context.
+- On **mobile**, the hamburger menu preserves "Cheio de vida" next to the logo; organic elements scale proportionally without disappearing.
+
 ![Del Valle homepage — mobile version with organic blobs and "Cheio de vida" identity](/cases/del-valle-website/03-smarphone.png)
 
 ---
 
-## Craft & Visual Design
-
-- **Organic blobs** are positioned to create depth: always partially cropped by the screen edge, never centered — conveying movement and the brand extending beyond the frame.
-- **Real fruits** are cut out and placed over the corresponding color blob (oranges over orange blob, grapes over purple blob), creating consistent fruit-color association without needing labels.
-- In the "Fruta toda hora" section, the **lifestyle photo is cropped in a circular shape** over a red circle — a choice that frames the moment without the formality of a rectangle, consistent with the organic visual language.
-- **CTAs follow a per-section contrast logic**: "Saiba mais" in orange on green background; "Saiba mais" in green on pink background — never a standard CTA color regardless of context.
-- On **mobile**, the hamburger menu preserves "Cheio de vida" next to the logo; organic elements scale proportionally without disappearing.
-
----
-
-## Technical collaboration
-
-Design pipeline: `identity manual study + campaign references → sitemap → Figma wireframes → illustration and graphic element creation (Illustrator/Photoshop) → web interface composition → mobile adaptation → prototyping → internal validations → handoff`. The graphic element creation phase (blobs, fruit cutouts) was parallel to wireframing — visual decisions and layout decisions were interdependent, not sequential.
-
----
-
-## What I'd Do Differently
+## Learnings
 
 I delivered home and products page in web and mobile, aligned to the "Cheio de vida" campaign. But the project ended at handoff — I had no access to any post-launch metrics.
 
 What I'd have wanted to track: whether users actually navigated the fruit exploration cards or skipped straight to products. That interaction was the heart of the narrative value proposition — "we know where every fruit comes from." If nobody opened that carousel, the decision to put the fruit center stage would have been more of a bet than an argument.
-
----
-
-## Learnings
 
 Campaign-driven redesign projects have a specific trap: the temptation to "hold back" expressiveness in the name of usability — toning down the irregular shapes, neutralizing the colors, putting elements back in the grid. Resisting that was the work.
 
