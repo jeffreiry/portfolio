@@ -2,7 +2,7 @@
 title: "Power Apps · Aplicativo de Demonstração"
 slug: power-apps-dummy-app
 role: "UX Designer · Design Systems, 2025"
-summary: "Transformou componentes do Design System em um app mobile de referência no Microsoft Power Apps."
+summary: "Um app mobile de referência que demonstra o Design System da empresa em funcionamento real."
 company: "Grande empresa industrial (confidencial)"
 year: 2025
 bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"

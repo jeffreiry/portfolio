@@ -2,7 +2,7 @@
 title: "Del Valle Kapo · Website Redesign"
 slug: del-valle-kapo
 role: "UX · UI · Visual Designer"
-summary: "Redesigned Del Valle Kapo's site for a Children's Day campaign, with IA driven by Analytics."
+summary: "A Children's Day campaign site with information architecture driven by Analytics data."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-kapo/visao-geral.png

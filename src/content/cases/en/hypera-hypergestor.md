@@ -2,7 +2,7 @@
 title: "Hypera Pharma · HYPERGESTOR"
 slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
-summary: "Built HYPERGESTOR — replacing Hypera Pharma's spreadsheet-based trade fund flow with a traceable pipeline."
+summary: "A trade fund management tool that replaces spreadsheets with a traceable, multi-stage approval pipeline."
 company: "Hypera Pharma (via ilegra)"
 year: 2023
 cover: /cases/hypera-hypergestor/visao-geral.jpg

@@ -2,7 +2,7 @@
 title: "Shipping Capacity Optimization Platform"
 slug: shipping-capacity-platform
 role: "Product Designer, product team, 6 months"
-summary: "Replaced scattered spreadsheets with a visual timeline for maritime cargo capacity optimization."
+summary: "A visual platform that surfaces idle cargo capacity opportunities previously buried in spreadsheets."
 company: "Enterprise (confidential)"
 year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png

@@ -2,7 +2,7 @@
 title: "Shipping Capacity Optimization Platform"
 slug: shipping-capacity-platform
 role: "Product Designer, time de produto, 6 meses"
-summary: "Substituiu planilhas dispersas por um timeline visual para otimizar capacidade de carga marítima."
+summary: "Um sistema visual que expõe oportunidades de carga em navios ociosos antes invisíveis em planilhas."
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png

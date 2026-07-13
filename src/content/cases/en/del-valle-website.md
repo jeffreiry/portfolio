@@ -2,7 +2,7 @@
 title: "Del Valle · Website Redesign"
 slug: del-valle-website
 role: "UX · UI · Visual Designer"
-summary: "Redesigned Del Valle's homepage translating a new global visual identity into digital."
+summary: "A homepage that brings Del Valle's new global visual identity into digital while staying true to the brand."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-website/visao-geral.png

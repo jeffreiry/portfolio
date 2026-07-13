@@ -2,7 +2,7 @@
 title: "Assistente de IA para Conhecimento Corporativo"
 slug: enterprise-ai-assistant
 role: "Product Designer, time de produto, 6 meses"
-summary: "Evoluiu um MVP de assistente IA em plataforma de conhecimento centrada na rastreabilidade de fontes."
+summary: "Uma plataforma de conhecimento corporativo que responde em linguagem natural e mostra a origem de cada resposta."
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png

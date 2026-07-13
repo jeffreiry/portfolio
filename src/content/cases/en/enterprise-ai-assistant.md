@@ -2,7 +2,7 @@
 title: "Enterprise AI Knowledge Assistant"
 slug: enterprise-ai-assistant
 role: "Product Designer, product team, 6 months"
-summary: "Evolved an AI assistant MVP into a knowledge platform built around source traceability."
+summary: "A corporate knowledge platform that answers in natural language and shows the source behind every response."
 company: "Enterprise (confidential)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png
