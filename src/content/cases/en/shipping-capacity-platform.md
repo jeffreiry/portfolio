@@ -63,7 +63,7 @@ Building integrated simulation was the longer path. But it was the only one that
 
 The discovery-to-handoff pipeline ran through workflow reviews with logistics specialists → recurring validation sessions with stakeholders → Mural synthesis → Figma wireframes → navigable prototype → engineering validation → MVP handoff. The recurring validation sessions were structural: maritime logistics has operational constraints that don't emerge from single interviews — multiple refinement cycles with specialists were needed to ensure the timeline and simulation module represented real operational logic correctly. Microsoft Copilot was used during the hypothesis phase to stress-test the simulation module interaction model before committing to the full design direction.
 
-![](/cases/shipping-capacity-platform/01-route-calendar.png)
+![Route availability timeline (Calendário tab) — vessels color-coded by ship plotted across ports and dates May to June, solid lines for active routes and dashed for standby](/cases/shipping-capacity-platform/01-route-calendar.png)
 
 ---
 
@@ -78,9 +78,9 @@ A unified platform for logistics teams to monitor operations and evaluate new ca
 - **Keyboard navigation** — route browsing, the simulation module, and the partner request workflow are all fully operable via keyboard, ensuring operators using alternative input devices can access all platform functions.
 - An **accessibility guideline** covering contrast thresholds, keyboard interaction patterns, and semantic structure was defined as part of the design specification and delivered alongside the Figma handoff.
 
-![](/cases/shipping-capacity-platform/02-route-opportunities.png)
+![Opportunity view (Movimentações tab) — card grid of vessels with available cargo space showing vessel name, cargo type, route origin/destination, occupancy (25%), and "Realizar Simulação" CTA](/cases/shipping-capacity-platform/02-route-opportunities.png)
 
-![](/cases/shipping-capacity-platform/03-route-simulation.png)
+![Simulation module — filter panel on the left (vessel type, ports, date range, cargo quantity and product) and card grid of routes with simulated impact (new occupancy +50%, schedule +2 days), one card expanded with before/after route comparison](/cases/shipping-capacity-platform/03-route-simulation.png)
 
 ---
 
@@ -92,4 +92,4 @@ Simulation is the most expensive part of the design and the hardest to validate 
 
 Operational tools for complex domains carry a double challenge: the designer needs to understand enough of the domain to avoid simplifying what cannot be simplified — and needs to simplify enough for the system to be usable without extensive training. Recurring validation with specialists wasn't a methodological formality; it was what ensured the timeline and simulation reflected real constraints, not approximations.
 
-What I take from this: the opportunity was in the data the whole time. It just needed a surface. Sometimes a designer's work is less about inventing and more about making what already exists visible.
+What I take from this: the opportunity was in the data the whole time. The maritime operations team already knew the cargo patterns — the timeline just made what they knew into something another person could see in the same room.

@@ -77,6 +77,6 @@ Beyond the specific deliverable, the project established a pattern for how the D
 
 ## Learnings
 
-Knowing that another team used the Dummy App as the foundation for a production product was when the project made real sense. A design system isn't documentation — it's infrastructure. And infrastructure only proves it works when someone builds on top of it.
+Knowing that another team used the Dummy App as the foundation for a production product was when the project made real sense. What validated it wasn't the component count or the template documentation — it was that someone copied the whole thing and shipped a real product out of it. That's the test a design system reference either passes or fails.
 
 What I'd do differently: I would have tracked which components were copied most frequently. That information would have fed the library's evolution roadmap better than any planning meeting.

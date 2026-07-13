@@ -47,8 +47,6 @@ Era o segundo problema — e o mais profundo. O primeiro era a própria interfac
 
 **A virada:** o produto não precisava melhorar a busca. Precisava eliminar a necessidade de buscar — e fazer a fonte de cada resposta tão visível quanto a resposta em si.
 
-![](/cases/enterprise-ai-assistant/02-user-research.png)
-
 ---
 
 ## Processo & Decisões
@@ -67,7 +65,7 @@ A arquitetura de integração não foi uma decisão de design. Assim que entende
 
 O pipeline do discovery ao handoff passou por gravações Clarity e heatmaps → entrevistas com usuários do MVP → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia. As gravações foram o input decisivo: mostraram os pontos exatos de abandono — onde os usuários paravam, saíam para confirmar ou repetiam a mesma busca de forma diferente. O Microsoft Copilot foi usado na fase de hipóteses para estressar o racional de design antes de definir a direção — especialmente na avaliação do modelo do painel de fontes.
 
-![](/cases/enterprise-ai-assistant/03-main-interface.png)
+![Estado inicial vazio — "How can I help you?" com 6 chips de prompt sugerido derivados dos padrões de busca mais frequentes da organização](/cases/enterprise-ai-assistant/03-main-interface.png)
 
 ---
 
@@ -79,12 +77,14 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - O **painel de fontes** é uma coluna lateral persistente, não um modal: permanece disponível sem interromper a leitura. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel. A estrutura da resposta separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
 - **Acessibilidade:** todos os fluxos são operáveis por teclado, a ordem de tabulação segue a sequência de leitura e interação (WCAG 2.1.1). Indicadores de confiança e badges de fonte usam combinações de ícone + label, não apenas cor. Hierarquia de headings, ARIA roles e regiões de landmark foram especificados como parte do design — não como uma passada de QA — e entregues junto ao handoff no Figma.
 
-![](/cases/enterprise-ai-assistant/01-file-source.png)
+![Interface conversacional — resposta com painel de Data Source aberto listando arquivos por similaridade e formulário CSAT de feedback no canto da tela](/cases/enterprise-ai-assistant/02-user-research.png)
+
+![Painel de fontes — arquivos listados por similaridade com a query e opção de download individual; botão "Data Source" no rodapé da resposta reabre o painel](/cases/enterprise-ai-assistant/01-file-source.png)
 
 ---
 
 ## Aprendizados
 
-Tem uma coisa que eu queria ter medido: se o painel de fontes mudou o comportamento real dos usuários, ou só fez as pessoas se sentirem mais seguras com um comportamento que já tinham. Tem uma diferença entre uma feature que constrói confiança e uma que sinaliza confiança. Eu acredito que seja a primeira. Não consegui provar.
+Tem uma coisa que eu queria ter medido: se o painel de fontes mudou o comportamento real dos usuários, ou só fez as pessoas se sentirem mais seguras com um comportamento que já tinham. Saímos antes que esse loop pudesse fechar.
 
 A lição mais ampla: este é um case de scale-up, não de 0→1 — e isso muda o tipo de julgamento exigido. Algumas decisões de arquitetura já estavam tomadas pelo MVP; o trabalho foi identificar o que estava errado *na camada de experiência*, não na tecnologia. Em produtos de IA corporativa, confiança não emerge da precisão do modelo. É um problema de design.

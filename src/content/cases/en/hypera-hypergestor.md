@@ -97,4 +97,4 @@ What I'd have done: a usability test session on the distribution flow before han
 
 Internal financial systems have a specific trade-off between speed and control: making everything too fast removes the safeguards the process requires; making everything too deliberate creates adoption resistance. The SAP release gate is the clearest example of this trade-off in the project — and the decision to keep it as explicit confirmation (not automatic) was the right one.
 
-What I keep thinking about: will the person using this system every day experience that gate as protection, or as bureaucracy? I don't know the answer. But it's the right question — and the kind of thing you only find out once the product is in the hands of the people who actually need it.
+What I keep thinking about: will the person using this system every day experience that gate as protection, or as bureaucracy? I don't know — and that's not something a usability test surfaces cleanly. I'd want session recordings four months into production, to see how long people actually pause at that field before clicking Yes.

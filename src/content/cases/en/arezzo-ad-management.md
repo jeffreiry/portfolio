@@ -33,15 +33,13 @@ The scope had three hard constraints: the solution had to be a single coherent p
 
 **Prior state:** a single system with no role differentiation, where Store Owners got lost in corporate metrics and Marketing had no consolidated view without navigating store by store.
 
-![Store Owner — ad dashboard with available budget and inline results](/cases/arezzo-ad-management/01-store-view.png)
-
 ---
 
 ## Discovery & Insight
 
-The interviews revealed that the problem wasn't missing functionality — it was **wrong audience**. The system had the right information, but presented it to whoever didn't need it. A Store Owner doesn't need to see the consolidated ROAS of all 165 brand stores; they need to know if their ad was approved and how much of their budget remains. A Traffic Manager doesn't need the Store Owner's submission flow; they need the pending approval queue and performance of the stores they're responsible for. Marketing needs the complete funnel — impressions to sales — for the entire brand.
+The interviews revealed that the problem wasn't missing functionality — it was **wrong audience**. The system had the right information, but routed it to whoever didn't need it. A Store Owner doesn't need the consolidated ROAS of all 165 brand stores; they need to know if their ad was approved and how much budget they have left. A Traffic Manager manages approvals across a portfolio of stores — the question is "what's pending and from where," not how to create a submission. Marketing is the only profile that needs the full funnel, from impressions to sales, for the entire brand.
 
-**The turning point:** the redesign wasn't an interface question. It was an information architecture question: each profile needed a different product within the same platform.
+**The turning point:** that made this an information architecture problem, not an interface one. Each profile needed a different product inside the same system.
 
 ---
 
@@ -75,13 +73,15 @@ A multi-role ad management platform with three distinct experiences within the s
 
 All screens were delivered in **web and mobile**, with mobile navigation adapted to each profile's usage pattern.
 
+![Store Owner mobile view — available balance (R$ 2,000), active ad with status badge, and inline results (engagement, clicks, revenue, ROAS)](/cases/arezzo-ad-management/01-store-view.png)
+
 - The **available budget alert banner** on the Store Owner view uses amber (not red — it's not urgency, it's opportunity) and offers an immediate "Learn more" action without forcing interaction.
 - **Ad cards in the approval queue** display status with a colored badge (orange "New", green "Active") + run dates + budget at the top, allowing context reading before opening the ad.
 - The **editable budget** uses inline editing triggered by a pencil icon — the field opens with the current value pre-filled and a "Confirm" button without leaving the table.
 - **Mobile navigation** was redesigned per profile: Store Owners have "New" prominently centered in the bottom nav (their primary action); Traffic Managers have "Reports" as the first item.
 - **Status badges** (orange "New", green "Active") pair color with a text label — status is readable without relying on color alone, meeting WCAG 1.4.1 for users with color-vision limitations.
 
-![Admin — budget management and consolidated performance by store](/cases/arezzo-ad-management/03-admin-view.png)
+![Traffic Manager — ad approval queue with cascading filters (Store, Status, Budget, Positioning) and status counts before filtering: New 5, Approved 10, Rejected 2](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 
@@ -91,6 +91,6 @@ I delivered web and mobile interfaces for all three profiles, covering all journ
 
 If I were doing it again: before closing the scope, I would have negotiated a validation round with real users from each role on the navigable prototype — not to change the architecture, but to confirm whether each profile's contextual home actually answered their most frequent question, or whether I'd gotten the information hierarchy wrong somewhere. Role-based design seems right in theory. Without post-launch feedback, I don't know where I missed.
 
-The greatest risk in multi-role projects is falling into the trap of "the system serves everyone" — which in practice means it serves no one well. The decision to define role-based information architecture before drawing any screen was what determined the outcome: each user entered a product designed for what they actually needed to do.
+The constant pull in this project was toward a single home with role filters — the "serves everyone" shortcut. The pressure back from it was specific: Marketing's home needs to show the investment funnel across 165 stores; a Store Owner's home needs to show their own balance and ad status. Those two things on the same screen don't overlap — they cancel each other out. Defining separate homes before drawing any screen was what made the rest buildable: each user entered a product designed for what they actually needed to do.
 
-What I still think about: whether a Regional Manager who also tracks their own stores would be able to orient themselves in this system. They weren't the primary persona. But they weren't impossible either. That's the kind of thing that only surfaces once the product is in people's hands.
+What I still think about: whether a Regional Manager who also tracks their own stores would be able to orient themselves in this system. They weren't the primary persona — but the hybrid role is common in retail. The three-home architecture doesn't have a clean answer for them, and that's the kind of gap that only becomes visible after launch, with a real person sitting in front of the wrong home.

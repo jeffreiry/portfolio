@@ -33,8 +33,6 @@ The creative space was constrained from the start: color, typography, and graphi
 
 **Prior state:** site on the previous identity, visually disconnected from the new campaign and without the fruit-origin narrative that the new brand positioning intended to communicate.
 
-![Del Valle homepage — "Cheio de vida" identity with fruits as visual protagonists](/cases/del-valle-website/01-home.png)
-
 ---
 
 ## Discovery & Insight
@@ -73,6 +71,8 @@ Redesigned site in two pages — Home and Fruta toda hora — with a unified vis
 - **Fruta toda hora (products):** hero with full product lineup on cream background with colorful blobs and real cut fruits placed organically + "Fruta toda hora" section in green with circular-cropped photo + "Da nossa família para a sua" section in pink.
 
 Both delivered in **web and mobile**, with organic graphic elements reorganized for each breakpoint.
+
+![Del Valle mobile — Fruta toda hora section with organic color blobs, full product lineup with cut fruits, and lifestyle photo in circular crop](/cases/del-valle-website/01-home.png)
 
 - **Organic blobs** are positioned to create depth: always partially cropped by the screen edge, never centered — conveying movement and the brand extending beyond the frame.
 - **Real fruits** are cut out and placed over the corresponding color blob (oranges over orange blob, grapes over purple blob), creating consistent fruit-color association without needing labels.

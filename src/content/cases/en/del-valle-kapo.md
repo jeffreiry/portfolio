@@ -33,8 +33,6 @@ The project had a dual constraint from the audience side: the "Sempre Criança 2
 
 **Prior state:** site on the previous campaign's identity, visually misaligned with the new campaign, and without clarity about which sections had real value for users.
 
-![Del Valle Kapo site — mobile version](/cases/del-valle-kapo/01-smatphone.png)
-
 ---
 
 ## Discovery & Insight
@@ -76,6 +74,8 @@ Redesigned site with 6 main sections and a structured play platform:
 - **Nossos Produtos:** video game-style flavor selector with links to partner e-commerce stores.
 - Complete mobile version for all pages.
 
+![Kapo homepage on mobile — hero with "Com Kapo, toda brincadeira gera frutos" headline, lifestyle photo in paper-cutout frame, and "Sempre Criança" campaign section with watercolor lettering](/cases/del-valle-kapo/01-smatphone.png)
+
 - The **transition between sections uses wavy cut-paper edges** — an undulating border that simulates torn paper directly evokes paper-cutting activities, making the visual metaphor coherent from the first to the last section.
 - **Section titles use a hand-painted treatment** with a brush-stroke dark splash as a text background, consistent with Kapo's handwritten visual language.
 - Each Hora de Brincar category has its **own background color, illustrated icon, and typographic treatment** — creating a per-category identity system without requiring a global menu.
@@ -94,4 +94,4 @@ What I'd have wanted to track: whether "Hora de Brincar" traffic grew, or whethe
 
 Data analysis before wireframing was the most important decision in the project — and probably the least obvious for a visual redesign. Without Google Analytics, "Hora de Brincar" would have been treated as supporting content; with the data, it became the redesign's axis.
 
-What I take from this: sometimes the most valuable product already exists inside what the client thinks of as an institutional site. The data just needs someone willing to look before they start redesigning.
+What I take from this: the Analytics session came before the first wireframe — and that ordering made the whole project possible. Without it, "Hora de Brincar" would have been a supporting section and the hero would have been the products page. The data didn't just inform the design; it inverted the brief.

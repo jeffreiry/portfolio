@@ -33,8 +33,6 @@ O espaço criativo estava restrito desde o início: as decisões de cor, tipogra
 
 **Estado anterior:** site com a identidade anterior, desconectado visualmente da nova campanha e sem a narrativa de origem das frutas que a nova posição de marca pretendia comunicar.
 
-![Homepage Del Valle — identidade "Cheio de vida" com frutas como protagonistas](/cases/del-valle-website/01-home.png)
-
 ---
 
 ## Descoberta & Insight
@@ -73,6 +71,8 @@ Site redesenhado em duas páginas — Home e Fruta toda hora — com sistema vis
 - **Fruta toda hora (produtos):** hero com lineup completo de embalagens sobre fundo creme com manchas coloridas e frutas reais cortadas e posicionadas organicamente + seção "Fruta toda hora" em verde com foto circular crop + seção "Da nossa família para a sua" em rosa.
 
 Ambas entregues em **web e mobile**, com os elementos gráficos orgânicos reorganizados para cada breakpoint.
+
+![Del Valle no mobile — seção Fruta toda hora com manchas orgânicas de cor, lineup de produtos com frutas recortadas e foto de pessoa em crop circular](/cases/del-valle-website/01-home.png)
 
 - As **manchas orgânicas** são posicionadas para criar profundidade: sempre parcialmente cortadas pela borda da tela, nunca centralizadas — transmitem movimento e extrapolação da marca para além do frame.
 - As **frutas reais** são recortadas e posicionadas sobre as manchas de cor correspondente (laranja sobre mancha laranja, uvas sobre mancha roxa), criando consistência associativa fruta-cor sem precisar de legenda.

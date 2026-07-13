@@ -77,6 +77,6 @@ Além da entrega específica, o projeto estabeleceu um padrão de como o Design 
 
 ## Aprendizados
 
-Saber que outra equipe usou o Dummy App como base para um produto em produção foi o momento em que o projeto fez sentido de verdade. Design system não é documentação — é infraestrutura. E infraestrutura só prova que funciona quando alguém constrói em cima.
+Saber que outra equipe usou o Dummy App como base para um produto em produção foi o momento em que o projeto fez sentido de verdade. O que validou não foi a contagem de componentes nem a documentação do template — foi o fato de alguém ter copiado o app inteiro e entregado um produto real a partir dele. Esse é o teste que uma referência de design system passa ou não passa.
 
 O que faria diferente: teria instrumentado melhor o app de demonstração para entender quais componentes eram copiados com mais frequência. Essa informação teria alimentado a prioridade de evolução da biblioteca melhor do que qualquer reunião de planejamento.

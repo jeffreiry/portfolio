@@ -36,6 +36,7 @@ Todos os 9 cases (18 arquivos PT+EN) reescritos. Diagnóstico original e detalhe
 3. [Template-mestre do case](#3-template-mestre-do-case)
 4. [Princípios de narrativa](#4-princípios-de-narrativa)
    - 4.1 [Voz humana — como evitar escrita que parece IA](#41-voz-humana--como-evitar-escrita-que-parece-ia)
+   - 4.2 [Imagens e texto — consistência visual-narrativa](#42-imagens-e-texto--consistência-visual-narrativa)
 5. [Checklist de assets](#5-checklist-de-assets)
 6. [Fluxo de atualização](#6-fluxo-de-atualização)
 7. [Checklist de publicação](#7-checklist-de-publicação)
@@ -184,6 +185,26 @@ Adicione pelo menos um detalhe que só quem esteve no projeto saberia: o que exa
 
 Permita o enquadramento "opção menos ruim": "Fui com o painel lateral — não porque era a resposta óbvia, mas porque as outras duas resolviam a versão errada do problema." Isso soa como alguém que pensou de verdade, não alguém que sabia a resposta desde o início.
 
+**6. "Não é X, é Y" — framing contrastivo empilhado**
+> Sinal: "o problema não era a interface — era a arquitetura da informação." "o produto não precisava de mais funcionalidade — precisava de mais confiança." Cada insight em Discovery formulado como inversão.
+
+Uma inversão contrastiva é forte. Duas na mesma seção revelam o molde. Se o insight real foi uma virada de enquadramento, use uma vez e deixe a segunda frase desdobrar a consequência, não repetir a forma.
+
+**7. Triplet framing — três elementos paralelos como prova por enumeração**
+> Sinal: "O Store Owner não precisa de X; precisa de Y. O Traffic Manager não precisa de Z; precisa de W. O Marketing precisa de V." Três frases com gramática idêntica enumerando personas ou situações.
+
+IA usa o padrão de três porque cria ilusão de completude sistemática. Humanos raramente escrevem assim. Um exemplo concreto seguido de uma consequência é mais natural e mais específico do que três slots paralelos preenchidos com o mesmo molde.
+
+**8. Repetição com sinônimos — mesma ideia reembalada**
+> Sinal: "visão consolidada", "métricas consolidadas", "painel consolidado", "dados consolidados" — o mesmo adjetivo quatro vezes no mesmo texto, como se não tivesse aparecido antes.
+
+Escolha o termo mais preciso e use-o. Se precisar variar, use pronome ou elipse. Repetição de sinônimos dá a impressão de que cada parágrafo foi escrito sem memória do anterior.
+
+**9. Travessão como ênfase injetada**
+> Sinal: em-dash usado para criar drama onde a frase já carrega o peso. "o feedback foi educado demais — educado demais para ser honesto." Presente em toda cláusula que quer parecer importante.
+
+Travessão é pontuação, não intensificador. Reserve para quando a pausa física muda a leitura — não para sublinhar o que o vocabulário já diz. Mais de três em um parágrafo é quase sempre excesso.
+
 ### Checklist rápido antes de publicar uma seção de Processo & Decisões
 
 - [ ] As decisões têm pesos diferentes (extensões diferentes)?
@@ -191,6 +212,33 @@ Permita o enquadramento "opção menos ruim": "Fui com o painel lateral — não
 - [ ] Há pelo menos um detalhe específico que não poderia estar em outro case?
 - [ ] O encerramento da seção é específico a este projeto?
 - [ ] Nenhuma decisão usa exatamente o mesmo padrão de frase que a anterior?
+- [ ] A seção Discovery não usa "não era X — era Y" mais de uma vez?
+- [ ] Nenhum bloco tem três frases com gramática idêntica enumerando personas ou situações?
+- [ ] A mesma palavra-chave não aparece mais de duas vezes sem variação?
+
+---
+
+## 4.2 Imagens e texto — consistência visual-narrativa
+
+Cada imagem confirma ou contradiz o texto ao redor. Três regras que evitam ambiguidade:
+
+**1. A imagem vem depois do texto que a descreve, nunca antes**
+O parágrafo que explica a decisão ou feature aparece antes da imagem que a ilustra. Uma imagem de solução posicionada dentro de uma seção de problema faz o leitor interpretar o novo design como sendo o estado anterior.
+
+**2. O alt text descreve o que está literalmente na tela**
+"Lojista no mobile — valor disponível, anúncio ativo e resultados inline" é correto.
+"Admin — gestão de orçamento e performance consolidada" para uma tela que mostra a fila de aprovação do Gestor é incorreto — descreve o que o autor esperava ver, não o que a imagem mostra.
+O alt text precisa funcionar sem o texto ao redor: quem vê apenas a imagem + legenda deve entender exatamente o que está sendo mostrado e a qual perfil/seção pertence.
+
+**3. Seção de Contexto & Problema não usa imagem de solução**
+Se não existe screenshot do estado anterior, a seção fica sem imagem. Inserir uma tela do redesign no Contexto cria ambiguidade sobre o que é "antes" e "depois" — e o leitor que escaneia vai sempre associar a imagem ao texto imediatamente acima dela.
+
+### Checklist antes de publicar as imagens
+
+- [ ] Cada imagem aparece após o texto que a descreve?
+- [ ] O alt text descreve elementos visíveis na tela (perfil, dados, componentes mostrados)?
+- [ ] Nenhuma imagem de solução aparece em seção de Contexto ou Problema?
+- [ ] O leitor que ver apenas o parágrafo acima + a imagem vai entender o que está sendo mostrado?
 
 ---
 
@@ -229,6 +277,7 @@ Antes de subir um case ao site:
 - ⬜ Versões PT e EN dizem a mesma coisa
 - ⬜ Todos os `⬜` de asset resolvidos (ou removidos conscientemente)
 - ⬜ Sem jargão interno não explicado (ΔE, Riegel etc. têm 1 frase de contexto)
+- ⬜ Cada imagem aparece após o texto que a descreve; alt text descreve o que está na tela, não o contexto narrativo
 
 ---
 

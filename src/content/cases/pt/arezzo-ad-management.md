@@ -33,15 +33,13 @@ O escopo tinha três restrições fixas: a solução precisava ser uma plataform
 
 **Estado anterior:** um sistema único sem diferenciação de papel, onde o Lojista se perdia em métricas corporativas e o Marketing não conseguia visão consolidada sem navegar por lojas individualmente.
 
-![Lojista — painel de anúncios com orçamento disponível e resultados inline](/cases/arezzo-ad-management/01-store-view.png)
-
 ---
 
 ## Descoberta & Insight
 
-As entrevistas revelaram que o problema não era de funcionalidade ausente — era de **audiência errada**. O sistema tinha as informações certas, mas as apresentava para quem não precisava delas. Um Lojista não quer saber o ROAS consolidado de todas as 165 lojas da marca; quer saber se seu anúncio foi aprovado e quanto do orçamento dele ainda está disponível. Um Gestor de Tráfego não quer ver o fluxo de submissão do Lojista; quer ver a fila de aprovações pendentes e a performance das lojas sob sua responsabilidade. O Marketing quer o funil completo — de impressões a vendas — para a marca inteira.
+As entrevistas revelaram que o problema não era de funcionalidade ausente — era de **audiência errada**. O sistema tinha as informações certas, mas as direcionava para quem não precisava delas. Um Lojista não quer saber o ROAS consolidado de todas as 165 lojas da marca; quer saber se o anúncio foi aprovado e quanto do orçamento ainda sobra. Um Gestor de Tráfego gerencia aprovações de um portfólio inteiro de lojas — a pergunta dele é "o que está pendente e de onde", não como criar uma submissão. O Marketing é o único perfil que precisa do funil completo, de impressões a vendas, para a marca inteira.
 
-**A virada:** o redesenho não era uma questão de interface. Era uma questão de arquitetura de informação: cada perfil precisava de um produto diferente dentro da mesma plataforma.
+**A virada:** isso transformou o redesenho em um problema de arquitetura de informação, não de interface. Cada perfil precisava de um produto diferente dentro do mesmo sistema.
 
 ---
 
@@ -75,13 +73,15 @@ Uma plataforma multi-perfil de gerenciamento de anúncios com três experiência
 
 Todas as telas foram entregues em versão **web e mobile**, com a navegação mobile adaptada ao padrão de uso de cada perfil.
 
+![Lojista no mobile — valor disponível (R$ 2.000), anúncio ativo com badge de status e resultados inline (engajamento, cliques, receita, ROAS)](/cases/arezzo-ad-management/01-store-view.png)
+
 - O **banner de alerta de orçamento disponível** no Lojista usa cor âmbar (não vermelho — não é urgência, é oportunidade) e oferece ação imediata "Saiba mais" sem forçar interação.
 - Os **cards de anúncio na aprovação** exibem status com badge colorido (laranja "Novo", verde "Ativo") + data de veiculação + orçamento no topo, permitindo leitura do contexto antes de abrir o anúncio.
 - O **orçamento editável** usa edição inline ativada por ícone de lápis — o campo abre com o valor atual pré-preenchido e um botão "Confirmar" sem saída da tabela.
 - A **navegação mobile** foi redesenhada por perfil: Lojistas têm "Novo" com destaque central na bottom nav (sua ação primária); Gestores têm "Relatórios" como primeiro item.
 - Os **badges de status** (laranja "Novo", verde "Ativo") combinam cor e rótulo textual — o estado é legível sem depender de cor isolada, atendendo WCAG 1.4.1 para usuários com daltonismo.
 
-![Admin — gestão de orçamento e performance consolidada por loja](/cases/arezzo-ad-management/03-admin-view.png)
+![Gestor de Tráfego — fila de aprovação de anúncios com filtros em cascata (Loja, Status, Orçamento, Posicionamento) e contagem por status antes de filtrar: Novo 5, Aprovado 10, Reprovado 2](/cases/arezzo-ad-management/03-admin-view.png)
 
 ---
 
@@ -91,6 +91,6 @@ Entreguei interfaces web e mobile para os três perfis, cobrindo todas as jornad
 
 Se pudesse refazer: antes de fechar o escopo, teria negociado uma rodada de validação com usuários reais de cada papel em cima do protótipo navegável — não para mudar a arquitetura, mas para confirmar se a home contextual de cada perfil respondia mesmo à pergunta mais frequente, ou se eu tinha errado a hierarquia de informação em algum caso. O design-por-papel parece certo na teoria. Sem feedback pós-lançamento, não sei onde errei.
 
-O maior risco em projetos multi-perfil é cair na armadilha do "o sistema serve todo mundo" — que na prática significa que não serve ninguém bem. A decisão de definir a arquitetura de informação por papel antes de desenhar qualquer tela foi o que determinou o resultado: cada usuário entrava num produto desenhado para o que ele realmente precisava fazer.
+A tentação constante nesse projeto era uma home única com filtros por papel — o atalho do "serve todo mundo". A pressão contra isso era específica: a home do Marketing precisa mostrar o funil de investimento das 165 lojas; a do Lojista precisa mostrar o próprio saldo e o status dos seus anúncios. Essas duas coisas na mesma tela não se sobrepõem — se cancelam. Definir as homes separadas antes de qualquer tela foi o que tornou o resto construível: cada usuário entrava no produto desenhado para o que ele realmente precisava fazer.
 
-O que fico pensando ainda é se um Gestor Regional que também acompanha suas próprias lojas conseguiria se situar nesse sistema. Ele não era o persona principal. Mas também não era impossível. Isso é o tipo de coisa que só aparece depois que o produto está nas mãos das pessoas.
+O que fico pensando é se um Gestor Regional que também acompanha suas próprias lojas conseguiria se situar nesse sistema. Ele não era o persona principal — mas o papel híbrido é comum no varejo. A arquitetura de três homes não tem uma resposta limpa para ele, e esse é o tipo de lacuna que só aparece depois do lançamento, com uma pessoa real na frente da home errada.

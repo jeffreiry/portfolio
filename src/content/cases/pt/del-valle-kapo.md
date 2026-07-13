@@ -33,8 +33,6 @@ O projeto tinha uma restrição dupla pelo lado da audiência: a campanha "Sempr
 
 **Estado anterior:** site com a identidade da campanha anterior, desalinhado visualmente com a nova campanha e sem clareza sobre quais seções tinham valor real para os usuários.
 
-![Site Del Valle Kapo — versão mobile](/cases/del-valle-kapo/01-smatphone.png)
-
 ---
 
 ## Descoberta & Insight
@@ -76,6 +74,8 @@ Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estr
 - **Nossos Produtos:** seletor de sabor no estilo videogame com link para e-commerces parceiros.
 - Versão mobile completa para todas as páginas.
 
+![Homepage Kapo no mobile — hero com "Com Kapo, toda brincadeira gera frutos", foto de lifestyle em moldura de recorte de papel e seção "Sempre Criança" com lettering aquarela](/cases/del-valle-kapo/01-smatphone.png)
+
 - A **transição entre seções usa bordas onduladas em forma de papel recortado** — uma borda que simula o rasgar de papel evoca diretamente a brincadeira de recorte, tornando a metáfora visual coerente do início ao fim da página.
 - Os **títulos de seção** usam tratamento pintado à mão com splash de tinta como fundo de texto, coerente com a linguagem manuscrita da identidade Kapo.
 - Cada categoria da Hora de Brincar tem **cor de background, ícone ilustrado e tratamento tipográfico próprios** — criando um sistema de identidade por categoria sem precisar de um menu global.
@@ -94,4 +94,4 @@ O que eu queria ter acompanhado: se o tráfego da "Hora de Brincar" cresceu ou s
 
 A análise de dados antes do wireframe foi a decisão mais importante do projeto — e provavelmente a menos óbvia para um projeto de redesign visual. Sem o Google Analytics, a "Hora de Brincar" teria sido tratada como conteúdo de suporte; com os dados, ela se tornou o eixo do redesign.
 
-O que fico é isso: às vezes o produto mais valioso já existe dentro do que o cliente pensa ser um site institucional. Os dados só precisam de alguém disposto a olhar antes de começar a redesenhar.
+O que fico é isso: a análise do Google Analytics veio antes do primeiro wireframe — e essa ordem foi o que tornou o projeto possível. Sem ela, a "Hora de Brincar" seria uma seção de suporte e o hero seria a página de produtos. Os dados não apenas informaram o design; eles inverteram o briefing.

@@ -97,4 +97,4 @@ O que eu queria ter feito: uma sessão de teste de usabilidade com o fluxo de di
 
 Sistemas financeiros internos têm um trade-off específico entre agilidade e controle: tornar tudo rápido demais remove as salvaguardas que o processo exige; tornar tudo deliberado demais cria resistência de adoção. O gate de liberação para o SAP é o exemplo mais claro desse trade-off no projeto — e a decisão de mantê-lo como confirmação explícita (não automático) foi a certa.
 
-O que fico pensando: o usuário que vai usar esse sistema todos os dias vai sentir esse gate como proteção ou como burocracia? Não sei a resposta. Mas é a pergunta certa, e é o tipo de coisa que só se descobre depois que o produto está nas mãos de quem realmente precisa dele.
+O que fico pensando: o usuário que vai usar esse sistema todos os dias vai sentir esse gate como proteção ou como burocracia? Não sei — e isso não é algo que um teste de usabilidade revela com clareza. Queria ter gravações de sessão quatro meses depois do lançamento, para ver quanto tempo as pessoas pausam naquele campo antes de clicar em Sim.

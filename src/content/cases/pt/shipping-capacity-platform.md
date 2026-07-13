@@ -63,7 +63,7 @@ Construir a simulação integrada era o caminho mais longo. Mas era o único que
 
 O pipeline do discovery ao handoff passou por reviews de workflow com especialistas → sessões recorrentes de validação com stakeholders → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia → handoff MVP. As sessões recorrentes foram estruturais: logística marítima tem restrições operacionais que não emergem em entrevistas únicas — múltiplos ciclos de refinamento com especialistas foram necessários para que o timeline e o módulo de simulação representassem a realidade operacional corretamente. O Microsoft Copilot foi usado na fase de hipóteses para estressar o modelo de interação do módulo de simulação antes de definir a direção de design.
 
-![](/cases/shipping-capacity-platform/01-route-calendar.png)
+![Timeline de disponibilidade de rotas (aba Calendário) — navios coloridos por embarcação plotados entre portos e datas de maio a junho, linhas sólidas para ativas e tracejadas para navios em espera](/cases/shipping-capacity-platform/01-route-calendar.png)
 
 ---
 
@@ -78,9 +78,9 @@ Uma plataforma unificada para equipes de logística monitorarem a operação e a
 - **Navegação por teclado** — navegação de rotas, módulo de simulação e workflow de pedidos de parceiros são todos operáveis por teclado, garantindo acesso completo para operadores que utilizam dispositivos de entrada alternativos.
 - Uma **diretriz de acessibilidade** cobrindo thresholds de contraste, padrões de interação por teclado e estrutura semântica foi definida como parte da especificação de design e entregue junto ao handoff no Figma.
 
-![](/cases/shipping-capacity-platform/02-route-opportunities.png)
+![Vista de oportunidades (aba Movimentações) — grade de cards de navios com espaço disponível, exibindo nome, tipo de carga (Gás), rota com origem e destino, ocupação (25%) e CTA "Realizar Simulação"](/cases/shipping-capacity-platform/02-route-opportunities.png)
 
-![](/cases/shipping-capacity-platform/03-route-simulation.png)
+![Módulo de simulação — painel de filtros à esquerda (tipo de navio, portos, datas, quantidade e produto de carga) e grade de rotas com impacto simulado (nova ocupação +50%, cronograma +2 dias), um card expandido com comparação antes/depois da rota](/cases/shipping-capacity-platform/03-route-simulation.png)
 
 ---
 
@@ -92,4 +92,4 @@ A simulação é a parte mais cara do design e a mais difícil de validar antes 
 
 Ferramentas operacionais para domínios complexos têm um desafio duplo: o designer precisa entender o suficiente do domínio para não simplificar o que não pode ser simplificado — e precisa simplificar o suficiente para que o sistema seja utilizável sem treinamento extenso. A validação recorrente com especialistas não foi uma formalidade metodológica; foi o que garantiu que o timeline e a simulação representassem restrições reais, não aproximações.
 
-O que fico é isso: a oportunidade estava nos dados o tempo todo. Ela só precisava de uma superfície. Às vezes o trabalho do designer é menos sobre inventar e mais sobre fazer o existente aparecer.
+O que fico é isso: a oportunidade estava nos dados o tempo todo. A equipe de operações marítimas já sabia dos padrões de carga — o timeline só transformou o que eles sabiam em algo que outra pessoa podia ver na mesma sala.
