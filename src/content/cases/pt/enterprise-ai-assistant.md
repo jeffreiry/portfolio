@@ -10,6 +10,8 @@ bgImage: "https://images.unsplash.com/photo-1762330465857-07e4c81c0dfa?fm=jpg&w=
 accent: "#efedff"
 tags: ["Enterprise", "AI & Automation", "UX Research"]
 metrics:
+  - label: "Usuários impactados"
+    value: "~8.000"
   - label: "Escopo"
     value: "MVP → plataforma completa"
   - label: "Duração"
@@ -35,7 +37,7 @@ Grandes organizações acumulam documentação técnica e regulatória distribu�
 
 ## Meu papel
 
-Product Designer responsável pelo scale-up: conduzi as atividades de discovery (entrevistas com usuários do MVP + análise de comportamento via Clarity), sintetizei as oportunidades em Mural, defini as funcionalidades da versão escalada e desenvolvi todo o design em Figma. Atuei em colaboração com time de produto e engenharia, 6 meses, do discovery ao handoff.
+Product Designer responsável pelo scale-up: conduzi as atividades de discovery (entrevistas com usuários do MVP + análise de comportamento via Clarity + testes de usabilidade com métricas de conclusão de tarefa), sintetizei as oportunidades em Mural, defini as funcionalidades da versão escalada e desenvolvi todo o design em Figma. Atuei em colaboração com time de produto e engenharia, 6 meses, do discovery ao handoff.
 
 ---
 
@@ -96,7 +98,9 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 - O **estado inicial vazio** exibe prompts sugeridos como chips clicáveis — as pessoas não sabem por onde começar com um assistente que integra três bases de conhecimento ao mesmo tempo. Os prompts mostram isso sem exigir leitura prévia.
 - O **painel de fontes** é uma coluna lateral persistente, não um modal ou tooltip: permanece disponível sem interromper a leitura da resposta. O badge com o número de fontes em cada mensagem sinaliza rastreabilidade antes mesmo de abrir o painel.
 - A **estrutura da resposta** separa visualmente a síntese do AI do acesso às fontes — hierarquia clara entre "o que o assistente concluiu" e "de onde isso vem".
-- O **painel de fontes** como coluna lateral persistente não exige interação adicional para abrir ou manter aberto — usuários que navegam por teclado ou leitor de tela acessam rastreabilidade sem fluxo extra (WCAG 2.1.1).
+- O **painel de fontes** como coluna lateral persistente não exige interação adicional para abrir ou manter aberto — todos os fluxos, incluindo acesso a fontes e histórico de conversas, são operáveis por teclado. A ordem de tabulação segue a sequência de leitura e interação (WCAG 2.1.1).
+- **Daltonismo** — indicadores de confiança e badges de fonte usam combinações de ícone + label, não apenas cor. O significado é acessível a usuários com limitação na percepção de cores em toda a interface.
+- A **estrutura semântica** (hierarquia de headings, ARIA roles, regiões de landmark) foi especificada como parte do design — não como uma passada de QA. Uma diretriz de acessibilidade para a plataforma foi estabelecida em conjunto com engenharia e entregue junto ao handoff no Figma.
 
 ![](/cases/enterprise-ai-assistant/01-file-source.png)
 
@@ -107,6 +111,8 @@ Uma plataforma centralizada de acesso ao conhecimento corporativo. O usuário ab
 Pipeline de discovery e design: `gravações Clarity + heatmaps → entrevistas com usuários do MVP → síntese em Mural → oportunidades priorizadas → wireframes Figma → protótipo navegável → validação com engenharia → handoff`. As gravações foram determinantes: mostraram os pontos exatos de abandono no MVP — onde os usuários paravam, saíam para confirmar ou repetiam a mesma busca de forma diferente.
 
 Seis meses para projetar e lançar uma plataforma de uso corporativo amplo — sem conseguir validar todas as hipóteses com usuários reais antes do lançamento — é apertado. Inferimos bastante a partir do comportamento no MVP e de benchmarking de produtos similares. A maior parte se confirmou.
+
+O Microsoft Copilot foi usado na fase de hipóteses de solução para validar alternativas estruturais e estressar o racional de design antes de definir a direção — especialmente na avaliação do modelo do painel de fontes e da arquitetura de integração.
 
 ---
 

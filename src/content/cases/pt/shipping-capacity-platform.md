@@ -38,7 +38,7 @@ Em logística marítima, navios frequentemente partem com capacidade de carga di
 
 ## Meu papel
 
-Product Designer responsável pelo design do MVP do início ao fim: conduzi as atividades de discovery (reviews de workflow com especialistas em logística e sessões recorrentes de validação com stakeholders internos), sintetizei os padrões operacionais em Mural, e desenvolvi todo o design da plataforma em Figma. Atuei em colaboração com time de produto e engenharia, 6 meses, do discovery ao handoff.
+Product Designer responsável pelo design do MVP do início ao fim: conduzi as atividades de discovery (reviews de workflow com especialistas em logística, um workshop colaborativo com especialistas e stakeholders operacionais usando mapeamento de jornada do usuário para definir a abordagem de solução, e sessões recorrentes de validação), sintetizei os padrões operacionais em Mural, e desenvolvi todo o design da plataforma em Figma. Atuei em colaboração com time de produto e engenharia, 6 meses, do discovery ao handoff.
 
 ---
 
@@ -96,6 +96,8 @@ Uma plataforma unificada para equipes de logística monitorarem a operação e a
 - O **módulo de simulação** mantém o estado atual e o cenário simulado em comparação lado a lado, para que o operador veja o delta, não apenas o resultado final.
 - O **workflow de pedidos** estrutura cada solicitação com histórico de etapas e responsável por ação — o operador sabe o que está pendente *dele*, não apenas o status geral.
 - O **timeline** diferencia utilização de capacidade por cor e por densidade visual — dois canais simultâneos garantem que o status é legível para usuários com limitação na percepção de cores, sem depender exclusivamente da cor (WCAG 1.4.1).
+- **Navegação por teclado** — navegação de rotas, módulo de simulação e workflow de pedidos de parceiros são todos operáveis por teclado, garantindo acesso completo para operadores que utilizam dispositivos de entrada alternativos.
+- Uma **diretriz de acessibilidade** cobrindo thresholds de contraste, padrões de interação por teclado e estrutura semântica foi definida como parte da especificação de design e entregue junto ao handoff no Figma.
 
 ![](/cases/shipping-capacity-platform/03-route-simulation.png)
 
@@ -103,7 +105,9 @@ Uma plataforma unificada para equipes de logística monitorarem a operação e a
 
 ## Colaboração técnica
 
-Pipeline de discovery e design: `reviews de workflow com especialistas em logística → sessões recorrentes de validação com stakeholders → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia → handoff MVP`. As sessões recorrentes de validação foram estruturais: o domínio de logística marítima tem restrições operacionais que não emergem em entrevistas únicas — precisaram de múltiplos ciclos de refinamento com especialistas para que o timeline e o módulo de simulação representassem a realidade operacional corretamente. ⬜ Stack técnica da plataforma — preencher se aplicável.
+Pipeline de discovery e design: `reviews de workflow com especialistas em logística → sessões recorrentes de validação com stakeholders → síntese em Mural → wireframes Figma → protótipo navegável → validação com engenharia → handoff MVP`. As sessões recorrentes de validação foram estruturais: o domínio de logística marítima tem restrições operacionais que não emergem em entrevistas únicas — precisaram de múltiplos ciclos de refinamento com especialistas para que o timeline e o módulo de simulação representassem a realidade operacional corretamente.
+
+O Microsoft Copilot foi usado na fase de hipóteses de solução — especialmente para estressar o modelo de interação do módulo de simulação antes de definir a direção de design.
 
 ---
 

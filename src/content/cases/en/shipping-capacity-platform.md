@@ -38,7 +38,7 @@ In maritime logistics, ships frequently depart with available cargo space that c
 
 ## My role
 
-Product Designer responsible for the MVP design end-to-end: I led the discovery activities (workflow reviews with logistics specialists and recurring validation sessions with internal stakeholders), synthesized operational patterns in Mural, and developed all platform design in Figma. I worked in collaboration with the product and engineering team over 6 months, from discovery to handoff.
+Product Designer responsible for the MVP design end-to-end: I led the discovery activities (workflow reviews with logistics specialists, a collaborative workshop with logistics specialists and operational stakeholders using user journey mapping to define the solution approach, and recurring validation sessions), synthesized operational patterns in Mural, and developed all platform design in Figma. I worked in collaboration with the product and engineering team over 6 months, from discovery to handoff.
 
 ---
 
@@ -96,6 +96,8 @@ A unified platform for logistics teams to monitor operations and evaluate new ca
 - The **simulation module** keeps the current state and simulated scenario in side-by-side comparison, so the operator sees the delta, not just the final result.
 - The **request workflow** structures each solicitation with a step history and action owner — the operator knows what is pending *from them*, not just the general status.
 - The **timeline** differentiates capacity utilization by color and by visual density — two simultaneous channels ensure status is readable for users with color-vision limitations, without depending on color alone (WCAG 1.4.1).
+- **Keyboard navigation** — route browsing, the simulation module, and the partner request workflow are all fully operable via keyboard, ensuring operators using alternative input devices can access all platform functions.
+- An **accessibility guideline** covering contrast thresholds, keyboard interaction patterns, and semantic structure was defined as part of the design specification and delivered alongside the Figma handoff.
 
 ![](/cases/shipping-capacity-platform/03-route-simulation.png)
 
@@ -103,7 +105,9 @@ A unified platform for logistics teams to monitor operations and evaluate new ca
 
 ## Technical collaboration
 
-Discovery and design pipeline: `workflow reviews with logistics specialists → recurring validation sessions with stakeholders → synthesis in Mural → Figma wireframes → navigable prototype → engineering validation → MVP handoff`. The recurring validation sessions were structural: maritime logistics has operational constraints that don't emerge from single interviews — multiple refinement cycles with specialists were needed to ensure the timeline and simulation module represented real operational logic correctly. ⬜ Platform technical stack — to fill if applicable.
+Discovery and design pipeline: `workflow reviews with logistics specialists → recurring validation sessions with stakeholders → synthesis in Mural → Figma wireframes → navigable prototype → engineering validation → MVP handoff`. The recurring validation sessions were structural: maritime logistics has operational constraints that don't emerge from single interviews — multiple refinement cycles with specialists were needed to ensure the timeline and simulation module represented real operational logic correctly.
+
+Microsoft Copilot was used during the solution hypothesis phase — particularly to stress-test the simulation module interaction model before committing to the full design direction.
 
 ---
 

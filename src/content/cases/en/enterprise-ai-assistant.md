@@ -10,6 +10,8 @@ bgImage: "https://images.unsplash.com/photo-1762330465857-07e4c81c0dfa?fm=jpg&w=
 accent: "#efedff"
 tags: ["Enterprise", "AI & Automation", "UX Research"]
 metrics:
+  - label: "Users impacted"
+    value: "~8.000"
   - label: "Scope"
     value: "MVP → full platform"
   - label: "Timeline"
@@ -35,7 +37,7 @@ Large organizations accumulate extensive technical and regulatory documentation 
 
 ## My Role
 
-Product Designer responsible for the scale-up: I led the discovery activities (interviews with MVP users + behavioral analysis via Clarity), synthesized opportunities in Mural, defined the feature set for the scaled version, and developed all design in Figma. I worked in collaboration with the product and engineering team over 6 months, from discovery to handoff.
+Product Designer responsible for the scale-up: I led the discovery activities (interviews with MVP users + behavioral analysis via Clarity + usability testing with task-completion metrics), synthesized opportunities in Mural, defined the feature set for the scaled version, and developed all design in Figma. I worked in collaboration with the product and engineering team over 6 months, from discovery to handoff.
 
 ---
 
@@ -96,7 +98,9 @@ A centralized platform for accessing corporate knowledge. Users open a single in
 - The **empty initial state** shows suggested prompts as clickable chips — people don't know where to start with an assistant covering three knowledge bases at once. The prompts show them, without requiring any reading first.
 - The **source panel** is a persistent lateral column, not a modal: it stays available without interrupting the reading of the response. A badge with the source count on each message signals traceability before the panel is even opened.
 - The **response structure** visually separates the AI synthesis from access to sources — clear hierarchy between "what the assistant concluded" and "where that comes from."
-- The **source panel** as a persistent sidebar requires no extra interaction to open or stay open — keyboard and screen-reader users access traceability without an additional flow (WCAG 2.1.1).
+- The **source panel** as a persistent sidebar requires no extra interaction to open or stay open — all flows, including source access and conversation history, are fully operable via keyboard. Tab order follows reading and interaction sequence (WCAG 2.1.1).
+- **Color blindness** — trust indicators and source badges use icon + label combinations, not color alone. Meaning is accessible to users with color-vision limitations across the entire interface.
+- The **semantic structure** (heading hierarchy, ARIA roles, landmark regions) was specified as part of the design — not a QA pass. An accessibility guideline for the platform was established collaboratively with engineering and delivered alongside the Figma handoff.
 
 ![](/cases/enterprise-ai-assistant/01-file-source.png)
 
@@ -107,6 +111,8 @@ A centralized platform for accessing corporate knowledge. Users open a single in
 Discovery and design pipeline: `Clarity recordings + heatmaps → interviews with MVP users → synthesis in Mural → prioritized opportunities → Figma wireframes → navigable prototype → engineering validation → handoff`. The recordings were decisive: they showed the exact drop-off points in the MVP — where users stopped, left to confirm, or repeated the same search differently.
 
 Six months to design and ship a company-wide platform — without being able to validate every assumption with real users before launch — is tight. We inferred a lot from the MVP behavior data and from benchmarking similar enterprise AI products. Most of it held up.
+
+Microsoft Copilot was used during the solution hypothesis phase to validate structural alternatives and stress-test design rationale before committing to the full direction — particularly when evaluating the source panel model and integration architecture.
 
 ---
 
