@@ -33,12 +33,6 @@ Three constraints shaped the work: the cascading fund hierarchy (primary budgets
 
 **Prior state:** a trade marketing cycle with no end-to-end visibility — governance existed on paper, but not in the system.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Unified pipeline</strong>
-  <span>Budget → Fund → Distribution → Verification with evidence and SAP/SEV gate</span>
-</div>
-
 ---
 
 ## Discovery & Insight
@@ -64,12 +58,6 @@ That wasn't laziness — it was the real work pattern. I added a "Suggested Dist
 **4. SAP/SEV integration checkpoint — problem:** fund verification feeds directly into SAP; incorrect or incomplete data at this step has real financial impact. **Options:** automatic integration on save (faster, less control) vs. explicit gate with manual confirmation before release. **Choice:** field "Can it be released for integration approval?" defaulting to "No" — the user must consciously mark "Yes" to release the fund to SAP. Field "Will there be more verification?" allows indicating incomplete auditing without blocking partial save. **Why:** in systems with financial integration, a release error can create inconsistency between the internal system and the ERP — the confirmation gate creates a deliberate review moment before the point of no return.
 
 Design pipeline: benchmarking + per-profile journey mapping → information architecture → Figma wireframes → internal validations → final interfaces → navigable prototype → development handoff (Azure). The per-profile journey mapping was the step that defined which modules existed and how they connected — without it, the risk was building disconnected screens instead of a pipeline.
-
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Distribution modal</strong>
-  <span>Accordion with sales hierarchy + "Suggested Distribution" + SAP release gate</span>
-</div>
 
 ---
 

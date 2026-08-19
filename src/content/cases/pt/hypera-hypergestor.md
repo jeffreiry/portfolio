@@ -33,12 +33,6 @@ Três restrições moldaram o trabalho: a hierarquia de verbas em cascata (orça
 
 **Estado anterior:** ciclo de trade marketing sem visibilidade de ponta a ponta — a governança existia no papel, mas não no sistema.
 
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Pipeline unificado</strong>
-  <span>Orçamento → Verba → Distribuição → Apuração com comprovação e gate SAP/SEV</span>
-</div>
-
 ---
 
 ## Descoberta & Insight
@@ -64,12 +58,6 @@ Isso não era preguiça — era o padrão real de trabalho. Coloquei uma seção
 **4. Checkpoint de integração SAP/SEV — problema:** a comprovação de verbas alimenta diretamente o SAP; um dado incorreto ou incompleto nessa etapa tem impacto financeiro real. **Opções:** integração automática ao salvar (mais ágil, menos controle) vs. gate explícito com confirmação manual antes da liberação. **Escolha:** campo "Pode ser liberada para aprovação da integração?" com padrão "Não" — o usuário precisa marcar "Sim" conscientemente para liberar a verba para o SAP. Campo "Haverá mais comprovação?" permite indicar que a apuração ainda não está completa sem bloquear o salvamento parcial. **Porquê:** em sistemas com integração financeira, um erro de liberação pode gerar inconsistência entre o sistema interno e o ERP — o gate de confirmação cria um momento deliberado de revisão antes do ponto de não retorno.
 
 Pipeline de design: benchmarking + mapeamento de jornadas por perfil → arquitetura de informação → wireframes Figma → validações internas → interfaces finais → protótipo navegável → handoff para desenvolvimento (Azure). O mapeamento de jornada por perfil foi a etapa que definiu quais módulos existiam e como se conectavam — sem ele, o risco era construir telas desconexas em vez de um ciclo.
-
-<div class="image-placeholder">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <strong>Modal de distribuição</strong>
-  <span>Accordion com hierarquia de vendas + "Distribuição Sugerida" + gate de liberação SAP</span>
-</div>
 
 ---
 
