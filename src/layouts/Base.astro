@@ -113,5 +113,30 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
 
     // Roda após cada transição de página (View Transitions API)
     document.addEventListener('astro:page-load', initAnimations);
+
+    // Link mágico (?access=TOKEN): a home é estática (prerendered), então o
+    // middleware não roda nela — esse script cobre esse caso chamando o
+    // endpoint que seta o cookie de sessão, depois limpa a URL visível.
+    // Em páginas SSR (/work/:slug) o middleware já resolve isso sozinho;
+    // aqui o param já não estará mais presente, então isso vira um no-op.
+    async function handleMagicLink() {
+      const url = new URL(window.location.href);
+      const token = url.searchParams.get('access');
+      if (!token) return;
+      try {
+        const res = await fetch('/api/magic-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+        if (res.ok) {
+          url.searchParams.delete('access');
+          window.history.replaceState(null, '', url.toString());
+        }
+      } catch {
+        // rede indisponível — sem tentar de novo, o link continua com o parâmetro
+      }
+    }
+    handleMagicLink();
   </script>
 </html>

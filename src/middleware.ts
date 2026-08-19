@@ -1,6 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 import { getCollection } from 'astro:content';
-import { COOKIE, passwordFor, workSlugFromPath } from './auth';
+import { COOKIE, accessTokenFor, isValidSessionValue, passwordFor, workSlugFromPath } from './auth';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
@@ -9,6 +9,26 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (pathname.startsWith('/jobanalysis')) {
     if (import.meta.env.PROD) return new Response('Not found', { status: 404 });
     return next();
+  }
+
+  // Link mágico: ?access=TOKEN em qualquer página seta o cookie de sessão
+  // dos cases sem passar pelo /login. Funciona em qualquer path (home ou
+  // direto num case) — sempre redireciona pra URL limpa, sem o parâmetro.
+  const accessParam = context.url.searchParams.get('access');
+  if (accessParam !== null) {
+    const token = accessTokenFor('cases');
+    if (token && accessParam === token) {
+      context.cookies.set(COOKIE.cases, token, {
+        httpOnly: true,
+        secure: import.meta.env.PROD,
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 30,
+        path: '/',
+      });
+    }
+    const cleanUrl = new URL(context.url);
+    cleanUrl.searchParams.delete('access');
+    return context.redirect(cleanUrl.toString());
   }
 
   const slug = workSlugFromPath(pathname);
@@ -21,15 +41,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   const area = 'cases' as const;
   const password = passwordFor(area);
+  const token = accessTokenFor(area);
 
-  // Sem senha configurada: libera em dev, bloqueia em prod
-  if (!password) {
+  // Nem senha nem token configurados: libera em dev, bloqueia em prod
+  if (!password && !token) {
     if (import.meta.env.DEV) return next();
     return new Response('Not found', { status: 404 });
   }
 
   const authCookie = context.cookies.get(COOKIE[area]);
-  if (authCookie?.value === password) return next();
+  if (isValidSessionValue(area, authCookie?.value)) return next();
 
   const loginUrl = new URL('/login', context.url);
   loginUrl.searchParams.set('next', pathname);

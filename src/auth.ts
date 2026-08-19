@@ -28,3 +28,17 @@ export const COOKIE: Record<AreaId, string> = {
 export function passwordFor(area: AreaId): string | undefined {
   return import.meta.env.PORTFOLIO_PASSWORD;
 }
+
+// Token de link mágico: ?access=TOKEN em qualquer URL do site seta o cookie
+// de sessão sem passar pelo /login. Separado da senha de propósito — dá pra
+// revogar/trocar o link mandado a recrutadores sem mexer na senha manual.
+// Não é pra ser digitado em lugar nenhum, só existe embutido no link.
+export function accessTokenFor(area: AreaId): string | undefined {
+  return import.meta.env.PORTFOLIO_ACCESS_TOKEN;
+}
+
+/** Um cookie de sessão da área é válido se bater com a senha OU com o token de link mágico. */
+export function isValidSessionValue(area: AreaId, value: string | undefined): boolean {
+  if (!value) return false;
+  return value === passwordFor(area) || value === accessTokenFor(area);
+}

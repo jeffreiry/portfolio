@@ -96,10 +96,11 @@ Antes de redigir ou revisar qualquer case, fazer as perguntas abaixo ao autor. S
 
 | Decisão | Escolha |
 |---|---|
-| Currículo | PDF linkado, versões PT e EN (`public/curriculo-pt.pdf` e `public/resume-en.pdf`) |
+| Currículo | PDF linkado, versões PT e EN (`public/Jeferson_Freiry_PT.pdf` e `public/Jeferson_Freiry_EN.pdf`) |
 | Contato | Formulário (envia para `jfreiry@gmail.com`) + botão WhatsApp |
 | Modo escuro | Sim, com toggle claro/escuro |
 | Microinterações | Expressivas — scroll reveals, hover com personalidade, transições de página |
+| Visibilidade de case novo | `draft: true` só enquanto o projeto pessoal está incompleto (hoje: `cartela-cores`, `painel-saude`). Todo o resto fica `draft: false`. Cases sob NDA/empresa confidencial ganham `protected: true` (exige senha do `/login` ou `?access=` do link mágico — ver `PORTFOLIO_ACCESS_TOKEN`); cases com cliente nomeável ficam públicos sem `protected`. |
 
 ---
 
@@ -108,6 +109,7 @@ Antes de redigir ou revisar qualquer case, fazer as perguntas abaixo ao autor. S
 | Variável | Onde usar | Para quê |
 |---|---|---|
 | `PORTFOLIO_PASSWORD` | Vercel → Settings → Env Vars | Proteção por senha só dos cases com `protected: true` no frontmatter (não é mais `/work/*` inteiro) |
+| `PORTFOLIO_ACCESS_TOKEN` | Vercel → Settings → Env Vars | Token de link mágico — `?access=TOKEN` em qualquer URL do site seta o cookie de sessão dos cases sem passar pelo `/login`. Separado da senha de propósito (dá pra trocar o link mandado a recrutadores sem mexer na senha manual). Gerar como string longa aleatória, nunca digitada — só existe embutida no link (ex: `openssl rand -hex 24`) |
 | `JOBANALYSIS_PASSWORD` | Vercel → Settings → Env Vars | Senha do bench (`/jobanalysis`), independente dos cases. Se ausente, cai na `PORTFOLIO_PASSWORD` |
 | `RESEND_API_KEY` | Vercel → Settings → Env Vars | Envio de email do formulário de contato |
 | `ANTHROPIC_API_KEY` | Vercel → Settings → Env Vars | Análise de vagas com Claude (passo 2 do pipeline em `/api/jobanalysis-analyze`) |
