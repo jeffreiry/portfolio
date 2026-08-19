@@ -58,6 +58,7 @@ deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
 | [portfolio-readme.md](portfolio-readme.md) | Visão geral, estrutura de arquivos, como rodar |
 | [docs/design-system.md](docs/design-system.md) | Cores, tipografia, espaçamento, componentes |
 | [docs/cases-portfolio.md](docs/cases-portfolio.md) | **Guia-mestre dos cases**: régua sênior, template, narrativa, modelo técnico no Astro (arquivos, schema, i18n) + os cases já escritos (PT/EN) |
+| [docs/home-copy.md](docs/home-copy.md) | Textos editáveis da home (hero, sobre, carreira, contato) em PT+EN — autor edita aqui, Claude aplica em `index.astro`/`pt/index.astro` |
 | [docs/a11y-checklist.md](docs/a11y-checklist.md) | Checklist de leitor de tela (NVDA/VoiceOver) — passada manual de acessibilidade |
 | [docs/roadmap.md](docs/roadmap.md) | Fases de construção, decisões técnicas e questões em aberto |
 | [Bench_designers/_insights-melhorias.md](Bench_designers/_insights-melhorias.md) | Insights consolidados de benchmark de designers — referência para melhorias nas páginas de case |
