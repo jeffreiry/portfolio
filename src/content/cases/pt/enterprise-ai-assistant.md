@@ -18,7 +18,7 @@ metrics:
   - label: "Duração"
     value: "6 meses"
 featured: true
-draft: true
+draft: false
 protected: true
 order: 4
 ---

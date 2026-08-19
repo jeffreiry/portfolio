@@ -16,7 +16,7 @@ metrics:
   - label: "Timeline"
     value: "6 months"
 featured: true
-draft: true
+draft: false
 protected: true
 order: 3
 ---

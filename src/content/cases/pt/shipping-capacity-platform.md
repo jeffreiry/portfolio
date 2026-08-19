@@ -16,7 +16,7 @@ metrics:
   - label: "Prazo"
     value: "6 meses"
 featured: true
-draft: true
+draft: false
 protected: true
 order: 3
 ---
