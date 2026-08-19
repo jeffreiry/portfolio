@@ -7,6 +7,11 @@ import Footer from '../components/Footer.astro';
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+// Nova Vaga / Editar / Candidatura escrevem no filesystem (Bench_job_applications/*.md)
+// — só funciona rodando local (`npm run dev`). Na Vercel o filesystem é read-only,
+// então essas ações ficam ocultas em produção; a página vira só-visualização.
+const canEdit = import.meta.env.DEV;
+
 // --- Tipos ---
 
 interface VagaParsed {
@@ -273,16 +278,18 @@ const statusOptions = [
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Ranking de aderência</h2>
-        <button
-          id="btn-nova-vaga"
-          class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
-          style="background: var(--color-neutral-900); color: #fff; font-family: var(--font-body);"
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          Nova Vaga
-        </button>
+        {canEdit && (
+          <button
+            id="btn-nova-vaga"
+            class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+            style="background: var(--color-neutral-900); color: #fff; font-family: var(--font-body);"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            Nova Vaga
+          </button>
+        )}
       </div>
       <p data-animate class="text-sm mb-4" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
 
@@ -366,15 +373,24 @@ const statusOptions = [
                     <span aria-hidden="true">📅</span> {formatDate(v.data)}
                   </span>
                 )}
-                <button
-                  class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
-                  style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
-                  data-slug={v.slug} data-empresa={v.empresa} data-cargo={v.cargo}
-                  data-candidatura={v.candidatura} data-status={v.status}
-                  aria-label={`Editar candidatura de ${v.empresa}`}
-                >
-                  Candidatura: <span class="candidatura-label font-semibold">{v.candidatura}</span>
-                </button>
+                {canEdit ? (
+                  <button
+                    class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                    style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
+                    data-slug={v.slug} data-empresa={v.empresa} data-cargo={v.cargo}
+                    data-candidatura={v.candidatura} data-status={v.status}
+                    aria-label={`Editar candidatura de ${v.empresa}`}
+                  >
+                    Candidatura: <span class="candidatura-label font-semibold">{v.candidatura}</span>
+                  </button>
+                ) : (
+                  <span
+                    class="rounded-full border px-2.5 py-1 text-[11px] font-medium"
+                    style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
+                  >
+                    Candidatura: <span class="font-semibold">{v.candidatura}</span>
+                  </span>
+                )}
                 <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium"
                   style={`background: ${b.chipBg}; color: ${b.chipText};`}>
                   {v.interpretacao}
@@ -384,17 +400,19 @@ const statusOptions = [
                   {v.status}
                 </span>
                 <div class="ml-auto flex items-center gap-1.5">
-                  <button
-                    class="edit-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
-                    style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
-                    data-slug={v.slug} data-empresa={v.empresa}
-                    aria-label={`Reanalisar ${v.empresa}`}
-                  >
-                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                      <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Editar
-                  </button>
+                  {canEdit && (
+                    <button
+                      class="edit-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                      style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+                      data-slug={v.slug} data-empresa={v.empresa}
+                      aria-label={`Reanalisar ${v.empresa}`}
+                    >
+                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path d="M8.5 1.5l2 2L3.5 10.5l-2.5.5.5-2.5L8.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Editar
+                    </button>
+                  )}
                   <button
                     class="expander-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
                     style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
