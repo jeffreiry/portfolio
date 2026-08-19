@@ -25,8 +25,17 @@ export const COOKIE: Record<AreaId, string> = {
   cases: 'portfolio_auth',
 };
 
+// Acesso via `_env['VAR']` (não `import.meta.env.VAR` direto) de propósito —
+// o Vite faz inlining estático de `import.meta.env.X` em build time, então
+// se a env var não estivesse disponível no exato momento do build (cache de
+// build, ordem de propagação na Vercel), o valor ficava CONGELADO errado no
+// bundle compilado — permanentemente, até o próximo build, independente do
+// que estivesse configurado depois. Já causou bypass de autenticação real
+// (ver CHANGELOG). Mesmo padrão já usado em jobanalysis-analyze.ts.
+const _env = process.env;
+
 export function passwordFor(area: AreaId): string | undefined {
-  return import.meta.env.PORTFOLIO_PASSWORD;
+  return _env['PORTFOLIO_PASSWORD'] ?? import.meta.env.PORTFOLIO_PASSWORD;
 }
 
 // Token de link mágico: ?access=TOKEN em qualquer URL do site seta o cookie
@@ -34,7 +43,7 @@ export function passwordFor(area: AreaId): string | undefined {
 // revogar/trocar o link mandado a recrutadores sem mexer na senha manual.
 // Não é pra ser digitado em lugar nenhum, só existe embutido no link.
 export function accessTokenFor(area: AreaId): string | undefined {
-  return import.meta.env.PORTFOLIO_ACCESS_TOKEN;
+  return _env['PORTFOLIO_ACCESS_TOKEN'] ?? import.meta.env.PORTFOLIO_ACCESS_TOKEN;
 }
 
 /** Um cookie de sessão da área é válido se bater com a senha OU com o token de link mágico. */

@@ -43,9 +43,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const password = passwordFor(area);
   const token = accessTokenFor(area);
 
-  // Nem senha nem token configurados: libera em dev, bloqueia em prod
+  // Nem senha nem token configurados: sempre bloqueia, sem exceção pra dev —
+  // não depende de detectar corretamente DEV/PROD pra decidir liberar acesso.
+  // Pra testar localmente, configure PORTFOLIO_PASSWORD ou
+  // PORTFOLIO_ACCESS_TOKEN no .env como qualquer outro ambiente.
   if (!password && !token) {
-    if (import.meta.env.DEV) return next();
     return new Response('Not found', { status: 404 });
   }
 
