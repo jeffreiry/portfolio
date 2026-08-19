@@ -132,7 +132,7 @@ interface JdExtracted {
 async function extractWithGroq(jd: string, apiKey: string): Promise<JdExtracted> {
   const groq = new Groq({ apiKey });
   const completion = await groq.chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
+    model: 'openai/gpt-oss-120b',
     max_tokens: 1500,
     temperature: 0.1,
     messages: [
