@@ -3,6 +3,7 @@ title: "Cartela de Cores"
 slug: cartela-cores
 role: "Product Designer, solo, end-to-end"
 summary: "Transformou um PDF estático em sistema que avalia itens do guarda-roupa contra a paleta pessoal."
+thesis: "Uma consultoria de cor que morria num PDF virou um sistema que pontua cada peça do guarda-roupa em tempo real."
 company: "Projeto pessoal"
 year: 2026
 accent: "#fff7ef"

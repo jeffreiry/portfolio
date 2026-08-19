@@ -3,6 +3,7 @@ title: "Del Valle · Redesign de Site"
 slug: del-valle-website
 role: "UX · UI · Visual Designer"
 summary: "Uma homepage que adapta a nova identidade visual global da Del Valle para o digital com fidelidade à marca."
+thesis: "A fruta em tamanho real, antes de qualquer embalagem — porque a campanha se chamava \"Cheio de vida\", não \"Cheio de embalagem\"."
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-website/visao-geral.png

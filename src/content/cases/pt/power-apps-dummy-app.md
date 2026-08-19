@@ -3,6 +3,7 @@ title: "Power Apps · Aplicativo de Demonstração"
 slug: power-apps-dummy-app
 role: "UX Designer · Design Systems, 2025"
 summary: "Um app mobile de referência que demonstra o Design System da empresa em funcionamento real."
+thesis: "Um Design System sem referência viva vira adoção inconsistente — cada time recriando o próprio padrão."
 company: "Grande empresa industrial (confidencial)"
 year: 2025
 bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"
@@ -17,6 +18,7 @@ metrics:
     value: "Toda a organização"
 featured: false
 draft: false
+protected: true
 order: 5
 ---
 

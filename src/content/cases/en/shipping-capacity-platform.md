@@ -3,6 +3,7 @@ title: "Shipping Capacity Optimization Platform"
 slug: shipping-capacity-platform
 role: "Product Designer, product team, 6 months"
 summary: "A visual platform that surfaces idle cargo capacity opportunities previously buried in spreadsheets."
+thesis: "The commercial opportunity wasn't hidden in the data — it was invisible for lack of a timeline."
 company: "Enterprise (confidential)"
 year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png
@@ -16,6 +17,7 @@ metrics:
     value: "6 months"
 featured: true
 draft: false
+protected: true
 order: 3
 ---
 

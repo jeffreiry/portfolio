@@ -1,5 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
-import { areaForPath, COOKIE, passwordFor } from './auth';
+import { getCollection } from 'astro:content';
+import { COOKIE, passwordFor, workSlugFromPath } from './auth';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
@@ -10,9 +11,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  const area = areaForPath(pathname);
-  if (!area) return next();
+  const slug = workSlugFromPath(pathname);
+  if (!slug) return next();
 
+  // Só exige senha se o case específico tiver `protected: true` no frontmatter
+  // — o resto de /work/* é público.
+  const [entry] = await getCollection('casesEn', ({ data }) => data.slug === slug);
+  if (!entry?.data.protected) return next();
+
+  const area = 'cases' as const;
   const password = passwordFor(area);
 
   // Sem senha configurada: libera em dev, bloqueia em prod

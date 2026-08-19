@@ -3,6 +3,7 @@ title: "Painel Saúde"
 slug: painel-saude
 role: "Product Designer, solo, end-to-end"
 summary: "A dashboard unifying Strava and Hevy data into a single progress view toward a 2028 marathon."
+thesis: "Running lives in Strava, strength lives in Hevy — neither one answers whether I'm actually progressing."
 company: "Personal project"
 year: 2026
 accent: "#e8f5e9"

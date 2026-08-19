@@ -3,6 +3,7 @@ title: "Arezzo&Co · Sistema de Anúncios"
 slug: arezzo-ad-management
 role: "UX Researcher · UX Designer · UI Designer"
 summary: "Uma plataforma de anúncios que unifica três perfis de usuário com necessidades distintas em um único sistema."
+thesis: "Três perfis, três produtos dentro do mesmo sistema — não uma tela genérica tentando servir todo mundo."
 company: "Arezzo&Co (via CWI)"
 year: 2023
 cover: /cases/arezzo-ad-management/visao-geral.png

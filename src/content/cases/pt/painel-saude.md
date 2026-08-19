@@ -3,6 +3,7 @@ title: "Painel Saúde"
 slug: painel-saude
 role: "Product Designer, solo, end-to-end"
 summary: "Dashboard unificando Strava e Hevy em uma visão de progresso diária rumo à maratona de 2028."
+thesis: "Corrida mora no Strava, força mora no Hevy — nenhum dos dois responde se estou progredindo de verdade."
 company: "Projeto pessoal"
 year: 2026
 accent: "#e8f5e9"

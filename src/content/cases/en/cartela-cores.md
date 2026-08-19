@@ -3,6 +3,7 @@ title: "Cartela de Cores"
 slug: cartela-cores
 role: "Product Designer, solo, end-to-end"
 summary: "Turned a static color PDF into a system that scores wardrobe items against a personal palette."
+thesis: "A color consultation that used to die in a PDF became a system that scores every wardrobe item in real time."
 company: "Personal project"
 year: 2026
 accent: "#fff7ef"

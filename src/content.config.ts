@@ -19,6 +19,7 @@ const caseSchema = z.object({
   metrics: z.array(z.object({ label: z.string(), value: z.string(), source: z.string().optional() })).optional(),
   featured: z.boolean().default(false),
   draft: z.boolean().default(true),
+  protected: z.boolean().default(false),
   order: z.number().optional(),
 });
 

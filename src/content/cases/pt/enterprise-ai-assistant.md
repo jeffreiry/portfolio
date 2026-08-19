@@ -3,6 +3,7 @@ title: "Assistente de IA para Conhecimento Corporativo"
 slug: enterprise-ai-assistant
 role: "Product Designer, time de produto, 6 meses"
 summary: "Uma plataforma de conhecimento corporativo que responde em linguagem natural e mostra a origem de cada resposta."
+thesis: "O problema não era a qualidade das respostas da IA — era que ninguém agia sobre elas sem saber de onde vinham."
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png
@@ -18,6 +19,7 @@ metrics:
     value: "6 meses"
 featured: true
 draft: false
+protected: true
 order: 4
 ---
 

@@ -3,6 +3,7 @@ title: "Del Valle · Website Redesign"
 slug: del-valle-website
 role: "UX · UI · Visual Designer"
 summary: "A homepage that brings Del Valle's new global visual identity into digital while staying true to the brand."
+thesis: "The fruit at full size, before any packaging — because the campaign was called \"Full of Life,\" not \"Full of Packaging.\""
 company: "Del Valle / Coca-Cola (via CWI)"
 year: 2023
 cover: /cases/del-valle-website/visao-geral.png

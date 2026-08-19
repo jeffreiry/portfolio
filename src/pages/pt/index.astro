@@ -10,7 +10,7 @@ import WorkoutWidget from '../../components/WorkoutWidget.astro';
 import { getCollection } from 'astro:content';
 import { detectCardImage } from '../../utils/cover';
 
-const allCases = await getCollection('casesPt', ({ data }) => !data.draft);
+const allCases = await getCollection('casesPt', ({ data }) => !data.draft && !data.protected);
 const cases = allCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const whatsappHref = 'https://wa.me/5551984741888';

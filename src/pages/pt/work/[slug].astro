@@ -20,7 +20,8 @@ const { Content } = await render(entry);
 const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order } = entry.data;
 const heroBg = detectHero(slug!) ?? entry.data.cover ?? bgImage;
 
-const sortedCases = cases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const publicCases = cases.filter((c) => !c.data.protected);
+const sortedCases = publicCases.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const currentOrder = entry.data.order ?? 0;
 const nextCase =
   sortedCases.find((c) => (c.data.order ?? 99) > currentOrder) ?? sortedCases[0];

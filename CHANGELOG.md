@@ -1,5 +1,31 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-08-19
+
+### Adicionado
+- **Campo `thesis` preenchido nos 9 cases (PT+EN)** — primeira leva da "Fase 1" de [Bench_designers/_insights-melhorias.md](Bench_designers/_insights-melhorias.md#cruzamento-com-o-bench-de-vagas): a hero de cada case (H1 + subtítulo itálico) agora carrega a frase-manifesto que antes só aparecia depois do scroll, no primeiro H2 do corpo (`.case-content h2:first-of-type`, já estilizado desde antes como tese). Frases extraídas/condensadas do parágrafo "A virada" de cada case, não inventadas.
+
+### Descoberto (infraestrutura da Fase 1 já existia)
+- Pull-quote estilizado (`.case-content blockquote`), eyebrow labels de seção (`.case-content h2:not(:first-of-type)`), campo `metrics[].source` (schema + render) e count-up animado nas métricas já estavam implementados antes desta sessão — só não tinham conteúdo usando-os. Nenhum código novo necessário para esses itens.
+
+### Não feito — motivo registrado
+- **Fase 2 (métricas inline, count-up com dado real)**: bloqueada por dado, não por código. Das métricas hoje preenchidas, só Enterprise AI tem um número de impacto real (~8.000 usuários); o resto é escopo/prazo. Fazer "métricas distribuídas pela narrativa" agora seria construir em cima de `⬜` do `docs/gaps-para-responder.md`.
+- **Fase 3 — captions de decisão**: cheguei a prototipar um plugin rehype para promover o `alt` das imagens a legenda visível, mas parei — `docs/cases-portfolio.md §4.2` documenta que o alt text é **deliberadamente** escopado a "o que está na tela", com a decisão de design vivendo no parágrafo imediatamente anterior à imagem (regra 1 da mesma seção). Promover o alt como está duplicaria "o que é mostrado", não entregaria "a decisão" que o insight pede — precisa de legendas novas, escritas propositalmente, não geradas do alt existente. Fica como tarefa separada.
+- **Embeds** (Fase 3): depende de artefato vivo (Figma/Storybook) publicável — não avaliado ainda.
+
+## 2026-08-18
+
+### Adicionado
+- **Proteção por senha por case individual** — novo campo `protected: boolean` no schema de `content.config.ts` (default `false`), independente de `draft`. Antes, `PORTFOLIO_PASSWORD` protegia `/work/*` inteiro como um bloco único; agora `src/middleware.ts` consulta a collection pelo slug (`workSlugFromPath` em `src/auth.ts`) e só exige login se aquele case específico tiver `protected: true` — o resto de `/work/*` fica público sem senha. `enterprise-ai-assistant`, `shipping-capacity-platform` e `power-apps-dummy-app` (PT+EN) marcados como `protected: true` (os dois primeiros saíram de `draft: true`, que os deixava inacessíveis mesmo com senha). Excluídos da home (EN+PT) e do carrossel "próximo case" em `[slug].astro`/`pt/[slug].astro` — só acessíveis via link direto + login. Removidos do `customPages` do sitemap em `astro.config.mjs`. Testado localmente (build + dev server): case protegido redireciona para `/login`, case público carrega direto, cookie de sessão após login libera todos os protegidos da área.
+
+### Alterado
+- **`Bench_job_applications/_index.md`** — reconciliadas 3 vagas analisadas em julho/2026 que nunca tinham entrado na tabela: Itaú Especialista Core Experience PF (72%, 2026-07-09), ADP Senior UX Designer (**89% — alta aderência, categoria "submeter"**, 2026-07-10) e Meta Product Designer (40%, 2026-07-11). Média geral atualizada de 52% (23 vagas) para 54% (26 vagas). Gap "UX Research estruturado" na tabela de gaps transversais passou a listar ADP e Itaú entre as vagas afetadas — ambas citam ausência de usability testing/A/B testing formal como bloqueador ou diferencial ausente.
+- **`src/pages/jobanalysis.astro`** — array `gaps[]` (hardcoded, espelha a seção "Gaps transversais" do `_index.md`) sincronizado com a mudança acima.
+- **Contagem de cases publicados**: 7 → 4 públicos sem senha (arezzo, del-valle-website, hypera-hypergestor, del-valle-kapo) + 3 protegidos por senha (`CLAUDE.md` atualizado).
+- **Seção "[Não lançado]" deste changelog** — estava presa ao bench de 2026-06-12 (11 vagas) e misturava pendências já resolvidas (Lighthouse, responsividade, sitemap, imagens) com as ainda abertas. Reescrita para espelhar a tabela "Gaps transversais" atual do `_index.md` e separar o que já foi concluído.
+
+---
+
 ## 2026-06-20
 
 ### Adicionado
@@ -32,16 +58,22 @@
 
 ## [Não lançado]
 
-### Pendente — por criticidade (bench 2026-06-12 · 11 vagas · score médio 60%)
-- 🔴 **Artefatos visíveis** (11/11 vagas) — expor telas, flows ou wireframes em pelo menos 3 cases
-- 🔴 **Métricas de impacto** (`⬜`) (11/11 vagas) — Enterprise AI, Shipping, Arezzo, Hypera
-- 🟠 **Acessibilidade documentada** (8/11 vagas) — enterprise cases com `⬜`; Cartela Cores é a referência WCAG 1.4.1
-- 🟠 **Lighthouse performance mobile 95+** (atual: 73) — Google Fonts render-blocking, LCP background-image sem `fetchpriority`, contraste footer (#6a5a52 / #18120e = 2.82:1)
-- 🟡 **Mobile como plataforma** (4/11 vagas) — Arezzo tem tag "Mobile" — reforçar narrativa de decisões
-- 🟡 **Responsividade fina** nos 3 breakpoints (≥1200 / 810–1199 / ≤809)
-- 🟡 Imagens dos cases em `public/cases/<slug>/cover.webp`
+### Pendente — por criticidade (bench 2026-08-18 · 26 vagas · score médio 54%)
+
+Espelha a tabela "Gaps transversais" de [`Bench_job_applications/_index.md`](Bench_job_applications/_index.md) — ao atualizar uma, sincronizar a outra (e o array `gaps[]` em `src/pages/jobanalysis.astro`).
+
+- 🔴 **Métricas de impacto** (`⬜`) (todas as vagas) — Enterprise AI, Shipping, Arezzo, Hypera
+- 🔴 **Artefatos visíveis** (todas as vagas) — expor telas, flows ou wireframes; imagens já adicionadas em 6 cases (2026-06-20/07-12) mas o gap segue aberto no bench — vagas analisadas depois da adição ainda cobram mais artefatos
+- 🟠 **Acessibilidade documentada** (SAP, BTG, Boticário) — enterprise cases com `⬜`; Cartela Cores é a referência WCAG 1.4.1
+- 🟠 **UX Research estruturado** (C&A, SAP, ADP, Itaú) — A/B testing e testes de usabilidade formais não aparecem em nenhum case
+- 🟡 **Mobile nativo (iOS/Android)** — bloqueador 🔴 explícito no Itaú (72%, arco de acesso 100% mobile) e gap estrutural desde o SAP Concur (52%); Power Apps é low-code, não conta como equivalente
 - Página About dedicada (`/about` + `/pt/about`)
-- Sitemap.xml
+
+### Concluído desde a última auditoria (não relançado formalmente)
+- Lighthouse mobile 95+ atingido (2026-06-19: FCP 1.0s/100, LCP 2.0s/97, Speed Index 1.0s/100)
+- Responsividade fina nos 3 breakpoints (2026-06-23)
+- Sitemap.xml (2026-06-19)
+- Imagens reais dos cases via `card-home.*`/`hero.*` (2026-06-20), substituindo o plano original de `cover.webp`
 
 ---
 

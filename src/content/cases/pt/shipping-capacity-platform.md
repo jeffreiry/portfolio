@@ -3,6 +3,7 @@ title: "Plataforma de Otimização de Capacidade de Carga"
 slug: shipping-capacity-platform
 role: "Product Designer, time de produto, 6 meses"
 summary: "Um sistema visual que expõe oportunidades de carga em navios ociosos antes invisíveis em planilhas."
+thesis: "A oportunidade comercial não estava escondida nos dados — estava invisível pela ausência de um timeline."
 company: "Enterprise (confidencial)"
 year: 2025
 cover: /cases/shipping-capacity-platform/visao-geral.png
@@ -16,6 +17,7 @@ metrics:
     value: "6 meses"
 featured: true
 draft: false
+protected: true
 order: 3
 ---
 

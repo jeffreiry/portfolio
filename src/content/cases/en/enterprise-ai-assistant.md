@@ -3,6 +3,7 @@ title: "Enterprise AI Knowledge Assistant"
 slug: enterprise-ai-assistant
 role: "Product Designer, product team, 6 months"
 summary: "A corporate knowledge platform that answers in natural language and shows the source behind every response."
+thesis: "The problem wasn't the quality of the AI's answers — it was that no one acted on them without knowing where they came from."
 company: "Enterprise (confidential)"
 year: 2025
 cover: /cases/enterprise-ai-assistant/visao-geral.png
@@ -18,6 +19,7 @@ metrics:
     value: "6 months"
 featured: true
 draft: false
+protected: true
 order: 4
 ---
 

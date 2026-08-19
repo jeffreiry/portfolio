@@ -63,8 +63,11 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Pleno](serasa-experian-product-designer-pleno.md) | Serasa Experian | **56%** | Aderência baixa | A avaliar | 2026-06-24 |
 | [Product Designer](south-system-product-designer.md) | South System | **38%** | Desalinhamento estrutural | A avaliar | 2026-06-24 |
 | [Product Designer Sênior](duckduckgo-product-designer-senior.md) | DuckDuckGo | **54%** | Aderência baixa | A avaliar | 2026-07-03 |
+| [Especialista em Design — Core Experience PF](itau-especialista.md) | Itaú | **72%** | Aderência parcial | A avaliar | 2026-07-09 |
+| [Senior UX Designer](adp-senior-ux-designer.md) | ADP · Workforce/HCM | **89%** | Alta aderência — submeter | A avaliar | 2026-07-10 |
+| [Product Designer](meta-product-designer.md) | Meta | **40%** | Aderência baixa | A avaliar | 2026-07-11 |
 
-**Média geral: 52%** · Aderência baixa (23 vagas)
+**Média geral: 54%** · Aderência baixa (26 vagas)
 
 ---
 
@@ -77,6 +80,6 @@ Pendências presentes em todas as vagas — resolver aumenta o score de todas:
 | **Métricas de impacto (`⬜`)** | Alto | Todas | Preencher campos de resultado em Enterprise AI, Shipping, Arezzo, Hypera |
 | **Artefatos visíveis** | Alto | Todas | Expor telas, flows ou wireframes — hoje os cases só descrevem processo |
 | **Acessibilidade (`⬜`)** | Médio–alto | SAP, BTG, Boticário | Documentar ao menos 1 decisão real por case enterprise |
-| **UX Research estruturado** | Médio | C&A, SAP | A/B testing e testes de usabilidade formais não aparecem em nenhum case |
+| **UX Research estruturado** | Médio | C&A, SAP, ADP, Itaú | A/B testing e testes de usabilidade formais não aparecem em nenhum case |
 
 > Como **apresentar** cada gap nas páginas de case (forma + sequência de execução): [Bench_designers/_insights-melhorias.md → Cruzamento com o bench de vagas](../Bench_designers/_insights-melhorias.md#cruzamento-com-o-bench-de-vagas).

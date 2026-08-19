@@ -3,6 +3,7 @@ title: "Power Apps · Design System Demo App"
 slug: power-apps-dummy-app
 role: "UX Designer · Design Systems, 2025"
 summary: "A mobile reference app that demonstrates the company's Design System in a real working product."
+thesis: "A Design System with no living reference becomes inconsistent adoption — every team reinventing its own pattern."
 company: "Large industrial company (confidential)"
 year: 2025
 bgImage: "https://images.unsplash.com/photo-1570101945621-945409a6370f?fm=jpg&w=800&q=80&auto=format&fit=crop"
@@ -17,6 +18,7 @@ metrics:
     value: "Org-wide"
 featured: false
 draft: false
+protected: true
 order: 5
 ---
 
