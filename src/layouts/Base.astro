@@ -119,10 +119,20 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
     // endpoint que seta o cookie de sessão, depois limpa a URL visível.
     // Em páginas SSR (/work/:slug) o middleware já resolve isso sozinho;
     // aqui o param já não estará mais presente, então isso vira um no-op.
+    //
+    // Dispara `magic-link:checked` no window ao terminar (com ou sem token),
+    // pra scripts que dependem do cookie já estar setado (ex: a grade de
+    // Cases revelando os protegidos) saberem a hora certa de rodar —
+    // sem isso, os dois fetches assíncronos correm em paralelo e o outro
+    // script pode checar a sessão antes do cookie existir.
     async function handleMagicLink() {
       const url = new URL(window.location.href);
       const token = url.searchParams.get('access');
-      if (!token) return;
+      if (!token) {
+        (window as any).__magicLinkChecked = true;
+        window.dispatchEvent(new Event('magic-link:checked'));
+        return;
+      }
       try {
         const res = await fetch('/api/magic-link', {
           method: 'POST',
@@ -135,6 +145,9 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
         }
       } catch {
         // rede indisponível — sem tentar de novo, o link continua com o parâmetro
+      } finally {
+        (window as any).__magicLinkChecked = true;
+        window.dispatchEvent(new Event('magic-link:checked'));
       }
     }
     handleMagicLink();

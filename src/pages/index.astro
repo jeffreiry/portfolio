@@ -144,13 +144,14 @@ const whatsappHref = 'https://wa.me/5551984741888';
       <!-- Live region para anunciar resultado do filtro a leitores de tela -->
       <p id="filter-status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div id="cases-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => (
           <div data-animate style={`--animate-delay: ${i * 90}ms`} class="case-card-wrapper" data-tags={c.data.tags.join(',')}>
             <CaseCard {...c.data} cover={detectCardImage(c.data.slug) ?? c.data.cover} lang="en" />
           </div>
         ))}
         <a
+          id="locked-cases-cta"
           data-animate
           style={`--animate-delay: ${cases.length * 90}ms; border-color: var(--border-default);`}
           href="#contact"
@@ -164,7 +165,6 @@ const whatsappHref = 'https://wa.me/5551984741888';
 
     <script>
       const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-      const caseCards  = document.querySelectorAll<HTMLElement>('.case-card-wrapper');
 
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -176,7 +176,8 @@ const whatsappHref = 'https://wa.me/5551984741888';
           btn.setAttribute('aria-pressed', 'true');
           const filter = btn.dataset.filter!;
           let visible = 0;
-          caseCards.forEach(card => {
+          // Live query — cards desbloqueados via link mágico são injetados depois deste script rodar.
+          document.querySelectorAll<HTMLElement>('.case-card-wrapper').forEach(card => {
             const tags = card.dataset.tags?.split(',') ?? [];
             const show = filter === 'all' || tags.includes(filter);
             card.style.display = show ? '' : 'none';
@@ -190,6 +191,62 @@ const whatsappHref = 'https://wa.me/5551984741888';
           }
         });
       });
+
+      // Revela cases protegidos na grade quando a sessão está autenticada
+      // (via /login ou link mágico ?access=). Sem sessão válida, a API
+      // devolve lista vazia — o HTML nunca contém esses cases pra quem não
+      // tem acesso.
+      async function revealUnlockedCases() {
+        try {
+          const res = await fetch('/api/unlocked-cases?lang=en');
+          const data = await res.json();
+          if (!data.unlocked || !data.cases?.length) return;
+
+          const grid = document.getElementById('cases-grid');
+          const cta = document.getElementById('locked-cases-cta');
+          if (!grid) return;
+          cta?.remove();
+
+          [...data.cases].reverse().forEach((c: any) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'case-card-wrapper';
+            wrapper.dataset.tags = (c.tags ?? []).join(',');
+            const img = c.cover ?? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=jpg&w=800&q=80&auto=format&fit=crop';
+            wrapper.innerHTML = `
+              <a href="/work/${c.slug}" class="group flex flex-col overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4" style="border-radius: var(--radius-card); --tw-ring-color: var(--text-heading); background-color: var(--bg-surface); border: 0.5px solid var(--border-default); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);">
+                <div class="relative w-full overflow-hidden" style="height: 200px;">
+                  <img src="${img}" alt="${c.title}" class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
+                  <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height: 3px; background-color: var(--accent-deco);"></div>
+                </div>
+                <div class="flex flex-col gap-3 p-5">
+                  <div class="flex items-center gap-2">
+                    <span class="text-caption uppercase tracking-[var(--tracking-caption)]" style="color: var(--text-subtle); font-weight: 600; font-family: var(--font-body);">${c.year}</span>
+                  </div>
+                  <h3 class="font-display" style="font-size: var(--text-card); line-height: var(--leading-heading); color: var(--text-heading);">${c.title}</h3>
+                  <p class="line-clamp-2 leading-relaxed" style="font-size: var(--text-xs); font-weight: 400; font-family: var(--font-body); color: var(--text-secondary); min-height: calc(var(--text-xs) * var(--leading-normal) * 2);">${c.summary}</p>
+                  <div class="flex flex-wrap justify-center gap-1.5">
+                    ${(c.tags ?? []).slice(0, 3).map((t: string) => `<span class="rounded-full px-2.5 py-1 text-caption font-medium" style="background: var(--bg-surface-alt); color: var(--text-primary); font-family: var(--font-body);">${t}</span>`).join('')}
+                  </div>
+                  <div class="flex justify-center mt-3 lg:hidden">
+                    <span class="inline-flex items-center justify-center" style="background: transparent; border: 1.5px solid var(--accent-text); border-radius: var(--radius-pill); padding: 9px 28px; font-size: 12px; font-weight: 600; font-family: var(--font-body); color: var(--accent-text); letter-spacing: 0.02em;">View case →</span>
+                  </div>
+                </div>
+              </a>
+            `;
+            grid.prepend(wrapper);
+          });
+        } catch {
+          // rede indisponível — cases desbloqueados simplesmente não aparecem, sem quebrar a grade
+        }
+      }
+      // Espera o link mágico (Base.astro) confirmar se setou o cookie antes de
+      // checar a sessão — os dois fetches são independentes, sem essa espera
+      // a checagem pode rodar antes do cookie existir.
+      if ((window as any).__magicLinkChecked) {
+        revealUnlockedCases();
+      } else {
+        window.addEventListener('magic-link:checked', revealUnlockedCases, { once: true });
+      }
     </script>
 
     <style>
