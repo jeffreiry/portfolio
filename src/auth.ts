@@ -5,11 +5,12 @@
 // cases com `protected: true` no frontmatter (ver src/middleware.ts, que
 // consulta a collection por slug antes de exigir login).
 
-export type AreaId = 'cases';
+export type AreaId = 'cases' | 'jobanalysis';
 
 /** Mapeia um pathname para a área protegida correspondente (ou null se pública). */
 export function areaForPath(pathname: string): AreaId | null {
   if (pathname.startsWith('/work/') || pathname.startsWith('/pt/work/')) return 'cases';
+  if (pathname.startsWith('/jobanalysis')) return 'jobanalysis';
   return null;
 }
 
@@ -23,6 +24,7 @@ export function workSlugFromPath(pathname: string): string | null {
 /** Nome do cookie de sessão por área. */
 export const COOKIE: Record<AreaId, string> = {
   cases: 'portfolio_auth',
+  jobanalysis: 'jobanalysis_auth',
 };
 
 // Acesso via `_env['VAR']` (não `import.meta.env.VAR` direto) de propósito —
@@ -35,14 +37,19 @@ export const COOKIE: Record<AreaId, string> = {
 const _env = process.env;
 
 export function passwordFor(area: AreaId): string | undefined {
+  if (area === 'jobanalysis') {
+    return _env['JOBANALYSIS_PASSWORD'] ?? import.meta.env.JOBANALYSIS_PASSWORD;
+  }
   return _env['PORTFOLIO_PASSWORD'] ?? import.meta.env.PORTFOLIO_PASSWORD;
 }
 
 // Token de link mágico: ?access=TOKEN em qualquer URL do site seta o cookie
-// de sessão sem passar pelo /login. Separado da senha de propósito — dá pra
-// revogar/trocar o link mandado a recrutadores sem mexer na senha manual.
-// Não é pra ser digitado em lugar nenhum, só existe embutido no link.
+// de sessão sem passar pelo /login. Só existe pra área "cases" (cases sob
+// NDA) — separado da senha de propósito, pra dar pra revogar/trocar o link
+// mandado a recrutadores sem mexer na senha manual. Não é pra ser digitado
+// em lugar nenhum, só existe embutido no link.
 export function accessTokenFor(area: AreaId): string | undefined {
+  if (area !== 'cases') return undefined;
   return _env['PORTFOLIO_ACCESS_TOKEN'] ?? import.meta.env.PORTFOLIO_ACCESS_TOKEN;
 }
 

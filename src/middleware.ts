@@ -1,14 +1,33 @@
 import { defineMiddleware } from 'astro:middleware';
 import { getCollection } from 'astro:content';
+import type { AreaId } from './auth';
 import { COOKIE, accessTokenFor, isValidSessionValue, passwordFor, workSlugFromPath } from './auth';
+
+// Exige login pra uma área — bloqueia sempre (404) se não houver senha nem
+// token configurado, sem exceção pra dev. Não depende de detectar
+// corretamente DEV/PROD pra decidir liberar acesso: pra testar localmente,
+// configure a senha/token no .env como em qualquer outro ambiente.
+function requireAuth(context: Parameters<Parameters<typeof defineMiddleware>[0]>[0], area: AreaId) {
+  const password = passwordFor(area);
+  const token = accessTokenFor(area);
+  if (!password && !token) {
+    return new Response('Not found', { status: 404 });
+  }
+
+  const authCookie = context.cookies.get(COOKIE[area]);
+  if (isValidSessionValue(area, authCookie?.value)) return null;
+
+  const loginUrl = new URL('/login', context.url);
+  loginUrl.searchParams.set('next', context.url.pathname);
+  return context.redirect(loginUrl.toString());
+}
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
-  // /jobanalysis: só local (404 em produção, sem senha em dev)
   if (pathname.startsWith('/jobanalysis')) {
-    if (import.meta.env.PROD) return new Response('Not found', { status: 404 });
-    return next();
+    const blocked = requireAuth(context, 'jobanalysis');
+    return blocked ?? next();
   }
 
   // Link mágico: ?access=TOKEN em qualquer página seta o cookie de sessão
@@ -39,22 +58,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const [entry] = await getCollection('casesEn', ({ data }) => data.slug === slug);
   if (!entry?.data.protected) return next();
 
-  const area = 'cases' as const;
-  const password = passwordFor(area);
-  const token = accessTokenFor(area);
-
-  // Nem senha nem token configurados: sempre bloqueia, sem exceção pra dev —
-  // não depende de detectar corretamente DEV/PROD pra decidir liberar acesso.
-  // Pra testar localmente, configure PORTFOLIO_PASSWORD ou
-  // PORTFOLIO_ACCESS_TOKEN no .env como qualquer outro ambiente.
-  if (!password && !token) {
-    return new Response('Not found', { status: 404 });
-  }
-
-  const authCookie = context.cookies.get(COOKIE[area]);
-  if (isValidSessionValue(area, authCookie?.value)) return next();
-
-  const loginUrl = new URL('/login', context.url);
-  loginUrl.searchParams.set('next', pathname);
-  return context.redirect(loginUrl.toString());
+  const blocked = requireAuth(context, 'cases');
+  return blocked ?? next();
 });
