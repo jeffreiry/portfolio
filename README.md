@@ -27,6 +27,8 @@ Toda a documentação do projeto está em PT-BR:
 | [docs/cases-portfolio.md](docs/cases-portfolio.md) | Guia-mestre dos cases + modelo técnico no Astro |
 | [docs/roadmap.md](docs/roadmap.md) | Fases, decisões técnicas e questões em aberto |
 | [docs/a11y-checklist.md](docs/a11y-checklist.md) | Checklist de acessibilidade (leitor de tela) |
+| [docs/home-copy.md](docs/home-copy.md) | Textos editáveis da home (hero, sobre, carreira, contato) em PT+EN |
+| [docs/gaps-para-responder.md](docs/gaps-para-responder.md) | Questionário de gaps de conteúdo dos cases (métricas, acessibilidade, etc.) |
 | [case-writing-guide.md](case-writing-guide.md) | Como escrever cases com voz humana |
 | [Bench_job_applications/](Bench_job_applications/) | Análise de vagas-alvo e priorização (Person-Job Fit) |
 

@@ -58,10 +58,10 @@ Portfolio/
 │   │   └── ThemeToggle.svelte      # Ilha Svelte: toggle dark/light mode
 │   ├── layouts/
 │   │   └── Base.astro              # Shell HTML: SEO, meta, fonts, anti-flash dark mode
-│   ├── middleware.ts               # Proteção por senha em /work/*, /pt/work/* e /jobanalysis
+│   ├── middleware.ts               # Proteção por senha/link mágico por case (só os com `protected: true`) + /jobanalysis
 │   ├── pages/
 │   │   ├── index.astro             # Home EN (raiz)
-│   │   ├── jobanalysis.astro       # Bench de candidaturas (PT, SSR, protegido por senha)
+│   │   ├── jobanalysis.astro       # Bench de candidaturas (PT, SSR, protegido por senha própria). Ações de escrita (Nova Vaga/Editar/Candidatura) só aparecem rodando local — em produção é só-visualização (filesystem read-only na Vercel)
 │   │   ├── login.astro             # Tela de login (proteção de cases)
 │   │   ├── contact.astro           # Página de contato EN
 │   │   ├── api/
@@ -101,7 +101,7 @@ banco de dados nem CMS — o conteúdo é versionado no Git.
 ```
 src/content/cases/pt/projeto-x.md  ─┐
 src/content/cases/en/projeto-x.md  ─┤→ content collection → páginas SSR
-config.ts (schema do frontmatter)  ─┘   (protegidas por senha via middleware)
+config.ts (schema do frontmatter)  ─┘   (`protected: true` = senha/link mágico via middleware)
 ```
 
 Cada case PT tem um par EN com o mesmo `slug`. Campos ainda não definidos ficam
@@ -146,16 +146,18 @@ npm run preview
 
 | Variável | Para quê |
 |---|---|
-| `PORTFOLIO_PASSWORD` | Proteção por senha nas páginas de case (`/work/*`) |
-| `JOBANALYSIS_PASSWORD` | Senha do bench (`/jobanalysis`), independente dos cases — fallback p/ `PORTFOLIO_PASSWORD` se ausente |
+| `PORTFOLIO_PASSWORD` | Proteção por senha só dos cases com `protected: true` no frontmatter (não é mais `/work/*` inteiro) |
+| `PORTFOLIO_ACCESS_TOKEN` | Token de link mágico (`?access=TOKEN`) — libera os cases protegidos sem passar pelo `/login`. Separado da senha de propósito |
+| `JOBANALYSIS_PASSWORD` | Senha do bench (`/jobanalysis`), totalmente independente dos cases — **sem** fallback pra `PORTFOLIO_PASSWORD` |
 | `RESEND_API_KEY` | Envio de email do formulário de contato |
+| `GROQ_API_KEY` | Extração de estrutura da JD (passo 1 do pipeline em `/api/jobanalysis-analyze`) — modelo `openai/gpt-oss-120b` |
 | `ANTHROPIC_API_KEY` | Análise de vagas com Claude Sonnet (passo 2 do pipeline em `/api/jobanalysis-analyze`) |
 
 ---
 
 ## Deploy — Vercel
 
-- **Trigger:** automático a cada push para `main`
+- **Trigger:** automático a cada push para `main` — já falhou em silenciar 2x nesta sessão (webhook GitHub→Vercel não disparou); se um push não gerar deploy novo em `vercel ls`, rodar `vercel --prod --yes` manualmente
 - **Build command:** `npm run build`
 - **Output:** `static` — estático por padrão; rotas com `export const prerender = false` viram SSR sob demanda (cases protegidos, `/jobanalysis`, `/api/contact`), o que faz middleware e API routes funcionarem. (Astro 5+ unificou o antigo `hybrid` nesse modelo.)
 - **Domínio:** `portfolio.jefersonfreiry.com` (Cloudflare DNS → Vercel)
@@ -164,9 +166,11 @@ npm run preview
 
 ## Estado atual
 
-**Fase 5 concluída · Deploy ativo.** O site está em produção com 9 cases bilíngues (7 publicados, 2 em draft: `cartela-cores` e `painel-saude`), proteção por senha, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook). Seção Cases com filtro interativo por 7 categorias; `CaseCard` exibe apenas `year` (role removido). Lighthouse mobile 100/97/100/100 ✅.
+**Fase 5 concluída · Deploy ativo.** O site está em produção com 9 cases bilíngues — 4 públicos (sem senha), 3 protegidos por senha/link mágico (`protected: true`, cases sob NDA) e 2 em draft (`cartela-cores`, `painel-saude`) —, formulário de contato com Resend, dark mode e microinterações expressivas. Seção About com widgets ao vivo de Strava e Hevy (dados mensais via painel-saude API, rebuild automático via deploy hook). Seção Cases com filtro interativo por 7 categorias; `CaseCard` exibe apenas `year` (role removido). Lighthouse mobile 100/97/100/100 ✅.
 
-**Bench de vagas (2026-07-04 · 23 vagas · score médio 52%):** Análises em `Bench_job_applications/`, método Person-Job Fit ponderado. Pipeline de análise atualizado para dois passos: Groq extrai estrutura da JD em JSON, Claude Sonnet (`claude-sonnet-4-6`) raciocina sobre aderência ao portfolio com contexto completo dos 9 cases. Score e subtotais recalculados deterministicamente no servidor. "Atualizado em" na página dinâmico (lê maior `data` dos arquivos .md).
+**Link mágico (2026-08-19):** `?access=TOKEN` em qualquer URL do site libera os cases protegidos sem passar pelo `/login` — pensado pra mandar num link só pra recrutadores específicos. Funciona nativamente em páginas SSR (`/work/:slug`) via middleware; a home (estática) usa um endpoint (`/api/magic-link`) + script client-side, já que middleware não roda em rotas prerendered.
+
+**Bench de vagas (2026-08-19 · 26 vagas · score médio 54%):** Análises em `Bench_job_applications/`, método Person-Job Fit ponderado. Pipeline de análise em dois passos: Groq (`openai/gpt-oss-120b`) extrai estrutura da JD em JSON, Claude Sonnet (`claude-sonnet-4-6`) raciocina sobre aderência ao portfolio com contexto completo dos 9 cases. Score e subtotais recalculados deterministicamente no servidor. "Atualizado em" na página dinâmico (lê maior `data` dos arquivos .md). Escrita de arquivo só funciona rodando local — em produção a página `/jobanalysis` é só-visualização (sem os botões Nova Vaga/Editar/Candidatura).
 
 **Benchmark de designers (2026-06-19):** pasta `Bench_designers/` com 5 análises de cases de referência. Insights consolidados em `_insights-melhorias.md` por impacto/esforço.
 

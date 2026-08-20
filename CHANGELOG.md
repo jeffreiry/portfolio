@@ -1,5 +1,25 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-08-19 (continuação — CTA, currículo, link mágico, incidente de segurança, jobanalysis, Groq)
+
+### Adicionado
+- **Card CTA "cases protegidos por senha"** na grade da home (EN+PT) — estilo outline igual ao "Full history"/"Histórico completo" da Carreira, texto alinhado à esquerda em duas linhas, preenchendo o slot vazio da última linha.
+- **Placeholders de imagem pendentes removidos** do case Hypera Pharma (PT+EN) — os dois blocos tracejados ("Pipeline unificado", "Modal de distribuição") saíram até as imagens reais chegarem.
+- **Fix do currículo** (PT+EN): cidade da Braskem corrigida de São Leopoldo pra Porto Alegre. Editado no nível do content stream do PDF (não só cobrindo visualmente) — o texto antigo foi removido de verdade da camada de texto, importante pra ATS/copiar-colar.
+- **Link mágico** (`?access=TOKEN` em qualquer URL) — libera os cases protegidos sem passar pelo `/login`, pensado pra mandar num link só pra recrutadores específicos. Token separado da senha (`PORTFOLIO_ACCESS_TOKEN`). Funciona nativamente em páginas SSR via middleware; a home (estática) usa `/api/magic-link` + script client-side, coordenado por evento (`magic-link:checked`) pra evitar corrida entre os dois fetches assíncronos.
+- **Grade de Cases revela os protegidos quando desbloqueado** — `/api/unlocked-cases` só devolve dados se a sessão for válida (nunca vaza no HTML de quem não tem acesso); script client-side injeta os cards e remove o CTA quando autenticado.
+- **`/jobanalysis` reativado com senha própria** (`JOBANALYSIS_PASSWORD`) — nova `AreaId` em `src/auth.ts`, `requireAuth()` compartilhado no middleware. Descoberta no processo: a página nunca tinha funcionado de verdade em produção (bloqueio incondicional 404, sem checar senha nenhuma), apesar da doc antiga dizer o contrário.
+- **`/jobanalysis` vira só-visualização em produção** — Nova Vaga, Editar (reanalisar) e o toggle de Candidatura dependem de escrita em `Bench_job_applications/*.md`, que só funciona local (Vercel tem filesystem read-only). Antes falhavam silenciosamente ou com erro sem persistir nada; agora só aparecem rodando `npm run dev` (`import.meta.env.DEV`). Candidatura continua visível como texto, só sem poder editar.
+- **Convenções novas registradas no `CLAUDE.md`:** toda vaga nova analisada passa por double-check do Claude antes de validar (rodar local, ler o `.md` gerado); todo deploy passa por build+teste real+conferência em produção, não só "buildou sem erro".
+
+### Corrigido
+- **🔴 Incidente de segurança — bypass de autenticação nos cases NDA.** Causa raiz: `passwordFor()`/`accessTokenFor()` liam `import.meta.env.PORTFOLIO_PASSWORD`/`PORTFOLIO_ACCESS_TOKEN` diretamente — o Vite congela esse tipo de leitura em constante fixa no build (mesmo problema já documentado em `jobanalysis-analyze.ts`). Se a env var não estivesse disponível no instante exato daquele build, o valor ficava errado permanentemente até o próximo build. Confirmado via inspeção direta do bundle compilado (`.vercel/output`), não só teoria. **Fix:** leitura via `process.env['VAR']` através de variável indireta (`_env`), que o Vite não consegue congelar — confirmado no bundle que agora é leitura dinâmica de verdade. **Endurecimento:** removida a exceção "libera acesso em dev sem senha configurada" — agora bloqueia sempre (404), sem depender de detectar corretamente DEV/PROD pra decisão de segurança. Os 3 cases NDA ficaram em `draft: true` (bloqueio total) durante a investigação e só voltaram depois do fix confirmado — testado em preview deployment isolado antes de ir pra produção.
+- **Modelo Groq descontinuado** — `llama-3.3-70b-versatile` sumiu do catálogo da Groq (`model_not_found`), quebrando o passo 1 do pipeline de análise de vaga. Trocado para `openai/gpt-oss-120b`, testado direto na API da Groq com o prompt real antes de aplicar.
+- **`GROQ_API_KEY` nunca tinha sido configurada na Vercel** — só existia no `.env` local. Adicionada em produção.
+- **Deploy automático falhou em disparar 2x nesta sessão** (push não gerou build na Vercel, sem status/deployment associado ao commit no GitHub) — resolvido rodando `vercel --prod --yes` manualmente. Sem causa raiz identificada ainda; documentado no `portfolio-readme.md` como algo a observar.
+
+---
+
 ## 2026-08-19
 
 ### Adicionado

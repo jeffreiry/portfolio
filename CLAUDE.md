@@ -113,6 +113,7 @@ Antes de redigir ou revisar qualquer case, fazer as perguntas abaixo ao autor. S
 | `PORTFOLIO_ACCESS_TOKEN` | Vercel → Settings → Env Vars | Token de link mágico — `?access=TOKEN` em qualquer URL do site seta o cookie de sessão dos cases sem passar pelo `/login`. Separado da senha de propósito (dá pra trocar o link mandado a recrutadores sem mexer na senha manual). Gerar como string longa aleatória, nunca digitada — só existe embutida no link (ex: `openssl rand -hex 24`) |
 | `JOBANALYSIS_PASSWORD` | Vercel → Settings → Env Vars | Senha do bench (`/jobanalysis`), totalmente independente dos cases (sem fallback pra `PORTFOLIO_PASSWORD`) |
 | `RESEND_API_KEY` | Vercel → Settings → Env Vars | Envio de email do formulário de contato |
+| `GROQ_API_KEY` | Vercel → Settings → Env Vars | Extração de estrutura da JD (passo 1 do pipeline em `/api/jobanalysis-analyze`), modelo `openai/gpt-oss-120b` |
 | `ANTHROPIC_API_KEY` | Vercel → Settings → Env Vars | Análise de vagas com Claude (passo 2 do pipeline em `/api/jobanalysis-analyze`) |
 
 O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o domínio precisa ser verificado no painel do Resend antes do envio funcionar em produção.
@@ -145,7 +146,7 @@ O sender do Resend configurado é `contato@portfolio.jefersonfreiry.com` — o d
 
 **A11y e performance (2026-06-19):** Segunda passada de código de acessibilidade: `login.astro` Google Fonts → self-hosted (eliminava render-blocking); `role="alert"` + `aria-required` + `aria-describedby` no login; filter buttons com `aria-pressed` + live region de resultado; `CaseCard` `h2` → `h3` (hierarquia correta); "Other activities" `<p>` → `<h3>`; `ThemeToggle` com `focus-visible`; dots pulsantes dos widgets com `prefers-reduced-motion`; `ContactForm` `client:load` → `client:visible` (reduz TBT). Performance: `preconnect` + `dns-prefetch` para `images.unsplash.com` (hero LCP). Gargalo restante: hero `bgImage` externo — mover para asset self-hosted fecha o Lighthouse mobile.
 
-**Sitemap (2026-06-19):** `astro.config.mjs` com `customPages` para os 7 cases publicados (EN + PT = 14 URLs), filtro para `/jobanalysis` e `/login`. `public/robots.txt` criado.
+**Sitemap (2026-06-19, atualizado 2026-08-19):** `astro.config.mjs` com `customPages` — hoje só os 4 cases públicos (EN + PT = 8 URLs); os 3 protegidos por senha/link mágico saíram da lista quando viraram `protected: true`. Filtro para `/jobanalysis` e `/login`. `public/robots.txt` criado.
 
 **Responsividade fina e a11y de contraste (2026-06-23):** Education e Activities grids na home (EN+PT) corrigidos de `grid-cols-2` fixo para `sm:grid-cols-2` — em mobile (<640px) ficam em 1 coluna. Tables nos cases receberam `display: block; overflow-x: auto` para evitar vazamento em viewports estreitos. `CaseCard` tags: `--text-secondary` → `--text-primary` sobre `--bg-surface-alt` (contraste era ~3.5:1, agora ≥7:1, WCAG AA cumprido).
 
