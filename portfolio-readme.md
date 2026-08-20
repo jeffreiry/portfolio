@@ -22,6 +22,7 @@ bilíngues (PT/EN) em Markdown, hospedado na Vercel.
 | Hospedagem | Vercel (output static + SSR por rota via `prerender = false`) |
 | Fontes | DM Serif Display (display) + Barlow 500/800 (corpo) |
 | Email | Resend (formulário de contato) |
+| Analytics | Vercel Web Analytics (nativo, sem cookies) + Google Analytics 4 (`G-P3Y01ZJ3RT`, 2026-08-20) |
 | Versionamento | Git → GitHub |
 
 ---

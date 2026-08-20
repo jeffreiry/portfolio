@@ -28,6 +28,7 @@ deve servir a **clareza da narrativa dos cases** e à **qualidade percebida**
 | Conteúdo | **Content Collections (Markdown)** | Cases em Markdown puro, versionados no Git |
 | i18n | **Astro i18n routing** | PT (padrão) + EN |
 | Deploy | **Vercel** | Mesmo fluxo do projeto Painel Saúde |
+| Analytics | **Vercel Web Analytics** + **Google Analytics 4** | Vercel nativo (sem cookies, `webAnalytics: true` no adapter); GA4 (`G-P3Y01ZJ3RT`) via `gtag.js` inline no `Base.astro`, adicionado 2026-08-20 — ID não é segredo, hardcoded direto no código |
 | Fontes | **DM Serif Display** (display) + **Barlow 500/800** (corpo) | Ambas self-hosted em `public/fonts/` com subset latin para performance mobile |
 
 > A stack foi decidida pelo Claude a pedido do autor. O racional completo e as

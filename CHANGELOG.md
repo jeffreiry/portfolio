@@ -1,5 +1,14 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-08-20
+
+### Adicionado
+- **Google Analytics 4** (`G-P3Y01ZJ3RT`) — `gtag.js` inline no `Base.astro`, cobre todas as páginas do site. ID hardcoded (não é segredo). `preconnect` pra `googletagmanager.com` adicionado junto. Testado num navegador real (não só `curl`): `window.gtag` carregado e `dataLayer` com as chamadas `js`/`config` processadas, confirmando que o hit é enviado de verdade.
+- **Vercel Web Analytics documentado** — já estava ativo (`webAnalytics: true` no adapter) desde antes desta sessão, mas nunca tinha sido registrado em nenhum doc. Convivem os dois: Vercel (nativo, sem cookies) + GA4 (mais granular).
+- `JOBANALYSIS_PASSWORD` adicionada ao `.env` local (só existia na Vercel) — necessária pra login funcionar rodando `npm run dev`.
+
+---
+
 ## 2026-08-19 (continuação — CTA, currículo, link mágico, incidente de segurança, jobanalysis, Groq)
 
 ### Adicionado
