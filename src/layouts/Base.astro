@@ -82,8 +82,20 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
+    <!-- Preconnect para Google Analytics -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
     <!-- View Transitions API (Astro 6) -->
     <meta name="view-transition" content="same-origin" />
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y01ZJ3RT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-P3Y01ZJ3RT');
+    </script>
   </head>
   <body class="antialiased">
     <a href="#main-content" class="skip-link">Skip to main content</a>
