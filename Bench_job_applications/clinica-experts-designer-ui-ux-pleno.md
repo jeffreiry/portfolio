@@ -4,7 +4,7 @@
 **Produto:** Serviços de saúde
 **Nível:** Pleno
 **Data da vaga:** 2026-06-19
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

@@ -4,7 +4,7 @@
 **Produto:** Core Experience PF — App e Internet Banking (login, multiconta, home, navegação)
 **Nível:** Sênior / Especialista
 **Data da vaga:** 2026-07-09
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

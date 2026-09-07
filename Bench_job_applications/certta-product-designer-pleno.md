@@ -4,7 +4,7 @@
 **Produto:** Produtos digitais da Certta
 **Nível:** Pleno
 **Data da vaga:** 2026-06-19
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

@@ -4,7 +4,7 @@
 **Produto:** Pague Contas (web e app)
 **Nível:** Senior
 **Data da vaga:** 2026-06-01
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

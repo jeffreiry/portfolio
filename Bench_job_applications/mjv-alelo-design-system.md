@@ -5,7 +5,8 @@
 **Nível:** Não especificado (escopo de vaga sênior pelo contexto)  
 **Modelo:** Híbrido · Barueri / SP  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

@@ -6,7 +6,8 @@
 **Local:** Barueri — SP · Híbrido  
 **Prazo de inscrição:** 2026-08-10  
 **Data da vaga:** 2026-06-11  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

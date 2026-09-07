@@ -4,7 +4,7 @@
 **Produto:** Soluções para a Prática Médica
 **Nível:** Sênior
 **Data da vaga:** 2026-04-14
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

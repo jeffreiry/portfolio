@@ -5,7 +5,8 @@
 **Nível:** Designer UX/UI Sênior  
 **Modelo:** Remoto · São Paulo / SP  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

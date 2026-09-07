@@ -170,6 +170,11 @@ const lastVagaDate = vagas
   .sort()
   .at(-1) ?? '';
 
+const candidaturaCounts: Record<'Sim' | 'Não', number> = {
+  Sim: vagas.filter((v) => v.candidatura === 'Sim').length,
+  Não: vagas.filter((v) => v.candidatura === 'Não').length,
+};
+
 function mediaLabel(s: number): string {
   if (s >= 80) return 'alta aderência';
   if (s >= 60) return 'aderência parcial';
@@ -219,6 +224,11 @@ const statusOptions = [
   'Recusado',
   'Arquivado',
 ];
+
+const statusCounts: Record<string, number> = {};
+for (const opt of statusOptions) {
+  statusCounts[opt] = vagas.filter((v) => v.status === opt).length;
+}
 ---
 
 <Base
@@ -272,6 +282,42 @@ const statusOptions = [
       <p data-animate class="pt-3 text-[13px]" style="color: var(--color-faint);">
         {lastVagaDate ? `Atualizado em ${formatDate(lastVagaDate)}` : 'Data não disponível'} · Média geral <strong id="stat-media-inline">{media}%</strong> — {mediaLabel(media)}.
       </p>
+
+      <!-- Cards de filtro: candidatura -->
+      <div class="pt-8">
+        <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Por candidatura</span>
+        <div data-animate class="mt-2 grid gap-4 grid-cols-2 sm:max-w-[400px]">
+          {(['Sim', 'Não'] as const).map((v) => (
+            <button
+              type="button"
+              class="stat-filter-card flex flex-col gap-1 rounded-2xl p-5 text-left"
+              data-filter="candidatura" data-value={v}
+              aria-pressed="false"
+            >
+              <span class="stat-filter-value font-display text-2xl font-bold text-neutral-900">{candidaturaCounts[v]}</span>
+              <span class="text-sm" style="color: var(--color-faint);">Candidatura: {v}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Cards de filtro: status -->
+      <div class="pt-6">
+        <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Por status</span>
+        <div data-animate class="mt-2 grid gap-4 grid-cols-2 sm:grid-cols-4">
+          {statusOptions.filter((s) => statusCounts[s] > 0).map((s) => (
+            <button
+              type="button"
+              class="stat-filter-card flex flex-col gap-1 rounded-2xl p-5 text-left"
+              data-filter="status" data-value={s}
+              aria-pressed="false"
+            >
+              <span class="stat-filter-value font-display text-2xl font-bold text-neutral-900">{statusCounts[s]}</span>
+              <span class="text-sm" style="color: var(--color-faint);">{s}</span>
+            </button>
+          ))}
+        </div>
+      </div>
     </section>
 
     <!-- Ranking de vagas -->
@@ -294,7 +340,21 @@ const statusOptions = [
       <p data-animate class="text-sm mb-4" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
 
       <!-- Filtros -->
-      <div data-animate class="flex flex-wrap gap-x-6 gap-y-3 mb-6 pb-5" style="border-bottom: 1px solid var(--color-border);">
+      <div data-animate class="flex flex-wrap items-center gap-x-6 gap-y-3 mb-6 pb-5" style="border-bottom: 1px solid var(--color-border);">
+        <div class="relative flex items-center">
+          <svg class="pointer-events-none absolute left-3" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style="color: var(--color-faint);">
+            <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M9.5 9.5L13 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <input
+            id="search-empresa"
+            type="search"
+            placeholder="Buscar empresa…"
+            aria-label="Buscar por nome da empresa"
+            class="search-input rounded-full border py-1.5 pl-8 pr-3 text-[12px]"
+            style="border-color: var(--color-border); background: var(--color-surface); color: var(--color-neutral-900); font-family: var(--font-body); width: 180px;"
+          />
+        </div>
         <div class="flex items-center gap-2">
           <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Candidatura</span>
           <div class="flex gap-1" role="group" aria-label="Filtrar por candidatura">
@@ -320,6 +380,18 @@ const statusOptions = [
             ))}
           </div>
         </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Status</span>
+          <select
+            id="filter-status"
+            aria-label="Filtrar por status"
+            class="ja-select rounded-full border py-1 pl-3 pr-7 text-[11px] font-medium"
+            style="border-color: var(--color-border); background: var(--color-surface); color: var(--color-muted); font-family: var(--font-body);"
+          >
+            <option value="">Todos</option>
+            {statusOptions.map((s) => <option value={s}>{s}</option>)}
+          </select>
+        </div>
       </div>
 
       <div id="vagas-list" class="flex flex-col gap-4">
@@ -331,7 +403,9 @@ const statusOptions = [
               data-slug={v.slug}
               data-candidatura={v.candidatura}
               data-banda={banda(v.score)}
-              style={`--animate-delay: ${Math.min(i * 40, 300)}ms`}
+              data-empresa={v.empresa.toLowerCase()}
+              data-status={v.status}
+              style={`--animate-delay: ${Math.min(i * 40, 300)}ms${v.status === 'Arquivado' ? '; display: none' : ''}`}
               class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
             >
               <!-- Header -->
@@ -653,6 +727,20 @@ const statusOptions = [
     background: var(--color-surface);
   }
 
+  .stat-filter-card {
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    cursor: pointer;
+    transition: border-color 0.15s, opacity 0.15s;
+    width: 100%;
+  }
+  .stat-filter-card:hover {
+    opacity: 0.85;
+  }
+  .stat-filter-card--active {
+    border-color: var(--color-neutral-900);
+  }
+
   /* Modais */
   .ja-modal {
     border: 1px solid var(--color-border);
@@ -671,6 +759,14 @@ const statusOptions = [
   .ja-select:focus {
     outline: 2px solid var(--color-neutral-900);
     outline-offset: 1px;
+  }
+
+  .search-input:focus {
+    outline: 2px solid var(--color-neutral-900);
+    outline-offset: 1px;
+  }
+  .search-input::-webkit-search-cancel-button {
+    cursor: pointer;
   }
 
   /* Expander */
@@ -762,26 +858,112 @@ const statusOptions = [
 
   // ---- Filtros ----
 
-  const activeFilters = { candidatura: '', banda: '' };
+  const activeFilters = { candidatura: '', banda: '', empresa: '', status: '' };
+  type FilterDim = 'candidatura' | 'banda' | 'empresa' | 'status';
+
+  // Verifica se um card atende aos filtros ativos, ignorando a dimensão `exclude`
+  // — usado tanto para mostrar/ocultar cards quanto para recalcular as contagens
+  // dos cards de "Por candidatura" / "Por status" (facetas cruzadas).
+  function cardMatches(card: HTMLElement, exclude?: FilterDim): boolean {
+    if (exclude !== 'candidatura' && activeFilters.candidatura && card.dataset.candidatura !== activeFilters.candidatura) return false;
+    if (exclude !== 'banda' && activeFilters.banda && card.dataset.banda !== activeFilters.banda) return false;
+    if (exclude !== 'empresa' && activeFilters.empresa && !(card.dataset.empresa ?? '').includes(activeFilters.empresa)) return false;
+    if (exclude !== 'status') {
+      if (activeFilters.status) {
+        if (card.dataset.status !== activeFilters.status) return false;
+      } else if (card.dataset.status === 'Arquivado') {
+        return false; // arquivadas ficam ocultas por padrão
+      }
+    }
+    return true;
+  }
 
   function applyFilters() {
     document.querySelectorAll<HTMLElement>('.vaga-card').forEach((card) => {
-      const cMatch = !activeFilters.candidatura || card.dataset.candidatura === activeFilters.candidatura;
-      const bMatch = !activeFilters.banda || card.dataset.banda === activeFilters.banda;
-      card.style.display = cMatch && bMatch ? '' : 'none';
+      card.style.display = cardMatches(card) ? '' : 'none';
     });
+    updateStatCounts();
+  }
+
+  function updateStatCounts() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.vaga-card'));
+
+    document.querySelectorAll<HTMLElement>('.stat-filter-card[data-filter="candidatura"]').forEach((c) => {
+      const value = c.dataset.value ?? '';
+      const count = cards.filter((card) => card.dataset.candidatura === value && cardMatches(card, 'candidatura')).length;
+      const valEl = c.querySelector<HTMLElement>('.stat-filter-value');
+      if (valEl) valEl.textContent = String(count);
+    });
+
+    document.querySelectorAll<HTMLElement>('.stat-filter-card[data-filter="status"]').forEach((c) => {
+      const value = c.dataset.value ?? '';
+      const count = cards.filter((card) => card.dataset.status === value && cardMatches(card, 'status')).length;
+      const valEl = c.querySelector<HTMLElement>('.stat-filter-value');
+      if (valEl) valEl.textContent = String(count);
+    });
+  }
+
+  const statusSelect = document.getElementById('filter-status') as HTMLSelectElement | null;
+
+  function setCandidatura(value: string) {
+    activeFilters.candidatura = value;
+    document.querySelectorAll<HTMLButtonElement>('.filter-pill[data-filter="candidatura"]').forEach((p) => {
+      p.classList.toggle('filter-pill--active', p.dataset.value === value);
+    });
+    document.querySelectorAll<HTMLButtonElement>('.stat-filter-card[data-filter="candidatura"]').forEach((c) => {
+      const active = c.dataset.value === value;
+      c.classList.toggle('stat-filter-card--active', active);
+      c.setAttribute('aria-pressed', String(active));
+    });
+    applyFilters();
+  }
+
+  function setStatus(value: string) {
+    activeFilters.status = value;
+    if (statusSelect) statusSelect.value = value;
+    document.querySelectorAll<HTMLButtonElement>('.stat-filter-card[data-filter="status"]').forEach((c) => {
+      const active = c.dataset.value === value;
+      c.classList.toggle('stat-filter-card--active', active);
+      c.setAttribute('aria-pressed', String(active));
+    });
+    applyFilters();
   }
 
   document.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach((pill) => {
     pill.addEventListener('click', () => {
       const filterType = pill.dataset.filter as 'candidatura' | 'banda';
       const value = pill.dataset.value ?? '';
+      if (filterType === 'candidatura') {
+        setCandidatura(value);
+        return;
+      }
       activeFilters[filterType] = value;
       document.querySelectorAll<HTMLButtonElement>(`.filter-pill[data-filter="${filterType}"]`).forEach((p) => {
         p.classList.toggle('filter-pill--active', p.dataset.value === value);
       });
       applyFilters();
     });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.stat-filter-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const filterType = card.dataset.filter as 'candidatura' | 'status';
+      const value = card.dataset.value ?? '';
+      const isActive = card.classList.contains('stat-filter-card--active');
+      const newValue = isActive ? '' : value; // clicar de novo no card ativo limpa o filtro
+      if (filterType === 'candidatura') setCandidatura(newValue);
+      else setStatus(newValue);
+    });
+  });
+
+  const searchInput = document.getElementById('search-empresa') as HTMLInputElement | null;
+  searchInput?.addEventListener('input', () => {
+    activeFilters.empresa = searchInput.value.trim().toLowerCase();
+    applyFilters();
+  });
+
+  statusSelect?.addEventListener('change', () => {
+    setStatus(statusSelect.value);
   });
 
   // ---- Modal Candidatura ----
@@ -845,8 +1027,10 @@ const statusOptions = [
         candBtn.dataset.status      = status;
         statusLbl.textContent       = status;
         card.dataset.candidatura    = candidatura; // mantém filtro atualizado
+        card.dataset.status         = status; // mantém filtro atualizado
       }
 
+      applyFilters();
       modalCandidatura.close();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Erro ao salvar';
@@ -932,9 +1116,9 @@ const statusOptions = [
     const prefPct   = maxPrefW  > 0 ? Math.round(obtPref   / maxPrefW   * 100) : 0;
 
     return `
-      <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}"
+      <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}" data-empresa="${v.empresa.toLowerCase()}" data-status="${v.status}"
         class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
-        style="border-color: var(--color-border); background: color-mix(in srgb, var(--color-surface) 40%, transparent);">
+        style="border-color: var(--color-border); background: color-mix(in srgb, var(--color-surface) 40%, transparent);${v.status === 'Arquivado' ? ' display: none;' : ''}"
         <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span class="font-display text-[19px] font-semibold text-neutral-900">${v.empresa}</span>
           ${v.produto ? `<span class="text-sm" style="color: var(--color-faint);">· ${v.produto}</span>` : ''}

@@ -4,7 +4,7 @@
 **Produto:** Browser, Search Engine, DuckDuckGo Subscription, Duck.ai
 **Nível:** Sênior
 **Data da vaga:** 2026-07-03
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

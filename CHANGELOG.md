@@ -1,5 +1,29 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-07 (reconciliação do bench — 20 vagas órfãs)
+
+### Corrigido
+- **20 análises de vaga estavam órfãs do `_index.md`** (feitas entre 2026-08-20 e 2026-09-01, nunca reconciliadas): alt.bank, Amcom, Avenue, Blacksmith Agency, DBC Company, Deel, Epic Games, FCamara, Fetch, Jobgether, Nu (Staff IC7), Payfy, Segware, South, SulAmérica, Sympla, TRACTIAN, Zallpy, Zuri (2 vagas). Adicionadas ao ranking com score/status/data extraídos de cada arquivo.
+- **Bench atual: 53 vagas, média 58%** (era 33 vagas, média 55%). `CLAUDE.md` e `portfolio-readme.md` sincronizados.
+- **Novo gap transversal identificado:** mobile nativo (iOS/Android) aparece como bloqueador explícito em 13 análises (Fetch, alt.bank, Deel, Tractian, Revolut, SAP Concur, Segware, Vivo, Zuri, DuckDuckGo, Asaas, Méliuz, CloudWalk) — adicionado à tabela de gaps transversais.
+- **Ponto de atenção para o autor (não corrigido automaticamente):** `zuri-product-designer-senior.md` tem score 95% (o mais alto do bench) mas `Status: A avaliar` e `Candidatura: Não` — parece uma vaga de altíssima aderência que ainda não foi submetida. Vale conferir se isso reflete a realidade ou se é um status desatualizado.
+
+---
+
+## 2026-08-20 (continuação — double-check do bench, fix de max_tokens)
+
+### Corrigido
+- **`max_tokens` do passo 2 (Claude) subiu de 4000 para 8000** — a vaga da Renner (JD com 9 obrigatórios + 7 diferenciais + 6 competências comportamentais, bem acima da média) estourou o limite antigo: a resposta era cortada antes do marcador `---METADATA---`, quebrando o parse e surgindo pro usuário como "A IA retornou um formato inesperado." Adicionado log de `stop_reason === 'max_tokens'` em `analyzeWithClaude()` pra diagnosticar mais rápido se voltar a acontecer.
+
+### Double-check do bench (convenção aplicada)
+- **Reanálises reconciliadas:** ADP (89%→76%) e Revolut (45%→58%) foram reanalisadas e colidiram com o slug existente, gerando arquivo com sufixo de timestamp em vez de sobrescrever. Consolidado: conteúdo mais recente sob o slug limpo, arquivo com timestamp removido.
+- **Duplicata resolvida:** Arcotech tinha dois arquivos da mesma vaga (submissão duplicada, ambos 57%) — consolidado em um, mantendo o status "Candidatura enviada" que só existia na versão mais recente.
+- **Convenção nova:** em reanálise/duplicata com colisão de slug, sempre manter a versão mais recente (preservando `Status`/`Candidatura` se já tiver sido atualizado manualmente) — registrada em `CLAUDE.md` e na memória cross-sessão.
+- **6 vagas novas reconciliadas no `_index.md`** (todas passaram no double-check — matemática conferida, gaps ancorados em cases reais): Vivo (61%), Microsoft (69%, candidatura enviada), Stone (65%), CloudWalk (51%), Provectus Middle (57%), Renner (56%).
+- **Bench atual: 33 vagas, média 55%** (era 26 vagas, média 54%).
+
+---
+
 ## 2026-08-20
 
 ### Adicionado

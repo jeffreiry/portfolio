@@ -5,8 +5,8 @@
 **Nível:** Product Designer Sênior
 **Data da vaga:** 2026-04-20
 **Prazo de inscrição:** 2026-06-20
-**Status:** A avaliar
-**Candidatura:** Não
+**Status:** Recusado
+**Candidatura:** Sim
 
 ---
 

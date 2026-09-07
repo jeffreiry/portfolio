@@ -312,10 +312,14 @@ async function analyzeWithClaude(
 
   const response = await anthropic.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 4000,
+    max_tokens: 8000,
     system: CLAUDE_SYSTEM_PROMPT,
     messages: [{ role: 'user', content: userMessage }],
   });
+
+  if (response.stop_reason === 'max_tokens') {
+    console.error('[jobanalysis] Claude response truncated (max_tokens hit) — JD tem muitos requisitos');
+  }
 
   const block = response.content[0];
   if (block.type !== 'text') throw new Error('Resposta inesperada do Claude');
@@ -358,7 +362,7 @@ if (!groqKey) {
     }
 
     if (!extracted.empresa || !extracted.cargo) {
-      throw new Error('Empresa ou cargo não encontrados na JD.');
+      throw new Error('Não consegui identificar a empresa e/ou o cargo no texto colado. Cole a vaga completa, incluindo o nome da empresa e o título do cargo (não só a lista de requisitos).');
     }
 
     // Passo 2: Claude analisa os requisitos
@@ -450,7 +454,7 @@ if (!groqKey) {
       msg = 'A IA retornou um formato inesperado. Tente novamente.';
     } else if (raw.includes('ANTHROPIC_API_KEY')) {
       msg = 'ANTHROPIC_API_KEY não configurada.';
-    } else if (raw.includes('extração')) {
+    } else if (raw.includes('extração') || raw.includes('identificar a empresa')) {
       msg = raw;
     }
     return new Response(JSON.stringify({ error: msg }), {

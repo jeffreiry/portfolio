@@ -4,7 +4,7 @@
 **Produto:** Não especificado (Facebook, Instagram, WhatsApp, Messenger, Meta Quest, Workplace)
 **Nível:** Não especificado (escopo e responsabilidades apontam para Sênior)
 **Data da vaga:** 2026-07-11
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

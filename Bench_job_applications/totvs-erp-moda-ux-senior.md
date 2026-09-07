@@ -5,7 +5,8 @@
 **Nível:** Sênior  
 **Modelo:** Híbrido · Maringá / PR  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

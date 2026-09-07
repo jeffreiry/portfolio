@@ -5,8 +5,8 @@
 **Nível:** Senior UX Designer · T3  
 **Hiring Manager:** Chris Wright · Recruiter: Stephanie Muller  
 **Data da vaga:** 2026-06-10  
-**Status:** A avaliar
-**Candidatura:** Não
+**Status:** Recusado
+**Candidatura:** Sim
 
 ---
 

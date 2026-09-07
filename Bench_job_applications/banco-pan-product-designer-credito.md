@@ -5,7 +5,8 @@
 **Nível:** Sênior (escopo implícito)  
 **Modelo:** Híbrido · São Paulo / SP (2 dias presenciais)  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

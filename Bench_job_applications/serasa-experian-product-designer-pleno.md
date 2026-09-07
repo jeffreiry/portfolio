@@ -4,7 +4,7 @@
 **Produto:** Não especificado
 **Nível:** Pleno
 **Data da vaga:** 2026-06-24
-**Status:** A avaliar
+**Status:** Arquivado
 **Candidatura:** Não
 
 ---

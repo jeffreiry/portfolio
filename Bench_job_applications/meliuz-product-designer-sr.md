@@ -5,7 +5,8 @@
 **Nível:** Product Designer Sênior  
 **Modelo:** 100% remoto · Brasil  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

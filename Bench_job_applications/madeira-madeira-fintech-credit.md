@@ -5,7 +5,8 @@
 **Nível:** Product Designer Sênior  
 **Modelo:** Híbrido · São Paulo / SP  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 

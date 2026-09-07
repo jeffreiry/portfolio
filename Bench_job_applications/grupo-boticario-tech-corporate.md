@@ -4,7 +4,8 @@
 **Área:** Design Tech Corporate — produtos digitais de processos corporativos  
 **Nível:** Product Designer III  
 **Data da vaga:** 2026-06-12  
-**Status:** A avaliar  
+**Status:** Arquivado
+**Candidatura:** Não
 
 ---
 
