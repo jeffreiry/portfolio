@@ -6,6 +6,7 @@
 **Data da vaga:** 2026-04-20
 **Prazo de inscrição:** 2026-06-20
 **Status:** Recusado
+**Motivo da recusa:** Gap real de portfolio, coerente com o score baixo — "Facilitar dinâmicas colaborativas (workshops, co-criação)" é requisito central pro papel e nota 0 na análise; nenhum case do portfolio menciona facilitação de workshop.
 **Candidatura:** Sim
 
 ---

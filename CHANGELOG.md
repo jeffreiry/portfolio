@@ -1,5 +1,23 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-08/09 (currículos reescritos + card de Recusado no bench)
+
+### Adicionado
+- **Currículos PT e EN (`public/Jeferson_Freiry_{PT,EN}.pdf`) reescritos por completo:** título neutro (sem "Sênior/Senior", pra não travar filtro automático de vagas Pleno), LinkedIn adicionado ao cabeçalho (2 linhas de contato com e-mail/portfolio/LinkedIn clicáveis), Resumo Profissional/Professional Summary convertido em bullets com métricas reais (3 plantas/time completo nos EUA; Design Chapter de ~10 designers), menção a mobile removida (não sustentada por nenhum case do portfolio), espaçamento entre seções aumentado, e as 7 entradas de Experiência reformatadas para `**Empresa** (Local) – Datas` / `*Cargo*` em vez de duas linhas com colunas.
+- **Nota técnica para qualquer edição futura do currículo:** os PDFs não têm arquivo-fonte (Word/Canva) — são a única versão. O documento original usa fonte Liberation Sans (clone livre da Arial) embutida com encoding customizado nos textos existentes; edições feitas nesta sessão usam Arial real do Windows (`C:/Windows/Fonts/arial.ttf` + itálica + bold) via `pdf-lib`+`@pdf-lib/fontkit`, visualmente equivalente. Texto substituído é removido de verdade do content stream (não só coberto com retângulo branco) para não vazar em cópia de texto ou parsing de ATS. Scripts de edição ficaram no scratchpad da sessão, não versionados no repo.
+- **`/jobanalysis`: card de vaga com `Status: Recusado` ganha borda e tag vermelhas (`#b91c1c`)** — automático via seletor CSS `data-status="Recusado"`, nenhum código novo necessário por vaga. Corrigido bug de especificidade CSS onde a regra base (`section .rounded-2xl.border`) vencia o override por ter um seletor a mais — resolvido prefixando a regra nova com `section` também.
+- **Novo campo opcional `**Motivo da recusa:**`** nos arquivos de `Bench_job_applications/`, exibido como callout vermelho no card quando presente. Não é gerado automaticamente por IA na troca de status (decisão do autor) — preenchido a pedido, ver convenção no `CLAUDE.md`. Preenchido em 5 vagas até agora: Localiza&Co, SAP Concur, Avenue, TRACTIAN, Amcom.
+
+---
+
+## 2026-09-07 (continuação — duplicata Zuri removida)
+
+### Corrigido
+- **`zuri-product-designer-senior.md` removido do bench** — era uma análise inválida (95%, sem JD arquivada, produto "Não especificado"), gerada 18 minutos antes de `zuri-product-designer-senior-experiencia-em-investimentos.md` (56%, JD completa, candidatura real enviada). Diagnóstico: a JD não foi colada corretamente na primeira tentativa, o pipeline extraiu uma lista de requisitos genérica e artificialmente perfeita; o autor percebeu, recolou a JD completa e gerou a análise válida — mas o arquivo da tentativa falha nunca foi apagado.
+- **Bench atual: 52 vagas, média 57%** (era 53 vagas, média 58%). Nova convenção registrada no `CLAUDE.md` para reconhecer esse padrão (score suspeito + JD não arquivada) em futuras reconciliações.
+
+---
+
 ## 2026-09-07 (reconciliação do bench — 20 vagas órfãs)
 
 ### Corrigido

@@ -24,6 +24,7 @@ interface VagaParsed {
   interpretacaoTexto: string;
   status: string;
   candidatura: string;
+  motivoRecusa: string;
   data: string;
   tags: string[];
   bloqueadores: string[];
@@ -83,6 +84,9 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       candidaturaMatch?.[1]?.trim() ??
       (status.toLowerCase().includes('pendente') ? 'Sim' : 'Não');
 
+    const motivoMatch = content.match(/\*\*Motivo da recusa:\*\*\s*(.+)/);
+    const motivoRecusa = motivoMatch?.[1]?.trim() ?? '';
+
     const blockquoteMatch = content.match(/## Score de ader[eê]ncia[^\n]*\n\n>\s*(.+)/);
     const interpretacaoTexto = blockquoteMatch?.[1]?.trim() ?? '';
 
@@ -132,6 +136,7 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       interpretacaoTexto,
       status,
       candidatura,
+      motivoRecusa,
       data,
       tags: tags.slice(0, 6),
       bloqueadores,
@@ -428,6 +433,13 @@ for (const opt of statusOptions) {
                 <p class="interp-text text-sm leading-relaxed italic" style="color: var(--color-muted);">"{v.interpretacaoTexto}"</p>
               )}
 
+              <!-- Motivo provável da recusa — só aparece se status=Recusado e o campo estiver preenchido -->
+              {v.status === 'Recusado' && v.motivoRecusa && (
+                <p class="text-[12px] leading-relaxed rounded-lg px-3 py-2" style="background: rgba(185,28,28,0.08); border: 1px solid rgba(185,28,28,0.25); color: #b91c1c;">
+                  <strong>Motivo provável:</strong> {v.motivoRecusa}
+                </p>
+              )}
+
               <!-- Tags de competências -->
               {v.tags.length > 0 && (
                 <div class="tags-list flex flex-wrap gap-1.5">
@@ -469,8 +481,7 @@ for (const opt of statusOptions) {
                   style={`background: ${b.chipBg}; color: ${b.chipText};`}>
                   {v.interpretacao}
                 </span>
-                <span class="status-label rounded-full border px-2.5 py-1 text-[11px]"
-                  style="border-color: var(--color-border); color: var(--color-faint);">
+                <span class="status-label rounded-full border px-2.5 py-1 text-[11px]">
                   {v.status}
                 </span>
                 <div class="ml-auto flex items-center gap-1.5">
@@ -721,6 +732,22 @@ for (const opt of statusOptions) {
   section .rounded-2xl.border {
     border-color: var(--color-border);
     background: color-mix(in srgb, var(--color-surface) 40%, transparent);
+  }
+
+  .status-label {
+    border-color: var(--color-border);
+    color: var(--color-faint);
+  }
+
+  /* Recusado: automático via data-status — nenhuma vaga futura precisa de código novo pra herdar isso.
+     Prefixado com "section" pra empatar em especificidade com a regra base (`section .rounded-2xl.border`)
+     acima — sem isso, a borda cinza padrão vencia mesmo com data-status="Recusado". */
+  section .vaga-card[data-status="Recusado"] {
+    border-color: #b91c1c;
+  }
+  section .vaga-card[data-status="Recusado"] .status-label {
+    border-color: #b91c1c;
+    color: #b91c1c;
   }
 
   .stat-card {
@@ -1079,7 +1106,7 @@ for (const opt of statusOptions) {
   function buildCardHTML(v: {
     slug: string; empresa: string; produto: string; cargo: string;
     score: number; interpretacao: string; interpretacaoTexto: string;
-    status: string; candidatura: string; data: string; tags: string[];
+    status: string; candidatura: string; motivoRecusa?: string; data: string; tags: string[];
     bloqueadores?: string[]; ausentes?: string[]; boaAderencia?: string[];
     obtObrig?: number; maxObrigW?: number; obtPref?: number; maxPrefW?: number;
   }): string {
@@ -1101,6 +1128,9 @@ for (const opt of statusOptions) {
     const interpHTML = v.interpretacaoTexto
       ? `<p class="interp-text text-sm leading-relaxed italic" style="color: var(--color-muted);">"${v.interpretacaoTexto}"</p>`
       : '';
+    const motivoHTML = v.status === 'Recusado' && v.motivoRecusa
+      ? `<p class="text-[12px] leading-relaxed rounded-lg px-3 py-2" style="background: rgba(185,28,28,0.08); border: 1px solid rgba(185,28,28,0.25); color: #b91c1c;"><strong>Motivo provável:</strong> ${v.motivoRecusa}</p>`
+      : '';
     const dateHTML = dateFmt
       ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">📅</span> ${dateFmt}</span>`
       : '';
@@ -1118,7 +1148,7 @@ for (const opt of statusOptions) {
     return `
       <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}" data-empresa="${v.empresa.toLowerCase()}" data-status="${v.status}"
         class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
-        style="border-color: var(--color-border); background: color-mix(in srgb, var(--color-surface) 40%, transparent);${v.status === 'Arquivado' ? ' display: none;' : ''}"
+        style="background: color-mix(in srgb, var(--color-surface) 40%, transparent);${v.status === 'Arquivado' ? ' display: none;' : ''}"
         <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span class="font-display text-[19px] font-semibold text-neutral-900">${v.empresa}</span>
           ${v.produto ? `<span class="text-sm" style="color: var(--color-faint);">· ${v.produto}</span>` : ''}
@@ -1131,6 +1161,7 @@ for (const opt of statusOptions) {
           <span class="score-value font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">${v.score}%</span>
         </div>
         ${interpHTML}
+        ${motivoHTML}
         ${tagsHTML}
         <div class="flex flex-wrap items-center gap-2 pt-1">
           ${dateHTML}
@@ -1142,7 +1173,7 @@ for (const opt of statusOptions) {
             Candidatura: <span class="candidatura-label font-semibold">${v.candidatura}</span>
           </button>
           <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: ${b.chipBg}; color: ${b.chipText};">${v.interpretacao}</span>
-          <span class="status-label rounded-full border px-2.5 py-1 text-[11px]" style="border-color: var(--color-border); color: var(--color-faint);">${v.status}</span>
+          <span class="status-label rounded-full border px-2.5 py-1 text-[11px]">${v.status}</span>
           <div class="ml-auto flex items-center gap-1.5">
             <button class="edit-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
               style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"

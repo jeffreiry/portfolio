@@ -6,6 +6,7 @@
 **Hiring Manager:** Chris Wright · Recruiter: Stephanie Muller  
 **Data da vaga:** 2026-06-10  
 **Status:** Recusado
+**Motivo da recusa:** Gap real de portfolio, coerente com o score baixo — "Experiência com apps nativos iOS/Android" é requisito obrigatório explícito pra uma vaga mobile-first (TripIt) e nota 0 na análise; nenhum case documenta app nativo publicado.
 **Candidatura:** Sim
 
 ---

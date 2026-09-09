@@ -4,7 +4,8 @@
 **Produto:** Product Design — plataforma industrial B2B (hardware + software, web e mobile)
 **Nível:** Sênior
 **Data da vaga:** 2026-08-26
-**Status:** Candidatura enviada
+**Status:** Recusado
+**Motivo da recusa:** Gap real de portfolio, coerente com o score — a JD usa "real-world impact on complex systems" explicitamente como critério de avaliação, e nenhum case enterprise tem métrica de impacto documentada; some-se a ausência de artefatos visuais publicados (a JD pede "strong visual UI polish"), o que reduz o que dá pra avaliar sem entrevista.
 **Candidatura:** Sim
 
 ---

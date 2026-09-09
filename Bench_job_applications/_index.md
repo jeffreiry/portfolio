@@ -79,7 +79,7 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Sênior](fcamara-product-designer-senior.md) | FCamara · CBpay | **54%** | Aderência baixa | Candidatura enviada | 2026-08-24 |
 | [Designer de Produto UI/UX — Senior](segware-designer-de-produto-ui-ux-senior.md) | Segware | **74%** | Aderência parcial | Candidatura enviada | 2026-08-24 |
 | [Product Designer](alt-bank-product-designer.md) | alt.bank | **62%** | Aderência parcial | Candidatura enviada | 2026-08-25 |
-| [Pessoa UX/UI Designer Sênior](amcom-pessoa-ux-ui-designer-senior.md) | Amcom | **67%** | Aderência parcial | Candidatura enviada | 2026-08-25 |
+| [Pessoa UX/UI Designer Sênior](amcom-pessoa-ux-ui-designer-senior.md) | Amcom | **67%** | Aderência parcial | Recusado | 2026-08-25 |
 | [Product Design Systems Designer](blacksmith-agency-product-design-systems-designer.md) | Blacksmith Agency | **58%** | Aderência baixa | Candidatura enviada | 2026-08-25 |
 | [UI Artist](epic-games-ui-artist.md) | Epic Games | **37%** | Desalinhamento estrutural | Arquivado | 2026-08-25 |
 | [Senior Product Designer](fetch-senior-product-designer.md) | Fetch · Consumer Rewards | **27%** | Desalinhamento estrutural | Candidatura enviada | 2026-08-25 |
@@ -88,13 +88,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Pleno](sulamerica-product-designer-pleno.md) | SulAmérica | **51%** | Aderência baixa | Candidatura enviada | 2026-08-25 |
 | [Product Designer Sênior B2B](sympla-product-designer-senior.md) | Sympla | **60%** | Aderência parcial | Candidatura enviada | 2026-08-25 |
 | [Product Designer Sênior](south-product-designer-senior.md) | South | **77%** | Aderência parcial | Candidatura enviada | 2026-08-26 |
-| [Senior Product Designer](tractian-senior-product-designer.md) | TRACTIAN | **73%** | Aderência parcial | Candidatura enviada | 2026-08-26 |
+| [Senior Product Designer](tractian-senior-product-designer.md) | TRACTIAN | **73%** | Aderência parcial | Recusado | 2026-08-26 |
 | [Product Designer Sênior (experiência em investimentos)](zuri-product-designer-senior-experiencia-em-investimentos.md) | Zuri · Investimentos | **56%** | Aderência baixa | Candidatura enviada | 2026-08-26 |
-| [Product Designer Sênior](zuri-product-designer-senior.md) | Zuri | **95%** | Alta aderência — submeter | A avaliar | 2026-08-26 |
 | [Staff Product Designer (IC7)](nu-staff-product-designer.md) | Nu (Nubank) | **56%** | Aderência baixa | Candidatura enviada | 2026-09-01 |
 | [Senior UI/UX Designer — Analytics & Commercial Intelligence](zallpy-senior-ui-ux-designer-analytics-commercial-intelligence.md) | Zallpy | **71%** | Aderência parcial | Candidatura enviada | 2026-09-01 |
 
-**Média geral: 58%** · Aderência baixa (53 vagas)
+**Média geral: 57%** · Aderência baixa (52 vagas)
 
 ---
 

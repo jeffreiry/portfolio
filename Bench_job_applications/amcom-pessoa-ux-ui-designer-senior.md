@@ -4,7 +4,8 @@
 **Produto/Área:** Soluções digitais para grandes empresas (consultoria/produto)
 **Nível:** Sênior
 **Data da vaga:** 2026-08-25
-**Status:** Candidatura enviada
+**Status:** Recusado
+**Motivo da recusa:** Gap real de portfolio — "testes de usabilidade" é a primeira responsabilidade listada na JD e requisito obrigatório explícito, mas nenhum case documenta protocolo de teste, recrutamento de participantes ou síntese de achados de usabilidade (nota 1); a seção de acessibilidade vazia (⬜) nos cases enterprise reforça essa lacuna.
 **Candidatura:** Sim
 
 ---

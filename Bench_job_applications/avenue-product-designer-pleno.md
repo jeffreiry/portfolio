@@ -5,6 +5,7 @@
 **Nível:** Pleno
 **Data da vaga:** 2026-08-20
 **Status:** Recusado
+**Motivo da recusa:** Provavelmente não é sobre qualidade do portfolio (71% é a maior aderência entre as vagas recusadas) — "Espanhol avançado" é requisito obrigatório e eliminatório explícito na JD, nota 0 na análise, sem nenhuma evidência de espanhol no portfolio ou currículo.
 **Candidatura:** Sim
 
 ---
