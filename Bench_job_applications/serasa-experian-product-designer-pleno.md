@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
 **Candidatura:** Não
+**Score anterior:** 49% (2026-06-27)
+**Motivo da mudança de score:** Os 21 requisitos obrigatórios não mudaram nem de nota. A diferença inteira está nos preferidos: "Inglês em nível intermediário ou avançado" tinha nota 0 ("não há evidências de habilidades em inglês") na 1ª análise — a 2ª corrigiu pra nota 3, citando o portfolio bilíngue PT+EN publicado como evidência direta. A 1ª análise simplesmente não considerou um fato verificável sobre o próprio site. Mesmo padrão de omissão encontrado depois em South System.
 
 ---
 

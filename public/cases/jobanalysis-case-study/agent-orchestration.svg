@@ -1,0 +1,74 @@
+<svg viewBox="0 0 1160 480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1160" height="480" fill="#f8f9fc" rx="16"/>
+
+  <text x="40" y="42" font-size="13" font-weight="700" letter-spacing="1.5" fill="#6366f1">ORQUESTRAÇÃO DE AGENTES · PADRÃO SEQUENCIAL</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Groq box -->
+  <rect x="40" y="90" width="320" height="270" rx="12" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="60" y="128" font-size="20" font-weight="700" fill="#1e3a5f">Groq</text>
+  <text x="60" y="150" font-size="13" fill="#3b5578">(gpt-oss-120b)</text>
+  <text x="60" y="182" font-size="13.5" font-weight="700" fill="#1e3a5f">Papel</text>
+  <text x="60" y="203" font-size="13.5" fill="#28405e">
+    <tspan x="60" dy="0">Extrai a JD colada em JSON</tspan>
+    <tspan x="60" dy="19">estruturado — empresa,</tspan>
+    <tspan x="60" dy="19">requisitos, diferenciais.</tspan>
+  </text>
+  <line x1="60" y1="278" x2="340" y2="278" stroke="#93c5fd" stroke-width="1"/>
+  <text x="60" y="302" font-size="13.5" font-weight="700" fill="#9a3412">Não pode</text>
+  <text x="60" y="323" font-size="13.5" fill="#28405e">
+    <tspan x="60" dy="0">Nunca pontua nada. Não sabe</tspan>
+    <tspan x="60" dy="19">o que "boa aderência" significa.</tspan>
+  </text>
+
+  <path d="M362,225 L416,225" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Claude box -->
+  <rect x="420" y="90" width="320" height="270" rx="12" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="440" y="128" font-size="20" font-weight="700" fill="#3b2a6e">Claude</text>
+  <text x="440" y="150" font-size="13" fill="#57458c">(claude-sonnet-4-6)</text>
+  <text x="440" y="182" font-size="13.5" font-weight="700" fill="#3b2a6e">Papel</text>
+  <text x="440" y="203" font-size="13.5" fill="#3d2f66">
+    <tspan x="440" dy="0">Lê os requisitos contra todo</tspan>
+    <tspan x="440" dy="19">o histórico dos meus cases,</tspan>
+    <tspan x="440" dy="19">raciocina sobre evidência.</tspan>
+  </text>
+  <line x1="440" y1="278" x2="720" y2="278" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="440" y="302" font-size="13.5" font-weight="700" fill="#9a3412">Não pode</text>
+  <text x="440" y="323" font-size="13.5" fill="#3d2f66">
+    <tspan x="440" dy="0">Não faz aritmética — os subtotais</tspan>
+    <tspan x="440" dy="19">que escreve são placeholders,</tspan>
+    <tspan x="440" dy="19">o servidor os ignora.</tspan>
+  </text>
+
+  <path d="M742,225 L796,225" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Server box -->
+  <rect x="800" y="90" width="320" height="270" rx="12" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="820" y="128" font-size="20" font-weight="700" fill="#065f46">Servidor</text>
+  <text x="820" y="150" font-size="13" fill="#0f6e52">(determinístico)</text>
+  <text x="820" y="182" font-size="13.5" font-weight="700" fill="#065f46">Papel</text>
+  <text x="820" y="203" font-size="13.5" fill="#0b4d3a">
+    <tspan x="820" dy="0">Recalcula todo score e</tspan>
+    <tspan x="820" dy="19">subtotal direto das tabelas</tspan>
+    <tspan x="820" dy="19">da rubrica — fonte da verdade.</tspan>
+  </text>
+  <line x1="820" y1="278" x2="1100" y2="278" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="820" y="302" font-size="13.5" font-weight="700" fill="#9a3412">Não pode</text>
+  <text x="820" y="323" font-size="13.5" fill="#0b4d3a">
+    <tspan x="820" dy="0">Nunca julga qualidade — não</tspan>
+    <tspan x="820" dy="19">distingue case forte de fraco,</tspan>
+    <tspan x="820" dy="19">só soma número certo.</tspan>
+  </text>
+
+  <line x1="40" y1="404" x2="1120" y2="404" stroke="#c7ccd6" stroke-width="1.5" stroke-dasharray="3 5"/>
+  <text x="40" y="434" font-size="13.5" fill="#475569">
+    <tspan x="40" dy="0">Mesmo princípio de governança dos 4 agentes do Painel Saúde: cada um propõe dentro de um limite fixo,</tspan>
+    <tspan x="40" dy="20">nenhum tem autoridade unilateral.</tspan>
+  </text>
+</svg>

@@ -92,8 +92,11 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Sênior (experiência em investimentos)](zuri-product-designer-senior-experiencia-em-investimentos.md) | Zuri · Investimentos | **56%** | Aderência baixa | Candidatura enviada | 2026-08-26 |
 | [Staff Product Designer (IC7)](nu-staff-product-designer.md) | Nu (Nubank) | **56%** | Aderência baixa | Candidatura enviada | 2026-09-01 |
 | [Senior UI/UX Designer — Analytics & Commercial Intelligence](zallpy-senior-ui-ux-designer-analytics-commercial-intelligence.md) | Zallpy | **71%** | Aderência parcial | Candidatura enviada | 2026-09-01 |
+| [Staff Product Designer II — Visual Design](ifood-staff-product-designer-ii-visual-design.md) | iFood · App dos Entregadores | **57%** | Aderência baixa | Candidatura enviada | 2026-09-12 |
+| [Product Designer Sênior](gringo-zapay-product-designer-senior.md) | Gringo & Zapay | **69%** | Aderência parcial | Candidatura enviada | 2026-09-12 |
+| [UX/Product Designer](nacar-ux-product-designer.md) | Nacar · Healthcare CRM | **79%** | Aderência parcial | Candidatura enviada | 2026-09-12 |
 
-**Média geral: 57%** · Aderência baixa (52 vagas)
+**Média geral: 57%** · Aderência baixa (55 vagas)
 
 ---
 
@@ -104,9 +107,53 @@ Pendências presentes em todas as vagas — resolver aumenta o score de todas:
 | Gap | Impacto | Vagas afetadas | Ação |
 |---|---|---|---|
 | **Métricas de impacto (`⬜`)** | Alto | Todas | Preencher campos de resultado em Enterprise AI, Shipping, Arezzo, Hypera |
-| **Artefatos visíveis** | Alto | Todas | Expor telas, flows ou wireframes — hoje os cases só descrevem processo. Os 3 cases mais fortes (Enterprise AI, Shipping, Power Apps) estão atrás de senha/link mágico — recrutador com link nu não vê nada sem contato manual |
-| **Mobile nativo (iOS/Android)** | Alto | 13 vagas — bloqueador explícito em Fetch, alt.bank, Deel, Tractian, Revolut, SAP Concur, Segware, Vivo, Zuri, DuckDuckGo, Asaas, Méliuz, CloudWalk | Nenhum case documenta app nativo publicado (Power Apps é low-code, não App Store/Google Play). Publicar ao menos 1 case com decisões mobile-specific fecha esse gap |
+| **Artefatos visíveis** | Alto | Todas | Expor telas, flows ou wireframes — hoje os cases só descrevem processo. Isso é verdade até nos 6 cases públicos, sem senha nenhuma. Os 3 cases mais fortes (Enterprise AI, Shipping, Power Apps) têm uma camada extra: só ficam visíveis via link mágico, que resolve o acesso quando já existe contato qualificado, mas não ajuda na triagem fria — a maioria das candidaturas do bench acontece antes de qualquer link ser enviado |
+| **Mobile nativo (iOS/Android)** | Alto | 14 vagas — bloqueador explícito em Fetch, alt.bank, Deel, Tractian, Revolut, SAP Concur, Segware, Vivo, Zuri, DuckDuckGo, Asaas, Méliuz, CloudWalk, iFood | Nenhum case documenta app nativo publicado (Power Apps é low-code, não App Store/Google Play). Publicar ao menos 1 case com decisões mobile-specific fecha esse gap |
 | **Acessibilidade (`⬜`)** | Médio–alto | SAP, BTG, Boticário | Documentar ao menos 1 decisão real por case enterprise |
-| **UX Research estruturado** | Médio | C&A, SAP, ADP, Itaú | A/B testing e testes de usabilidade formais não aparecem em nenhum case |
+| **UX Research estruturado** | Alto | 22 vagas — requisito obrigatório com nota ≤2 em C&A, SAP Fieldglass, ADP, Itaú, Amcom, DBC Company, Elevor, FCamara, Gringo & Zapay, Madeira Madeira, Méliuz, Nacar, Provectus, South System, SulAmérica, TOTVS, Zallpy, Jobgether, Segware, Renner, Meta e Microsoft | Nenhum case documenta protocolo, roteiro ou síntese formal de entrevistas/testes de usabilidade — só menciona discovery (Clarity, workshops, entrevistas). Publicar 1 case com artefato de research completo (roteiro → campo → síntese → decisão) fecha esse gap na maioria das vagas de uma vez |
+
+---
+
+## Matriz FOFA
+
+> **Cadência de atualização:** diferente da tabela de vagas e dos Gaps transversais (que mudam a cada análise nova), esta matriz **só é recalculada quando o autor pedir explicitamente** ("atualizar a FOFA") — não é uma leitura automática do bench. Ela existe pra sintetizar padrões que só aparecem lendo o conjunto inteiro, não vaga a vaga. Datas de referência: contagens abaixo batem com o bench de 2026-09-13 (55 vagas).
+
+### 🟩 Forças — o que se repete a favor, vaga após vaga
+
+| Força | Recorrência | Evidência |
+|---|---|---|
+| Trade-offs documentados com alternativas descartadas | 41/55 vagas | Decisões como "conversacional vs. busca" (Enterprise AI) ou "timeline vs. grid" (Shipping) citadas como diferencial de maturidade sênior |
+| Portfolio bilíngue PT+EN como prova de inglês avançado | 35/55 vagas | Citado diretamente como evidência de fluência, sem precisar de teste — elimina fricção em vagas com stakeholder internacional |
+| Complexidade de domínio enterprise/B2B (SAP, múltiplos perfis de aprovação, integração técnica) | recorrente na maioria das análises | HYPERGESTOR, Shipping Platform e Arezzo sustentam esse argumento de forma consistente |
+| Mentalidade AI-first / design de produtos com IA | destacado como diferencial genuíno em Gringo & Zapay, iFood, CloudWalk, Jobgether, Microsoft | Enterprise AI Assistant é citado nominalmente como prova — poucos concorrentes têm case real de produto de IA, não só uso de IA como ferramenta |
+| Colaboração cross-funcional com engenharia, produto e dados | recorrente | Presente em praticamente todo case enterprise (Enterprise AI, Shipping, HYPERGESTOR) |
+
+### 🟥 Fraquezas — os mesmos 5 gaps transversais acima, em uma frase cada
+
+| Fraqueza | Vagas afetadas |
+|---|---|
+| Métricas de impacto ausentes | Todas (100%) |
+| Artefatos visuais expostos só a contato qualificado, não a triagem fria — e ausentes mesmo nos cases públicos | Todas (100%) |
+| Mobile nativo ausente | 14 vagas, bloqueador explícito |
+| UX Research estruturado ausente | 22 vagas |
+| Acessibilidade documentada só 1x | SAP, BTG, Boticário |
+
+### 🟦 Oportunidades — fatores externos a favor, se agir
+
+| Oportunidade | Por quê agora |
+|---|---|
+| Demanda de mercado por "AI-first mindset" no processo de design está subindo | Já é o ponto mais citado como diferencial nas análises mais recentes (set/2026) — reforçar é custo baixo, retorno alto |
+| Case novo "Job Analysis" fecha Artefatos + AI-first + decisão documentada de uma vez | Primeiro case com diagramas reais (orquestração de agentes, flowchart) expostos publicamente, sem senha |
+| HYPERGESTOR e Shipping já têm matéria-prima de stakeholder/blueprint não desenhada visualmente | Não exige novo projeto — só nova forma de apresentar o que já existe |
+| O próprio bench aponta prioridade por dado, não por achismo | Gaps transversais já rankeiam o que vale mais pontuação por esforço |
+
+### ⬛ Ameaças — fatores externos fora de controle
+
+| Ameaça | Risco |
+|---|---|
+| Braskem em recuperação judicial (desde 2026-09-07) | Reduz o tempo disponível pra fechar gaps antes de precisar de renda — ver `project_busca_emprego_urgente` |
+| Mobile nativo ausente é bloqueador binário em vagas mobile-first | Não é gap que se fecha em um fim de semana — 14 vagas ficam estruturalmente fora de alcance até isso mudar |
+| Concorrência por vagas sênior de IA está aquecendo | Quem tiver artefato visível (não só descrito) leva vantagem — a mesma vaga que hoje valoriza "AI-first" vai penalizar portfolio sem prova visual amanhã |
+| Filtros automáticos de ATS além do já identificado ("Sênior" no título, corrigido em set/2026) | Não há garantia de que não existam outros filtros de triagem automática ainda não mapeados |
 
 > Como **apresentar** cada gap nas páginas de case (forma + sequência de execução): [Bench_designers/_insights-melhorias.md → Cruzamento com o bench de vagas](../Bench_designers/_insights-melhorias.md#cruzamento-com-o-bench-de-vagas).

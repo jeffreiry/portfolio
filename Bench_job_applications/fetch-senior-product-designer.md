@@ -4,8 +4,9 @@
 **Produto:** Fetch app (consumer rewards, mobile-first, iOS + Android)
 **Nível:** Sênior
 **Data da vaga:** 2026-08-25
-**Status:** Candidatura enviada
+**Status:** Recusado
 **Candidatura:** Sim
+**Motivo da recusa:** Gap real de portfolio, coerente com o menor score do bench — "experiência construindo produtos de growth e retenção (reward-centric)" é requisito obrigatório com nota 0, e não há nenhum case de mobile nativo iOS/Android publicado em loja, num contexto onde a JD trata UI craft mobile como critério eliminatório ("your shipped mobile app work needs to knock our socks off").
 
 ---
 

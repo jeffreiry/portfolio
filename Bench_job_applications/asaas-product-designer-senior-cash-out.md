@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-06-01
 **Status:** Arquivado
 **Candidatura:** Não
+**Score anterior:** 55% (2026-06-19)
+**Motivo da mudança de score:** Os 12 requisitos obrigatórios são idênticos nas duas análises. A queda veio de uma correção de rubrica: 5 itens marcados como "Ausente" (sem evidência nenhuma) tinham recebido nota 1 na 1ª análise — a própria rubrica define 0 como "ausente" e 1 como "parcialmente evidenciado", então "Ausente" com nota 1 era uma aplicação errada da régua, não uma leitura diferente do portfólio. A 2ª análise corrigiu isso. Preferidos não mudaram (8/12 nas duas).
 
 ---
 

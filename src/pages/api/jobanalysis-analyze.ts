@@ -395,6 +395,14 @@ if (!groqKey) {
     finalMd = finalMd.replace(/\*\*Data da vaga:\*\*[^\n]*/, `**Data da vaga:** ${data}`);
     if (calc.ok) finalMd = rewriteScoreSection(finalMd, calc);
 
+    // Carimbo determinístico (mesmo padrão do score) — alimenta o indicador de
+    // "dias parado" no painel. Nunca deixado pro Claude escrever: a data real
+    // de quando ESTE arquivo foi gravado é fato do servidor, não julgamento do modelo.
+    const hojeISO = new Date().toISOString().slice(0, 10);
+    finalMd = finalMd.includes('**Status atualizado em:**')
+      ? finalMd.replace(/\*\*Status atualizado em:\*\*[^\n]*/, `**Status atualizado em:** ${hojeISO}`)
+      : finalMd.replace(/(\*\*Status:\*\*[^\n]*)/, `$1\n**Status atualizado em:** ${hojeISO}`);
+
     // Slug e escrita (só funciona localmente — Vercel tem filesystem read-only)
     let slug = existingSlug?.trim() || toSlug(`${extracted.empresa}-${extracted.cargo}`);
     try {

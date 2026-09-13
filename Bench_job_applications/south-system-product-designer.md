@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
 **Candidatura:** Não
+**Score anterior:** 33% (2026-06-27)
+**Motivo da mudança de score:** Mesmos 33 requisitos obrigatórios e 15 preferidos nas duas análises. Três coisas mudaram juntas: (1) evidência genérica virou citação de case específico em quase toda linha (mesmo padrão do Revolut); (2) "portais logados/setor financeiro" caiu de nota 1 pra 0 — mesma correção de rubrica do Asaas ("Ausente" não pode ser nota 1); (3) "Inglês intermediário" subiu de 0 pra 3 — mesma omissão do portfolio bilíngue já encontrada na Serasa, reanalisada no mesmo lote (2026-06-27). O saldo líquido dos obrigatórios foi pequeno (26→30) porque subidas e descidas se cancelaram parcialmente.
 
 ---
 

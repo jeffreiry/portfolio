@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-08-20
 **Status:** Candidatura enviada
 **Candidatura:** Sim
+**Score anterior:** 89% (2026-07-10)
+**Motivo da mudança de score:** Os pontos obtidos não mudaram (32/32 nas duas análises) — o que mudou foi a granularidade da extração da JD. Na 1ª passada, "Leadership" (mentoria de designers juniores) foi absorvido dentro de um requisito mais genérico de integração cross-funcional, que recebeu nota 3. Na 2ª passada, "Leadership" virou requisito próprio e recebeu nota 1 — nenhum case documenta mentoria de fato. Isso aumentou o denominador de 18 para 21 (6 requisitos → 7) e expôs um gap real que a 1ª extração tinha mascarado.
 
 ---
 

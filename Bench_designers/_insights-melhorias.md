@@ -2,8 +2,8 @@
 
 Arquivo consolidado e atualizado a cada novo benchmark. Cada insight tem referência à(s) análise(s) de origem.
 
-**Última atualização:** 19/06/2026 (+ seção de cruzamento com o bench de vagas)
-**Benchmarks incorporados:** Sage (Emily Backes) · Agentic DS (mchiu) · 3M M\*Modal (Lawrence Zheng) · Gen AI Summaries (Nicole Roberts) · Mira.ai (sanvithi)
+**Última atualização:** 12/09/2026 (+ Sprocket, Lago, Folsom Psychology)
+**Benchmarks incorporados:** Sage (Emily Backes) · Agentic DS (mchiu) · 3M M\*Modal (Lawrence Zheng) · Gen AI Summaries (Nicole Roberts) · Mira.ai (sanvithi) · Sprocket App (Emily Backes) · Lago (Emily Backes) · Folsom Psychology (Emily Backes)
 
 ---
 
@@ -11,9 +11,19 @@ Arquivo consolidado e atualizado a cada novo benchmark. Cada insight tem referê
 
 ### H1 com resultado quantificado ou frase-manifesto
 O título do case carrega o resultado ou a tese, não a descrição do projeto.
-- Exemplos: "How I Doubled Chatbot Resolution Rate…" (Sage) · "I built a design system that AI can use" (mchiu)
+- Exemplos: "How I Doubled Chatbot Resolution Rate…" (Sage) · "I built a design system that AI can use" (mchiu) · "How I doubled expected registration and app sign up in 3 months" (Sprocket)
 - **Onde implementar:** campo `title` no frontmatter + peso tipográfico no hero de `[slug].astro`
-- _Fonte: Sage, Agentic DS_
+- _Fonte: Sage, Agentic DS, Sprocket_
+
+### Estatísticas de pesquisa como prova do problema (não só do resultado)
+Números de contexto/mercado (ex: "73% dos furtos de bike não são recuperados") aparecem logo na seção de pesquisa, antes da solução — justificam por que o problema importa, em vez de só aparecerem no final como prova de resultado.
+- **Onde implementar:** convenção de conteúdo markdown — citar a fonte/número de mercado já na seção de discovery, não só no impacto final
+- _Fonte: Sprocket_
+
+### Métrica operacional concreta e verificável (não percentual de vaidade)
+Números como "18 minutos reduzidos por chamada" ou "4 aplicativos substituídos" são mais críveis que percentuais de satisfação/engajamento porque são verificáveis e não infláveis.
+- **Onde implementar:** convenção de conteúdo/copy ao preencher os `⬜` de métricas — priorizar tempo/contagem operacional sobre percentual de negócio quando o dado de negócio for confidencial ou inexistente
+- _Fonte: Folsom Psychology_
 
 ### Frame cinematic full-bleed (quote + imagem + fonte)
 Foto em P&B ou cor full-bleed com stat/quote sobreposto e atribuição de fonte. Cria contraste de ritmo entre blocos densos e momento emocional.
@@ -57,7 +67,17 @@ Fundos alternam entre processo (claro) e resultado (tintado) para segmentar visu
 ### Admissão de falhas / seção retrospectiva honesta
 Seção explícita de limitações, trade-offs ou "o que faria diferente". Aumenta credibilidade sênior.
 - **Onde implementar:** convenção de conteúdo markdown (seção `## Retrospectiva`) + estilo de destaque opcional
-- _Fonte: Sage, Lawrence Zheng, Mira.ai_
+- _Fonte: Sage, Lawrence Zheng, Mira.ai, Sprocket (seção "Challenges", inclui viés de acessibilidade não resolvido)_
+
+### Progressão de fidelidade como galeria visual sequencial (sketch → lofi → midfi → hifi)
+Diferente de só mencionar "iterei bastante" em texto: os 4 estágios aparecem lado a lado como artefato visual navegável, provando o processo em vez de descrevê-lo.
+- **Onde implementar:** convenção de conteúdo markdown/MDX — galeria de imagens em sequência com legenda do estágio; depende de ter guardado os artefatos de baixa-fi
+- _Fonte: Sprocket_
+
+### Case dedicado a liderança/processo sem depender de tela de produto
+Um case inteiro sobre gestão de pessoas (contratação, organograma, priorização) sem nenhuma UI — usa organograma com candidatos rejeitados (motivo do descarte incluso) + matriz de priorização (Impact × Feasibility) como os únicos artefatos visuais.
+- **Onde implementar:** conteúdo novo — exigiria um case dedicado, não é um ajuste de template. Ataca diretamente o gap de "mentoria/liderança" que nenhum dos 9 cases atuais cobre (ver `CLAUDE.md` → "Ao escrever ou reescrever cases", pergunta 5)
+- _Fonte: Lago_
 
 ### Sticky process nav numerada com scroll-spy
 Barra de âncoras numeradas (1. Contexto · 2. Processo · 3. Resultado) que destaca a seção ativa ao rolar. Orienta leitura de cases longos.

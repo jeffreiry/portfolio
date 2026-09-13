@@ -1,5 +1,102 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-13 (continuação — OG image ausente em todo o site)
+
+### Corrigido
+- **`public/og-default.png` não existia** — `Base.astro` sempre teve esse caminho como fallback de `og:image`/`twitter:image` (1200×630), mas nenhuma página do site (home EN/PT, os 9 cases, contato, login) jamais passou um `ogImage` próprio. Isso significa que **todo compartilhamento do portfólio em redes sociais mostrava preview quebrado ou sem imagem**, provavelmente desde o lançamento do site — ninguém tinha notado porque o link nunca "quebra" visualmente pra quem clica, só pra quem vê o preview antes de clicar. Corrigido adicionando o arquivo (logotipo "JEFFERSON" em bracket).
+
+### Adicionado
+- **Documentado o fluxo `curriculo-pt-draft.md` → PDF** no `CLAUDE.md`: arquivo de trabalho na raiz (não versionado, não é doc do projeto) onde o autor edita conteúdo do currículo em Markdown; aplicado de volta no PDF via `pdf-lib` preservando layout/fonte atuais.
+
+---
+
+## 2026-09-13 (continuação — data de envio de candidatura, imutável)
+
+### Corrigido
+- **Faltava uma data de envio de candidatura que sobrevivesse ao avanço do status.** O campo `Status atualizado em`, adicionado horas antes nesta mesma sessão, é sobrescrito toda vez que status/candidatura mudam — então assim que uma vaga saísse de "Candidatura enviada" pra "Entrevista agendada", a data real de envio se perderia, e não haveria como calcular "quanto tempo a empresa levou pra responder".
+
+### Adicionado
+- **Campo `**Candidatura enviada em:**`, imutável** — carimbado uma única vez em `jobanalysis-update.ts`, na primeira vez que o status vira "Candidatura enviada"; nunca mais reescrito depois disso.
+- **Badge "respondeu em N dias"** (verde) nos cards — aparece quando a vaga já saiu de "Candidatura enviada" pra Entrevista/Em processo/Proposta/Recusado, calculado como `Status atualizado em` (do estágio atual) menos `Candidatura enviada em`. Ausente enquanto a vaga ainda está em "Candidatura enviada" (não houve resposta ainda) ou pra vagas de antes desta convenção.
+
+---
+
+## 2026-09-13 (continuação — gestão de pipeline: prioridade, funil, board, prazos)
+
+Levantamento de melhorias pensando no `/jobanalysis` como ferramenta de **gestão de candidaturas**, não só motor de análise. De 8 ideias levantadas, 6 implementadas nesta sessão; 1 (superfície automática da convenção de double-check recorrente) deliberadamente deixada de fora — exigiria matching semântico entre texto de gap e categoria frágil demais pra confiar sem validação melhor.
+
+### Adicionado
+- **Campo `**Status atualizado em:**`** — carimbado deterministicamente pelo servidor (nunca pelo autor nem pelo Claude) em `jobanalysis-analyze.ts` (criação/reanálise) e `jobanalysis-update.ts` (edição de candidatura/status). Substitui a ideia inicial de usar `mtime` do arquivo, descartada por ser frágil — uma edição em lote de conteúdo (como a que acabamos de fazer nos 7 arquivos de Score anterior) resetaria o contador sem a vaga ter sido realmente tocada.
+- **Indicador "dias parado"** nos cards — badge laranja quando uma vaga em estágio ativo está ≥21 dias sem `Status atualizado em`. Ausente (não zerado) para vagas de antes desta convenção, até serem tocadas de novo.
+- **Campo opcional `**Prazo de candidatura:**`** — badge vermelho quando faltam ≤3 dias ou o prazo já passou. Mecanismo pronto, nenhuma vaga tem o campo preenchido ainda (nenhuma JD do bench tinha prazo explícito até agora).
+- **Seção "Prioridade agora"** — top 5 vagas em estágio ativo, ordenadas por score desc e tempo parado desc, respondendo direto "o que eu ataco hoje".
+- **Seção "Funil de candidaturas"** — contagem por estágio ativo (A avaliar → Proposta recebida) como barras horizontais; Recusado/Arquivado contados à parte como estados terminais.
+- **Seção "Board por status"** — kanban leve e só-leitura, uma coluna por estágio ativo com cards compactos (score + empresa), pra visão do pipeline inteiro num olhar só.
+- **Checklist de preparo pré-entrevista** — quando `Status = Entrevista agendada`, os 🔴 Bloqueadores da vaga viram checklist marcável (client-side, não persiste ao recarregar — é auxílio de leitura, não dado).
+- **Aviso de empresa duplicada** — ao criar uma vaga nova (não reanálise), se já existir outra vaga da mesma empresa no bench, um callout aparece no card novo.
+
+Todos os campos/lógicas duplicados nos dois lugares onde os cards são montados (SSR + `buildCardHTML` client-side), seguindo a mesma disciplina de fonte única já aplicada ao `gaps[]` e à Matriz FOFA.
+
+---
+
+## 2026-09-13 (continuação — varredura de todas as vagas não-recusadas)
+
+A pedido do autor, todas as 49 vagas com status ≠ Recusado foram checadas contra o histórico git em busca de mudança de score não documentada. Metodologia: comparar o score no primeiro commit de cada arquivo vs. o valor atual; onde o histórico git ainda tinha a versão "antes" (mesmo com o arquivo em disco já sobrescrito), extrair o diff real das tabelas de requisito em vez de supor motivo.
+
+### Adicionado
+**6 vagas além do ADP** ganharam `**Score anterior:**` + `**Motivo da mudança de score:**`, cada uma com causa raiz diferente e verificada via diff real:
+
+- **Afya (74%→42%):** a 1ª análise tinha erro de cálculo genuíno — texto dizia "18/28 = 64%" mas o cabeçalho exibia 74%, com o próprio texto tentando justificar a discrepância. Confirma por que a arquitetura atual nunca deixa o Claude escrever a % final.
+- **Asaas (55%→43%):** mesmos 12 requisitos — 5 itens marcados "Ausente" tinham nota 1 na 1ª análise (rubrica diz que Ausente = nota 0). Correção de aplicação de rubrica, não reavaliação de portfólio.
+- **Certta (56%→61%):** extração da JD consolidou 9 requisitos em 7 na 2ª passada (2 itens da 1ª viraram sub-casos de itens já existentes) — mesma família de inconsistência de segmentação do ADP, só que reduzindo o denominador em vez de aumentar.
+- **Revolut (45%→58%):** mesmos 27+15 requisitos — a 1ª análise usava evidência genérica ("não mencionado", "cases publicados") sem citar case nenhum pelo nome; a 2ª aplicou a regra de citar caso específico e achou evidência mais forte pros mesmos requisitos (5 notas subiram, nenhuma caiu).
+- **Serasa (49%→56%):** os 21 obrigatórios não mudaram; só "Inglês avançado" foi de nota 0 ("não há evidência") pra nota 3 (portfolio bilíngue PT+EN, fato verificável que a 1ª análise simplesmente não considerou).
+- **South System (33%→38%):** combina os três padrões acima ao mesmo tempo — evidência mais específica, correção de rubrica num item, e a mesma omissão do inglês bilíngue da Serasa (mesmo lote de análise, 2026-06-27).
+
+**Padrão transversal identificado:** pelo menos 3 causas-raiz distintas e recorrentes de mudança de score que não têm nada a ver com o portfólio ter mudado — (1) inconsistência de granularidade na extração da JD pelo Groq, (2) violação da própria rubrica (nota 1 em vez de 0 para "Ausente"), (3) evidência genérica em vez de case citado nominalmente. As três já eram hipotéticas na seção "Risco & Premissas" do case `jobanalysis-case-study` — agora têm exemplo real e documentado cada uma.
+
+### Não encontrado
+Nenhuma das outras ~42 vagas não-recusadas teve o score alterado entre o primeiro commit e o atual — mudanças nesses arquivos foram só de `Status`/`Candidatura` (fluxo normal de acompanhamento de candidatura, não reanálise).
+
+---
+
+## 2026-09-13 (continuação — indicador de score mudado + double-check recorrente)
+
+### Adicionado
+- **Convenção: double-check recorrente disparado por mudança no portfólio, não por calendário.** O double-check original só cobre a vaga no momento da criação. Agora, toda vez que um case mexer num dos Gaps transversais (métrica preenchida, artefato publicado, mobile coberto), a pergunta é "quais vagas do bench perderam ponto justamente nesse gap?" — reavaliar só essas, nunca reler o bench inteiro por rotina.
+- **Indicador visual de "score mudado"** nos cards de `/jobanalysis`: dois campos opcionais no arquivo da vaga (`**Score anterior:**` + `**Motivo da mudança de score:**`), renderizados como badge (↑/↓, verde/vermelho) com explicação do que mudou logo abaixo. Implementado nos dois lugares onde os cards são montados (SSR + template client-side), evitando o mesmo erro de fonte dupla de duas vezes atrás.
+- **Exemplo real: ADP (89%→76%, reanálise de 2026-08-20).** Comparando as duas versões do arquivo via `git show` (o histórico git preservava o "antes", mesmo com o arquivo em disco já sobrescrito), descoberto que os pontos obtidos não mudaram (32/32) — o que mudou foi a granularidade da extração da JD: "Leadership" (mentoria de designers juniores) virou requisito próprio com nota 1 na 2ª análise, em vez de ficar absorvido dentro de um requisito genérico com nota 3 na 1ª, aumentando o denominador de 18 para 21. É um achado real de inconsistência de extração entre duas passadas da mesma JD — evidência concreta da "premissa mais arriscada" já documentada no case `jobanalysis-case-study`.
+
+---
+
+## 2026-09-13 (Matriz FOFA + faixa "Alta aderência" que nunca existia)
+
+### Adicionado
+- **Seção "Matriz FOFA"** no bench (`## Matriz FOFA` em `_index.md`, 4 quadrantes: 🟩 Forças, 🟥 Fraquezas, 🟦 Oportunidades, ⬛ Ameaças), sintetizando padrões que só aparecem lendo o conjunto das 55 vagas — não vaga a vaga. Forças fundamentadas em contagem real (trade-offs documentados: 41/55, portfolio bilíngue: 35/55). Renderizada dinamicamente em `/jobanalysis` via `parseFOFA()`, seguindo o mesmo princípio de fonte única dos Gaps transversais — mas com cadência própria: **só é recalculada quando pedida explicitamente**, nunca a cada vaga nova (convenção registrada no `CLAUDE.md`, mesmo espírito do "Motivo da recusa").
+- **Pill de filtro "Alta aderência"** na página `/jobanalysis`.
+
+### Corrigido
+- **`parseGapsTransversais()` sem limite superior** — lia da linha "## Gaps transversais" até o fim do arquivo. Ao adicionar a Matriz FOFA logo em seguida no `_index.md`, suas tabelas (que também começam com `|`) seriam engolidas pra dentro dos Gaps transversais. Corrigido antes de virar bug real: seção agora limitada ao próximo `## `. Validado com teste isolado do parser (5 gaps, sem contaminação da FOFA).
+- **Faixa "Alta aderência" (≥80%) nunca tinha sido implementada na lógica de banda/filtro/cor** — só existia na legenda "Interpretação do score". A função `banda()` (duplicada no script do servidor e no `<script>` client-side) só reconhecia 3 faixas (parcial/baixa/muito-baixa), então uma vaga de 95% e uma de 61% recebiam a mesma cor de badge e caíam no mesmo filtro. Corrigido nos dois lugares; tipo `Banda` agora tem 4 valores, com cor própria (`--color-tag-research`) pra não reciclar a cor de "parcial".
+
+---
+
+## 2026-09-12 (3 vagas órfãs reconciliadas + gaps transversais recalculados + fim do array hardcoded)
+
+### Corrigido
+- **3 análises estavam órfãs do `_index.md`:** iFood (57%, Staff Product Designer II), Gringo & Zapay (69%) e Nacar (79%) foram analisadas e salvas em `Bench_job_applications/`, mas nunca entraram na tabela do ranking — mesmo padrão de falha das reconciliações de 2026-09-07. Adicionadas com score/status/data extraídos de cada arquivo.
+- **`fetch-senior-product-designer.md` sem `Motivo da recusa`** — única entre as 6 vagas com `Status: Recusado` sem o campo preenchido. Adicionado: gap de growth/retenção (nota 0, requisito obrigatório) + ausência de mobile nativo publicado, coerentes com o menor score do bench (27%).
+- **Gap "UX Research estruturado" estava subestimado:** linha de gaps transversais listava só 4 vagas (C&A, SAP, ADP, Itaú) com impacto "Médio" — auditoria completa das 55 análises encontrou o requisito pontuando ≤2 em **22 vagas**, reclassificado para impacto "Alto".
+- **Gap "Mobile nativo": 13 → 14 vagas** — iFood (app dos entregadores) adicionado à lista após a reconciliação acima.
+- **`CLAUDE.md` e `portfolio-readme.md` com contagem desatualizada** ("52 vagas, média 57%") — corrigido para 55 vagas (média segue 57%, a entrada de maior score — Nacar — compensou a de menor score entre as três novas).
+
+### Alterado
+- **Array `gaps[]` de `src/pages/jobanalysis.astro` deixou de ser hardcoded.** Era a segunda vez que ele ficava desatualizado em relação ao `_index.md` (faltava a linha inteira de "Mobile nativo" e a de "UX Research" tinha os números antigos) porque a sincronia dependia de lembrança manual a cada edição do índice. Substituído por `parseGapsTransversais()`, que lê a tabela "## Gaps transversais" direto do `_index.md` — mesmo arquivo já usado como fonte das vagas — eliminando a fonte dupla. Validado com teste isolado do parser contra o `_index.md` real (5 linhas, markdown `**`/`` ` `` removido corretamente) e `npm run build` limpo.
+
+**Bench atual: 55 vagas, média 57%** (era 52 vagas, média 57%).
+
+---
+
 ## 2026-09-08/09 (currículos reescritos + card de Recusado no bench)
 
 ### Adicionado
@@ -129,15 +226,15 @@
 
 ## [Não lançado]
 
-### Pendente — por criticidade (bench 2026-08-18 · 26 vagas · score médio 54%)
+### Pendente — por criticidade (bench 2026-09-12 · 55 vagas · score médio 57%)
 
-Espelha a tabela "Gaps transversais" de [`Bench_job_applications/_index.md`](Bench_job_applications/_index.md) — ao atualizar uma, sincronizar a outra (e o array `gaps[]` em `src/pages/jobanalysis.astro`).
+A seção "Gaps transversais" de [`Bench_job_applications/_index.md`](Bench_job_applications/_index.md) agora é a única fonte — desde 2026-09-12, `src/pages/jobanalysis.astro` lê essa tabela dinamicamente (`parseGapsTransversais()`) em vez de manter um array `gaps[]` hardcoded. Esta lista aqui embaixo ainda é mantida manualmente (é prosa de changelog, não código), então ao fechar ou reabrir um gap no `_index.md`, atualizar também aqui.
 
 - 🔴 **Métricas de impacto** (`⬜`) (todas as vagas) — Enterprise AI, Shipping, Arezzo, Hypera
 - 🔴 **Artefatos visíveis** (todas as vagas) — expor telas, flows ou wireframes; imagens já adicionadas em 6 cases (2026-06-20/07-12) mas o gap segue aberto no bench — vagas analisadas depois da adição ainda cobram mais artefatos
+- 🔴 **Mobile nativo (iOS/Android)** (14 vagas) — Fetch, alt.bank, Deel, Tractian, Revolut, SAP Concur, Segware, Vivo, Zuri, DuckDuckGo, Asaas, Méliuz, CloudWalk, iFood; Power Apps é low-code, não conta como equivalente
+- 🔴 **UX Research estruturado** (22 vagas) — nenhum case documenta protocolo, roteiro ou síntese formal de research/testes de usabilidade, só discovery informal (Clarity, workshops, entrevistas)
 - 🟠 **Acessibilidade documentada** (SAP, BTG, Boticário) — enterprise cases com `⬜`; Cartela Cores é a referência WCAG 1.4.1
-- 🟠 **UX Research estruturado** (C&A, SAP, ADP, Itaú) — A/B testing e testes de usabilidade formais não aparecem em nenhum case
-- 🟡 **Mobile nativo (iOS/Android)** — bloqueador 🔴 explícito no Itaú (72%, arco de acesso 100% mobile) e gap estrutural desde o SAP Concur (52%); Power Apps é low-code, não conta como equivalente
 - Página About dedicada (`/about` + `/pt/about`)
 
 ### Concluído desde a última auditoria (não relançado formalmente)

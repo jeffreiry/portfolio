@@ -4,7 +4,7 @@ export const prerender = false;
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
 // Nova Vaga / Editar / Candidatura escrevem no filesystem (Bench_job_applications/*.md)
@@ -25,6 +25,11 @@ interface VagaParsed {
   status: string;
   candidatura: string;
   motivoRecusa: string;
+  scoreAnterior: number | null;
+  motivoMudancaScore: string;
+  prazoCandidatura: string;
+  diasParado: number;
+  diasAteResposta: number | null;
   data: string;
   tags: string[];
   bloqueadores: string[];
@@ -36,7 +41,7 @@ interface VagaParsed {
   maxPrefW: number;
 }
 
-type Banda = 'parcial' | 'baixa' | 'muito-baixa';
+type Banda = 'alta' | 'parcial' | 'baixa' | 'muito-baixa';
 
 // --- Parsing ---
 
@@ -86,6 +91,39 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
 
     const motivoMatch = content.match(/\*\*Motivo da recusa:\*\*\s*(.+)/);
     const motivoRecusa = motivoMatch?.[1]?.trim() ?? '';
+
+    // Campo opcional "**Score anterior:**" — preenchido só quando uma reanálise
+    // muda o score de uma vaga já validada (convenção 2026-09-13). Extrai só o
+    // número; o resto da linha (data, motivo) fica só na leitura humana do arquivo.
+    const scoreAnteriorMatch = content.match(/\*\*Score anterior:\*\*\s*(\d+)%/);
+    const scoreAnterior = scoreAnteriorMatch ? parseInt(scoreAnteriorMatch[1]) : null;
+
+    const motivoMudancaMatch = content.match(/\*\*Motivo da mudança de score:\*\*\s*(.+)/);
+    const motivoMudancaScore = motivoMudancaMatch?.[1]?.trim() ?? '';
+
+    // "Status atualizado em" é carimbado pelo servidor (jobanalysis-analyze.ts na
+    // criação, jobanalysis-update.ts a cada edição) — nunca escrito pelo autor à
+    // mão nem pelo Claude. Vagas de antes desta convenção (2026-09-13) não têm o
+    // campo até serem tocadas de novo; "dias parado" fica ausente pra elas em vez
+    // de inventar uma data a partir de mtime de arquivo, que já provou ser pouco
+    // confiável (uma edição em lote no conteúdo não é a mesma coisa que mudar status).
+    const statusAtualizadoMatch = content.match(/\*\*Status atualizado em:\*\*\s*(\d{4}-\d{2}-\d{2})/);
+    const diasParado = statusAtualizadoMatch
+      ? Math.floor((Date.now() - new Date(statusAtualizadoMatch[1] + 'T12:00:00').getTime()) / 86400000)
+      : -1; // -1 = desconhecido, não "0 dias"
+
+    const prazoMatch = content.match(/\*\*Prazo de candidatura:\*\*\s*(\d{4}-\d{2}-\d{2})/);
+    const prazoCandidatura = prazoMatch?.[1] ?? '';
+
+    // "Dias até resposta" só existe quando a vaga já SAIU de "Candidatura enviada"
+    // pra algum estágio seguinte (Entrevista, Em processo, Proposta, Recusado) —
+    // enquanto ainda está em "Candidatura enviada", não houve resposta ainda,
+    // então o cálculo não faz sentido (seria "dias parado", não "dias até resposta").
+    const candidaturaEnviadaMatch = content.match(/\*\*Candidatura enviada em:\*\*\s*(\d{4}-\d{2}-\d{2})/);
+    const estagiosPosResposta = ['Entrevista agendada', 'Em processo', 'Proposta recebida', 'Recusado'];
+    const diasAteResposta = (candidaturaEnviadaMatch && statusAtualizadoMatch && estagiosPosResposta.includes(status))
+      ? Math.max(0, Math.floor((new Date(statusAtualizadoMatch[1] + 'T12:00:00').getTime() - new Date(candidaturaEnviadaMatch[1] + 'T12:00:00').getTime()) / 86400000))
+      : null;
 
     const blockquoteMatch = content.match(/## Score de ader[eê]ncia[^\n]*\n\n>\s*(.+)/);
     const interpretacaoTexto = blockquoteMatch?.[1]?.trim() ?? '';
@@ -137,6 +175,11 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       status,
       candidatura,
       motivoRecusa,
+      scoreAnterior,
+      motivoMudancaScore,
+      prazoCandidatura,
+      diasParado,
+      diasAteResposta,
       data,
       tags: tags.slice(0, 6),
       bloqueadores,
@@ -149,6 +192,101 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
     };
   } catch {
     return null;
+  }
+}
+
+interface GapTransversal {
+  gap: string;
+  impacto: string;
+  vagas: string;
+  acao: string;
+}
+
+interface FofaQuadrante {
+  emoji: string;
+  titulo: string;
+  headers: string[];
+  rows: string[][];
+}
+
+// Parser de tabela markdown genérico: lê header + linhas de dados de um bloco
+// de texto, ignorando a linha separadora "|---|---|". Reaproveitado pelos 4
+// quadrantes da FOFA, que têm números de coluna diferentes entre si.
+function parseMarkdownTable(block: string): { headers: string[]; rows: string[][] } {
+  const lines = block.split('\n').map((l) => l.trim()).filter((l) => l.startsWith('|'));
+  if (lines.length < 2) return { headers: [], rows: [] };
+  const parseCells = (line: string) => {
+    const cells = line.split('|');
+    return cells.slice(1, cells.length - 1).map((c) => c.trim());
+  };
+  const headers = parseCells(lines[0]);
+  const rows = lines.slice(1).filter((l) => !/^\|?\s*-+\s*\|/.test(l)).map(parseCells);
+  return { headers, rows };
+}
+
+// Lê a tabela "## Gaps transversais" direto do _index.md — antes era um array
+// hardcoded aqui na página, que ficava desatualizado sempre que o _index.md
+// mudava e ninguém lembrava de replicar manualmente (achado real em 2026-09-12:
+// a versão hardcoded chegou a divergir tanto no número de vagas afetadas quanto
+// em faltar uma linha inteira). Agora as duas fontes não podem mais divergir
+// porque só existe uma.
+function parseGapsTransversais(dir: string): GapTransversal[] {
+  try {
+    const content = readFileSync(join(dir, '_index.md'), 'utf-8');
+    // Limitado ao próximo "## " (ou fim do arquivo) — sem isso, uma seção nova
+    // adicionada depois desta (ex: Matriz FOFA) teria suas tabelas engolidas
+    // aqui também, já que elas também começam com "|" (achado real em 2026-09-13,
+    // ao adicionar a seção FOFA logo em seguida).
+    const section = content.split(/## Gaps transversais/i)[1]?.split(/\n## /)[0] ?? '';
+    const tableLines = section.split('\n').filter((l) => l.trim().startsWith('|'));
+
+    const result: GapTransversal[] = [];
+    for (const line of tableLines) {
+      if (line.includes('---') || /\|\s*Gap\s*\|/i.test(line)) continue;
+      const cells = line.split('|').map((c) => c.trim());
+      const [, gapRaw, impacto, vagas, acao] = cells;
+      if (!gapRaw || !impacto) continue;
+      const gap = gapRaw.replace(/\*\*/g, '').replace(/`/g, '');
+      result.push({ gap, impacto, vagas: vagas ?? '', acao: acao ?? '' });
+    }
+    return result;
+  } catch {
+    return [];
+  }
+}
+
+// Lê a "## Matriz FOFA" do _index.md — mesmo princípio de fonte única dos Gaps
+// transversais. Diferente daquela, esta seção NÃO é recalculada a cada vaga
+// nova: só muda quando o autor pede explicitamente ("atualizar a FOFA"),
+// convenção registrada no CLAUDE.md.
+function parseFOFA(dir: string): FofaQuadrante[] {
+  try {
+    const content = readFileSync(join(dir, '_index.md'), 'utf-8');
+    const afterHeading = content.split(/## Matriz FOFA/i)[1];
+    if (!afterHeading) return [];
+    const section = afterHeading.split(/\n## /)[0]; // limitado ao próximo "## " (ou fim do arquivo)
+
+    const quadrantes: { marker: string; titulo: string }[] = [
+      { marker: '🟩', titulo: 'Forças' },
+      { marker: '🟥', titulo: 'Fraquezas' },
+      { marker: '🟦', titulo: 'Oportunidades' },
+      { marker: '⬛', titulo: 'Ameaças' },
+    ];
+
+    const result: FofaQuadrante[] = [];
+    const blocks = section.split(/\n### /).slice(1);
+    for (const block of blocks) {
+      const titleLine = block.split('\n')[0];
+      const def = quadrantes.find((q) => titleLine.includes(q.marker));
+      if (!def) continue;
+      const body = block.split('\n').slice(1).join('\n');
+      const { headers, rows } = parseMarkdownTable(body);
+      if (!headers.length) continue;
+      result.push({ emoji: def.marker, titulo: def.titulo, headers, rows });
+    }
+    return result;
+  } catch {
+    return [];
   }
 }
 
@@ -188,12 +326,14 @@ function mediaLabel(s: number): string {
 }
 
 function banda(score: number): Banda {
+  if (score >= 80) return 'alta';
   if (score >= 60) return 'parcial';
   if (score >= 40) return 'baixa';
   return 'muito-baixa';
 }
 
 const bandaCor: Record<Banda, { fill: string; chipBg: string; chipText: string }> = {
+  alta:          { fill: '#2f6e3f', chipBg: 'var(--color-tag-research-bg)',   chipText: 'var(--color-tag-research-text)'   },
   parcial:       { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',    chipText: 'var(--color-tag-dataviz-text)'    },
   baixa:         { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
   'muito-baixa': { fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
@@ -206,12 +346,14 @@ const rubrica = [
   { nota: '3', criterio: 'Diferencial — evidência forte com contexto, resultados ou detalhe incomum' },
 ];
 
-const gaps = [
-  { gap: 'Métricas de impacto', impacto: 'Alto', vagas: 'Todas', acao: 'Preencher campos de resultado em Enterprise AI, Shipping, Arezzo e Hypera.' },
-  { gap: 'Artefatos visíveis',  impacto: 'Alto', vagas: 'Todas', acao: 'Expor telas, flows ou wireframes — hoje os cases só descrevem processo.' },
-  { gap: 'Acessibilidade',      impacto: 'Médio–alto', vagas: 'SAP, BTG, Boticário', acao: 'Documentar ao menos 1 decisão real por case enterprise.' },
-  { gap: 'UX Research estruturado', impacto: 'Médio', vagas: 'C&A, SAP, ADP, Itaú', acao: 'A/B testing e testes de usabilidade formais não aparecem em nenhum case.' },
-];
+const gaps = parseGapsTransversais(benchDir);
+const fofa = parseFOFA(benchDir);
+const fofaCor: Record<string, { border: string; bg: string }> = {
+  '🟩': { border: '#86c99a', bg: '#eefaf1' },
+  '🟥': { border: '#e8a3a3', bg: '#fdf1f1' },
+  '🟦': { border: '#a3c4e8', bg: '#f0f6fd' },
+  '⬛': { border: '#94a3b8', bg: '#f1f3f6' },
+};
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return '';
@@ -229,6 +371,24 @@ const statusOptions = [
   'Recusado',
   'Arquivado',
 ];
+
+// Funil — só os estágios "em jogo". Recusado/Arquivado são estados terminais,
+// contados à parte (ver funilTerminal) em vez de ocuparem espaço no funil ativo.
+const funilAtivo = ['A avaliar', 'Candidatura enviada', 'Entrevista agendada', 'Em processo', 'Proposta recebida'];
+const funilCounts = funilAtivo.map((s) => ({ status: s, count: vagas.filter((v) => v.status === s).length }));
+const funilTerminal = {
+  recusado: vagas.filter((v) => v.status === 'Recusado').length,
+  arquivado: vagas.filter((v) => v.status === 'Arquivado').length,
+};
+
+// Fila de prioridade — vagas ainda "em jogo" (fora Recusado/Arquivado), ordenadas
+// por score desc e, como desempate, por tempo parado desc (diasParado === -1
+// quando desconhecido, o que naturalmente empurra pro fim do desempate — não
+// inventa urgência pra vaga sem essa data registrada). Top 5, não a lista toda.
+const filaPrioridade = vagas
+  .filter((v) => funilAtivo.includes(v.status))
+  .sort((a, b) => b.score - a.score || b.diasParado - a.diasParado)
+  .slice(0, 5);
 
 const statusCounts: Record<string, number> = {};
 for (const opt of statusOptions) {
@@ -325,6 +485,87 @@ for (const opt of statusOptions) {
       </div>
     </section>
 
+    <!-- Fila de prioridade -->
+    {filaPrioridade.length > 0 && (
+      <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Prioridade agora</h2>
+        <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">As 5 vagas ainda em jogo com maior score — dentre elas, as paradas há mais tempo aparecem primeiro.</p>
+        <div class="flex flex-col gap-3">
+          {filaPrioridade.map((v, i) => {
+            const b = bandaCor[banda(v.score)];
+            return (
+              <div data-animate style={`--animate-delay: ${Math.min(i * 60, 240)}ms`} class="flex items-center gap-4 rounded-2xl border p-4">
+                <span class="font-display text-2xl font-bold tabular-nums shrink-0" style={`color: ${b.fill}; min-width: 3.5ch;`}>{v.score}%</span>
+                <div class="flex flex-col gap-0.5 min-w-0 flex-1">
+                  <span class="font-body text-[15px] font-semibold text-neutral-900 truncate">{v.empresa}{v.produto && <span class="font-normal" style="color: var(--color-faint);"> · {v.produto}</span>}</span>
+                  <span class="text-[12.5px]" style="color: var(--color-muted);">
+                    {v.status}
+                    {v.diasParado >= 0 ? ` · sem atualização há ${v.diasParado} dia${v.diasParado === 1 ? '' : 's'}` : ''}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    )}
+
+    <!-- Funil de candidaturas -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Funil de candidaturas</h2>
+      <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">
+        Estágios ativos — {funilTerminal.recusado} recusada{funilTerminal.recusado === 1 ? '' : 's'} e {funilTerminal.arquivado} arquivada{funilTerminal.arquivado === 1 ? '' : 's'} ficam fora (estados terminais).
+      </p>
+      <div data-animate class="flex flex-col gap-2">
+        {(() => {
+          const maxCount = Math.max(1, ...funilCounts.map((f) => f.count));
+          return funilCounts.map((f) => (
+            <div class="flex items-center gap-3">
+              <span class="text-[13px] shrink-0" style="color: var(--color-muted); width: 160px;">{f.status}</span>
+              <div class="relative h-7 flex-1 overflow-hidden rounded-lg" style="background: var(--color-surface-2);">
+                <div class="absolute inset-y-0 left-0 rounded-lg flex items-center justify-end pr-2" style={`width: ${Math.max(6, (f.count / maxCount) * 100)}%; background: var(--color-tag-research-bg, #d8e8ef);`}>
+                  {f.count > 0 && <span class="text-[12px] font-semibold" style="color: var(--color-tag-research-text, #153c52);">{f.count}</span>}
+                </div>
+              </div>
+            </div>
+          ));
+        })()}
+      </div>
+    </section>
+
+    <!-- Board por status (kanban leve, só leitura) -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Board por status</h2>
+      <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Visão geral do pipeline num olhar só — só leitura, edite pelo card na lista abaixo.</p>
+      <div data-animate class="flex gap-4 overflow-x-auto pb-2">
+        {funilAtivo.map((status) => {
+          const doStatus = vagas.filter((v) => v.status === status).sort((a, b) => b.score - a.score);
+          return (
+            <div class="flex flex-col gap-2 rounded-2xl border p-3 shrink-0" style="width: 220px; background: var(--color-surface-2);">
+              <div class="flex items-center justify-between px-1">
+                <span class="text-[12px] font-semibold" style="color: var(--color-muted);">{status}</span>
+                <span class="text-[11px] tabular-nums" style="color: var(--color-faint);">{doStatus.length}</span>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                {doStatus.length === 0
+                  ? <p class="text-[11px] px-1" style="color: var(--color-faint);">Vazio</p>
+                  : doStatus.map((v) => {
+                      const b = bandaCor[banda(v.score)];
+                      return (
+                        <div class="rounded-lg px-2.5 py-2 flex items-center gap-2" style="background: var(--color-surface);">
+                          <span class="font-display text-[13px] font-bold tabular-nums shrink-0" style={`color: ${b.fill};`}>{v.score}%</span>
+                          <span class="text-[12px] leading-tight truncate">{v.empresa}</span>
+                        </div>
+                      );
+                    })
+                }
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
     <!-- Ranking de vagas -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
       <div class="flex items-center justify-between gap-4 mb-1">
@@ -375,6 +616,7 @@ for (const opt of statusOptions) {
           <div class="flex gap-1 flex-wrap" role="group" aria-label="Filtrar por aderência">
             {[
               { value: '', label: 'Todas' },
+              { value: 'alta', label: 'Alta' },
               { value: 'parcial', label: 'Parcial' },
               { value: 'baixa', label: 'Baixa' },
               { value: 'muito-baixa', label: '<40%' },
@@ -428,6 +670,46 @@ for (const opt of statusOptions) {
                 <span class="score-value font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">{v.score}%</span>
               </div>
 
+              <!-- Dias parado / prazo / tempo até resposta — só aparece com dado real (campos carimbados pelo servidor, nunca inferidos) -->
+              {(() => {
+                const emJogo = funilAtivo.includes(v.status);
+                const parado = emJogo && v.diasParado >= 21;
+                const prazoDias = v.prazoCandidatura ? Math.ceil((new Date(v.prazoCandidatura + 'T12:00:00').getTime() - Date.now()) / 86400000) : null;
+                if (!parado && prazoDias === null && v.diasAteResposta === null) return null;
+                return (
+                  <div class="flex flex-wrap gap-2">
+                    {v.diasAteResposta !== null && (
+                      <span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: rgba(21,128,61,0.1); color: #15803d;">
+                        respondeu em {v.diasAteResposta} dia{v.diasAteResposta === 1 ? '' : 's'}
+                      </span>
+                    )}
+                    {parado && (
+                      <span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: rgba(237,103,7,0.1); color: #ed6707;">
+                        ⏱ sem atualização há {v.diasParado} dias
+                      </span>
+                    )}
+                    {prazoDias !== null && (
+                      <span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-semibold" style={`background: ${prazoDias <= 3 ? 'rgba(185,28,28,0.1)' : 'rgba(0,0,0,0.05)'}; color: ${prazoDias <= 3 ? '#b91c1c' : 'var(--color-muted)'};`}>
+                        {prazoDias >= 0 ? `prazo em ${prazoDias} dia${prazoDias === 1 ? '' : 's'}` : 'prazo vencido'}
+                      </span>
+                    )}
+                  </div>
+                );
+              })()}
+
+              <!-- Indicador de score mudado — só aparece se "**Score anterior:**" estiver preenchido no arquivo (convenção 2026-09-13, reanálise mudou o resultado) -->
+              {v.scoreAnterior !== null && v.scoreAnterior !== v.score && (
+                <div class="flex flex-col gap-1.5">
+                  <span class="score-delta-badge inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold"
+                    style={`background: ${v.score > v.scoreAnterior ? 'rgba(21,128,61,0.1)' : 'rgba(185,28,28,0.1)'}; color: ${v.score > v.scoreAnterior ? '#15803d' : '#b91c1c'};`}>
+                    {v.score > v.scoreAnterior ? '↑' : '↓'} score mudou de {v.scoreAnterior}% para {v.score}% numa reanálise
+                  </span>
+                  {v.motivoMudancaScore && (
+                    <p class="text-[12px] leading-relaxed" style="color: var(--color-muted);"><strong>O que mudou:</strong> {v.motivoMudancaScore}</p>
+                  )}
+                </div>
+              )}
+
               <!-- Texto de interpretação -->
               {v.interpretacaoTexto && (
                 <p class="interp-text text-sm leading-relaxed italic" style="color: var(--color-muted);">"{v.interpretacaoTexto}"</p>
@@ -438,6 +720,22 @@ for (const opt of statusOptions) {
                 <p class="text-[12px] leading-relaxed rounded-lg px-3 py-2" style="background: rgba(185,28,28,0.08); border: 1px solid rgba(185,28,28,0.25); color: #b91c1c;">
                   <strong>Motivo provável:</strong> {v.motivoRecusa}
                 </p>
+              )}
+
+              <!-- Checklist de preparo — só quando a entrevista já está marcada. Os 🔴 Bloqueadores
+                   desta vaga específica são, por definição, as perguntas mais prováveis de aparecer. -->
+              {v.status === 'Entrevista agendada' && v.bloqueadores.length > 0 && (
+                <div class="rounded-lg px-3 py-2.5 flex flex-col gap-1.5" style="background: rgba(21,128,61,0.06); border: 1px solid rgba(21,128,61,0.2);">
+                  <span class="text-[11px] font-semibold uppercase tracking-[0.06em]" style="color: #15803d;">Preparar resposta pra isso</span>
+                  <ul class="flex flex-col gap-1">
+                    {v.bloqueadores.map((item) => (
+                      <li class="text-[12.5px] leading-snug flex items-start gap-1.5" style="color: var(--color-muted);">
+                        <input type="checkbox" class="mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
 
               <!-- Tags de competências -->
@@ -590,6 +888,32 @@ for (const opt of statusOptions) {
         ))}
       </div>
     </section>
+
+    <!-- Matriz FOFA -->
+    {fofa.length > 0 && (
+      <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Matriz FOFA</h2>
+        <p data-animate class="text-sm mb-7 max-w-[760px] leading-relaxed" style="color: var(--color-faint);">
+          Síntese de padrões que só aparecem lendo o bench inteiro, não vaga a vaga. Diferente dos Gaps transversais, esta seção <strong>não é recalculada a cada análise nova</strong> — só é atualizada quando pedida explicitamente.
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          {fofa.map((q, i) => (
+            <div data-animate style={`--animate-delay: ${Math.min(i * 60, 300)}ms; border-color: ${fofaCor[q.emoji]?.border ?? '#e2e5eb'}; background: ${fofaCor[q.emoji]?.bg ?? 'transparent'};`} class="flex flex-col gap-3 rounded-2xl border p-5">
+              <h3 class="font-body text-base font-semibold text-neutral-900">{q.emoji} {q.titulo}</h3>
+              <div class="flex flex-col gap-3">
+                {q.rows.map((row) => (
+                  <div class="flex flex-col gap-0.5 pb-3" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
+                    <span class="text-sm font-semibold text-neutral-900">{row[0]}</span>
+                    {row.slice(1).map((cell) => cell && <span class="text-[12.5px] leading-relaxed" style="color: var(--color-muted);">{cell}</span>)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
 
     <!-- Metodologia -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
@@ -838,12 +1162,14 @@ for (const opt of statusOptions) {
   // ---- Utilitários ----
 
   const BAND_COLORS = {
+    alta:          { fill: '#2f6e3f', chipBg: 'var(--color-tag-research-bg)',   chipText: 'var(--color-tag-research-text)'   },
     parcial:       { fill: '#4d6046', chipBg: 'var(--color-tag-dataviz-bg)',    chipText: 'var(--color-tag-dataviz-text)'    },
     baixa:         { fill: '#ed6707', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
     'muito-baixa': { fill: '#8c2f0d', chipBg: 'var(--color-tag-enterprise-bg)', chipText: 'var(--color-tag-enterprise-text)' },
   } as const;
 
-  function banda(score: number): 'parcial' | 'baixa' | 'muito-baixa' {
+  function banda(score: number): 'alta' | 'parcial' | 'baixa' | 'muito-baixa' {
+    if (score >= 80) return 'alta';
     if (score >= 60) return 'parcial';
     if (score >= 40) return 'baixa';
     return 'muito-baixa';
@@ -1106,7 +1432,8 @@ for (const opt of statusOptions) {
   function buildCardHTML(v: {
     slug: string; empresa: string; produto: string; cargo: string;
     score: number; interpretacao: string; interpretacaoTexto: string;
-    status: string; candidatura: string; motivoRecusa?: string; data: string; tags: string[];
+    status: string; candidatura: string; motivoRecusa?: string; scoreAnterior?: number | null; motivoMudancaScore?: string;
+    diasParado?: number; prazoCandidatura?: string; diasAteResposta?: number | null; data: string; tags: string[];
     bloqueadores?: string[]; ausentes?: string[]; boaAderencia?: string[];
     obtObrig?: number; maxObrigW?: number; obtPref?: number; maxPrefW?: number;
   }): string {
@@ -1131,8 +1458,43 @@ for (const opt of statusOptions) {
     const motivoHTML = v.status === 'Recusado' && v.motivoRecusa
       ? `<p class="text-[12px] leading-relaxed rounded-lg px-3 py-2" style="background: rgba(185,28,28,0.08); border: 1px solid rgba(185,28,28,0.25); color: #b91c1c;"><strong>Motivo provável:</strong> ${v.motivoRecusa}</p>`
       : '';
+    const scoreDeltaHTML = (v.scoreAnterior != null && v.scoreAnterior !== v.score)
+      ? `<div class="flex flex-col gap-1.5">
+          <span class="score-delta-badge inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold"
+            style="background: ${v.score > v.scoreAnterior ? 'rgba(21,128,61,0.1)' : 'rgba(185,28,28,0.1)'}; color: ${v.score > v.scoreAnterior ? '#15803d' : '#b91c1c'};">
+            ${v.score > v.scoreAnterior ? '↑' : '↓'} score mudou de ${v.scoreAnterior}% para ${v.score}% numa reanálise
+          </span>
+          ${v.motivoMudancaScore ? `<p class="text-[12px] leading-relaxed" style="color: var(--color-muted);"><strong>O que mudou:</strong> ${v.motivoMudancaScore}</p>` : ''}
+        </div>`
+      : '';
     const dateHTML = dateFmt
       ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">📅</span> ${dateFmt}</span>`
+      : '';
+
+    // Mesma lista de "funil ativo" do servidor (astro frontmatter) — duplicada aqui
+    // porque este script client-side roda num contexto JS separado, sem acesso
+    // às consts do componente Astro.
+    const FUNIL_ATIVO = ['A avaliar', 'Candidatura enviada', 'Entrevista agendada', 'Em processo', 'Proposta recebida'];
+    const diasParado = v.diasParado ?? -1;
+    const emJogo = FUNIL_ATIVO.includes(v.status);
+    const parado = emJogo && diasParado >= 21;
+    const prazoDias = v.prazoCandidatura ? Math.ceil((new Date(v.prazoCandidatura + 'T12:00:00').getTime() - Date.now()) / 86400000) : null;
+    const diasAteResposta = v.diasAteResposta ?? null;
+    const prazoHTML = (parado || prazoDias !== null || diasAteResposta !== null)
+      ? `<div class="flex flex-wrap gap-2">
+          ${diasAteResposta !== null ? `<span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: rgba(21,128,61,0.1); color: #15803d;">respondeu em ${diasAteResposta} dia${diasAteResposta === 1 ? '' : 's'}</span>` : ''}
+          ${parado ? `<span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: rgba(237,103,7,0.1); color: #ed6707;">⏱ sem atualização há ${diasParado} dias</span>` : ''}
+          ${prazoDias !== null ? `<span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: ${prazoDias <= 3 ? 'rgba(185,28,28,0.1)' : 'rgba(0,0,0,0.05)'}; color: ${prazoDias <= 3 ? '#b91c1c' : 'var(--color-muted)'};">${prazoDias >= 0 ? `prazo em ${prazoDias} dia${prazoDias === 1 ? '' : 's'}` : 'prazo vencido'}</span>` : ''}
+        </div>`
+      : '';
+
+    const checklistHTML = (v.status === 'Entrevista agendada' && blk.length > 0)
+      ? `<div class="rounded-lg px-3 py-2.5 flex flex-col gap-1.5" style="background: rgba(21,128,61,0.06); border: 1px solid rgba(21,128,61,0.2);">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.06em]" style="color: #15803d;">Preparar resposta pra isso</span>
+          <ul class="flex flex-col gap-1">${blk.map((item) =>
+            `<li class="text-[12.5px] leading-snug flex items-start gap-1.5" style="color: var(--color-muted);"><input type="checkbox" class="mt-0.5 shrink-0" /><span>${item}</span></li>`
+          ).join('')}</ul>
+        </div>`
       : '';
 
     const gapList = (items: string[], type: 'bloq' | 'aus' | 'boa') =>
@@ -1160,8 +1522,11 @@ for (const opt of statusOptions) {
           </div>
           <span class="score-value font-display text-[20px] font-bold tabular-nums text-neutral-900" style="min-width: 3ch; text-align: right;">${v.score}%</span>
         </div>
+        ${prazoHTML}
+        ${scoreDeltaHTML}
         ${interpHTML}
         ${motivoHTML}
+        ${checklistHTML}
         ${tagsHTML}
         <div class="flex flex-wrap items-center gap-2 pt-1">
           ${dateHTML}
@@ -1330,6 +1695,11 @@ for (const opt of statusOptions) {
       } else {
         // Modo criação: insere ordenado por score desc
         const existingCards = Array.from(list.querySelectorAll<HTMLElement>('.vaga-card'));
+
+        // Aviso de empresa repetida — checa ANTES de inserir o card novo, senão
+        // ele mesmo apareceria como "duplicata de si mesmo" na comparação.
+        const empresaDup = existingCards.some((c) => c.dataset.empresa === vaga.empresa.toLowerCase());
+
         const insertBefore  = existingCards.find((c) => {
           const s = parseInt(c.querySelector<HTMLElement>('.score-value')?.textContent ?? '0');
           return s < vaga.score;
@@ -1341,6 +1711,13 @@ for (const opt of statusOptions) {
           list.insertBefore(newCard, insertBefore);
         } else {
           list.appendChild(newCard);
+        }
+        if (empresaDup) {
+          const warn = document.createElement('p');
+          warn.className = 'text-[12px] leading-relaxed rounded-lg px-3 py-2';
+          warn.style.cssText = 'background: rgba(180,83,9,0.08); border: 1px solid rgba(180,83,9,0.25); color: #b45309;';
+          warn.textContent = `⚠ Já existe outra vaga analisada da ${vaga.empresa} no bench — confira se não é a mesma antes de duplicar esforço.`;
+          newCard.insertBefore(warn, newCard.children[1] ?? null);
         }
         wireNewCard(newCard);
       }

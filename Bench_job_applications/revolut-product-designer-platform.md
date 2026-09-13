@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-08-20
 **Status:** Candidatura enviada
 **Candidatura:** Sim
+**Score anterior:** 45% (2026-06-27)
+**Motivo da mudança de score:** Mesmos 27 requisitos obrigatórios e 15 preferidos nas duas análises — só as notas mudaram. A 1ª análise usava evidência genérica ("Cases publicados", "não mencionado") sem citar nenhum case pelo nome; a 2ª aplicou a regra de sempre citar o case específico (Enterprise AI, Shipping, HYPERGESTOR, Power Apps, Cartela Cores) e encontrou evidência mais forte pros mesmos requisitos — 5 notas subiram, nenhuma caiu (obrigatórios 15→18, preferidos 1→4). Não houve mudança no portfólio, só na profundidade de evidência da análise — reconciliado no double-check de 2026-08-20 (ver CHANGELOG).
 
 ---
 

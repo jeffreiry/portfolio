@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-06-19
 **Status:** Arquivado
 **Candidatura:** Não
+**Score anterior:** 56% (2026-06-19, mesma data — reanálise no mesmo dia)
+**Motivo da mudança de score:** A extração da JD mudou de 9 para 7 requisitos obrigatórios — dois itens da 1ª passada ("colaborar com Produto/Engenharia/Dados" e "testes de usabilidade/métricas") foram consolidados dentro de itens já existentes na 2ª, em vez de ficarem como linhas próprias. Mesma família de inconsistência de segmentação de JD do caso ADP, só que reduzindo o denominador em vez de aumentar. Preferidos também subiram (3/9 → 5/9) com evidência mais específica (cases nomeados em vez de genéricos).
 
 ---
 

@@ -6,6 +6,8 @@
 **Data da vaga:** 2026-04-14
 **Status:** Arquivado
 **Candidatura:** Não
+**Score anterior:** 74% (2026-06-19)
+**Motivo da mudança de score:** A 1ª análise tinha um erro de cálculo real — o texto trazia "Score: 18/28 = 64%" mas o cabeçalho exibia 74%, uma porcentagem que não batia com a própria tabela (o texto chegava a justificar a discrepância dizendo que "a porcentagem real é 74% considerando o contexto"). É exatamente o tipo de erro que a arquitetura atual (servidor recalcula tudo deterministicamente, Claude nunca escreve a % final) existe para impedir. A extração da JD também mudou (12→18 obrigatórios, 4→9 preferenciais), então o score de 42% não é comparável 1:1 ao de 74% — mas o achado mais importante aqui não é a queda, é a confirmação de que essa vaga só existia com aquele score por causa de uma matemática quebrada.
 
 ---
 

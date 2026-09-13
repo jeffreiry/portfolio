@@ -72,7 +72,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Middleware de proteção por senha (`/work/*` + `/pt/work/*`)
 - [x] Login page (`/login`) + API POST (`/api/login`, `/api/logout`)
 - [x] Páginas de case convertidas para SSR (sem `getStaticPaths`)
-- [ ] **Ação necessária:** adicionar `PORTFOLIO_PASSWORD` no painel Vercel
+- [x] `PORTFOLIO_PASSWORD` configurada no painel Vercel — checkbox desatualizada desde 2026-06-07; confirmado feito pelo incidente de segurança de 2026-08-19 no `CHANGELOG.md`, que já lida com a variável ativa em produção
 
 ### Fase 5 — Polish & lançamento
 
@@ -92,7 +92,7 @@ vivo do projeto — atualizar à medida que decisões forem tomadas.
 - [x] Links de currículo PDF (PT + EN) prontos para `public/`
 - [x] Dark mode com toggle (tokens de cor escuros + persistência localStorage + anti-flash)
 - [x] Microinterações expressivas (scroll reveals com IntersectionObserver, stagger em grids, hover expressivo nos CaseCards)
-- [ ] **Ação necessária:** adicionar `RESEND_API_KEY` no painel Vercel (Settings → Environment Variables)
+- [x] `RESEND_API_KEY` configurada no painel Vercel — checkbox desatualizada; formulário de contato está ativo em produção desde o fix de `prerender = false` (`CLAUDE.md`, 2026-06-19), que já dependia da chave estar setada
 
 ### Fase 6 — Maturidade do design system (paridade com Apex)
 
