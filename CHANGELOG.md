@@ -1,5 +1,12 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-13 (continuação — description longa demais para SEO/social)
+
+### Corrigido
+- **`description`/`og:description` com 208 (EN) e 219 (PT) caracteres** — passava do recomendado (~125 pra preview social, ~150–160 pra não truncar no Google), achado por um validador de OpenGraph de terceiros ao investigar o problema do preview do LinkedIn. Encurtado em `Base.astro` (default), `index.astro` e `pt/index.astro` para 146 e 151 caracteres respectivamente, preservando o essencial (Senior Product Designer, sistemas enterprise, produtos de dados/IA, acesso a conhecimento e decisão).
+
+---
+
 ## 2026-09-13 (continuação — OG image ausente em todo o site)
 
 ### Corrigido
