@@ -11,6 +11,13 @@ bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=
 accent: "#ecf0f3"
 template: brand
 tags: ["AI & Automation", "UX Research", "Data & Analytics"]
+metrics:
+  - label: "User profiles served"
+    value: "3"
+  - label: "Platforms"
+    value: "Web + Mobile"
+  - label: "Timeline"
+    value: "3 months"
 featured: true
 draft: false
 order: 7
@@ -63,6 +70,8 @@ The problem was that isolated cards show state, not relationship. What Marketing
 ![Marketing — conversion funnel from impressions to sales with consolidated metrics](/cases/arezzo-ad-management/02-manager-view.png)
 
 Research and design pipeline: per-profile interviews → journey mapping + benchmarking → role-based information architecture → Figma wireframes → internal validations → web + mobile interfaces → prototyping → handoff to partner technology company. The role-based information architecture phase happened before any screen was designed — defining which routes and modules existed per role was what made it possible to develop the interfaces without rework.
+
+<!--metrics-here-->
 
 ---
 

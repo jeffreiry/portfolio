@@ -1,0 +1,36 @@
+---
+// Grid de métricas reutilizável — usado tanto no topo do case (variant="wide",
+// full-bleed até 1200px, fora da coluna de leitura) quanto no meio do conteúdo
+// (variant="inline", dentro da coluna de texto do case, mais estreito).
+// Sempre centralizado como grupo (flex + justify-center), independente de ter
+// 2, 3 ou 4 métricas — nunca gruda numa borda quando sobra espaço na grade.
+interface Metric {
+  label: string;
+  value: string;
+  source?: string;
+}
+
+interface Props {
+  metrics: Metric[];
+  variant?: 'wide' | 'inline';
+  delayOffset?: number;
+}
+
+const { metrics, variant = 'wide', delayOffset = 0 } = Astro.props;
+---
+
+<div class={`mx-auto w-full px-6 ${variant === 'wide' ? 'max-w-[1200px]' : 'max-w-none px-0'}`}>
+  <div class="flex flex-wrap justify-center gap-4">
+    {metrics.map((m, i) => (
+      <div
+        class="metric-card flex flex-col gap-1.5 rounded-2xl bg-surface p-5"
+        style={`--animate-delay: ${delayOffset + 100 + i * 80}ms; flex: 1 1 220px; max-width: 260px;`}
+        data-animate
+      >
+        <span class="font-display text-4xl leading-none text-heading" data-countup={m.value}>{m.value}</span>
+        <span class="text-sm font-semibold text-primary">{m.label}</span>
+        {m.source && <span class="text-xs text-subtle mt-0.5">{m.source}</span>}
+      </div>
+    ))}
+  </div>
+</div>

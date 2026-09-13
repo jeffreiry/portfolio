@@ -10,6 +10,11 @@ cover: /cases/hypera-hypergestor/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#f3e5f5"
 tags: ["Enterprise", "Design System"]
+metrics:
+  - label: "Módulos conectados"
+    value: "4"
+  - label: "Duração"
+    value: "2 meses"
 featured: false
 draft: false
 order: 6
@@ -32,6 +37,8 @@ Entrei como UX e UI Designer responsável pelo design completo do HYPERGESTOR �
 Três restrições moldaram o trabalho: a hierarquia de verbas em cascata (orçamentos primários → secundários → múltiplos níveis da hierarquia de vendas) precisava ser representada sem criar confusão; a integração SAP/SEV exigia um gate explícito antes de liberar dados para o SAP, para evitar erros com impacto financeiro real; e 2 meses de prazo cobriram mapear, projetar e prototipar um sistema com múltiplos módulos e perfis.
 
 **Estado anterior:** ciclo de trade marketing sem visibilidade de ponta a ponta — a governança existia no papel, mas não no sistema.
+
+<!--metrics-here-->
 
 ---
 

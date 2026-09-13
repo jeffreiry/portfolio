@@ -11,6 +11,13 @@ bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=
 accent: "#fff3e0"
 template: brand
 tags: ["Design System", "Branding", "Mobile"]
+metrics:
+  - label: "Activities in repository"
+    value: "130+"
+  - label: "Thematic categories"
+    value: "5"
+  - label: "Timeline"
+    value: "2 months"
 featured: false
 draft: false
 order: 9
@@ -41,6 +48,8 @@ The project had a dual constraint from the audience side: the "Sempre Criança 2
 Google Analytics analysis revealed something the brand hadn't expected: the "Hora de Brincar" (Playtime) section — the site's activity repository — had far higher traffic than anticipated. The site wasn't being used primarily as a product catalog; it was being used as a **play platform that families actually consumed**. This shifted the redesign priorities: "Hora de Brincar" wasn't a secondary section to be kept for completeness — it was the heart of the site.
 
 **The turning point:** the data showed that Kapo had unknowingly built a real digital product inside its institutional site. The redesign needed to recognize this and elevate "Hora de Brincar" to its actual position of prominence.
+
+<!--metrics-here-->
 
 ---
 

@@ -39,6 +39,8 @@ Três restrições definiram o espaço de design: o domínio de logística marí
 
 **Estado anterior:** oportunidades comerciais existiam na operação, mas eram invisíveis sem análise manual — e o processo de gerenciar pedidos de parceiros era conduzido por e-mail, sem rastreabilidade.
 
+<!--metrics-here-->
+
 ---
 
 ## Descoberta & Insight

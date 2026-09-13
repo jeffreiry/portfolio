@@ -49,6 +49,8 @@ Era o segundo problema — e o mais profundo. O primeiro era a própria interfac
 
 **A virada:** o produto não precisava melhorar a busca. Precisava eliminar a necessidade de buscar — e fazer a fonte de cada resposta tão visível quanto a resposta em si.
 
+<!--metrics-here-->
+
 ---
 
 ## Processo & Decisões

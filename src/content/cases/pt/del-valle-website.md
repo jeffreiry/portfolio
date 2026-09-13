@@ -11,6 +11,13 @@ bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=
 accent: "#fff9e6"
 template: brand
 tags: ["Design System", "Branding", "Mobile"]
+metrics:
+  - label: "Páginas entregues"
+    value: "2"
+  - label: "Plataformas"
+    value: "Web + Mobile"
+  - label: "Duração"
+    value: "2 meses"
 featured: false
 draft: false
 order: 8
@@ -86,6 +93,8 @@ Ambas entregues em **web e mobile**, com os elementos gráficos orgânicos reorg
 Entreguei home e página de produtos em web e mobile, alinhadas à campanha "Cheio de vida". Mas o projeto terminou no handoff — não tive acesso a nenhuma métrica pós-lançamento.
 
 O que eu queria ter acompanhado: se os usuários navegavam pelos cards de exploração de frutas ou pulavam direto para os produtos. Essa interação era o coração da proposta de valor narrativa — "sabemos de onde vem cada fruta". Se ninguém abrisse aquele carrossel, a decisão de colocar a fruta no center stage teria sido mais aposta do que argumento.
+
+<!--metrics-here-->
 
 Projetos de redesign orientados por campanha têm uma armadilha específica: a tentação de "segurar" a expressividade em nome da usabilidade — reduzir as formas irregulares, neutralizar as cores, colocar os elementos no grid. Resistir a isso foi o trabalho.
 

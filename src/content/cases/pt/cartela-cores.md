@@ -100,6 +100,8 @@ O coração é o **Combinador**: mostra as zonas do corpo (Topo, Camiseta, Acess
   <span>7 áreas e fluxo de dados: Catálogo → Combinador → Cartela</span>
 </div>
 
+<!--metrics-here-->
+
 ---
 
 ## Craft & Acessibilidade

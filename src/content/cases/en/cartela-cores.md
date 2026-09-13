@@ -100,6 +100,8 @@ The heart is the **Combiner**: it always shows the body zones (Top, Shirt, Acces
   <span>7 areas and data flow: Catalog → Combiner → Palette</span>
 </div>
 
+<!--metrics-here-->
+
 ---
 
 ## Craft & Accessibility

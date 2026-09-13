@@ -1,5 +1,18 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-13 (continuação — cards de métricas: posição variável + centralização + 4 cases novos)
+
+### Adicionado
+- **`MetricsGrid.astro`** — componente reutilizável pro grid de métricas (antes duplicado inline em `work/[slug].astro` e `pt/work/[slug].astro`). Sempre centralizado como grupo (`flex flex-wrap justify-center`, não mais `grid-cols-4` que deixava grupos de 2-3 cards colados à esquerda quando sobrava coluna vazia).
+- **Posicionamento variável via marcador `<!--metrics-here-->`** no corpo do `.md` — usa `entry.rendered.html` (API de content layer do Astro) pra dividir o HTML já compilado no ponto exato do marcador, sem reprocessar markdown. Cada case tem o grid num lugar diferente da leitura (após Discovery, após Context, antes de Outcome, etc.) em vez de sempre logo após o hero. Sem marcador, cai no comportamento antigo — nada quebra pra quem não tiver.
+- **Métricas novas em 4 cases que não tinham nenhuma** (Arezzo, HYPERGESTOR, Del Valle Website, Del Valle Kapo) — todos os números já estavam citados no próprio texto do case (3 perfis, 4 módulos, 130+ atividades/5 categorias, 2 páginas), nenhum inventado.
+- Grid de métricas deixou de ser exclusivo do `template: 'enterprise'` — agora aparece em qualquer template.
+
+### Verificado
+- 7 dos 9 cases confirmados ao vivo (posição correta, sem duplicar com o fallback do topo); os outros 2 (`cartela-cores`, `painel-saude`) já têm o marcador certo no arquivo, mas ficam inertes até saírem de `draft: true`.
+
+---
+
 ## 2026-09-13 (continuação — description longa demais para SEO/social)
 
 ### Corrigido

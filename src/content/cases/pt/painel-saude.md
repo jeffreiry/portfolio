@@ -86,6 +86,8 @@ Reorganizei em torno de perguntas: *Estou cumprindo o plano esta semana?* *Estou
 
 **5. Confiabilidade do dado — problema:** a mesma corrida pode vir de fontes diferentes. **Escolha:** prioridade explícita nos realizados — **manual > Strava > Hevy > nulo**. **Porquê:** a fonte mais confiável vence; o registro manual sempre tem a palavra final.
 
+<!--metrics-here-->
+
 <div class="image-placeholder">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
   <strong>Aba "Meta"</strong>

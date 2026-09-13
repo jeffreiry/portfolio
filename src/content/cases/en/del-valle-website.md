@@ -11,6 +11,13 @@ bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=
 accent: "#fff9e6"
 template: brand
 tags: ["Design System", "Branding", "Mobile"]
+metrics:
+  - label: "Pages delivered"
+    value: "2"
+  - label: "Platforms"
+    value: "Web + Mobile"
+  - label: "Timeline"
+    value: "2 months"
 featured: false
 draft: false
 order: 8
@@ -92,6 +99,8 @@ Both delivered in **web and mobile**, with organic graphic elements reorganized 
 I delivered home and products page in web and mobile, aligned to the "Cheio de vida" campaign. But the project ended at handoff — I had no access to any post-launch metrics.
 
 What I'd have wanted to track: whether users actually navigated the fruit exploration cards or skipped straight to products. That interaction was the heart of the narrative value proposition — "we know where every fruit comes from." If nobody opened that carousel, the decision to put the fruit center stage would have been more of a bet than an argument.
+
+<!--metrics-here-->
 
 Campaign-driven redesign projects have a specific trap: the temptation to "hold back" expressiveness in the name of usability — toning down the irregular shapes, neutralizing the colors, putting elements back in the grid. Resisting that was the work.
 

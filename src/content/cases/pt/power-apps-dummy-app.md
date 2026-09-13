@@ -60,6 +60,8 @@ Após a validação, o Aplicativo de Demonstração foi documentado com materiai
 
 ![Tela de FAQ — conteúdo de suporte contextualizado no app](/cases/power-apps-dummy-app/03-faq.png)
 
+<!--metrics-here-->
+
 ---
 
 ## Resultado

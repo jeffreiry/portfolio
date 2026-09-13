@@ -39,6 +39,8 @@ Three constraints defined the design space: maritime logistics has specific oper
 
 **Prior state:** commercial opportunities existed within the operation, but were invisible without manual analysis — and the process for managing partner requests ran through email, with no structured traceability.
 
+<!--metrics-here-->
+
 ---
 
 ## Discovery & Insight

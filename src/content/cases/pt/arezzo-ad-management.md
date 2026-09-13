@@ -11,6 +11,13 @@ bgImage: "https://images.unsplash.com/photo-1748570569710-008d3050c104?fm=jpg&w=
 accent: "#ecf0f3"
 template: brand
 tags: ["AI & Automation", "UX Research", "Data & Analytics"]
+metrics:
+  - label: "Perfis de usuário atendidos"
+    value: "3"
+  - label: "Plataformas"
+    value: "Web + Mobile"
+  - label: "Duração"
+    value: "3 meses"
 featured: true
 draft: false
 order: 7
@@ -63,6 +70,8 @@ O problema era que cards isolados mostram estado, não relação. O que o Market
 ![Marketing — funil de conversão de impressões a vendas com métricas consolidadas](/cases/arezzo-ad-management/02-manager-view.png)
 
 Pipeline de pesquisa e design: entrevistas por perfil → mapeamento de jornadas + benchmarking → arquitetura de informação por papel → wireframes Figma → validações internas → interfaces web + mobile → prototipação → handoff para empresa parceira. A etapa de arquitetura de informação por papel foi feita antes de qualquer tela — definir quais rotas e módulos existiam para cada perfil foi o que tornou possível desenvolver as interfaces sem retrabalho.
+
+<!--metrics-here-->
 
 ---
 

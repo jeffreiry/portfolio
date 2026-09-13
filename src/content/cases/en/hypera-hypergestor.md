@@ -10,6 +10,11 @@ cover: /cases/hypera-hypergestor/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#f3e5f5"
 tags: ["Enterprise", "Design System"]
+metrics:
+  - label: "Connected modules"
+    value: "4"
+  - label: "Timeline"
+    value: "2 months"
 featured: false
 draft: false
 order: 6
@@ -32,6 +37,8 @@ I came in as UX and UI Designer responsible for the complete HYPERGESTOR design 
 Three constraints shaped the work: the cascading fund hierarchy (primary budgets → secondary budgets → multiple levels of sales hierarchy) had to be represented without creating confusion; the SAP/SEV integration required an explicit gate before releasing data to SAP, to avoid errors with real financial impact; and a 2-month timeline covered mapping, designing, and prototyping a multi-module, multi-profile system.
 
 **Prior state:** a trade marketing cycle with no end-to-end visibility — governance existed on paper, but not in the system.
+
+<!--metrics-here-->
 
 ---
 

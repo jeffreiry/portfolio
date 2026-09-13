@@ -49,6 +49,8 @@ That was the second problem, and it was the deeper one. The first was the search
 
 **The turning point:** the product didn't need better search. It needed to eliminate the need to search — and make the source of each answer as visible as the answer itself.
 
+<!--metrics-here-->
+
 ---
 
 ## Process & Decisions

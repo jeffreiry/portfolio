@@ -86,6 +86,8 @@ I reorganized around questions: *Am I on plan this week? Am I on track for the 2
 
 **5. Data reliability — problem:** the same run can arrive from different sources. **Choice:** explicit priority on completed entries — **manual > Strava > Hevy > null**. **Why:** the most reliable source wins; the manual record always has the final say.
 
+<!--metrics-here-->
+
 <div class="image-placeholder">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
   <strong>"Goal" tab</strong>

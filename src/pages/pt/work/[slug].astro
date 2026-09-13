@@ -9,6 +9,7 @@ import { detectHero } from '../../../utils/cover';
 import CaseNav from '../../../components/CaseNav.svelte';
 import HeroBrand from '../../../components/HeroBrand.astro';
 import HeroEditorial from '../../../components/HeroEditorial.astro';
+import MetricsGrid from '../../../components/MetricsGrid.astro';
 
 const { slug } = Astro.params;
 const cases = await getCollection('casesPt', ({ data }) => !data.draft);
@@ -18,6 +19,12 @@ if (!entry) return Astro.redirect('/pt/');
 
 const { Content } = await render(entry);
 const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order } = entry.data;
+
+// Mesma lógica de posicionamento variável do template EN — ver comentário lá.
+const METRICS_MARKER = '<!--metrics-here-->';
+const renderedHtml = entry.rendered?.html ?? '';
+const hasInlineMarker = metrics && metrics.length > 0 && renderedHtml.includes(METRICS_MARKER);
+const [htmlBefore, htmlAfter] = hasInlineMarker ? renderedHtml.split(METRICS_MARKER) : ['', ''];
 const heroBg = detectHero(slug!) ?? entry.data.cover ?? bgImage;
 
 const publicCases = cases.filter((c) => !c.data.protected);
@@ -123,28 +130,26 @@ const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
       />
     )}
 
-    <!-- Metrics: apenas Enterprise -->
-    {template === 'enterprise' && metrics && metrics.length > 0 && (
-      <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m, i) => (
-            <div
-              class="metric-card flex flex-col gap-1.5 rounded-2xl bg-surface p-5"
-              data-animate
-              style={`--animate-delay: ${100 + i * 80}ms`}
-            >
-              <span class="font-display text-4xl leading-none text-heading" data-countup={m.value}>{m.value}</span>
-              <span class="text-sm font-semibold text-primary">{m.label}</span>
-              {m.source && <span class="text-xs text-subtle mt-0.5">{m.source}</span>}
-            </div>
-          ))}
-        </div>
+    <!-- Metrics no topo — só quando NÃO há marcador de posição no corpo do case -->
+    {metrics && metrics.length > 0 && !hasInlineMarker && (
+      <section class="pt-10">
+        <MetricsGrid metrics={metrics} variant="wide" />
       </section>
     )}
 
     <!-- Conteúdo do case -->
     <article class={articleClass}>
-      <Content />
+      {hasInlineMarker ? (
+        <>
+          <Fragment set:html={htmlBefore} />
+          <div class="not-prose py-4">
+            <MetricsGrid metrics={metrics} variant="inline" />
+          </div>
+          <Fragment set:html={htmlAfter} />
+        </>
+      ) : (
+        <Content />
+      )}
     </article>
 
     <!-- Próximo case — card rico sequencial -->

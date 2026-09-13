@@ -60,6 +60,8 @@ After validation, the Dummy App was documented with supporting materials in the 
 
 ![FAQ screen — support content integrated into the app](/cases/power-apps-dummy-app/03-faq.png)
 
+<!--metrics-here-->
+
 ---
 
 ## Outcome

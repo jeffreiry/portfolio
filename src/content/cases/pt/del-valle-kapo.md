@@ -11,6 +11,13 @@ bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=
 accent: "#fff3e0"
 template: brand
 tags: ["Design System", "Branding", "Mobile"]
+metrics:
+  - label: "Atividades no repositório"
+    value: "130+"
+  - label: "Categorias temáticas"
+    value: "5"
+  - label: "Duração"
+    value: "2 meses"
 featured: false
 draft: false
 order: 9
@@ -41,6 +48,8 @@ O projeto tinha uma restrição dupla pelo lado da audiência: a campanha "Sempr
 A análise do Google Analytics revelou algo que a marca não esperava: a seção "Hora de Brincar" — o repositório de brincadeiras do site — tinha um volume de acessos muito maior do que o esperado. O site não era usado principalmente como catálogo de produto; era usado como uma **plataforma de brincadeiras que as famílias de fato consumiam**. Isso mudou as prioridades do redesign: a "Hora de Brincar" não era uma seção secundária a ser mantida por completude — era o coração do site.
 
 **A virada:** os dados mostraram que o Kapo já tinha construído, sem perceber, um produto digital real dentro do site institucional. O redesign precisava reconhecer isso e elevar a "Hora de Brincar" à sua posição real de destaque.
+
+<!--metrics-here-->
 
 ---
 
