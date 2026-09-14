@@ -1,5 +1,25 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-14 (redesign do case Del Valle Kapo + template `brand-split`)
+
+### Adicionado
+- **Novo template `template: brand-split`** (`HeroBrandSplit.astro`) — hero em duas zonas: título/tese/tags sobre o fundo creme da página, depois faixa branca (equivalente no dark mode: `surface-2`, não preto — escurecer mais que o page-bg já quase-preto não gera separação) com a imagem de capa (16:9) subindo por `margin-top` negativo pra sobrepor a costura entre as duas zonas. `display: flow-root` na faixa branca evita que a margem negativa colapse com o pai e arraste a caixa toda junto (bug capturado e corrigido durante a calibração). Aplicado só no case Del Valle Kapo — Arezzo e Del Valle Website continuam em `template: brand`.
+- **Campos de schema `scope: string[]` e `duration: string`** — quando presentes, o hero do `brand-split` troca a linha Atuação/Empresa/Ano por Atuação/Escopo (lista)/Duração.
+- **Lightbox genérico em todos os cases** — qualquer imagem dentro de `.case-content` agora é clicável, abre em overlay fullscreen, fecha com clique ou Esc.
+- **Mecanismo de comparação lado a lado reaproveitado** (`.before-after`, já existente) para os dois seletores estilo videogame (produtos vs. atividades) — mesmo componente, legendas diferentes de "Antes/Depois".
+- Coluna do artigo do Kapo alargada pra 1160px; imagens comuns do corpo contidas em 900px centralizadas via `.case-content--narrow-images` (as de `.before-after` continuam full-width).
+- Assets reais novos: 2 personas com fichas demográficas (`del-valle-kapo-personas-{pt,en}.png`), sitemap real da IA, benchmark competitivo **ilustrativo** (rotulado como tal no texto e na própria imagem), 3 pares antes/depois reais (site principal, microsite "Sempre Criança Challenge", categoria "Ritmo de Brincadeira"), 2 seletores lado a lado (produtos + atividades).
+- 4 métricas reais de campanha no frontmatter (117 dias de campanha, 400 mil PDV, 60 brincadeiras mapeadas, 12 ilustrações redesenhadas), substituindo as 3 anteriores.
+
+### Removido
+- **Toda menção a Google Analytics/"dados" no case** — a alegação original de arquitetura de informação "data-driven" não era sustentável (o autor não teve acesso ao número real de tráfego). Reescrito em cima de personas + benchmark + comportamento observado, sem citar nenhuma fonte de analytics.
+- 3 imagens de lifestyle/mockup (`01-smatphone.png`, `02-brincadeiras.png`, `03-brincadeiras-mobile.png`) — mostravam as mesmas telas dos novos screenshots reais, só que em fotos de contexto (celular na mão, crianças ao fundo) em vez de screen puro. Arquivos continuam em disco, sem referência no case.
+
+### Pendente
+- Mobile não está documentado nem ilustrado no case, apesar de constar como tag do card — a ser trazido numa sessão futura.
+
+---
+
 ## 2026-09-13 (continuação — cards de métricas: posição variável + centralização + 4 cases novos)
 
 ### Adicionado

@@ -16,7 +16,7 @@ metrics:
   - label: "Cores validadas"
     value: "22 de 28 dentro de ±10%"
 featured: true
-draft: true
+draft: false
 order: 2
 ---
 

@@ -334,8 +334,13 @@ Definido em `src/content/config.ts` com Zod (tipado). Campos:
 | `cover` | string | ✅ | Caminho da imagem de capa |
 | `accent` | string | ✅ | Pastel do card (ver [design-system.md](design-system.md)) |
 | `tags` | string[] | ✅ | Ex.: `["Design System", "Algoritmo de cor", "Web app"]` |
+| `template` | enum | — | `enterprise` (padrão) \| `brand` \| `brand-split` \| `editorial` |
 | `url` | string | — | Link público do projeto (ex.: Painel Saúde) |
 | `metrics` | objeto[] | — | Pares `{ label, value }` de impacto |
+| `scope` | string[] | — | Lista de entregas, só usada no hero do template `brand-split` (substitui Empresa/Ano por Atuação/Escopo/Duração) |
+| `duration` | string | — | Ex.: `"3 meses"` — usada junto de `scope` no hero `brand-split` |
+
+**`template: brand-split`** (novo, introduzido no redesign do case Del Valle Kapo): hero em duas zonas — título/tese/tags sobre o fundo creme da página, depois uma faixa branca (`surface-2` no dark mode) com a imagem de capa contida (16:9, com `box-shadow`, subindo por cima da costura entre as duas zonas via `margin-top` negativo) e a linha de metadados. Coluna do `<article>` em 1160px (mais larga que os outros templates), mas imagens comuns do corpo ficam contidas em 720px centralizadas — só imagens dentro de `.before-after` preenchem a largura toda. Ver `src/components/HeroBrandSplit.astro` e as classes `.case-content--narrow-images` / `.case-content--no-manifesto` / `.case-content--white-bg` em `global.css`.
 | `featured` | boolean | — | Destaca na home |
 | `draft` | boolean | — | Esconde do build se `true` |
 | `order` | number | — | Ordem manual na listagem |
@@ -1420,150 +1425,95 @@ Internal financial systems have a specific trade-off between speed and control: 
 
 ## 23. Case — Del Valle Kapo · Redesign de Site (PT)
 
-### Mais plataforma de brincadeiras do que site de produto: como dados de acesso e recortes de papel guiaram o redesign do Kapo
+> **Nota:** este case usa o template `brand-split` (hero em duas zonas + coluna de conteúdo em 1160px) em vez do template-mestre de 6 seções com rótulos padrão — ver seção 8 para o schema atual (`scope`/`duration`). Fonte viva: `src/content/cases/pt/del-valle-kapo.md`.
 
-**TL;DR** — UX, UI e Visual Designer, 2 meses. Redesign completo do site Del Valle Kapo (kapo.com.br) para a campanha Sempre Criança 2.0 do Dia das Crianças 2022 — com decisões de arquitetura de informação orientadas por Google Analytics e uma linguagem visual que usa a metáfora do recorte de papel como fio condutor de toda a experiência.
+**Resumo**: para o terceiro trimestre de 2022 a Kapo, marca líder de sucos infantis da Coca-Cola, buscava seguir em seu esforço de construção de posicionamento focado em ser a companha perfeita para as pausas das crianças com seus pais e avós a partir do conceito "Toda Brincadeira gera Frutos" e buscou a CWI, por meio do seu núcleo de desenvolvimento responsável por Coca-Cola, para a reformulação do principal site da marca, além de um site especial para a campanha "Sempre Criança Challenge", responsável por estimular o registro de brincadeiras lúdicas por meio de premiações especiais.
 
-**Tags:** Branding digital · Consumer · Infância · Plataforma de conteúdo · Coca-Cola · Figma · Illustrator
+#### CONTEXTO
 
-#### Contexto & Problema
+O Del Valle Kapo é um produto voltado para crianças e famílias, com um posicionamento de marca que vai além do suco: a campanha "Sempre Criança" posiciona a marca como promotora de brincadeiras e da infância. O site kapo.com.br precisava ser redesenhado para a nova campanha de Dia das Crianças 2022 — mas o escopo ia além de atualizar cores e imagens. Era necessário decidir quais páginas o site deveria ter após o redesign, em alinhamento com a nova campanha e a promoção que estava por vir.
 
-O Del Valle Kapo é um produto voltado para crianças e famílias, com um posicionamento de marca que vai além do suco: a campanha "Sempre Criança" posiciona a marca como promotora de brincadeiras e da infância. O site kapo.com.br precisava ser redesenhado para a nova campanha de Dia das Crianças 2022 — mas o escopo ia além de atualizar cores e imagens. Era necessário decidir quais páginas o site deveria ter após o redesign, o que exigia entender como as pessoas realmente usavam o site existente.
+Como parte da CWI, o autor participou do projeto como UX, UI e Visual Designer responsável pelo projeto completo — único designer dentro de um time de desenvolvedores — utilizando materiais base das campanhas "Sempre Criança 2.0" e "Sempre Criança Challenge" para orientar decisões de arquitetura de informação, referenciando as nuances da nova identidade visual da campanha, criando ilustrações e elementos gráficos, e desenvolvendo todas as interfaces (web e mobile) em Figma, Photoshop e Illustrator ao longo de 3 meses.
 
-**Estado anterior:** site com a identidade da campanha anterior, desalinhado visualmente com a nova campanha e sem clareza sobre quais seções tinham valor real para os usuários.
+A campanha "Sempre Criança 2.0", apesar de vir com assets, paleta e tom de voz pré-definidos, tinha liberdade criativa para uma tradução digital para além da criação da identidade, pois o site precisava servir tanto crianças que navegam em busca de brincadeiras quanto pais e avós que compram o produto e participam de promoções, o que exigia que a hierarquia de conteúdo servisse às duas jornadas ao mesmo tempo.
 
-#### Meu papel
-
-UX, UI e Visual Designer responsável pelo projeto completo: analisei os dados de acesso via Google Analytics para orientar decisões de arquitetura de informação, referenciei a nova identidade visual da campanha, criei ilustrações e elementos gráficos, e desenvolvi todas as interfaces — web e mobile — em Figma, Photoshop e Illustrator.
-
-#### Restrições
-
-- **Identidade de campanha pré-definida** — "Sempre Criança 2.0" tinha seus assets, paleta e tom de voz. A liberdade criativa estava na tradução digital, não na criação da identidade.
-- **Audiência dupla** — crianças que navegam em busca de brincadeiras e pais que compram o produto e participam de promoções. A hierarquia de conteúdo precisava servir às duas jornadas.
-- **2 meses** para sitemap, análise de dados, criação de elementos gráficos, interfaces web e mobile completas.
+O segundo site do projeto é o microsite da campanha "Sempre Criança Challenge": mecânica de 3 passos (gravar um vídeo brincando em família, postar no Instagram com a hashtag, concorrer a R$ 500 por semana), com prêmios, regulamento e lista de ganhadores por semana.
 
 #### Descoberta & Insight
 
-A análise do Google Analytics revelou algo que a marca não esperava: a seção "Hora de Brincar" — o repositório de brincadeiras do site — tinha um volume de acessos muito maior do que o esperado. O site não era usado principalmente como catálogo de produto; era usado como uma **plataforma de brincadeiras que as famílias de fato consumiam**. Isso mudou as prioridades do redesign: a "Hora de Brincar" não era uma seção secundária a ser mantida por completude — era o coração do site.
+O comportamento das personas revelou algo que a campanha original não previa: a seção "Hora de Brincar" — o repositório de brincadeiras do site — não era conteúdo de apoio, era o que as famílias realmente vinham buscar. Fernanda decide em segundos, Theo reconhece cor e forma antes de saber ler, Sônia quer participar sem se perder no caminho — nenhuma das três chega ao site pensando primeiro em comprar suco.
 
-**A virada:** os dados mostraram que o Kapo já tinha construído, sem perceber, um produto digital real dentro do site institucional. O redesign precisava reconhecer isso e elevar a "Hora de Brincar" à sua posição real de destaque.
+**A virada:** o Kapo já tinha construído, sem perceber, um produto digital real dentro do site institucional. O redesign precisava reconhecer isso e elevar a "Hora de Brincar" à sua posição real de destaque.
 
 #### Processo & Decisões
 
-**1. Arquitetura de informação orientada por dados — problema:** o site anterior tinha múltiplas páginas, e a decisão de o que manter ou descartar no redesign era subjetiva. **Opções:** manter tudo por segurança (sem custo de decisão, site mais complexo) vs. cortar baseado em dados de acesso reais. **Escolha:** uso do Google Analytics para identificar as páginas com maior e menor acesso, eliminando as sem tráfego significativo e elevando as de alto acesso na hierarquia de navegação. A estrutura resultante foi: Home → Sempre Criança (campanha) → Volta às Aulas (sazonal) → Hora de Brincar (repositório de atividades) → Nossos Produtos → Compre Agora. **Porquê:** arquitetura de informação baseada em comportamento real é mais honesta — e mais eficiente — do que intuição sobre o que "deve" estar no site.
+**1. Arquitetura de informação orientada pelo uso real — problema:** o site anterior tinha múltiplas páginas, e a decisão de o que manter ou descartar no redesign era subjetiva. **Opções:** manter tudo por segurança (sem custo de decisão, site mais complexo) vs. cortar com base em como as pessoas realmente usavam o site. **Escolha:** priorizar as seções com maior engajamento observado, eliminando as sem relevância real e elevando "Hora de Brincar" na hierarquia de navegação. A estrutura resultante: Home → Promoção (Sempre Criança Challenge) → Sempre Criança (Vídeo) → Hora de Brincar (repositório de atividades, com as 5 categorias temáticas) → Nossos Produtos → Compre Agora. **Porquê:** arquitetura de informação baseada em comportamento real é mais honesta — e mais eficiente — do que intuição sobre o que "deve" estar no site.
 
-**2. Hora de Brincar como sistema de conteúdo estruturado — problema:** o repositório de brincadeiras tinha dezenas de atividades de tipos muito diferentes. Sem organização, era uma lista indiferenciada. **Opções:** listagem simples com busca textual vs. sistema de categorias por perfil de brincadeira com filtros por idade e número de participantes. **Escolha:** 5 categorias temáticas com identidade visual própria (Imaginação Divertida, Saindo do Sofá, Aprender Brincando, Ritmo de Brincadeira, Hora do Jogo), cada uma com filtros de Idade (a partir de 3, 4, 5, 6, 7, 8 anos) e Participantes (duplas até 4 ou mais). **Porquê:** uma brincadeira para 2 pessoas de 4 anos é completamente diferente de uma para grupos de 8 anos — sem filtros, a biblioteca é inutilizável para quem tem uma necessidade específica.
+**2. Hora de Brincar como sistema de conteúdo estruturado — problema:** o repositório de brincadeiras tinha dezenas de atividades de tipos muito diferentes. Sem organização, era uma lista indiferenciada. **Opções:** listagem simples com busca textual vs. sistema de categorias por perfil de brincadeira com filtros por idade e número de participantes. **Escolha:** 5 categorias temáticas com identidade visual própria (Imaginação Divertida, Saindo do Sofá, Aprender Brincando, Ritmo de Brincadeira, Hora do Jogo), cada uma com filtros de Idade (a partir de 3, 4, 5, 6, 7, 8 anos) e Participantes (duplas até 4 ou mais). **Porquê:** uma brincadeira para 2 pessoas de 4 anos é completamente diferente de uma para grupos de 8 anos — sem filtros, a biblioteca é inutilizável para quem tem uma necessidade específica. Um benchmark ilustrativo (não pesquisa de mercado formal) comparando o Kapo a sites similares reforçou essa escolha: estrutura por categorias e seletor personalizado apareciam como diferenciais reais.
 
-**3. Página de brincadeira no formato de ficha — problema:** cada atividade tinha materiais necessários e instruções de como fazer — o mesmo problema de qualquer receita. Uma página de texto corrido não serviria para consulta rápida no meio da brincadeira. **Opções:** texto corrido vs. ficha estruturada com metadados no topo (participantes, faixa etária, duração) + seções fixas (Material necessário / Como brincar). **Escolha:** ficha de atividade com os metadados no topo em destaque, seções tipografadas com cores da categoria, ícones de Compartilhar / Imprimir / Download no topo e produto Kapo contextualizado ao final. **Porquê:** a mãe ou o pai que abre a página vai querer ver rapidamente se aquela atividade funciona para os filhos dela (participantes, idade) antes de ler qualquer instrução — os metadados no topo respondem isso em segundos.
+**3. Página de brincadeira no formato de ficha — problema:** cada atividade tinha materiais necessários e instruções de como fazer — o mesmo problema de qualquer receita. **Opções:** texto corrido vs. ficha estruturada com metadados no topo (participantes, faixa etária, duração) + seções fixas (Material necessário / Como brincar). **Escolha:** ficha de atividade com os metadados no topo em destaque, seções tipografadas com cores da categoria, ícones de Compartilhar / Imprimir / Download no topo e produto Kapo contextualizado ao final. **Porquê:** o pai ou a mãe que abre a página quer ver rapidamente se aquela atividade funciona pros filhos (participantes, idade) antes de ler qualquer instrução.
 
-**4. Seletor de produto como seleção de personagem — problema:** mostrar os 5 sabores do Kapo sem criar uma grade genérica ou um carrossel apático. **Opções:** grade de produtos (todos visíveis, sem hierarquia) vs. carrossel centrado no sabor ativo, com os demais em escala menor e dessaturados nas laterais, referenciando a mecânica de seleção de personagem de videogame. **Escolha:** seletor com o sabor ativo em destaque central, colorido e maior; os outros em círculos menores e em escala de cinza nas laterais, com setas de navegação. **Porquê:** a metáfora de videogame é completamente familiar para o público de crianças e aproxima o produto de um universo lúdico — além de criar hierarquia visual clara sem esconder os outros sabores.
+**4. Dois seletores, uma mesma linguagem de seleção de personagem — problema:** a versão inicial do seletor de produto era uma grade simples de 5 sabores em círculos, todos visíveis — genérica demais para um produto que se posiciona como "mais plataforma de brincadeiras do que site de produto". **Escolha:** carrossel centrado no estilo de seleção de personagem de videogame — sabor ativo no centro, colorido e maior; os outros dessaturados e menores nos lados. O mesmo padrão reaparece no microsite, na seção "Inspirações Incríveis": escolher um sabor ali sugere uma brincadeira em família, em vez de levar direto pra compra — a mesma interação reaproveitada pra um objetivo diferente. **Porquê:** a metáfora de videogame é familiar ao público infantil e ao adulto que a reconhece como padrão de seletor de avatar.
 
-#### Solução
+#### Solução & Craft
 
 Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estruturada:
 
 - **Home:** hero com campanha "Com Kapo, toda brincadeira gera frutos" + transições em forma de recorte de papel para as seções seguintes.
-- **Sempre Criança:** seção de campanha com vídeo YouTube incorporado, quiz de "perfil criança" e CTA de engajamento.
-- **Volta às Aulas:** página sazonal de promoção com produto + brindes escolares.
-- **Hora de Brincar:** repositório de 130+ atividades em 5 categorias temáticas, cada uma com cor e identidade própria, com filtros de idade e participantes e fichas de atividade no formato de receita.
+- **Promoção (Sempre Criança Challenge):** hub de entrada da promoção, com prêmios semanais e regulamento, conectando ao microsite dedicado.
+- **Sempre Criança (Vídeo):** seção de campanha com vídeo YouTube incorporado, quiz de "perfil criança" e CTA de engajamento.
+- **Hora de Brincar:** repositório de 60 brincadeiras mapeadas em 5 categorias temáticas, cada uma com cor e identidade própria.
 - **Nossos Produtos:** seletor de sabor no estilo videogame com link para e-commerces parceiros.
 - Versão mobile completa para todas as páginas.
 
-#### Craft & Visual Design
-
-- A **transição entre seções usa bordas onduladas em forma de papel recortado** — uma borda em zigue-zague ou onda que simula o rasgar de papel evoca diretamente a brincadeira de recorte, tornando a metáfora visual coerente do início ao fim da página.
-- Os **títulos de seção** usam tratamento de título pintado à mão com splash de tinta (brush stroke escuro como fundo para o texto "Hora de Brincar"), coerente com a linguagem manuscrita da identidade Kapo.
-- Cada categoria da Hora de Brincar tem **cor de background, ícone ilustrado e tratamento tipográfico próprios** — Imaginação Divertida usa salmão/rosa, Aprender Brincando usa amarelo, Ritmo de Brincadeira usa azul claro, criando um sistema de identidade por categoria sem precisar de um menu global.
-- No **seletor de produto**, o sabor ativo é colorido e centralizado; os demais ficam em escala de cinza nos círculos laterais — a dessaturação comunica "disponível mas não selecionado" sem texto.
-- O **ícone de tesoura** decorativo na hero é um elemento que ancora a metáfora de recorte de papel desde o primeiro segundo de navegação.
-
-#### Colaboração técnica
-
-Pipeline de design: `análise Google Analytics → decisões de IA (quais páginas manter/cortar) → benchmarking + referências visuais → sitemap → wireframes Figma → criação de elementos gráficos (Illustrator/Photoshop) → interfaces web → adaptação mobile → prototipação → validações internas → handoff`. A análise de dados aconteceu antes do wireframe — o que impediu que decisões de IA fossem tomadas por intuição ou hierarquia de marca.
-
-#### Impacto
-
-- **Entrega:** site completo com home, campanha, promoção sazonal, repositório de brincadeiras e catálogo de produtos em web e mobile.
-- ⬜ Variação no tráfego da seção Hora de Brincar após o redesign — preencher.
-- ⬜ Engajamento no quiz "Descubra seu perfil criança" — preencher.
-- ⬜ Avaliação da equipe de marca da Coca-Cola — preencher.
+A transição entre seções usa bordas onduladas em forma de papel recortado, evocando diretamente a brincadeira de recorte do início ao fim da página. Os títulos de seção usam tratamento pintado à mão com splash de tinta, coerente com a linguagem manuscrita da identidade Kapo. Cada categoria da Hora de Brincar tem cor de background, ícone ilustrado e tratamento tipográfico próprios. No seletor de produto, a dessaturação dos sabores não-ativos comunica "disponível mas não selecionado" sem texto; o ícone de tesoura decorativo na hero ancora a metáfora de recorte desde o primeiro segundo.
 
 #### Aprendizados
 
-A análise de dados antes do wireframe foi a decisão mais importante do projeto — e provavelmente a menos óbvia para um projeto de redesign visual. Sem o Google Analytics, a "Hora de Brincar" teria sido tratada como conteúdo de suporte; com os dados, ela se tornou o eixo do redesign. **Lição:** em projetos de redesign, os dados de comportamento existentes são uma pesquisa de usuário gratuita que já foi feita — ignorá-los em favor de intuição ou preferência de marca é um desperdício que o designer tem a obrigação de evitar.
+O autor entrou no projeto com a identidade já fechada — paleta, mascotes, tom de voz e o conceito "Toda Brincadeira gera Frutos" vinham prontos da campanha antes do desenho da primeira tela. Isso muda o tipo de decisão que cabe ao designer: não é criar uma identidade, é traduzir uma identidade pensada pra embalagem e pra vídeo pra dentro da gramática de um site, sem virar uma colagem de assets soltos. O recorte de papel foi a saída encontrada: em vez de inventar uma metáfora nova pra transição entre seções, reaproveitar um elemento que já existia na campanha e transformá-lo em sistema.
+
+Sendo o único designer dentro de um time de desenvolvedores, boa parte do trabalho não era desenhar telas isoladas — era deixar a especificação (cor por categoria, comportamento do carrossel, estados do filtro) clara o suficiente pra ser implementada sem o designer do lado do dev o tempo todo. **Lição:** traduzir marca em produto digital é um exercício diferente de criar uma identidade do zero — o julgamento está em saber o que manter literal (paleta, mascote, voz) e o que precisa ganhar uma camada de interação pra funcionar como site, e não como um anúncio mais longo.
 
 ---
 
 ## 24. Case — Del Valle Kapo · Website Redesign (EN)
 
-### More play platform than product site: how access data and paper cutouts guided the Kapo redesign
+> **Note:** this case uses the `brand-split` template (two-zone hero + 1160px content column) instead of the 6-section master template with standard labels — see section 8 for the current schema (`scope`/`duration`). Live source: `src/content/cases/en/del-valle-kapo.md`.
 
-**TL;DR** — UX, UI, and Visual Designer, 2 months. Complete redesign of the Del Valle Kapo website (kapo.com.br) for the Sempre Criança 2.0 Children's Day 2022 campaign — with information architecture decisions driven by Google Analytics data and a visual language that uses cut-paper metaphor as the connective tissue throughout the experience.
+**Summary**: for Q3 2022, Kapo — Coca-Cola's leading kids' juice brand — was continuing to build a brand position around being the perfect companion for kids' downtime with their parents and grandparents, under the concept "Toda Brincadeira gera Frutos" (Every Playtime Bears Fruit). The brand brought in CWI, through its Coca-Cola development unit, to redesign the brand's main site, plus a dedicated site for the "Sempre Criança Challenge" campaign, built to drive user-generated play videos through weekly prizes.
 
-**Tags:** Digital branding · Consumer · Childhood · Content platform · Coca-Cola · Figma · Illustrator
+#### CONTEXT
 
-#### Context & Problem
+Del Valle Kapo is a product aimed at children and families, with a brand positioning that goes beyond juice: the "Sempre Criança" (Always a Child) campaign positions the brand as a promoter of play and childhood. The kapo.com.br site needed to be redesigned for the new Children's Day 2022 campaign — but the scope went beyond updating colors and images. It required deciding which pages the site should have after the redesign, in line with the new campaign and the upcoming promotion.
 
-Del Valle Kapo is a product aimed at children and families, with a brand positioning that goes beyond juice: the "Sempre Criança" (Always a Child) campaign positions the brand as a promoter of play and childhood. The kapo.com.br site needed to be redesigned for the new Children's Day 2022 campaign — but the scope went beyond updating colors and images. It required deciding which pages the site should have after the redesign, which meant understanding how people actually used the existing site.
+As part of CWI, the author joined the project as UX, UI, and Visual Designer responsible for the full project — the only designer inside a team of developers — using the "Sempre Criança 2.0" and "Sempre Criança Challenge" campaign materials to guide information architecture decisions, referencing the nuances of the new campaign visual identity, creating illustrations and graphic elements, and developing all interfaces (web and mobile) in Figma, Photoshop, and Illustrator over 3 months.
 
-**Prior state:** site on the previous campaign's identity, visually misaligned with the new campaign, and without clarity about which sections had real value for users.
+The "Sempre Criança 2.0" campaign came with pre-defined assets, palette, and tone of voice, but had creative freedom for the digital translation itself, since the site had to serve both children browsing for activities and parents and grandparents buying the product and joining promotions.
 
-#### My role
-
-UX, UI, and Visual Designer responsible for the complete project: I analyzed access data via Google Analytics to guide information architecture decisions, referenced the new campaign's visual identity, created illustrations and graphic elements, and developed all interfaces — web and mobile — in Figma, Photoshop, and Illustrator.
-
-#### Constraints
-
-- **Pre-defined campaign identity** — "Sempre Criança 2.0" had its assets, palette, and tone of voice. Creative freedom was in digital translation, not identity creation.
-- **Dual audience** — children browsing for activities and parents buying the product and joining promotions. Content hierarchy had to serve both journeys.
-- **2 months** for sitemap, data analysis, graphic element creation, and full web + mobile interfaces.
+The project's second site is the "Sempre Criança Challenge" campaign microsite: a 3-step mechanic (record a video playing as a family, post it on Instagram with the hashtag, compete for R$500 every week), with prizes, rules, and a weekly winners list.
 
 #### Discovery & Insight
 
-Google Analytics analysis revealed something the brand hadn't expected: the "Hora de Brincar" (Playtime) section — the site's activity repository — had far higher traffic than anticipated. The site wasn't being used primarily as a product catalog; it was being used as a **play platform that families actually consumed**. This shifted the redesign priorities: "Hora de Brincar" wasn't a secondary section to be kept for completeness — it was the heart of the site.
+The personas' behavior revealed something the original campaign hadn't anticipated: the "Hora de Brincar" (Playtime) section — the site's activity repository — wasn't supporting content, it was what families actually came looking for. Fernanda decides in seconds, Theo recognizes color and shape before he can read, Sônia wants to join in without getting lost — none of the three land on the site thinking about buying juice first.
 
-**The turning point:** the data showed that Kapo had unknowingly built a real digital product inside its institutional site. The redesign needed to recognize this and elevate "Hora de Brincar" to its actual position of prominence.
+**The turning point:** Kapo had unknowingly built a real digital product inside its institutional site. The redesign needed to recognize this and elevate "Hora de Brincar" to its actual position of prominence.
 
 #### Process & Decisions
 
-**1. Data-driven information architecture — problem:** the previous site had multiple pages, and the decision of what to keep or cut in the redesign was subjective. **Options:** keep everything to be safe (no decision cost, more complex site) vs. cut based on real access data. **Choice:** used Google Analytics to identify pages with highest and lowest traffic, eliminating those with negligible visits and elevating high-traffic sections in the navigation hierarchy. The resulting structure: Home → Sempre Criança (campaign) → Volta às Aulas (seasonal) → Hora de Brincar (activity repository) → Nossos Produtos → Compre Agora. **Why:** information architecture based on real behavior is more honest — and more effective — than intuition about what "should" be on the site.
+**1. Information architecture driven by real usage — problem:** the previous site had multiple pages, and the decision of what to keep or cut was subjective. **Choice:** prioritize the sections with the highest observed engagement, dropping those with no real relevance. Resulting structure: Home → Promoção (Sempre Criança Challenge) → Sempre Criança (Video) → Hora de Brincar (with its 5 thematic categories) → Nossos Produtos → Compre Agora. **Why:** information architecture based on real behavior is more honest — and more effective — than intuition about what "should" be on the site.
 
-**2. Hora de Brincar as a structured content system — problem:** the activity repository had dozens of very different activities. Without organization, it was an undifferentiated list. **Options:** simple listing with text search vs. a category system by play profile with filters by age and number of participants. **Choice:** 5 thematic categories with distinct visual identity (Imaginação Divertida, Saindo do Sofá, Aprender Brincando, Ritmo de Brincadeira, Hora do Jogo), each with Age filters (from 3, 4, 5, 6, 7, 8 years) and Participants (pairs to 4 or more). **Why:** an activity for 2 people aged 4 is completely different from one for groups of 8-year-olds — without filters, the library is unusable for someone with a specific need.
+**2. Hora de Brincar as a structured content system — problem:** dozens of very different activities with no organization. **Choice:** 5 thematic categories with distinct visual identity, each with Age and Participant filters. **Why:** an activity for 2 people aged 4 is completely different from one for groups of 8-year-olds. An illustrative benchmark (not formal market research) against similar sites reinforced this: category structure and the personalized selector showed up as real differentiators.
 
-**3. Activity page as a structured card — problem:** each activity had required materials and step-by-step instructions — the same problem as any recipe. A running-text page wouldn't work for quick reference in the middle of the activity. **Options:** running text vs. structured card with metadata at top (participants, age range, duration) + fixed sections (Materials needed / How to play). **Choice:** activity card with metadata prominently at the top, typographically styled sections in category colors, Share / Print / Download icons at the top, and contextual Kapo product at the bottom. **Why:** the parent opening the page wants to quickly see if that activity works for their kids (participants, age) before reading any instruction — the top metadata answers that in seconds.
+**3. Activity page as a structured card — problem:** each activity had materials and step-by-step instructions — the same problem as any recipe. **Choice:** activity card with metadata prominently at the top, typographically styled sections in category colors. **Why:** the parent opening the page wants to quickly see if that activity works for their kids before reading any instruction.
 
-**4. Product selector as video game character selection — problem:** showing the 5 Kapo flavors without creating a generic grid or an uninspired carousel. **Options:** product grid (all visible, no hierarchy) vs. centered carousel with active flavor highlighted, others at smaller scale and desaturated on the sides, referencing the video game character selection mechanic. **Choice:** selector with the active flavor centered, full-color, and larger; the others in smaller greyscale circles on the sides with navigation arrows. **Why:** the video game metaphor is completely familiar to the child audience and brings the product into a playful universe — while also creating clear visual hierarchy without hiding the other flavors.
+**4. Two selectors, one character-selection language — problem:** the first product selector version was a simple grid — too generic for a product positioning as "more play platform than product site." **Choice:** a centered carousel in the style of a video game character selector. The same pattern reappears on the campaign microsite, in "Inspirações Incríveis": picking a flavor there suggests a family activity instead of leading straight to purchase — the same interaction reused for a different goal. **Why:** the video game metaphor is familiar to kids and reads to adults as an avatar-selector pattern.
 
-#### Solution
+#### Solution & Craft
 
-Redesigned site with 6 main sections and a structured play platform:
-
-- **Home:** campaign hero "Com Kapo, toda brincadeira gera frutos" + cut-paper transitions into subsequent sections.
-- **Sempre Criança:** campaign section with embedded YouTube video, "child personality" quiz, and engagement CTA.
-- **Volta às Aulas:** seasonal promotion page with product + school supply gifts.
-- **Hora de Brincar:** 130+ activity repository in 5 thematic categories, each with its own color and identity, with age and participant filters and recipe-format activity cards.
-- **Nossos Produtos:** video game-style flavor selector with links to partner e-commerce stores.
-- Complete mobile version for all pages.
-
-#### Craft & Visual Design
-
-- The **transition between sections uses wavy cut-paper edges** — an undulating border that simulates torn paper directly evokes paper-cutting activities, making the visual metaphor coherent from the first to the last section of the page.
-- **Section titles use a hand-painted treatment** with a brush-stroke dark splash as a text background (as in "Hora de Brincar"), consistent with the Kapo identity's handwritten visual language.
-- Each Hora de Brincar category has its **own background color, illustrated icon, and typographic treatment** — Imaginação Divertida uses salmon/pink, Aprender Brincando uses yellow, Ritmo de Brincadeira uses light blue — creating a per-category identity system without requiring a global menu.
-- In the **product selector**, the active flavor is full-color and centered; the others are in greyscale smaller circles on the sides — desaturation communicates "available but not selected" without text.
-- The **decorative scissors icon** in the hero anchors the cut-paper metaphor from the very first second of browsing.
-
-#### Technical collaboration
-
-Design pipeline: `Google Analytics analysis → IA decisions (which pages to keep/cut) → benchmarking + visual references → sitemap → Figma wireframes → graphic element creation (Illustrator/Photoshop) → web interfaces → mobile adaptation → prototyping → internal validations → handoff`. Data analysis happened before wireframing — which prevented IA decisions from being made by intuition or brand hierarchy.
-
-#### Impact
-
-- **Delivery:** complete site with home, campaign, seasonal promotion, activity repository, and product catalog in web and mobile.
-- ⬜ Traffic change in the Hora de Brincar section after redesign — to fill.
-- ⬜ Engagement on the "Discover your child profile" quiz — to fill.
-- ⬜ Coca-Cola brand team assessment — to fill.
+Redesigned site with 6 main sections: Home, Promoção (Sempre Criança Challenge), Sempre Criança (Video), Hora de Brincar (60 mapped activities across 5 thematic categories), Nossos Produtos, and a complete mobile version. Section transitions use wavy cut-paper edges throughout; section titles use a hand-painted treatment with a brush-stroke background; each Hora de Brincar category has its own color, icon, and typographic treatment; the product selector's desaturation communicates "available but not selected" without text; a decorative scissors icon in the hero anchors the cut-paper metaphor from the first second.
 
 #### Learnings
 
-Data analysis before wireframing was the most important decision in the project — and probably the least obvious in a visual redesign. Without Google Analytics, "Hora de Brincar" would have been treated as supporting content; with the data, it became the redesign's axis. **Lesson:** in redesign projects, existing behavioral data is free user research that has already been done — ignoring it in favor of intuition or brand preference is a waste the designer has an obligation to prevent.
+The author came into this project with the identity already locked — palette, mascots, tone of voice, and the "Toda Brincadeira gera Frutos" concept were ready from the campaign before the first screen was drawn. That changes the kind of decision that falls to the designer: not creating an identity, but translating one built for packaging and video into the grammar of a website. The cut-paper motif was the way out: reusing an element that already existed in the campaign instead of inventing a new metaphor.
+
+Being the only designer inside a team of developers, a good part of the work was making the spec (color per category, carousel behavior, filter states) clear enough to implement without being next to the dev the whole time. **Lesson:** translating a brand into a digital product is a different exercise from creating an identity from scratch — the judgment call is in knowing what to keep literal and what needs a layer of interaction to work as a site, rather than as a longer ad.

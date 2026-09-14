@@ -333,6 +333,24 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     line-height: 1.45;
   }
 
+  /* Cases sem manifesto no corpo (tese só no hero, ex: Kapo/brand-split) —
+     o primeiro H2 do artigo é uma seção normal, não a citação-tese, então
+     usa o mesmo estilo de eyebrow que os H2 seguintes. */
+  .case-content--no-manifesto h2:first-of-type {
+    font-family: var(--font-body);
+    font-size: var(--text-eyebrow);
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--accent-text);
+    border-left: none;
+    padding-left: 0;
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-24);
+    line-height: var(--leading-tight);
+  }
+
   /* H2s subsequentes = eyebrow labels de seção (CONTEXT · RESEARCH · SOLUTION) */
   .case-content h2:not(:first-of-type) {
     font-family: var(--font-body);
@@ -400,6 +418,40 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     margin: var(--space-32) 0;
     display: block;
   }
+  /* Comparação lado a lado (antes/depois, ou 3 estágios tipo original→v1→v2) —
+     HTML puro no corpo do markdown, sem componente: <div class="before-after">
+     com um <figure><img><figcaption>Antes</figcaption></figure> por estágio.
+     Empilha em mobile. Padrão de referência: case do ICPSR (Lawrence Zheng). */
+  .case-content .before-after {
+    display: grid;
+    grid-template-columns: repeat(var(--stages, 2), 1fr);
+    gap: 40px;
+    margin: var(--space-32) 0;
+  }
+  .case-content .before-after figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .case-content .before-after img {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .case-content .before-after figcaption {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-subtle);
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    .case-content .before-after {
+      grid-template-columns: 1fr;
+    }
+  }
   .case-content table {
     display: block;
     overflow-x: auto;
@@ -443,6 +495,34 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     margin-bottom: 0;
   }
 
+  /* Lightbox — clique numa imagem do case pra ver em tamanho maior. Ativado
+     via JS em [slug].astro (adiciona cursor + handler de clique). */
+  .case-content img {
+    cursor: zoom-in;
+  }
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(10, 5, 2, 0.92);
+    cursor: zoom-out;
+    animation: lightbox-fade 0.2s ease-out;
+  }
+  .lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-input);
+    box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.5);
+  }
+  @keyframes lightbox-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   .case-content .image-placeholder {
     display: flex;
     height: 320px;
@@ -467,6 +547,50 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     max-width: 400px;
   }
 
+  /* --- Template: Brand Split — faixa de conteúdo com fundo destacado do
+     fundo ambiente da página (branco no claro, elevação clara no escuro,
+     pois escurecer mais que o page-bg já quase-preto não gera separação) --- */
+  .case-content--white-bg {
+    background: var(--color-white);
+    /* flow-root contém a margem negativa da imagem-filha dentro desta caixa —
+       sem isso, o margin-top negativo "colapsa" com o pai e arrasta a própria
+       caixa branca pra cima junto com a imagem, em vez de só a imagem escapar
+       visualmente por cima da costura entre as duas zonas de fundo. */
+    display: flow-root;
+    /* Texto de corpo mais escuro que o --text-secondary padrão — o marrom
+       original (#7a6a60) foi calibrado pro fundo creme; sobre branco puro
+       pedem um tom mais escuro pra manter o mesmo peso visual. */
+    --text-secondary: #594D44;
+  }
+  html[data-theme="dark"] .case-content--white-bg {
+    background: var(--color-surface-2);
+    --text-secondary: var(--color-muted);
+  }
+
+  /* Respiro proposital abaixo das tags — precisa ser maior que o overlap da
+     imagem (.hero-split-img) pra sobrar uma margem de segurança e o texto
+     nunca ficar em risco de ser coberto. */
+  .hero-split-cream {
+    padding-bottom: 200px;
+  }
+  @media (max-width: 640px) {
+    .hero-split-cream {
+      padding-bottom: 100px;
+    }
+  }
+
+  /* Imagem do hero "brand-split" sobe pra sobrepor a costura entre a zona
+     creme (cabeçalho) e a zona branca (conteúdo) — corta perto do meio da
+     imagem, com folga de segurança pro texto acima nunca ser coberto. */
+  .hero-split-img {
+    margin-top: -160px;
+  }
+  @media (max-width: 640px) {
+    .hero-split-img {
+      margin-top: -72px;
+    }
+  }
+
   /* --- Template: Brand — imagens sangram para fora da coluna no desktop --- */
   @media (min-width: 860px) {
     .case-content--brand img {
@@ -475,6 +599,19 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
       max-width: none;
       border-radius: var(--radius-card);
     }
+  }
+
+  /* --- Template: Brand Split — coluna do artigo é larga (1160px), mas
+     imagens comuns ficam contidas em 720px e centralizadas; só as imagens
+     dentro de .before-after preenchem a largura toda (ver seletor mais
+     específico abaixo, que vence por ter mais classes). --- */
+  .case-content--narrow-images img {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .case-content--narrow-images .before-after img {
+    max-width: 100%;
   }
 
   /* --- Template: Editorial — coluna estreita, corpo maior, drop cap, H2 centrado --- */

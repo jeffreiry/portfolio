@@ -1,0 +1,121 @@
+---
+// Hero em duas zonas: título/tese/tags sobre o fundo creme da página, depois
+// uma faixa branca contendo a imagem (contida, sem overlay escuro) e a linha
+// de metadados (Papel / Empresa / Ano). Pensado pra quando a imagem de capa já
+// tem contraste suficiente sozinha e não precisa de texto sobreposto.
+interface Props {
+  title: string;
+  thesis?: string;
+  tags: string[];
+  role: string;
+  company: string;
+  year: number;
+  scope?: string[];
+  duration?: string;
+  url?: string;
+  heroBg?: string | null;
+  lang: 'en' | 'pt';
+}
+
+const { title, thesis, tags, role, company, year, scope, duration, url, heroBg, lang } = Astro.props;
+
+// Com scope+duration no frontmatter, a 2ª e 3ª coluna viram Escopo (lista) e
+// Duração, em vez de Empresa/Ano — usado quando o case quer destacar as
+// entregas e o período em vez da empresa.
+const hasScopeDuration = Boolean(scope && scope.length > 0 && duration);
+
+const labels = lang === 'pt'
+  ? { role: 'Atuação', company: 'Empresa', year: 'Ano', scope: 'Escopo', duration: 'Duração', live: 'Ver ao vivo →' }
+  : { role: 'Role', company: 'Company', year: 'Year', scope: 'Scope', duration: 'Duration', live: 'View live →' };
+---
+
+{/* Zona 1: título/tese/tags sobre o fundo creme da página. z-index garante
+    que o título fique sempre por cima da imagem que sobe por baixo dele.
+    O padding-bottom generoso (hero-split-cream) é um respiro proposital —
+    maior que a sobreposição da imagem (.hero-split-img) — pra ela poder
+    subir bastante e cortar perto do meio da imagem sem nunca tocar o texto,
+    não importa o tamanho da tese/tags. */}
+<section class="hero-split-cream relative z-10 w-full px-6 pt-16">
+  <div class="mx-auto flex max-w-[720px] flex-col items-center gap-4 text-center">
+    <h1 class="font-display" style="font-size: clamp(28px, 4vw, 44px); line-height: 1.15; color: var(--text-heading);">
+      {title}
+    </h1>
+    {thesis && (
+      <p class="font-display italic max-w-[640px]" style="font-size: clamp(0.875rem, 2.5vw, 1.125rem); line-height: 1.45; color: var(--text-heading);">
+        {thesis}
+      </p>
+    )}
+    <div class="flex flex-wrap justify-center gap-2 pt-1">
+      {tags.map((tag) => (
+        <span
+          class="rounded-full border px-3 py-1 text-xs font-medium uppercase"
+          style="border-color: var(--border-default); color: var(--text-heading); letter-spacing: 0.04em;"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* Zona 2: fundo branco (conteúdo). A imagem tem margin-top negativo pra
+    subir e sobrepor a costura entre as duas zonas — metade sobre o creme,
+    metade sobre o branco, como um card flutuando entre as duas seções. */}
+<div class="case-content--white-bg">
+  <section class="w-full px-6 pb-14 pt-0">
+    <div class="mx-auto max-w-[720px]">
+      {heroBg && (
+        <img
+          src={heroBg}
+          alt={title}
+          class="hero-split-img w-full block"
+          style="aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-card); box-shadow: 0 24px 48px -16px rgba(0,0,0,0.22);"
+        />
+      )}
+      <div class="mt-8 flex flex-wrap items-start gap-x-10 gap-y-4">
+        <div class="flex flex-col gap-1">
+          <span class="font-body font-extrabold uppercase" style="font-size: 11px; letter-spacing: 0.1em; color: var(--accent-text);">{labels.role}</span>
+          <span class="font-display" style="font-size: 1.125rem; color: var(--text-heading);">{role}</span>
+        </div>
+        {hasScopeDuration ? (
+          <>
+            <div class="flex flex-col gap-1">
+              <span class="font-body font-extrabold uppercase" style="font-size: 11px; letter-spacing: 0.1em; color: var(--accent-text);">{labels.scope}</span>
+              <ul class="list-none p-0 m-0">
+                {scope!.map((item) => (
+                  <li class="font-display" style="font-size: 1.125rem; color: var(--text-heading); line-height: 1.4;">– {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="font-body font-extrabold uppercase" style="font-size: 11px; letter-spacing: 0.1em; color: var(--accent-text);">{labels.duration}</span>
+              <span class="font-display" style="font-size: 1.125rem; color: var(--text-heading);">{duration}</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div class="flex flex-col gap-1">
+              <span class="font-body font-extrabold uppercase" style="font-size: 11px; letter-spacing: 0.1em; color: var(--accent-text);">{labels.company}</span>
+              <span class="font-display" style="font-size: 1.125rem; color: var(--text-heading);">{company}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="font-body font-extrabold uppercase" style="font-size: 11px; letter-spacing: 0.1em; color: var(--accent-text);">{labels.year}</span>
+              <span class="font-display" style="font-size: 1.125rem; color: var(--text-heading);">{year}</span>
+            </div>
+          </>
+        )}
+        {url && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ml-auto self-center text-sm underline underline-offset-2 hover:opacity-80"
+            style="color: var(--text-primary);"
+          >
+            {labels.live}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+</div>

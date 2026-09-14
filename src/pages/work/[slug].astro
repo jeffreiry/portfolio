@@ -8,6 +8,7 @@ import Footer from '../../components/Footer.astro';
 import { detectHero } from '../../utils/cover';
 import CaseNav from '../../components/CaseNav.svelte';
 import HeroBrand from '../../components/HeroBrand.astro';
+import HeroBrandSplit from '../../components/HeroBrandSplit.astro';
 import HeroEditorial from '../../components/HeroEditorial.astro';
 import MetricsGrid from '../../components/MetricsGrid.astro';
 
@@ -18,7 +19,7 @@ const entry = cases.find((e) => e.data.slug === slug);
 if (!entry) return Astro.redirect('/');
 
 const { Content } = await render(entry);
-const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order } = entry.data;
+const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order, scope, duration } = entry.data;
 
 // Posição das métricas varia por case: um marcador `<!--metrics-here-->` no
 // corpo do markdown (invisível, passa direto pelo compilador) diz onde encaixar
@@ -46,7 +47,9 @@ const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
     ? 'max-w-[580px] case-content--editorial'
     : template === 'brand'
       ? 'max-w-[720px] case-content--brand'
-      : 'max-w-[720px]'
+      : template === 'brand-split'
+        ? 'max-w-[1160px] case-content--narrow-images case-content--no-manifesto'
+        : 'max-w-[720px]'
 }`;
 ---
 
@@ -136,27 +139,56 @@ const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
       />
     )}
 
-    <!-- Metrics no topo — só quando NÃO há marcador de posição no corpo do case -->
-    {metrics && metrics.length > 0 && !hasInlineMarker && (
-      <section class="pt-10">
-        <MetricsGrid metrics={metrics} variant="wide" />
-      </section>
+    <!-- Hero: Brand Split -->
+    {template === 'brand-split' && (
+      <HeroBrandSplit
+        title={title}
+        thesis={thesis}
+        tags={tags}
+        role={role}
+        company={company}
+        year={year}
+        scope={scope}
+        duration={duration}
+        url={url}
+        heroBg={heroBg}
+        lang="en"
+      />
     )}
 
-    <!-- Case content -->
-    <article class={articleClass}>
-      {hasInlineMarker ? (
+    {(() => {
+      const body = (
         <>
-          <Fragment set:html={htmlBefore} />
-          <div class="not-prose py-4">
-            <MetricsGrid metrics={metrics} variant="inline" />
-          </div>
-          <Fragment set:html={htmlAfter} />
+          {metrics && metrics.length > 0 && !hasInlineMarker && (
+            <section class="pt-10">
+              <MetricsGrid metrics={metrics} variant="wide" />
+            </section>
+          )}
+
+          {/* Case content */}
+          <article class={articleClass}>
+            {hasInlineMarker ? (
+              <>
+                <Fragment set:html={htmlBefore} />
+                <div class="not-prose py-4">
+                  <MetricsGrid metrics={metrics} variant="inline" />
+                </div>
+                <Fragment set:html={htmlAfter} />
+              </>
+            ) : (
+              <Content />
+            )}
+          </article>
         </>
-      ) : (
-        <Content />
-      )}
-    </article>
+      );
+      // A cor branca precisa estar numa div full-width envolvendo o artigo —
+      // se ficasse no próprio <article> (que já tem max-w-[720px]), o branco
+      // só pintaria a coluna estreita, sobrando creme visível nas laterais em
+      // telas largas (bug real, capturado em telas desktop antes desse fix).
+      return template === 'brand-split'
+        ? <div class="case-content--white-bg">{body}</div>
+        : body;
+    })()}
 
     <!-- Next case — card rico sequencial -->
     {nextCase && nextCase.data.slug !== slug && (
@@ -282,7 +314,33 @@ const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
     els.forEach((el) => obs.observe(el));
   }
 
+  function initLightbox() {
+    const images = document.querySelectorAll<HTMLImageElement>('.case-content img');
+    if (!images.length) return;
+
+    function openLightbox(src: string, alt: string) {
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+      overlay.appendChild(img);
+      overlay.addEventListener('click', () => overlay.remove());
+      document.addEventListener('keydown', function onEsc(e) {
+        if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', onEsc); }
+      });
+      document.body.appendChild(overlay);
+    }
+
+    images.forEach((img) => {
+      if (img.dataset.lightboxBound) return;
+      img.dataset.lightboxBound = 'true';
+      img.addEventListener('click', () => openLightbox(img.currentSrc || img.src, img.alt));
+    });
+  }
+
   initCaseReveal();
   initMetricCountup();
-  document.addEventListener('astro:after-swap', () => { initCaseReveal(); initMetricCountup(); });
+  initLightbox();
+  document.addEventListener('astro:after-swap', () => { initCaseReveal(); initMetricCountup(); initLightbox(); });
 </script>
