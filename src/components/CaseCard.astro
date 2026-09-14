@@ -11,6 +11,7 @@ interface Props {
   bgImage?: string;
   cover?: string;
   lang?: string;
+  underConstruction?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   bgImage,
   cover,
   lang = 'en',
+  underConstruction = false,
 } = Astro.props;
 
 const base = lang === 'en' ? '' : '/pt';
@@ -63,6 +65,14 @@ const imgSrc = thumbnail ?? cover ?? bgImage ?? placeholders[hash % placeholders
       class="absolute bottom-0 left-0 right-0 pointer-events-none"
       style="height: 3px; background-color: var(--accent-deco);"
     />
+    {underConstruction && (
+      <span
+        class="absolute top-3 left-3 rounded-full px-2.5 py-1 text-caption font-semibold uppercase"
+        style="background: rgba(10,5,2,0.75); color: #fff; letter-spacing: 0.06em; font-family: var(--font-body);"
+      >
+        {lang === 'en' ? 'Under Construction' : 'Under Construction'}
+      </span>
+    )}
   </div>
 
   <!-- Conteúdo — zona inferior, fundo sólido -->

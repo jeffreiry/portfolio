@@ -24,6 +24,10 @@ const caseSchema = z.object({
   featured: z.boolean().default(false),
   draft: z.boolean().default(true),
   protected: z.boolean().default(false),
+  // Badge visível de "em construção" — pra cases públicos (sem magic link)
+  // cujo conteúdo ainda está sendo revisado/reescrito, mas que o autor quer
+  // manter visitável em vez de esconder atrás de draft.
+  underConstruction: z.boolean().default(false),
   order: z.number().optional(),
 });
 

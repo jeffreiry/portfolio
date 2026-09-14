@@ -16,7 +16,7 @@ metrics:
   - label: "Cobertura de dados"
     value: "Mar/2025 → presente"
 featured: false
-draft: false
+draft: true
 order: 1
 ---
 
