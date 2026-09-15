@@ -22,7 +22,7 @@ order: 1
 
 ## Um único painel para uma jornada de 3 anos rumo à maratona
 
-**TL;DR** — Product Designer solo, end-to-end (design de informação → implementação → ops). Dashboard pessoal que unifica corrida (Strava) e força (Hevy) em uma narrativa única de progresso rumo a uma maratona em 2028, com dados que se atualizam sozinhos todo dia.
+**Resumo** — Product Designer solo, end-to-end (design de informação → implementação → ops). Dashboard pessoal que unifica corrida (Strava) e força (Hevy) em uma narrativa única de progresso rumo a uma maratona em 2028, com dados que se atualizam sozinhos todo dia.
 
 **Tags:** Dashboard · Design de informação · Integração de APIs · SvelteKit · DataViz
 

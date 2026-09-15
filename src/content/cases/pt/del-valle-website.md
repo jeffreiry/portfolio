@@ -1,7 +1,7 @@
 ---
 title: "Del Valle · Redesign de Site"
 slug: del-valle-website
-role: "UX · UI · Visual Designer"
+role: "UX · UI Designer"
 summary: "Uma homepage que adapta a nova identidade visual global da Del Valle para o digital com fidelidade à marca."
 thesis: "A fruta em tamanho real, antes de qualquer embalagem — porque a campanha se chamava \"Cheio de vida\", não \"Cheio de embalagem\"."
 company: "Del Valle / Coca-Cola (via CWI)"
@@ -9,26 +9,25 @@ year: 2023
 cover: /cases/del-valle-website/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff9e6"
-template: brand
+template: brand-split
 tags: ["Design System", "Branding", "Mobile"]
+scope: ["Wireframes", "Interfaces web + mobile"]
+duration: "1 mês"
 metrics:
-  - label: "Páginas entregues"
-    value: "2"
-  - label: "Plataformas"
-    value: "Web + Mobile"
-  - label: "Duração"
-    value: "2 meses"
+  - label: "Anos de marca Del Valle celebrados"
+    value: "77"
+  - label: "Mercados unificados na nova identidade visual"
+    value: "100+"
+  - label: "Agências atuando em conjunto na criação da campanha"
+    value: "5"
 featured: false
 draft: false
-underConstruction: true
 order: 8
 ---
 
 ## Quando a fruta é o cenário: como traduzi a nova identidade global da Del Valle em uma experiência digital com personalidade
 
-**TL;DR** — UX, UI e Visual Designer, 2 meses. Redesign da homepage e da página de produtos do site Del Valle (Coca-Cola) a partir da implementação de uma nova identidade visual global — adaptando a campanha para o digital com um sistema visual que usa as frutas brasileiras como protagonistas, não como coadjuvantes.
-
-**Tags:** Branding digital · Visual design · Consumer · Coca-Cola · Figma · Illustrator
+**Resumo** — UX e UI Designer, 1 mês. Redesign de três páginas do site Del Valle (Coca-Cola) — Home, Fruta toda hora e Nossos Produtos — traduzindo uma nova identidade visual global (definida por outra equipe) em wireframes e interfaces web e mobile.
 
 ---
 
@@ -36,11 +35,24 @@ order: 8
 
 A Del Valle lançou uma nova identidade visual global com nova paleta, sistema tipográfico e linguagem gráfica. O site existente usava a identidade anterior e precisava ser atualizado para refletir a nova campanha — "Cheio de vida" — que reposicionava a marca com ênfase na origem brasileira das frutas, na cadeia de pequenos e grandes produtores e na conexão emocional entre o produto e a família. O desafio não era criar uma identidade do zero: era traduzir fielmente uma campanha rica em personalidade para um site funcional sem esvaziar sua expressividade no processo de digitalização.
 
-Entrei como UX, UI e Visual Designer responsável pelo redesign completo — estudando o manual de identidade visual e as referências da campanha, definindo a arquitetura de informação das páginas, criando as ilustrações e elementos gráficos, e desenvolvendo todas as interfaces (web e mobile) em Figma, Photoshop e Illustrator ao longo de 2 meses. Duas páginas entregues: Home e página "Fruta toda hora" (produtos).
+Entrei como UX e UI Designer responsável pela tradução dessa identidade em produto — único designer dentro de um time de desenvolvedores — estudando o manual de identidade visual e as referências da campanha, definindo a arquitetura de informação das páginas, e desenvolvendo wireframes e interfaces (web e mobile) em Figma ao longo de 1 mês. Três páginas de conteúdo entregues: Home, "Fruta toda hora" e "Nossos Produtos" — essa última linkando para a Loja (e-commerce externo).
 
-O espaço criativo estava restrito desde o início: as decisões de cor, tipografia e linguagem gráfica vinham do manual global da Coca-Cola/Del Valle — a liberdade estava na tradução, não na criação do sistema. 2 meses cobriram sitemap, wireframes, criação de elementos gráficos e interfaces web + mobile. E a campanha era visualmente rica, o que significava que o site precisava ser navegável sem sufocar a identidade com excesso de cautela.
+O espaço criativo estava restrito desde o início: as decisões de cor, tipografia e linguagem gráfica vinham do manual global da Coca-Cola/Del Valle — a liberdade estava na tradução, não na criação do sistema. E a campanha era visualmente rica, o que significava que o site precisava ser navegável sem sufocar a identidade com excesso de cautela.
 
 **Estado anterior:** site com a identidade anterior, desconectado visualmente da nova campanha e sem a narrativa de origem das frutas que a nova posição de marca pretendia comunicar.
+
+**Antes e Depois:** comparação entre o site pré e pós redesign.
+
+<div class="before-after" style="--stages: 2;">
+  <figure>
+    <img src="/cases/del-valle-website/website_before.png" alt="Site anterior — identidade visual antiga, seções 'Fruta toda hora' e 'Da nossa família para a sua' com fotos em colagem circular">
+    <figcaption>Antes</figcaption>
+  </figure>
+  <figure>
+    <img src="/cases/del-valle-website/website_after.png" alt="Site redesenhado — nova identidade 'Cheio de vida' com manchas orgânicas coloridas por seção e frutas reais recortadas">
+    <figcaption>Depois</figcaption>
+  </figure>
+</div>
 
 ---
 
@@ -50,53 +62,91 @@ O manual de identidade trazia formas orgânicas, paleta de cores associadas a ca
 
 **A virada:** o site não podia ser uma vitrine de produto. Precisava ser um ambiente com a textura e a temperatura da fruta — e isso dependia de decisões visuais precisas, não de mais funcionalidades.
 
+Dali pro wireframe foi direto — web, tablet e mobile nasceram juntos, não em sequência:
+
+<figure>
+  <img src="/cases/del-valle-website/del-valle-wireframe-responsive.png" alt="Wireframe de baixa fidelidade nos três breakpoints — Web (1440px), Tablet (768px) e Mobile (375px)">
+  <figcaption>Wireframes responsivos</figcaption>
+</figure>
+
 ---
 
 ## Processo & Decisões
 
-A decisão que mais me pesou foi manter as formas orgânicas em toda a sua irregularidade. O argumento conservador fazia sentido: manchas irregulares são difíceis de adaptar para mobile sem parecer acidente. Mas normalizar as formas em geométricas limpas seria destruir exatamente o que a campanha precisava comunicar.
+O sitemap ficou simples de propósito — só três páginas de conteúdo, sem profundidade desnecessária, com a Loja tratada como destino externo em vez de fluxo de checkout dentro do site:
 
-**1. Formas orgânicas vs. geométricas — problema:** a campanha usava manchas irregulares de cor como elemento de identidade. Simplificadas para formas geométricas ficaria mais limpo e consistente; mantidas em sua irregularidade preservaria a personalidade. **Opções:** normalizar as manchas em formas geométricas controladas (mais limpo, menos expressivo) vs. recriar as manchas orgânicas com variação intencional (mais complexo de executar, fiel à identidade). **Escolha:** formas orgânicas recriadas em Illustrator, posicionadas assimetricamente e em tamanhos variados — nunca simétricas, nunca iguais entre si. **Porquê:** a imperfeição é parte da mensagem; regularizar as formas transmite exatamente o oposto do que a marca quer dizer sobre o processo natural das frutas.
+<figure>
+  <img src="/cases/del-valle-website/del-valle-sitemap-pt.png" alt="Sitemap do redesign — Home ramificando em Fruta toda hora e Nossos Produtos (páginas de conteúdo) e Loja (destino externo de e-commerce)">
+  <figcaption>Sitemap</figcaption>
+</figure>
 
-**2. Sistema de cor por seção vs. paleta única — problema:** a identidade associa cores específicas a cada fruta (laranja ao laranja, roxo à uva, verde ao caju e à natureza, rosa à família). Usar uma paleta única simplificaria a produção; usar múltiplas paletas por seção exigiria mais decisão a cada bloco. **Opções:** cor única de marca em todo o site vs. cor por seção vinculada ao conteúdo. **Escolha:** cada seção e cada fruta tem seu background e suas manchas em cores associadas — lime green para a seção institucional, creme para produtos, verde+laranja para "Fruta toda hora", rosa para "Da nossa família para a sua". **Porquê:** a diversidade de frutas brasileiras é um dos argumentos centrais da campanha — um site monocromático contradiz visualmente o que o texto afirma.
+A parte mais difícil desse mês não foi nenhuma decisão de tela — foi o ritmo. Criação, validação técnica com o time de devs e validação com os stakeholders da marca precisavam acontecer quase em paralelo pra caber no prazo, sem que nenhuma das três virasse gargalo das outras.
 
-**3. Frutas como protagonistas visuais** — a primeira pergunta que recebi do cliente foi: "onde fica o produto?" A resposta padrão para site de bebidas é no hero, grande, bem iluminado. Mas a campanha se chamava "Cheio de vida" — não "Cheio de embalagem". A proposta de valor — "sabemos de onde vem cada fruta" — precisava ser estabelecida antes da oferta comercial, ou ela virava só texto decorativo.
+Vale registrar também o que não foi decisão minha, pra não inflar o que não é: a divisão de conteúdo entre as três páginas já vinha definida quando entrei — meu trabalho era aplicar a nova identidade em cima dessa arquitetura, não desenhá-la do zero. A escolha de qual hero mostra produto e qual mostra lifestyle (Home vs. Fruta toda hora) também veio do cliente, não de mim.
 
-Coloquei uma foto de lifestyle no hero e guardei as embalagens para a página de produtos. A fruta aparece em tamanho real antes de qualquer packaging. O cliente aprovou. Mas foi uma escolha que eu teria que justificar se a primeira pergunta viesse de alguém diferente.
+De fora, um rebranding costuma ser visto como reskin — trocar cor e fonte em cima de uma estrutura que já existe. Mas é exatamente esse tipo de projeto que abre uma brecha pra um designer sênior mexer em atrito que ninguém está olhando, porque a atenção do cliente inteira está na identidade visual, não na navegação. Não muda o produto nem o roadmap, mas dá espaço pra aplicar diretrizes de usabilidade que uma reforma maior não teria orçamento pra justificar sozinha. Aqui isso apareceu de um jeito pequeno e concreto: a Loja é um link externo (sai do site pra outro domínio), então ela foi desenhada como botão com contorno e ícone de carrinho, diferente dos outros itens de menu — a pessoa sabe, antes de clicar, que vai sair da experiência Del Valle. Ninguém vai notar isso como decisão de design; só vai notar se, sem ela, clicasse sem querer e ficasse perdida numa loja de terceiro.
 
-**4. Cards de exploração de frutas com carrossel — problema:** cada fruta tem múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta tem uma célula com foto em tela cheia e uma célula com card branco que carrossel por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convida à exploração sem forçar leitura — o usuário que quer saber a origem navega; o que só quer ver a fruta, vê.
-
-![Exploração de frutas — grade alternada com carrossel de 4 dimensões por fruta em tablet](/cases/del-valle-website/02-tablet.png)
-
-Pipeline de design: estudo do manual de identidade + referências da campanha → sitemap → wireframes Figma → criação de ilustrações e elementos gráficos (Illustrator/Photoshop) → composição das interfaces web → adaptação mobile → prototipação → validações internas → handoff. A etapa de criação dos elementos gráficos (manchas, recortes de fruta) foi paralela ao wireframe — as decisões visuais e as decisões de layout foram interdependentes, não sequenciais.
+**1. Grade alternada com carrossel de 4 dimensões — problema:** cada fruta tem múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta com uma célula de foto em tela cheia e uma célula de card branco que gira por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convida à exploração sem forçar leitura — quem quer saber a origem navega; quem só quer ver a fruta, vê.
 
 ---
 
 ## Solução & Craft
 
-Site redesenhado em duas páginas — Home e Fruta toda hora — com sistema visual unificado:
+Site redesenhado em três páginas de conteúdo, com sistema visual unificado:
 
-- **Home:** hero de lifestyle + seção institucional em lime green ("Nossa paixão é do tamanho do Brasil") + grade de exploração das frutas brasileiras com carrossel de dimensões por fruta.
-- **Fruta toda hora (produtos):** hero com lineup completo de embalagens sobre fundo creme com manchas coloridas e frutas reais cortadas e posicionadas organicamente + seção "Fruta toda hora" em verde com foto circular crop + seção "Da nossa família para a sua" em rosa.
+- **Home:** hero com lineup completo de embalagens sobre fundo creme, manchas coloridas e frutas reais cortadas e posicionadas organicamente + seção-teaser "Fruta toda hora" em verde com foto circular crop + seção "Da nossa família para a sua" em rosa.
+- **Fruta toda hora (a página, não a seção-teaser da Home):** hero de lifestyle + seção institucional em lime green ("Nossa paixão é do tamanho do Brasil") + grade de exploração das frutas brasileiras com carrossel de 4 dimensões por fruta.
+- **Nossos Produtos:** catálogo completo com link direto pra Loja externa.
 
-Ambas entregues em **web e mobile**, com os elementos gráficos orgânicos reorganizados para cada breakpoint.
+A grade de exploração é o verdadeiro chamariz da página — cada fruta ocupa uma célula de foto em tela cheia ao lado de um card branco que gira entre 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade):
 
-![Del Valle no mobile — seção Fruta toda hora com manchas orgânicas de cor, lineup de produtos com frutas recortadas e foto de pessoa em crop circular](/cases/del-valle-website/01-home.png)
+<figure>
+  <img src="/cases/del-valle-website/del-valle_fruta-toda-hora.png" alt="Página Fruta toda hora — hero de lifestyle com a proposta 'Nossa paixão é do tamanho do Brasil'">
+  <figcaption>Página Fruta toda hora</figcaption>
+</figure>
+
+Os 4 cards abaixo mostram como o carrossel gira entre as dimensões, fruta a fruta:
+
+<div class="contrast-box">
+  <div class="before-after" style="--stages: 2;">
+    <figure>
+      <img src="/cases/del-valle-website/del-valle_fruta-toda-hora-laranja.png" alt="Card do carrossel — Laranja com a dimensão 'De onde vem: Sudeste'">
+      <figcaption>Laranja — De onde vem</figcaption>
+    </figure>
+    <figure>
+      <img src="/cases/del-valle-website/del-valle_fruta-toda-hora-uva.png" alt="Card do carrossel — Uva com a dimensão 'Nº de Produtores: 400'">
+      <figcaption>Uva — Nº de Produtores</figcaption>
+    </figure>
+    <figure>
+      <img src="/cases/del-valle-website/del-valle_fruta-toda-hora-caju.png" alt="Card do carrossel — Caju com a dimensão 'Safra: Setembro a Fevereiro'">
+      <figcaption>Caju — Safra</figcaption>
+    </figure>
+    <figure>
+      <img src="/cases/del-valle-website/del-valle_fruta-toda-hora-manga.png" alt="Card do carrossel — Manga com a dimensão 'Curiosidade'">
+      <figcaption>Manga — Curiosidade</figcaption>
+    </figure>
+  </div>
+</div>
+
+Todas entregues em **web e mobile**, com os elementos gráficos orgânicos reorganizados para cada breakpoint — a sequência abaixo mostra a rolagem da Home, do hero até a seção "Da nossa família para a sua":
+
+<figure>
+  <img src="/cases/del-valle-website/mobile-scroll-3phones.png" alt="Rolagem da home no mobile em 3 telas — hero, seção 'Fruta toda hora' com foto de pessoa bebendo suco, e seção 'Da nossa família para a sua' com foto de mãe e filha">
+  <figcaption>Navegação mobile</figcaption>
+</figure>
 
 - As **manchas orgânicas** são posicionadas para criar profundidade: sempre parcialmente cortadas pela borda da tela, nunca centralizadas — transmitem movimento e extrapolação da marca para além do frame.
 - As **frutas reais** são recortadas e posicionadas sobre as manchas de cor correspondente (laranja sobre mancha laranja, uvas sobre mancha roxa), criando consistência associativa fruta-cor sem precisar de legenda.
-- Na seção "Fruta toda hora", a **foto de pessoa é cortada em forma circular** sobre um círculo vermelho — coerente com a linguagem orgânica da identidade.
+- Na seção-teaser "Fruta toda hora" da Home, a **foto de pessoa é cortada em forma circular** sobre um círculo vermelho — coerente com a linguagem orgânica da identidade.
 - Os **CTAs seguem a lógica de contraste por seção**: "Saiba mais" em laranja sobre fundo verde; "Saiba mais" em verde sobre fundo rosa — nunca uma cor de CTA padrão independente do contexto.
 - No **mobile**, o menu hambúrguer preserva o "Cheio de vida" ao lado do logo; os elementos orgânicos são redimensionados proporcionalmente sem desaparecer.
 
-![Homepage Del Valle — versão mobile com manchas orgânicas e identidade "Cheio de vida"](/cases/del-valle-website/03-smarphone.png)
+---
 
-Entreguei home e página de produtos em web e mobile, alinhadas à campanha "Cheio de vida". Mas o projeto terminou no handoff — não tive acesso a nenhuma métrica pós-lançamento.
+## Aprendizados
 
-O que eu queria ter acompanhado: se os usuários navegavam pelos cards de exploração de frutas ou pulavam direto para os produtos. Essa interação era o coração da proposta de valor narrativa — "sabemos de onde vem cada fruta". Se ninguém abrisse aquele carrossel, a decisão de colocar a fruta no center stage teria sido mais aposta do que argumento.
+O maior aprendizado desse mês foi entender que diretrizes claras aceleram, não travam. Com o manual de identidade já definido — paleta, tipografia, tom de voz — a tradução de um briefing em produto fica muito mais rápida: em vez de gastar tempo decidindo "que cor combina", o trabalho vira estruturar hierarquia, fluxo e conteúdo em cima de uma base já validada pela marca. É meio contraintuitivo pra quem acha que restrição atrapalha — mas foi exatamente essa clareza que permitiu entregar três páginas completas, em web e mobile, em só um mês, com validação técnica e de stakeholders acontecendo em paralelo.
 
 <!--metrics-here-->
 
-Projetos de redesign orientados por campanha têm uma armadilha específica: a tentação de "segurar" a expressividade em nome da usabilidade — reduzir as formas irregulares, neutralizar as cores, colocar os elementos no grid. Resistir a isso foi o trabalho.
-
-O que ficou comigo: é fácil defender a irregularidade numa apresentação de conceito. Mas o momento que define se você realmente acredita nisso é quando você está adaptando as manchas orgânicas para um breakpoint de 375px e a opção limpa e segura está ali do lado. Eu fiquei com a irregularidade. Não me arrependo.
+A outra coisa que ficou foi o peso da escala. Del Valle é uma marca com 77 anos e presença em mais de 100 mercados — trabalhar nesse projeto não era só desenhar uma tela bonita, era saber que cada decisão de wireframe ia rodar dentro de uma identidade que representa a marca em nível nacional. Entrei como o único designer dentro de um time de devs, e essa responsabilidade — ser quem traduz uma diretriz de marca desse tamanho numa interface que de fato vai ao ar — pesou mais do que qualquer decisão pontual de layout.

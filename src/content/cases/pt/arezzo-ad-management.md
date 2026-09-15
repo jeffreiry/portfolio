@@ -26,7 +26,7 @@ order: 7
 
 ## Um sistema, três jornadas: como a arquitetura por papel desbloqueou o gerenciamento de anúncios do grupo Arezzo&Co
 
-**TL;DR** — UX Researcher, UX Designer e UI Designer, 3 meses. Redesenho do sistema de gerenciamento de anúncios em redes sociais do grupo Arezzo&Co, servindo três perfis com necessidades radicalmente diferentes — Marketing, Gestores de Tráfego e Lojistas — em uma única plataforma com arquitetura de informação adaptada por papel.
+**Resumo** — UX Researcher, UX Designer e UI Designer, 3 meses. Redesenho do sistema de gerenciamento de anúncios em redes sociais do grupo Arezzo&Co, servindo três perfis com necessidades radicalmente diferentes — Marketing, Gestores de Tráfego e Lojistas — em uma única plataforma com arquitetura de informação adaptada por papel.
 
 **Tags:** Retail · Multi-perfil · Design de sistema · Dashboard · Mobile · Figma
 

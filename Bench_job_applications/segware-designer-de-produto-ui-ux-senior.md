@@ -4,7 +4,9 @@
 **Produto:** Soluções em software para centrais de monitoramento (segurança, controle de acesso, portarias, análise de dados)
 **Nível:** Sênior
 **Data da vaga:** 2026-08-24
-**Status:** Candidatura enviada
+**Status:** Recusado
+**Status atualizado em:** 2026-09-14
+**Motivo da recusa:** Gap real de portfolio — "liderar e mentorar outros designers" e "desenvolver e manter o design system da empresa" são responsabilidades centrais explícitas do cargo, e nenhum case documenta mentoria de pares ou autoria de um DS completo (só contribuições pontuais, Power Apps e Cartela Cores); a ausência de processo de handover documentado (nota 1) reforça a lacuna.
 **Candidatura:** Sim
 
 ---

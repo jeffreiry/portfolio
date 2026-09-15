@@ -22,7 +22,7 @@ order: 2
 
 ## Do PDF morto ao guarda-roupa que se combina sozinho
 
-**TL;DR** — Product Designer solo, end-to-end (pesquisa → produção). App web que traduz uma consultoria de coloração pessoal — normalmente entregue como um PDF estático — em um sistema vivo que pontua, em tempo real, se cada peça do guarda-roupa combina com a cartela do usuário e ajuda a montar looks harmônicos.
+**Resumo** — Product Designer solo, end-to-end (pesquisa → produção). App web que traduz uma consultoria de coloração pessoal — normalmente entregue como um PDF estático — em um sistema vivo que pontua, em tempo real, se cada peça do guarda-roupa combina com a cartela do usuário e ajuda a montar looks harmônicos.
 
 ---
 

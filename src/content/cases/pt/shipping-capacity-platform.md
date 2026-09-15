@@ -23,7 +23,7 @@ order: 3
 
 ## O navio parte com espaço vazio: como um timeline visual transformou dados operacionais em oportunidades comerciais
 
-**TL;DR** — Product Designer em time de produto, 6 meses. MVP de plataforma de otimização de capacidade de carga para operações de logística marítima — substituindo planilhas dispersas e e-mails por um ambiente centralizado de monitoramento de rotas, simulação de alocação e gestão de oportunidades comerciais.
+**Resumo** — Product Designer em time de produto, 6 meses. MVP de plataforma de otimização de capacidade de carga para operações de logística marítima — substituindo planilhas dispersas e e-mails por um ambiente centralizado de monitoramento de rotas, simulação de alocação e gestão de oportunidades comerciais.
 
 **Tags:** Enterprise · Logística marítima · DataViz · Simulação operacional · Figma · Mural
 

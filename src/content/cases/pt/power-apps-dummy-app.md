@@ -24,7 +24,7 @@ order: 5
 
 ## Do componente ao produto: tornando o Design System real no Power Apps
 
-**TL;DR** — UX Designer no Design Chapter, 2025. Projetei e construí um aplicativo de referência funcional dentro do Microsoft Power Apps para apresentar os componentes mobile do Design System da empresa. O app foi publicado como template, adotado em toda a organização e utilizado como base para pelo menos um produto em produção.
+**Resumo** — UX Designer no Design Chapter, 2025. Projetei e construí um aplicativo de referência funcional dentro do Microsoft Power Apps para apresentar os componentes mobile do Design System da empresa. O app foi publicado como template, adotado em toda a organização e utilizado como base para pelo menos um produto em produção.
 
 ---
 

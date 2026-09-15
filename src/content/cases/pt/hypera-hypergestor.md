@@ -23,7 +23,7 @@ order: 6
 
 ## Do orçamento à comprovação: como transformei o ciclo de verbas de trade marketing da Hypera Pharma em um pipeline rastreável
 
-**TL;DR** — UX e UI Designer, 2 meses. Criação do HYPERGESTOR, sistema interno de gerenciamento de orçamentos e verbas para ações de trade marketing da Hypera Pharma — centralizando em um único pipeline o fluxo que ia de planilhas e e-mails até a comprovação com integração SAP/SEV.
+**Resumo** — UX e UI Designer, 2 meses. Criação do HYPERGESTOR, sistema interno de gerenciamento de orçamentos e verbas para ações de trade marketing da Hypera Pharma — centralizando em um único pipeline o fluxo que ia de planilhas e e-mails até a comprovação com integração SAP/SEV.
 
 **Tags:** Enterprise · Trade marketing · Finops · Design de sistema · B2B · Figma
 

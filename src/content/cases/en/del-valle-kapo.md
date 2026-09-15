@@ -13,6 +13,7 @@ template: brand-split
 tags: ["Design System", "Branding", "Mobile"]
 scope: ["Sitemap", "Wireframes", "Interface design (web + mobile)", "Illustration"]
 duration: "3 months"
+bodyManifesto: false
 metrics:
   - label: "Days of Active Campaign"
     value: "117"
@@ -24,7 +25,6 @@ metrics:
     value: "12"
 featured: false
 draft: false
-underConstruction: true
 order: 9
 ---
 

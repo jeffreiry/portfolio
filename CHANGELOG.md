@@ -1,5 +1,23 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-14 (continuação — redesign do case Del Valle Website + correções sitewide)
+
+### Adicionado
+- **Del Valle Website migrado pro template `brand-split`** (mesma base do Kapo), com hero em duas zonas, coluna de 1160px e assets reais novos: sitemap, wireframes responsivos (Web/Tablet/Mobile), antes/depois real da Home, screenshot da página "Fruta toda hora" e os 4 cards do carrossel de frutas (Laranja, Uva, Caju, Manga) — Laranja adicionada depois pra completar o conjunto.
+- **Campo de schema `bodyManifesto` (default `true`)** — controla se o primeiro H2 do corpo recebe o estilo de citação-manifesto (`h2:first-of-type`) ou o estilo de eyebrow normal. Necessário porque o Kapo não tem mais tese duplicada no corpo (tese só no hero), mas o Del Valle Website mantém tese do hero e tese do corpo como textos distintos — a mesma classe `case-content--no-manifesto` não podia mais estar amarrada automaticamente a `template === 'brand-split'`.
+- **Classe `.contrast-box`** — caixa com fundo creme (`--color-surface`) e padding, pra grupos de imagem com metade branca (como os cards do carrossel) não ficarem "branco sobre branco" na zona de conteúdo dos templates `brand-split`.
+- **Mockup de 3 celulares mostrando a rolagem da Home** (`mobile-scroll-3phones.png`), montado com `sharp` a partir de uma captura real de tela cheia — mesma técnica de composição usada na capa do LinkedIn e nos diagramas. Recortes calibrados pra nunca cortar uma foto no meio (círculo da pessoa bebendo suco inteiro no 1º celular, foto da família inteira no 2º).
+- **Convenção sitewide: `**Resumo**` em vez de `**TL;DR**`** em todos os cases PT (8 arquivos corrigidos) — EN mantém `**TL;DR**`.
+
+### Corrigido
+- **Role do Del Valle Website corrigido** de "UX · UI · Visual Designer" para "UX · UI Designer" — o autor não atuou como visual designer nesse projeto (identidade vinda de outra equipe/agência). Removidas menções a "criar ilustrações e elementos gráficos" e ferramentas de design visual (Illustrator/Photoshop) do texto; `scope` e `duration` corrigidos pra refletir a realidade (Wireframes + Interfaces web/mobile, 1 mês — não 2).
+- **Seção Processo & Decisões do Del Valle Website reescrita do zero** — as 4 decisões antigas (formas orgânicas, sistema de cor, hero lifestyle, carrossel) eram fabricadas de uma sessão anterior a esses dados reais. Mantida só a única decisão confirmada como real pelo autor (grade alternada com carrossel de 4 dimensões), com honestidade explícita sobre o que **não** foi decisão do autor (arquitetura de conteúdo das 3 páginas e escolha de hero por página vieram prontas do cliente/agência) — mais uma reflexão sobre como um designer sênior usa um projeto de rebranding (aparentemente "só reskin") pra aplicar diretrizes de usabilidade em pontos pequenos e reais (ex: o link da Loja, externo, desenhado como botão com contorno + ícone de carrinho, para sinalizar saída do site antes do clique).
+- **Inversão de conteúdo entre páginas corrigida**: o que o texto chamava de "Home" e "Fruta toda hora (produtos)" estava trocado em relação aos screenshots reais — Home tem o hero de lineup de produtos + seção-teaser "Fruta toda hora"; a página Fruta toda hora (separada) tem o hero de lifestyle + carrossel de frutas. "Duas páginas" corrigido para as 3 reais (Home, Fruta toda hora, Nossos Produtos).
+- **Aprendizados reescrito em 2 parágrafos**, com o aprendizado real do projeto (diretrizes claras aceleram a conversão de briefing em produto) e uma reflexão sobre o peso de trabalhar numa marca de alcance nacional (77 anos, 100+ mercados).
+- **Badge "Under Construction" removido** do Kapo e do Del Valle Website (ambos considerados prontos); Arezzo e HYPERGESTOR continuam marcados.
+
+---
+
 ## 2026-09-14 (redesign do case Del Valle Kapo + template `brand-split`)
 
 ### Adicionado

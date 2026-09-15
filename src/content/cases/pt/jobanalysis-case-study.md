@@ -23,7 +23,7 @@ protected: false
 
 ## A ferramenta que avalia meu portfólio também precisou ser avaliada
 
-**TL;DR** — Projeto solo, em andamento desde junho de 2026. Um pipeline de dois agentes que pontua a aderência do meu portfólio contra vagas reais usando uma rubrica ponderada de Person-Job Fit, em vez de eu julgar cada uma no olho. Construído pra tirar o achismo da minha própria busca de emprego — e que, no processo de escrever este case, revelou um gap de governança na própria ferramenta que eu já tinha deixado passar duas vezes.
+**Resumo** — Projeto solo, em andamento desde junho de 2026. Um pipeline de dois agentes que pontua a aderência do meu portfólio contra vagas reais usando uma rubrica ponderada de Person-Job Fit, em vez de eu julgar cada uma no olho. Construído pra tirar o achismo da minha própria busca de emprego — e que, no processo de escrever este case, revelou um gap de governança na própria ferramenta que eu já tinha deixado passar duas vezes.
 
 ---
 

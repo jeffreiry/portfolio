@@ -4,7 +4,9 @@
 **Produto:** ADP Labs (Porto Alegre — produtos globais de HR tech, payroll, IA/ML)
 **Nível:** Sênior
 **Data da vaga:** 2026-08-20
-**Status:** Candidatura enviada
+**Status:** Recusado
+**Status atualizado em:** 2026-09-14
+**Motivo da recusa:** Gap real de portfolio — "acts as a resource for colleagues with less experience" é requisito obrigatório redigido de forma assertiva (não "desired"), e nenhum case documenta mentoria, feedback estruturado ou liderança de designers juniores (nota 1); a ausência de métricas de impacto quantitativo em todos os cases enterprise reforça a lacuna de narrativa pro nível sênior que a ADP descreve.
 **Candidatura:** Sim
 **Score anterior:** 89% (2026-07-10)
 **Motivo da mudança de score:** Os pontos obtidos não mudaram (32/32 nas duas análises) — o que mudou foi a granularidade da extração da JD. Na 1ª passada, "Leadership" (mentoria de designers juniores) foi absorvido dentro de um requisito mais genérico de integração cross-funcional, que recebeu nota 3. Na 2ª passada, "Leadership" virou requisito próprio e recebeu nota 1 — nenhum case documenta mentoria de fato. Isso aumentou o denominador de 18 para 21 (6 requisitos → 7) e expôs um gap real que a 1ª extração tinha mascarado.

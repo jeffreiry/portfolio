@@ -19,7 +19,7 @@ const entry = cases.find((e) => e.data.slug === slug);
 if (!entry) return Astro.redirect('/pt/');
 
 const { Content } = await render(entry);
-const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order, scope, duration, underConstruction } = entry.data;
+const { title, thesis, summary, role, company, year, tags, accent, metrics, url, bgImage, template = 'enterprise', order, scope, duration, underConstruction, bodyManifesto } = entry.data;
 
 // Mesma lógica de posicionamento variável do template EN — ver comentário lá.
 const METRICS_MARKER = '<!--metrics-here-->';
@@ -42,7 +42,7 @@ const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
     : template === 'brand'
       ? 'max-w-[720px] case-content--brand'
       : template === 'brand-split'
-        ? 'max-w-[1160px] case-content--narrow-images case-content--no-manifesto'
+        ? `max-w-[1160px] case-content--narrow-images ${bodyManifesto ? '' : 'case-content--no-manifesto'}`
         : 'max-w-[720px]'
 }`;
 ---

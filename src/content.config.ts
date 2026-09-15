@@ -20,6 +20,12 @@ const caseSchema = z.object({
   // a linha padrão Atuação/Empresa/Ano por Atuação/Escopo (lista)/Duração.
   scope: z.array(z.string()).optional(),
   duration: z.string().optional(),
+  // Alguns cases (Kapo) tiveram a tese duplicada removida do corpo — o
+  // primeiro H2 do artigo passa a ser uma seção normal, não a citação-tese.
+  // Default true preserva o comportamento padrão (primeiro H2 = manifesto)
+  // pra quem, como Del Valle Website, mantém tese do hero e tese do corpo
+  // como textos distintos (convenção normal do site).
+  bodyManifesto: z.boolean().default(true),
   metrics: z.array(z.object({ label: z.string(), value: z.string(), source: z.string().optional() })).optional(),
   featured: z.boolean().default(false),
   draft: z.boolean().default(true),

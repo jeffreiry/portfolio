@@ -418,6 +418,36 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     margin: var(--space-32) 0;
     display: block;
   }
+  /* Figura avulsa com legenda — <figure><img><figcaption>texto</figcaption></figure>
+     fora do bloco .before-after (que tem sua própria regra mais específica
+     logo abaixo, com os mesmos valores). */
+  .case-content figure {
+    margin: var(--space-32) 0;
+  }
+  .case-content figure img {
+    margin-top: 0;
+    margin-bottom: var(--space-8);
+  }
+  .case-content figcaption {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-subtle);
+    text-align: center;
+  }
+  /* Caixa de contraste — usada quando um grupo de imagens (ex: cards com
+     metade branca) fica "branco sobre branco" na zona de conteúdo dos
+     templates brand-split. Fundo creme (--color-surface) com padding. */
+  .case-content .contrast-box {
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    padding: var(--space-24);
+    margin: var(--space-32) 0;
+  }
+  .case-content .contrast-box .before-after {
+    margin: 0;
+  }
   /* Comparação lado a lado (antes/depois, ou 3 estágios tipo original→v1→v2) —
      HTML puro no corpo do markdown, sem componente: <div class="before-after">
      com um <figure><img><figcaption>Antes</figcaption></figure> por estágio.
