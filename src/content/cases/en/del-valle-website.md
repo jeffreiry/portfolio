@@ -145,6 +145,19 @@ All delivered in **web and mobile**, with organic graphic elements reorganized f
 
 ## Learnings
 
+<div class="dual-cards">
+  <div class="dual-card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l7.5 3L13.5 21 21 3z"/></svg>
+    <span class="dual-card-label">Project Challenges</span>
+    <p>The hardest part of that month wasn't any single screen decision — it was the <strong>pace</strong>: creation, technical validation with the dev team, and stakeholder validation all had to happen nearly in parallel to fit the deadline.</p>
+  </div>
+  <div class="dual-card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+    <span class="dual-card-label">Project Constraint</span>
+    <p>The content split across the three pages, and which hero shows <strong>product</strong> vs. <strong>lifestyle</strong>, were already defined when I joined — my job was applying the identity on top of that structure, not designing it from scratch.</p>
+  </div>
+</div>
+
 The biggest learning from that month was realizing that clear guidelines speed things up, they don't hold them back. With the identity manual already defined — palette, typography, tone of voice — turning a briefing into a product gets a lot faster: instead of spending time deciding "which color works," the job becomes structuring hierarchy, flow, and content on top of a base the brand has already validated. It's a bit counterintuitive if you assume constraints get in the way — but that clarity was exactly what made it possible to deliver three complete pages, in web and mobile, in a single month, with technical and stakeholder validation happening in parallel.
 
 <!--metrics-here-->

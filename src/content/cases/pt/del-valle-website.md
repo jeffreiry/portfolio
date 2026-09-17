@@ -148,13 +148,13 @@ Todas entregues em **web e mobile**, com os elementos gráficos orgânicos reorg
 <div class="dual-cards">
   <div class="dual-card">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l7.5 3L13.5 21 21 3z"/></svg>
-    <span class="dual-card-label">Desafios do projeto</span>
-    <p>A parte mais difícil desse mês não foi nenhuma decisão de tela — foi o <strong>ritmo</strong>: criação, validação técnica com o time de devs e validação com os stakeholders da marca precisavam acontecer quase em paralelo pra caber no prazo.</p>
+    <span class="dual-card-label">Desafios do Projeto</span>
+    <p>A parte mais difícil desse mês não foi nenhuma decisão de tela — foi o <strong>ritmo</strong>: criação, validação técnica com o time de devs e validação com os stakeholders precisavam acontecer quase em paralelo pra caber no prazo.</p>
   </div>
   <div class="dual-card">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-    <span class="dual-card-label">Restrição do projeto</span>
-    <p>A divisão de conteúdo entre as três páginas e a escolha de qual hero mostra <strong>produto</strong> e qual mostra <strong>lifestyle</strong> já vinham definidas quando entrei — meu trabalho foi aplicar a nova identidade em cima dessa arquitetura, não desenhá-la do zero.</p>
+    <span class="dual-card-label">Restrição do Projeto</span>
+    <p>A divisão de conteúdo entre as três páginas e a escolha de qual hero mostra <strong>produto</strong> e qual mostra <strong>lifestyle</strong> já vinham definidas quando entrei — meu trabalho foi aplicar a identidade em cima dessa arquitetura, não desenhá-la do zero.</p>
   </div>
 </div>
 

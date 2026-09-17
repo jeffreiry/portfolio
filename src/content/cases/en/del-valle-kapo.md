@@ -156,6 +156,19 @@ Redesigned site with 6 main sections and a structured play platform:
 
 ## Learnings
 
+<div class="dual-cards">
+  <div class="dual-card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l7.5 3L13.5 21 21 3z"/></svg>
+    <span class="dual-card-label">Project Challenges</span>
+    <p>The decision that cost me most was the <strong>video-game-style product selector</strong> — the metaphor made sense for kids, but it's the <strong>adult</strong> who browses to buy. I couldn't tell if it would land as clever or strange to a 35-year-old.</p>
+  </div>
+  <div class="dual-card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+    <span class="dual-card-label">Lessons Learned</span>
+    <p>The personas revealed that <strong>"Hora de Brincar"</strong> wasn't supporting content — it was what families actually came looking for. I learned that architecture based on <strong>real behavior</strong> beats any assumption about what "should" be on the site.</p>
+  </div>
+</div>
+
 I came into this project with the identity already locked — palette, mascots, tone of voice, even the "Toda Brincadeira gera Frutos" concept were ready from the campaign before I drew a single screen. That changes the kind of decision that falls to the designer: it's not about creating an identity, it's about translating an identity built for packaging and video into the grammar of a website, without it turning into a collage of loose assets.
 
 The cut-paper motif was the way out I found: instead of inventing a new metaphor for section transitions, I took an element that already existed in the campaign — the idea of cutting, of making things by hand — and turned it into a system (the wavy border, repeated from top to bottom). I can't say whether any user consciously noticed it. But it's how I kept the brand identity present through the whole scroll, not just on the first screen.
