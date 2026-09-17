@@ -24,6 +24,11 @@ const { title, thesis, tags, role, company, year, scope, duration, url, heroBg, 
 // entregas e o período em vez da empresa.
 const hasScopeDuration = Boolean(scope && scope.length > 0 && duration);
 
+// Títulos longos (> 32 caracteres) estouram a linha única no container de
+// 720px com o clamp padrão — reduz o teto do clamp pra caber em uma linha
+// em telas largas, sem afetar o tamanho dos títulos curtos.
+const titleMax = title.length > 36 ? 34 : 44;
+
 const labels = lang === 'pt'
   ? { role: 'Atuação', company: 'Empresa', year: 'Ano', scope: 'Escopo', duration: 'Duração', live: 'Ver ao vivo →' }
   : { role: 'Role', company: 'Company', year: 'Year', scope: 'Scope', duration: 'Duration', live: 'View live →' };
@@ -37,7 +42,7 @@ const labels = lang === 'pt'
     não importa o tamanho da tese/tags. */}
 <section class="hero-split-cream relative z-10 w-full px-6 pt-16">
   <div class="mx-auto flex max-w-[720px] flex-col items-center gap-4 text-center">
-    <h1 class="font-display" style="font-size: clamp(28px, 4vw, 44px); line-height: 1.15; color: var(--text-heading);">
+    <h1 class="font-display" style={`font-size: clamp(28px, 4vw, ${titleMax}px); line-height: 1.15; color: var(--text-heading);`}>
       {title}
     </h1>
     {thesis && (

@@ -53,8 +53,8 @@ Todos os 9 cases (18 arquivos PT+EN) reescritos. Diagnóstico original e detalhe
 18. [Case — Arezzo&Co · Social Media Ad Management System (EN)](#18-case--arezzoco--social-media-ad-management-system-en)
 19. [Case — Del Valle · Redesign de Site (PT)](#19-case--del-valle--redesign-de-site-pt)
 20. [Case — Del Valle · Website Redesign (EN)](#20-case--del-valle--website-redesign-en)
-21. [Case — Hypera Pharma · HYPERGESTOR (PT)](#21-case--hypera-pharma--hypergestor-pt)
-22. [Case — Hypera Pharma · HYPERGESTOR (EN)](#22-case--hypera-pharma--hypergestor-en)
+21. [Case — Hypera Pharma · Gerenciador de Verbas (PT)](#21-case--hypera-pharma--gerenciador-de-verbas-pt)
+22. [Case — Hypera Pharma · Gerenciador de Verbas (EN)](#22-case--hypera-pharma--gerenciador-de-verbas-en)
 23. [Case — Del Valle Kapo · Redesign de Site (PT)](#23-case--del-valle-kapo--redesign-de-site-pt)
 24. [Case — Del Valle Kapo · Website Redesign (EN)](#24-case--del-valle-kapo--website-redesign-en)
 
@@ -1174,151 +1174,65 @@ O maior aprendizado do mês foi entender que diretrizes claras aceleram, não tr
 
 ---
 
-## 21. Case — Hypera Pharma · HYPERGESTOR (PT)
+## 21. Case — Hypera Pharma · Gerenciador de Verbas (PT)
+
+> **Nota:** este case usa o template `brand-split` (hero em duas zonas + coluna de conteúdo) em vez do template-mestre de 6 seções com rótulos padrão — ver seção 8 para o schema atual (`scope`/`duration`). Fonte viva: `src/content/cases/pt/hypera-hypergestor.md`.
 
 ### Do orçamento à comprovação: como transformei o ciclo de verbas de trade marketing da Hypera Pharma em um pipeline rastreável
 
-**TL;DR** — UX e UI Designer, 2 meses. Criação do HYPERGESTOR, sistema interno de gerenciamento de orçamentos e verbas para ações de trade marketing da Hypera Pharma — centralizando em um único pipeline o fluxo que ia de planilhas e e-mails até a comprovação com integração SAP/SEV.
-
-**Tags:** Enterprise · Trade marketing · Finops · Design de sistema · B2B · Figma
+**Resumo** — UX e UI Designer, 2 meses. Criação do Gerenciador de Verbas, sistema interno de gerenciamento de orçamentos e verbas para ações de trade marketing da Hypera Pharma — centralizando em um único pipeline o fluxo que ia de planilhas distribuídas pela companhia até a comprovação com integração SAP/SEV.
 
 #### Contexto & Problema
 
-A Hypera Pharma gerencia investimentos em trade marketing em larga escala — verbas que partem de orçamentos corporativos, são distribuídas por hierarquia de vendas (região → escritório → equipe → supervisor → vendedor) e precisam ser comprovadas com evidências para integrarem o SAP. Sem um sistema centralizado, cada etapa desse ciclo acontecia de forma isolada: a criação de orçamentos era manual, a distribuição de verbas dependia de e-mails entre as áreas, e a comprovação de investimentos era feita por fora, sem rastreabilidade.
+A Hypera Pharma gerencia investimentos em trade marketing em larga escala — verbas que partem de orçamentos corporativos, são distribuídas por hierarquia de vendas (região → escritório → equipe → supervisor → vendedor) e precisam ser comprovadas com evidências para integrarem o SAP. Sem um sistema centralizado, cada etapa desse ciclo acontecia de forma isolada.
 
-**Estado anterior:** ciclo de trade marketing sem visibilidade de ponta a ponta — a governança existia no papel, mas não no sistema.
+**Estado anterior:** planilhas distribuídas pela companhia, sem visibilidade de ponta a ponta do ciclo de trade marketing.
+
+Do escopo mapeado nesses 2 meses, três módulos chegaram a ser de fato construídos nesse ciclo — Cadastro de Empresa, Apuração e Comprovação de Verbas e Aprovação de Integração com o SAP. Parametrização, login/SSO e relatórios ficaram mapeados, mas fora do build inicial.
 
 #### Meu papel
 
-UX e UI Designer responsável pelo design completo do HYPERGESTOR: mapeei as jornadas de cada perfil de usuário envolvido no ciclo, defini a arquitetura de informação, projetei todas as interfaces e protótipos em Figma, e trabalhei em colaboração com a equipe de desenvolvimento no Azure. O design precisava respeitar as diretrizes de marca da Hypera Pharma.
-
-#### Restrições
-
-- **Complexidade de hierarquia** — verbas fluem de orçamentos primários para secundários, depois para distribuições por múltiplos níveis da hierarquia de vendas. O design precisava representar essa cascata sem criar confusão.
-- **Integração SAP/SEV** — a comprovação de verbas precisava de um gate explícito antes de liberar dados para o SAP, para evitar erros de integração com impacto financeiro real.
-- **2 meses** para mapear, projetar e prototipar um sistema com múltiplos módulos e perfis.
+UX e UI Designer responsável pelo design do Gerenciador de Verbas: mapeei as jornadas de cada perfil de usuário envolvido no ciclo (Administrador, Diretor, Gerente, Supervisor, Planejador BU, Key User), defini a arquitetura de informação, projetei interfaces e protótipos em Figma, e trabalhei em colaboração com a equipe de desenvolvimento no Azure.
 
 #### Descoberta & Insight
 
-O mapeamento das jornadas revelou que o problema não era nenhuma etapa em isolado — era a **ausência de um ciclo conectado**. Orçamento era criado em um lugar, verba alocada em outro, distribuição comunicada por e-mail e comprovação feita com evidências soltas sem vinculação ao planejamento original. O resultado: ninguém tinha visibilidade completa de como o investimento de trade marketing havia sido planejado, distribuído e executado.
+O mapeamento das jornadas revelou que o problema não era nenhuma etapa em isolado — era a **ausência de um ciclo conectado**. Uma matriz de responsabilidades (14 ações × 6 perfis) e uma matriz de descoberta de features (6 perfis × 4 metas do produto) revelaram quais combinações perfil × meta realmente existiam — e representam o "todo" do produto mapeado, do qual só uma fatia foi construída.
 
-**A virada:** o HYPERGESTOR não precisava ser uma coleção de formulários. Precisava ser um **pipeline** — cada etapa alimentando a próxima, com rastreabilidade de ponta a ponta do orçamento até a comprovação com evidências.
+**A virada:** o Gerenciador de Verbas não precisava ser uma coleção de formulários. Precisava ser um **pipeline** — cada etapa alimentando a próxima, com rastreabilidade de ponta a ponta.
 
 #### Processo & Decisões
 
-**1. Modal vs. página dedicada para criação — problema:** os fluxos de cadastro (orçamento, verba, distribuição) tinham muitos campos e sub-objetos; abrir em página nova perdia o contexto da listagem. **Opções:** navegação para página dedicada (mais espaço, perde contexto) vs. modal sobre a listagem (mantém contexto, exige scroll interno). **Escolha:** modal persistente sobre a listagem para todas as operações de criação e edição. **Porquê:** o usuário frequentemente precisa consultar outras verbas da lista enquanto cria uma nova — o modal permite isso sem navegação adicional.
+**1. Modal vs. página dedicada para cadastro de empresa — problema:** o cadastro de empresa (distribuidor, farmácia, etc.) tinha muitos campos — ID, SAP_ID, CRM_ID, CNPJ, status, tipo, endereço; abrir em página nova perdia o contexto da listagem. **Escolha:** modal persistente sobre a listagem para criação e edição. **Porquê:** o usuário frequentemente precisa consultar outras empresas da lista enquanto cadastra uma nova.
 
-**2. Hierarquia de distribuição dentro do mesmo modal — problema:** um orçamento pode ter múltiplos sub-orçamentos, cada um com sua própria hierarquia de vendas. Exibir isso em etapas separadas fragmentaria o fluxo. **Opções:** wizard multi-etapa (uma tela por nível) vs. accordion inline dentro do mesmo modal. **Escolha:** accordion expansível dentro do modal de cadastro — cada distribuição pode ser expandida para mostrar sua hierarquia completa (Região → Escritório → Equipe → Supervisor), com ações de "Editar" e "Copiar Distribuição" sem sair do contexto. **Porquê:** o usuário precisa ver e comparar distribuições simultâneas; o accordion mantém tudo acessível sem forçar navegação entre telas.
-
-**3. Distribuição Sugerida com "Copiar" — problema:** gestores de trade marketing frequentemente replicam distribuições de períodos anteriores com ajustes mínimos. Criar cada distribuição do zero seria lento e propenso a erro. **Opções:** criação manual completa vs. sugestão automática de distribuição baseada no histórico com opção de copiar e ajustar. **Escolha:** seção "Distribuição Sugerida" no modal de distribuição de verba, mostrando a última distribuição relevante com todos os parâmetros (valor, supervisor, hierarquia de vendas) e um botão "Copiar Distribuição" que pré-preenche o formulário. **Porquê:** a maior parte das distribuições segue o mesmo padrão — o design deve acelerar o caso comum e não tratar todo fluxo como se fosse novo.
-
-**4. Checkpoint de integração SAP/SEV — problema:** a comprovação de verbas alimenta diretamente o SAP; um dado incorreto ou incompleto nessa etapa tem impacto financeiro real. **Opções:** integração automática ao salvar (mais ágil, menos controle) vs. gate explícito com confirmação manual antes da liberação. **Escolha:** campo "Pode ser liberada para aprovação da integração?" com padrão "Não" — o usuário precisa marcar "Sim" conscientemente para liberar a verba para o SAP. Campo "Haverá mais comprovação?" permite indicar que a apuração ainda não está completa sem bloquear o salvamento parcial. **Porquê:** em sistemas com integração financeira, um erro de liberação pode gerar inconsistência entre o sistema interno e o ERP — o gate de confirmação cria um momento deliberado de revisão antes do ponto de não retorno.
+**2. Checkpoint de integração SAP/SEV — problema:** a comprovação de verbas alimenta diretamente o SAP; um dado incorreto ou incompleto nessa etapa tem impacto financeiro real. **Escolha:** campo "Pode ser liberada para aprovação da integração?" com padrão "Não" — o usuário precisa marcar "Sim" conscientemente para liberar a verba para o SAP. Depois de liberada, a verba passa por uma etapa final de aprovação/rejeição antes de integrar o SAP de fato. **Porquê:** o gate de confirmação cria um momento deliberado de revisão antes do ponto de não retorno.
 
 #### Solução
 
-O HYPERGESTOR centraliza o ciclo completo de trade marketing em quatro módulos conectados:
+Do ciclo completo mapeado, três módulos chegaram a produção nesse ciclo de 2 meses:
 
-- **Cadastro de Orçamentos** — criação de orçamentos primários e secundários com hierarquia organizacional, datas de vigência e flag de redistribuição. Sub-distribuições configuráveis por hierarquia de vendas.
-- **Cadastro de Verbas** — alocação de verbas a partir de orçamentos existentes, com distribuição por vendedor, classificação de verba e hierarquia de produtos opcional.
-- **Distribuição de Verbas** — refinamento da distribuição por nível de hierarquia de vendas (Região → Escritório → Equipe → Supervisor), com sugestão automática e ação de copiar.
-- **Apuração e Comprovação** — registro do valor apurado, upload de evidências (xlsx, txt, pdf, jpeg), controle de comprovações parciais e gate de liberação para integração SAP/SEV.
+- **Cadastro de Empresa** — CRUD de empresas (Distribuidor, Farmácia, etc.), com campos de identificação, status, tipo e endereço.
+- **Apuração e Comprovação de Verbas** — registro do valor apurado, upload de evidências (xlsx, txt, pdf, jpeg) e gate de liberação para integração SAP/SEV.
+- **Aprovação de Integração com o SAP** — etapa final de aprovação ou rejeição de cada verba antes da integração de fato com o SAP.
 
 #### Craft & Acessibilidade
 
-- O **breadcrumb** (Início / Gestão / Orçamentos; Início / Cadastro / Empresas) no topo de cada tela orienta o usuário dentro da hierarquia do sistema sem depender da memória de onde ele está.
-- O **ícone de clipe com badge numérico** na coluna de Anexos da listagem de apuração comunica a presença de evidências sem precisar abrir o item — decisão de velocidade de scan.
-- O **campo "Valor apurado"** na comprovação é separado do "Valor Planejado" exibido em modo somente leitura — o usuário vê o planejado enquanto preenche o apurado, criando a comparação no mesmo contexto.
-- O campo **"Permite distribuir"** no cadastro de orçamento é um checkbox inline ao lado do valor — decisão que reduz um campo separado e conecta visualmente a permissão ao valor ao qual se aplica.
-- ⬜ Decisões de acessibilidade (contraste, navegação por teclado) — preencher.
+- O **breadcrumb** no topo de cada tela orienta o usuário dentro da hierarquia do sistema sem depender da memória de onde ele está.
+- O **ícone de clipe com badge numérico** na coluna de Anexos comunica a presença de evidências sem precisar abrir o item — decisão de velocidade de scan, e o badge numérico comunica isso via dois canais (ícone + número) sem depender de cor (WCAG 1.4.1).
+- O **campo "Valor apurado"** é separado do "Valor Planejado" exibido em modo somente leitura — o usuário vê o planejado enquanto preenche o apurado, criando a comparação no mesmo contexto.
 
 #### Colaboração técnica
 
-Pipeline de design: `benchmarking + mapeamento de jornadas por perfil → arquitetura de informação → wireframes Figma → validações internas → interfaces finais → protótipo navegável → handoff para desenvolvimento (Azure)`. O mapeamento de jornada por perfil foi a etapa que definiu quais módulos existiam e como se conectavam — sem ele, o risco era construir telas desconexas em vez de um ciclo.
-
-#### Impacto
-
-- **Entrega:** sistema completo com módulos de Orçamentos, Verbas, Distribuição e Apuração, com interfaces para cada perfil.
-- ⬜ Redução do tempo de ciclo de comprovação de verbas — preencher.
-- ⬜ Redução de erros de integração SAP/SEV após implementação do gate de confirmação — preencher.
-- ⬜ Satisfação dos usuários com o novo sistema vs. processo anterior — preencher.
+Pipeline de design: `benchmarking + mapeamento de jornadas por perfil → arquitetura de informação → wireframes Figma → validações internas → interfaces finais → protótipo navegável → handoff para desenvolvimento (Azure)`.
 
 #### Aprendizados
 
-Sistemas financeiros internos têm um trade-off específico entre agilidade e controle: tornar tudo rápido demais remove as salvaguardas que o processo exige; tornar tudo deliberado demais cria resistência de adoção. O gate de liberação para o SAP é o exemplo mais claro desse trade-off no projeto — e a decisão de mantê-lo como confirmação explícita (não automático) foi a certa. **Lição:** em sistemas com integração financeira, o design de fluxo precisa saber onde colocar atrito de propósito — não todo clique deve ser rápido.
+Entreguei três módulos do ciclo mapeado — a fatia que efetivamente chegou a produção nesses 2 meses, de um sistema desenhado para cobrir orçamento, distribuição de verbas e aprovações em cascata de ponta a ponta. O maior desafio foi transformar planilhas dispersas por toda a companhia em um sistema único e coerente. Trabalhar com um sistema corporativo integrado ao SAP ensinou que funcional e amigável precisam coexistir — cada campo tem peso financeiro real, então a interface precisa guiar sem parecer burocrática. **Lição:** em sistemas com integração financeira, o design de fluxo precisa saber onde colocar atrito de propósito — não todo clique deve ser rápido.
 
 ---
 
-## 22. Case — Hypera Pharma · HYPERGESTOR (EN)
+## 22. Case — Hypera Pharma · Gerenciador de Verbas (EN)
 
-### From budget to proof: how I turned Hypera Pharma's trade marketing fund cycle into a traceable pipeline
-
-**TL;DR** — UX and UI Designer, 2 months. Creation of HYPERGESTOR, an internal budget and trade fund management system for Hypera Pharma's trade marketing actions — centralizing into a single pipeline the flow that previously ran across spreadsheets, emails, and manual SAP/SEV integration.
-
-**Tags:** Enterprise · Trade marketing · Finops · System design · B2B · Figma
-
-#### Context & Problem
-
-Hypera Pharma manages trade marketing investments at scale — funds that start from corporate budgets, are distributed through the sales hierarchy (region → office → team → supervisor → sales rep), and must be verified with evidence before integrating into SAP. Without a centralized system, every step of this cycle happened in isolation: budget creation was manual, fund distribution depended on emails between departments, and investment verification was done outside the system, with no traceability.
-
-**Prior state:** a trade marketing cycle with no end-to-end visibility — governance existed on paper, but not in the system.
-
-#### My role
-
-UX and UI Designer responsible for the complete HYPERGESTOR design: I mapped the journeys of each user profile involved in the cycle, defined the information architecture, designed all interfaces and prototypes in Figma, and collaborated with the development team on Azure. The design had to respect Hypera Pharma's brand guidelines.
-
-#### Constraints
-
-- **Hierarchy complexity** — funds flow from primary to secondary budgets, then into distributions across multiple levels of the sales hierarchy. The design had to represent this cascade without creating confusion.
-- **SAP/SEV integration** — fund verification required an explicit gate before releasing data to SAP, to avoid integration errors with real financial impact.
-- **2 months** to map, design, and prototype a multi-module, multi-profile system.
-
-#### Discovery & Insight
-
-Journey mapping revealed that the problem wasn't any single step in isolation — it was the **absence of a connected cycle**. Budgets were created in one place, funds allocated in another, distributions communicated by email, and verification done with loose evidence files unlinked to the original planning. The result: no one had complete visibility into how a trade marketing investment had been planned, distributed, and executed.
-
-**The turning point:** HYPERGESTOR didn't need to be a collection of forms. It needed to be a **pipeline** — each step feeding the next, with traceability from budget all the way to evidence-backed verification.
-
-#### Process & Decisions
-
-**1. Modal vs. dedicated page for creation — problem:** the creation flows (budget, fund, distribution) had many fields and sub-objects; navigating to a new page would lose list context. **Options:** navigate to a dedicated page (more space, loses context) vs. modal overlay on the listing (maintains context, requires internal scroll). **Choice:** persistent modal over the listing for all creation and editing operations. **Why:** users frequently need to reference other funds in the list while creating a new one — the modal allows this without additional navigation.
-
-**2. Distribution hierarchy inside the same modal — problem:** a budget can have multiple sub-budgets, each with its own sales hierarchy. Presenting this in separate steps would fragment the flow. **Options:** multi-step wizard (one screen per level) vs. inline accordion within the same modal. **Choice:** expandable accordion inside the creation modal — each distribution can be expanded to show its complete hierarchy (Region → Office → Team → Supervisor), with "Edit" and "Copy Distribution" actions without leaving the context. **Why:** users need to see and compare distributions simultaneously; the accordion keeps everything accessible without forcing navigation between screens.
-
-**3. Suggested Distribution with "Copy" — problem:** trade marketing managers frequently replicate distributions from previous periods with minimal adjustments. Creating each distribution from scratch would be slow and error-prone. **Options:** fully manual creation vs. automatic distribution suggestion based on history with option to copy and adjust. **Choice:** a "Suggested Distribution" section in the fund distribution modal, showing the last relevant distribution with all parameters (value, supervisor, sales hierarchy) and a "Copy Distribution" button that pre-fills the form. **Why:** most distributions follow the same pattern — the design should accelerate the common case and not treat every flow as if it were new.
-
-**4. SAP/SEV integration checkpoint — problem:** fund verification feeds directly into SAP; incorrect or incomplete data at this step has real financial impact. **Options:** automatic integration on save (faster, less control) vs. explicit gate with manual confirmation before release. **Choice:** field "Can it be released for integration approval?" defaulting to "No" — the user must consciously mark "Yes" to release the fund to SAP. Field "Will there be more verification?" allows indicating incomplete auditing without blocking partial save. **Why:** in systems with financial integration, a release error can create inconsistency between the internal system and the ERP — the confirmation gate creates a deliberate review moment before the point of no return.
-
-#### Solution
-
-HYPERGESTOR centralizes the complete trade marketing cycle in four connected modules:
-
-- **Budget Registration** — creation of primary and secondary budgets with organizational hierarchy, validity dates, and redistribution flag. Configurable sub-distributions by sales hierarchy.
-- **Fund Registration** — fund allocation from existing budgets, with distribution by sales rep, fund classification, and optional product hierarchy.
-- **Fund Distribution** — distribution refinement by sales hierarchy level (Region → Office → Team → Supervisor), with automatic suggestion and copy action.
-- **Verification and Audit** — recording the audited value, evidence upload (xlsx, txt, pdf, jpeg), partial verification control, and SAP/SEV integration release gate.
-
-#### Craft & Accessibility
-
-- The **breadcrumb** (Início / Gestão / Orçamentos; Início / Cadastro / Empresas) at the top of each screen orients the user within the system hierarchy without relying on memory of where they are.
-- The **paperclip icon with numeric badge** in the Attachments column of the audit listing communicates the presence of evidence without opening the item — a scan-speed decision.
-- The **"Audited value" field** in verification is separate from the "Planned value" shown in read-only mode — the user sees the planned amount while filling in the audited amount, creating the comparison in the same context.
-- The **"Allows distribution" field** in budget registration is an inline checkbox next to the value — a decision that eliminates a separate field and visually connects the permission to the value it applies to.
-- ⬜ Accessibility decisions (contrast, keyboard navigation) — to fill.
-
-#### Technical collaboration
-
-Design pipeline: `benchmarking + per-profile journey mapping → information architecture → Figma wireframes → internal validations → final interfaces → navigable prototype → development handoff (Azure)`. The per-profile journey mapping was the step that defined which modules existed and how they connected — without it, the risk was building disconnected screens instead of a cycle.
-
-#### Impact
-
-- **Delivery:** complete system with Budget, Fund, Distribution, and Verification modules, with interfaces for each user profile.
-- ⬜ Reduction in fund verification cycle time — to fill.
-- ⬜ Reduction in SAP/SEV integration errors after implementing the confirmation gate — to fill.
-- ⬜ User satisfaction with the new system vs. previous process — to fill.
-
-#### Learnings
-
-Internal financial systems have a specific trade-off between speed and control: making everything too fast removes the safeguards the process requires; making everything too deliberate creates adoption resistance. The SAP release gate is the clearest example of this trade-off in the project — and the decision to keep it as explicit confirmation (not automatic) was the right one. **Lesson:** in systems with financial integration, flow design needs to know where to put intentional friction — not every click should be fast.
+> **Note:** mirrors section 21 — see that note for the `brand-split` detail. Live source: `src/content/cases/en/hypera-hypergestor.md`.
 
 ---
 

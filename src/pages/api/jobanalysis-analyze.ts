@@ -156,7 +156,7 @@ const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência
 **Cases publicados (9 cases — 7 publicados, 2 draft):**
 - **Enterprise AI Assistant** (2025, 6 meses) — Evoluiu MVP de assistente de IA em plataforma de conhecimento corporativo. Empresa confidencial (grande multinacional). Foco em rastreabilidade de fontes, transparência e confiança em IA. Discovery com Clarity + entrevistas com usuários. Paradigma conversacional vs. busca. Time cross-funcional com engenharia e dados.
 - **Shipping Capacity Platform** (2025, 6 meses) — Substituiu planilhas dispersas por timeline visual para otimização de capacidade de carga marítima. Empresa confidencial. MVP end-to-end com alta complexidade logística e dados. Discovery via workshops recorrentes com especialistas de domínio. Síntese em Mural.
-- **Hypera HYPERGESTOR** (2023, 2 meses) — Sistema de verbas de trade marketing para Hypera Pharma (via ilegra). Pipeline de orçamentos com integração SAP/SEV, gate de aprovação financeira, múltiplos perfis de aprovação.
+- **Hypera Pharma · Gerenciador de Verbas** (2023, 2 meses) — Sistema de verbas de trade marketing para Hypera Pharma (via ilegra). Pipeline de orçamentos com integração SAP/SEV, gate de aprovação financeira, múltiplos perfis de aprovação.
 - **Arezzo Ad Management** (2023, 3 meses) — Redesign de plataforma de anúncios em redes sociais para Arezzo&Co (via CWI). 3 perfis distintos com navegações independentes: Marketing, Gestores de Tráfego e Lojistas. IA role-based.
 - **Power Apps Dummy App** (2025) — App mobile de demonstração de Design System em Microsoft Power Apps. Grande empresa industrial confidencial. +10 componentes documentados, alcance organizacional, biblioteca para adoção por times.
 - **Cartela Cores** — Sistema de cores com 18 cores âncora, score ponderado multicanal (cor + ícone + texto), alinhado com WCAG 1.4.1. Tokens de cor com regras de decisão.
@@ -170,7 +170,7 @@ const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência
 - Figma (ferramenta central — mencionado em todos os cases enterprise; sem artefatos expostos publicamente)
 - Produtos enterprise B2B de alta complexidade (AI, logística, pharma, varejo)
 - IA/ML products — design conversacional, transparência, rastreabilidade, confiança
-- Design Systems (Power Apps Dummy App, Cartela Cores, HYPERGESTOR)
+- Design Systems (Power Apps Dummy App, Cartela Cores, Gerenciador de Verbas)
 - Arquitetura de informação (Arezzo: 3 perfis; Enterprise AI: paradigma conversacional vs. busca)
 - Colaboração cross-funcional (engenharia, produto, dados, stakeholders, especialistas de domínio)
 - Discovery end-to-end: de ambiguidade → síntese → MVP em 6 meses
@@ -199,7 +199,7 @@ Scoring ponderado por Person-Job Fit (Demands-Abilities Fit):
 
 ## Regras de evidência (coluna "Evidência atual")
 
-- SEMPRE cite o case pelo nome: "Enterprise AI", "Shipping Platform", "HYPERGESTOR", "Arezzo", "Power Apps Dummy App", "Cartela Cores", "Del Valle Kapo/Website"
+- SEMPRE cite o case pelo nome: "Enterprise AI", "Shipping Platform", "Gerenciador de Verbas", "Arezzo", "Power Apps Dummy App", "Cartela Cores", "Del Valle Kapo/Website"
 - NUNCA escreva "Parcialmente evidenciado", "Cases publicados" ou "Mencionado" sem especificar qual case e o que exatamente
 - Se ausente: "Ausente — [motivo específico ou o que o portfolio tem em vez disso]"
 - Se parcialmente evidenciado: "[Case]: [o que tem] — sem [o que falta]"

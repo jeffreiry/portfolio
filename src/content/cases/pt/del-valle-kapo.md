@@ -157,6 +157,19 @@ Site redesenhado com 6 seções principais e uma plataforma de brincadeiras estr
 
 ## Aprendizados
 
+<div class="dual-cards">
+  <div class="dual-card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l7.5 3L13.5 21 21 3z"/></svg>
+    <span class="dual-card-label">Desafios do projeto</span>
+    <p>A decisão que mais me custou foi o <strong>seletor de produto estilo videogame</strong> — a metáfora fazia sentido pras crianças, mas quem navega comprando é o adulto. Fiquei sem saber se a referência ia soar como acerto ou estranheza pra quem tem 35 anos.</p>
+  </div>
+  <div class="dual-card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+    <span class="dual-card-label">Mudanças do projeto</span>
+    <p>O comportamento das personas revelou que a <strong>"Hora de Brincar"</strong> não era conteúdo de apoio — era o que as famílias realmente buscavam. Isso mudou a arquitetura do site, elevando a seção à posição central da navegação.</p>
+  </div>
+</div>
+
 Entrei nesse projeto com a identidade já fechada — paleta, mascotes, tom de voz e até o conceito "Toda Brincadeira gera Frutos" vinham prontos da campanha antes de eu desenhar a primeira tela. Isso muda o tipo de decisão que cabe ao designer: não é criar uma identidade, é traduzir uma identidade pensada pra embalagem e pra vídeo pra dentro da gramática de um site, sem que vire uma colagem de assets soltos.
 
 O recorte de papel foi a saída que encontrei: em vez de inventar uma metáfora nova pra transição entre seções, peguei um elemento que já existia na campanha — a ideia de recortar, de fazer à mão — e transformei em sistema (a borda ondulada, repetida do topo ao rodapé). Não sei dizer se algum usuário reparou conscientemente nisso. Mas foi como mantive a identidade da marca presente na rolagem inteira da página, não só na primeira tela.

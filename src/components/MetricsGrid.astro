@@ -17,17 +17,27 @@ interface Props {
 }
 
 const { metrics, variant = 'wide', delayOffset = 0 } = Astro.props;
+
+// Valores curtos (números, "100+", "400 mil") usam a fonte grande de sempre.
+// Valores longos por extenso (ex: "Design System") reduzem de tamanho pra
+// caberem em até 2 linhas sem esticar o card — o slot do valor reserva
+// sempre a mesma altura (2 linhas do tamanho menor), então todo card fica
+// com a mesma altura final, tenha o valor 1 ou 2 linhas.
+function valueSizeClass(value: string) {
+  if (value.length > 6) return 'text-3xl';
+  return 'text-4xl';
+}
 ---
 
 <div class={`mx-auto w-full px-6 ${variant === 'wide' ? 'max-w-[1200px]' : 'max-w-none px-0'}`}>
   <div class="flex flex-wrap justify-center gap-4">
     {metrics.map((m, i) => (
       <div
-        class="metric-card flex flex-col gap-1.5 rounded-2xl bg-surface p-5"
-        style={`--animate-delay: ${delayOffset + 100 + i * 80}ms; flex: 1 1 220px; max-width: 260px;`}
+        class="metric-card flex flex-col justify-center rounded-2xl bg-surface p-5"
+        style={`--animate-delay: ${delayOffset + 100 + i * 80}ms; flex: 1 1 220px; max-width: 260px; gap: 10px;`}
         data-animate
       >
-        <span class="font-display text-4xl leading-none text-heading" data-countup={m.value}>{m.value}</span>
+        <span class={`font-display ${valueSizeClass(m.value)} leading-tight text-heading`} data-countup={m.value}>{m.value}</span>
         <span class="text-sm font-semibold text-primary">{m.label}</span>
         {m.source && <span class="text-xs text-subtle mt-0.5">{m.source}</span>}
       </div>

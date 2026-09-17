@@ -448,6 +448,68 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
   .case-content .contrast-box .before-after {
     margin: 0;
   }
+  /* Par de cards de destaque (desafios/mudanças, aprendizados/resultados) —
+     cor fixa (não segue --color-surface), com inversão proposital do par
+     cha-mate/page-bg: fundo cha-mate escuro (#5c2d11) no tema claro, fundo
+     page-bg claro (#f5f2ee) no tema escuro. Os valores são fixos (não usam
+     var(--color-cha-mate) direto) porque essa variável já se inverte sozinha
+     no tema escuro para outro fim (texto de heading) — aqui a leitura de
+     texto/ícone precisa inverter junto com o fundo, não com a variável. */
+  .case-content .dual-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-24);
+    margin: var(--space-32) 0;
+  }
+  .case-content .dual-card {
+    border-radius: var(--radius-card);
+    padding: var(--space-24);
+    background: #5c2d11;
+  }
+  .case-content .dual-card svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+    margin-bottom: var(--space-16);
+    color: #ffffff;
+  }
+  .case-content .dual-card-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-8);
+    color: #ed6707;
+  }
+  .case-content .dual-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: #ffffff;
+  }
+  .case-content .dual-card strong {
+    color: #ffffff;
+    font-weight: 800;
+  }
+  html[data-theme="dark"] .case-content .dual-card {
+    background: #f5f2ee;
+  }
+  html[data-theme="dark"] .case-content .dual-card svg {
+    color: #5c2d11;
+  }
+  html[data-theme="dark"] .case-content .dual-card-label {
+    color: #a8480c;
+  }
+  html[data-theme="dark"] .case-content .dual-card p,
+  html[data-theme="dark"] .case-content .dual-card strong {
+    color: #5c2d11;
+  }
+  @media (max-width: 640px) {
+    .case-content .dual-cards {
+      grid-template-columns: 1fr;
+    }
+  }
   /* Comparação lado a lado (antes/depois, ou 3 estágios tipo original→v1→v2) —
      HTML puro no corpo do markdown, sem componente: <div class="before-after">
      com um <figure><img><figcaption>Antes</figcaption></figure> por estágio.

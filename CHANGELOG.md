@@ -1,5 +1,21 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-16 (redesign do case Hypera Pharma + par de cards de destaque no design system)
+
+### Adicionado
+- **Case Hypera Pharma renomeado** de "HYPERGESTOR" para "Gerenciador de Verbas" (PT/EN), em `src/content/cases/{pt,en}/hypera-hypergestor.md` e no prompt do job-analysis (`src/pages/api/jobanalysis-analyze.ts`) — o slug do arquivo não mudou.
+- **6 screenshots reais aplicados ao case** (antes só texto, sem prova visual): matriz de responsabilidades (14 ações × 6 perfis), fluxo de usuário (6 telas), matriz de descoberta de features (6 perfis × 4 metas do produto), modal de Cadastro de Empresa, modal Apurar e Comprovar Verbas, tela de Aprovação de Integração com SAP.
+- **`titleMax` em `HeroBrandSplit.astro`** — reduz o teto do `clamp()` do H1 de 44px para 34px quando o título passa de 36 caracteres, pra caber em uma linha em telas largas sem afetar os títulos mais curtos dos outros cases.
+- **Par de cards de destaque (`.dual-cards`/`.dual-card`) em `global.css`** — componente reutilizável de 2 cards lado a lado (ícone + label + texto), cor fixa de marca com inversão proposital de tema: fundo cha-mate escuro (`#5c2d11`) no tema claro, fundo page-bg claro (`#f5f2ee`) no tema escuro, com texto/ícone invertendo junto (branco↔cha-mate) pra manter contraste. Aplicado em Aprendizados nos 3 cases `brand-split` (Hypera, Kapo, Del Valle Website) com conteúdo real extraído do próprio texto de cada case (não fabricado).
+
+### Corrigido
+- **Escopo real do Hypera reconciliado** — o case listava 4 módulos (Cadastro de Orçamentos, Cadastro de Verbas, Distribuição de Verbas, Apuração e Comprovação), dos quais só 3 nomes diferentes correspondem ao que foi de fato construído: Cadastro de Empresa, Apuração e Comprovação de Verbas, Aprovação de Integração com o SAP. Removidas as decisões #2 e #3 de Processo & Decisões (accordion de hierarquia de distribuição; "Distribuição Sugerida com Copiar") — descreviam um módulo de Distribuição de Verbas que nunca chegou a ser construído nem desenhado por completo. Solução & Craft e Aprendizados reescritos pra deixar explícito que os 3 módulos reais são uma fatia do sistema mapeado (6 perfis × 4 metas), não o sistema completo.
+- **"Estado anterior" do Hypera corrigido** de "governança existia no papel" para "planilhas distribuídas pela companhia" — mais preciso sobre a situação real pré-projeto.
+- **Badge "Em construção" removido do Hypera** — `underConstruction: true` removido do frontmatter (PT/EN), mesmo tratamento já aplicado ao Kapo e Del Valle Website; case publicado.
+- **Linha "Tags:" removida do corpo do case Hypera** (PT/EN) — mesma convenção já aplicada aos outros cases `brand-split`.
+
+---
+
 ## 2026-09-14 (continuação — redesign do case Del Valle Website + correções sitewide)
 
 ### Adicionado
