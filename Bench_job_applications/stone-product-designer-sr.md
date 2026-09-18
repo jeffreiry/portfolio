@@ -4,7 +4,9 @@
 **Produto:** Product Design
 **Nível:** Sênior
 **Data da vaga:** 2026-08-20
-**Status:** Candidatura enviada
+**Status:** Recusado
+**Status atualizado em:** 2026-09-18
+**Motivo da recusa:** Gap real de portfolio — "contribui para a evolução técnica de pessoas juniores" é requisito obrigatório explícito de nível Sênior (nota 0), e nenhum case documenta mentoria, pair design ou revisão de trabalho de outros designers; o portfolio narra exclusivamente atuação individual mesmo nos projetos com times cross-funcionais.
 **Candidatura:** Sim
 
 ---

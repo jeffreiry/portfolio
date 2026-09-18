@@ -1,5 +1,25 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-18 (redesign completo do case Arezzo&Co + migração pra brand-split)
+
+### Adicionado
+- **Case Arezzo&Co migrado pra `template: brand-split`** — `scope`/`duration` no frontmatter, badge "Under Construction" removido (case publicado).
+- **6 artefatos de pesquisa reais aplicados** (case não tinha nenhuma prova de research antes): board de síntese de pesquisa, Canvas de Proposta de Valor (Marketing), Jobs to be Done (Marketing), matriz de responsabilidades (Loja/Gestor/Marketing × 11 tarefas), fluxograma da Home do Marketing, blueprint de serviço, documento de handoff real.
+- **Teste de usabilidade real via Maze** documentado em Aprendizados — protótipo testado com usuários do perfil Marketing antes do handoff.
+- **3 componentes CSS novos:** `.phone-frame` (moldura de celular genérica), `.monitor-svg` (moldura de monitor a partir de SVG vetorial, screenshot posicionada via porcentagens do viewBox), `.device-compare` (monitor + celular lado a lado), `.platform-split` (gráfico de barra empilhada mobile vs. desktop por perfil).
+
+### Corrigido
+- **Contexto real do projeto reconciliado via Q&A:** não era redesign do sistema anterior — era um terceiro app white-label construído com uma empresa de tecnologia parceira, substituindo a ferramenta usada antes pelo grupo. "Estado anterior" e Contexto & Problema reescritos.
+- **Role trocado** de "UX Researcher · UX Designer · UI Designer" pra "Product Designer, atuando na UX e UI da solução".
+- **Métricas corrigidas** — 350 lojas (era um "165" inconsistente no corpo), 3 marcas, 1500 usuários impactados, 3 perfis.
+- **Duas imagens de blueprint (PT/EN) editadas via `sharp`** pra cobrir menções ao nome real da empresa parceira gravadas nos pixels.
+- **Tempo verbal do corpo convertido de presente pra passado** nos 4 cases `brand-split` (Arezzo, Hypera, Del Valle Website, Kapo) — são projetos de consultoria com handoff, sem garantia de que o sistema segue em uso/inalterado hoje.
+- **"IA" nunca mais abrevia "Arquitetura de Informação"** no texto (ambíguo com Inteligência Artificial) — sempre escrito por extenso.
+- **"três homes" (PT) trocado por "três fluxos"** — visualmente confundível com "homens" em leitura rápida.
+- **GA4 (`gtag.js`) só carrega em build de produção** (`import.meta.env.PROD` no `Base.astro`) — não contamina métricas com acesso local do autor.
+
+---
+
 ## 2026-09-16 (redesign do case Hypera Pharma + par de cards de destaque no design system)
 
 ### Adicionado

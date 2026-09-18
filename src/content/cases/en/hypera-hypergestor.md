@@ -33,7 +33,7 @@ order: 6
 
 ## Context & Problem
 
-Hypera Pharma manages trade marketing investments at scale — funds that start from corporate budgets, are distributed through the sales hierarchy (region → office → team → supervisor → sales rep), and must be verified with evidence before integrating into SAP. Without a centralized system, every step of this cycle happened in isolation: budget creation was manual, fund distribution depended on emails between departments, and investment verification was done outside the system, with no traceability.
+Hypera Pharma managed trade marketing investments at scale — funds that started from corporate budgets, were distributed through the sales hierarchy (region → office → team → supervisor → sales rep), and had to be verified with evidence before integrating into SAP. Without a centralized system, every step of this cycle happened in isolation: budget creation was manual, fund distribution depended on emails between departments, and investment verification was done outside the system, with no traceability.
 
 I came in as UX and UI Designer responsible for the complete Gerenciador de Verbas design — mapping the journeys of each user profile involved in the cycle, defining the information architecture, designing all interfaces and prototypes in Figma, and collaborating with the development team on Azure over 2 months. The design had to respect Hypera Pharma's brand guidelines.
 
@@ -71,21 +71,21 @@ Crossing the 6 profiles with the product's 4 goals (set up the system base, plan
 
 The decision that weighed on me most was the SAP release checkpoint. The product would be faster and less friction-heavy without that confirmation gate. And the more friction you add, the higher the adoption resistance risk. The question was: what level of deliberation is design, and what level is obstacle?
 
-**1. Modal vs. dedicated page for company registration — problem:** company registration (distributor, pharmacy, etc.) had many fields — ID, SAP_ID, CRM_ID, CNPJ, status, type, address; navigating to a new page would lose list context. **Options:** navigate to a dedicated page (more space, loses context) vs. modal overlay on the listing (maintains context, requires internal scroll). **Choice:** persistent modal over the listing for creation and editing. **Why:** users frequently need to reference other companies in the list while registering a new one — the modal allows this without additional navigation.
+**1. Modal vs. dedicated page for company registration — problem:** company registration (distributor, pharmacy, etc.) had many fields — ID, SAP_ID, CRM_ID, CNPJ, status, type, address; navigating to a new page would lose list context. **Options:** navigate to a dedicated page (more space, loses context) vs. modal overlay on the listing (maintains context, requires internal scroll). **Choice:** persistent modal over the listing for creation and editing. **Why:** users frequently needed to reference other companies in the list while registering a new one — the modal allowed this without additional navigation.
 
 <figure>
   <img src="/cases/hypera-hypergestor/hypergestor_cadastro.png" alt="Company Registration modal over the listing — fields ID, SAP_ID, CRM_ID, CNPJ, Status, Company Type (Pharmacy), and address, with the companies table visible in the background">
   <figcaption>Company Registration — modal over the listing</figcaption>
 </figure>
 
-**2. SAP/SEV integration checkpoint — problem:** fund verification feeds directly into SAP; incorrect or incomplete data at this step has real financial impact. **Options:** automatic integration on save (faster, less control) vs. explicit gate with manual confirmation before release. **Choice:** field "Can it be released for integration approval?" defaulting to "No" — the user must consciously mark "Yes" to release the fund to SAP. Field "Will there be more verification?" allows indicating incomplete auditing without blocking partial save. **Why:** in systems with financial integration, a release error can create inconsistency between the internal system and the ERP — the confirmation gate creates a deliberate review moment before the point of no return.
+**2. SAP/SEV integration checkpoint — problem:** fund verification fed directly into SAP; incorrect or incomplete data at this step had real financial impact. **Options:** automatic integration on save (faster, less control) vs. explicit gate with manual confirmation before release. **Choice:** field "Can it be released for integration approval?" defaulting to "No" — the user had to consciously mark "Yes" to release the fund to SAP. Field "Will there be more verification?" allowed indicating incomplete auditing without blocking partial save. **Why:** in systems with financial integration, a release error could create inconsistency between the internal system and the ERP — the confirmation gate created a deliberate review moment before the point of no return.
 
 <figure>
   <img src="/cases/hypera-hypergestor/hypergestor_apurar-comprovar.png" alt="Verify and Prove Funds modal — read-only Planned Value next to the Audited value field, evidence upload, and the 'Can it be released for integration approval?' toggle defaulting to No">
   <figcaption>Verify and Prove Funds — the SAP release checkpoint</figcaption>
 </figure>
 
-Once released, the fund enters its own review queue before actually integrating into SAP:
+Once released, the fund entered its own review queue before actually integrating into SAP:
 
 <figure>
   <img src="/cases/hypera-hypergestor/hypergestor_integracao-sap.png" alt="SAP Integration Approval screen — listing with Business Unit, Region, Office, Team, Client, Brand, Product, Status (Pending / Pending new approval), and approve/reject actions">
@@ -104,10 +104,10 @@ Of the fully mapped cycle — budget, cascading distribution, verification, and 
 - **Fund Verification and Proof** — recording the audited value, evidence upload (xlsx, txt, pdf, jpeg), and the SAP/SEV integration release gate.
 - **SAP Integration Approval** — the final approval or rejection step for each fund before actually integrating with SAP.
 
-- The **breadcrumb** at the top of each screen orients the user within the system hierarchy without relying on memory of where they are.
-- The **paperclip icon with numeric badge** in the Attachments column communicates evidence presence without opening the item — a scan-speed decision.
-- The **"Audited value" field** is separate from the "Planned value" shown in read-only mode — the user sees the planned amount while filling in the audited amount, creating the comparison in the same context.
-- The **numeric badge** on the paperclip icon communicates evidence presence via two channels — icon + number — without relying on color; screen-reader and color-vision-limited users receive the same information (WCAG 1.4.1).
+- The **breadcrumb** at the top of each screen oriented the user within the system hierarchy without relying on memory of where they were.
+- The **paperclip icon with numeric badge** in the Attachments column communicated evidence presence without opening the item — a scan-speed decision.
+- The **"Audited value" field** was separate from the "Planned value" shown in read-only mode — the user saw the planned amount while filling in the audited amount, creating the comparison in the same context.
+- The **numeric badge** on the paperclip icon communicated evidence presence via two channels — icon + number — without relying on color; screen-reader and color-vision-limited users received the same information (WCAG 1.4.1).
 
 ---
 
@@ -122,7 +122,7 @@ Of the fully mapped cycle — budget, cascading distribution, verification, and 
   <div class="dual-card dual-card--blue">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
     <span class="dual-card-label">Lessons Learned</span>
-    <p>Working on a <strong>corporate system integrated with SAP</strong> taught me that <strong>functional</strong> and <strong>user-friendly</strong> aren't at odds — they have to coexist. Every field carries real financial weight, so the interface has to guide without feeling bureaucratic. Balancing control and usability was the most constant lesson.</p>
+    <p>Working on a <strong>corporate system integrated with SAP</strong> taught me that <strong>functional</strong> and <strong>user-friendly</strong> aren't at odds — they have to coexist. Every field carried real financial weight, so the interface had to guide without feeling bureaucratic. Balancing control and usability was the most constant lesson.</p>
   </div>
 </div>
 

@@ -34,11 +34,11 @@ order: 9
 
 ## CONTEXT
 
-Del Valle Kapo is a product aimed at children and families, with a brand positioning that goes beyond juice: the "Sempre Criança" (Always a Child) campaign positions the brand as a promoter of play and childhood. The kapo.com.br site needed to be redesigned for the new Children's Day 2022 campaign — but the scope went beyond updating colors and images. It required deciding which pages the site should have after the redesign, in line with the new campaign and the upcoming promotion.
+Del Valle Kapo is a product aimed at children and families, with a brand positioning that goes beyond juice: the "Sempre Criança" (Always a Child) campaign positioned the brand as a promoter of play and childhood. The kapo.com.br site needed to be redesigned for the new Children's Day 2022 campaign — but the scope went beyond updating colors and images. It required deciding which pages the site should have after the redesign, in line with the new campaign and the upcoming promotion.
 
 As part of CWI, I joined the project as UX, UI, and Visual Designer responsible for the full project — the only designer inside a team of developers — using the "Sempre Criança 2.0" and "Sempre Criança Challenge" campaign materials to guide information architecture decisions, referencing the nuances of the new campaign visual identity, creating illustrations and graphic elements, and developing all interfaces (web and mobile) in Figma, Photoshop, and Illustrator over 3 months.
 
-The "Sempre Criança 2.0" campaign came with pre-defined assets, palette, and tone of voice — creative freedom was in the digital translation, not in identity creation — and the site had to serve both children browsing for activities and parents and grandparents buying the product and joining promotions, which meant content hierarchy had to serve both journeys at once.
+The "Sempre Criança 2.0" campaign came with pre-defined assets, palette, and tone of voice — creative freedom was in the digital translation, not in identity creation — and the site had to serve both children browsing for activities and parents and grandparents who bought the product and joined promotions, which meant content hierarchy had to serve both journeys at once.
 
 **Before and After:** the site's scenario pre- and post-redesign.
 
@@ -53,7 +53,7 @@ The "Sempre Criança 2.0" campaign came with pre-defined assets, palette, and to
   </figure>
 </div>
 
-The project's second site is the "Sempre Criança Challenge" campaign microsite: a 3-step mechanic (record a video playing as a family, post it on Instagram with the hashtag, compete for R$500 every week), with prizes, rules, and a weekly winners list.
+The project's second site was the "Sempre Criança Challenge" campaign microsite: a 3-step mechanic (record a video playing as a family, post it on Instagram with the hashtag, compete for R$500 every week), with prizes, rules, and a weekly winners list.
 
 The same before/after applies to this second site:
 
@@ -72,11 +72,11 @@ The same before/after applies to this second site:
 
 ## Discovery & Insight
 
-The personas' behavior revealed something the original campaign hadn't anticipated: the "Hora de Brincar" (Playtime) section — the site's activity repository — wasn't supporting content, it was what families actually came looking for. Fernanda decides in seconds, Theo recognizes color and shape before he can read, Sônia wants to join in without getting lost — none of the three land on the site thinking about buying juice first.
+The personas' behavior revealed something the original campaign hadn't anticipated: the "Hora de Brincar" (Playtime) section — the site's activity repository — wasn't supporting content, it was what families actually came looking for. Fernanda decided in seconds, Theo recognized color and shape before he could read, Sônia wanted to join in without getting lost — none of the three landed on the site thinking about buying juice first.
 
 **The turning point:** Kapo had unknowingly built a real digital product inside its institutional site. The redesign needed to recognize this and elevate "Hora de Brincar" to its actual position of prominence.
 
-The three personas summarize this behavior — each one drives a different redesign decision.
+The three personas summarized this behavior — each one drove a different redesign decision.
 
 ![Del Valle Kapo personas — Fernanda (mother, 34), Theo (child, 6), and Sônia (grandmother, 52), with behavior, motivation, and how each shaped the redesign](/cases/del-valle-kapo/del-valle-kapo-personas-en.png)
 
@@ -92,7 +92,7 @@ The decision that cost me most was the video-game-style product selector. The me
 
 ![Redesign sitemap — Home branching into Promoção, Sempre Criança, Hora de Brincar (with its 5 thematic categories), Nossos Produtos, and Compre Agora](/cases/del-valle-kapo/del-valle-kapo-sitemap.png)
 
-**2. Hora de Brincar as a structured content system — problem:** the activity repository had dozens of very different activities. Without organization, it was an undifferentiated list. **Options:** simple listing with text search vs. a category system by play profile with filters by age and number of participants. **Choice:** 5 thematic categories with distinct visual identity (Imaginação Divertida, Saindo do Sofá, Aprender Brincando, Ritmo de Brincadeira, Hora do Jogo), each with Age filters (from 3, 4, 5, 6, 7, 8 years) and Participants (pairs to 4 or more). **Why:** an activity for 2 people aged 4 is completely different from one for groups of 8-year-olds — without filters, the library is unusable for someone with a specific need.
+**2. Hora de Brincar as a structured content system — problem:** the activity repository had dozens of very different activities. Without organization, it was an undifferentiated list. **Options:** simple listing with text search vs. a category system by play profile with filters by age and number of participants. **Choice:** 5 thematic categories with distinct visual identity (Imaginação Divertida, Saindo do Sofá, Aprender Brincando, Ritmo de Brincadeira, Hora do Jogo), each with Age filters (from 3, 4, 5, 6, 7, 8 years) and Participants (pairs to 4 or more). **Why:** an activity for 2 people aged 4 was completely different from one for groups of 8-year-olds — without filters, the library was unusable for someone with a specific need.
 
 To put this choice in context, I later put together an illustrative benchmark (not formal market research) comparing Kapo to similar sites — the category structure and personalized product selector showed up as real differentiators against what competitors did only partially or not at all.
 
@@ -111,11 +111,11 @@ In practice, each category became its own screen — color, illustration, and si
   </figure>
 </div>
 
-**3. Activity page as a structured card — problem:** each activity had required materials and step-by-step instructions — the same problem as any recipe. A running-text page wouldn't work for quick reference in the middle of the activity. **Options:** running text vs. structured card with metadata at top (participants, age range, duration) + fixed sections (Materials needed / How to play). **Choice:** activity card with metadata prominently at the top, typographically styled sections in category colors, Share / Print / Download icons at the top, and contextual Kapo product at the bottom. **Why:** the parent opening the page wants to quickly see if that activity works for their kids (participants, age) before reading any instruction — the top metadata answers that in seconds.
+**3. Activity page as a structured card — problem:** each activity had required materials and step-by-step instructions — the same problem as any recipe. A running-text page wouldn't work for quick reference in the middle of the activity. **Options:** running text vs. structured card with metadata at top (participants, age range, duration) + fixed sections (Materials needed / How to play). **Choice:** activity card with metadata prominently at the top, typographically styled sections in category colors, Share / Print / Download icons at the top, and contextual Kapo product at the bottom. **Why:** the parent opening the page wanted to quickly see if that activity worked for their kids (participants, age) before reading any instruction — the top metadata answered that in seconds.
 
 **4. Two selectors, one character-selection language** — the first version of the product selector was a simple grid: 5 flavors in circles, all visible at once. It worked. But it was too generic for a product positioning itself as "more play platform than product site."
 
-I redesigned it as a centered carousel in the style of a video game character selector — active flavor in the center, full-color and larger; others desaturated and smaller on the sides with navigation arrows. Desaturation communicates "available but not selected" without needing text. And the video game metaphor is completely familiar to kids. The adult navigating it understands too — it's the same pattern as an avatar selector.
+I redesigned it as a centered carousel in the style of a video game character selector — active flavor in the center, full-color and larger; others desaturated and smaller on the sides with navigation arrows. Desaturation communicated "available but not selected" without needing text. And the video game metaphor was completely familiar to kids. The adult navigating it understood too — it was the same pattern as an avatar selector.
 
 The same pattern reappears on the campaign microsite, in the "Inspirações Incríveis" (Amazing Inspirations) section — except there, picking a flavor suggests a family activity to do with that product, instead of leading straight to a purchase. I reused the same interaction for a different goal: from choosing a product to choosing an activity.
 
@@ -143,14 +143,14 @@ Redesigned site with 6 main sections and a structured play platform:
 - **Nossos Produtos:** video game-style flavor selector with links to partner e-commerce stores.
 - Complete mobile version for all pages.
 
-- The **transition between sections uses wavy cut-paper edges** — an undulating border that simulates torn paper directly evokes paper-cutting activities, making the visual metaphor coherent from the first to the last section.
-- **Section titles use a hand-painted treatment** with a brush-stroke dark splash as a text background, consistent with Kapo's handwritten visual language.
-- Each Hora de Brincar category has its **own background color, illustrated icon, and typographic treatment** — creating a per-category identity system without requiring a global menu.
+- The **transition between sections used wavy cut-paper edges** — an undulating border that simulated torn paper directly evoked paper-cutting activities, making the visual metaphor coherent from the first to the last section.
+- **Section titles used a hand-painted treatment** with a brush-stroke dark splash as a text background, consistent with Kapo's handwritten visual language.
+- Each Hora de Brincar category had its **own background color, illustrated icon, and typographic treatment** — creating a per-category identity system without requiring a global menu.
 
 !["Imaginação Divertida" category — orange background, purple hero with navigation between categories, and an activity grid with real photos and age filters](/cases/del-valle-kapo/activity_imaginacao.png)
 
-- In the **product selector**, the active flavor is full-color and centered; the others are in greyscale smaller circles on the sides — desaturation communicates "available but not selected" without text.
-- The **decorative scissors icon** in the hero anchors the cut-paper metaphor from the very first second of browsing.
+- In the **product selector**, the active flavor was full-color and centered; the others were in greyscale smaller circles on the sides — desaturation communicated "available but not selected" without text.
+- The **decorative scissors icon** in the hero anchored the cut-paper metaphor from the very first second of browsing.
 
 ---
 

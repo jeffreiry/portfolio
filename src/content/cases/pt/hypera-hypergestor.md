@@ -33,7 +33,7 @@ order: 6
 
 ## Contexto & Problema
 
-A Hypera Pharma gerencia investimentos em trade marketing em larga escala — verbas que partem de orçamentos corporativos, são distribuídas por hierarquia de vendas (região → escritório → equipe → supervisor → vendedor) e precisam ser comprovadas com evidências para integrarem o SAP. Sem um sistema centralizado, cada etapa desse ciclo acontecia de forma isolada: a criação de orçamentos era manual, a distribuição de verbas dependia de e-mails entre as áreas, e a comprovação de investimentos era feita por fora, sem rastreabilidade.
+A Hypera Pharma gerenciava investimentos em trade marketing em larga escala — verbas que partiam de orçamentos corporativos, eram distribuídas por hierarquia de vendas (região → escritório → equipe → supervisor → vendedor) e precisavam ser comprovadas com evidências para integrarem o SAP. Sem um sistema centralizado, cada etapa desse ciclo acontecia de forma isolada: a criação de orçamentos era manual, a distribuição de verbas dependia de e-mails entre as áreas, e a comprovação de investimentos era feita por fora, sem rastreabilidade.
 
 Entrei como UX e UI Designer responsável pelo design completo do Gerenciador de Verbas — mapeando as jornadas de cada perfil de usuário envolvido no ciclo, definindo a arquitetura de informação, projetando todas as interfaces e protótipos em Figma e trabalhando em colaboração com a equipe de desenvolvimento no Azure ao longo de 2 meses. O design precisava respeitar as diretrizes de marca da Hypera Pharma.
 
@@ -71,21 +71,21 @@ Cruzar os 6 perfis com as 4 metas do produto (configurar a base, planejar e dist
 
 A decisão que mais pesou foi o checkpoint de liberação para o SAP. O produto ficaria mais rápido e menos friccionado sem aquele gate de confirmação. E quanto mais fricção você coloca, maior o risco de resistência na adoção. A dúvida era: que nível de deliberação é design, e que nível é obstáculo?
 
-**1. Modal vs. página dedicada para cadastro de empresa — problema:** o cadastro de empresa (distribuidor, farmácia, etc.) tinha muitos campos — ID, SAP_ID, CRM_ID, CNPJ, status, tipo, endereço; abrir em página nova perdia o contexto da listagem. **Opções:** navegação para página dedicada (mais espaço, perde contexto) vs. modal sobre a listagem (mantém contexto, exige scroll interno). **Escolha:** modal persistente sobre a listagem para criação e edição. **Porquê:** o usuário frequentemente precisa consultar outras empresas da lista enquanto cadastra uma nova — o modal permite isso sem navegação adicional.
+**1. Modal vs. página dedicada para cadastro de empresa — problema:** o cadastro de empresa (distribuidor, farmácia, etc.) tinha muitos campos — ID, SAP_ID, CRM_ID, CNPJ, status, tipo, endereço; abrir em página nova perdia o contexto da listagem. **Opções:** navegação para página dedicada (mais espaço, perde contexto) vs. modal sobre a listagem (mantém contexto, exige scroll interno). **Escolha:** modal persistente sobre a listagem para criação e edição. **Porquê:** o usuário frequentemente precisava consultar outras empresas da lista enquanto cadastrava uma nova — o modal permitia isso sem navegação adicional.
 
 <figure>
   <img src="/cases/hypera-hypergestor/hypergestor_cadastro.png" alt="Modal de Cadastro de Empresa sobre a listagem — campos ID, SAP_ID, CRM_ID, CNPJ, Status, Tipo Empresa (Farmácia) e endereço, com a tabela de empresas visível ao fundo">
   <figcaption>Cadastro de Empresa — modal sobre a listagem</figcaption>
 </figure>
 
-**2. Checkpoint de integração SAP/SEV — problema:** a comprovação de verbas alimenta diretamente o SAP; um dado incorreto ou incompleto nessa etapa tem impacto financeiro real. **Opções:** integração automática ao salvar (mais ágil, menos controle) vs. gate explícito com confirmação manual antes da liberação. **Escolha:** campo "Pode ser liberada para aprovação da integração?" com padrão "Não" — o usuário precisa marcar "Sim" conscientemente para liberar a verba para o SAP. Campo "Haverá mais comprovação?" permite indicar que a apuração ainda não está completa sem bloquear o salvamento parcial. **Porquê:** em sistemas com integração financeira, um erro de liberação pode gerar inconsistência entre o sistema interno e o ERP — o gate de confirmação cria um momento deliberado de revisão antes do ponto de não retorno.
+**2. Checkpoint de integração SAP/SEV — problema:** a comprovação de verbas alimentava diretamente o SAP; um dado incorreto ou incompleto nessa etapa tinha impacto financeiro real. **Opções:** integração automática ao salvar (mais ágil, menos controle) vs. gate explícito com confirmação manual antes da liberação. **Escolha:** campo "Pode ser liberada para aprovação da integração?" com padrão "Não" — o usuário precisava marcar "Sim" conscientemente para liberar a verba para o SAP. Campo "Haverá mais comprovação?" permitia indicar que a apuração ainda não estava completa sem bloquear o salvamento parcial. **Porquê:** em sistemas com integração financeira, um erro de liberação podia gerar inconsistência entre o sistema interno e o ERP — o gate de confirmação criava um momento deliberado de revisão antes do ponto de não retorno.
 
 <figure>
   <img src="/cases/hypera-hypergestor/hypergestor_apurar-comprovar.png" alt="Modal Apurar e Comprovar Verbas — Valor Planejado somente leitura ao lado do campo Valor apurado, upload de evidências, e o toggle 'Pode ser liberada para aprovação da integração?' com padrão Não">
   <figcaption>Apurar e Comprovar Verbas — o checkpoint de liberação para o SAP</figcaption>
 </figure>
 
-Depois de liberada, a verba entra numa fila de revisão própria antes de integrar o SAP de fato:
+Depois de liberada, a verba entrava numa fila de revisão própria antes de integrar o SAP de fato:
 
 <figure>
   <img src="/cases/hypera-hypergestor/hypergestor_integracao-sap.png" alt="Tela Aprovação de integração com SAP — listagem com Unidade de Negócio, Região, Escritório, Equipe, Cliente, Marca, Produto, Status (Pendente / Pendente de nova aprovação) e ações de aprovar ou rejeitar">
@@ -109,10 +109,10 @@ Do ciclo completo mapeado — orçamento, distribuição em cascata, apuração 
 - **Apuração e Comprovação de Verbas** — registro do valor apurado, upload de evidências (xlsx, txt, pdf, jpeg) e gate de liberação para integração SAP/SEV.
 - **Aprovação de Integração com o SAP** — etapa final de aprovação ou rejeição de cada verba antes da integração de fato com o SAP.
 
-- O **breadcrumb** no topo de cada tela orienta o usuário dentro da hierarquia do sistema sem depender da memória de onde ele está.
-- O **ícone de clipe com badge numérico** na coluna de Anexos comunica a presença de evidências sem precisar abrir o item — decisão de velocidade de scan.
-- O **campo "Valor apurado"** na comprovação é separado do "Valor Planejado" exibido em modo somente leitura — o usuário vê o planejado enquanto preenche o apurado, criando a comparação no mesmo contexto.
-- O **badge numérico** no ícone de clipe comunica a presença de evidências via dois canais — ícone + número — sem depender de cor; usuários de leitor de tela ou com daltonismo recebem a mesma informação (WCAG 1.4.1).
+- O **breadcrumb** no topo de cada tela orientava o usuário dentro da hierarquia do sistema sem depender da memória de onde ele estava.
+- O **ícone de clipe com badge numérico** na coluna de Anexos comunicava a presença de evidências sem precisar abrir o item — decisão de velocidade de scan.
+- O **campo "Valor apurado"** na comprovação era separado do "Valor Planejado" exibido em modo somente leitura — o usuário via o planejado enquanto preenchia o apurado, criando a comparação no mesmo contexto.
+- O **badge numérico** no ícone de clipe comunicava a presença de evidências via dois canais — ícone + número — sem depender de cor; usuários de leitor de tela ou com daltonismo recebiam a mesma informação (WCAG 1.4.1).
 
 ---
 
@@ -127,7 +127,7 @@ Do ciclo completo mapeado — orçamento, distribuição em cascata, apuração 
   <div class="dual-card dual-card--blue">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
     <span class="dual-card-label">Lições Aprendidas</span>
-    <p>Trabalhar com um <strong>sistema corporativo integrado ao SAP</strong> me ensinou que <strong>funcional</strong> e <strong>amigável</strong> não competem — precisam coexistir. Cada campo tem peso financeiro real, e a interface precisa guiar sem parecer burocrática. Equilibrar controle e usabilidade foi a lição mais constante.</p>
+    <p>Trabalhar com um <strong>sistema corporativo integrado ao SAP</strong> me ensinou que <strong>funcional</strong> e <strong>amigável</strong> não competem — precisam coexistir. Cada campo tinha peso financeiro real, e a interface precisava guiar sem parecer burocrática. Equilibrar controle e usabilidade foi a lição mais constante.</p>
   </div>
 </div>
 

@@ -5,7 +5,9 @@
 **Cargo:** Analista de Design e Experiência III
 **Nível:** Não especificado
 **Data da vaga:** 2026-07-14
-**Status:** Candidatura enviada
+**Status:** Recusado
+**Status atualizado em:** 2026-09-18
+**Motivo da recusa:** Gap real de portfolio — "análise de indicadores", "forte experiência em análises" e "pensamento analítico" são requisitos obrigatórios centrais da vaga, e todos os cases enterprise têm a seção de métricas/resultados vazia (nota 0); soma-se "Repertório em Design e Moda" listado como requisito obrigatório (não diferencial), que nenhum case sustenta de fato — o Arezzo é CX de backoffice B2B (gestores/lojistas), não produto de moda voltado ao consumidor final.
 **Candidatura:** Sim
 
 ---

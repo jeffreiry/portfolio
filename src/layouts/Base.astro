@@ -88,14 +88,18 @@ const ptURL = canonicalURL.includes('/pt') ? canonicalURL : canonicalURL.replace
     <!-- View Transitions API (Astro 6) -->
     <meta name="view-transition" content="same-origin" />
 
-    <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y01ZJ3RT"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-P3Y01ZJ3RT');
-    </script>
+    <!-- Google Analytics (GA4) — só em produção, pra não contar acessos de dev/local -->
+    {import.meta.env.PROD && (
+      <>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y01ZJ3RT"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'G-P3Y01ZJ3RT');
+        </script>
+      </>
+    )}
   </head>
   <body class="antialiased">
     <a href="#main-content" class="skip-link">Skip to main content</a>

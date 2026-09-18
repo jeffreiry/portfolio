@@ -23,7 +23,7 @@ Todos os 9 cases (18 arquivos PT+EN) reescritos. Diagnóstico original e detalhe
 - 🔴 **Artefatos visíveis** (11/11 vagas) — todos os cases descrevem processo sem expor telas, flows ou wireframes; recrutadores não conseguem avaliar craft sem ver os artefatos
 - 🔴 **Métricas de impacto** (`⬜`) (11/11 vagas) — Enterprise AI, Shipping, Arezzo, Hypera; preencher com dados reais ou substituir os campos por "O que eu faria diferente"
 - 🟠 **Acessibilidade documentada** (`⬜`) (8/11 vagas) — Enterprise AI e Shipping têm seção Craft vazia; Cartela Cores tem a decisão certa (score multicanal = WCAG 1.4.1), replicar o raciocínio nos enterprise cases
-- 🟡 **Mobile como plataforma** (4/11 vagas) — Arezzo tem tag "Mobile" mas sem narrativa de decisões de design mobile na seção Processo
+- 🟡 **Mobile como plataforma** (4/11 vagas) — ✅ resolvido no Arezzo em 2026-09-18 (gráfico de uso mobile vs. desktop por perfil + comparação desktop/mobile da mesma tela); outros cases da lista ainda pendentes
 - 🟡 **Mentoria/liderança** (2/11 vagas) — não aparece em nenhum case; se houver histórico (onboarding, revisões de design, apresentações), documentar em pelo menos 1 case
 - Stack técnica da plataforma (`⬜`) — Shipping e Enterprise AI, preencher se aplicável
 
@@ -49,8 +49,8 @@ Todos os 9 cases (18 arquivos PT+EN) reescritos. Diagnóstico original e detalhe
 14. [Case — Enterprise AI Knowledge Assistant (EN)](#14-case--enterprise-ai-knowledge-assistant-en)
 15. [Case — Shipping Capacity Optimization Platform (PT)](#15-case--shipping-capacity-optimization-platform-pt)
 16. [Case — Shipping Capacity Optimization Platform (EN)](#16-case--shipping-capacity-optimization-platform-en)
-17. [Case — Arezzo&Co · Sistema de Anúncios em Redes Sociais (PT)](#17-case--arezzoco--sistema-de-anúncios-em-redes-sociais-pt)
-18. [Case — Arezzo&Co · Social Media Ad Management System (EN)](#18-case--arezzoco--social-media-ad-management-system-en)
+17. [Case — Arezzo&Co · Sistema de Anúncios (PT)](#17-case--arezzoco--sistema-de-anúncios-pt)
+18. [Case — Arezzo&Co · Ad System (EN)](#18-case--arezzoco--ad-system-en)
 19. [Case — Del Valle · Redesign de Site (PT)](#19-case--del-valle--redesign-de-site-pt)
 20. [Case — Del Valle · Website Redesign (EN)](#20-case--del-valle--website-redesign-en)
 21. [Case — Hypera Pharma · Gerenciador de Verbas (PT)](#21-case--hypera-pharma--gerenciador-de-verbas-pt)
@@ -980,153 +980,57 @@ Operational tools for complex domains carry a double challenge: the designer nee
 
 ---
 
-## 17. Case — Arezzo&Co · Sistema de Anúncios em Redes Sociais (PT)
+## 17. Case — Arezzo&Co · Sistema de Anúncios (PT)
+
+> **Nota:** este case usa o template `brand-split` (hero em duas zonas + coluna de conteúdo) em vez do template-mestre de 6 seções com rótulos padrão — ver seção 8 para o schema atual (`scope`/`duration`). Fonte viva: `src/content/cases/pt/arezzo-ad-management.md`.
 
 ### Um sistema, três jornadas: como a arquitetura por papel desbloqueou o gerenciamento de anúncios do grupo Arezzo&Co
 
-**TL;DR** — UX Researcher, UX Designer e UI Designer, 3 meses. Redesenho do sistema de gerenciamento de anúncios em redes sociais do grupo Arezzo&Co, servindo três perfis com necessidades radicalmente diferentes — Marketing, Gestores de Tráfego e Lojistas — em uma única plataforma com arquitetura de informação adaptada por papel.
-
-**Tags:** Retail · Multi-perfil · Design de sistema · Dashboard · Mobile · Figma
+**Resumo** — Product Designer, atuando na UX e UI da solução, 3 meses. Desenvolvimento de UX e UI de um app white-label — em parceria com uma empresa de tecnologia parceira — vinculado ao Gerenciador de Negócios do Facebook, para envio e acompanhamento de anúncios de lojas do grupo Arezzo&Co veiculados no Instagram, substituindo a ferramenta usada anteriormente pelo grupo.
 
 #### Contexto & Problema
 
-O grupo Arezzo&Co opera múltiplas marcas (Arezzo, Schutz e outras) com centenas de lojas físicas, cada uma com autonomia para criar e submeter anúncios em redes sociais. A cadeia envolve três atores com objetivos distintos: o **Lojista** que cria e acompanha seus próprios anúncios, o **Gestor de Tráfego** que supervisiona um conjunto de lojas e aprova as peças, e o time de **Marketing** que monitora a performance consolidada de toda a marca e gerencia o orçamento. O sistema existente não refletia essa estrutura — todos os perfis acessavam as mesmas telas, independentemente do que precisavam fazer.
+O grupo Arezzo&Co operava múltiplas marcas (Arezzo, Schutz, Anacapri) com centenas de lojas físicas. A cadeia envolvia três atores com objetivos distintos: o **Lojista**, o **Gestor de Tráfego** e o time de **Marketing**. Não era um redesign do sistema existente — era um **terceiro app white-label**, construído com a empresa de tecnologia parceira, substituindo a ferramenta usada antes pelo grupo.
 
-**Estado anterior:** um sistema único sem diferenciação de papel, onde o Lojista se perdia em métricas corporativas e o Marketing não conseguia visão consolidada sem navegar por lojas individualmente.
+**Estado anterior:** a ferramenta usada antes pelo grupo não diferenciava por papel — os três perfis acessavam essencialmente as mesmas telas.
 
-#### Meu papel
-
-UX Researcher, UX Designer e UI Designer responsável pelo projeto completo: conduzi entrevistas com cada perfil de usuário, mapeei as jornadas e a arquitetura de informação por papel, e desenvolvi todas as interfaces — web e mobile — em Figma. O projeto foi feito em parceria com uma empresa de tecnologia que fornecia a plataforma para o grupo.
-
-#### Restrições
-
-- **Três perfis, um sistema** — a solução não podia ser três produtos separados; precisava ser uma plataforma coerente com rotas e telas diferenciadas por papel sem que o custo de manutenção explodisse.
-- **Multi-marca** — o mesmo sistema atendia Arezzo, Schutz e outras marcas do grupo, exigindo consistência visual sem perder a identidade de cada marca nos contextos relevantes.
-- **3 meses de prazo** — escopo apertado para pesquisa, arquitetura, design e prototipação de web + mobile para todos os perfis.
+Matriz de responsabilidades real (Loja/Gestor/Marketing × 11 tarefas) documenta a distribuição de responsabilidades por perfil.
 
 #### Descoberta & Insight
 
-As entrevistas revelaram que o problema não era de funcionalidade ausente — era de **audiência errada**. O sistema tinha as informações certas, mas as apresentava para quem não precisava delas. Um Lojista não quer saber o ROAS consolidado de todas as 165 lojas da marca; quer saber se seu anúncio foi aprovado e quanto do orçamento dele ainda está disponível. Um Gestor de Tráfego não quer ver o fluxo de submissão do Lojista; quer ver a fila de aprovações pendentes e a performance das lojas sob sua responsabilidade. O Marketing quer o funil completo — de impressões a vendas — para a marca inteira.
+As entrevistas revelaram que o problema não era de funcionalidade ausente — era de **audiência errada**. Um board de síntese de pesquisa (2 entrevistas + 2 painéis existentes) revelou que "orçamento" era o fio condutor entre todas as fontes, só que com rótulos diferentes em cada uma. Um Canvas de Proposta de Valor foi desenhado para cada um dos três perfis, e as tarefas do Marketing viraram uma tabela de Jobs to be Done.
 
-**A virada:** o redesenho não era uma questão de interface. Era uma questão de arquitetura de informação: cada perfil precisava de um produto diferente dentro da mesma plataforma.
+**A virada:** o redesenho não era uma questão de interface — era arquitetura de informação: cada perfil precisava de um produto diferente dentro da mesma plataforma.
 
 #### Processo & Decisões
 
-**1. Arquitetura de informação por papel — problema:** uma única IA para três perfis obrigava cada usuário a ignorar a maior parte do sistema. **Opções:** personalização por preferência (usuário escolhe o que ver — mais flexível, mais complexo de manter) vs. arquitetura fixa por papel (rotas e telas definidas no login — mais simples, mais adequada ao contexto corporativo). **Escolha:** arquitetura de informação diferenciada por papel, com navegação lateral distinta para cada perfil — Marketing (Home, Aprovações, Painel, Métricas, Orçamento, Cadastro, Notificações), Gestores de Tráfego (Home, Relatórios, Feed, Novo, Envios, Notificações) e Lojistas (Home, Novo, Meus Envios, Feed, Notificações). **Porquê:** o contexto de cada perfil é mutuamente exclusivo — misturá-los numa tela única prejudica todos.
+**1. Arquitetura de informação por papel** — navegação lateral distinta por perfil (Marketing, Gestores de Tráfego, Lojistas), já que o contexto de cada um é mutuamente exclusivo.
 
-**2. Home como painel de controle contextual — problema:** a home precisava responder perguntas diferentes para cada perfil sem virar uma tela genérica inútil. **Opções:** home única com filtros por papel (complexo, confuso) vs. três homes distintas otimizadas para a tarefa primária de cada papel. **Escolha:** homes diferenciadas — Marketing vê orçamento consolidado, distribuição de investimento (Investido/Provisionado/Restante), métricas de performance das lojas ativas e Receita Impactada; Gestores de Tráfego veem as lojas sob sua responsabilidade com foco em decisões táticas; Lojistas veem seu valor disponível, seus anúncios ativos com resultados inline e um banner de alerta quando há orçamento não utilizado. **Porquê:** a home é a primeira tela de cada sessão — ela precisa responder imediatamente à pergunta mais frequente de cada papel, sem exigir navegação.
+**2. Home como painel de controle contextual** — três fluxos distintos, cada um respondendo à pergunta mais frequente do papel correspondente sem exigir navegação. Um fluxograma real documenta as ramificações da Home do Marketing.
 
-**3. Fluxo de aprovação com filtros compostos — problema:** o Gestor de Tráfego recebe anúncios de múltiplas lojas simultaneamente; sem filtragem eficiente, a fila de aprovações vira ruído. **Opções:** lista linear com busca simples vs. grid visual com filtros compostos (Loja, Status, Orçamento, Posicionamento, Arquivo) e chips de acesso rápido. **Escolha:** grid de anúncios com filtros em cascata — ao selecionar "Status", os sub-status aparecem com contagem (Novo: 5, Aprovado: 10, Reprovado: 2); chips de data, status ativo e ordenação sempre visíveis no topo. **Porquê:** o Gestor precisa priorizar a fila, não apenas percorrê-la — ver a contagem por status antes de filtrar permite uma decisão de onde começar.
+**3. Fluxo de aprovação com filtros compostos** — grid de anúncios com filtros em cascata e contagem por status, pra o Gestor de Tráfego priorizar a fila.
 
-**4. Métricas em funil para o Marketing — problema:** a visão consolidada de performance precisava comunicar não apenas volume, mas a conversão entre etapas — de impressão a venda. **Opções:** cards de KPIs isolados (cada métrica em sua caixa, sem relação visual entre elas) vs. visualização em funil com as etapas da jornada do consumidor. **Escolha:** funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) com os números de cada estágio abaixo das barras, complementado por cards de Receita Impactada, Ticket Médio e ROAS. **Porquê:** o Marketing precisa ver onde a cadeia perde eficiência — um card isolado de "Conversas: 20" não diz nada; "Impressões 3.538 → Conversas 20" diz tudo.
+**4. Métricas em funil para o Marketing** — funil visual (Impressões → Engajamento → Cliques → Conversas → Vendas) no lugar de cards de KPI isolados.
 
-#### Solução
+Um blueprint de serviço documenta o ciclo completo (linha de interação + linha de visibilidade, 4 etapas) e um documento de handoff real (Job to be Done + wireframes anotados + mensagens de erro + modais) foi entregue tela a tela pra empresa parceira.
 
-Uma plataforma multi-perfil de gerenciamento de anúncios com três experiências distintas dentro do mesmo sistema:
+#### Solução & Craft
 
-- **Lojistas** criam e acompanham seus próprios anúncios, visualizam seus resultados (engajamento, cliques, receita gerada, ROAS) e são alertados quando têm orçamento disponível não utilizado.
-- **Gestores de Tráfego** aprovam ou reprovam anúncios via fila filtrada, monitoram as lojas sob sua responsabilidade e acompanham relatórios táticos de performance.
-- **Marketing** acessa o painel consolidado com funil de conversão, gerencia o orçamento mensal por loja com edição inline, e monitora a saúde do portfólio de anúncios de toda a marca.
+Plataforma multi-perfil com três experiências distintas. O quanto de polimento mobile cada perfil recebia variava por uso real: Lojistas usavam o app quase inteiramente no celular (90%), Gestores de Tráfego dividiam quase igualmente (50/50), Marketing operava majoritariamente no desktop (80/20). A tela de Lojas do Gestor de Tráfego (desktop + mobile) exemplifica a adaptação sem virar versão reduzida.
 
-Todas as telas foram entregues em versão **web e mobile**, com a navegação mobile adaptada ao padrão de uso de cada perfil.
-
-#### Craft & Acessibilidade
-
-- O **banner de alerta de orçamento disponível** no Lojista usa cor âmbar (não vermelho — não é urgência, é oportunidade) e oferece ação imediata "Saiba mais" sem forçar interação.
-- Os **cards de anúncio na aprovação** exibem status com badge colorido (laranja "Novo", verde "Ativo") + data de veiculação + orçamento no topo, permitindo leitura do contexto antes de abrir o anúncio.
-- O **orçamento editável** na tela de Orçamento usa edição inline ativada por ícone de lápis — o campo abre com o valor atual pré-preenchido e um botão "Confirmar" sem saída da tabela.
-- A **navegação mobile** foi redesenhada por perfil: Lojistas têm "Novo" com destaque central na bottom nav (sua ação primária); Gestores têm "Relatórios" como primeiro item.
-- ⬜ Decisões de acessibilidade (contraste, foco por teclado) — preencher.
-
-#### Colaboração técnica
-
-Pipeline de pesquisa e design: `entrevistas por perfil → mapeamento de jornadas + benchmarking → arquitetura de informação por papel → wireframes Figma → validações internas → interfaces web + mobile → prototipação → handoff para empresa parceira de tecnologia`. A etapa de arquitetura de informação por papel foi feita antes de qualquer tela — definir quais rotas e módulos existiam para cada perfil foi o que tornou possível desenvolver as interfaces sem retrabalho.
-
-#### Impacto
-
-- **Entrega:** interfaces web e mobile para os três perfis, cobrindo todas as jornadas mapeadas na pesquisa.
-- ⬜ Variação de satisfação dos usuários após o redesenho (pesquisa de satisfação pós-lançamento) — preencher.
-- ⬜ Redução do tempo médio de aprovação de anúncios — preencher.
-- ⬜ Aumento na taxa de uso do orçamento disponível pelos Lojistas — preencher.
+- Banner de alerta de orçamento em âmbar (oportunidade, não urgência).
+- Badges de status combinando cor + rótulo textual (WCAG 1.4.1).
+- Orçamento editável via edição inline.
 
 #### Aprendizados
 
-O maior risco em projetos multi-perfil é cair na armadilha do "o sistema serve todo mundo" — que na prática significa que não serve ninguém bem. A decisão de definir a arquitetura de informação por papel antes de desenhar qualquer tela foi o que determinou o resultado: cada usuário entrava num produto desenhado para o que ele realmente precisava fazer. **Lição:** quando o produto serve perfis com objetivos radicalmente diferentes, a arquitetura de informação não é um artefato de processo — é a decisão de design mais importante do projeto.
+Testei o protótipo navegável com usuários reais do perfil Marketing pelo Maze antes do handoff — a rodada revelou gaps pontuais na home contextual, corrigidos antes da entrega final. **Lição:** arquitetura por papel tem custo real de manutenção (três fluxos = três superfícies pra manter consistentes) — só compensa quando a exclusividade dos papéis vem de entrevista real, não de suposição de quem desenha.
 
 ---
 
-## 18. Case — Arezzo&Co · Social Media Ad Management System (EN)
+## 18. Case — Arezzo&Co · Ad System (EN)
 
-### One system, three journeys: how role-based information architecture unlocked ad management at Arezzo&Co Group
-
-**TL;DR** — UX Researcher, UX Designer, and UI Designer, 3 months. Redesign of the social media ad management system for the Arezzo&Co group, serving three profiles with radically different needs — Marketing, Traffic Managers, and Store Owners — within a single platform with role-adapted information architecture.
-
-**Tags:** Retail · Multi-role · System design · Dashboard · Mobile · Figma
-
-#### Context & Problem
-
-The Arezzo&Co group operates multiple brands (Arezzo, Schutz, and others) with hundreds of physical stores, each with autonomy to create and submit social media ads. The chain involves three actors with distinct goals: the **Store Owner** who creates and tracks their own ads, the **Traffic Manager** who supervises a set of stores and approves the creatives, and the **Marketing** team who monitors consolidated brand performance and manages budgets. The existing system didn't reflect this structure — all profiles accessed the same screens, regardless of what they needed to do.
-
-**Prior state:** a single system with no role differentiation, where Store Owners got lost in corporate metrics and Marketing had no consolidated view without navigating store by store.
-
-#### My role
-
-UX Researcher, UX Designer, and UI Designer responsible for the full project: I conducted interviews with each user profile, mapped the journeys and role-based information architecture, and designed all interfaces — web and mobile — in Figma. The project was built in partnership with a technology company that provided the platform for the group.
-
-#### Constraints
-
-- **Three roles, one system** — the solution couldn't be three separate products; it had to be a coherent platform with differentiated routes and screens per role without exploding maintenance cost.
-- **Multi-brand** — the same system served Arezzo, Schutz, and other group brands, requiring visual consistency without losing each brand's identity in relevant contexts.
-- **3-month timeline** — tight scope covering research, architecture, design, and prototyping of web + mobile for all profiles.
-
-#### Discovery & Insight
-
-The interviews revealed that the problem wasn't missing functionality — it was **wrong audience**. The system had the right information, but presented it to whoever didn't need it. A Store Owner doesn't need to see the consolidated ROAS of all 165 brand stores; they need to know if their ad was approved and how much of their budget remains. A Traffic Manager doesn't need the Store Owner's submission flow; they need the pending approval queue and performance of the stores they're responsible for. Marketing needs the complete funnel — impressions to sales — for the entire brand.
-
-**The turning point:** the redesign wasn't an interface question. It was an information architecture question: each profile needed a different product within the same platform.
-
-#### Process & Decisions
-
-**1. Role-based information architecture — problem:** a single IA for three profiles forced every user to ignore most of the system. **Options:** preference-based personalization (user chooses what to see — more flexible, more complex to maintain) vs. fixed role-based architecture (routes and screens defined at login — simpler, more appropriate for a corporate context). **Choice:** differentiated information architecture per role, with distinct lateral navigation for each — Marketing (Home, Approvals, Panel, Metrics, Budget, Register, Notifications), Traffic Managers (Home, Reports, Feed, New, Submissions, Notifications), and Store Owners (Home, New, My Submissions, Feed, Notifications). **Why:** each profile's context is mutually exclusive — mixing them on a single screen harms all three.
-
-**2. Home as a contextual control panel — problem:** the home needed to answer different questions for each profile without becoming a generic, useless screen. **Options:** single home with role filters (complex, confusing) vs. three distinct homes optimized for each role's primary task. **Choice:** differentiated homes — Marketing sees consolidated budget, investment distribution (Invested/Provisioned/Remaining), active store performance metrics, and Revenue Impacted; Traffic Managers see the stores they're responsible for, focused on tactical decisions; Store Owners see their available balance, their active ads with inline results, and an alert banner when budget is unused. **Why:** the home is the first screen of every session — it needs to immediately answer each profile's most frequent question without requiring navigation.
-
-**3. Approval workflow with compound filters — problem:** Traffic Managers receive ads from multiple stores simultaneously; without efficient filtering, the approval queue becomes noise. **Options:** linear list with simple search vs. visual grid with compound filters (Store, Status, Budget, Positioning, Archive) and quick-access chips. **Choice:** ad grid with cascading filters — selecting "Status" reveals sub-statuses with counts (New: 5, Approved: 10, Rejected: 2); date, active status, and ordering chips always visible at the top. **Why:** the Traffic Manager needs to prioritize the queue, not just scroll through it — seeing counts by status before filtering allows a decision about where to start.
-
-**4. Funnel metrics for Marketing — problem:** the consolidated performance view needed to communicate not just volume, but conversion between steps — from impression to sale. **Options:** isolated KPI cards (each metric in its own box, no visual relationship between them) vs. funnel visualization with consumer journey stages. **Choice:** visual funnel (Impressions → Engagement → Clicks → Conversations → Sales) with stage numbers below the bars, complemented by Revenue Impacted, Average Ticket, and ROAS cards. **Why:** Marketing needs to see where the chain loses efficiency — an isolated "Conversations: 20" card says nothing; "Impressions 3,538 → Conversations 20" says everything.
-
-#### Solution
-
-A multi-role ad management platform with three distinct experiences within the same system:
-
-- **Store Owners** create and track their own ads, view their results (engagement, clicks, generated revenue, ROAS), and are alerted when they have unused budget available.
-- **Traffic Managers** approve or reject ads via a filtered queue, monitor stores under their responsibility, and track tactical performance reports.
-- **Marketing** accesses the consolidated panel with a conversion funnel, manages monthly budget per store with inline editing, and monitors the health of the entire brand's ad portfolio.
-
-All screens were delivered in **web and mobile** versions, with mobile navigation adapted to each profile's usage pattern.
-
-#### Craft & Accessibility
-
-- The **available budget alert banner** on the Store Owner view uses amber (not red — it's not urgency, it's opportunity) and offers an immediate "Learn more" action without forcing interaction.
-- **Ad cards in the approval queue** display status with a colored badge (orange "New", green "Active") + run dates + budget at the top, allowing context reading before opening the ad.
-- The **editable budget** on the Budget screen uses inline editing triggered by a pencil icon — the field opens with the current value pre-filled and a "Confirm" button without leaving the table.
-- **Mobile navigation** was redesigned per profile: Store Owners have "New" prominently centered in the bottom nav (their primary action); Traffic Managers have "Reports" as the first item.
-- ⬜ Accessibility decisions (contrast, keyboard focus) — to fill.
-
-#### Technical collaboration
-
-Research and design pipeline: `per-profile interviews → journey mapping + benchmarking → role-based information architecture → Figma wireframes → internal validations → web + mobile interfaces → prototyping → handoff to partner technology company`. The role-based information architecture phase was completed before any screen was designed — defining which routes and modules existed per role was what made it possible to develop the interfaces without rework.
-
-#### Impact
-
-- **Delivery:** web and mobile interfaces for all three profiles, covering all journeys mapped in research.
-- ⬜ User satisfaction change after the redesign (post-launch satisfaction survey) — to fill.
-- ⬜ Reduction in average ad approval time — to fill.
-- ⬜ Increase in budget utilization rate among Store Owners — to fill.
-
-#### Learnings
-
-The greatest risk in multi-role projects is falling into the trap of "the system serves everyone" — which in practice means it serves no one well. The decision to define role-based information architecture before drawing any screen was what determined the outcome: each user entered a product designed for what they actually needed to do. **Lesson:** when a product serves profiles with radically different goals, information architecture isn't a process artifact — it's the most important design decision in the project.
+> **Note:** mirrors section 17 — see that note for the `brand-split` detail. Live source: `src/content/cases/en/arezzo-ad-management.md`.
 
 ---
 

@@ -544,6 +544,180 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
       grid-template-columns: 1fr;
     }
   }
+  /* Moldura de celular genérica (bezel + notch em CSS) pra screenshots crus
+     de app mobile — usada dentro de .before-after quando não há foto real
+     de mão/lifestyle pra compor (ver mobile-scroll-3phones.png do Del Valle
+     Website pro caso em que existe foto real). Sem aspect-ratio fixo — a
+     altura acompanha a screenshot, pra nunca cortar a tela por baixo. */
+  .case-content .phone-frame {
+    position: relative;
+    overflow: hidden;
+    border: 10px solid #333333;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.35);
+    background: #333333;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .case-content .phone-frame img {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .case-content .phone-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36%;
+    height: 16px;
+    background: #333333;
+    border-radius: 0 0 10px 10px;
+    z-index: 2;
+  }
+  /* Moldura de monitor a partir do SVG vetorial (Monitor_white.svg) — a tela
+     real é posicionada em cima da área branca do SVG via porcentagens
+     calculadas a partir do viewBox do arquivo (retângulo da tela: x 2.94%,
+     y 3.04%, largura 94.12%, altura 60.48% do canvas quadrado). O frame tem
+     pointer-events:none pra cliques no bezel/pé não capturarem o lightbox —
+     só a screenshot em si é clicável. */
+  .case-content .monitor-svg {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  .case-content .monitor-svg .frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .case-content .monitor-svg .screen {
+    position: absolute;
+    left: 2.94%;
+    top: 3.04%;
+    width: 94.12%;
+    height: 60.48%;
+    margin: 0;
+    border-radius: 0;
+    object-fit: cover;
+    z-index: 2;
+  }
+  .case-content .device-compare {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-32);
+    margin: var(--space-32) 0;
+  }
+  .case-content .device-compare .monitor-svg {
+    max-width: 420px;
+    flex: 1 1 360px;
+  }
+  .case-content .device-compare .phone-frame {
+    max-width: 166px;
+    flex: 0 0 auto;
+    margin: 0;
+  }
+  /* Variante sobreposta (celular na frente, monitor atrás) — referência:
+     mockups de stock com o celular ancorado no canto inferior esquerdo da
+     tela do monitor/laptop. Vem dentro de um <figure> (com figcaption). O
+     celular "vaza" ~10% da altura do monitor pra baixo (position:absolute
+     não conta pra altura do container) — o padding-bottom no .device-overlap
+     reserva esse espaço ANTES da figcaption (que vem em seguida no fluxo
+     normal), senão a legenda ficava por baixo do celular. */
+  .case-content figure.device-overlap-figure {
+    margin: var(--space-32) 0;
+  }
+  .case-content .device-overlap {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 140px;
+  }
+  .case-content .device-overlap .monitor-svg {
+    width: 100%;
+  }
+  .case-content .device-overlap .phone-frame {
+    position: absolute;
+    left: -6%;
+    bottom: -10%;
+    width: 34%;
+    max-width: none;
+    margin: 0;
+    z-index: 3;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.45);
+  }
+  @media (max-width: 480px) {
+    .case-content .device-overlap .phone-frame {
+      left: -4%;
+      width: 32%;
+    }
+  }
+  /* Gráfico de barras empilhadas mobile vs. desktop por perfil — HTML puro,
+     sem lib de gráfico, pra uma comparação simples de 2-3 categorias. */
+  .case-content .platform-split {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin: var(--space-32) 0;
+  }
+  .case-content .platform-split-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-16);
+  }
+  .case-content .platform-split-role {
+    width: 130px;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--text-heading);
+  }
+  .case-content .platform-split-bar {
+    flex: 1;
+    display: flex;
+    height: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .case-content .platform-split-mobile,
+  .case-content .platform-split-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .case-content .platform-split-mobile {
+    background: var(--color-jambu);
+  }
+  .case-content .platform-split-desktop {
+    background: var(--color-azul-pantanal);
+  }
+  .case-content .platform-split-legend {
+    display: flex;
+    gap: var(--space-24);
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+  }
+  .case-content .platform-split-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .case-content .platform-split-legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
   .case-content table {
     display: block;
     overflow-x: auto;
@@ -609,6 +783,21 @@ html[data-theme="dark"] .career-logo.career-logo-opaque {
     max-height: 100%;
     border-radius: var(--radius-input);
     box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.5);
+    cursor: zoom-in;
+  }
+  /* Clique na imagem alterna entre "cabe na tela" (default) e tamanho real
+     rolável — necessário pra imagens altas (ex: boards de síntese de
+     pesquisa) que ficam ilegíveis quando forçadas a caber na altura. */
+  .lightbox-overlay.zoomed {
+    align-items: flex-start;
+    justify-content: center;
+    overflow: auto;
+  }
+  .lightbox-overlay.zoomed img {
+    max-width: none;
+    max-height: none;
+    width: auto;
+    cursor: zoom-out;
   }
   @keyframes lightbox-fade {
     from { opacity: 0; }

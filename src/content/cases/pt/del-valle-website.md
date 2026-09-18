@@ -58,7 +58,7 @@ O espaço criativo estava restrito desde o início: as decisões de cor, tipogra
 
 ## Descoberta & Insight
 
-O manual de identidade trazia formas orgânicas, paleta de cores associadas a cada fruta e um posicionamento de marca centrado na origem brasileira. O insight veio ao estudar as referências: a campanha queria comunicar **sensorialidade** — cheiro, frescor, sabor — por um meio que não oferece nenhuma dessas experiências diretamente. A resposta estava nas próprias frutas: usá-las como protagonistas visuais em escala real, não reduzidas a ícones, e deixar as formas orgânicas irregulares refletir a imperfeição natural do produto — o oposto da assepsia dos sites de bebidas industriais.
+O manual de identidade trazia formas orgânicas, paleta de cores associadas a cada fruta e um posicionamento de marca centrado na origem brasileira. O insight veio ao estudar as referências: a campanha queria comunicar **sensorialidade** — cheiro, frescor, sabor — por um meio que não oferecia nenhuma dessas experiências diretamente. A resposta estava nas próprias frutas: usá-las como protagonistas visuais em escala real, não reduzidas a ícones, e deixar as formas orgânicas irregulares refletir a imperfeição natural do produto — o oposto da assepsia dos sites de bebidas industriais.
 
 **A virada:** o site não podia ser uma vitrine de produto. Precisava ser um ambiente com a textura e a temperatura da fruta — e isso dependia de decisões visuais precisas, não de mais funcionalidades.
 
@@ -84,9 +84,9 @@ A parte mais difícil desse mês não foi nenhuma decisão de tela — foi o rit
 
 Vale registrar também o que não foi decisão minha, pra não inflar o que não é: a divisão de conteúdo entre as três páginas já vinha definida quando entrei — meu trabalho era aplicar a nova identidade em cima dessa arquitetura, não desenhá-la do zero. A escolha de qual hero mostra produto e qual mostra lifestyle (Home vs. Fruta toda hora) também veio do cliente, não de mim.
 
-De fora, um rebranding costuma ser visto como reskin — trocar cor e fonte em cima de uma estrutura que já existe. Mas é exatamente esse tipo de projeto que abre uma brecha pra um designer sênior mexer em atrito que ninguém está olhando, porque a atenção do cliente inteira está na identidade visual, não na navegação. Não muda o produto nem o roadmap, mas dá espaço pra aplicar diretrizes de usabilidade que uma reforma maior não teria orçamento pra justificar sozinha. Aqui isso apareceu de um jeito pequeno e concreto: a Loja é um link externo (sai do site pra outro domínio), então ela foi desenhada como botão com contorno e ícone de carrinho, diferente dos outros itens de menu — a pessoa sabe, antes de clicar, que vai sair da experiência Del Valle. Ninguém vai notar isso como decisão de design; só vai notar se, sem ela, clicasse sem querer e ficasse perdida numa loja de terceiro.
+De fora, um rebranding costuma ser visto como reskin — trocar cor e fonte em cima de uma estrutura que já existe. Mas é exatamente esse tipo de projeto que abre uma brecha pra um designer sênior mexer em atrito que ninguém está olhando, porque a atenção do cliente inteira está na identidade visual, não na navegação. Não muda o produto nem o roadmap, mas dá espaço pra aplicar diretrizes de usabilidade que uma reforma maior não teria orçamento pra justificar sozinha. Aqui isso apareceu de um jeito pequeno e concreto: a Loja era um link externo (saía do site pra outro domínio), então ela foi desenhada como botão com contorno e ícone de carrinho, diferente dos outros itens de menu — a pessoa sabia, antes de clicar, que ia sair da experiência Del Valle. Ninguém notaria isso como decisão de design; só notaria se, sem ela, alguém clicasse sem querer e ficasse perdida numa loja de terceiro.
 
-**1. Grade alternada com carrossel de 4 dimensões — problema:** cada fruta tem múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta com uma célula de foto em tela cheia e uma célula de card branco que gira por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convida à exploração sem forçar leitura — quem quer saber a origem navega; quem só quer ver a fruta, vê.
+**1. Grade alternada com carrossel de 4 dimensões — problema:** cada fruta tinha múltiplas dimensões de informação (origem geográfica, número de produtores, período de safra, curiosidade). Exibir tudo de uma vez pesaria a página; exibir só a foto seria superficial. **Opções:** texto fixo abaixo de cada fruta vs. carrossel de cards com uma dimensão por tela. **Escolha:** grade alternada — cada fruta com uma célula de foto em tela cheia e uma célula de card branco que girava por 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade), com ícone ilustrado e pontos de navegação. **Porquê:** o carrossel convidava à exploração sem forçar leitura — quem queria saber a origem navegava; quem só queria ver a fruta, via.
 
 ---
 
@@ -98,14 +98,14 @@ Site redesenhado em três páginas de conteúdo, com sistema visual unificado:
 - **Fruta toda hora (a página, não a seção-teaser da Home):** hero de lifestyle + seção institucional em lime green ("Nossa paixão é do tamanho do Brasil") + grade de exploração das frutas brasileiras com carrossel de 4 dimensões por fruta.
 - **Nossos Produtos:** catálogo completo com link direto pra Loja externa.
 
-A grade de exploração é o verdadeiro chamariz da página — cada fruta ocupa uma célula de foto em tela cheia ao lado de um card branco que gira entre 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade):
+A grade de exploração era o verdadeiro chamariz da página — cada fruta ocupava uma célula de foto em tela cheia ao lado de um card branco que girava entre 4 dimensões (De onde vem / Nº de Produtores / Safra / Curiosidade):
 
 <figure>
   <img src="/cases/del-valle-website/del-valle_fruta-toda-hora.png" alt="Página Fruta toda hora — hero de lifestyle com a proposta 'Nossa paixão é do tamanho do Brasil'">
   <figcaption>Página Fruta toda hora</figcaption>
 </figure>
 
-Os 4 cards abaixo mostram como o carrossel gira entre as dimensões, fruta a fruta:
+Os 4 cards abaixo mostravam como o carrossel girava entre as dimensões, fruta a fruta:
 
 <div class="contrast-box">
   <div class="before-after" style="--stages: 2;">
@@ -128,18 +128,18 @@ Os 4 cards abaixo mostram como o carrossel gira entre as dimensões, fruta a fru
   </div>
 </div>
 
-Todas entregues em **web e mobile**, com os elementos gráficos orgânicos reorganizados para cada breakpoint — a sequência abaixo mostra a rolagem da Home, do hero até a seção "Da nossa família para a sua":
+Todas entregues em **web e mobile**, com os elementos gráficos orgânicos reorganizados para cada breakpoint — a sequência abaixo mostrava a rolagem da Home, do hero até a seção "Da nossa família para a sua":
 
 <figure>
   <img src="/cases/del-valle-website/mobile-scroll-3phones.png" alt="Rolagem da home no mobile em 3 telas — hero, seção 'Fruta toda hora' com foto de pessoa bebendo suco, e seção 'Da nossa família para a sua' com foto de mãe e filha">
   <figcaption>Navegação mobile</figcaption>
 </figure>
 
-- As **manchas orgânicas** são posicionadas para criar profundidade: sempre parcialmente cortadas pela borda da tela, nunca centralizadas — transmitem movimento e extrapolação da marca para além do frame.
-- As **frutas reais** são recortadas e posicionadas sobre as manchas de cor correspondente (laranja sobre mancha laranja, uvas sobre mancha roxa), criando consistência associativa fruta-cor sem precisar de legenda.
-- Na seção-teaser "Fruta toda hora" da Home, a **foto de pessoa é cortada em forma circular** sobre um círculo vermelho — coerente com a linguagem orgânica da identidade.
-- Os **CTAs seguem a lógica de contraste por seção**: "Saiba mais" em laranja sobre fundo verde; "Saiba mais" em verde sobre fundo rosa — nunca uma cor de CTA padrão independente do contexto.
-- No **mobile**, o menu hambúrguer preserva o "Cheio de vida" ao lado do logo; os elementos orgânicos são redimensionados proporcionalmente sem desaparecer.
+- As **manchas orgânicas** eram posicionadas para criar profundidade: sempre parcialmente cortadas pela borda da tela, nunca centralizadas — transmitiam movimento e extrapolação da marca para além do frame.
+- As **frutas reais** eram recortadas e posicionadas sobre as manchas de cor correspondente (laranja sobre mancha laranja, uvas sobre mancha roxa), criando consistência associativa fruta-cor sem precisar de legenda.
+- Na seção-teaser "Fruta toda hora" da Home, a **foto de pessoa era cortada em forma circular** sobre um círculo vermelho — coerente com a linguagem orgânica da identidade.
+- Os **CTAs seguiam a lógica de contraste por seção**: "Saiba mais" em laranja sobre fundo verde; "Saiba mais" em verde sobre fundo rosa — nunca uma cor de CTA padrão independente do contexto.
+- No **mobile**, o menu hambúrguer preservava o "Cheio de vida" ao lado do logo; os elementos orgânicos eram redimensionados proporcionalmente sem desaparecer.
 
 ---
 

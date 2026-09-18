@@ -336,6 +336,10 @@ const articleClass = `mx-auto w-full px-6 pt-16 case-content ${
       img.alt = alt;
       overlay.appendChild(img);
       overlay.addEventListener('click', () => overlay.remove());
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        overlay.classList.toggle('zoomed');
+      });
       document.addEventListener('keydown', function onEsc(e) {
         if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', onEsc); }
       });
