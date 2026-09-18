@@ -6,21 +6,22 @@
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
 **Candidatura:** Não
-**Score anterior:** 33% (2026-06-27)
-**Motivo da mudança de score:** Mesmos 33 requisitos obrigatórios e 15 preferidos nas duas análises. Três coisas mudaram juntas: (1) evidência genérica virou citação de case específico em quase toda linha (mesmo padrão do Revolut); (2) "portais logados/setor financeiro" caiu de nota 1 pra 0 — mesma correção de rubrica do Asaas ("Ausente" não pode ser nota 1); (3) "Inglês intermediário" subiu de 0 pra 3 — mesma omissão do portfolio bilíngue já encontrada na Serasa, reanalisada no mesmo lote (2026-06-27). O saldo líquido dos obrigatórios foi pequeno (26→30) porque subidas e descidas se cancelaram parcialmente.
+**Status atualizado em:** 2026-09-18
+**Score anterior:** 38% (2026-06-27)
+**Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, wireframes) e um board de síntese de pesquisa real + teste de usabilidade no Maze — as linhas de prototipagem/Figma e de pesquisa com usuários deixaram de citar "sem protótipos expostos" e "sem roteiro/síntese formal". Notas ajustadas em 1 linha obrigatória e 1 diferencial. Os gaps estruturais (IA como ferramenta do designer, Espanhol, setor financeiro) permanecem intactos — vaga está Arquivada, tratada como registro histórico.
 
 ---
 
-## Score de aderência · 38%
+## Score de aderência · 42%
 
-> Desalinhamento estrutural — IA como ferramenta de trabalho do designer (não no produto), Espanhol e domínio de setor financeiro são gaps estruturais que o portfolio atual não endereça. O inglês avançado (portfolio bilíngue PT+EN) e o Design System sobem o score, mas não o suficiente para sair da faixa de desalinhamento.
+> Desalinhamento estrutural — IA como ferramenta de trabalho do designer (não no produto), Espanhol e domínio de setor financeiro são gaps estruturais que o portfolio atual não endereça. O inglês avançado (portfolio bilíngue PT+EN), o Design System e, agora, artefatos visíveis e pesquisa documentada (Arezzo) sobem o score, mas não o suficiente para sair da faixa de desalinhamento.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
 | Experiência comprovada como Product Designer em produtos digitais complexos | 2 | Enterprise AI Assistant, Shipping Capacity Platform e HYPERGESTOR — três produtos enterprise de alta complexidade com ownership end-to-end documentado |
-| Prototipagem avançada e domínio de ferramentas (Figma) | 1 | Figma mencionado em Enterprise AI, Shipping e Arezzo — sem protótipos ou telas expostos publicamente |
+| Prototipagem avançada e domínio de ferramentas (Figma) | 2 | Arezzo Ad Management publica artefatos reais no Figma: telas, matrizes, canvas e wireframes de handoff — deixou de ser apenas mencionado |
 | Portais e aplicativos, área logada, setor financeiro | 0 | Ausente — nenhum case é portal logado ou produto do setor financeiro |
 | Perfil generalista em diferentes etapas do processo de design | 2 | Discovery → síntese → ideação → prototipagem → entrega documentados em Enterprise AI e Shipping Platform |
 | Metodologias Design Thinking, Design Sprint, Discovery e validação de hipóteses | 1 | Discovery evidenciado em Enterprise AI (Clarity + entrevistas) e Shipping (workshops); facilitação estruturada não documentada explicitamente |
@@ -31,7 +32,7 @@
 | Espanhol intermediário | 0 | Ausente |
 | Inglês intermediário | 3 | Portfolio bilíngue PT+EN publicado — inglês avançado evidenciado diretamente no site, muito além do nível intermediário exigido |
 
-**Subtotal obrigatórios: 15/33 × 2 = 30/66**
+**Subtotal obrigatórios: 16/33 × 2 = 32/66**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -40,20 +41,20 @@
 | Experiência em empresas do setor financeiro, fintechs ou meios de pagamento | 0 | Ausente — cases em pharma, logística, varejo e IA enterprise |
 | Conhecimento em acessibilidade digital (WCAG) | 0 | Seção presente nos cases enterprise mas vazia (⬜); Cartela Cores tem decisão WCAG-alinhada mas não é enquadrada como expertise de acessibilidade |
 | Experiência com métricas de produto, experimentação e testes A/B | 0 | Ausente — métricas de resultado ⬜ em todos os cases; nenhum case documenta A/B testing |
-| Experiência na condução ou participação de pesquisas com usuários e testes de usabilidade | 1 | Enterprise AI: entrevistas com usuários + análise Clarity para identificar drop-offs; Shipping: workshops recorrentes com especialistas de domínio — sem roteiro ou síntese formal exposta |
+| Experiência na condução ou participação de pesquisas com usuários e testes de usabilidade | 2 | Arezzo: board de síntese de pesquisa real (2 entrevistas + 2 painéis) e teste de usabilidade real no Maze com usuários do perfil Marketing; Enterprise AI: entrevistas + Clarity — protocolo formal completo ainda não documentado |
 | Noções de Prompt Engineering aplicadas ao contexto de Product Design | 0 | Ausente — Enterprise AI documenta design de UI para chat, não prompt engineering como prática do designer |
 
-**Subtotal preferidos: 1/15**
+**Subtotal preferidos: 2/15**
 
 ### Cálculo
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 30 | 66 |
-| Preferidos (×1) | 1 | 15 |
-| **Total** | **31** | **81** |
+| Obrigatórios (×2) | 32 | 66 |
+| Preferidos (×1) | 2 | 15 |
+| **Total** | **34** | **81** |
 
-**Score: 31/81 = 38%**
+**Score: 34/81 = 42%**
 
 ---
 
@@ -76,12 +77,12 @@
 1. Experiência em empresas do setor financeiro, fintechs ou meios de pagamento
 2. Conhecimento em acessibilidade digital (WCAG)
 3. Experiência com métricas de produto, experimentação e testes A/B
-4. Experiência na condução ou participação de pesquisas com usuários e testes de usabilidade
-5. Noções de Prompt Engineering aplicadas ao contexto de Product Design
+4. Noções de Prompt Engineering aplicadas ao contexto de Product Design
 
 ### 🟢 Boa aderência
 
 * Experiência comprovada como Product Designer, UX Designer ou UI/UX Designer em produtos digitais complexos
-* Experiência sólida em prototipagem avançada e domínio de ferramentas de design e colaboração, como Figma e similares
+* Experiência sólida em prototipagem avançada e domínio de ferramentas de design e colaboração, como Figma e similares — Arezzo publica artefatos reais
 * Perfil generalista, com capacidade de atuar em diferentes etapas do processo de design
 * Habilidade para trabalhar de forma colaborativa em equipes multidisciplinares e ambientes ágeis
+* Pesquisa com usuários agora documentada com artefatos reais (board de síntese + teste no Maze, Arezzo)

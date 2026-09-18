@@ -5,7 +5,7 @@ role: "UX · UI · Visual Designer"
 summary: "A Children's Day campaign site that translates a pre-defined brand identity into a digital product, with Playtime as the experience's central axis."
 thesis: "More than a rebrand, a manifesto for reconnecting adults and children through playful activities in their downtime — growing the consumer base and brand retention in Brazil."
 company: "Del Valle / Coca-Cola (via CWI)"
-year: 2023
+year: 2022
 cover: /cases/del-valle-kapo/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"

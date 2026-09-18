@@ -6,14 +6,15 @@
 **Data da vaga:** 2026-06-19
 **Status:** Arquivado
 **Candidatura:** Não
-**Score anterior:** 56% (2026-06-19, mesma data — reanálise no mesmo dia)
-**Motivo da mudança de score:** A extração da JD mudou de 9 para 7 requisitos obrigatórios — dois itens da 1ª passada ("colaborar com Produto/Engenharia/Dados" e "testes de usabilidade/métricas") foram consolidados dentro de itens já existentes na 2ª, em vez de ficarem como linhas próprias. Mesma família de inconsistência de segmentação de JD do caso ADP, só que reduzindo o denominador em vez de aumentar. Preferidos também subiram (3/9 → 5/9) com evidência mais específica (cases nomeados em vez de genéricos).
+**Status atualizado em:** 2026-09-18
+**Score anterior:** 61% (2026-06-19) → 56% (2026-06-19, mesma data — reanálise no mesmo dia)
+**Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, wireframes de handoff) e um board de síntese de pesquisa real — as linhas de pesquisa com usuários e de fluxos/wireframes/protótipos deixaram de citar "sem roteiro/síntese formal" e "artefatos não expostos publicamente". Notas ajustadas em 2 linhas obrigatórias e 1 diferencial. (Histórico anterior preservado: a variação 56%↔61% em 2026-06-19 já estava registrada por uma correção de segmentação da JD.)
 
 ---
 
-## Score de aderência · 61%
+## Score de aderência · 71%
 
-> Aderência parcial — gaps endereçáveis. Boa base em UX/UI e colaboração multidisciplinar; principal lacuna é pesquisa com usuários ainda parcialmente evidenciada e artefatos não expostos.
+> Aderência sólida — gaps endereçáveis. Boa base em UX/UI, colaboração multidisciplinar e, agora, pesquisa e artefatos visíveis reais (Arezzo); principal lacuna remanescente é o detalhamento do protocolo formal de teste de usabilidade.
 
 ### Requisitos obrigatórios (peso 2×)
 
@@ -24,30 +25,30 @@
 | Vivência em colaboração com times multidisciplinares (produto, engenharia, negócios) | 2 | Seções de colaboração técnica com engenharia e produto em Enterprise AI e Shipping; stakeholders de negócio em HYPERGESTOR e Arezzo |
 | Habilidade para atuar em ambiente dinâmico e em constante transformação | 2 | MVPs de 6 meses com escopo em evolução; decisões de pivot documentadas em Enterprise AI após análise de Clarity |
 | Conhecimento em ferramentas de design (Figma, FigJam, etc.) | 2 | Figma e Miro mencionados em Enterprise AI e Shipping — ferramentas centrais do processo |
-| Conduzir pesquisas com usuários e stakeholders para identificar necessidades, dores e oportunidades | 1 | Enterprise AI: entrevistas com usuários + análise Clarity; Shipping: workshops com especialistas de domínio — sem roteiro ou síntese formal documentada |
-| Projetar fluxos, wireframes, interfaces e protótipos interativos | 2 | Processo de prototipação documentado em Enterprise AI, Shipping e Arezzo — artefatos não expostos publicamente |
+| Conduzir pesquisas com usuários e stakeholders para identificar necessidades, dores e oportunidades | 2 | Arezzo: board de síntese de pesquisa real (2 entrevistas + 2 painéis) com insights → oportunidades; Enterprise AI: entrevistas com usuários + análise Clarity; Shipping: workshops com especialistas de domínio — protocolo formal completo ainda não documentado |
+| Projetar fluxos, wireframes, interfaces e protótipos interativos | 3 | Arezzo publica artefatos reais: wireframes de handoff anotados, screenshots das telas dos 3 perfis, Canvas de Proposta de Valor e Jobs to be Done — processo deixou de ser apenas descrito |
 
-**Subtotal obrigatórios: 13/21 × 2 = 26/42**
+**Subtotal obrigatórios: 15/21 × 2 = 30/42**
 
 ### Diferenciais preferidos (peso 1×)
 
 | Diferencial | Nota | Evidência atual |
 |---|---|---|
 | Experiência com IA e automação | 2 | Enterprise AI case — projeto de produto com IA como feature central, decisões de design de interação conversacional documentadas |
-| Conhecimento em práticas de prototipação | 1 | Processo descrito nos cases — artefatos não expostos publicamente |
+| Conhecimento em práticas de prototipação | 2 | Arezzo publica os artefatos reais de prototipação (wireframes de handoff, telas) — deixou de ser apenas processo descrito |
 | Habilidade para equilibrar execução com pensamento estratégico | 2 | Enterprise AI e Shipping: ambos combinam execução de MVP com decisões estratégicas de produto |
 
-**Subtotal preferidos: 5/9**
+**Subtotal preferidos: 6/9**
 
 ### Cálculo
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 26 | 42 |
-| Preferidos (×1) | 5 | 9 |
-| **Total** | **31** | **51** |
+| Obrigatórios (×2) | 30 | 42 |
+| Preferidos (×1) | 6 | 9 |
+| **Total** | **36** | **51** |
 
-**Score: 31/51 = 61%**
+**Score: 36/51 = 71%**
 
 ---
 
@@ -61,13 +62,11 @@
 
 ### 🔴 Bloqueadores de candidatura
 
-1. **Pesquisa com usuários pouco evidenciada** — "Conduzir pesquisas com usuários e stakeholders para identificar necessidades, dores e oportunidades" é requisito obrigatório com nota 1. O portfolio menciona discovery e entrevistas em Enterprise AI e Shipping, mas sem roteiro, síntese ou método formal documentado. Adicionar artefato de research (roteiro ou síntese) a pelo menos um case.
-
-2. **Artefatos visíveis ausentes** — a vaga menciona "fluxos, wireframes, interfaces e protótipos interativos" como entregáveis centrais. Os cases descrevem o processo, mas não expõem telas ou flows. Sem artefatos, o recrutador não consegue avaliar craft de design.
+Nenhum bloqueador com nota 0 nesta vaga. O gap mais relevante remanescente é o detalhamento do protocolo formal de teste de usabilidade — ver diferencial abaixo.
 
 ### 🟡 Diferenciais ausentes
 
-3. **Práticas de prototipação** — processo de prototipação descrito nos cases, mas sem artefatos ou detalhe de método. Documentar ao menos um ciclo de prototipação (baixa/alta fidelidade) com resultado.
+1. **Protocolo formal de teste de usabilidade** — o Arezzo já tem um teste real no Maze com usuários do perfil Marketing, mas falta detalhar participantes, tarefas e se a sessão foi moderada. Ação concreta: acrescentar esse detalhe no case, se disponível.
 
 ### 🟢 Boa aderência
 
@@ -75,3 +74,4 @@
 - Colaboração cross-funcional com produto, engenharia e negócio evidenciada
 - IA como competência real — Enterprise AI é o diferencial mais forte para uma empresa tech em transformação
 - Capacidade de equilibrar execução e estratégia demonstrada nos cases enterprise
+- **Pesquisa e artefatos visíveis reais:** Arezzo Ad Management publica board de síntese de pesquisa, wireframes de handoff e screenshots das telas — os dois bloqueadores anteriores desta vaga foram resolvidos

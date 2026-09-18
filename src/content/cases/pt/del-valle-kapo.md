@@ -5,7 +5,7 @@ role: "UX · UI · Visual Designer"
 summary: "Um site de campanha para o Dia das Crianças que traduz uma identidade de marca pré-definida em produto digital, com a Hora de Brincar como eixo central da experiência."
 thesis: "Mais que um rebranding, um manifesto pela reconexão entre adultos e crianças por meio de atividades lúdicas em seus momentos de pausa para aumentar a base de consumidores e retenção da marca no Brasil."
 company: "Del Valle / Coca-Cola (via CWI)"
-year: 2023
+year: 2022
 cover: /cases/del-valle-kapo/visao-geral.png
 bgImage: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?fm=jpg&w=800&q=80&auto=format&fit=crop"
 accent: "#fff3e0"

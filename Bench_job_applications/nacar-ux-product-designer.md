@@ -5,28 +5,31 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-09-12
 **Status:** Candidatura enviada
+**Status atualizado em:** 2026-09-18
+**Score anterior:** 79% (2026-09-12)
+**Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com um board de síntese de pesquisa real que inclui exatamente um formato de "insights → oportunidades" (equivalente a opportunity mapping) — a linha de "strong research capability" deixou de citar ausência de artefatos. Métricas de impacto pós-lançamento continuam ausentes, então o "track record" via resultados numéricos ainda é o gap central.
 **Candidatura:** Sim
 
 ---
 
-## Score de aderência · 79%
+## Score de aderência · 83%
 
-> Jeferson demonstra aderência sólida nos requisitos que mais diferenciam esta vaga — product thinking em ambiguidade, discovery end-to-end e colaboração cross-funcional com stakeholders técnicos e de negócio — sustentados por cases enterprise de alta complexidade; o gap mais crítico é a ausência de evidência documentada de UX Research estruturado (síntese formal, opportunity mapping explícito) e de métricas de impacto, que esta vaga exige como prova de "research-led product definition" e não apenas execução de UI.
+> Jeferson demonstra aderência sólida nos requisitos que mais diferenciam esta vaga — product thinking em ambiguidade, discovery end-to-end, colaboração cross-funcional e, agora, um artefato real de síntese de pesquisa com opportunity mapping (Arezzo) — sustentados por cases enterprise de alta complexidade; o gap mais crítico remanescente é a ausência de métricas de impacto, que esta vaga exige como prova final de "research-led product definition" e não apenas execução de UI.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
 | Senior UX/Product Designer com experiência end-to-end em produtos de software com workflows complexos ou múltiplas dependências | 3 | Enterprise AI (plataforma de conhecimento corporativo, 6 meses, discovery → MVP) e Shipping Platform (substituição de planilhas dispersas por timeline visual, alta complexidade logística, 6 meses) são os dois cases mais diretos; HYPERGESTOR adiciona pipeline de aprovação multi-perfil com integração SAP/SEV — três cases enterprise com workflows multi-dependência documentados |
-| Strong research capability — stakeholder interviews, opportunity mapping, síntese de pain points, tradução em direções acionáveis | 2 | Enterprise AI: discovery com Clarity + entrevistas com usuários documentadas; Shipping Platform: workshops recorrentes com especialistas de domínio + síntese em Mural; Arezzo: 3 perfis com navegações independentes presumem discovery de personas — processo descrito, mas sem artefatos de opportunity mapping ou síntese formal publicados |
-| Track record em research-led product definition, não apenas execução de UI | 2 | Enterprise AI e Shipping Platform mostram progressão discovery → síntese → MVP com decisões de paradigma documentadas (conversacional vs. busca; planilhas vs. timeline) — evidencia product definition; ausência de métricas de impacto e artefatos de síntese visíveis enfraquece o "track record" verificável |
+| Strong research capability — stakeholder interviews, opportunity mapping, síntese de pain points, tradução em direções acionáveis | 3 | Arezzo: board de síntese de pesquisa real (2 entrevistas + 2 painéis) com clusters de métricas → 4 insights → 4 oportunidades documentadas — exatamente o formato de opportunity mapping que a vaga descreve; Enterprise AI: discovery com Clarity + entrevistas |
+| Track record em research-led product definition, não apenas execução de UI | 2 | Enterprise AI, Shipping Platform e Arezzo mostram progressão discovery → síntese → MVP com decisões documentadas (conversacional vs. busca; planilhas vs. timeline; board de síntese → arquitetura por papel); ausência de métricas de impacto pós-lançamento ainda enfraquece o "track record" verificável em resultado |
 | Strong stakeholder management — business, product, technical leads, perfis de suporte que validam viabilidade, risco e relevância | 2 | Enterprise AI: time cross-funcional com engenharia e dados; Shipping Platform: workshops recorrentes com especialistas de domínio (perfis operacionais); HYPERGESTOR: múltiplos perfis de aprovação financeira + integração com equipe técnica SAP — gestão de stakeholders descrita, mas sem narrativa explícita de como conflitos ou prioridades foram negociados |
 | Conforto com dinâmicas de time em mudança e modelos operacionais ambíguos, maturidade para avançar sem processos definidos | 2 | Shipping Platform: substituição de processo manual (planilhas dispersas) em contexto de alta complexidade sem precedente de produto digital — implica operar em ambiguidade; Enterprise AI: evolução de MVP em empresa confidencial de grande porte (contexto corporativo tipicamente burocrático) — evidenciado por contexto, não narrado diretamente |
 | Strong product thinking — priorização, trade-off awareness e conforto com ambiguidade em ambientes complexos | 3 | Shipping Platform e Enterprise AI documentam trade-offs com alternativas descartadas; Enterprise AI: decisão de paradigma (conversacional vs. busca) com raciocínio documentado; HYPERGESTOR: gate de aprovação multi-perfil exige priorização de fluxos concorrentes — é o ponto mais forte do portfolio pela documentação explícita de decisões |
 | Excelentes habilidades de comunicação — explicar racional claramente para diferentes audiências, de parceiros do dia a dia a stakeholders estratégicos | 2 | Portfolio bilíngue PT+EN com cases escritos para audiências externas demonstra capacidade de comunicação estruturada; cases documentam audiências variadas (especialistas de domínio, times de engenharia, financeiro); ausente: narrativa explícita de como comunicou para C-level ou stakeholders estratégicos |
 | Fluente em inglês (escrito e falado) | 3 | Portfolio publicado em portfolio.jefersonfreiry.com inteiramente bilíngue PT+EN — 9 cases escritos em inglês com qualidade de publicação profissional; evidência direta e verificável de inglês escrito avançado |
 
-**Subtotal obrigatórios: 19/24 × 2 = 38/48**
+**Subtotal obrigatórios: 20/24 × 2 = 40/48**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -40,11 +43,11 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 38 | 48 |
+| Obrigatórios (×2) | 40 | 48 |
 | Preferidos (×1) | 0 | 0 |
-| **Total** | **38** | **48** |
+| **Total** | **40** | **48** |
 
-**Score: 38/48 = 79%**
+**Score: 40/48 = 83%**
 
 ---
 
@@ -59,8 +62,6 @@
 ### 🔴 Bloqueadores de candidatura
 
 Não há bloqueadores absolutos (nota 0) nesta vaga para Jeferson. Todos os requisitos obrigatórios têm evidência mínima de nota 2. O risco real está em dois requisitos com nota 2 que, no contexto específico desta vaga, podem funcionar como filtros eliminatórios durante entrevistas.
-
-**Research-led product definition sem artefatos verificáveis.** A vaga descreve explicitamente que "this is not a purely visual or delivery-oriented UX role" e exige "a clear track record in research-led product definition." O portfolio de Jeferson descreve o processo de discovery, mas não publica artefatos (mapas de oportunidade, sínteses de entrevistas, journey maps, frameworks de priorização). Em uma agência como a Nacar — que tem 70 design awards e enfatiza "rigor" como valor central — o processo de avaliação provavelmente inclui apresentação de portfolio com walkthrough de artefatos de research. A ausência de artefatos visíveis significa que o argumento de research-led definition terá de ser feito verbalmente na entrevista, sem apoio visual. Isso não é eliminatório em si, mas aumenta significativamente a carga de persuasão sobre Jeferson durante o processo seletivo. A mitigação imediata é preparar um deck de processo com pelo menos um case (Enterprise AI ou Shipping Platform) que mostre os artefatos de síntese — mesmo que simplificados — antes de qualquer entrevista de portfolio.
 
 **Métricas de impacto ausentes em todos os cases enterprise.** A vaga menciona que a Nacar "builds things that perform, scale and generate measurable value for clients" e que o candidato deve demonstrar "prioritisation, trade-off awareness" em ambientes complexos. Sem métricas (adoção, tempo de tarefa, NPS, redução de erros, velocidade de aprovação), os cases de Jeferson mostram processo mas não resultado — o que em uma agência orientada a valor de cliente pode ser percebido como imaturidade de senioridade. A mitigação é preparar estimativas qualificadas: "a plataforma foi lançada e adotada por X times" ou "o cliente aprovou o MVP para rollout" — sinais de sucesso que não violem NDAs mas ancorem o impacto.
 

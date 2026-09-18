@@ -1,5 +1,5 @@
 ---
-title: "Hypera Pharma · Gerenciador de Verbas"
+title: "Hypera Pharma · Fund Manager"
 slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
 summary: "A trade fund management tool that replaces spreadsheets with a traceable, multi-stage approval pipeline."
@@ -27,7 +27,7 @@ order: 6
 
 ## From budget to proof: how I turned Hypera Pharma's trade marketing fund cycle into a traceable pipeline
 
-**TL;DR** — UX and UI Designer, 2 months. Creation of Gerenciador de Verbas, an internal budget and trade fund management system for Hypera Pharma's trade marketing actions — centralizing into a single pipeline the flow that previously ran across spreadsheets, emails, and manual SAP/SEV integration.
+**TL;DR** — UX and UI Designer, 2 months. Creation of Fund Manager, an internal budget and trade fund management system for Hypera Pharma's trade marketing actions — centralizing into a single pipeline the flow that previously ran across spreadsheets, emails, and manual SAP/SEV integration.
 
 ---
 
@@ -35,7 +35,7 @@ order: 6
 
 Hypera Pharma managed trade marketing investments at scale — funds that started from corporate budgets, were distributed through the sales hierarchy (region → office → team → supervisor → sales rep), and had to be verified with evidence before integrating into SAP. Without a centralized system, every step of this cycle happened in isolation: budget creation was manual, fund distribution depended on emails between departments, and investment verification was done outside the system, with no traceability.
 
-I came in as UX and UI Designer responsible for the complete Gerenciador de Verbas design — mapping the journeys of each user profile involved in the cycle, defining the information architecture, designing all interfaces and prototypes in Figma, and collaborating with the development team on Azure over 2 months. The design had to respect Hypera Pharma's brand guidelines.
+I came in as UX and UI Designer responsible for the complete Fund Manager design — mapping the journeys of each user profile involved in the cycle, defining the information architecture, designing all interfaces and prototypes in Figma, and collaborating with the development team on Azure over 2 months. The design had to respect Hypera Pharma's brand guidelines.
 
 Three constraints shaped the work: the cascading fund hierarchy (primary budgets → secondary budgets → multiple levels of sales hierarchy) had to be represented without creating confusion; the SAP/SEV integration required an explicit gate before releasing data to SAP, to avoid errors with real financial impact; and a 2-month timeline covered mapping, designing, and prototyping a multi-module, multi-profile system.
 
@@ -56,7 +56,7 @@ Of the scope mapped over these 2 months, three modules actually made it to produ
 
 Journey mapping revealed that the problem wasn't any single step in isolation — it was the **absence of a connected cycle**. Budgets were created in one place, funds allocated in another, distributions communicated by email, and verification done with loose evidence files unlinked to the original planning. The result: no one had complete visibility into how a trade marketing investment had been planned, distributed, and executed.
 
-**The turning point:** Gerenciador de Verbas didn't need to be a collection of forms. It needed to be a **pipeline** — each step feeding the next, with traceability from budget all the way to evidence-backed verification.
+**The turning point:** Fund Manager didn't need to be a collection of forms. It needed to be a **pipeline** — each step feeding the next, with traceability from budget all the way to evidence-backed verification.
 
 Crossing the 6 profiles with the product's 4 goals (set up the system base, plan and distribute budget, approve and control fund usage, assess/verify/integrate payments) was what revealed which features each profile actually needed — and which profile × goal combinations simply didn't exist:
 

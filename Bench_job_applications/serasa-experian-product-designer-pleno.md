@@ -6,14 +6,14 @@
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
 **Candidatura:** Não
-**Score anterior:** 49% (2026-06-27)
-**Motivo da mudança de score:** Os 21 requisitos obrigatórios não mudaram nem de nota. A diferença inteira está nos preferidos: "Inglês em nível intermediário ou avançado" tinha nota 0 ("não há evidências de habilidades em inglês") na 1ª análise — a 2ª corrigiu pra nota 3, citando o portfolio bilíngue PT+EN publicado como evidência direta. A 1ª análise simplesmente não considerou um fato verificável sobre o próprio site. Mesmo padrão de omissão encontrado depois em South System.
+**Score anterior:** 56% (2026-09-12) → 49% (2026-06-27)
+**Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais (screenshots) e um board de síntese de pesquisa real (2 entrevistas + 2 painéis) — as duas linhas que citavam "artefatos não expostos publicamente" e "sem roteiro/síntese formal" deixaram de refletir a realidade. Notas ajustadas em 2 linhas obrigatórias. (Histórico anterior preservado: a mudança de 49%→56% em 2026-06-27 já estava registrada por uma correção de nota de inglês.)
 
 ---
 
-## Score de aderência · 56%
+## Score de aderência · 64%
 
-> Aderência baixa — gaps endereçáveis. Boa base em UX/UI, colaboração e autogestão; principal lacuna são artefatos visíveis, evidência formal de pesquisa com usuários e domínio do produto Serasa (crédito, score, análise de risco).
+> Aderência parcial — gaps endereçáveis. Boa base em UX/UI, colaboração, autogestão e, agora, pesquisa e artefatos visíveis reais (Arezzo); principal lacuna remanescente é domínio específico do produto Serasa (crédito, score, análise de risco).
 
 ### Requisitos obrigatórios (peso 2×)
 
@@ -23,11 +23,11 @@
 | Excelentes habilidades de comunicação e colaboração | 2 | Colaboração com engenharia, produto e negócio evidenciada em Enterprise AI e Shipping; simplificação de complexidade técnica para stakeholders não-técnicos documentada |
 | Capacidade de organização, planejamento e priorização de atividades | 1 | Projetos de 6 meses com MVPs entregues evidenciam planejamento — não narrado explicitamente como competência de gestão nos cases |
 | Pensamento crítico aplicado às necessidades do usuário e aos objetivos do negócio | 2 | Trade-offs de design com alternativas descartadas em todos os cases enterprise; decisões conectadas a objetivos de negócio explicitamente |
-| Capacidade técnica para planejar e conduzir pesquisas com usuários | 1 | Enterprise AI: entrevistas com usuários + análise Clarity para identificar drop-offs; Shipping: workshops recorrentes com especialistas — metodologia sem roteiro ou síntese formal exposta |
-| Domínio da ferramenta Figma | 1 | Figma usado como ferramenta central em Enterprise AI, Shipping, Arezzo e Power Apps — artefatos não expostos publicamente |
+| Capacidade técnica para planejar e conduzir pesquisas com usuários | 2 | Arezzo: board de síntese de pesquisa real (2 entrevistas + 2 painéis, método explícito, insights → oportunidades); Enterprise AI: entrevistas + Clarity — protocolo formal de teste ainda não documentado |
+| Domínio da ferramenta Figma | 2 | Figma usado como ferramenta central em Enterprise AI, Shipping, Arezzo e Power Apps — Arezzo publica artefatos reais (telas, matrizes, canvas) que evidenciam o trabalho na ferramenta |
 | Boa capacidade de autogestão e responsabilidade sobre suas entregas | 2 | Ownership completo em projetos de 6 meses evidenciado; decisões de design tomadas com autonomia e documentadas |
 
-**Subtotal obrigatórios: 11/21 × 2 = 22/42**
+**Subtotal obrigatórios: 13/21 × 2 = 26/42**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -41,11 +41,11 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 22 | 42 |
+| Obrigatórios (×2) | 26 | 42 |
 | Preferidos (×1) | 3 | 3 |
-| **Total** | **25** | **45** |
+| **Total** | **29** | **45** |
 
-**Score: 25/45 = 56%**
+**Score: 29/45 = 64%**
 
 ---
 
@@ -59,11 +59,7 @@
 
 ### 🔴 Bloqueadores de candidatura
 
-1. **Pesquisa com usuários e análise de dados** — "Capacidade técnica para planejar e conduzir pesquisas com usuários, bem como analisar dados e resultados" recebeu nota 1 — parcialmente evidenciado. O portfolio tem discovery em Enterprise AI (Clarity + entrevistas) e Shipping (workshops), mas sem roteiros, sínteses ou metodologia formal exposta.
-
-2. **Artefatos visíveis de Figma** — nota 1 ("sem artefatos visíveis"). Para uma plataforma consumer com millhões de usuários, o recrutador vai querer ver interfaces, flows ou wireframes.
-
-3. **Domínio de produto Serasa** — a Serasa trabalha com score de crédito, análise de risco e inclusão financeira. O portfolio é todo enterprise B2B (pharma, logística, IA interna). Construir argumento de transferência focado em produtos que lidam com confiança e dados sensíveis (Enterprise AI tem rastreabilidade de fontes, Hypera tem gate financeiro).
+1. **Domínio de produto Serasa** — a Serasa trabalha com score de crédito, análise de risco e inclusão financeira. O portfolio é todo enterprise B2B (pharma, logística, IA interna). Construir argumento de transferência focado em produtos que lidam com confiança e dados sensíveis (Enterprise AI tem rastreabilidade de fontes, Hypera tem gate financeiro).
 
 ### 🟡 Diferenciais ausentes
 

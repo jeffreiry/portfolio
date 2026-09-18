@@ -156,12 +156,12 @@ const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência
 **Cases publicados (9 cases — 7 publicados, 2 draft):**
 - **Enterprise AI Assistant** (2025, 6 meses) — Evoluiu MVP de assistente de IA em plataforma de conhecimento corporativo. Empresa confidencial (grande multinacional). Foco em rastreabilidade de fontes, transparência e confiança em IA. Discovery com Clarity + entrevistas com usuários. Paradigma conversacional vs. busca. Time cross-funcional com engenharia e dados.
 - **Shipping Capacity Platform** (2025, 6 meses) — Substituiu planilhas dispersas por timeline visual para otimização de capacidade de carga marítima. Empresa confidencial. MVP end-to-end com alta complexidade logística e dados. Discovery via workshops recorrentes com especialistas de domínio. Síntese em Mural.
-- **Hypera Pharma · Gerenciador de Verbas** (2023, 2 meses) — Sistema de verbas de trade marketing para Hypera Pharma (via ilegra). Pipeline de orçamentos com integração SAP/SEV, gate de aprovação financeira, múltiplos perfis de aprovação.
-- **Arezzo Ad Management** (2023, 3 meses) — Redesign de plataforma de anúncios em redes sociais para Arezzo&Co (via CWI). 3 perfis distintos com navegações independentes: Marketing, Gestores de Tráfego e Lojistas. IA role-based.
+- **Hypera Pharma · Gerenciador de Verbas** (2023, 2 meses) — Sistema de verbas de trade marketing para Hypera Pharma (via ilegra). Pipeline de orçamentos com integração SAP/SEV, gate de aprovação financeira, múltiplos perfis de aprovação. Artefatos reais publicados: matriz de responsabilidades, matriz de descoberta de features, fluxo de usuário.
+- **Arezzo Ad Management** (2023, 3 meses) — App white-label de gerenciamento de anúncios pra Arezzo&Co (via empresa de tecnologia parceira), 3 perfis com navegações independentes (Marketing, Gestor de Tráfego, Lojista). Artefatos reais publicados: board de síntese de pesquisa (entrevistas + análise de painéis), Canvas de Proposta de Valor, Jobs to be Done, matriz de responsabilidades, fluxograma de decisão, service blueprint, documento de handoff real (specs + wireframes anotados), teste de usabilidade real no Maze com usuários do perfil Marketing.
 - **Power Apps Dummy App** (2025) — App mobile de demonstração de Design System em Microsoft Power Apps. Grande empresa industrial confidencial. +10 componentes documentados, alcance organizacional, biblioteca para adoção por times.
 - **Cartela Cores** — Sistema de cores com 18 cores âncora, score ponderado multicanal (cor + ícone + texto), alinhado com WCAG 1.4.1. Tokens de cor com regras de decisão.
-- **Del Valle Kapo** (2023, 2 meses) — Redesign de site para campanha Dia das Crianças. Coca-Cola via CWI. Decisões orientadas por Google Analytics.
-- **Del Valle Website** (2023, 2 meses) — Redesign de homepage com nova identidade visual global. Coca-Cola via CWI.
+- **Del Valle Kapo** (2022, 3 meses) — Redesign de site para campanha Dia das Crianças. Coca-Cola via CWI. Personas reais, benchmark competitivo ilustrativo, sitemap real.
+- **Del Valle Website** (2023, 1 mês) — Redesign de homepage com nova identidade visual global. Coca-Cola via CWI. Wireframes responsivos reais, sitemap real.
 
 **Portfolio:** Site bilíngue PT+EN publicado em portfolio.jefersonfreiry.com com todos os cases em dois idiomas — inglês avançado evidenciado diretamente.
 
@@ -177,11 +177,12 @@ const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência
 - Trade-offs de design com alternativas descartadas documentadas
 
 **Gaps conhecidos:**
-- Métricas de impacto ausentes (⬜) em todos os cases enterprise
-- Artefatos visuais não expostos publicamente (telas, flows, wireframes — descritos nos cases mas não publicados)
-- Mobile nativo iOS/Android: ausente (Power Apps é low-code Microsoft, não app nativo)
-- Acessibilidade: Cartela Cores tem decisão WCAG 1.4.1 real; cases enterprise têm seção mas vazia (⬜)
-- UX Research estruturado: A/B testing e testes de usabilidade formais não documentados
+- Métricas de impacto ausentes (⬜) em todos os cases — Arezzo e Hypera são explícitos sobre isso em Aprendizados ("não medimos nada depois do lançamento" / "projeto terminou antes de eu medir")
+- Artefatos visuais: Arezzo, Hypera, Del Valle Kapo e Del Valle Website (os 4 cases `brand-split`) têm artefatos reais publicados sem senha (screenshots, matrizes, diagramas, canvas de pesquisa, handoff). Enterprise AI e Shipping Platform continuam sem telas publicadas (cliente confidencial)
+- Mobile nativo iOS/Android: ausente em todo o portfolio (Power Apps é low-code Microsoft, não app nativo; Arezzo tem narrativa de decisão mobile *responsivo*, não nativo)
+- Acessibilidade: Cartela Cores e Hypera/Arezzo têm bullet real de WCAG 1.4.1 (badge cor+texto/ícone); cases enterprise (Enterprise AI, Shipping) têm seção Craft sem menção a acessibilidade
+- UX Research estruturado: Arezzo tem board de síntese de pesquisa real (2 entrevistas + 2 painéis, método explícito), Canvas de Proposta de Valor, Jobs to be Done, e um teste de usabilidade real no Maze (perfil Marketing, protótipo pré-handoff) — mas sem protocolo formal documentado (recrutamento, roteiro de tarefas, sessão moderada). Fecha bem pedidos de "artefato de pesquisa publicado"; não fecha pedidos de "teste de usabilidade formal com protocolo"
+- Handoff documentado: Arezzo tem documento de handoff real publicado (Job to be Done por fluxo + wireframes anotados + mensagens de erro por campo + modais de sucesso/erro) — único case do portfolio com esse artefato
 - Mentoria/liderança de designers: não mencionada em nenhum case
 - Domínios ausentes: fintech, saúde, e-commerce consumer, mobile-first
 

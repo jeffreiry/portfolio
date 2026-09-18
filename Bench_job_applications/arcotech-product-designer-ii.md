@@ -5,25 +5,28 @@
 **Nível:** Não especificado
 **Data da vaga:** 2026-08-20
 **Status:** Candidatura enviada
+**Status atualizado em:** 2026-09-18
+**Score anterior:** 57% (2026-08-20)
+**Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, board de síntese, VP Canvas, JTBD, wireframes de handoff) e um teste de usabilidade real no Maze — as evidências de "sem artefatos visuais públicos" e "sem testes de usabilidade formais em nenhum case" deixaram de refletir a realidade. Notas ajustadas em 3 linhas obrigatórias. Métricas de impacto pós-lançamento continuam ausentes — esse bloqueador permanece.
 **Candidatura:** Sim
 
 ---
 
-## Score de aderência · 57%
+## Score de aderência · 69%
 
-> O portfolio de Jeferson demonstra forte aderência técnica — execução end-to-end em produtos B2B complexos, colaboração cross-funcional documentada e evidências reais de Design System — mas o gap de métricas de impacto é o ponto mais crítico, pois a vaga exige explicitamente portfólio que "demonstre o impacto gerado", e nenhum case enterprise apresenta dados quantitativos que sustentem esse argumento.
+> O portfolio de Jeferson demonstra forte aderência técnica — execução end-to-end em produtos B2B complexos, colaboração cross-funcional documentada, evidências reais de Design System e, agora, artefatos visíveis de pesquisa e handoff (Arezzo) — mas o gap de métricas de impacto permanece o ponto mais crítico, pois a vaga exige explicitamente portfólio que "demonstre o impacto gerado", e nenhum case enterprise apresenta dados quantitativos que sustentem esse argumento.
 
 ### Requisitos obrigatórios (peso 2×)
 
 | Requisito | Nota | Evidência atual |
 |---|---|---|
 | Experiência sólida como Product Designer em produtos digitais, com capacidade de conduzir projetos complexos de forma autônoma | 3 | Enterprise AI (6 meses, discovery até MVP autônomo) e Shipping Platform (6 meses, substituição de planilhas por plataforma visual end-to-end) — ambos conduzidos com alta complexidade e documentação de processo completa |
-| Forte repertório em UX, UI, arquitetura da informação e desenho de fluxos; domínio de Figma | 2 | Figma citado como ferramenta central em todos os cases enterprise; Arezzo documenta 3 perfis com navegações independentes (IA real); HYPERGESTOR documenta pipeline de aprovação com múltiplos perfis — sem artefatos visuais públicos (telas, flows, wireframes descritos mas não publicados) |
-| Pesquisa e validação com usuários; decisões orientadas por dados, métricas e negócio | 1 | Enterprise AI: discovery com Clarity + entrevistas com usuários documentados; Shipping Platform: workshops recorrentes com especialistas de domínio + síntese em Mural; Del Valle Kapo: decisões por Google Analytics — sem A/B testing, testes de usabilidade formais ou métricas de resultado documentadas em nenhum case |
+| Forte repertório em UX, UI, arquitetura da informação e desenho de fluxos; domínio de Figma | 3 | Arezzo Ad Management publica artefatos reais e completos: board de síntese, Canvas de Proposta de Valor, Jobs to be Done, matriz de responsabilidades, fluxograma de decisão, service blueprint e screenshots das telas — o repertório de UX/UI/IA deixou de ser apenas narrado e passou a ser visível; HYPERGESTOR documenta pipeline de aprovação com múltiplos perfis |
+| Pesquisa e validação com usuários; decisões orientadas por dados, métricas e negócio | 2 | Arezzo: board de síntese de pesquisa real (2 entrevistas + 2 painéis) com insights → oportunidades, e teste de usabilidade real no Maze com usuários do perfil Marketing; Enterprise AI: discovery com Clarity + entrevistas; Del Valle Kapo: decisões por Google Analytics — ainda sem A/B testing ou métricas de resultado pós-lançamento documentadas |
 | Comunicação, argumentação e trabalho em times multidisciplinares com Produto e Engenharia | 3 | Enterprise AI: time cross-funcional com engenharia e dados explicitamente documentado; Shipping Platform: workshops com especialistas de domínio como método de discovery; HYPERGESTOR: integração SAP/SEV com times técnicos e aprovação financeira; Arezzo: alinhamento de 3 perfis distintos com stakeholders |
-| Portfólio consistente que demonstre raciocínio de produto, impacto gerado e qualidade de execução | 1 | Raciocínio de produto: bem documentado (trade-offs, alternativas descartadas, paradigmas questionados como conversacional vs. busca no Enterprise AI); impacto gerado: ausente em todos os cases enterprise — nenhuma métrica quantitativa publicada; qualidade visual: descrita mas artefatos não expostos publicamente |
+| Portfólio consistente que demonstre raciocínio de produto, impacto gerado e qualidade de execução | 2 | Raciocínio de produto: bem documentado (trade-offs, alternativas descartadas, paradigmas questionados como conversacional vs. busca no Enterprise AI); qualidade de execução: agora evidenciada com artefatos reais publicados no case Arezzo; impacto gerado: ainda ausente em todos os cases enterprise — nenhuma métrica quantitativa publicada é o gap que resta |
 
-**Subtotal obrigatórios: 10/15 × 2 = 20/30**
+**Subtotal obrigatórios: 13/15 × 2 = 26/30**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -43,11 +46,11 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 20 | 30 |
+| Obrigatórios (×2) | 26 | 30 |
 | Preferidos (×1) | 9 | 21 |
-| **Total** | **29** | **51** |
+| **Total** | **35** | **51** |
 
-**Score: 29/51 = 57%**
+**Score: 35/51 = 69%**
 
 ---
 
@@ -64,10 +67,6 @@
 **Portfólio sem métricas de impacto em contexto que exige evidência explícita**
 
 A vaga especifica literalmente que o portfólio deve "demonstrar o impacto gerado" — essa é uma das cinco condições do requisito obrigatório de portfólio. No contexto da Arcotech, isso não é retórica: a empresa opera com 4 milhões de alunos e 11 mil escolas, e o time de design é descrito como guiado por "dados quantitativos, qualitativos e pesquisas diretas". Um portfólio que não exibe nenhuma métrica de resultado em seus principais cases (Enterprise AI, Shipping Platform, HYPERGESTOR, Arezzo) sinaliza ausência de cultura de impacto mensurável — exatamente o que uma empresa data-driven de edtech em escala vai checar primeiro. O que está faltando é simples, mas crítico: qualquer número (taxa de adoção, redução de tempo, NPS, erro de usuário, conversão) que conecte o trabalho de design a um resultado de negócio ou de usuário. A mitigação possível é priorizar, antes de submeter candidatura, a adição de ao menos uma métrica por case — mesmo aproximada ou qualitativa convertida em escala ("de X para Y em Z semanas") — e preparar um pitch verbal para entrevista que responda "qual foi o impacto?" com evidências concretas.
-
-**Pesquisa com usuários documentada de forma insuficiente para o nível exigido**
-
-A vaga pede "habilidade com pesquisa e validação de soluções com usuários" com tomada de decisão "orientada por dados e métricas". O portfolio de Jeferson menciona discovery (Clarity, entrevistas, workshops), mas não documenta os achados da pesquisa, como as decisões foram tomadas a partir dos dados, nem os resultados das validações. Para um produto que atinge 4 milhões de alunos, o time de design da Arcotech quase certamente opera com pesquisa estruturada, testes de usabilidade e síntese documentada — e vai comparar o portfolio com esse padrão. A mitigação é expandir a narrativa dos cases existentes para explicitar: "realizei X entrevistas, os achados foram Y, isso mudou a decisão de Z para W". Não é necessário publicar artefatos de pesquisa — a narrativa de processo já diferencia.
 
 ---
 
@@ -88,6 +87,8 @@ A vaga pede "habilidade com pesquisa e validação de soluções com usuários" 
 - **Autonomia em projetos complexos end-to-end:** Enterprise AI e Shipping Platform são ambos cases de 6 meses que documentam o processo completo de discovery até MVP — exatamente o que a vaga descreve como "liderar projetos de ponta a ponta desde a descoberta até a implementação". A profundidade de documentação é diferenciadora para o nível II.
 
 - **Produtos B2B complexos com múltiplos perfis:** Arezzo (3 perfis com navegações independentes) e HYPERGESTOR (múltiplos perfis de aprovação com integração ERP) demonstram capacidade de trabalhar com ecossistemas B2B com stakeholders heterogêneos — transferível diretamente para o contexto de escolas, gestores, professores e alunos da Arcotech.
+
+- **Pesquisa e artefatos visíveis:** Arezzo Ad Management publica board de síntese de pesquisa (2 entrevistas + 2 painéis), Canvas de Proposta de Valor, Jobs to be Done e um teste de usabilidade real no Maze — evidência concreta de que o "raciocínio de produto" citado como forte no portfolio também se sustenta em pesquisa documentada, não apenas em decisões narradas.
 
 - **Design System com alcance organizacional:** Power Apps Dummy App documenta +10 componentes com biblioteca para adoção por outros times, e Cartela Cores mostra sistema de tokens com regras de decisão auditáveis. Para a Arcotech, que opera em múltiplos produtos para 11 mil escolas, consistência de sistema é uma competência crítica e Jeferson tem evidência real — não só menção.
 

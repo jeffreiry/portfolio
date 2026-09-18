@@ -6,13 +6,16 @@
 **Modelo:** 100% remoto · Brasil  
 **Data da vaga:** 2026-06-12  
 **Status:** Arquivado
+**Status atualizado em:** 2026-09-18
+**Score anterior:** 59% (2026-06-12)
+**Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, wireframes de handoff) e um board de síntese de pesquisa real + teste de usabilidade no Maze — as linhas de Figma/prototipação, pesquisa com usuários e wireframes/flows deixaram de citar "artefatos não expostos" e "sem testes formais". Notas ajustadas em 3 linhas obrigatórias. O gap de domínio (e-commerce/shopping/financeiro) e a ausência de mobile nativo/responsivo permanecem intactos — vaga está Arquivada, tratada como registro histórico.
 **Candidatura:** Não
 
 ---
 
-## Score de aderência · 59%
+## Score de aderência · 68%
 
-> Aderência baixa — gaps significativos. O portfolio é forte em processo end-to-end e em IA, mas o domínio de e-commerce / shopping / produtos financeiros é requisito explícito e está completamente ausente. Artefatos visíveis e pesquisa formal também puxam para baixo.
+> Aderência parcial — gaps significativos. O portfolio é forte em processo end-to-end, IA e, agora, em artefatos visíveis e pesquisa documentada (Arezzo), mas o domínio de e-commerce / shopping / produtos financeiros é requisito explícito e está completamente ausente — esse permanece o gap central.
 
 ### Requisitos obrigatórios (peso 2×)
 
@@ -20,15 +23,15 @@
 |---|---|---|
 | Portfolio com projetos em diferentes etapas do processo | 3 | 9 cases PT+EN cobrindo discovery, decisões e delivery |
 | Experiência em produtos digitais com ownership end-to-end | 3 | Bem evidenciado em Enterprise AI, Shipping, Power Apps |
-| Figma + prototipação navegável | 1 | Mencionado nos cases — sem artefatos expostos no portfolio |
-| Pesquisa com usuários, testes de usabilidade e/ou cocriação | 1 | Entrevistas e Clarity (Enterprise AI), workshops (Shipping) — sem testes formais |
-| Wireframes, flows, interfaces web e mobile | 1 | Processo descrito, artefatos não expostos; mobile limitado a tag Arezzo |
+| Figma + prototipação navegável | 2 | Arezzo Ad Management publica artefatos reais no Figma: telas, matrizes, canvas e wireframes de handoff — deixou de ser apenas mencionado |
+| Pesquisa com usuários, testes de usabilidade e/ou cocriação | 2 | Arezzo: board de síntese de pesquisa real (2 entrevistas + 2 painéis) e teste de usabilidade real no Maze com usuários do perfil Marketing; Enterprise AI: entrevistas + Clarity — protocolo formal completo (recrutamento, roteiro) ainda não documentado |
+| Wireframes, flows, interfaces web e mobile | 2 | Arezzo publica wireframes de handoff anotados e screenshots reais das telas dos 3 perfis; mobile ainda limitado — sem evidência de design mobile nativo ou responsivo |
 | Design System escalável (web e mobile) | 2 | Power Apps Dummy App + Cartela de Cores evidenciam DS |
 | Colaboração com PM, Engenharia, Design e Research | 2 | Seções de colaboração técnica evidenciadas nos cases enterprise |
 | **E-commerce / Checkout / Shopping / Produtos Financeiros / Growth** | 0 | **Gap crítico** — nenhum case é e-commerce, consumer ou produto financeiro |
 | Inglês básico de leitura | 3 | Portfolio bilíngue PT+EN — inglês muito além do básico |
 
-**Subtotal obrigatórios: 16/27 × 2 = 32/54**
+**Subtotal obrigatórios: 19/27 × 2 = 38/54**
 
 ### Diferenciais preferidos (peso 1×)
 
@@ -44,11 +47,11 @@
 
 | | Obtido | Máximo |
 |---|---|---|
-| Obrigatórios (×2) | 32 | 54 |
+| Obrigatórios (×2) | 38 | 54 |
 | Preferidos (×1) | 5 | 9 |
-| **Total** | **37** | **63** |
+| **Total** | **43** | **63** |
 
-**Score: 37/63 = 59%**
+**Score: 43/63 = 68%**
 
 ---
 
@@ -58,15 +61,13 @@
 
 1. **E-commerce / Shopping / Produtos Financeiros** — requisito explícito da vaga para produto consumer com 43M usuários. Nenhum case atual cobre esse domínio. Arezzo é o mais próximo (retail/ad management), mas não é e-commerce. Méliuz é cashback + shopping — o recrutador vai procurar experiência com fluxos de compra, checkout, aquisição ou produtos financeiros.
 
-2. **Artefatos visíveis** — a vaga cita wireframes, fluxos, protótipos navegáveis como entregáveis centrais. Sem telas ou flows expostos no portfolio, é impossível avaliar craft de interface. Para uma vaga consumer (não enterprise), o visual importa ainda mais.
-
-3. **Pesquisa formal com usuários** — entrevistas e testes de usabilidade são requisito obrigatório. O portfolio evidencia discovery, mas sem artefatos de research expostos (roteiro, síntese, resultados de teste).
-
 ### 🟡 Diferenciais ausentes
 
-4. **Mobile como plataforma real** — Méliuz é um app consumer. Os cases descrevem produtos enterprise (web). O Arezzo tem tag "Mobile" mas sem evidência de design mobile nativo ou responsivo.
+2. **Mobile como plataforma real** — Méliuz é um app consumer. Os cases descrevem produtos enterprise (web). O Arezzo tem tag "Mobile" mas sem evidência de design mobile nativo ou responsivo.
 
-5. **Design System com foco em escalabilidade consumer** — o portfolio tem DS em contexto enterprise/interno. Méliuz quer DS escalável para web e mobile consumer. Reforçar a narrativa de escalabilidade no Power Apps case ou Cartela Cores.
+3. **Design System com foco em escalabilidade consumer** — o portfolio tem DS em contexto enterprise/interno. Méliuz quer DS escalável para web e mobile consumer. Reforçar a narrativa de escalabilidade no Power Apps case ou Cartela Cores.
+
+4. **Protocolo formal de teste de usabilidade** — o Arezzo já tem um teste real no Maze com usuários do perfil Marketing, mas falta detalhar quantos participantes, quais tarefas e se a sessão foi moderada. Ação concreta: acrescentar esse detalhe no case, se disponível.
 
 ### 🟢 Boa aderência
 
@@ -75,6 +76,7 @@
 - Design System como prática real
 - Colaboração multidisciplinar bem documentada
 - Inglês avançado (portfolio bilíngue) supera o requisito de leitura básica
+- **Artefatos visíveis e pesquisa documentada:** Arezzo Ad Management publica wireframes, screenshots e um board de síntese de pesquisa real com teste de usabilidade no Maze — o gap de "processo sem evidência visível" citado nesta análise deixou de existir
 
 ---
 
