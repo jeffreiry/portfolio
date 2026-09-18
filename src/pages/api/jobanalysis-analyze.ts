@@ -178,7 +178,7 @@ const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência
 
 **Gaps conhecidos:**
 - Métricas de impacto ausentes (⬜) em todos os cases — Arezzo e Hypera são explícitos sobre isso em Aprendizados ("não medimos nada depois do lançamento" / "projeto terminou antes de eu medir")
-- Artefatos visuais: Arezzo, Hypera, Del Valle Kapo e Del Valle Website (os 4 cases `brand-split`) têm artefatos reais publicados sem senha (screenshots, matrizes, diagramas, canvas de pesquisa, handoff). Enterprise AI e Shipping Platform continuam sem telas publicadas (cliente confidencial)
+- Artefatos visuais: Arezzo, Hypera, Del Valle Kapo e Del Valle Website (os 4 cases 'brand-split') têm artefatos reais publicados sem senha (screenshots, matrizes, diagramas, canvas de pesquisa, handoff). Enterprise AI e Shipping Platform continuam sem telas publicadas (cliente confidencial)
 - Mobile nativo iOS/Android: ausente em todo o portfolio (Power Apps é low-code Microsoft, não app nativo; Arezzo tem narrativa de decisão mobile *responsivo*, não nativo)
 - Acessibilidade: Cartela Cores e Hypera/Arezzo têm bullet real de WCAG 1.4.1 (badge cor+texto/ícone); cases enterprise (Enterprise AI, Shipping) têm seção Craft sem menção a acessibilidade
 - UX Research estruturado: Arezzo tem board de síntese de pesquisa real (2 entrevistas + 2 painéis, método explícito), Canvas de Proposta de Valor, Jobs to be Done, e um teste de usabilidade real no Maze (perfil Marketing, protótipo pré-handoff) — mas sem protocolo formal documentado (recrutamento, roteiro de tarefas, sessão moderada). Fecha bem pedidos de "artefato de pesquisa publicado"; não fecha pedidos de "teste de usabilidade formal com protocolo"
