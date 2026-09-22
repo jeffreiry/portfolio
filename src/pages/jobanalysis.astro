@@ -232,7 +232,9 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
         if (cells[0]) {
           const tag = cleanTag(cells[0]);
           const nota = Number(cells[1]?.trim());
-          if (tag && tag.length > 2 && !tag.includes('⬜')) {
+          // Elegibilidade pura (graduação, anos de experiência) não é skill —
+          // não faz sentido virar pill de hard/soft skill no card também.
+          if (tag && tag.length > 2 && !tag.includes('⬜') && !ELIGIBILITY_PATTERN.test(tag)) {
             tags.push({ text: tag, categoria: classifySkill(tag), tenho: Number.isFinite(nota) && nota >= 2 });
           }
         }
