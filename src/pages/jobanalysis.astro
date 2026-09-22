@@ -38,6 +38,7 @@ interface VagaParsed {
   diasAteResposta: number | null;
   data: string;
   tags: SkillTag[];
+  tagsFull: SkillTag[];
   bloqueadores: string[];
   ausentes: string[];
   boaAderencia: string[];
@@ -53,6 +54,7 @@ type Banda = 'alta' | 'parcial' | 'baixa' | 'muito-baixa';
 
 function cleanTag(text: string): string {
   return text
+    .replace(/\*\*/g, '')
     .replace(/\s*\([^)]*\)/g, '')
     .replace(/[:—–→,].*/g, '')
     .trim();
@@ -73,6 +75,70 @@ const SOFT_SKILL_KEYWORDS = [
 function classifySkill(text: string): 'hard' | 'soft' {
   const lower = text.toLowerCase();
   return SOFT_SKILL_KEYWORDS.some((kw) => lower.includes(kw)) ? 'soft' : 'hard';
+}
+
+// --- Taxonomia canônica (estilo "Competências" do LinkedIn) ---
+//
+// O texto cru de cada requisito de JD é único demais pra virar contagem útil
+// (446 frases distintas em 57 vagas, quase todas com 1 ocorrência) — a mesma
+// habilidade aparece como "Domínio de Figma", "Proficiência em Figma" e
+// "Figma avançado" em três vagas diferentes. Esta tabela reduz isso a um
+// vocabulário fixo de ~40 competências, cada requisito podendo bater em mais
+// de uma (uma frase como "Boa comunicação e colaboração em ambientes ágeis"
+// é real demanda por três competências distintas ao mesmo tempo).
+// Frases de elegibilidade pura (anos de experiência, formação acadêmica) não
+// são competência no sentido do LinkedIn — ficam de fora da contagem.
+const ELIGIBILITY_PATTERN = /\b(anos? de experi[êe]ncia|gradua[çc][ãa]o|forma[çc][ãa]o (em|acad[êe]mica)|ensino superior|bachelor|degree in)\b/i;
+
+const SKILL_TAXONOMY: { canon: string; categoria: 'hard' | 'soft'; pattern: RegExp }[] = [
+  // Hard — ferramentas e técnicas
+  { canon: 'Figma',                              categoria: 'hard', pattern: /figma/i },
+  { canon: 'Prototipação',                       categoria: 'hard', pattern: /prototip|protót|prototype/i },
+  { canon: 'Wireframes',                         categoria: 'hard', pattern: /wireframe/i },
+  { canon: 'UX/UI Design',                       categoria: 'hard', pattern: /\bux\b.{0,3}\bui\b|\bui\b.{0,3}\bux\b|design de intera[çc][ãa]o|interaction design|design visual|visual design|ui design|ui kit|ui art|ui craft|design refined/i },
+  { canon: 'Arquitetura da Informação',          categoria: 'hard', pattern: /arquitetura d[ae] informa[çc][ãa]o|information architecture/i },
+  { canon: 'Design Systems',                     categoria: 'hard', pattern: /design system/i },
+  { canon: 'Pesquisa com Usuários (UX Research)', categoria: 'hard', pattern: /pesquisa|\bresearch\b|entrevista/i },
+  { canon: 'Discovery / Design Thinking',        categoria: 'hard', pattern: /discovery|design thinking|valida[çc][ãa]o de hip[óo]tese/i },
+  { canon: 'Testes de Usabilidade',              categoria: 'hard', pattern: /usabilidade|usability/i },
+  { canon: 'Acessibilidade (WCAG)',              categoria: 'hard', pattern: /acessibilidade|wcag|accessibility/i },
+  { canon: 'Métricas de Produto / Dados',        categoria: 'hard', pattern: /m[ée]trica|\bkpi\b|data-inform|data-heavy|indicador|analytics|a\/b test/i },
+  { canon: 'Handoff / Documentação Técnica',     categoria: 'hard', pattern: /handoff|handover|especifica[çc][ãa]o t[ée]cnica|documenta[çc][ãa]o/i },
+  { canon: 'Design Responsivo / Mobile',         categoria: 'hard', pattern: /\bmobile\b|responsiv|\bios\b|\bandroid\b|app nativo|para celular/i },
+  { canon: 'Design de Serviço / Jornadas',       categoria: 'hard', pattern: /jornada|service design|design de servi[çc]o|blueprint/i },
+  { canon: 'Metodologias Ágeis',                 categoria: 'hard', pattern: /\b[aá]gil|agile|scrum|sprint/i },
+  { canon: 'IA aplicada a Design',               categoria: 'hard', pattern: /\bia\b|\bai\b|intelig[êe]ncia artificial|\bllm\b|prompt/i },
+  { canon: 'Front-end (HTML/CSS)',               categoria: 'hard', pattern: /\bhtml\b|\bcss\b|front-?end/i },
+  { canon: 'Inglês',                             categoria: 'hard', pattern: /ingl[êe]s|english/i },
+  { canon: 'Espanhol',                           categoria: 'hard', pattern: /espanhol|spanish/i },
+  { canon: 'Portfólio / Processo de Design',     categoria: 'hard', pattern: /portf[óo]lio|portfolio|\bcraft\b/i },
+  { canon: 'Motion Design',                      categoria: 'hard', pattern: /motion/i },
+  { canon: 'Facilitação de Workshops',           categoria: 'hard', pattern: /workshop|facilita/i },
+  { canon: 'Gestão / Visão de Produto',          categoria: 'hard', pattern: /vis[ãa]o de produto|product thinking|gerenciamento de produto|product management|ciclo de vida do produto/i },
+  { canon: 'Growth / Conversão',                 categoria: 'hard', pattern: /growth|convers[ãa]o|reten[çc][ãa]o|funil/i },
+  { canon: 'Domínio Fintech / Pagamentos',       categoria: 'hard', pattern: /fintech|pagamento|cr[ée]dito|financeir/i },
+
+  // Soft — comportamento e colaboração
+  { canon: 'Comunicação',                        categoria: 'soft', pattern: /comunica[çc][ãa]o|communication/i },
+  { canon: 'Colaboração Multifuncional',         categoria: 'soft', pattern: /colabora|multidisciplinar|cross-?funcional|cross[- ]functional/i },
+  { canon: 'Gestão de Stakeholders',             categoria: 'soft', pattern: /stakeholder/i },
+  { canon: 'Autonomia / Ownership',              categoria: 'soft', pattern: /autonomia|ownership|senso de dono|proativ/i },
+  { canon: 'Adaptabilidade / Ambiguidade',       categoria: 'soft', pattern: /ambigu|adapta[çc][ãa]o|flexibilidade|mudan[çc]as? (frequentes|de)/i },
+  { canon: 'Pensamento Crítico / Analítico',     categoria: 'soft', pattern: /cr[íi]tico|anal[íi]tic|racioc[íi]nio l[óo]gico/i },
+  { canon: 'Liderança / Mentoria',               categoria: 'soft', pattern: /lideran[çc]a|mentoria|mentor|leadership/i },
+  { canon: 'Visão Estratégica',                  categoria: 'soft', pattern: /estrat[ée]g|strategic/i },
+  { canon: 'Organização / Priorização',          categoria: 'soft', pattern: /organiza[çc][ãa]o|prioriza[çc][ãa]o|gest[ãa]o de tempo/i },
+  { canon: 'Empatia / Centrado no Usuário',      categoria: 'soft', pattern: /empatia|centrad[ao] no usu[áa]rio|human-centered/i },
+  { canon: 'Argumentação / Apresentação',        categoria: 'soft', pattern: /argumenta|apresenta[çc][ãa]o|storytelling/i },
+  { canon: 'Curiosidade / Perfil Investigativo', categoria: 'soft', pattern: /curiosidade|investigativ|curios/i },
+  { canon: 'Negociação / Mediação de Conflitos', categoria: 'soft', pattern: /negocia|media[çc][ãa]o|conflito/i },
+  { canon: 'Trabalho Remoto / Autogestão',       categoria: 'soft', pattern: /trabalho remoto|remoto|autogest[ãa]o|self-motivated|disciplina/i },
+];
+
+/** Retorna os nomes canônicos que o texto do requisito bate — pode ser mais de um, ou nenhum. */
+function canonicalizeSkill(text: string): { canon: string; categoria: 'hard' | 'soft' }[] {
+  if (ELIGIBILITY_PATTERN.test(text)) return [];
+  return SKILL_TAXONOMY.filter((s) => s.pattern.test(text)).map((s) => ({ canon: s.canon, categoria: s.categoria }));
 }
 
 function scoreLabel(score: number): string {
@@ -153,8 +219,11 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
 
     // Tags dos requisitos obrigatórios — texto + nota (>=2 vira "tenho" preenchido,
     // <=1 vira contorno de gap) + categoria hard/soft por palavra-chave.
+    // Escopo cortado no próximo heading (##/###) — sem isso, a extração engolia
+    // TODAS as tabelas seguintes do arquivo (Diferenciais, Cálculo), já que
+    // antes só não aparecia porque o .slice(0,6) do card escondia a poluição.
     const tags: SkillTag[] = [];
-    const afterReqHeader = content.split(/### Requisitos obrigat[oó]rios/)[1];
+    const afterReqHeader = content.split(/### Requisitos obrigat[oó]rios/)[1]?.split(/\n#{2,3} /)[0];
     if (afterReqHeader) {
       const tableLines = afterReqHeader.split('\n').filter((l) => l.startsWith('|'));
       for (const line of tableLines) {
@@ -209,6 +278,7 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       diasAteResposta,
       data,
       tags: tags.slice(0, 6),
+      tagsFull: tags,
       bloqueadores,
       ausentes,
       boaAderencia,
@@ -344,6 +414,31 @@ const candidaturaCounts: Record<'Sim' | 'Não', number> = {
   Sim: vagas.filter((v) => v.candidatura === 'Sim').length,
   Não: vagas.filter((v) => v.candidatura === 'Não').length,
 };
+
+// Skills agregadas do bench inteiro (todas as vagas, recusadas inclusive — é
+// leitura de demanda de mercado, não score de vaga individual). Dedup por texto
+// normalizado; "tenho" vale se QUALQUER análise já deu nota >=2 pro requisito,
+// mesmo que outra vaga com JD mais exigente tenha dado nota mais baixa pro
+// mesmo texto — é o retrato mais generoso e ainda assim honesto do que já foi
+// comprovado em pelo menos um contexto real.
+interface SkillAgg { text: string; categoria: 'hard' | 'soft'; count: number; tenho: boolean }
+const skillMap = new Map<string, SkillAgg>();
+for (const v of vagas) {
+  for (const tag of v.tagsFull) {
+    for (const { canon, categoria } of canonicalizeSkill(tag.text)) {
+      const existing = skillMap.get(canon);
+      if (existing) {
+        existing.count += 1;
+        existing.tenho = existing.tenho || tag.tenho;
+      } else {
+        skillMap.set(canon, { text: canon, categoria, count: 1, tenho: tag.tenho });
+      }
+    }
+  }
+}
+const skillsAgg = Array.from(skillMap.values()).sort((a, b) => b.count - a.count || a.text.localeCompare(b.text));
+const skillsTenhoCount = skillsAgg.filter((s) => s.tenho).length;
+const skillsGapCount = skillsAgg.length - skillsTenhoCount;
 
 function mediaLabel(s: number): string {
   if (s >= 80) return 'alta aderência';
@@ -901,6 +996,38 @@ for (const opt of statusOptions) {
       </div>
     </section>
 
+    <!-- Skills do bench — agregado de todos os requisitos obrigatórios de todas as
+         vagas, pra uso em currículo/candidatura fora daqui, não só leitura do bench -->
+    <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Skills do bench</h2>
+      <p data-animate class="text-sm mb-5" style="color: var(--color-muted);">
+        Requisitos de todas as {vagas.length} vagas, agrupados num vocabulário fixo de competências (estilo LinkedIn) em vez do texto literal de cada JD. <b>Laranja</b> = hard skill, <b>azul</b> = soft skill. <b>Preenchido</b> = alguma análise já deu nota ≥2 pra essa competência (você comprova), <b>contornado</b> = gap em todas as vagas que a pediram. Frases de elegibilidade pura (anos de experiência, formação) ficam fora — não são competência.
+      </p>
+      <div class="flex gap-1 mb-5" role="group" aria-label="Filtrar skills">
+        <button class="filter-pill filter-pill--active" data-skill-filter="todas">Todas ({skillsAgg.length})</button>
+        <button class="filter-pill" data-skill-filter="tenho">Que tenho ({skillsTenhoCount})</button>
+        <button class="filter-pill" data-skill-filter="gap">Que não tenho ({skillsGapCount})</button>
+      </div>
+      <div id="skills-agg-list" class="flex flex-wrap gap-1.5">
+        {skillsAgg.map((s) => {
+          const hard   = s.categoria === 'hard';
+          const bg     = s.tenho ? (hard ? 'var(--color-tag-enterprise-bg)' : 'var(--color-tag-research-bg)') : 'transparent';
+          const color  = hard ? 'var(--color-tag-enterprise-text)' : 'var(--color-tag-research-text)';
+          const border = s.tenho ? 'none' : `1.5px solid ${color}`;
+          return (
+            <span
+              data-skill-state={s.tenho ? 'tenho' : 'gap'}
+              class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium"
+              style={`background: ${bg}; color: ${color}; border: ${border}; font-family: var(--font-body);`}
+            >
+              {s.text}
+              <span class="font-semibold opacity-70 tabular-nums">{s.count}</span>
+            </span>
+          );
+        })}
+      </div>
+    </section>
+
     <!-- Gaps transversais -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
       <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Gaps transversais</h2>
@@ -1241,6 +1368,24 @@ for (const opt of statusOptions) {
     if (e.key === 'Escape') {
       document.querySelectorAll('dialog[open]').forEach((d) => (d as HTMLDialogElement).close());
     }
+  });
+
+  // ---- Filtro de Skills do bench (Todas / Que tenho / Que não tenho) ----
+  // Independente do resto — não participa das facetas cruzadas de vaga, é só
+  // show/hide dos pills pela nota agregada já calculada no servidor.
+
+  document.querySelectorAll<HTMLButtonElement>('[data-skill-filter]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.skillFilter ?? 'todas';
+      document.querySelectorAll<HTMLButtonElement>('[data-skill-filter]').forEach((b) => {
+        b.classList.toggle('filter-pill--active', b === btn);
+      });
+      document.querySelectorAll<HTMLElement>('#skills-agg-list [data-skill-state]').forEach((pill) => {
+        const state = pill.dataset.skillState;
+        const show = filter === 'todas' || filter === state;
+        pill.style.display = show ? '' : 'none';
+      });
+    });
   });
 
   // ---- Filtros ----
