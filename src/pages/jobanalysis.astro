@@ -14,6 +14,12 @@ const canEdit = import.meta.env.DEV;
 
 // --- Tipos ---
 
+interface SkillTag {
+  text: string;
+  categoria: 'hard' | 'soft';
+  tenho: boolean; // nota >=2 no requisito de origem
+}
+
 interface VagaParsed {
   slug: string;
   empresa: string;
@@ -31,7 +37,7 @@ interface VagaParsed {
   diasParado: number;
   diasAteResposta: number | null;
   data: string;
-  tags: string[];
+  tags: SkillTag[];
   bloqueadores: string[];
   ausentes: string[];
   boaAderencia: string[];
@@ -50,6 +56,23 @@ function cleanTag(text: string): string {
     .replace(/\s*\([^)]*\)/g, '')
     .replace(/[:—–→,].*/g, '')
     .trim();
+}
+
+// Classificação hard/soft por palavra-chave no texto do requisito — automática,
+// roda pra todas as vagas do bench (recusadas inclusive) sem editar arquivo por
+// arquivo. Sem match nas duas listas, cai em "hard" por padrão (a maioria dos
+// requisitos das JDs do bench é técnica/de processo, não comportamental).
+const SOFT_SKILL_KEYWORDS = [
+  'comunica', 'colabora', 'lideran', 'mentoria', 'stakeholder', 'multidisciplinar',
+  'ambigu', 'ágil', 'agil', 'feedback', 'argumenta', 'investigativ', 'curios',
+  'resiliên', 'resilien', 'adapta', 'proativ', 'empatia', 'equipe', 'negocia',
+  'prioriza', 'apresenta', 'perfil', 'dinâmic', 'dinamic', 'flexibilidade',
+  'inglês', 'ingles', 'espanhol', 'idioma', 'fluên', 'fluen', 'generalista',
+  'autogestão', 'autogestao', 'autonomia', 'organiza',
+];
+function classifySkill(text: string): 'hard' | 'soft' {
+  const lower = text.toLowerCase();
+  return SOFT_SKILL_KEYWORDS.some((kw) => lower.includes(kw)) ? 'soft' : 'hard';
 }
 
 function scoreLabel(score: number): string {
@@ -128,8 +151,9 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
     const blockquoteMatch = content.match(/## Score de ader[eê]ncia[^\n]*\n\n>\s*(.+)/);
     const interpretacaoTexto = blockquoteMatch?.[1]?.trim() ?? '';
 
-    // Tags dos requisitos obrigatórios
-    const tags: string[] = [];
+    // Tags dos requisitos obrigatórios — texto + nota (>=2 vira "tenho" preenchido,
+    // <=1 vira contorno de gap) + categoria hard/soft por palavra-chave.
+    const tags: SkillTag[] = [];
     const afterReqHeader = content.split(/### Requisitos obrigat[oó]rios/)[1];
     if (afterReqHeader) {
       const tableLines = afterReqHeader.split('\n').filter((l) => l.startsWith('|'));
@@ -138,7 +162,10 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
         const cells = line.split('|').filter((c) => c.trim());
         if (cells[0]) {
           const tag = cleanTag(cells[0]);
-          if (tag && tag.length > 2 && !tag.includes('⬜')) tags.push(tag);
+          const nota = Number(cells[1]?.trim());
+          if (tag && tag.length > 2 && !tag.includes('⬜')) {
+            tags.push({ text: tag, categoria: classifySkill(tag), tenho: Number.isFinite(nota) && nota >= 2 });
+          }
         }
       }
     }
@@ -738,15 +765,22 @@ for (const opt of statusOptions) {
                 </div>
               )}
 
-              <!-- Tags de competências -->
+              <!-- Tags de competências — laranja=hard skill, azul=soft skill;
+                   preenchido=nota>=2 (você tem), contornado=nota<=1 (gap) -->
               {v.tags.length > 0 && (
                 <div class="tags-list flex flex-wrap gap-1.5">
-                  {v.tags.map((tag) => (
-                    <span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
-                      style="background: var(--color-surface-2); color: var(--color-muted); font-family: var(--font-body);">
-                      {tag}
-                    </span>
-                  ))}
+                  {v.tags.map((tag) => {
+                    const hard  = tag.categoria === 'hard';
+                    const bg    = tag.tenho ? (hard ? 'var(--color-tag-enterprise-bg)' : 'var(--color-tag-research-bg)') : 'transparent';
+                    const color = hard ? 'var(--color-tag-enterprise-text)' : 'var(--color-tag-research-text)';
+                    const border = tag.tenho ? 'none' : `1.5px solid ${color}`;
+                    return (
+                      <span class="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
+                        style={`background: ${bg}; color: ${color}; border: ${border}; font-family: var(--font-body);`}>
+                        {tag.text}
+                      </span>
+                    );
+                  })}
                 </div>
               )}
 
