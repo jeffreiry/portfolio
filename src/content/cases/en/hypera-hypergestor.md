@@ -4,7 +4,7 @@ slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
 summary: "A trade fund management tool that replaces spreadsheets with a traceable, multi-stage approval pipeline."
 thesis: "No step in the fund process was missing — what was missing was a connected cycle between them."
-company: "Hypera Pharma (via ilegra)"
+company: "Hypera Pharma (via CWI)"
 year: 2023
 cover: /cases/hypera-hypergestor/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=800&q=80&auto=format&fit=crop"

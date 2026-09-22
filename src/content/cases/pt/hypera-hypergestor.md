@@ -4,7 +4,7 @@ slug: hypera-hypergestor
 role: "UX Designer · UI Designer"
 summary: "Uma ferramenta de gestão de verbas de trade que substitui planilhas por um pipeline com rastreabilidade de aprovações."
 thesis: "Não faltava nenhuma etapa no processo de verbas — faltava um ciclo conectado entre elas."
-company: "Hypera Pharma (via ilegra)"
+company: "Hypera Pharma (via CWI)"
 year: 2023
 cover: /cases/hypera-hypergestor/visao-geral.jpg
 bgImage: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&w=800&q=80&auto=format&fit=crop"
