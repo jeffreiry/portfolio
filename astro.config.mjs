@@ -1,9 +1,21 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { loadEnv } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import svelte from '@astrojs/svelte';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+
+// `astro dev` não injeta o .env em `process.env` (só em `import.meta.env`,
+// via bundling do Vite) — código de servidor que lê `process.env` direto
+// (src/auth.ts, jobanalysis-analyze.ts) ficava sem JOBANALYSIS_PASSWORD/etc
+// localmente, mesmo com o .env correto. Na Vercel isso não acontecia porque
+// lá as env vars já chegam prontas em `process.env` pela plataforma. Carrega
+// aqui, sem sobrescrever o que já estiver setado (produção continua intocada).
+const env = loadEnv(process.env.NODE_ENV ?? 'development', process.cwd(), '');
+for (const [key, value] of Object.entries(env)) {
+  if (!(key in process.env)) process.env[key] = value;
+}
 
 export default defineConfig({
   site: 'https://portfolio.jefersonfreiry.com',

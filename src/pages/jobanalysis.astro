@@ -1719,6 +1719,13 @@ for (const opt of statusOptions) {
           warn.textContent = `⚠ Já existe outra vaga analisada da ${vaga.empresa} no bench — confira se não é a mesma antes de duplicar esforço.`;
           newCard.insertBefore(warn, newCard.children[1] ?? null);
         }
+        if (vaga.duplicateSlugWarning) {
+          const warn = document.createElement('p');
+          warn.className = 'text-[12px] leading-relaxed rounded-lg px-3 py-2';
+          warn.style.cssText = 'background: rgba(180,83,9,0.08); border: 1px solid rgba(180,83,9,0.25); color: #b45309;';
+          warn.textContent = `⚠ ${vaga.duplicateSlugWarning}`;
+          newCard.insertBefore(warn, newCard.children[1] ?? null);
+        }
         wireNewCard(newCard);
       }
 

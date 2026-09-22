@@ -129,22 +129,48 @@ interface JdExtracted {
   preferenciais: string[];
 }
 
+// Modelo principal + um backup ativo — a Groq já descontinuou modelo sem aviso
+// uma vez (llama-3.3-70b-versatile), quebrando isso em produção sem sinal
+// prévio. Se o principal responder com erro de modelo descontinuado/inválido,
+// tenta o backup automaticamente em vez de falhar direto.
+const GROQ_MODELS = ['openai/gpt-oss-120b', 'llama-3.1-8b-instant'];
+
+function isModelUnavailableError(e: unknown): boolean {
+  const msg = e instanceof Error ? e.message.toLowerCase() : String(e).toLowerCase();
+  return msg.includes('decommission') || msg.includes('model_not_found') || msg.includes('does not exist');
+}
+
 async function extractWithGroq(jd: string, apiKey: string): Promise<JdExtracted> {
   const groq = new Groq({ apiKey });
-  const completion = await groq.chat.completions.create({
-    model: 'openai/gpt-oss-120b',
-    max_tokens: 1500,
-    temperature: 0.1,
-    messages: [
-      { role: 'system', content: GROQ_EXTRACT_PROMPT },
-      { role: 'user', content: `Extraia os dados desta vaga:\n\n${jd}` },
-    ],
-  });
+  let lastError: unknown;
 
-  const raw = completion.choices[0]?.message?.content ?? '';
-  // Remove possíveis blocos de código do modelo
-  const clean = raw.replace(/^```(?:json)?\n?/m, '').replace(/\n?```$/m, '').trim();
-  return JSON.parse(clean) as JdExtracted;
+  for (const model of GROQ_MODELS) {
+    try {
+      const completion = await groq.chat.completions.create({
+        model,
+        max_tokens: 1500,
+        temperature: 0.1,
+        messages: [
+          { role: 'system', content: GROQ_EXTRACT_PROMPT },
+          { role: 'user', content: `Extraia os dados desta vaga:\n\n${jd}` },
+        ],
+      });
+
+      const raw = completion.choices[0]?.message?.content ?? '';
+      // Remove possíveis blocos de código do modelo
+      const clean = raw.replace(/^```(?:json)?\n?/m, '').replace(/\n?```$/m, '').trim();
+      return JSON.parse(clean) as JdExtracted;
+    } catch (e) {
+      lastError = e;
+      if (!isModelUnavailableError(e)) throw e; // erro não é sobre disponibilidade do modelo — não adianta trocar
+      console.error(`[jobanalysis] Modelo Groq "${model}" indisponível, tentando próximo da lista:`, e);
+    }
+  }
+
+  throw new Error(
+    `Todos os modelos Groq configurados falharam (${GROQ_MODELS.join(', ')}). ` +
+    `Provavelmente algum foi descontinuado — verifique https://console.groq.com/docs/deprecations e atualize GROQ_MODELS em jobanalysis-analyze.ts. Último erro: ${lastError instanceof Error ? lastError.message : String(lastError)}`
+  );
 }
 
 // ---- Passo 2: Claude analisa os requisitos contra o portfolio ----
@@ -313,13 +339,16 @@ async function analyzeWithClaude(
 
   const response = await anthropic.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 8000,
+    max_tokens: 12000,
     system: CLAUDE_SYSTEM_PROMPT,
     messages: [{ role: 'user', content: userMessage }],
   });
 
   if (response.stop_reason === 'max_tokens') {
     console.error('[jobanalysis] Claude response truncated (max_tokens hit) — JD tem muitos requisitos');
+    // Falha alto e visível em vez de deixar o arquivo ser gravado truncado/quebrado —
+    // um bench file cortado no meio passa despercebido até alguém abrir o arquivo.
+    throw new Error('A análise foi cortada por exceder o limite de tokens (JD com muitos requisitos). Tente reduzir a JD ou dividir a análise em partes.');
   }
 
   const block = response.content[0];
@@ -372,7 +401,10 @@ if (!groqKey) {
       raw = await analyzeWithClaude(extracted, jd, claudeKey);
     } catch (e) {
       console.error('[jobanalysis] Claude analysis failed:', e);
-      throw new Error('Falha na análise. Tente novamente.');
+      // Erros conhecidos (ex: truncamento por max_tokens) já vêm com mensagem
+      // acionável — propaga em vez de esconder atrás do genérico.
+      const msg = e instanceof Error ? e.message : '';
+      throw new Error(msg.includes('cortada por exceder') ? msg : 'Falha na análise. Tente novamente.');
     }
 
     const [mdRaw, metaRaw] = raw.split('---METADATA---');
@@ -406,11 +438,17 @@ if (!groqKey) {
 
     // Slug e escrita (só funciona localmente — Vercel tem filesystem read-only)
     let slug = existingSlug?.trim() || toSlug(`${extracted.empresa}-${extracted.cargo}`);
+    let duplicateSlugWarning: string | undefined;
     try {
       let filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
       if (!existingSlug && existsSync(filePath)) {
+        const originalSlug = slug;
         slug = `${slug}-${Date.now()}`;
         filePath = join(process.cwd(), 'Bench_job_applications', `${slug}.md`);
+        // Antes isso era silencioso e só descoberto meses depois (2x já) por
+        // leitura manual da pasta — agora sobe pro response pra aparecer na UI.
+        duplicateSlugWarning = `Já existe um arquivo "${originalSlug}.md" — esta vaga foi salva como "${slug}.md". Confira se não é duplicata antes de manter os dois.`;
+        console.warn(`[jobanalysis] Slug collision: "${originalSlug}" já existe, salvando como "${slug}"`);
       }
       writeFileSync(filePath, finalMd + '\n', 'utf-8');
     } catch {
@@ -433,6 +471,7 @@ if (!groqKey) {
       JSON.stringify({
         ok: true,
         slug,
+        duplicateSlugWarning,
         empresa:            extracted.empresa,
         produto:            extracted.produto,
         cargo:              extracted.cargo,
