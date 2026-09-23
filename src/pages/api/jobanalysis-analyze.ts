@@ -148,13 +148,21 @@ async function extractWithGroq(jd: string, apiKey: string): Promise<JdExtracted>
     try {
       const completion = await groq.chat.completions.create({
         model,
-        max_tokens: 1500,
+        max_tokens: 3000,
         temperature: 0.1,
         messages: [
           { role: 'system', content: GROQ_EXTRACT_PROMPT },
           { role: 'user', content: `Extraia os dados desta vaga:\n\n${jd}` },
         ],
       });
+
+      // JDs com bullets longos (parágrafo em vez de frase curta) podem estourar
+      // max_tokens e cortar o JSON no meio de uma string — isso vira um
+      // "Unterminated string" genérico e confuso no JSON.parse logo abaixo se
+      // não for pego aqui primeiro (caso real: vaga Starian, 2026-09).
+      if (completion.choices[0]?.finish_reason === 'length') {
+        throw new Error('Extração cortada por exceder o limite de tokens (JD com requisitos muito longos/detalhados).');
+      }
 
       const raw = completion.choices[0]?.message?.content ?? '';
       // Remove possíveis blocos de código do modelo
@@ -388,7 +396,8 @@ if (!groqKey) {
       extracted = await extractWithGroq(jd, groqKey);
     } catch (e) {
       console.error('[jobanalysis] Groq extraction failed:', e);
-      throw new Error('Falha na extração da JD. Verifique o formato e tente novamente.');
+      const msg = e instanceof Error ? e.message : '';
+      throw new Error(msg.includes('cortada por exceder') ? msg : 'Falha na extração da JD. Verifique o formato e tente novamente.');
     }
 
     if (!extracted.empresa || !extracted.cargo) {
@@ -461,7 +470,11 @@ if (!groqKey) {
       const m = gapsSection.match(pat);
       const raw = m?.[1]?.trim() ?? '';
       if (!raw || raw.toLowerCase().startsWith('nenhum')) return [];
-      return raw.split('\n').map((l) => l.replace(strip, '').trim()).filter(Boolean);
+      return raw.split('\n')
+        .map((l) => l.replace(strip, '').trim())
+        // Divisor de seção ("---") às vezes fica dentro do bloco capturado quando
+        // o Claude o insere antes do próximo "###" — não é item de lista.
+        .filter((l) => Boolean(l) && !/^-{3,}$/.test(l));
     }
     const bloqueadores = gapItems(/### 🔴 Bloqueadores[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\*\s*/);
     const ausentes     = gapItems(/### 🟡 Diferenciais ausentes[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^\d+\.\s*/);
