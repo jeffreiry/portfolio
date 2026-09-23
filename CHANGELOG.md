@@ -1,5 +1,25 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-21 a 23 (Skills do bench, fixes do pipeline Job Analysis, alinhamento currículo/LinkedIn)
+
+### Adicionado
+- **Classificação hard/soft skill nas tags de cada card** (`jobanalysis.astro`) — laranja para hard skill, azul para soft skill (classificação automática por palavra-chave), preenchida quando nota ≥2, contornada quando nota ≤1.
+- **Nova seção "Skills do bench"** — agrega os requisitos obrigatórios de todas as 57 vagas (recusadas inclusive) em 3 filtros (Todas/Que tenho/Que não tenho), usando uma taxonomia canônica de 38 competências (`canonicalizeSkill`) que reduz ~460 frases quase todas únicas a um vocabulário fixo estilo LinkedIn.
+- **`npm run audit:bench`** (`scripts/audit-bench.mjs`) — lista vagas sem JD arquivada ordenadas por score, priorizando as que têm score alto sem prova reconferível (padrão do caso Zuri).
+- **Reanálise de 8 vagas ativas do bench** (Verity, Gringo & Zapay, Serasa, Nacar, Arcotech, Méliuz, Certta, South System) após a reconstrução do case Arezzo — ganho médio de +8,4 p.p. Matriz FOFA e Gaps transversais do `_index.md` atualizados.
+
+### Corrigido
+- **`JOBANALYSIS_PASSWORD` e demais env vars não chegavam em `process.env` no dev local** — `astro.config.mjs` agora carrega o `.env` via `loadEnv()` do Vite.
+- **Colisão de slug em reanálise virava arquivo órfão silencioso** — agora retorna aviso na resposta da API e mostra no card.
+- **`max_tokens` do Claude (análise) e do Groq (extração de JD) truncavam JDs longas** sem erro claro — limites subidos (12000 e 3000) e truncamento detectado explicitamente antes do parse.
+- **Modelo da Groq descontinuado sem aviso quebrava a extração** — `extractWithGroq` agora tenta uma lista de modelos em ordem.
+- **Divisor de seção ("---") vazava pra dentro dos gaps** (bloqueadores/ausentes/boa aderência) — filtrado na extração.
+- **Case Hypera Pharma corrigido de "via ilegra" pra "via CWI"** (frontmatter PT+EN + prompt do job-analysis) — o vínculo com a ilegra só começa em 2024, o projeto Hypera é de 2023, no período coberto pela CWI.
+- **Currículo e PDFs (`Jeferson_Freiry_{PT,EN}.pdf`) atualizados pra inglês "Fluente"/"Fluent (Full professional proficiency)"** — reescrito direto no PDF via `pdf-lib`, sem arquivo-fonte editável no repo.
+- **Perfil do LinkedIn revisado** (fora do repo): headline, seção Sobre e descrições de Braskem/CWI reescritas com métricas reais, ~40 competências por cargo auditadas e reduzidas, 4 competências fixadas trocadas, 17 certificações antigas de Marketing podadas.
+
+---
+
 ## 2026-09-18 (redesign completo do case Arezzo&Co + migração pra brand-split)
 
 ### Adicionado
