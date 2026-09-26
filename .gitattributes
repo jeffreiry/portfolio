@@ -12,3 +12,6 @@
 *.woff2 binary
 *.otf binary
 *.ttf binary
+
+# Normaliza fim de linha entre Mac e Windows
+* text=auto
