@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import Groq from 'groq-sdk';
 import Anthropic from '@anthropic-ai/sdk';
-import { writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 function toSlug(text: string): string {
@@ -458,6 +458,13 @@ if (!groqKey) {
         // leitura manual da pasta — agora sobe pro response pra aparecer na UI.
         duplicateSlugWarning = `Já existe um arquivo "${originalSlug}.md" — esta vaga foi salva como "${slug}.md". Confira se não é duplicata antes de manter os dois.`;
         console.warn(`[jobanalysis] Slug collision: "${originalSlug}" já existe, salvando como "${slug}"`);
+      }
+      // Reanálise reescreve o arquivo inteiro — preserva o link da vaga (campo manual).
+      if (existingSlug && existsSync(filePath)) {
+        const prevLink = readFileSync(filePath, 'utf-8').match(/\*\*Link da vaga:\*\*[^\n]*/)?.[0];
+        if (prevLink && !finalMd.includes('**Link da vaga:**')) {
+          finalMd = finalMd.replace(/(\*\*Data da vaga:\*\*[^\n]*)/, (m) => `${m}\n${prevLink}`);
+        }
       }
       writeFileSync(filePath, finalMd + '\n', 'utf-8');
     } catch {

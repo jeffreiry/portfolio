@@ -6,10 +6,19 @@ import { join } from 'path';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { slug, candidatura, status } = await request.json();
+    const { slug, candidatura, status, link } = await request.json();
 
     if (!slug || !candidatura) {
       return new Response(JSON.stringify({ error: 'slug e candidatura são obrigatórios' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Link da vaga é opcional: string vazia remove o campo, ausente (undefined) não mexe.
+    const linkLimpo = typeof link === 'string' ? link.trim() : undefined;
+    if (linkLimpo && !/^https?:\/\/\S+$/i.test(linkLimpo)) {
+      return new Response(JSON.stringify({ error: 'Link inválido — use uma URL começando com http:// ou https://' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
@@ -56,6 +65,16 @@ export const POST: APIRoute = async ({ request }) => {
     // perde assim que o status avança de novo.
     if (status === 'Candidatura enviada' && !content.includes('**Candidatura enviada em:**')) {
       content = content.replace(/(\*\*Status:\*\* .+)/, `$1\n**Candidatura enviada em:** ${hoje}`);
+    }
+
+    if (linkLimpo !== undefined) {
+      if (linkLimpo === '') {
+        content = content.replace(/\n\*\*Link da vaga:\*\*[^\n]*/, '');
+      } else if (content.includes('**Link da vaga:**')) {
+        content = content.replace(/\*\*Link da vaga:\*\*[^\n]*/, () => `**Link da vaga:** ${linkLimpo}`);
+      } else {
+        content = content.replace(/(\*\*Data da vaga:\*\*[^\n]*)/, (m) => `${m}\n**Link da vaga:** ${linkLimpo}`);
+      }
     }
 
     writeFileSync(filePath, content, 'utf-8');

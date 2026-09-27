@@ -1,5 +1,18 @@
 # Changelog · Portfólio Jeferson Freiry
 
+## 2026-09-27 (Link da vaga no Job Analysis)
+
+### Adicionado
+- **Campo opcional `**Link da vaga:** URL`** nos arquivos de `Bench_job_applications/`, logo abaixo de `**Data da vaga:**`. Editável depois da criação da JD, no modal "Candidatura" do card (campo "Link da vaga", só rodando local).
+- **Link visível no card** — abaixo do cargo, sublinhado, com ícone e o domínio da vaga (ex: `gupy.io`); abre em nova aba. Aparece também em produção (é só leitura). Sem link, o bloco não é renderizado.
+- `jobanalysis-update.ts` aceita `link`: só `http(s)://`, string vazia remove o campo, ausente não mexe no existente.
+
+### Corrigido
+- **Reanálise (`jobanalysis-analyze.ts`) apagava o link** — como reescreve o arquivo inteiro, o link agora é lido do arquivo anterior e reinserido.
+- URL malformada no `.md` é descartada na leitura em vez de quebrar a renderização da página inteira.
+
+---
+
 ## 2026-09-21 a 23 (Skills do bench, fixes do pipeline Job Analysis, alinhamento currículo/LinkedIn)
 
 ### Adicionado

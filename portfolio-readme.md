@@ -69,7 +69,7 @@ Portfolio/
 │   │   │   ├── login.ts                  # POST — valida senha, define cookie
 │   │   │   ├── logout.ts                 # POST — apaga cookie
 │   │   │   ├── contact.ts                # POST — envia email via Resend
-│   │   │   ├── jobanalysis-update.ts     # POST — atualiza Candidatura/Status em arquivo .md
+│   │   │   ├── jobanalysis-update.ts     # POST — atualiza Candidatura/Status/Link da vaga em arquivo .md
 │   │   │   ├── jobanalysis-create.ts     # POST — cria novo arquivo .md de análise de vaga (manual)
 │   │   │   └── jobanalysis-analyze.ts    # POST — pipeline Groq (extração) + Claude Sonnet (análise) → gera .md completo
 │   │   ├── work/[slug].astro       # Página de case EN (SSR)

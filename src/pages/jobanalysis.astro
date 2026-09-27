@@ -30,6 +30,7 @@ interface VagaParsed {
   interpretacaoTexto: string;
   status: string;
   candidatura: string;
+  link: string;
   motivoRecusa: string;
   scoreAnterior: number | null;
   motivoMudancaScore: string;
@@ -173,6 +174,11 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
     const statusMatch = content.match(/\*\*Status:\*\*\s*(.+)/);
     const status = statusMatch?.[1]?.trim() ?? 'A avaliar';
 
+    const linkMatch = content.match(/\*\*Link da vaga:\*\*\s*(https?:\/\/\S+)/);
+    // Descarta URL malformada em vez de quebrar a página inteira na renderização do card.
+    let link = linkMatch?.[1] ?? '';
+    try { if (link) new URL(link); } catch { link = ''; }
+
     const candidaturaMatch = content.match(/\*\*Candidatura:\*\*\s*(.+)/);
     const candidatura =
       candidaturaMatch?.[1]?.trim() ??
@@ -272,6 +278,7 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       interpretacaoTexto,
       status,
       candidatura,
+      link,
       motivoRecusa,
       scoreAnterior,
       motivoMudancaScore,
@@ -785,6 +792,19 @@ for (const opt of statusOptions) {
                 {v.produto && <span class="text-sm" style="color: var(--color-faint);">· {v.produto}</span>}
               </div>
               <span class="text-sm" style="color: var(--color-muted);">{v.cargo}</span>
+              <div class="vaga-link-wrap" hidden={!v.link}>
+              <a
+                class="vaga-link inline-flex w-fit max-w-full items-center gap-1.5 text-[13px] font-medium underline underline-offset-2 transition-opacity hover:opacity-70"
+                style="color: var(--color-neutral-900); font-family: var(--font-body);"
+                href={v.link || undefined} target="_blank" rel="noopener noreferrer"
+                aria-label={`Abrir vaga de ${v.empresa} em nova aba`}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="shrink-0">
+                  <path d="M5 2.5H2.5v7h7V7M7 2.5h2.5V5M9.5 2.5L5.5 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="vaga-link-text truncate">{v.link ? new URL(v.link).hostname.replace(/^www\./, '') : ''}</span>
+              </a>
+              </div>
 
               <!-- Score bar -->
               <div class="flex items-center gap-3">
@@ -893,7 +913,7 @@ for (const opt of statusOptions) {
                     class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
                     style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
                     data-slug={v.slug} data-empresa={v.empresa} data-cargo={v.cargo}
-                    data-candidatura={v.candidatura} data-status={v.status}
+                    data-candidatura={v.candidatura} data-status={v.status} data-link={v.link}
                     aria-label={`Editar candidatura de ${v.empresa}`}
                   >
                     Candidatura: <span class="candidatura-label font-semibold">{v.candidatura}</span>
@@ -1162,6 +1182,13 @@ for (const opt of statusOptions) {
           style="border-color: var(--color-border); color: var(--color-muted); background: var(--color-surface);">
           {statusOptions.map((s) => <option value={s}>{s}</option>)}
         </select>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="modal-link" class="text-sm font-medium text-neutral-900">Link da vaga <span class="font-normal" style="color: var(--color-faint);">(opcional)</span></label>
+        <input type="url" id="modal-link" name="link" placeholder="https://…" autocomplete="off"
+          class="rounded-lg border px-3 py-2 text-sm w-full"
+          style="border-color: var(--color-border); color: var(--color-muted); background: var(--color-surface);" />
       </div>
 
       <div id="modal-candidatura-error" class="hidden text-sm text-red-600"></div>
@@ -1507,12 +1534,14 @@ for (const opt of statusOptions) {
   const modalEmpresaLabel = document.getElementById('modal-empresa-label') as HTMLElement;
   const modalSlugInput    = document.getElementById('modal-slug') as HTMLInputElement;
   const modalStatusSel    = document.getElementById('modal-status') as HTMLSelectElement;
+  const modalLinkInput    = document.getElementById('modal-link') as HTMLInputElement;
   const modalCandErr      = document.getElementById('modal-candidatura-error') as HTMLElement;
 
   function wireCandidaturaBtn(btn: HTMLButtonElement) {
     btn.addEventListener('click', () => {
-      const { slug, empresa, cargo, candidatura, status } = btn.dataset;
+      const { slug, empresa, cargo, candidatura, status, link } = btn.dataset;
       modalSlugInput.value = slug ?? '';
+      modalLinkInput.value = link ?? '';
       modalEmpresaLabel.textContent = `${empresa} · ${cargo}`;
       const radio = formCandidatura.querySelector<HTMLInputElement>(`input[value="${candidatura}"]`);
       if (radio) radio.checked = true;
@@ -1532,6 +1561,7 @@ for (const opt of statusOptions) {
     const slug        = data.get('slug') as string;
     const candidatura = data.get('candidatura') as string;
     const status      = data.get('status') as string;
+    const link        = ((data.get('link') as string) ?? '').trim();
 
     if (!candidatura) {
       modalCandErr.textContent = 'Selecione Sim ou Não.';
@@ -1547,7 +1577,7 @@ for (const opt of statusOptions) {
       const res = await fetch('/api/jobanalysis-update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, candidatura, status }),
+        body: JSON.stringify({ slug, candidatura, status, link }),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
 
@@ -1559,6 +1589,18 @@ for (const opt of statusOptions) {
         candLabel.textContent       = candidatura;
         candBtn.dataset.candidatura = candidatura;
         candBtn.dataset.status      = status;
+        candBtn.dataset.link        = link;
+        const linkEl = card.querySelector<HTMLAnchorElement>('.vaga-link');
+        const linkWrap = card.querySelector<HTMLElement>('.vaga-link-wrap');
+        if (linkEl && linkWrap) {
+          linkWrap.hidden = !link;
+          if (link) {
+            linkEl.href = link;
+            const t = linkEl.querySelector('.vaga-link-text');
+            if (t) t.textContent = new URL(link).hostname.replace(/^www\./, '');
+          }
+          else linkEl.removeAttribute('href');
+        }
         statusLbl.textContent       = status;
         card.dataset.candidatura    = candidatura; // mantém filtro atualizado
         card.dataset.status         = status; // mantém filtro atualizado
