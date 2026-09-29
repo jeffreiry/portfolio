@@ -1,0 +1,7 @@
+{
+  "maxAgeDays": null,
+  "seniorities": ["sr", "pleno", "junior", "null"],
+  "origins": ["br", "intl"],
+  "workplaces": ["remote", "hybrid", "onsite", "null"],
+  "excludeBancoDeTalentos": true
+}

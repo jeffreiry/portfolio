@@ -1,0 +1,14 @@
+[
+  { "name": "Anthropic", "ats": "greenhouse", "slug": "anthropic", "origin": "intl" },
+  { "name": "Stripe", "ats": "greenhouse", "slug": "stripe", "origin": "intl" },
+  { "name": "Brex", "ats": "greenhouse", "slug": "brex", "origin": "intl" },
+  { "name": "Mercury", "ats": "greenhouse", "slug": "mercury", "origin": "intl" },
+  { "name": "Chime", "ats": "greenhouse", "slug": "chime", "origin": "intl" },
+  { "name": "Affirm", "ats": "greenhouse", "slug": "affirm", "origin": "intl" },
+  { "name": "Gusto", "ats": "greenhouse", "slug": "gusto", "origin": "intl" },
+  { "name": "Scale AI", "ats": "greenhouse", "slug": "scaleai", "origin": "intl" },
+  { "name": "Discord", "ats": "greenhouse", "slug": "discord", "origin": "intl" },
+  { "name": "Coinbase", "ats": "greenhouse", "slug": "coinbase", "origin": "intl" },
+  { "name": "Vercel", "ats": "greenhouse", "slug": "vercel", "origin": "intl" },
+  { "name": "Webflow", "ats": "greenhouse", "slug": "webflow", "origin": "intl" }
+]

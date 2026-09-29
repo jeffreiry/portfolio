@@ -96,8 +96,80 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Sênior](gringo-zapay-product-designer-senior.md) | Gringo & Zapay | **75%** | Aderência parcial | Candidatura enviada | 2026-09-12 |
 | [UX/Product Designer](nacar-ux-product-designer.md) | Nacar · Healthcare CRM | **83%** | Alta aderência — submeter | Candidatura enviada | 2026-09-12 |
 | [Product Designer Pleno](verity-product-designer-pleno.md) | Verity | **69%** | Aderência parcial | A avaliar | 2026-09-16 |
+| [Product Designer Especialista I](grupo-boticario-product-designer-especialista-i.md) | Grupo Boticário · Produtos Digitais | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer - Sênior](fcamara-product-designer-senior-1790612656089.md) | FCamara · Área Pública | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer - Sênior](fcamara-product-designer-senior-1790613859065.md) | FCamara · Área Pública | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer](globo-product-designer.md) | Globo · Globo Ads | **69%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [UX/UI Designer](dentsu-world-services-dws-ux-ui-designer.md) | Dentsu World Services (DWS) | **64%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Ituber](itau-ituber.md) | Itaú · Ituber | **63%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Product Designer](autoforce-product-designer.md) | AutoForce · Product Design | **59%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer Pleno](gringo-zapay-product-designer-pleno.md) | Gringo & Zapay · Gringo & Zapay | **80%** | Alta aderência | A avaliar | 2026-09-28 |
+| [Product Designer Pleno](globo-product-designer-pleno.md) | Globo · Tecnologia | **81%** | Alta aderência | A avaliar | 2026-09-28 |
+| [UX Designer](grupo-sysmap-ux-designer.md) | Grupo SysMap | **53%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer Júnior](bemobi-product-designer-junior.md) | Bemobi | **74%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Product Designer Sênior](f360-product-designer-senior.md) | F360 | **57%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Coordenador(a) de Design de Produtos](afya-coordenador-a-de-design-de-produtos.md) | Afya · Produtos digitais | **63%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Designer UX/UI](coco-bambu-designer-ux-ui.md) | Coco Bambu · Laboratório de Tecnologia e Inovação | **78%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Product Designer](vivo-product-designer.md) | Vivo · Product Design | **56%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer Pleno](vivo-product-designer-pleno.md) | Vivo · Design de Produto | **60%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Designer de Produto](uol-conteudo-e-servicos-designer-de-produto.md) | UOL Conteúdo e Serviços | **58%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer](grupo-sysmap-product-designer.md) | Grupo SysMap | **64%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Product Designer](pipeimob-product-designer.md) | PipeImob | **63%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [UX Designer](hitss-ux-designer.md) | Hitss | **85%** | Alta aderência | A avaliar | 2026-09-28 |
+| [Product Designer](lobos-product-designer.md) | Lobos · Product Design | **72%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Designer de UX](mobthink-designer-de-ux.md) | Mobthink · Design | **79%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Designer UX/UI Pleno](tecsa-group-designer-ux-ui-pleno.md) | Tecsa® Group | **78%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [UX/UI Designer](stefanini-latam-ux-ui-designer.md) | Stefanini Latam · Diseño de experiencias digitales | **73%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Analista de UX Designer Pleno](gurpo-afeet-analista-de-ux-designer-pleno.md) | Gurpo Afeet · Digital Sales & Operations | **59%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Designer de Produtos](cna-idiomas-designer-de-produtos.md) | CNA Idiomas · CRM inteligente com IA para rede de franqueados | **69%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [ANALISTA DESIGNER UI/UX JR](rodobens-analista-designer-ui-ux-jr.md) | Rodobens · Marketing & Clientes | **74%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [DESIGNER UX/UI SR](globalweb-designer-ux-ui-sr.md) | Globalweb | **66%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [DESIGNER UX/UI PL](globalweb-designer-ux-ui-pl.md) | Globalweb | **66%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Designer UI/UX - Presencial](essentia-group-designer-ui-ux-presencial.md) | ESSENTIA GROUP | **77%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Banco de Talentos| Product Designer](new-vegas-banco-de-talentos-product-designer.md) | NEW VEGAS · Design | **64%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Banco de talentos - Designer UI/UX](instituto-de-pesquisas-eldorado-banco-de-talentos-designer-ui-ux.md) | Instituto de Pesquisas ELDORADO | **67%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Principal Product Designer, Spending](chime-principal-product-designer-spending.md) | Chime · mobile app | **54%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Staff Product Designer, Enterprise](scale-ai-staff-product-designer-enterprise.md) | Scale AI · AI for Enterprise Data | **74%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Senior Product Designer](affirm-senior-product-designer.md) | Affirm · Product team | **75%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Staff Product Designer, Agentic CMS](webflow-staff-product-designer-agentic-cms.md) | Webflow · Agentic CMS | **67%** | Aderência parcial | A avaliar | 2026-09-28 |
+| [Senior Brand Designer](brex-senior-brand-designer.md) | Brex · Design | **41%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Staff Product Designer](brex-staff-product-designer.md) | Brex · Design | **58%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Staff Product Designer](brex-staff-product-designer-1790649183002.md) | Brex · Design | **62%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Staff Product Designer](brex-staff-product-designer-1790649268410.md) | Brex · Design | **62%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Senior Brand Designer, Link](stripe-senior-brand-designer-link.md) | Stripe · Link | **40%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Product Designer, Consumer Revenue](discord-senior-product-designer-consumer-revenue.md) | Discord · Consumer Revenue | **62%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Design Systems, Staff Product Designer](gusto-design-systems-staff-product-designer.md) | Gusto · Workbench | **44%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Staff Product Designer, Data & AI](stripe-senior-staff-product-designer-data-ai.md) | Stripe · Data Products, Ecosystems and Startups | **53%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Staff Product Designer](scale-ai-staff-product-designer.md) | Scale AI · Public Sector | **56%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Product Designer - Cards & Credit](mercury-senior-product-designer-cards-credit.md) | Mercury · Cards & Credit | **81%** | Alta aderência | A avaliar | 2026-09-29 |
+| [Senior Product Designer, Coinbase One](coinbase-senior-product-designer-coinbase-one.md) | Coinbase · Coinbase One (CB1) membership product | **48%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Product Designer - Accounting Integrations](mercury-senior-product-designer-accounting-integrations.md) | Mercury · Accounting Integrations | **79%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Senior Product Designer, Growth](vercel-senior-product-designer-growth.md) | Vercel · Growth Design | **51%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Staff Product Designer, HR Experiences](gusto-staff-product-designer-hr-experiences.md) | Gusto · HR Experiences (HRX) | **67%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Staff Product Designer, AI](brex-staff-product-designer-ai.md) | Brex · AI team | **58%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Staff Product Designer, Risk](stripe-senior-staff-product-designer-risk.md) | Stripe · Risk | **55%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Product Designer, Developer Success](discord-senior-product-designer-developer-success.md) | Discord · Developer Platform | **53%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Staff Brand Designer](mercury-staff-brand-designer.md) | Mercury · Brand Studio | **43%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Staff Product Designer, Retirement](gusto-staff-product-designer-retirement.md) | Gusto · Retirement | **52%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Principal Product Designer, Lending](chime-principal-product-designer-lending.md) | Chime · Lending | **67%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Staff Product Designer, Link](stripe-staff-product-designer-link.md) | Stripe · Link | **52%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Senior Staff Product Designer, Finance](gusto-senior-staff-product-designer-finance.md) | Gusto · Finance (Money and Risk) | **41%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer, Safeguards](anthropic-product-designer-safeguards.md) | Anthropic · Design | **67%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Product Designer, Design Systems](stripe-product-designer-design-systems.md) | Stripe · Sail | **71%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Designer, Web Presence & Platform](stripe-designer-web-presence-platform.md) | Stripe · Web Presence & Platform (WPP) - Presence team | **56%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Visual Designer, Web](chime-visual-designer-web.md) | Chime · Chime.com web experience | **52%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer, Marketplace](vercel-product-designer-marketplace.md) | Vercel · Vercel Marketplace, Vercel Connect | **45%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer, Growth](discord-product-designer-growth.md) | Discord · Growth | **55%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Designer, Web Presence & Platform](stripe-designer-web-presence-platform-1790679438824.md) | Stripe · Web Presence & Platform (WPP) - Presence team | **53%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer - Dashboard](stripe-product-designer-dashboard.md) | Stripe · Dashboard | **85%** | Alta aderência | A avaliar | 2026-09-29 |
+| [Product Designer, Internal Tools](stripe-product-designer-internal-tools.md) | Stripe · Internal tooling (Developer Productivity & Collaboration) | **85%** | Alta aderência | A avaliar | 2026-09-29 |
+| [Product Designer, Risk](stripe-product-designer-risk.md) | Stripe · Risk | **67%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Product Designer, Terminal](stripe-product-designer-terminal.md) | Stripe · Terminal | **56%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer, Global](stripe-product-designer-global.md) | Stripe · Product Design | **69%** | Aderência parcial | A avaliar | 2026-09-29 |
+| [Product Designer, Stablecoin](stripe-product-designer-stablecoin.md) | Stripe · Money Management Design team | **55%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer, Global Public Sector](scale-ai-product-designer-global-public-sector.md) | Scale AI · Product Design | **42%** | Aderência baixa | A avaliar | 2026-09-29 |
 
-**Média geral: 59%** · Aderência baixa (56 vagas)
+**Média geral: 61%** · Aderência parcial (128 vagas)
 
 ---
 

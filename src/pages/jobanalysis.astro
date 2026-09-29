@@ -31,6 +31,8 @@ interface VagaParsed {
   status: string;
   candidatura: string;
   link: string;
+  origemAutomatica: string;
+  salario: string;
   motivoRecusa: string;
   scoreAnterior: number | null;
   motivoMudancaScore: string;
@@ -179,6 +181,15 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
     let link = linkMatch?.[1] ?? '';
     try { if (link) new URL(link); } catch { link = ''; }
 
+    // Preenchido só pela ingestão automática (scripts/ingest/analyze-job.ts) —
+    // fichas criadas pelo modal manual nunca têm esse campo, então o badge some
+    // sozinho pra elas (string vazia).
+    const origemMatch = content.match(/\*\*Origem:\*\*\s*(.+)/);
+    const origemAutomatica = origemMatch?.[1]?.trim() ?? '';
+
+    const salarioMatch = content.match(/\*\*Salário:\*\*\s*(.+)/);
+    const salario = salarioMatch?.[1]?.trim() ?? '';
+
     const candidaturaMatch = content.match(/\*\*Candidatura:\*\*\s*(.+)/);
     const candidatura =
       candidaturaMatch?.[1]?.trim() ??
@@ -279,6 +290,8 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       status,
       candidatura,
       link,
+      origemAutomatica,
+      salario,
       motivoRecusa,
       scoreAnterior,
       motivoMudancaScore,
@@ -412,6 +425,7 @@ try {
 const media = vagas.length ? Math.round(vagas.reduce((s, v) => s + v.score, 0) / vagas.length) : 0;
 const parciais = vagas.filter((v) => v.score >= 60).length;
 const maxScore = vagas.length ? Math.max(...vagas.map((v) => v.score)) : 0;
+const automaticoCount = vagas.filter((v) => v.origemAutomatica).length;
 
 const lastVagaDate = vagas
   .map((v) => v.data)
@@ -557,7 +571,7 @@ for (const opt of statusOptions) {
 
     <!-- Resumo (stats) -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
-      <div data-animate class="grid gap-4 grid-cols-2 lg:grid-cols-4">
+      <div data-animate class="grid gap-4 grid-cols-2 lg:grid-cols-5">
         <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
           <span id="stat-total" class="font-display text-3xl font-bold text-neutral-900">{vagas.length}</span>
           <span class="text-sm" style="color: var(--color-faint);">Vagas analisadas</span>
@@ -573,6 +587,10 @@ for (const opt of statusOptions) {
         <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
           <span id="stat-parciais" class="font-display text-3xl font-bold text-neutral-900">{parciais}</span>
           <span class="text-sm" style="color: var(--color-faint);">Em aderência parcial (≥60%)</span>
+        </div>
+        <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
+          <span id="stat-automatico" class="font-display text-3xl font-bold text-neutral-900">{automaticoCount}</span>
+          <span class="text-sm" style="color: var(--color-faint);">🤖 Via ingestão automática</span>
         </div>
       </div>
       <p data-animate class="pt-3 text-[13px]" style="color: var(--color-faint);">
@@ -619,7 +637,16 @@ for (const opt of statusOptions) {
     <!-- Fila de prioridade -->
     {filaPrioridade.length > 0 && (
       <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
-        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Prioridade agora</h2>
+        <div class="flex items-center justify-between gap-4 mb-1">
+          <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Prioridade agora</h2>
+          <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+            <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+              <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="expander-content open">
+          <div class="expander-inner">
         <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">As 5 vagas ainda em jogo com maior score — dentre elas, as paradas há mais tempo aparecem primeiro.</p>
         <div class="flex flex-col gap-3">
           {filaPrioridade.map((v, i) => {
@@ -638,12 +665,23 @@ for (const opt of statusOptions) {
             );
           })}
         </div>
+          </div>
+        </div>
       </section>
     )}
 
     <!-- Funil de candidaturas -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
-      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Funil de candidaturas</h2>
+      <div class="flex items-center justify-between gap-4 mb-1">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Funil de candidaturas</h2>
+        <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+          <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="expander-content open">
+        <div class="expander-inner">
       <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">
         Estágios ativos — {funilTerminal.recusado} recusada{funilTerminal.recusado === 1 ? '' : 's'} e {funilTerminal.arquivado} arquivada{funilTerminal.arquivado === 1 ? '' : 's'} ficam fora (estados terminais).
       </p>
@@ -662,11 +700,22 @@ for (const opt of statusOptions) {
           ));
         })()}
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- Board por status (kanban leve, só leitura) -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
-      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Board por status</h2>
+      <div class="flex items-center justify-between gap-4 mb-1">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Board por status</h2>
+        <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+          <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="expander-content open">
+        <div class="expander-inner">
       <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Visão geral do pipeline num olhar só — só leitura, edite pelo card na lista abaixo.</p>
       <div data-animate class="flex gap-4 overflow-x-auto pb-2">
         {funilAtivo.map((status) => {
@@ -695,6 +744,8 @@ for (const opt of statusOptions) {
           );
         })}
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- Ranking de vagas -->
@@ -702,16 +753,25 @@ for (const opt of statusOptions) {
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Ranking de aderência</h2>
         {canEdit && (
-          <button
-            id="btn-nova-vaga"
-            class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
-            style="background: var(--color-neutral-900); color: #fff; font-family: var(--font-body);"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            Nova Vaga
-          </button>
+          <div class="flex items-center gap-2">
+            <button
+              id="btn-ingest-config"
+              class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-opacity hover:opacity-70"
+              style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
+            >
+              ⚙️ Config. Ingestão
+            </button>
+            <button
+              id="btn-nova-vaga"
+              class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+              style="background: var(--color-neutral-900); color: #fff; font-family: var(--font-body);"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              Nova Vaga
+            </button>
+          </div>
         )}
       </div>
       <p data-animate class="text-sm mb-4" style="color: var(--color-faint);">Ordenado do maior para o menor score.</p>
@@ -769,6 +829,17 @@ for (const opt of statusOptions) {
             <option value="">Todos</option>
             {statusOptions.map((s) => <option value={s}>{s}</option>)}
           </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="filter-automatico"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            class="filter-pill"
+          >
+            🤖 Só automáticas
+          </button>
         </div>
       </div>
 
@@ -908,6 +979,11 @@ for (const opt of statusOptions) {
                     <span aria-hidden="true">📅</span> {formatDate(v.data)}
                   </span>
                 )}
+                {v.salario && (
+                  <span class="text-[12px]" style="color: var(--color-faint);">
+                    <span aria-hidden="true">💰</span> {v.salario}
+                  </span>
+                )}
                 {canEdit ? (
                   <button
                     class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
@@ -933,6 +1009,11 @@ for (const opt of statusOptions) {
                 <span class="status-label rounded-full border px-2.5 py-1 text-[11px]">
                   {v.status}
                 </span>
+                {v.origemAutomatica && (
+                  <span class="origem-badge rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);" title={v.origemAutomatica}>
+                    🤖 Automático
+                  </span>
+                )}
                 <div class="ml-auto flex items-center gap-1.5">
                   {canEdit && (
                     <button
@@ -1021,7 +1102,16 @@ for (const opt of statusOptions) {
     <!-- Skills do bench — agregado de todos os requisitos obrigatórios de todas as
          vagas, pra uso em currículo/candidatura fora daqui, não só leitura do bench -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
-      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Skills do bench</h2>
+      <div class="flex items-center justify-between gap-4 mb-1">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Skills do bench</h2>
+        <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+          <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="expander-content open">
+        <div class="expander-inner">
       <p data-animate class="text-sm mb-5" style="color: var(--color-muted);">
         Requisitos de todas as {vagas.length} vagas, agrupados num vocabulário fixo de competências (estilo LinkedIn) em vez do texto literal de cada JD. <b>Laranja</b> = hard skill, <b>azul</b> = soft skill. <b>Preenchido</b> = alguma análise já deu nota ≥2 pra essa competência (você comprova), <b>contornado</b> = gap em todas as vagas que a pediram. Frases de elegibilidade pura (anos de experiência, formação) ficam fora — não são competência.
       </p>
@@ -1048,11 +1138,22 @@ for (const opt of statusOptions) {
           );
         })}
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- Gaps transversais -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
-      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Gaps transversais</h2>
+      <div class="flex items-center justify-between gap-4 mb-1">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Gaps transversais</h2>
+        <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+          <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="expander-content open">
+        <div class="expander-inner">
       <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">Pendências presentes em todas as vagas — resolver aumenta o score de todas.</p>
 
       <div class="grid gap-4 sm:grid-cols-2">
@@ -1070,12 +1171,23 @@ for (const opt of statusOptions) {
           </div>
         ))}
       </div>
+        </div>
+      </div>
     </section>
 
     <!-- Matriz FOFA -->
     {fofa.length > 0 && (
       <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
-        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Matriz FOFA</h2>
+        <div class="flex items-center justify-between gap-4 mb-1">
+          <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Matriz FOFA</h2>
+          <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+            <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+              <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="expander-content open">
+          <div class="expander-inner">
         <p data-animate class="text-sm mb-7 max-w-[760px] leading-relaxed" style="color: var(--color-faint);">
           Síntese de padrões que só aparecem lendo o bench inteiro, não vaga a vaga. Diferente dos Gaps transversais, esta seção <strong>não é recalculada a cada análise nova</strong> — só é atualizada quando pedida explicitamente.
         </p>
@@ -1095,12 +1207,23 @@ for (const opt of statusOptions) {
             </div>
           ))}
         </div>
+          </div>
+        </div>
       </section>
     )}
 
     <!-- Metodologia -->
     <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
-      <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900 mb-1">Metodologia de score</h2>
+      <div class="flex items-center justify-between gap-4 mb-1">
+        <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Metodologia de score</h2>
+        <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
+          <svg class="expander-arrow" width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="expander-content open">
+        <div class="expander-inner">
       <p data-animate class="text-sm mb-7 max-w-[760px] leading-relaxed" style="color: var(--color-muted);">
         Scoring ponderado baseado em <strong style="color: var(--color-neutral-800);">Person-Job Fit</strong>
         (Kristof, 1996; Edwards, 1991) — avalia a congruência entre as demandas da vaga e as evidências do
@@ -1142,6 +1265,8 @@ for (const opt of statusOptions) {
               <span class="text-sm" style="color: var(--color-muted);">Desalinhamento estrutural — reavaliar.</span>
             </li>
           </ul>
+        </div>
+      </div>
         </div>
       </div>
     </section>
@@ -1192,6 +1317,92 @@ for (const opt of statusOptions) {
       </div>
 
       <div id="modal-candidatura-error" class="hidden text-sm text-red-600"></div>
+
+      <div class="flex gap-2 justify-end">
+        <button type="button" class="modal-close rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
+          style="border-color: var(--color-border); color: var(--color-muted);">Cancelar</button>
+        <button type="submit" class="rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: var(--color-neutral-900); color: #fff;">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal: Config. Ingestão -->
+  <dialog id="modal-ingest-config" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-md">
+    <form id="form-ingest-config" class="flex flex-col gap-4 p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 class="font-display text-lg font-semibold text-neutral-900">Config. Ingestão</h2>
+          <p class="text-sm mt-0.5" style="color: var(--color-faint);">Filtros aplicados pelo <code>orchestrate.ts</code> antes de gastar API analisando uma vaga.</p>
+        </div>
+        <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
+          aria-label="Fechar" style="color: var(--color-faint);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="ic-max-age" class="text-sm font-medium text-neutral-900">Idade máxima da vaga (dias)</label>
+        <input type="number" id="ic-max-age" name="maxAgeDays" min="1" placeholder="Sem limite"
+          class="ja-input rounded-lg border px-3 py-2 text-sm"
+          style="border-color: var(--color-border); color: var(--color-neutral-900); background: var(--color-surface);" />
+        <p class="text-[12px]" style="color: var(--color-faint);">Descarta vagas publicadas há mais tempo que isso. Vazio = sem limite.</p>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <span class="text-sm font-medium text-neutral-900">Senioridade</span>
+        <div class="flex flex-wrap gap-x-4 gap-y-1.5">
+          {[
+            { value: 'sr', label: 'Sênior' },
+            { value: 'pleno', label: 'Pleno' },
+            { value: 'junior', label: 'Júnior' },
+            { value: 'null', label: 'Não classificada' },
+          ].map(({ value, label }) => (
+            <label class="flex items-center gap-1.5 text-sm" style="color: var(--color-muted);">
+              <input type="checkbox" name="seniorities" value={value} class="ic-seniority" />
+              {label}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <span class="text-sm font-medium text-neutral-900">Origem</span>
+        <div class="flex flex-wrap gap-x-4 gap-y-1.5">
+          <label class="flex items-center gap-1.5 text-sm" style="color: var(--color-muted);">
+            <input type="checkbox" name="origins" value="br" class="ic-origin" /> Brasil
+          </label>
+          <label class="flex items-center gap-1.5 text-sm" style="color: var(--color-muted);">
+            <input type="checkbox" name="origins" value="intl" class="ic-origin" /> Internacional
+          </label>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <span class="text-sm font-medium text-neutral-900">Modalidade</span>
+        <div class="flex flex-wrap gap-x-4 gap-y-1.5">
+          {[
+            { value: 'remote', label: 'Remoto' },
+            { value: 'hybrid', label: 'Híbrido' },
+            { value: 'onsite', label: 'Presencial' },
+            { value: 'null', label: 'Não detectada' },
+          ].map(({ value, label }) => (
+            <label class="flex items-center gap-1.5 text-sm" style="color: var(--color-muted);">
+              <input type="checkbox" name="workplaces" value={value} class="ic-workplace" />
+              {label}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <label class="flex items-center gap-2 text-sm" style="color: var(--color-muted);">
+        <input type="checkbox" id="ic-exclude-banco" name="excludeBancoDeTalentos" />
+        Excluir vagas de "banco de talentos" (não são vagas abertas de verdade)
+      </label>
+
+      <div id="modal-ingest-config-error" class="hidden text-sm text-red-600"></div>
 
       <div class="flex gap-2 justify-end">
         <button type="button" class="modal-close rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
@@ -1419,8 +1630,8 @@ for (const opt of statusOptions) {
 
   // ---- Filtros ----
 
-  const activeFilters = { candidatura: '', banda: '', empresa: '', status: '' };
-  type FilterDim = 'candidatura' | 'banda' | 'empresa' | 'status';
+  const activeFilters = { candidatura: '', banda: '', empresa: '', status: '', automatico: false };
+  type FilterDim = 'candidatura' | 'banda' | 'empresa' | 'status' | 'automatico';
 
   // Verifica se um card atende aos filtros ativos, ignorando a dimensão `exclude`
   // — usado tanto para mostrar/ocultar cards quanto para recalcular as contagens
@@ -1436,6 +1647,9 @@ for (const opt of statusOptions) {
         return false; // arquivadas ficam ocultas por padrão
       }
     }
+    // Independente de data-attribute — reaproveita o badge que já existe no
+    // card (só fichas da ingestão automática têm ".origem-badge").
+    if (exclude !== 'automatico' && activeFilters.automatico && !card.querySelector('.origem-badge')) return false;
     return true;
   }
 
@@ -1525,6 +1739,14 @@ for (const opt of statusOptions) {
 
   statusSelect?.addEventListener('change', () => {
     setStatus(statusSelect.value);
+  });
+
+  const filterAutomatico = document.getElementById('filter-automatico') as HTMLButtonElement | null;
+  filterAutomatico?.addEventListener('click', () => {
+    activeFilters.automatico = !activeFilters.automatico;
+    filterAutomatico.classList.toggle('filter-pill--active', activeFilters.automatico);
+    filterAutomatico.setAttribute('aria-checked', String(activeFilters.automatico));
+    applyFilters();
   });
 
   // ---- Modal Candidatura ----
@@ -1618,6 +1840,68 @@ for (const opt of statusOptions) {
     }
   });
 
+  // ---- Modal Config. Ingestão ----
+
+  const modalIngestConfig  = document.getElementById('modal-ingest-config') as HTMLDialogElement;
+  const formIngestConfig   = document.getElementById('form-ingest-config') as HTMLFormElement;
+  const ingestConfigErr    = document.getElementById('modal-ingest-config-error') as HTMLElement;
+
+  document.getElementById('btn-ingest-config')?.addEventListener('click', async () => {
+    ingestConfigErr.classList.add('hidden');
+    try {
+      const res = await fetch('/api/ingest-config');
+      const config = await res.json();
+
+      (document.getElementById('ic-max-age') as HTMLInputElement).value = config.maxAgeDays ?? '';
+      formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-seniority').forEach((cb) => {
+        cb.checked = (config.seniorities ?? []).includes(cb.value);
+      });
+      formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-origin').forEach((cb) => {
+        cb.checked = (config.origins ?? []).includes(cb.value);
+      });
+      formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-workplace').forEach((cb) => {
+        cb.checked = (config.workplaces ?? []).includes(cb.value);
+      });
+      (document.getElementById('ic-exclude-banco') as HTMLInputElement).checked = Boolean(config.excludeBancoDeTalentos);
+
+      openModal(modalIngestConfig);
+    } catch {
+      ingestConfigErr.textContent = 'Não consegui carregar a configuração atual.';
+      ingestConfigErr.classList.remove('hidden');
+      openModal(modalIngestConfig);
+    }
+  });
+
+  formIngestConfig.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    ingestConfigErr.classList.add('hidden');
+
+    const maxAgeRaw = (document.getElementById('ic-max-age') as HTMLInputElement).value.trim();
+    const seniorities = Array.from(formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-seniority:checked')).map((cb) => cb.value);
+    const origins = Array.from(formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-origin:checked')).map((cb) => cb.value);
+    const workplaces = Array.from(formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-workplace:checked')).map((cb) => cb.value);
+    const excludeBancoDeTalentos = (document.getElementById('ic-exclude-banco') as HTMLInputElement).checked;
+
+    const btn = formIngestConfig.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/ingest-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ maxAgeDays: maxAgeRaw === '' ? null : maxAgeRaw, seniorities, origins, workplaces, excludeBancoDeTalentos }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? 'Erro desconhecido');
+      modalIngestConfig.close();
+    } catch (err) {
+      ingestConfigErr.textContent = err instanceof Error ? err.message : 'Erro ao salvar.';
+      ingestConfigErr.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
   // ---- Modal Nova Vaga / Reanalisar ----
 
   const modalNovaVaga     = document.getElementById('modal-nova-vaga') as HTMLDialogElement;
@@ -1655,7 +1939,7 @@ for (const opt of statusOptions) {
   function buildCardHTML(v: {
     slug: string; empresa: string; produto: string; cargo: string;
     score: number; interpretacao: string; interpretacaoTexto: string;
-    status: string; candidatura: string; motivoRecusa?: string; scoreAnterior?: number | null; motivoMudancaScore?: string;
+    status: string; candidatura: string; motivoRecusa?: string; scoreAnterior?: number | null; motivoMudancaScore?: string; origemAutomatica?: string; salario?: string;
     diasParado?: number; prazoCandidatura?: string; diasAteResposta?: number | null; data: string; tags: string[];
     bloqueadores?: string[]; ausentes?: string[]; boaAderencia?: string[];
     obtObrig?: number; maxObrigW?: number; obtPref?: number; maxPrefW?: number;
@@ -1692,6 +1976,9 @@ for (const opt of statusOptions) {
       : '';
     const dateHTML = dateFmt
       ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">📅</span> ${dateFmt}</span>`
+      : '';
+    const salaryHTML = v.salario
+      ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">💰</span> ${v.salario}</span>`
       : '';
 
     // Mesma lista de "funil ativo" do servidor (astro frontmatter) — duplicada aqui
@@ -1753,6 +2040,7 @@ for (const opt of statusOptions) {
         ${tagsHTML}
         <div class="flex flex-wrap items-center gap-2 pt-1">
           ${dateHTML}
+          ${salaryHTML}
           <button class="candidatura-btn rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
             style="border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-body);"
             data-slug="${v.slug}" data-empresa="${v.empresa}" data-cargo="${v.cargo}"
@@ -1762,6 +2050,7 @@ for (const opt of statusOptions) {
           </button>
           <span class="interp-chip rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: ${b.chipBg}; color: ${b.chipText};">${v.interpretacao}</span>
           <span class="status-label rounded-full border px-2.5 py-1 text-[11px]">${v.status}</span>
+          ${v.origemAutomatica ? `<span class="origem-badge rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);" title="${v.origemAutomatica}">🤖 Automático</span>` : ''}
           <div class="ml-auto flex items-center gap-1.5">
             <button class="edit-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
               style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
@@ -1843,6 +2132,9 @@ for (const opt of statusOptions) {
     const statMax     = el('stat-max');          if (statMax)     statMax.textContent     = `${maxScore}%`;
     const statParciais = el('stat-parciais');    if (statParciais) statParciais.textContent = String(parciais);
     const statInline  = el('stat-media-inline'); if (statInline)  statInline.textContent  = `${media}%`;
+
+    const automatico = document.querySelectorAll('.vaga-card .origem-badge').length;
+    const statAutomatico = el('stat-automatico'); if (statAutomatico) statAutomatico.textContent = String(automatico);
   }
 
   // ---- wireNewCard ----
@@ -1863,6 +2155,26 @@ for (const opt of statusOptions) {
   }
 
   wireExpanderBtns(document);
+
+  // Mesmo padrão do expander por vaga, aplicado em nível de seção (Prioridade
+  // agora, Funil, Board, Skills, Gaps transversais, Matriz FOFA, Metodologia)
+  // — todas começam abertas, só oferece recolher pra quem quiser uma leitura
+  // mais curta da página. "Ranking de aderência" fica de fora de propósito:
+  // é o conteúdo principal, com sua própria lógica de filtro viva.
+  document.querySelectorAll<HTMLButtonElement>('.section-expander-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const section = btn.closest('section');
+      const content = section?.querySelector<HTMLElement>(':scope > .expander-content');
+      if (!content) return;
+      const arrow  = btn.querySelector<SVGElement>('.expander-arrow') as HTMLElement;
+      const isOpen = content.classList.contains('open');
+      content.classList.toggle('open', !isOpen);
+      content.setAttribute('aria-hidden', String(isOpen));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Expandir seção' : 'Recolher seção');
+      arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+    });
+  });
 
   function wireNewCard(card: HTMLElement) {
     card.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach(wireCandidaturaBtn);
