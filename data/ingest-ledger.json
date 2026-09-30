@@ -498,5 +498,10 @@
     "status": "promovida",
     "score": 42,
     "evaluatedAt": "2026-09-29"
+  },
+  "https://job-boards.greenhouse.io/anthropic/jobs/5397654008": {
+    "status": "promovida",
+    "score": 67,
+    "evaluatedAt": "2026-09-30"
   }
 }

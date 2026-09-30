@@ -168,8 +168,9 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer, Global](stripe-product-designer-global.md) | Stripe · Product Design | **69%** | Aderência parcial | A avaliar | 2026-09-29 |
 | [Product Designer, Stablecoin](stripe-product-designer-stablecoin.md) | Stripe · Money Management Design team | **55%** | Aderência baixa | A avaliar | 2026-09-29 |
 | [Product Designer, Global Public Sector](scale-ai-product-designer-global-public-sector.md) | Scale AI · Product Design | **42%** | Aderência baixa | A avaliar | 2026-09-29 |
+| [Product Designer, Claude Developer Platform](anthropic-product-designer-claude-developer-platform.md) | Anthropic · Design | **67%** | Aderência parcial | A avaliar | 2026-09-30 |
 
-**Média geral: 61%** · Aderência parcial (128 vagas)
+**Média geral: 61%** · Aderência parcial (129 vagas)
 
 ---
 
