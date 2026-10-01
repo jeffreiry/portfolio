@@ -109,13 +109,16 @@ if (!groqKey) {
         console.warn(`[jobanalysis] Slug collision: "${originalSlug}" já existe, salvando como "${slug}"`);
       }
       // Reanálise reescreve o arquivo inteiro — preserva o link da vaga (campo
-      // manual), a marca de origem e o salário (quando a ficha veio da
-      // ingestão automática) — nenhum desses é algo que este fluxo gera.
+      // manual), a marca de origem, salário, localização e modalidade (quando
+      // a ficha veio da ingestão automática) — nenhum desses é algo que este
+      // fluxo gera.
       if (existingSlug && existsSync(filePath)) {
         const prevContent = readFileSync(filePath, 'utf-8');
-        const prevLink   = prevContent.match(/\*\*Link da vaga:\*\*[^\n]*/)?.[0];
-        const prevOrigem = prevContent.match(/\*\*Origem:\*\*[^\n]*/)?.[0];
-        const prevSalario = prevContent.match(/\*\*Salário:\*\*[^\n]*/)?.[0];
+        const prevLink       = prevContent.match(/\*\*Link da vaga:\*\*[^\n]*/)?.[0];
+        const prevOrigem     = prevContent.match(/\*\*Origem:\*\*[^\n]*/)?.[0];
+        const prevSalario    = prevContent.match(/\*\*Salário:\*\*[^\n]*/)?.[0];
+        const prevLocalizacao = prevContent.match(/\*\*Localização:\*\*[^\n]*/)?.[0];
+        const prevModalidade  = prevContent.match(/\*\*Modalidade:\*\*[^\n]*/)?.[0];
         if (prevLink && !finalMd.includes('**Link da vaga:**')) {
           finalMd = finalMd.replace(/(\*\*Data da vaga:\*\*[^\n]*)/, (m) => `${m}\n${prevLink}`);
         }
@@ -126,6 +129,11 @@ if (!groqKey) {
         if (prevSalario && !finalMd.includes('**Salário:**')) {
           const anchor = finalMd.includes('**Origem:**') ? /(\*\*Origem:\*\*[^\n]*)/ : /(\*\*Data da vaga:\*\*[^\n]*)/;
           finalMd = finalMd.replace(anchor, (m) => `${m}\n${prevSalario}`);
+        }
+        if ((prevLocalizacao || prevModalidade) && !finalMd.includes('**Localização:**')) {
+          const anchor = finalMd.includes('**Salário:**') ? /(\*\*Salário:\*\*[^\n]*)/ : /(\*\*Origem:\*\*[^\n]*)/;
+          const bits = [prevLocalizacao, prevModalidade].filter(Boolean).join('\n');
+          finalMd = finalMd.replace(anchor, (m) => `${m}\n${bits}`);
         }
       }
       writeFileSync(filePath, finalMd + '\n', 'utf-8');

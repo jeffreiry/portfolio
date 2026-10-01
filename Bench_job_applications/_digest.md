@@ -32,3 +32,11 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | UX Research Manager, Payments | Stripe | 9% | 2026-09-29 | [link](https://stripe.com/jobs/search?gh_jid=8165259) |
 | Product Designer, Growth | Stripe | 33% | 2026-09-29 | [link](https://stripe.com/jobs/search?gh_jid=8164479) |
 | Presentation Designer | Vercel | 27% | 2026-09-29 | [link](https://job-boards.greenhouse.io/vercel/jobs/6128387004) |
+| 11364 - Product Designer Sênior | Talent Group | 0% | 2026-09-30 | [link](https://www.adzuna.com.br/land/ad/5903288959?se=Ig10GBa98RG154oS1PvO9A&utm_medium=api&utm_source=36995d42&v=954890FDA71AF97CB0A3E10C5BA38071F439BABD) |
+| Senior Product Designer – Data & Analytics | Assigna | 0% | 2026-09-30 | [link](https://www.adzuna.com.br/land/ad/5903288663?se=Ig10GBa98RG154oS1PvO9A&utm_medium=api&utm_source=36995d42&v=2293A98D9F537184F4237587A1FED49A94192A42) |
+| Product Designer Pleno/Sênior | Platform Builders | 0% | 2026-09-30 | [link](https://www.adzuna.com.br/land/ad/5903288225?se=Ig10GBa98RG154oS1PvO9A&utm_medium=api&utm_source=36995d42&v=916A1249F069619B31884D68CA42192ADF4417A1) |
+| Lead Product Designer | Transcenda | 0% | 2026-09-30 | [link](https://www.adzuna.com.br/land/ad/5895170458?se=Ig10GBa98RG154oS1PvO9A&utm_medium=api&utm_source=36995d42&v=AC1995AC0A112782819489075B96BFF53CDAB437) |
+| Product Designer | Mirage | 0% | 2026-09-30 | [link](https://www.adzuna.com/land/ad/5904236432?se=7r-yGRa98RGwgaviw0YlUg&utm_medium=api&utm_source=36995d42&v=29E5412A8A8EA51AB067DB245D7865578A73255B) |
+| Product Design | Latent | 0% | 2026-09-30 | [link](https://www.adzuna.com/land/ad/5904215242?se=7r-yGRa98RGwgaviw0YlUg&utm_medium=api&utm_source=36995d42&v=29DBD6DA70E79AFB83FD966F08F83754DF20DFD9) |
+| Product Designer | Cerity Partners | 0% | 2026-09-30 | [link](https://www.adzuna.com/land/ad/5904211049?se=7r-yGRa98RGwgaviw0YlUg&utm_medium=api&utm_source=36995d42&v=A7A5AD1EC3558D8DDF7AF3241D5A29B81A4BDC33) |
+| Consultor(a) Product Designer com IA | B3 | 0% | 2026-09-30 | [link](https://www.adzuna.com.br/land/ad/5903288983?se=Ig10GBa98RG154oS1PvO9A&utm_medium=api&utm_source=36995d42&v=3DAB9D6B7916FD416FCCD96988A06F787429EC1E) |

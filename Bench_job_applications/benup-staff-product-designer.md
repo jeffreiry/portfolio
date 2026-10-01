@@ -5,9 +5,10 @@
 **Nível:** Staff (Sênior+)
 **Data da vaga:** 2026-09-27
 **Link da vaga:** https://benup.inhire.app/vagas/5fd021a8-5b4c-42a6-9c5e-6a6be2d509ad/staff-product-designer?source=linkedin
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-27
-**Candidatura:** Não
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-09-30
+**Status atualizado em:** 2026-09-30
+**Candidatura:** Sim
 
 ---
 

@@ -169,8 +169,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer, Stablecoin](stripe-product-designer-stablecoin.md) | Stripe · Money Management Design team | **55%** | Aderência baixa | A avaliar | 2026-09-29 |
 | [Product Designer, Global Public Sector](scale-ai-product-designer-global-public-sector.md) | Scale AI · Product Design | **42%** | Aderência baixa | A avaliar | 2026-09-29 |
 | [Product Designer, Claude Developer Platform](anthropic-product-designer-claude-developer-platform.md) | Anthropic · Design | **67%** | Aderência parcial | A avaliar | 2026-09-30 |
+| [Product Designer Pleno](arvore-product-designer-pleno.md) | Árvore | **51%** | Aderência baixa | A avaliar | 2026-09-30 |
+| [Analista de Design e Experiência II - Product Designer Pleno](encantech-lojas-renner-s-a-analista-de-design-e-experiencia-ii-product-designer-pleno.md) | Encantech - Lojas Renner S.A. · Produtos digitais | **71%** | Aderência parcial | A avaliar | 2026-09-30 |
+| [Designer UX/UI - Pleno](fcamara-designer-ux-ui-pleno.md) | Fcamara · Banco de Investimentos | **52%** | Aderência baixa | A avaliar | 2026-09-30 |
+| [Product Designer Sênior](contabilizei-product-designer-senior.md) | Contabilizei · Plataforma de contabilidade digital | **50%** | Aderência baixa | A avaliar | 2026-09-27 |
 
-**Média geral: 61%** · Aderência parcial (129 vagas)
+**Média geral: 60%** · Aderência parcial (133 vagas)
 
 ---
 

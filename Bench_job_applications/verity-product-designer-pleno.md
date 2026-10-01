@@ -4,8 +4,8 @@
 **Produto:** Consultoria de inovação e transformação digital (múltiplos produtos)
 **Nível:** Pleno
 **Data da vaga:** 2026-09-16
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-18
+**Status:** Arquivado
+**Status atualizado em:** 2026-09-27
 **Score anterior:** 58% (2026-09-16)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos de pesquisa e handoff reais e publicados (board de síntese, Canvas de Proposta de Valor, Jobs to be Done, documento de handoff, teste de usabilidade real no Maze) — os dois bloqueadores centrais desta vaga ("sem artefatos visuais publicados" e "handoff sem evidência explícita") deixaram de ser verdade. Notas ajustadas em 3 linhas (2 obrigatórios, 1 diferencial); nenhuma outra evidência do portfolio mudou.
 **Candidatura:** Não

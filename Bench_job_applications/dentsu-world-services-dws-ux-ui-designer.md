@@ -6,9 +6,10 @@
 **Data da vaga:** 2026-08-06
 **Link da vaga:** https://dwsbrazil.gupy.io/job/eyJqb2JJZCI6MTE5NzUzOTEsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-09-30
+**Status atualizado em:** 2026-09-30
+**Candidatura:** Sim
 
 ---
 

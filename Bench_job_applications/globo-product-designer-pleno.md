@@ -6,8 +6,8 @@
 **Data da vaga:** 2026-07-31
 **Link da vaga:** https://globo.gupy.io/job/eyJqb2JJZCI6MTE4OTE4NDUsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-01
 **Candidatura:** Não
 
 ---

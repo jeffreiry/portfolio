@@ -94,10 +94,15 @@ type RawJob = {
 4. ✅ `orchestrate.ts` com classificação/cota/dedup/gate/reconciliação.
 5. ✅ Analisador real + escrita de fichas + reconciliação do `_index.md` — testado com ~100 vagas reais (Gupy + Greenhouse).
 6. ✅ Adapters de **Adzuna** e **Remotive** — ambos com bugs reais corrigidos após teste (Remotive: parâmetro `search` da API grátis não filtra nada, filtro movido pro cliente; Adzuna: parâmetro `content_type` quebrava com 400).
-7. ✅ Workflow `.github/workflows/ingest.yml` — cron diário 08:00 BRT + `workflow_dispatch` manual. Falta configurar os GitHub Secrets (`GROQ_API_KEY`, `ANTHROPIC_API_KEY`, `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`) no repositório antes do primeiro run automático funcionar.
+7. ✅ Workflow `.github/workflows/ingest.yml` — cron diário 08:00 BRT + `workflow_dispatch` manual. GitHub Secrets configurados (`GROQ_API_KEY`, `ANTHROPIC_API_KEY`, `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`) — cron rodando em produção desde 2026-09-30.
 
 **Extras implementados fora da ordem original, a pedido do autor:**
 - Gate ajustado de 60% pra 40% (2026-09-28).
-- Campo `**Origem:**` nas fichas da ingestão + badge "🤖 Automático" e stat card na `/jobanalysis`.
-- Modal "Config. Ingestão" (`config/ingest-filters.json`) — idade máxima, senioridade, origem, exclusão de "banco de talentos".
+- Campo `**Origem:**` nas fichas da ingestão + badge "🤖 Automático" e stat card clicável (filtro) na `/jobanalysis`.
+- Modal "Config. Ingestão" (`config/ingest-filters.json`) — idade máxima, senioridade, origem, modalidade (remoto/híbrido/presencial), exclusão de "banco de talentos".
 - Bug crítico corrigido: nenhuma ficha da ingestão arquivava a JD original de verdade (Claude resumia/truncava) — `analyze-job.ts` agora sobrescreve a seção com o texto real do adapter.
+- Captura de **Salário** (quando a fonte expõe) e **Localização**/**Modalidade** nas fichas automáticas — a partir de 2026-09-30, não retroativo.
+- Filtro `excludeRestrictedRemote` (`scripts/ingest/filters.ts`) — descarta antes da análise vagas remotas cujo texto de localização indica país fora do BR/LATAM (ex: "Remote - USA"), que o autor não pode de fato candidatar. Heurística por regex (`REMOTE_ALLOWED_PATTERN`/`REMOTE_COUNTRY_PATTERN`), não garantida — pode deixar passar ou bloquear casos de borda.
+- `/jobanalysis` reestruturada como página "independente": menu próprio construído a partir das seções (não usa mais `Header.astro` do portfólio), expander/collapse em todas as seções, filtros e estado das seções persistidos em `localStorage` entre recarregamentos.
+- Dedup em lote (`dedupByUrl`) ganhou chave por conteúdo (fonte+empresa+cargo+início da descrição) — a Adzuna publica o mesmo anúncio uma vez por cidade/escritório, com URLs diferentes; sem isso a mesma vaga era analisada várias vezes na mesma rodada.
+- **Limitação conhecida, sem mitigação automática ainda:** dedup contra o bench só pega URL exata ou slug exato (`empresa-cargo`) — não detecta a mesma vaga publicada em fontes diferentes (LinkedIn colado à mão vs. Adzuna/Gupy automático) quando o slug gerado tem ordem de palavras diferente ("Product Designer Sênior" vs "Senior Product Designer") ou título reescrito. Caso real corrigido manualmente em 2026-10-01: `contabilizei-senior-product-designer.md` (Adzuna, JD truncada, score inflado 67%) duplicava `contabilizei-product-designer-senior.md` (LinkedIn, JD completa, 50%) — arquivo da Adzuna removido, `_index.md` corrigido. Mitigação discutida com o autor (comparar slug "canônico" com palavras ordenadas alfabeticamente, e/ou checar início do texto da JD contra o bench inteiro) — ainda não implementada, aguardando decisão de escopo.

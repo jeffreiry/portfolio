@@ -4,7 +4,10 @@
 **Produto:** Analytics & Commercial Intelligence
 **Nível:** Sênior
 **Data da vaga:** 2026-09-01
+**Link da vaga:** https://zallpy.inhire.app/vagas/2c937b6d-2444-4b7a-9b1e-77b7de775d72/senior-uiux-designer-a-analytics-and-commercial-intelligence?source=linkedin
 **Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-09-27
+**Status atualizado em:** 2026-09-27
 **Candidatura:** Sim
 
 ---

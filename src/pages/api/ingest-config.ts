@@ -58,6 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
       origins,
       workplaces,
       excludeBancoDeTalentos: Boolean(body.excludeBancoDeTalentos),
+      excludeRestrictedRemote: Boolean(body.excludeRestrictedRemote),
     };
 
     writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2) + '\n', 'utf-8');

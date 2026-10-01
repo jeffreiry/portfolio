@@ -11,6 +11,7 @@ export interface IngestFilters {
   origins: Array<'br' | 'intl'>;
   workplaces: WorkplaceFilter[];
   excludeBancoDeTalentos: boolean;
+  excludeRestrictedRemote: boolean;
 }
 
 // Default = comportamento de hoje (tudo passa, só descarta banco de talentos,
@@ -21,6 +22,7 @@ export const DEFAULT_INGEST_FILTERS: IngestFilters = {
   origins: ['br', 'intl'],
   workplaces: ['remote', 'hybrid', 'onsite', 'null'],
   excludeBancoDeTalentos: true,
+  excludeRestrictedRemote: true,
 };
 
 // Compartilhado entre orchestrate.ts (CLI) e a API route do modal de config
@@ -41,6 +43,23 @@ export function loadIngestFilters(path: string): IngestFilters {
 // gasta API e polui o board com um score que não representa uma candidatura
 // possível (casos reais vistos num teste: New Vegas, Instituto Eldorado).
 const BANCO_DE_TALENTOS_PATTERN = /banco de talentos|talent pool|talent bank/i;
+
+// "Remote" sozinho não diz nada sobre elegibilidade — o problema real é
+// "Remote - USA"/"Remote UK"/"Remote from the US": remoto de verdade, mas
+// restrito a quem já tem autorização de trabalho naquele país específico.
+// Achado real (2026-09-30): vagas assim passavam no filtro de modalidade
+// (contêm "remote") mas são inviáveis pra candidatura do Brasil. Heurística
+// de texto — pode ter falso positivo/negativo, por isso é configurável.
+const REMOTE_ALLOWED_PATTERN = /brazil|brasil|latam|latin america|am[ée]rica latina|worldwide|global|anywhere/i;
+const REMOTE_COUNTRY_PATTERN = /\b(usa?|u\.s\.a?\.?|united states|uk|u\.k\.|united kingdom|canada|australia|germany|france|netherlands|spain|portugal|ireland|poland|japan|singapore|india|mexico|argentina|chile|colombia|emea|apac)\b/i;
+
+export function isRemoteRestrictedToOtherCountry(job: RawJob): boolean {
+  if (job.workplace !== 'remote') return false;
+  const text = job.location ?? '';
+  if (!text) return false;
+  if (REMOTE_ALLOWED_PATTERN.test(text)) return false;
+  return REMOTE_COUNTRY_PATTERN.test(text);
+}
 
 export interface FilterSkip {
   job: RawJob;
@@ -71,6 +90,10 @@ export function applyPreFilters(jobs: RawJob[], filters: IngestFilters): { survi
     }
     if (!filters.workplaces.includes((job.workplace ?? 'null') as WorkplaceFilter)) {
       skipped.push({ job, reason: `modalidade "${job.workplace ?? 'não detectada'}" fora do filtro` });
+      continue;
+    }
+    if (filters.excludeRestrictedRemote && isRemoteRestrictedToOtherCountry(job)) {
+      skipped.push({ job, reason: `remoto restrito a outro país ("${job.location}")` });
       continue;
     }
     survivors.push(job);

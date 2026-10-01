@@ -62,12 +62,25 @@ export function approximateSlug(job: RawJob): string {
 // Sem isso, a mesma URL entraria duas vezes na fila e seria analisada (e
 // gastaria API) duas vezes na MESMA rodada, antes do bench/ledger existirem
 // pra pegar a duplicata.
+//
+// Além da URL exata, também dedupa por (empresa+cargo+início da descrição) —
+// achado real (2026-09-30): a Adzuna publica o MESMO anúncio uma vez por
+// escritório/cidade, cada um com um ID/URL de anúncio diferente (5 URLs
+// distintas pra "Cerity Partners · Product Designer", texto idêntico). Sem
+// isso, a mesma vaga seria analisada várias vezes na mesma rodada. O início
+// da descrição entra na chave pra não fundir por engano duas vagas
+// genuinamente diferentes que só coincidem em empresa+título (caso real:
+// FCamara posta "Product Designer Sênior" pra clientes diferentes).
 export function dedupByUrl(jobs: RawJob[]): RawJob[] {
-  const seen = new Set<string>();
+  const seenUrls = new Set<string>();
+  const seenContent = new Set<string>();
   const result: RawJob[] = [];
   for (const job of jobs) {
-    if (seen.has(job.url)) continue;
-    seen.add(job.url);
+    if (seenUrls.has(job.url)) continue;
+    const contentKey = `${job.source}|${job.company.toLowerCase()}|${job.title.toLowerCase()}|${job.description.slice(0, 150).toLowerCase()}`;
+    if (seenContent.has(contentKey)) continue;
+    seenUrls.add(job.url);
+    seenContent.add(contentKey);
     result.push(job);
   }
   return result;

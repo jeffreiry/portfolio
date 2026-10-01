@@ -6,8 +6,8 @@
 **Data da vaga:** 2026-05-29
 **Link da vaga:** https://stripe.com/jobs/search?gh_jid=7954207
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-29
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-01
 **Candidatura:** Não
 
 ---

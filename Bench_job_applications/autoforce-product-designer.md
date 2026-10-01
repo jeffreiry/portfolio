@@ -6,8 +6,8 @@
 **Data da vaga:** 2026-09-15
 **Link da vaga:** https://autoforce.gupy.io/job/eyJqb2JJZCI6MTI0Nzk4MTAsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
+**Status:** Arquivado
+**Status atualizado em:** 2026-09-30
 **Candidatura:** Não
 
 ---

@@ -5,9 +5,10 @@
 **Nível:** II (Pleno–Sênior)
 **Data da vaga:** 2026-09-27
 **Link da vaga:** https://job-boards.greenhouse.io/arcoeducacao/jobs/6127964004
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-27
-**Candidatura:** Não
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-09-30
+**Status atualizado em:** 2026-09-30
+**Candidatura:** Sim
 
 ---
 

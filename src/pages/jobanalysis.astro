@@ -2,8 +2,8 @@
 export const prerender = false;
 
 import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ThemeToggle from '../components/ThemeToggle.svelte';
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
@@ -547,7 +547,41 @@ for (const opt of statusOptions) {
   lang="pt"
   noindex={true}
 >
-  <Header lang="pt" currentPath="/jobanalysis" />
+  <!-- Nav própria do Job Analysis — independente do Header do portfólio, âncoras
+       pras seções da própria página em vez dos links do site (Sobre/Cases/Contato).
+       Escopo intencional: só esta página, não mexe em Header.astro. -->
+  <header id="ja-header" class="sticky top-0 z-50 w-full" style="backdrop-filter: blur(12px); background: color-mix(in srgb, var(--color-page-bg, var(--bg-page)) 88%, transparent); border-bottom: 1px solid var(--color-border);">
+    <div class="mx-auto flex max-w-[1200px] items-center gap-4 px-6 py-3">
+      <a href="/pt/" class="shrink-0 text-[13px] font-medium transition-opacity hover:opacity-70" style="color: var(--color-faint); font-family: var(--font-body);">
+        ← Portfólio
+      </a>
+      <span class="shrink-0 hidden sm:inline text-[13px]" style="color: var(--color-border);">|</span>
+      <span class="shrink-0 hidden sm:inline font-display text-[15px] font-semibold text-neutral-900">Job Analysis</span>
+      <nav class="flex-1 min-w-0 overflow-x-auto" aria-label="Seções do Job Analysis">
+        <div class="flex items-center gap-1 w-max">
+          {[
+            { href: '#resumo', label: 'Resumo' },
+            { href: '#prioridade', label: 'Prioridade' },
+            { href: '#funil', label: 'Funil' },
+            { href: '#board', label: 'Board' },
+            { href: '#ranking', label: 'Vagas' },
+            { href: '#skills', label: 'Skills' },
+            { href: '#gaps', label: 'Gaps' },
+            { href: '#fofa', label: 'FOFA' },
+            { href: '#metodologia', label: 'Metodologia' },
+          ].map(({ href, label }) => (
+            <a href={href} class="ja-nav-link shrink-0 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors"
+              style="color: var(--color-muted); font-family: var(--font-body);">
+              {label}
+            </a>
+          ))}
+        </div>
+      </nav>
+      <div class="shrink-0 flex items-center justify-center rounded-full border p-1" style="border-color: var(--color-border);">
+        <ThemeToggle client:load />
+      </div>
+    </div>
+  </header>
 
   <main id="main-content" class="pb-24">
 
@@ -570,7 +604,7 @@ for (const opt of statusOptions) {
     </section>
 
     <!-- Resumo (stats) -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-10">
+    <section id="resumo" class="mx-auto w-full max-w-[1200px] px-6 pt-10">
       <div data-animate class="grid gap-4 grid-cols-2 lg:grid-cols-5">
         <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
           <span id="stat-total" class="font-display text-3xl font-bold text-neutral-900">{vagas.length}</span>
@@ -588,10 +622,10 @@ for (const opt of statusOptions) {
           <span id="stat-parciais" class="font-display text-3xl font-bold text-neutral-900">{parciais}</span>
           <span class="text-sm" style="color: var(--color-faint);">Em aderência parcial (≥60%)</span>
         </div>
-        <div class="stat-card flex flex-col gap-1 rounded-2xl p-5">
+        <button type="button" id="stat-automatico-card" class="stat-card stat-filter-card flex flex-col gap-1 rounded-2xl p-5 text-left" aria-pressed="false" aria-label="Filtrar: mostrar só vagas da ingestão automática">
           <span id="stat-automatico" class="font-display text-3xl font-bold text-neutral-900">{automaticoCount}</span>
           <span class="text-sm" style="color: var(--color-faint);">🤖 Via ingestão automática</span>
-        </div>
+        </button>
       </div>
       <p data-animate class="pt-3 text-[13px]" style="color: var(--color-faint);">
         {lastVagaDate ? `Atualizado em ${formatDate(lastVagaDate)}` : 'Data não disponível'} · Média geral <strong id="stat-media-inline">{media}%</strong> — {mediaLabel(media)}.
@@ -636,7 +670,7 @@ for (const opt of statusOptions) {
 
     <!-- Fila de prioridade -->
     {filaPrioridade.length > 0 && (
-      <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+      <section id="prioridade" class="mx-auto w-full max-w-[1200px] px-6 pt-16">
         <div class="flex items-center justify-between gap-4 mb-1">
           <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Prioridade agora</h2>
           <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -671,7 +705,7 @@ for (const opt of statusOptions) {
     )}
 
     <!-- Funil de candidaturas -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+    <section id="funil" class="mx-auto w-full max-w-[1200px] px-6 pt-16">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Funil de candidaturas</h2>
         <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -705,7 +739,7 @@ for (const opt of statusOptions) {
     </section>
 
     <!-- Board por status (kanban leve, só leitura) -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+    <section id="board" class="mx-auto w-full max-w-[1200px] px-6 pt-16">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Board por status</h2>
         <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -749,7 +783,7 @@ for (const opt of statusOptions) {
     </section>
 
     <!-- Ranking de vagas -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-16">
+    <section id="ranking" class="mx-auto w-full max-w-[1200px] px-6 pt-16">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Ranking de aderência</h2>
         {canEdit && (
@@ -829,17 +863,6 @@ for (const opt of statusOptions) {
             <option value="">Todos</option>
             {statusOptions.map((s) => <option value={s}>{s}</option>)}
           </select>
-        </div>
-        <div class="flex items-center gap-2">
-          <button
-            id="filter-automatico"
-            type="button"
-            role="switch"
-            aria-checked="false"
-            class="filter-pill"
-          >
-            🤖 Só automáticas
-          </button>
         </div>
       </div>
 
@@ -1101,7 +1124,7 @@ for (const opt of statusOptions) {
 
     <!-- Skills do bench — agregado de todos os requisitos obrigatórios de todas as
          vagas, pra uso em currículo/candidatura fora daqui, não só leitura do bench -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+    <section id="skills" class="mx-auto w-full max-w-[1200px] px-6 pt-20">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Skills do bench</h2>
         <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -1143,7 +1166,7 @@ for (const opt of statusOptions) {
     </section>
 
     <!-- Gaps transversais -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+    <section id="gaps" class="mx-auto w-full max-w-[1200px] px-6 pt-20">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Gaps transversais</h2>
         <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -1177,7 +1200,7 @@ for (const opt of statusOptions) {
 
     <!-- Matriz FOFA -->
     {fofa.length > 0 && (
-      <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+      <section id="fofa" class="mx-auto w-full max-w-[1200px] px-6 pt-20">
         <div class="flex items-center justify-between gap-4 mb-1">
           <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Matriz FOFA</h2>
           <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -1213,7 +1236,7 @@ for (const opt of statusOptions) {
     )}
 
     <!-- Metodologia -->
-    <section class="mx-auto w-full max-w-[1200px] px-6 pt-20">
+    <section id="metodologia" class="mx-auto w-full max-w-[1200px] px-6 pt-20">
       <div class="flex items-center justify-between gap-4 mb-1">
         <h2 data-animate class="font-display text-[26px] font-semibold text-neutral-900">Metodologia de score</h2>
         <button type="button" class="section-expander-btn shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity" style="color: var(--color-faint);" aria-expanded="true" aria-label="Recolher seção">
@@ -1402,6 +1425,11 @@ for (const opt of statusOptions) {
         Excluir vagas de "banco de talentos" (não são vagas abertas de verdade)
       </label>
 
+      <label class="flex items-start gap-2 text-sm" style="color: var(--color-muted);">
+        <input type="checkbox" id="ic-exclude-remote-restrito" name="excludeRestrictedRemote" class="mt-0.5" />
+        <span>Excluir "remoto restrito a outro país" (ex.: "Remote - USA") <span class="block text-[11px]" style="color: var(--color-faint);">Heurística de texto — pode ter falso positivo/negativo.</span></span>
+      </label>
+
       <div id="modal-ingest-config-error" class="hidden text-sm text-red-600"></div>
 
       <div class="flex gap-2 justify-end">
@@ -1453,6 +1481,20 @@ for (const opt of statusOptions) {
 </Base>
 
 <style>
+  /* Nav própria do Job Analysis */
+  .ja-nav-link:hover {
+    color: var(--color-neutral-900) !important;
+    background: var(--color-surface-2);
+  }
+  .ja-nav-link:focus-visible {
+    outline: 2px solid var(--color-neutral-900);
+    outline-offset: 2px;
+  }
+  /* Evita que a âncora fique escondida atrás do header sticky */
+  section[id] {
+    scroll-margin-top: 76px;
+  }
+
   .vaga-card,
   section .rounded-2xl.border {
     border-color: var(--color-border);
@@ -1628,10 +1670,38 @@ for (const opt of statusOptions) {
     });
   });
 
+  // ---- Persistência local (filtros + seções recolhidas) ----
+  //
+  // Conveniência por navegador, não sincroniza entre dispositivos nem é lida
+  // pelo servidor — só evita perder o filtro/estado ao recarregar a página
+  // (ex.: depois de atualizar status de várias vagas em sequência). Toda
+  // leitura/escrita embrulhada em try/catch: aba anônima ou storage bloqueado
+  // não pode quebrar a página, só deixa de lembrar o estado.
+  const LS_FILTERS_KEY  = 'jobanalysis:filters';
+  const LS_SECTIONS_KEY = 'jobanalysis:sections';
+
+  function lsGet<T>(key: string): T | null {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) as T : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function lsSet(key: string, value: unknown): void {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+      // storage bloqueado/cheio — segue sem persistir, não é crítico
+    }
+  }
+
   // ---- Filtros ----
 
   const activeFilters = { candidatura: '', banda: '', empresa: '', status: '', automatico: false };
   type FilterDim = 'candidatura' | 'banda' | 'empresa' | 'status' | 'automatico';
+  function saveFilters() { lsSet(LS_FILTERS_KEY, activeFilters); }
 
   // Verifica se um card atende aos filtros ativos, ignorando a dimensão `exclude`
   // — usado tanto para mostrar/ocultar cards quanto para recalcular as contagens
@@ -1690,6 +1760,7 @@ for (const opt of statusOptions) {
       c.classList.toggle('stat-filter-card--active', active);
       c.setAttribute('aria-pressed', String(active));
     });
+    saveFilters();
     applyFilters();
   }
 
@@ -1701,6 +1772,7 @@ for (const opt of statusOptions) {
       c.classList.toggle('stat-filter-card--active', active);
       c.setAttribute('aria-pressed', String(active));
     });
+    saveFilters();
     applyFilters();
   }
 
@@ -1716,6 +1788,7 @@ for (const opt of statusOptions) {
       document.querySelectorAll<HTMLButtonElement>(`.filter-pill[data-filter="${filterType}"]`).forEach((p) => {
         p.classList.toggle('filter-pill--active', p.dataset.value === value);
       });
+      saveFilters();
       applyFilters();
     });
   });
@@ -1734,6 +1807,7 @@ for (const opt of statusOptions) {
   const searchInput = document.getElementById('search-empresa') as HTMLInputElement | null;
   searchInput?.addEventListener('input', () => {
     activeFilters.empresa = searchInput.value.trim().toLowerCase();
+    saveFilters();
     applyFilters();
   });
 
@@ -1741,13 +1815,49 @@ for (const opt of statusOptions) {
     setStatus(statusSelect.value);
   });
 
-  const filterAutomatico = document.getElementById('filter-automatico') as HTMLButtonElement | null;
-  filterAutomatico?.addEventListener('click', () => {
+  const statAutomaticoCard = document.getElementById('stat-automatico-card') as HTMLButtonElement | null;
+  statAutomaticoCard?.addEventListener('click', () => {
     activeFilters.automatico = !activeFilters.automatico;
-    filterAutomatico.classList.toggle('filter-pill--active', activeFilters.automatico);
-    filterAutomatico.setAttribute('aria-checked', String(activeFilters.automatico));
+    statAutomaticoCard.classList.toggle('stat-filter-card--active', activeFilters.automatico);
+    statAutomaticoCard.setAttribute('aria-pressed', String(activeFilters.automatico));
+    saveFilters();
     applyFilters();
   });
+
+  // Restaura filtros salvos (se houver) e reflete no estado visual de cada
+  // controle antes de aplicar — roda uma vez, depois que todos os wirings
+  // acima já existem.
+  (function restoreFilters() {
+    const saved = lsGet<typeof activeFilters>(LS_FILTERS_KEY);
+    if (!saved) return;
+    Object.assign(activeFilters, saved);
+
+    if (searchInput) searchInput.value = activeFilters.empresa;
+    if (statusSelect) statusSelect.value = activeFilters.status;
+
+    document.querySelectorAll<HTMLButtonElement>('.filter-pill[data-filter="candidatura"]').forEach((p) => {
+      p.classList.toggle('filter-pill--active', p.dataset.value === activeFilters.candidatura);
+    });
+    document.querySelectorAll<HTMLButtonElement>('.filter-pill[data-filter="banda"]').forEach((p) => {
+      p.classList.toggle('filter-pill--active', p.dataset.value === activeFilters.banda);
+    });
+    document.querySelectorAll<HTMLButtonElement>('.stat-filter-card[data-filter="candidatura"]').forEach((c) => {
+      const active = c.dataset.value === activeFilters.candidatura;
+      c.classList.toggle('stat-filter-card--active', active);
+      c.setAttribute('aria-pressed', String(active));
+    });
+    document.querySelectorAll<HTMLButtonElement>('.stat-filter-card[data-filter="status"]').forEach((c) => {
+      const active = c.dataset.value === activeFilters.status;
+      c.classList.toggle('stat-filter-card--active', active);
+      c.setAttribute('aria-pressed', String(active));
+    });
+    if (statAutomaticoCard) {
+      statAutomaticoCard.classList.toggle('stat-filter-card--active', activeFilters.automatico);
+      statAutomaticoCard.setAttribute('aria-pressed', String(activeFilters.automatico));
+    }
+
+    applyFilters();
+  })();
 
   // ---- Modal Candidatura ----
 
@@ -1863,6 +1973,7 @@ for (const opt of statusOptions) {
         cb.checked = (config.workplaces ?? []).includes(cb.value);
       });
       (document.getElementById('ic-exclude-banco') as HTMLInputElement).checked = Boolean(config.excludeBancoDeTalentos);
+      (document.getElementById('ic-exclude-remote-restrito') as HTMLInputElement).checked = Boolean(config.excludeRestrictedRemote);
 
       openModal(modalIngestConfig);
     } catch {
@@ -1881,6 +1992,7 @@ for (const opt of statusOptions) {
     const origins = Array.from(formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-origin:checked')).map((cb) => cb.value);
     const workplaces = Array.from(formIngestConfig.querySelectorAll<HTMLInputElement>('.ic-workplace:checked')).map((cb) => cb.value);
     const excludeBancoDeTalentos = (document.getElementById('ic-exclude-banco') as HTMLInputElement).checked;
+    const excludeRestrictedRemote = (document.getElementById('ic-exclude-remote-restrito') as HTMLInputElement).checked;
 
     const btn = formIngestConfig.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     btn.disabled = true;
@@ -1889,7 +2001,7 @@ for (const opt of statusOptions) {
       const res = await fetch('/api/ingest-config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ maxAgeDays: maxAgeRaw === '' ? null : maxAgeRaw, seniorities, origins, workplaces, excludeBancoDeTalentos }),
+        body: JSON.stringify({ maxAgeDays: maxAgeRaw === '' ? null : maxAgeRaw, seniorities, origins, workplaces, excludeBancoDeTalentos, excludeRestrictedRemote }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? 'Erro desconhecido');
@@ -2160,19 +2272,41 @@ for (const opt of statusOptions) {
   // agora, Funil, Board, Skills, Gaps transversais, Matriz FOFA, Metodologia)
   // — todas começam abertas, só oferece recolher pra quem quiser uma leitura
   // mais curta da página. "Ranking de aderência" fica de fora de propósito:
-  // é o conteúdo principal, com sua própria lógica de filtro viva.
+  // é o conteúdo principal, com sua própria lógica de filtro viva. Estado
+  // (aberta/fechada) persiste em localStorage por seção (id da <section>).
+  function setSectionOpen(btn: HTMLButtonElement, open: boolean) {
+    const section = btn.closest('section');
+    const content = section?.querySelector<HTMLElement>(':scope > .expander-content');
+    if (!content) return;
+    const arrow = btn.querySelector<SVGElement>('.expander-arrow') as HTMLElement;
+    content.classList.toggle('open', open);
+    content.setAttribute('aria-hidden', String(!open));
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Recolher seção' : 'Expandir seção');
+    arrow.style.transform = open ? 'rotate(180deg)' : '';
+  }
+
+  const savedSections = lsGet<Record<string, boolean>>(LS_SECTIONS_KEY) ?? {};
+
   document.querySelectorAll<HTMLButtonElement>('.section-expander-btn').forEach((btn) => {
+    const sectionId = btn.closest('section')?.id;
+
+    // Restaura o estado salvo antes de qualquer clique — sem id salvo, mantém
+    // como veio do servidor (aberta).
+    if (sectionId && sectionId in savedSections) {
+      setSectionOpen(btn, savedSections[sectionId]);
+    }
+
     btn.addEventListener('click', () => {
       const section = btn.closest('section');
       const content = section?.querySelector<HTMLElement>(':scope > .expander-content');
       if (!content) return;
-      const arrow  = btn.querySelector<SVGElement>('.expander-arrow') as HTMLElement;
       const isOpen = content.classList.contains('open');
-      content.classList.toggle('open', !isOpen);
-      content.setAttribute('aria-hidden', String(isOpen));
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      btn.setAttribute('aria-label', isOpen ? 'Expandir seção' : 'Recolher seção');
-      arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+      setSectionOpen(btn, !isOpen);
+      if (sectionId) {
+        savedSections[sectionId] = !isOpen;
+        lsSet(LS_SECTIONS_KEY, savedSections);
+      }
     });
   });
 

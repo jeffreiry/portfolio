@@ -6,9 +6,10 @@
 **Data da vaga:** 2025-10-13
 **Link da vaga:** https://globalhitss.gupy.io/job/eyJqb2JJZCI6MTAwOTgzMDgsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-09-30
+**Status atualizado em:** 2026-09-30
+**Candidatura:** Sim
 
 ---
 

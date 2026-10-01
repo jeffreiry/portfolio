@@ -1,7 +1,19 @@
 {
-  "maxAgeDays": null,
-  "seniorities": ["sr", "pleno", "junior", "null"],
-  "origins": ["br", "intl"],
-  "workplaces": ["remote", "hybrid", "onsite", "null"],
+  "maxAgeDays": 90,
+  "seniorities": [
+    "sr",
+    "pleno",
+    "junior",
+    "null"
+  ],
+  "origins": [
+    "br",
+    "intl"
+  ],
+  "workplaces": [
+    "remote",
+    "hybrid",
+    "null"
+  ],
   "excludeBancoDeTalentos": true
 }

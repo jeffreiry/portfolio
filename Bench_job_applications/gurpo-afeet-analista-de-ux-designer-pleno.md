@@ -6,8 +6,8 @@
 **Data da vaga:** 2024-05-24
 **Link da vaga:** https://afeet.gupy.io/job/eyJqb2JJZCI6NjE2MzQ3OSwic291cmNlIjoibWNwX2NhbmRpZGF0ZSJ9?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
+**Status:** Arquivado
+**Status atualizado em:** 2026-09-30
 **Candidatura:** Não
 
 ---

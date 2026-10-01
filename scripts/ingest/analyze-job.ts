@@ -94,6 +94,23 @@ export async function analyzeJob(job: RawJob, groqKey: string, claudeKey: string
     finalMd = finalMd.replace(/(\*\*Origem:\*\*[^\n]*)/, (m) => `${m}\n**Salário:** ${job.salary}`);
   }
 
+  // Localização/Modalidade: mesmo princípio — o adapter já sabe isso (texto
+  // bruto da fonte + classificação remote/hybrid/onsite), só não estava sendo
+  // gravado na ficha. Achado real (2026-09-30): sem isso, dava pra saber que
+  // uma vaga era "remota" mas não que era "Remote - USA" (remoto restrito a
+  // outro país, inviável pra candidatura do Brasil) — a única forma de auditar
+  // isso depois é ter o texto de localização original arquivado.
+  const WORKPLACE_LABELS: Record<string, string> = { remote: 'Remoto', hybrid: 'Híbrido', onsite: 'Presencial' };
+  if (!finalMd.includes('**Localização:**')) {
+    const parts: string[] = [];
+    if (job.location) parts.push(`**Localização:** ${job.location}`);
+    if (job.workplace && WORKPLACE_LABELS[job.workplace]) parts.push(`**Modalidade:** ${WORKPLACE_LABELS[job.workplace]}`);
+    if (parts.length > 0) {
+      const anchor = finalMd.includes('**Salário:**') ? /(\*\*Salário:\*\*[^\n]*)/ : /(\*\*Origem:\*\*[^\n]*)/;
+      finalMd = finalMd.replace(anchor, (m) => `${m}\n${parts.join('\n')}`);
+    }
+  }
+
   // Sobrescreve a seção "Job description original" com a JD real e completa
   // do adapter — o Claude recebe a JD inteira no prompt, mas, sem instrução
   // explícita no fluxo de ingestão (o prompt foi desenhado pro caso de JD
