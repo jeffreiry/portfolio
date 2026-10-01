@@ -61,6 +61,17 @@ export function isRemoteRestrictedToOtherCountry(job: RawJob): boolean {
   return REMOTE_COUNTRY_PATTERN.test(text);
 }
 
+// O próprio Gupy marca isso no subdomínio quando a página de carreira da
+// empresa foi desativada — achado real (2026-10-01): link com
+// "mesainc&59344&inactive.gupy.io" não abre (vaga de 2022 reaparecendo na
+// busca via MCP, provavelmente cache/índice desatualizado do Gupy). Sinal
+// literal da própria fonte, não uma inferência — sempre descartar, sem toggle.
+const INACTIVE_GUPY_URL_PATTERN = /^https?:\/\/[^/]*inactive[^/]*\.gupy\.io\//i;
+
+export function isInactiveGupyListing(job: RawJob): boolean {
+  return job.source === 'gupy' && INACTIVE_GUPY_URL_PATTERN.test(job.url);
+}
+
 export interface FilterSkip {
   job: RawJob;
   reason: string;
@@ -73,6 +84,10 @@ export function applyPreFilters(jobs: RawJob[], filters: IngestFilters): { survi
   const skipped: FilterSkip[] = [];
 
   for (const job of jobs) {
+    if (isInactiveGupyListing(job)) {
+      skipped.push({ job, reason: 'página da empresa desativada no Gupy (link não abre)' });
+      continue;
+    }
     if (!filters.origins.includes(job.origin)) {
       skipped.push({ job, reason: `origem "${job.origin}" fora do filtro` });
       continue;

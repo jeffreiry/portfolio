@@ -117,7 +117,6 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer](pipeimob-product-designer.md) | PipeImob | **63%** | Aderência parcial | A avaliar | 2026-09-28 |
 | [UX Designer](hitss-ux-designer.md) | Hitss | **85%** | Alta aderência | A avaliar | 2026-09-28 |
 | [Product Designer](lobos-product-designer.md) | Lobos · Product Design | **72%** | Aderência parcial | A avaliar | 2026-09-28 |
-| [Designer de UX](mobthink-designer-de-ux.md) | Mobthink · Design | **79%** | Aderência parcial | A avaliar | 2026-09-28 |
 | [Designer UX/UI Pleno](tecsa-group-designer-ux-ui-pleno.md) | Tecsa® Group | **78%** | Aderência parcial | A avaliar | 2026-09-28 |
 | [UX/UI Designer](stefanini-latam-ux-ui-designer.md) | Stefanini Latam · Diseño de experiencias digitales | **73%** | Aderência parcial | A avaliar | 2026-09-28 |
 | [Analista de UX Designer Pleno](gurpo-afeet-analista-de-ux-designer-pleno.md) | Gurpo Afeet · Digital Sales & Operations | **59%** | Aderência baixa | A avaliar | 2026-09-28 |
@@ -174,7 +173,7 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Designer UX/UI - Pleno](fcamara-designer-ux-ui-pleno.md) | Fcamara · Banco de Investimentos | **52%** | Aderência baixa | A avaliar | 2026-09-30 |
 | [Product Designer Sênior](contabilizei-product-designer-senior.md) | Contabilizei · Plataforma de contabilidade digital | **50%** | Aderência baixa | A avaliar | 2026-09-27 |
 
-**Média geral: 60%** · Aderência parcial (133 vagas)
+**Média geral: 60%** · Aderência parcial (132 vagas)
 
 ---
 
