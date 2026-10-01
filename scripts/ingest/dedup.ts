@@ -13,7 +13,21 @@ export type Ledger = Record<string, LedgerEntry>;
 
 export interface BenchKeys {
   slugs: Set<string>;
+  canonicalSlugs: Set<string>;
   urls: Set<string>;
+}
+
+// Reduz um slug às suas palavras, ordenadas alfabeticamente — detecta a mesma
+// vaga publicada em fontes diferentes com o título em ordem distinta (achado
+// real 2026-10-01: "contabilizei-product-designer-senior" via LinkedIn vs.
+// "contabilizei-senior-product-designer" via Adzuna, mesmas 4 palavras, ordem
+// diferente — o slug exato não batia e a duplicata passou direto). Risco
+// assumido: duas vagas DIFERENTES da mesma empresa com exatamente as mesmas
+// palavras (reordenadas) cairiam na mesma chave canônica — cenário raro o
+// bastante pra valer o ganho (sem isso, duplicata cross-fonte não tem nenhuma
+// detecção quando a URL difere).
+export function canonicalizeSlug(slug: string): string {
+  return slug.split('-').filter(Boolean).sort().join('-');
 }
 
 // Lê o bench atual pra saber o que já existe: slug do arquivo (nome do
@@ -21,20 +35,23 @@ export interface BenchKeys {
 // preenchida). Ignora _index.md, que não é uma ficha de vaga.
 export function loadBenchKeys(benchDir: string): BenchKeys {
   const slugs = new Set<string>();
+  const canonicalSlugs = new Set<string>();
   const urls  = new Set<string>();
 
-  if (!existsSync(benchDir)) return { slugs, urls };
+  if (!existsSync(benchDir)) return { slugs, canonicalSlugs, urls };
 
   for (const file of readdirSync(benchDir)) {
     if (!file.endsWith('.md') || file === '_index.md') continue;
-    slugs.add(file.replace(/\.md$/, ''));
+    const slug = file.replace(/\.md$/, '');
+    slugs.add(slug);
+    canonicalSlugs.add(canonicalizeSlug(slug));
 
     const content = readFileSync(join(benchDir, file), 'utf-8');
     const linkMatch = content.match(/\*\*Link da vaga:\*\*\s*(\S+)/);
     if (linkMatch) urls.add(linkMatch[1]);
   }
 
-  return { slugs, urls };
+  return { slugs, canonicalSlugs, urls };
 }
 
 // Registro de URLs já avaliadas (inclusive reprovadas) — para não requeimar
@@ -96,7 +113,8 @@ export function dedupJobs(jobs: RawJob[], bench: BenchKeys, ledger: Ledger): Ded
   const skipped: DedupResult['skipped'] = [];
 
   for (const job of jobs) {
-    if (bench.urls.has(job.url) || bench.slugs.has(approximateSlug(job))) {
+    const slug = approximateSlug(job);
+    if (bench.urls.has(job.url) || bench.slugs.has(slug) || bench.canonicalSlugs.has(canonicalizeSlug(slug))) {
       skipped.push({ job, reason: 'ja-no-bench' });
       continue;
     }
