@@ -97,8 +97,7 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [UX/Product Designer](nacar-ux-product-designer.md) | Nacar · Healthcare CRM | **83%** | Alta aderência — submeter | Candidatura enviada | 2026-09-12 |
 | [Product Designer Pleno](verity-product-designer-pleno.md) | Verity | **69%** | Aderência parcial | A avaliar | 2026-09-16 |
 | [Product Designer Especialista I](grupo-boticario-product-designer-especialista-i.md) | Grupo Boticário · Produtos Digitais | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
-| [Product Designer - Sênior](fcamara-product-designer-senior-1790612656089.md) | FCamara · Área Pública | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
-| [Product Designer - Sênior](fcamara-product-designer-senior-1790613859065.md) | FCamara · Área Pública | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
+| [Product Designer - Sênior](fcamara-product-designer-senior-area-publica.md) | FCamara · Área Pública | **47%** | Aderência baixa | A avaliar | 2026-09-28 |
 | [Product Designer](globo-product-designer.md) | Globo · Globo Ads | **69%** | Aderência parcial | A avaliar | 2026-09-28 |
 | [UX/UI Designer](dentsu-world-services-dws-ux-ui-designer.md) | Dentsu World Services (DWS) | **64%** | Aderência parcial | A avaliar | 2026-09-28 |
 | [Ituber](itau-ituber.md) | Itaú · Ituber | **63%** | Aderência parcial | A avaliar | 2026-09-28 |
@@ -174,7 +173,7 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Sênior](contabilizei-product-designer-senior.md) | Contabilizei · Plataforma de contabilidade digital | **50%** | Aderência baixa | A avaliar | 2026-09-27 |
 | [Product Designer](tensec-product-designer.md) | Tensec · Neobank | **64%** | Aderência parcial | A avaliar | 2026-09-18 |
 
-**Média geral: 60%** · Aderência parcial (133 vagas)
+**Média geral: 60%** · Aderência parcial (132 vagas)
 
 ---
 
