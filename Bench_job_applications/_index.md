@@ -172,8 +172,9 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Analista de Design e Experiência II - Product Designer Pleno](encantech-lojas-renner-s-a-analista-de-design-e-experiencia-ii-product-designer-pleno.md) | Encantech - Lojas Renner S.A. · Produtos digitais | **71%** | Aderência parcial | A avaliar | 2026-09-30 |
 | [Designer UX/UI - Pleno](fcamara-designer-ux-ui-pleno.md) | Fcamara · Banco de Investimentos | **52%** | Aderência baixa | A avaliar | 2026-09-30 |
 | [Product Designer Sênior](contabilizei-product-designer-senior.md) | Contabilizei · Plataforma de contabilidade digital | **50%** | Aderência baixa | A avaliar | 2026-09-27 |
+| [Product Designer](tensec-product-designer.md) | Tensec · Neobank | **64%** | Aderência parcial | A avaliar | 2026-09-18 |
 
-**Média geral: 60%** · Aderência parcial (132 vagas)
+**Média geral: 60%** · Aderência parcial (133 vagas)
 
 ---
 
