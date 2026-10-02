@@ -172,8 +172,13 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Designer UX/UI - Pleno](fcamara-designer-ux-ui-pleno.md) | Fcamara · Banco de Investimentos | **52%** | Aderência baixa | A avaliar | 2026-09-30 |
 | [Product Designer Sênior](contabilizei-product-designer-senior.md) | Contabilizei · Plataforma de contabilidade digital | **50%** | Aderência baixa | A avaliar | 2026-09-27 |
 | [Product Designer](tensec-product-designer.md) | Tensec · Neobank | **64%** | Aderência parcial | A avaliar | 2026-09-18 |
+| [Product Designer Sênior (Foco em Research & Discovery)](leve-saude-product-designer-senior-research-discovery.md) | Leve Saúde · Operadora de saúde | **70%** | Aderência parcial | A avaliar | 2026-10-01 |
+| [Product Designer](mjv-innovation-product-designer.md) | Mjv Innovation · Infraestrutura de mercado financeiro | **67%** | Aderência parcial | A avaliar | 2026-08-27 |
+| [Product Designer Sênior](enter-product-designer-senior.md) | Enter · Automação jurídica com IA | **61%** | Aderência parcial | A avaliar | 2026-08-12 |
+| [Product Design (IA First, IC3)](sanar-product-design-ia-first.md) | Sanar · Plataforma educacional de Medicina | **63%** | Aderência parcial | A avaliar | 2026-08-21 |
+| [Product Designer Especialista](rock-encantech-product-designer-especialista.md) | Rock Encantech · SuperApp de varejo | **67%** | Aderência parcial | A avaliar | 2026-10-02 |
 
-**Média geral: 60%** · Aderência parcial (132 vagas)
+**Média geral: 61%** · Aderência parcial (137 vagas)
 
 ---
 
