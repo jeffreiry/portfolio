@@ -174,6 +174,8 @@ if (!groqKey) {
         candidatura:        'Não',
         data,
         tags:               [],
+        atsPct:             null, // recalculado só no próximo reload — depende do tagsFull, não recomputado aqui
+        atsMissing:         [],
         origemAutomatica,
         salario,
         bloqueadores,

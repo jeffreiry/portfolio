@@ -84,6 +84,125 @@ export function rewriteScoreSection(md: string, c: ScoreCalc): string {
   return out;
 }
 
+// ---- Taxonomia canônica de skills (estilo "Competências" do LinkedIn) ----
+//
+// Movida de jobanalysis.astro (2026-10-02) pra ser reaproveitada também pelo
+// match ATS (calcAtsMatch, abaixo) — mesmo princípio "um cérebro, dois
+// consumidores" do resto deste arquivo. O texto cru de cada requisito de JD é
+// único demais pra virar contagem/comparação útil (446 frases distintas em
+// 57 vagas, quase todas com 1 ocorrência) — a mesma habilidade aparece como
+// "Domínio de Figma", "Proficiência em Figma" e "Figma avançado" em três
+// vagas diferentes. Esta tabela reduz isso a um vocabulário fixo de ~40
+// competências, cada requisito podendo bater em mais de uma.
+export const ELIGIBILITY_PATTERN = /\b(anos? de experi[êe]ncia|gradua[çc][ãa]o|forma[çc][ãa]o (em|acad[êe]mica)|ensino superior|bachelor|degree in)\b/i;
+
+export const SKILL_TAXONOMY: { canon: string; categoria: 'hard' | 'soft'; pattern: RegExp }[] = [
+  // Hard — ferramentas e técnicas
+  { canon: 'Figma',                              categoria: 'hard', pattern: /figma/i },
+  { canon: 'Prototipação',                       categoria: 'hard', pattern: /prototip|protót|prototype/i },
+  { canon: 'Wireframes',                         categoria: 'hard', pattern: /wireframe/i },
+  { canon: 'UX/UI Design',                       categoria: 'hard', pattern: /\bux\b.{0,3}\bui\b|\bui\b.{0,3}\bux\b|design de intera[çc][ãa]o|interaction design|design visual|visual design|ui design|ui kit|ui art|ui craft|design refined/i },
+  { canon: 'Arquitetura da Informação',          categoria: 'hard', pattern: /arquitetura d[ae] informa[çc][ãa]o|information architecture/i },
+  { canon: 'Design Systems',                     categoria: 'hard', pattern: /design system/i },
+  { canon: 'Pesquisa com Usuários (UX Research)', categoria: 'hard', pattern: /pesquisa|\bresearch\b|entrevista/i },
+  { canon: 'Discovery / Design Thinking',        categoria: 'hard', pattern: /discovery|design thinking|valida[çc][ãa]o de hip[óo]tese/i },
+  { canon: 'Testes de Usabilidade',              categoria: 'hard', pattern: /usabilidade|usability/i },
+  { canon: 'Acessibilidade (WCAG)',              categoria: 'hard', pattern: /acessibilidade|wcag|accessibility/i },
+  { canon: 'Métricas de Produto / Dados',        categoria: 'hard', pattern: /m[ée]trica|\bkpi\b|data-inform|data-heavy|indicador|analytics|a\/b test/i },
+  { canon: 'Handoff / Documentação Técnica',     categoria: 'hard', pattern: /handoff|handover|especifica[çc][ãa]o t[ée]cnica|documenta[çc][ãa]o/i },
+  { canon: 'Design Responsivo / Mobile',         categoria: 'hard', pattern: /\bmobile\b|responsiv|\bios\b|\bandroid\b|app nativo|para celular/i },
+  { canon: 'Design de Serviço / Jornadas',       categoria: 'hard', pattern: /jornada|service design|design de servi[çc]o|blueprint/i },
+  { canon: 'Metodologias Ágeis',                 categoria: 'hard', pattern: /\b[aá]gil|agile|scrum|sprint/i },
+  { canon: 'IA aplicada a Design',               categoria: 'hard', pattern: /\bia\b|\bai\b|intelig[êe]ncia artificial|\bllm\b|prompt/i },
+  { canon: 'Front-end (HTML/CSS)',               categoria: 'hard', pattern: /\bhtml\b|\bcss\b|front-?end/i },
+  { canon: 'Inglês',                             categoria: 'hard', pattern: /ingl[êe]s|english/i },
+  { canon: 'Espanhol',                           categoria: 'hard', pattern: /espanhol|spanish/i },
+  { canon: 'Portfólio / Processo de Design',     categoria: 'hard', pattern: /portf[óo]lio|portfolio|\bcraft\b/i },
+  { canon: 'Motion Design',                      categoria: 'hard', pattern: /motion/i },
+  { canon: 'Facilitação de Workshops',           categoria: 'hard', pattern: /workshop|facilita/i },
+  { canon: 'Gestão / Visão de Produto',          categoria: 'hard', pattern: /vis[ãa]o de produto|product thinking|gerenciamento de produto|product management|ciclo de vida do produto/i },
+  { canon: 'Growth / Conversão',                 categoria: 'hard', pattern: /growth|convers[ãa]o|reten[çc][ãa]o|funil/i },
+  { canon: 'Domínio Fintech / Pagamentos',       categoria: 'hard', pattern: /fintech|pagamento|cr[ée]dito|financeir/i },
+
+  // Soft — comportamento e colaboração
+  { canon: 'Comunicação',                        categoria: 'soft', pattern: /comunica[çc][ãa]o|communication/i },
+  { canon: 'Colaboração Multifuncional',         categoria: 'soft', pattern: /colabora|multidisciplinar|cross-?funcional|cross[- ]functional/i },
+  { canon: 'Gestão de Stakeholders',             categoria: 'soft', pattern: /stakeholder/i },
+  { canon: 'Autonomia / Ownership',              categoria: 'soft', pattern: /autonomia|ownership|senso de dono|proativ/i },
+  { canon: 'Adaptabilidade / Ambiguidade',       categoria: 'soft', pattern: /ambigu|adapta[çc][ãa]o|flexibilidade|mudan[çc]as? (frequentes|de)/i },
+  { canon: 'Pensamento Crítico / Analítico',     categoria: 'soft', pattern: /cr[íi]tico|anal[íi]tic|racioc[íi]nio l[óo]gico/i },
+  { canon: 'Liderança / Mentoria',               categoria: 'soft', pattern: /lideran[çc]a|mentoria|mentor|leadership/i },
+  { canon: 'Visão Estratégica',                  categoria: 'soft', pattern: /estrat[ée]g|strategic/i },
+  { canon: 'Organização / Priorização',          categoria: 'soft', pattern: /organiza[çc][ãa]o|prioriza[çc][ãa]o|gest[ãa]o de tempo/i },
+  { canon: 'Empatia / Centrado no Usuário',      categoria: 'soft', pattern: /empatia|centrad[ao] no usu[áa]rio|human-centered/i },
+  { canon: 'Argumentação / Apresentação',        categoria: 'soft', pattern: /argumenta|apresenta[çc][ãa]o|storytelling/i },
+  { canon: 'Curiosidade / Perfil Investigativo', categoria: 'soft', pattern: /curiosidade|investigativ|curios/i },
+  { canon: 'Negociação / Mediação de Conflitos', categoria: 'soft', pattern: /negocia|media[çc][ãa]o|conflito/i },
+  { canon: 'Trabalho Remoto / Autogestão',       categoria: 'soft', pattern: /trabalho remoto|remoto|autogest[ãa]o|self-motivated|disciplina/i },
+];
+
+/** Retorna os nomes canônicos que o texto do requisito bate — pode ser mais de um, ou nenhum. */
+export function canonicalizeSkill(text: string): { canon: string; categoria: 'hard' | 'soft' }[] {
+  if (ELIGIBILITY_PATTERN.test(text)) return [];
+  return SKILL_TAXONOMY.filter((s) => s.pattern.test(text)).map((s) => ({ canon: s.canon, categoria: s.categoria }));
+}
+
+// ---- Match ATS (currículo × requisitos da vaga) ----
+//
+// Complementa o Score de aderência (que mede se o PORTFOLIO demonstra a
+// competência, por julgamento do Claude) com uma checagem mecânica e
+// literal: o texto do CURRÍCULO (documento que de fato passa por parsing de
+// ATS) contém as palavras do nome canônico da competência? Pensado como "o
+// que um parser raso de ATS acharia", não como substituto do score de
+// aderência real.
+const PT_STOPWORDS = new Set(['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'com', 'para', 'a', 'o', 'as', 'os', '/']);
+
+function significantWords(canon: string): string[] {
+  return canon
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .split(/[^a-z0-9]+/)
+    .filter((w) => w.length > 0 && !PT_STOPWORDS.has(w));
+}
+
+// Todas as palavras significativas do nome canônico precisam aparecer (como
+// palavra inteira, em qualquer lugar do currículo) pra contar como "match" —
+// não precisa ser a frase exata nem estar contígua.
+function canonMatchesResume(canon: string, normalizedResumeText: string): boolean {
+  const words = significantWords(canon);
+  if (words.length === 0) return false;
+  return words.every((w) => new RegExp(`\\b${w}\\b`).test(normalizedResumeText));
+}
+
+export interface AtsMatchResult {
+  pct: number | null; // null = vaga sem requisito mapeável pra nenhuma competência canônica
+  matched: string[];
+  missing: string[];
+}
+
+/**
+ * requirementTexts: texto bruto de cada requisito obrigatório da vaga (coluna
+ * "Requisito" da tabela já limpa, sem markdown). resumeText: resultado de
+ * getResumeText() (resume-text.ts), já normalizado (minúsculo, sem acento).
+ */
+export function calcAtsMatch(requirementTexts: string[], resumeText: string): AtsMatchResult {
+  const canonSet = new Map<string, boolean>(); // canon -> já visto
+  for (const text of requirementTexts) {
+    for (const { canon } of canonicalizeSkill(text)) {
+      if (!canonSet.has(canon)) canonSet.set(canon, canonMatchesResume(canon, resumeText));
+    }
+  }
+
+  if (canonSet.size === 0) return { pct: null, matched: [], missing: [] };
+
+  const matched: string[] = [];
+  const missing: string[] = [];
+  for (const [canon, hit] of canonSet) (hit ? matched : missing).push(canon);
+
+  return { pct: Math.round((matched.length / canonSet.size) * 100), matched, missing };
+}
+
 export function scoreLabel(s: number): string {
   if (s >= 80) return 'Alta aderência';
   if (s >= 60) return 'Aderência parcial';
@@ -178,11 +297,10 @@ export async function extractWithGroq(jd: string, apiKey: string): Promise<JdExt
 
 // ---- Passo 2: Claude analisa os requisitos contra o portfolio ----
 
-const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência de candidaturas para o Product Designer Sênior Jeferson Freiry. Sua tarefa é analisar cada requisito extraído de uma JD e gerar uma análise completa em Markdown com scoring e raciocínio estratégico.
-
-## Portfolio do candidato
-
-**Cases publicados (9 cases — 7 publicados, 2 draft):**
+// Extraído como constante própria porque o gerador de carta de apresentação
+// (generateCoverLetter) precisa dos mesmos fatos do portfolio sem duplicar o
+// bloco e arriscar as duas versões divergirem com o tempo.
+const PORTFOLIO_CONTEXT = `**Cases publicados (9 cases — 7 publicados, 2 draft):**
 - **Enterprise AI Assistant** (2025, 6 meses) — Evoluiu MVP de assistente de IA em plataforma de conhecimento corporativo. Empresa confidencial (grande multinacional). Foco em rastreabilidade de fontes, transparência e confiança em IA. Discovery com Clarity + entrevistas com usuários. Paradigma conversacional vs. busca. Time cross-funcional com engenharia e dados.
 - **Shipping Capacity Platform** (2025, 6 meses) — Substituiu planilhas dispersas por timeline visual para otimização de capacidade de carga marítima. Empresa confidencial. MVP end-to-end com alta complexidade logística e dados. Discovery via workshops recorrentes com especialistas de domínio. Síntese em Mural.
 - **Hypera Pharma · Gerenciador de Verbas** (2023, 2 meses) — Sistema de verbas de trade marketing para Hypera Pharma (via CWI). Pipeline de orçamentos com integração SAP/SEV, gate de aprovação financeira, múltiplos perfis de aprovação. Artefatos reais publicados: matriz de responsabilidades, matriz de descoberta de features, fluxo de usuário.
@@ -213,7 +331,13 @@ const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência
 - UX Research estruturado: Arezzo tem board de síntese de pesquisa real (2 entrevistas + 2 painéis, método explícito), Canvas de Proposta de Valor, Jobs to be Done, e um teste de usabilidade real no Maze (perfil Marketing, protótipo pré-handoff) — mas sem protocolo formal documentado (recrutamento, roteiro de tarefas, sessão moderada). Fecha bem pedidos de "artefato de pesquisa publicado"; não fecha pedidos de "teste de usabilidade formal com protocolo"
 - Handoff documentado: Arezzo tem documento de handoff real publicado (Job to be Done por fluxo + wireframes anotados + mensagens de erro por campo + modais de sucesso/erro) — único case do portfolio com esse artefato
 - Mentoria/liderança de designers: não mencionada em nenhum case
-- Domínios ausentes: fintech, saúde, e-commerce consumer, mobile-first
+- Domínios ausentes: fintech, saúde, e-commerce consumer, mobile-first`;
+
+const CLAUDE_SYSTEM_PROMPT = `Você é um especialista em análise de aderência de candidaturas para o Product Designer Sênior Jeferson Freiry. Sua tarefa é analisar cada requisito extraído de uma JD e gerar uma análise completa em Markdown com scoring e raciocínio estratégico.
+
+## Portfolio do candidato
+
+${PORTFOLIO_CONTEXT}
 
 ## Metodologia de scoring
 
@@ -357,4 +481,61 @@ export async function analyzeWithClaude(
   const block = response.content[0];
   if (block.type !== 'text') throw new Error('Resposta inesperada do Claude');
   return block.text;
+}
+
+// ---- Carta de apresentação (sob demanda, não persistida em arquivo) ----
+//
+// Automatiza o que o autor vinha pedindo manualmente vaga por vaga: resposta
+// à pergunta-padrão de formulário de candidatura "Fale sobre você e sua
+// trajetória profissional, contando como pode ajudar a empresa no desafio
+// descrito na vaga", em até 1500 caracteres. Gerada na hora, sem escrever no
+// arquivo — funciona local e em produção (filesystem read-only da Vercel não
+// é um problema aqui, diferente da análise/reanálise de vaga).
+
+const COVER_LETTER_SYSTEM_PROMPT = `Você escreve, em primeira pessoa, a resposta de candidatura de Jeferson Freiry (Product Designer Sênior) para um formulário de vaga.
+
+## Portfolio do candidato
+
+${PORTFOLIO_CONTEXT}
+
+## Tarefa
+
+Responda à pergunta "Fale sobre você e sua trajetória profissional, contando como pode ajudar a empresa no desafio descrito na vaga", em até 1500 caracteres (incluindo espaços — limite rígido de campo de formulário).
+
+## Regras
+
+- Primeira pessoa, tom profissional e direto. Sem clichês genéricos ("apaixonado por", "equipe dos sonhos", "fazer a diferença").
+- Baseie-se SOMENTE nos fatos do portfolio acima — nunca invente métrica, ferramenta, empresa ou experiência que não esteja listada.
+- Conecte 1–2 cases específicos do portfolio (pelo nome) ao desafio descrito na vaga — não liste cases genericamente, argumente a transferência.
+- Mencione a empresa e o cargo da vaga pelo nome.
+- Não exceda 1500 caracteres. Se o rascunho passar disso, corte, não abrevie palavras.
+- Sem saudação ("Prezados", "Olá") nem despedida ("Atenciosamente") — só o corpo do texto corrido, pronto pra colar no campo do formulário.
+- Retorne SOMENTE o texto da carta — sem markdown, sem aspas envolvendo o texto, sem comentários antes/depois.`;
+
+export interface CoverLetterJob {
+  empresa: string;
+  cargo: string;
+  produto: string;
+  jdOriginal: string;
+}
+
+export async function generateCoverLetter(job: CoverLetterJob, apiKey: string): Promise<string> {
+  const anthropic = new Anthropic({ apiKey });
+
+  const userMessage =
+    `Empresa: ${job.empresa}\n` +
+    `Cargo: ${job.cargo}\n` +
+    `Produto/Área: ${job.produto || 'Não especificado'}\n\n` +
+    `Descrição da vaga (desafio a resolver):\n${job.jdOriginal}`;
+
+  const response = await anthropic.messages.create({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 1200,
+    system: COVER_LETTER_SYSTEM_PROMPT,
+    messages: [{ role: 'user', content: userMessage }],
+  });
+
+  const block = response.content[0];
+  if (block.type !== 'text') throw new Error('Resposta inesperada do Claude');
+  return block.text.trim();
 }

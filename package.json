@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.4",
     "groq-sdk": "^1.2.1",
+    "pdfjs-dist": "^6.3.289",
     "resend": "^6.12.4",
     "svelte": "^5.56.2",
     "tailwindcss": "^4.3.0",

@@ -6,6 +6,8 @@ import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.svelte';
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
+import { canonicalizeSkill, ELIGIBILITY_PATTERN, calcAtsMatch } from '../lib/jobanalysis/core';
+import { getResumeText } from '../lib/jobanalysis/resume-text';
 
 // Nova Vaga / Editar / Candidatura escrevem no filesystem (Bench_job_applications/*.md)
 // — só funciona rodando local (`npm run dev`). Na Vercel o filesystem é read-only,
@@ -49,6 +51,8 @@ interface VagaParsed {
   maxObrigW: number;
   obtPref: number;
   maxPrefW: number;
+  atsPct: number | null;
+  atsMissing: string[];
 }
 
 type Banda = 'alta' | 'parcial' | 'baixa' | 'muito-baixa';
@@ -80,69 +84,9 @@ function classifySkill(text: string): 'hard' | 'soft' {
   return SOFT_SKILL_KEYWORDS.some((kw) => lower.includes(kw)) ? 'soft' : 'hard';
 }
 
-// --- Taxonomia canônica (estilo "Competências" do LinkedIn) ---
-//
-// O texto cru de cada requisito de JD é único demais pra virar contagem útil
-// (446 frases distintas em 57 vagas, quase todas com 1 ocorrência) — a mesma
-// habilidade aparece como "Domínio de Figma", "Proficiência em Figma" e
-// "Figma avançado" em três vagas diferentes. Esta tabela reduz isso a um
-// vocabulário fixo de ~40 competências, cada requisito podendo bater em mais
-// de uma (uma frase como "Boa comunicação e colaboração em ambientes ágeis"
-// é real demanda por três competências distintas ao mesmo tempo).
-// Frases de elegibilidade pura (anos de experiência, formação acadêmica) não
-// são competência no sentido do LinkedIn — ficam de fora da contagem.
-const ELIGIBILITY_PATTERN = /\b(anos? de experi[êe]ncia|gradua[çc][ãa]o|forma[çc][ãa]o (em|acad[êe]mica)|ensino superior|bachelor|degree in)\b/i;
-
-const SKILL_TAXONOMY: { canon: string; categoria: 'hard' | 'soft'; pattern: RegExp }[] = [
-  // Hard — ferramentas e técnicas
-  { canon: 'Figma',                              categoria: 'hard', pattern: /figma/i },
-  { canon: 'Prototipação',                       categoria: 'hard', pattern: /prototip|protót|prototype/i },
-  { canon: 'Wireframes',                         categoria: 'hard', pattern: /wireframe/i },
-  { canon: 'UX/UI Design',                       categoria: 'hard', pattern: /\bux\b.{0,3}\bui\b|\bui\b.{0,3}\bux\b|design de intera[çc][ãa]o|interaction design|design visual|visual design|ui design|ui kit|ui art|ui craft|design refined/i },
-  { canon: 'Arquitetura da Informação',          categoria: 'hard', pattern: /arquitetura d[ae] informa[çc][ãa]o|information architecture/i },
-  { canon: 'Design Systems',                     categoria: 'hard', pattern: /design system/i },
-  { canon: 'Pesquisa com Usuários (UX Research)', categoria: 'hard', pattern: /pesquisa|\bresearch\b|entrevista/i },
-  { canon: 'Discovery / Design Thinking',        categoria: 'hard', pattern: /discovery|design thinking|valida[çc][ãa]o de hip[óo]tese/i },
-  { canon: 'Testes de Usabilidade',              categoria: 'hard', pattern: /usabilidade|usability/i },
-  { canon: 'Acessibilidade (WCAG)',              categoria: 'hard', pattern: /acessibilidade|wcag|accessibility/i },
-  { canon: 'Métricas de Produto / Dados',        categoria: 'hard', pattern: /m[ée]trica|\bkpi\b|data-inform|data-heavy|indicador|analytics|a\/b test/i },
-  { canon: 'Handoff / Documentação Técnica',     categoria: 'hard', pattern: /handoff|handover|especifica[çc][ãa]o t[ée]cnica|documenta[çc][ãa]o/i },
-  { canon: 'Design Responsivo / Mobile',         categoria: 'hard', pattern: /\bmobile\b|responsiv|\bios\b|\bandroid\b|app nativo|para celular/i },
-  { canon: 'Design de Serviço / Jornadas',       categoria: 'hard', pattern: /jornada|service design|design de servi[çc]o|blueprint/i },
-  { canon: 'Metodologias Ágeis',                 categoria: 'hard', pattern: /\b[aá]gil|agile|scrum|sprint/i },
-  { canon: 'IA aplicada a Design',               categoria: 'hard', pattern: /\bia\b|\bai\b|intelig[êe]ncia artificial|\bllm\b|prompt/i },
-  { canon: 'Front-end (HTML/CSS)',               categoria: 'hard', pattern: /\bhtml\b|\bcss\b|front-?end/i },
-  { canon: 'Inglês',                             categoria: 'hard', pattern: /ingl[êe]s|english/i },
-  { canon: 'Espanhol',                           categoria: 'hard', pattern: /espanhol|spanish/i },
-  { canon: 'Portfólio / Processo de Design',     categoria: 'hard', pattern: /portf[óo]lio|portfolio|\bcraft\b/i },
-  { canon: 'Motion Design',                      categoria: 'hard', pattern: /motion/i },
-  { canon: 'Facilitação de Workshops',           categoria: 'hard', pattern: /workshop|facilita/i },
-  { canon: 'Gestão / Visão de Produto',          categoria: 'hard', pattern: /vis[ãa]o de produto|product thinking|gerenciamento de produto|product management|ciclo de vida do produto/i },
-  { canon: 'Growth / Conversão',                 categoria: 'hard', pattern: /growth|convers[ãa]o|reten[çc][ãa]o|funil/i },
-  { canon: 'Domínio Fintech / Pagamentos',       categoria: 'hard', pattern: /fintech|pagamento|cr[ée]dito|financeir/i },
-
-  // Soft — comportamento e colaboração
-  { canon: 'Comunicação',                        categoria: 'soft', pattern: /comunica[çc][ãa]o|communication/i },
-  { canon: 'Colaboração Multifuncional',         categoria: 'soft', pattern: /colabora|multidisciplinar|cross-?funcional|cross[- ]functional/i },
-  { canon: 'Gestão de Stakeholders',             categoria: 'soft', pattern: /stakeholder/i },
-  { canon: 'Autonomia / Ownership',              categoria: 'soft', pattern: /autonomia|ownership|senso de dono|proativ/i },
-  { canon: 'Adaptabilidade / Ambiguidade',       categoria: 'soft', pattern: /ambigu|adapta[çc][ãa]o|flexibilidade|mudan[çc]as? (frequentes|de)/i },
-  { canon: 'Pensamento Crítico / Analítico',     categoria: 'soft', pattern: /cr[íi]tico|anal[íi]tic|racioc[íi]nio l[óo]gico/i },
-  { canon: 'Liderança / Mentoria',               categoria: 'soft', pattern: /lideran[çc]a|mentoria|mentor|leadership/i },
-  { canon: 'Visão Estratégica',                  categoria: 'soft', pattern: /estrat[ée]g|strategic/i },
-  { canon: 'Organização / Priorização',          categoria: 'soft', pattern: /organiza[çc][ãa]o|prioriza[çc][ãa]o|gest[ãa]o de tempo/i },
-  { canon: 'Empatia / Centrado no Usuário',      categoria: 'soft', pattern: /empatia|centrad[ao] no usu[áa]rio|human-centered/i },
-  { canon: 'Argumentação / Apresentação',        categoria: 'soft', pattern: /argumenta|apresenta[çc][ãa]o|storytelling/i },
-  { canon: 'Curiosidade / Perfil Investigativo', categoria: 'soft', pattern: /curiosidade|investigativ|curios/i },
-  { canon: 'Negociação / Mediação de Conflitos', categoria: 'soft', pattern: /negocia|media[çc][ãa]o|conflito/i },
-  { canon: 'Trabalho Remoto / Autogestão',       categoria: 'soft', pattern: /trabalho remoto|remoto|autogest[ãa]o|self-motivated|disciplina/i },
-];
-
-/** Retorna os nomes canônicos que o texto do requisito bate — pode ser mais de um, ou nenhum. */
-function canonicalizeSkill(text: string): { canon: string; categoria: 'hard' | 'soft' }[] {
-  if (ELIGIBILITY_PATTERN.test(text)) return [];
-  return SKILL_TAXONOMY.filter((s) => s.pattern.test(text)).map((s) => ({ canon: s.canon, categoria: s.categoria }));
-}
+// Taxonomia canônica de skills (SKILL_TAXONOMY/canonicalizeSkill/ELIGIBILITY_PATTERN)
+// mora em core.ts desde 2026-10-02 — reaproveitada também pelo match ATS
+// (calcAtsMatch), importada no topo do arquivo.
 
 function scoreLabel(score: number): string {
   if (score >= 80) return 'Alta aderência';
@@ -308,6 +252,8 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       maxObrigW,
       obtPref,
       maxPrefW,
+      atsPct: null,      // preenchido no pós-processamento (precisa do texto do currículo, async)
+      atsMissing: [],
     };
   } catch {
     return null;
@@ -420,6 +366,24 @@ try {
     .sort((a, b) => b.score - a.score);
 } catch {
   // fallback vazio — não quebra o build
+}
+
+// Match ATS: precisa do texto do currículo (extração async do PDF), por isso
+// fica fora de parseVagaFile (síncrona) — um único fetch/parse do PDF serve
+// pra todas as vagas da página, cacheado em memória do processo entre
+// requisições (ver getResumeText em resume-text.ts).
+try {
+  const resumeText = await getResumeText();
+  if (resumeText) {
+    for (const v of vagas) {
+      const { pct, missing } = calcAtsMatch(v.tagsFull.map((t) => t.text), resumeText);
+      v.atsPct = pct;
+      v.atsMissing = missing;
+    }
+  }
+} catch (e) {
+  console.error('[jobanalysis] Falha ao calcular match ATS:', e);
+  // vagas seguem com atsPct: null — a UI já trata esse estado (seção fica oculta)
 }
 
 const media = vagas.length ? Math.round(vagas.reduce((s, v) => s + v.score, 0) / vagas.length) : 0;
@@ -1052,6 +1016,14 @@ for (const opt of statusOptions) {
                     </button>
                   )}
                   <button
+                    class="cover-letter-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                    style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+                    data-slug={v.slug} data-empresa={v.empresa} data-cargo={v.cargo}
+                    aria-label={`Gerar carta de apresentação para ${v.empresa}`}
+                  >
+                    ✉️ Carta
+                  </button>
+                  <button
                     class="expander-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
                     style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
                     aria-expanded="false" aria-label={`Ver análise completa de ${v.empresa}`}
@@ -1086,7 +1058,21 @@ for (const opt of statusOptions) {
                         </div>
                         <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">{v.obtPref}/{v.maxPrefW}</span>
                       </div>
+                      {v.atsPct !== null && (
+                        <div class="flex items-center gap-2" title={v.atsMissing.length > 0 ? `Faltam no currículo: ${v.atsMissing.join(', ')}` : 'Todas as competências mapeadas aparecem no currículo'}>
+                          <span class="text-[11px] shrink-0" style="color: var(--color-muted); width: 110px;">Match ATS 📄</span>
+                          <div class="relative flex-1 h-1.5 rounded-full overflow-hidden" style="background: var(--color-surface-2);">
+                            <div class="absolute inset-y-0 left-0 rounded-full" style={`width: ${v.atsPct}%; background: ${b.fill};`}></div>
+                          </div>
+                          <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">{v.atsPct}%</span>
+                        </div>
+                      )}
                     </div>
+                    {v.atsPct !== null && v.atsMissing.length > 0 && (
+                      <p class="text-[11px] leading-snug" style="color: var(--color-faint);">
+                        <span style="color: var(--color-muted);">Match ATS</span> = % de competências do requisito obrigatório que aparecem literalmente no texto do currículo PT (não no portfolio) — checagem mecânica, complementar ao score acima. Faltam: {v.atsMissing.join(', ')}.
+                      </p>
+                    )}
 
                     <!-- Gaps grid -->
                     <div class="gaps-grid grid gap-3">
@@ -1348,6 +1334,45 @@ for (const opt of statusOptions) {
           style="background: var(--color-neutral-900); color: #fff;">Salvar</button>
       </div>
     </form>
+  </dialog>
+
+  <!-- Modal: Carta de apresentação -->
+  <dialog id="modal-cover-letter" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-lg">
+    <div class="flex flex-col gap-4 p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 class="font-display text-lg font-semibold text-neutral-900">Carta de apresentação</h2>
+          <p id="cover-letter-empresa-label" class="text-sm mt-0.5" style="color: var(--color-faint);"></p>
+        </div>
+        <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
+          aria-label="Fechar" style="color: var(--color-faint);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="text-[12px]" style="color: var(--color-faint);">Resposta a "Fale sobre você e sua trajetória profissional, contando como pode ajudar a empresa no desafio descrito na vaga" — gerada com base no portfolio real, em até 1500 caracteres. Não é salva no arquivo da vaga; revise antes de usar.</p>
+
+      <div id="cover-letter-loading" class="hidden text-sm py-6 text-center" style="color: var(--color-faint);">Gerando carta…</div>
+      <div id="cover-letter-error" class="hidden text-sm text-red-600"></div>
+
+      <div id="cover-letter-result" class="hidden flex flex-col gap-2">
+        <textarea id="cover-letter-text" readonly rows="10"
+          class="rounded-lg border px-3 py-2 text-sm w-full resize-none"
+          style="border-color: var(--color-border); color: var(--color-muted); background: var(--color-surface);"></textarea>
+        <span id="cover-letter-count" class="text-[11px] self-end tabular-nums" style="color: var(--color-faint);"></span>
+      </div>
+
+      <div class="flex gap-2 justify-end">
+        <button type="button" class="modal-close rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
+          style="border-color: var(--color-border); color: var(--color-muted);">Fechar</button>
+        <button type="button" id="cover-letter-regenerate" class="hidden rounded-full px-4 py-2 text-sm border transition-opacity hover:opacity-70"
+          style="border-color: var(--color-border); color: var(--color-muted);">Gerar novamente</button>
+        <button type="button" id="cover-letter-copy" class="hidden rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: var(--color-neutral-900); color: #fff;">Copiar</button>
+      </div>
+    </div>
   </dialog>
 
   <!-- Modal: Config. Ingestão -->
@@ -1950,6 +1975,76 @@ for (const opt of statusOptions) {
     }
   });
 
+  // ---- Modal Carta de apresentação ----
+
+  const modalCoverLetter      = document.getElementById('modal-cover-letter') as HTMLDialogElement;
+  const coverLetterLabel      = document.getElementById('cover-letter-empresa-label') as HTMLElement;
+  const coverLetterLoading    = document.getElementById('cover-letter-loading') as HTMLElement;
+  const coverLetterErrorEl    = document.getElementById('cover-letter-error') as HTMLElement;
+  const coverLetterResult     = document.getElementById('cover-letter-result') as HTMLElement;
+  const coverLetterTextarea   = document.getElementById('cover-letter-text') as HTMLTextAreaElement;
+  const coverLetterCount      = document.getElementById('cover-letter-count') as HTMLElement;
+  const coverLetterRegenerate = document.getElementById('cover-letter-regenerate') as HTMLButtonElement;
+  const coverLetterCopy       = document.getElementById('cover-letter-copy') as HTMLButtonElement;
+
+  let coverLetterSlug = '';
+
+  async function loadCoverLetter() {
+    coverLetterLoading.classList.remove('hidden');
+    coverLetterErrorEl.classList.add('hidden');
+    coverLetterResult.classList.add('hidden');
+    coverLetterRegenerate.classList.add('hidden');
+    coverLetterCopy.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/jobanalysis-cover-letter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: coverLetterSlug }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? 'Erro desconhecido');
+
+      coverLetterTextarea.value = data.text;
+      coverLetterCount.textContent = `${data.text.length} caracteres`;
+      coverLetterResult.classList.remove('hidden');
+      coverLetterRegenerate.classList.remove('hidden');
+      coverLetterCopy.classList.remove('hidden');
+    } catch (err: unknown) {
+      coverLetterErrorEl.textContent = err instanceof Error ? err.message : 'Erro ao gerar carta';
+      coverLetterErrorEl.classList.remove('hidden');
+    } finally {
+      coverLetterLoading.classList.add('hidden');
+    }
+  }
+
+  function wireCoverLetterBtn(btn: HTMLButtonElement) {
+    btn.addEventListener('click', () => {
+      const { slug, empresa, cargo } = btn.dataset;
+      coverLetterSlug = slug ?? '';
+      coverLetterLabel.textContent = `${empresa} · ${cargo}`;
+      openModal(modalCoverLetter);
+      loadCoverLetter();
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.cover-letter-btn').forEach(wireCoverLetterBtn);
+
+  coverLetterRegenerate.addEventListener('click', loadCoverLetter);
+
+  coverLetterCopy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(coverLetterTextarea.value);
+      const original = coverLetterCopy.textContent;
+      coverLetterCopy.textContent = 'Copiado!';
+      setTimeout(() => { coverLetterCopy.textContent = original; }, 1500);
+    } catch {
+      // clipboard bloqueado (sem permissão/contexto não-seguro) — seleciona o
+      // texto pra facilitar copiar manualmente em vez de falhar silenciosamente
+      coverLetterTextarea.select();
+    }
+  });
+
   // ---- Modal Config. Ingestão ----
 
   const modalIngestConfig  = document.getElementById('modal-ingest-config') as HTMLDialogElement;
@@ -2055,6 +2150,7 @@ for (const opt of statusOptions) {
     diasParado?: number; prazoCandidatura?: string; diasAteResposta?: number | null; data: string; tags: string[];
     bloqueadores?: string[]; ausentes?: string[]; boaAderencia?: string[];
     obtObrig?: number; maxObrigW?: number; obtPref?: number; maxPrefW?: number;
+    atsPct?: number | null; atsMissing?: string[];
   }): string {
     const b         = BAND_COLORS[banda(v.score)];
     const dateFmt   = v.data ? formatDate(v.data) : '';
@@ -2065,6 +2161,8 @@ for (const opt of statusOptions) {
     const maxObrigW = v.maxObrigW ?? 0;
     const obtPref   = v.obtPref   ?? 0;
     const maxPrefW  = v.maxPrefW  ?? 0;
+    const atsPct     = v.atsPct ?? null;
+    const atsMissing = v.atsMissing ?? [];
 
     const tagsHTML = v.tags.length
       ? `<div class="tags-list flex flex-wrap gap-1.5">${v.tags.map((t) =>
@@ -2129,6 +2227,16 @@ for (const opt of statusOptions) {
     const obrigPct  = maxObrigW > 0 ? Math.round(obtObrig  / maxObrigW  * 100) : 0;
     const prefPct   = maxPrefW  > 0 ? Math.round(obtPref   / maxPrefW   * 100) : 0;
 
+    const atsHTML = atsPct !== null
+      ? `<div class="flex items-center gap-2" title="${atsMissing.length > 0 ? `Faltam no currículo: ${atsMissing.join(', ')}` : 'Todas as competências mapeadas aparecem no currículo'}">
+          <span class="text-[11px] shrink-0" style="color: var(--color-muted); width: 110px;">Match ATS 📄</span>
+          <div class="relative flex-1 h-1.5 rounded-full overflow-hidden" style="background: var(--color-surface-2);">
+            <div class="absolute inset-y-0 left-0 rounded-full" style="width: ${atsPct}%; background: ${b.fill};"></div>
+          </div>
+          <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">${atsPct}%</span>
+        </div>`
+      : '';
+
     return `
       <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}" data-empresa="${v.empresa.toLowerCase()}" data-status="${v.status}"
         class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
@@ -2172,6 +2280,12 @@ for (const opt of statusOptions) {
               </svg>
               Editar
             </button>
+            <button class="cover-letter-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+              style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
+              data-slug="${v.slug}" data-empresa="${v.empresa}" data-cargo="${v.cargo}"
+              aria-label="Gerar carta de apresentação para ${v.empresa}">
+              ✉️ Carta
+            </button>
             <button class="expander-btn flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-70"
               style="border-color: var(--color-border); color: var(--color-faint); font-family: var(--font-body);"
               aria-expanded="false" aria-label="Ver análise completa de ${v.empresa}">
@@ -2201,6 +2315,7 @@ for (const opt of statusOptions) {
                   </div>
                   <span class="text-[11px] tabular-nums shrink-0" style="color: var(--color-muted); min-width: 5ch; text-align: right;">${obtPref}/${maxPrefW}</span>
                 </div>
+                ${atsHTML}
               </div>
               <div class="gaps-grid grid gap-3">
                 <div class="flex flex-col gap-1.5">
@@ -2313,6 +2428,7 @@ for (const opt of statusOptions) {
   function wireNewCard(card: HTMLElement) {
     card.querySelectorAll<HTMLButtonElement>('.candidatura-btn').forEach(wireCandidaturaBtn);
     card.querySelectorAll<HTMLButtonElement>('.edit-btn').forEach(wireEditBtn);
+    card.querySelectorAll<HTMLButtonElement>('.cover-letter-btn').forEach(wireCoverLetterBtn);
     wireExpanderBtns(card);
   }
 
