@@ -1820,6 +1820,8 @@ for (const opt of statusOptions) {
       const clone = original.cloneNode(true) as HTMLElement;
       clone.removeAttribute('data-animate');
       clone.style.removeProperty('--animate-delay');
+      // Filtros escondem o original com display:none inline — o clone não pode herdar isso.
+      clone.style.display = '';
       modalVagaBody.replaceChildren(clone);
       wireNewCard(clone);
       openModal(modalVaga);
