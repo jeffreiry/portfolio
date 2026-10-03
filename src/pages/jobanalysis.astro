@@ -828,6 +828,20 @@ for (const opt of statusOptions) {
             {statusOptions.map((s) => <option value={s}>{s}</option>)}
           </select>
         </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] uppercase tracking-[0.1em]" style="color: var(--color-faint); font-family: var(--font-body);">Ordenar</span>
+          <select
+            id="sort-vagas"
+            aria-label="Ordenar vagas"
+            class="ja-select rounded-full border py-1 pl-3 pr-7 text-[11px] font-medium"
+            style="border-color: var(--color-border); background: var(--color-surface); color: var(--color-muted); font-family: var(--font-body);"
+          >
+            <option value="score-desc">Score (maior primeiro)</option>
+            <option value="score-asc">Score (menor primeiro)</option>
+            <option value="data-desc">Data (mais recente)</option>
+            <option value="data-asc">Data (mais antiga)</option>
+          </select>
+        </div>
       </div>
 
       <div id="vagas-list" class="flex flex-col gap-4">
@@ -837,6 +851,8 @@ for (const opt of statusOptions) {
             <article
               data-animate
               data-slug={v.slug}
+              data-score={v.score}
+              data-data={v.data}
               data-candidatura={v.candidatura}
               data-banda={banda(v.score)}
               data-empresa={v.empresa.toLowerCase()}
@@ -1775,6 +1791,36 @@ for (const opt of statusOptions) {
 
   const statusSelect = document.getElementById('filter-status') as HTMLSelectElement | null;
 
+  // ---- Ordenação das vagas ----
+  // Só reordena os cards no DOM (não refaz o SSR), então funciona com cards
+  // reconstruídos após reanálise também — desde que tenham data-score/data-data.
+  const LS_SORT_KEY = 'jobanalysis:sort';
+  const sortSelect = document.getElementById('sort-vagas') as HTMLSelectElement | null;
+
+  function applySort(value: string) {
+    const list = document.getElementById('vagas-list');
+    if (!list) return;
+    const [campo, direcao] = value.split('-');
+    const cards = Array.from(list.querySelectorAll<HTMLElement>('.vaga-card'));
+    cards.sort((a, b) => {
+      const va = campo === 'score' ? Number(a.dataset.score) : (a.dataset.data ?? '');
+      const vb = campo === 'score' ? Number(b.dataset.score) : (b.dataset.data ?? '');
+      const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+      return direcao === 'asc' ? cmp : -cmp;
+    });
+    cards.forEach((c) => list.appendChild(c));
+  }
+
+  if (sortSelect) {
+    const saved = lsGet<string>(LS_SORT_KEY);
+    if (saved && Array.from(sortSelect.options).some((o) => o.value === saved)) sortSelect.value = saved;
+    applySort(sortSelect.value);
+    sortSelect.addEventListener('change', () => {
+      applySort(sortSelect.value);
+      lsSet(LS_SORT_KEY, sortSelect.value);
+    });
+  }
+
   function setCandidatura(value: string) {
     activeFilters.candidatura = value;
     document.querySelectorAll<HTMLButtonElement>('.filter-pill[data-filter="candidatura"]').forEach((p) => {
@@ -2238,7 +2284,7 @@ for (const opt of statusOptions) {
       : '';
 
     return `
-      <article data-slug="${v.slug}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}" data-empresa="${v.empresa.toLowerCase()}" data-status="${v.status}"
+      <article data-slug="${v.slug}" data-score="${v.score}" data-data="${v.data}" data-candidatura="${v.candidatura}" data-banda="${banda(v.score)}" data-empresa="${v.empresa.toLowerCase()}" data-status="${v.status}"
         class="vaga-card rounded-2xl border p-5 flex flex-col gap-3"
         style="background: color-mix(in srgb, var(--color-surface) 40%, transparent);${v.status === 'Arquivado' ? ' display: none;' : ''}"
         <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
