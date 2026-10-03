@@ -28,7 +28,7 @@ import { normalizeGupyJob, type GupySearchResult } from './sources/gupy.ts';
 import { fetchRemotiveJobs } from './sources/remotive.ts';
 import { fetchAdzunaJobs } from './sources/adzuna.ts';
 import { prioritizeJobs, type ClassifiedJob } from './prioritize.ts';
-import { loadBenchKeys, loadLedger, saveLedger, dedupJobs, dedupByUrl, type Ledger } from './dedup.ts';
+import { loadBenchKeys, loadLedger, saveLedger, dedupJobs, dedupByUrl, ledgerKey, type Ledger } from './dedup.ts';
 import { analyzeJob } from './analyze-job.ts';
 import { shouldPromoteToFicha } from './gate.ts';
 import { writeFicha, appendDigestEntry, reconcileIndex } from './bench-write.ts';
@@ -139,7 +139,7 @@ async function runLive(jobs: ClassifiedJob[], ledger: Ledger, groqKey: string, c
           status: 'A avaliar',
           data: today,
         }]);
-        ledger[job.url] = { status: 'promovida', score: outcome.score, evaluatedAt: today };
+        ledger[ledgerKey(job)] = { status: 'promovida', score: outcome.score, evaluatedAt: today };
         promoted.push(`${finalSlug}.md (${outcome.score}%)`);
         console.log(`  ✅ promovida — ${outcome.score}% — Bench_job_applications/${finalSlug}.md`);
       } else {
@@ -150,7 +150,7 @@ async function runLive(jobs: ClassifiedJob[], ledger: Ledger, groqKey: string, c
           data: today,
           url: job.url,
         });
-        ledger[job.url] = { status: 'reprovada', score: outcome.score, evaluatedAt: today };
+        ledger[ledgerKey(job)] = { status: 'reprovada', score: outcome.score, evaluatedAt: today };
         digested.push(`${outcome.empresa} · ${outcome.cargo} (${outcome.score}%)`);
         console.log(`  ⬇️  abaixo do gate — ${outcome.score}% — foi pro _digest.md`);
       }

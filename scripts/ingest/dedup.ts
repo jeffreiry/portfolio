@@ -103,6 +103,16 @@ export function dedupByUrl(jobs: RawJob[]): RawJob[] {
   return result;
 }
 
+// Chave estável pro ledger — achado real (2026-10-02): a URL que a Adzuna
+// devolve (redirect_url) muda a cada chamada da API, mesmo pro MESMO anúncio
+// (token de sessão/tracking embutido, ex: "se=AJHJ2ZG..." vs "se=LG9LLY...").
+// Usar `job.url` como chave do ledger deixava uma vaga já promovida/reprovada
+// "esquecida" na busca seguinte, reaparecendo pra reanálise. `externalId` é
+// estável por fonte (todas já o populam) — usar isso em vez da URL.
+export function ledgerKey(job: Pick<RawJob, 'source' | 'externalId'>): string {
+  return `${job.source}:${job.externalId}`;
+}
+
 export interface DedupResult {
   survivors: RawJob[];
   skipped: Array<{ job: RawJob; reason: 'ja-no-bench' | 'ja-no-ledger' }>;
@@ -118,7 +128,7 @@ export function dedupJobs(jobs: RawJob[], bench: BenchKeys, ledger: Ledger): Ded
       skipped.push({ job, reason: 'ja-no-bench' });
       continue;
     }
-    if (ledger[job.url]) {
+    if (ledger[ledgerKey(job)]) {
       skipped.push({ job, reason: 'ja-no-ledger' });
       continue;
     }
