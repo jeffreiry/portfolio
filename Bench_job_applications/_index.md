@@ -199,46 +199,51 @@ Pendências presentes em todas as vagas — resolver aumenta o score de todas:
 
 ## Matriz FOFA
 
-> **Cadência de atualização:** diferente da tabela de vagas e dos Gaps transversais (que mudam a cada análise nova), esta matriz **só é recalculada quando o autor pedir explicitamente** ("atualizar a FOFA") — não é uma leitura automática do bench. Ela existe pra sintetizar padrões que só aparecem lendo o conjunto inteiro, não vaga a vaga. Datas de referência: contagens abaixo batem com o bench de 2026-09-18 (56 vagas, após reanálise de 8 vagas ativas + adição da Verity).
+> **Cadência de atualização:** diferente da tabela de vagas e dos Gaps transversais (que mudam a cada análise nova), esta matriz **só é recalculada quando o autor pedir explicitamente** ("atualizar a FOFA") — não é uma leitura automática do bench. Ela existe pra sintetizar padrões que só aparecem lendo o conjunto inteiro, não vaga a vaga. **Última atualização: 2026-10-03** — contagens calculadas a partir de 151 fichas com requisitos obrigatórios, classificando cada requisito pela taxonomia de competências (`canonicalizeSkill`): "forte" = nota ≥2, "gap" = nota ≤1, contando a melhor nota de cada competência por vaga.
 
 ### 🟩 Forças — o que se repete a favor, vaga após vaga
 
 | Força | Recorrência | Evidência |
 |---|---|---|
-| Trade-offs documentados com alternativas descartadas | 41/56 vagas | Decisões como "conversacional vs. busca" (Enterprise AI) ou "timeline vs. grid" (Shipping) citadas como diferencial de maturidade sênior |
-| Portfolio bilíngue PT+EN como prova de inglês avançado | 35/56 vagas | Citado diretamente como evidência de fluência, sem precisar de teste — elimina fricção em vagas com stakeholder internacional |
-| Complexidade de domínio enterprise/B2B (SAP, múltiplos perfis de aprovação, integração técnica) | recorrente na maioria das análises | HYPERGESTOR, Shipping Platform e Arezzo sustentam esse argumento de forma consistente |
-| Mentalidade AI-first / design de produtos com IA | destacado como diferencial genuíno em Gringo & Zapay, iFood, CloudWalk, Jobgether, Microsoft | Enterprise AI Assistant é citado nominalmente como prova — poucos concorrentes têm case real de produto de IA, não só uso de IA como ferramenta |
-| Colaboração cross-funcional com engenharia, produto e dados | recorrente | Presente em praticamente todo case enterprise (Enterprise AI, Shipping, HYPERGESTOR) |
-| **Pesquisa e artefatos visíveis reais (novo)** | 8 vagas reanalisadas em 2026-09-18, ganho médio de +8,4 pontos percentuais | Arezzo Ad Management passou a publicar board de síntese de pesquisa, VP Canvas, Jobs to be Done, matriz de responsabilidades, service blueprint, handoff e teste de usabilidade real no Maze — primeira vez que o portfolio sustenta "processo com evidência", não só "processo narrado" |
+| Colaboração cross-funcional com engenharia, produto e dados | 70/72 vagas com nota ≥2 (97%) | Presente em praticamente todo case enterprise (Enterprise AI, Shipping, Gerenciador de Verbas) |
+| Comunicação e gestão de stakeholders | 65/68 e 32/34 vagas com nota ≥2 | Apresentação de trade-offs e alinhamento com perfis de negócio documentados em múltiplos cases |
+| Design systems | 55/57 vagas com nota ≥2 (96%) | Power Apps Dummy App (+10 componentes) e Cartela Cores (tokens com regras de decisão) |
+| Arquitetura da informação | 22/22 vagas com nota ≥2 | Arezzo (3 perfis com navegações independentes) e Enterprise AI (paradigma conversacional vs. busca) |
+| Trabalho remoto / autogestão e autonomia | 32/33 e 40/45 vagas com nota ≥2 | Discovery de 6 meses com alta autonomia e atuação como único designer em times de desenvolvimento |
+| Inglês avançado | 16/17 vagas com nota ≥2 (94%) | Portfolio publicado integralmente em PT+EN |
+| Discovery e pesquisa qualitativa | 32/36 vagas com nota ≥2 (89%) — testes de usabilidade 30/37 | Arezzo (board de síntese real, teste no Maze) e Enterprise AI (Clarity + entrevistas) |
+| **Pesquisa e artefatos visíveis reais** | Ganho médio de +8,4 p.p. em 8 vagas reanalisadas (2026-09-18) | Arezzo Ad Management publica board de síntese, VP Canvas, Jobs to be Done, matriz de responsabilidades, service blueprint, handoff e teste de usabilidade real no Maze — primeira vez que o portfolio sustenta "processo com evidência", não só "processo narrado" |
 
-### 🟥 Fraquezas — gaps transversais, em uma frase cada
+### 🟥 Fraquezas — gaps transversais, medidos pelo bench
 
-| Fraqueza | Vagas afetadas |
-|---|---|
-| Métricas de impacto ausentes | Todas (100%) — nem o case mais robusto em artefatos (Arezzo) tem número de resultado pós-lançamento |
-| Artefatos visuais ausentes ou só sob link mágico nos cases enterprise mais fortes | Enterprise AI, Shipping, Power Apps, HYPERGESTOR — Arezzo já não está mais nesta lista |
-| Mobile nativo (iOS/Android) ausente | 14 vagas, bloqueador explícito |
-| UX Research estruturado sem protocolo formal completo | 21 vagas (Nacar saiu da lista após o Arezzo) |
-| Acessibilidade documentada só 1x | SAP, BTG, Boticário |
+| Fraqueza | Recorrência (gap = nota ≤1) | Observação |
+|---|---|---|
+| Motion design | 8/8 vagas que pedem (100%) | Nenhum case documenta motion ou micro-interação animada |
+| Métricas de produto / dados | 24/38 vagas (63%) | Maior gap de volume entre os requisitos de análise — nenhum case publica métrica de impacto pós-lançamento |
+| Growth / conversão | 8/10 vagas (80%) | Sem case de aquisição, funil ou experimentação |
+| Domínio fintech / pagamentos | 6/8 vagas (75%) | Nenhum case em banco, corretora ou fintech |
+| Liderança / mentoria | 9/16 vagas (56%) | Nenhum case documenta mentoria ou liderança de designers |
+| Design responsivo / mobile | 16/34 vagas (47%) | Ausência de app nativo publicado — bloqueador binário em vagas mobile-first |
+| Acessibilidade (WCAG) documentada | 11/24 vagas (46%) | Só Cartela Cores e alguns bullets de Hypera/Arezzo citam WCAG |
+| Prototipação e IA aplicada a design | 22/75 e 17/56 vagas (29% e 30%) | Prototipação além do Figma e uso de IA como parceira de criação ainda pouco narrados |
+| UX Research sem protocolo formal | 13/62 vagas (21%) | Melhorou com o Arezzo; o protocolo completo (recrutamento, roteiro, moderação) ainda não está documentado |
 
 ### 🟦 Oportunidades — fatores externos a favor, se agir
 
 | Oportunidade | Por quê agora |
 |---|---|
-| Demanda de mercado por "AI-first mindset" no processo de design está subindo | Já é o ponto mais citado como diferencial nas análises mais recentes (set/2026) — reforçar é custo baixo, retorno alto |
-| Case novo "Job Analysis" fecha Artefatos + AI-first + decisão documentada de uma vez | Primeiro case com diagramas reais (orquestração de agentes, flowchart) expostos publicamente, sem senha |
-| Padrão Arezzo (artefatos reais + pesquisa + handoff publicados) já provou ganho de score real em 8 vagas — replicar em Enterprise AI, Shipping ou HYPERGESTOR | Não exige projeto novo, só reaproveitar matéria-prima de discovery/handoff que já existe desses projetos e nunca foi desenhada visualmente |
-| Protocolo formal do teste de usabilidade do Arezzo (participantes, tarefas, moderação) é o gap mais barato de fechar do bench inteiro | Resolveria a maior parte do que resta em "UX Research estruturado" (21 vagas) com poucas frases, não um projeto novo |
-| O próprio bench aponta prioridade por dado, não por achismo | Gaps transversais já rankeiam o que vale mais pontuação por esforço |
+| Métricas de produto é o maior gap de volume (24/38 vagas) | Fechar isso com dado real de algum projeto move mais vagas de uma vez do que qualquer outro item do bench |
+| Padrão Arezzo (artefatos reais + pesquisa + handoff publicados) já provou ganho de score em 8 vagas — replicar em Enterprise AI, Shipping ou HYPERGESTOR | Não exige projeto novo, só reaproveitar matéria-prima de discovery/handoff que já existe e nunca foi desenhada visualmente |
+| Protocolo formal do teste de usabilidade do Arezzo (participantes, tarefas, moderação) | Fecha a maior parte do que resta em UX Research (13 vagas) com poucas frases, não um projeto novo |
+| Case novo "Job Analysis" fecha artefatos + AI-first + decisão documentada | Primeiro case com diagramas reais de orquestração de agentes publicado sem senha |
 
 ### ⬛ Ameaças — fatores externos fora de controle
 
 | Ameaça | Risco |
 |---|---|
 | Braskem em recuperação judicial (desde 2026-09-07) | Reduz o tempo disponível pra fechar gaps antes de precisar de renda — ver `project_busca_emprego_urgente` |
-| Mobile nativo ausente é bloqueador binário em vagas mobile-first | Não é gap que se fecha em um fim de semana — 14 vagas ficam estruturalmente fora de alcance até isso mudar |
-| Concorrência por vagas sênior de IA está aquecendo | Quem tiver artefato visível (não só descrito) leva vantagem — a mesma vaga que hoje valoriza "AI-first" vai penalizar portfolio sem prova visual amanhã |
+| Mobile nativo ausente é bloqueador binário em vagas mobile-first | Não é gap que se fecha em um fim de semana — 16 vagas com nota ≤1 em responsivo/mobile ficam estruturalmente fora de alcance até isso mudar |
+| Concorrência por vagas sênior de IA está aquecendo | Quem tiver artefato visível (não só descrito) leva vantagem — a mesma vaga que hoje valoriza "AI-first" pode penalizar portfolio sem prova visual amanhã |
 | Filtros automáticos de ATS além do já identificado ("Sênior" no título, corrigido em set/2026) | Não há garantia de que não existam outros filtros de triagem automática ainda não mapeados |
 | Métricas de impacto seguem sendo o único gap que a reconstrução de um case não resolveu sozinha | Mesmo o case mais completo em artefatos (Arezzo) não moveu esse ponteiro — é o gap que mais precisa de dado real do cliente/projeto, não de mais design |
 
