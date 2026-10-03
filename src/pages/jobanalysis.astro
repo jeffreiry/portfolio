@@ -650,7 +650,7 @@ for (const opt of statusOptions) {
           {filaPrioridade.map((v, i) => {
             const b = bandaCor[banda(v.score)];
             return (
-              <div data-animate style={`--animate-delay: ${Math.min(i * 60, 240)}ms`} class="flex items-center gap-4 rounded-2xl border p-4">
+              <button type="button" data-animate data-prio-slug={v.slug} style={`--animate-delay: ${Math.min(i * 60, 240)}ms`} class="prio-card flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-opacity hover:opacity-80" aria-label={`Abrir vaga ${v.empresa}`}>
                 <span class="font-display text-2xl font-bold tabular-nums shrink-0" style={`color: ${b.fill}; min-width: 3.5ch;`}>{v.score}%</span>
                 <div class="flex flex-col gap-0.5 min-w-0 flex-1">
                   <span class="font-body text-[15px] font-semibold text-neutral-900 truncate">{v.empresa}{v.produto && <span class="font-normal" style="color: var(--color-faint);"> · {v.produto}</span>}</span>
@@ -659,7 +659,7 @@ for (const opt of statusOptions) {
                     {v.diasParado >= 0 ? ` · sem atualização há ${v.diasParado} dia${v.diasParado === 1 ? '' : 's'}` : ''}
                   </span>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -1352,6 +1352,21 @@ for (const opt of statusOptions) {
     </form>
   </dialog>
 
+  <!-- Modal: Card da vaga (aberto a partir da Prioridade agora) -->
+  <dialog id="modal-vaga" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+    <div class="flex flex-col gap-3 p-4">
+      <div class="flex justify-end">
+        <button type="button" class="modal-close shrink-0 rounded-full p-1.5 hover:opacity-60 transition-opacity"
+          aria-label="Fechar" style="color: var(--color-faint);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="modal-vaga-body"></div>
+    </div>
+  </dialog>
+
   <!-- Modal: Carta de apresentação -->
   <dialog id="modal-cover-letter" class="ja-modal rounded-2xl p-0 shadow-2xl w-full max-w-lg">
     <div class="flex flex-col gap-4 p-6">
@@ -1790,6 +1805,26 @@ for (const opt of statusOptions) {
   }
 
   const statusSelect = document.getElementById('filter-status') as HTMLSelectElement | null;
+
+  // ---- Prioridade agora → modal com o card completo ----
+  // Clona o card da lista (mesmo markup, botões e expander) e religa os
+  // listeners — clones não herdam addEventListener do original.
+  const modalVaga     = document.getElementById('modal-vaga') as HTMLDialogElement | null;
+  const modalVagaBody = document.getElementById('modal-vaga-body') as HTMLElement | null;
+
+  document.querySelectorAll<HTMLButtonElement>('.prio-card').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const slug = btn.dataset.prioSlug;
+      const original = document.querySelector<HTMLElement>(`#vagas-list .vaga-card[data-slug="${slug}"]`);
+      if (!modalVaga || !modalVagaBody || !original) return;
+      const clone = original.cloneNode(true) as HTMLElement;
+      clone.removeAttribute('data-animate');
+      clone.style.removeProperty('--animate-delay');
+      modalVagaBody.replaceChildren(clone);
+      wireNewCard(clone);
+      openModal(modalVaga);
+    });
+  });
 
   // ---- Ordenação das vagas ----
   // Só reordena os cards no DOM (não refaz o SSR), então funciona com cards
