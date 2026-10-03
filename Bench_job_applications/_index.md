@@ -177,8 +177,9 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer Sênior](enter-product-designer-senior.md) | Enter · Automação jurídica com IA | **61%** | Aderência parcial | A avaliar | 2026-08-12 |
 | [Product Design (IA First, IC3)](sanar-product-design-ia-first.md) | Sanar · Plataforma educacional de Medicina | **63%** | Aderência parcial | A avaliar | 2026-08-21 |
 | [Product Designer Especialista](rock-encantech-product-designer-especialista.md) | Rock Encantech · SuperApp de varejo | **67%** | Aderência parcial | A avaliar | 2026-10-02 |
+| [PRODUCT DESIGNER](dynamox-product-designer.md) | Dynamox · Monitoramento industrial | **90%** | Alta aderência | A avaliar | 2026-08-27 |
 
-**Média geral: 61%** · Aderência parcial (137 vagas)
+**Média geral: 61%** · Aderência parcial (138 vagas)
 
 ---
 

@@ -658,5 +658,10 @@
     "status": "reprovada",
     "score": 0,
     "evaluatedAt": "2026-10-02"
+  },
+  "adzuna:5858491094": {
+    "status": "promovida",
+    "score": 90,
+    "evaluatedAt": "2026-10-03"
   }
 }
