@@ -492,12 +492,12 @@ const funilTerminal = {
   arquivado: vagas.filter((v) => v.status === 'Arquivado').length,
 };
 
-// Fila de prioridade — vagas ainda "em jogo" (fora Recusado/Arquivado), ordenadas
+// Fila de prioridade — vagas ainda não candidatadas e em jogo (fora Recusado/Arquivado), ordenadas
 // por score desc e, como desempate, por tempo parado desc (diasParado === -1
 // quando desconhecido, o que naturalmente empurra pro fim do desempate — não
 // inventa urgência pra vaga sem essa data registrada). Top 5, não a lista toda.
 const filaPrioridade = vagas
-  .filter((v) => funilAtivo.includes(v.status))
+  .filter((v) => v.candidatura === 'Não' && funilAtivo.includes(v.status))
   .sort((a, b) => b.score - a.score || b.diasParado - a.diasParado)
   .slice(0, 5);
 
@@ -647,7 +647,7 @@ for (const opt of statusOptions) {
         </div>
         <div class="expander-content open">
           <div class="expander-inner">
-        <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">As 5 vagas ainda em jogo com maior score — dentre elas, as paradas há mais tempo aparecem primeiro.</p>
+        <p data-animate class="text-sm mb-7" style="color: var(--color-faint);">As 5 vagas ainda não candidatadas com maior score — dentre elas, as paradas há mais tempo aparecem primeiro.</p>
         <div class="flex flex-col gap-3">
           {filaPrioridade.map((v, i) => {
             const b = bandaCor[banda(v.score)];
