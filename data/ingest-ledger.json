@@ -668,5 +668,15 @@
     "status": "promovida",
     "score": 47,
     "evaluatedAt": "2026-10-04"
+  },
+  "adzuna:5911065269": {
+    "status": "reprovada",
+    "score": 0,
+    "evaluatedAt": "2026-10-04"
+  },
+  "adzuna:5899143656": {
+    "status": "reprovada",
+    "score": 0,
+    "evaluatedAt": "2026-10-04"
   }
 }
