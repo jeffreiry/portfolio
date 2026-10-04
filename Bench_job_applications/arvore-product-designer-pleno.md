@@ -10,7 +10,6 @@
 **Modalidade:** Híbrido
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-30
-**Candidatura:** Não
 
 ---
 

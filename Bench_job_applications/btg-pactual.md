@@ -5,7 +5,6 @@
 **Nível:** Não especificado (contexto: sênior pelo escopo da vaga)  
 **Data da vaga:** 2026-06-12  
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

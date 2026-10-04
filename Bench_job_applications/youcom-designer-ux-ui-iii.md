@@ -5,7 +5,6 @@
 **Nível:** Designer UX/UI III
 **Data da vaga:** 2026-06-23
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

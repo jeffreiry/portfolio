@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-07-30
 **Link da vaga:** https://job-boards.greenhouse.io/gusto/jobs/7905702
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-29
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

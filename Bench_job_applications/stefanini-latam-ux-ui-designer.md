@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-09-10
 **Link da vaga:** https://stefaninilatam.gupy.io/job/eyJqb2JJZCI6MTI0NTcyMzAsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

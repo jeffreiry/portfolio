@@ -7,7 +7,6 @@
 **Link da vaga:** https://jobs.ashbyhq.com/The-Flex/6a0c4b4e-7090-4dcc-a4eb-28fed5d76e62
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-27
-**Candidatura:** Não
 
 ---
 

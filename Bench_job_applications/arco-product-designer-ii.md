@@ -8,7 +8,6 @@
 **Status:** Candidatura enviada
 **Candidatura enviada em:** 2026-09-30
 **Status atualizado em:** 2026-09-30
-**Candidatura:** Sim
 
 ---
 

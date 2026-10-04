@@ -5,7 +5,6 @@
 **Nível:** Sênior / Especialista
 **Data da vaga:** 2026-07-09
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

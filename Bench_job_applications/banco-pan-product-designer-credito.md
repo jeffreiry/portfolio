@@ -6,7 +6,6 @@
 **Modelo:** Híbrido · São Paulo / SP (2 dias presenciais)  
 **Data da vaga:** 2026-06-12  
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

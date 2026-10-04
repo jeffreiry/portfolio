@@ -5,7 +5,6 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-08-13
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

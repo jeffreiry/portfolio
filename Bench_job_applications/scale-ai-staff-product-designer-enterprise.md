@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-09-24
 **Link da vaga:** https://job-boards.greenhouse.io/scaleai/jobs/4735360005
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

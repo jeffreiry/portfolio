@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-09-02
 **Link da vaga:** https://www.brex.com/careers/8777938002?gh_jid=8777938002
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-29
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

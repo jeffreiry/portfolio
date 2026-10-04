@@ -5,7 +5,6 @@
 **Nível:** Pleno
 **Data da vaga:** 2026-08-25
 **Status:** Candidatura enviada
-**Candidatura:** Sim
 
 ---
 

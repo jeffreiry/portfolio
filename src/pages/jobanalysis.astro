@@ -134,10 +134,12 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
     const salarioMatch = content.match(/\*\*Salário:\*\*\s*(.+)/);
     const salario = salarioMatch?.[1]?.trim() ?? '';
 
-    const candidaturaMatch = content.match(/\*\*Candidatura:\*\*\s*(.+)/);
-    const candidatura =
-      candidaturaMatch?.[1]?.trim() ??
-      (status.toLowerCase().includes('pendente') ? 'Sim' : 'Não');
+    // "Já me candidatei?" é derivado do Status (fonte única de verdade). Estágios
+    // pós-envio implicam candidatura; Arquivado só conta se houver a data de envio.
+    const POS_CANDIDATURA = ['Candidatura enviada', 'Entrevista agendada', 'Em processo', 'Proposta recebida', 'Recusado'];
+    const candidatura = (POS_CANDIDATURA.includes(status) || (status === 'Arquivado' && /\*\*Candidatura enviada em:\*\*/.test(content)))
+      ? 'Sim'
+      : 'Não';
 
     const motivoMatch = content.match(/\*\*Motivo da recusa:\*\*\s*(.+)/);
     const motivoRecusa = motivoMatch?.[1]?.trim() ?? '';
@@ -1316,15 +1318,6 @@ for (const opt of statusOptions) {
 
       <input type="hidden" id="modal-slug" name="slug" />
 
-      <fieldset class="flex gap-4">
-        <legend class="text-sm font-medium text-neutral-900 mb-2">Enviou candidatura?</legend>
-        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
-          <input type="radio" name="candidatura" value="Sim" class="accent-neutral-900" /> Sim
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--color-muted);">
-          <input type="radio" name="candidatura" value="Não" class="accent-neutral-900" /> Não
-        </label>
-      </fieldset>
 
       <div class="flex flex-col gap-1.5">
         <label for="modal-status" class="text-sm font-medium text-neutral-900">Status</label>
@@ -1981,14 +1974,14 @@ for (const opt of statusOptions) {
   const modalLinkInput    = document.getElementById('modal-link') as HTMLInputElement;
   const modalCandErr      = document.getElementById('modal-candidatura-error') as HTMLElement;
 
+  const POS_CANDIDATURA_CLIENT = ['Candidatura enviada', 'Entrevista agendada', 'Em processo', 'Proposta recebida', 'Recusado'];
+
   function wireCandidaturaBtn(btn: HTMLButtonElement) {
     btn.addEventListener('click', () => {
-      const { slug, empresa, cargo, candidatura, status, link } = btn.dataset;
+      const { slug, empresa, cargo, status, link } = btn.dataset;
       modalSlugInput.value = slug ?? '';
       modalLinkInput.value = link ?? '';
       modalEmpresaLabel.textContent = `${empresa} · ${cargo}`;
-      const radio = formCandidatura.querySelector<HTMLInputElement>(`input[value="${candidatura}"]`);
-      if (radio) radio.checked = true;
       const opt = modalStatusSel.querySelector<HTMLOptionElement>(`option[value="${status}"]`);
       if (opt) opt.selected = true;
       modalCandErr.classList.add('hidden');
@@ -2003,15 +1996,9 @@ for (const opt of statusOptions) {
     e.preventDefault();
     const data = new FormData(formCandidatura);
     const slug        = data.get('slug') as string;
-    const candidatura = data.get('candidatura') as string;
     const status      = data.get('status') as string;
     const link        = ((data.get('link') as string) ?? '').trim();
 
-    if (!candidatura) {
-      modalCandErr.textContent = 'Selecione Sim ou Não.';
-      modalCandErr.classList.remove('hidden');
-      return;
-    }
 
     const btn = formCandidatura.querySelector<HTMLButtonElement>('[type="submit"]')!;
     btn.disabled = true;
@@ -2021,7 +2008,7 @@ for (const opt of statusOptions) {
       const res = await fetch('/api/jobanalysis-update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, candidatura, status, link }),
+        body: JSON.stringify({ slug, status, link }),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? 'Erro desconhecido');
 
@@ -2030,6 +2017,9 @@ for (const opt of statusOptions) {
         const candBtn   = card.querySelector<HTMLButtonElement>('.candidatura-btn')!;
         const candLabel = candBtn.querySelector<HTMLElement>('.candidatura-label')!;
         const statusLbl = card.querySelector<HTMLElement>('.status-label')!;
+        const candidatura = POS_CANDIDATURA_CLIENT.includes(status)
+          ? 'Sim'
+          : status === 'Arquivado' ? candBtn.dataset.candidatura ?? 'Não' : 'Não';
         candLabel.textContent       = candidatura;
         candBtn.dataset.candidatura = candidatura;
         candBtn.dataset.status      = status;

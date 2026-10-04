@@ -5,7 +5,6 @@
 **Nível:** Staff (sênior estendido / individual contributor de alta influência)
 **Data da vaga:** 2026-09-12
 **Status:** Candidatura enviada
-**Candidatura:** Sim
 
 ---
 

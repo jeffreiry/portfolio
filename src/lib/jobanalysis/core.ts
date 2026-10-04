@@ -383,7 +383,6 @@ Scoring ponderado por Person-Job Fit (Demands-Abilities Fit):
 **Nível:** {nivel}
 **Data da vaga:** {data}
 **Status:** A avaliar
-**Candidatura:** Não
 
 ---
 
@@ -440,7 +439,7 @@ Scoring ponderado por Person-Job Fit (Demands-Abilities Fit):
 {bullets com transfer arguments onde necessário}
 
 ---METADATA---
-{"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":0,"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote sem aspas internas}","candidatura":"Não"}`;
+{"empresa":"{empresa}","produto":"{produto}","cargo":"{cargo}","score":0,"data":"{YYYY-MM-DD ou string vazia}","interpretacaoTexto":"{texto do blockquote sem aspas internas}"}`;
 
 export async function analyzeWithClaude(
   extracted: JdExtracted,

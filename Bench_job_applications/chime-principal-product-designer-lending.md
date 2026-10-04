@@ -6,9 +6,8 @@
 **Data da vaga:** 2025-12-17
 **Link da vaga:** https://boards.greenhouse.io/chime/jobs/8342899002?gh_jid=8342899002
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-29
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

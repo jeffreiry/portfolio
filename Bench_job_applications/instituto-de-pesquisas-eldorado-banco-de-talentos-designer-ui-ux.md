@@ -6,9 +6,8 @@
 **Data da vaga:** 2023-12-21
 **Link da vaga:** https://institutoeldorado.gupy.io/job/eyJqb2JJZCI6NjQ3ODMzNCwic291cmNlIjoibWNwX2NhbmRpZGF0ZSJ9?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

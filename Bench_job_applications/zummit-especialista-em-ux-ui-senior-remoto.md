@@ -7,7 +7,6 @@
 **Link da vaga:** https://zummit.inhire.app/vagas/1d4783a2-04ed-4c84-bd73-f40ad1333282/especialista-em-uxui-senior-remoto?source=linkedin
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-27
-**Candidatura:** Não
 
 ---
 

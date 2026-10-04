@@ -7,7 +7,6 @@
 **Link da vaga:** https://mondywork.com/vaga/d03e9240-c4a9-438b-950c-bb9c52fda45b
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-27
-**Candidatura:** Não
 
 ---
 

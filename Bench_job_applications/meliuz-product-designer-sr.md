@@ -9,7 +9,6 @@
 **Status atualizado em:** 2026-09-18
 **Score anterior:** 59% (2026-06-12)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, wireframes de handoff) e um board de síntese de pesquisa real + teste de usabilidade no Maze — as linhas de Figma/prototipação, pesquisa com usuários e wireframes/flows deixaram de citar "artefatos não expostos" e "sem testes formais". Notas ajustadas em 3 linhas obrigatórias. O gap de domínio (e-commerce/shopping/financeiro) e a ausência de mobile nativo/responsivo permanecem intactos — vaga está Arquivada, tratada como registro histórico.
-**Candidatura:** Não
 
 ---
 

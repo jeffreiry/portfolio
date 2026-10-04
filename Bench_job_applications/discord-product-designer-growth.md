@@ -8,7 +8,6 @@
 **Origem:** Ingestão automática (Greenhouse)
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-29
-**Candidatura:** Não
 
 ---
 

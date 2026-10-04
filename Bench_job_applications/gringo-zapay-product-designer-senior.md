@@ -8,7 +8,6 @@
 **Status atualizado em:** 2026-09-18
 **Score anterior:** 69% (2026-09-12)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com um board de síntese de pesquisa real (entrevistas + análise de painéis), um teste de usabilidade real no Maze, e screenshots reais das telas — três linhas ajustadas (pesquisa/testes, Figma, e a evidência da linha de resultados corrigida sem mudar a nota, já que métricas de impacto continuam ausentes). O gap de métricas de impacto segue sem solução.
-**Candidatura:** Sim
 
 ---
 

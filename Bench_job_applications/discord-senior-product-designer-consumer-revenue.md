@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-08-20
 **Link da vaga:** https://job-boards.greenhouse.io/discord/jobs/8731898002
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-29
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

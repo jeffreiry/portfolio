@@ -22,7 +22,7 @@ function scoreLabel(score: number): string {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { empresa, produto, cargo, score, data, interpretacao, candidatura } = await request.json();
+    const { empresa, produto, cargo, score, data, interpretacao } = await request.json();
 
     if (!empresa || !cargo || score === undefined) {
       return new Response(JSON.stringify({ error: 'empresa, cargo e score são obrigatórios' }), {
@@ -41,7 +41,6 @@ export const POST: APIRoute = async ({ request }) => {
     const scoreNum = Number(score);
     const today = new Date().toISOString().split('T')[0];
     const vagaData = data || today;
-    const vagaCandidatura = candidatura || 'Não';
     const vagaInterpretacao = interpretacao || '⬜ Análise pendente.';
 
     const content = `# ${empresa} · ${cargo}
@@ -51,7 +50,6 @@ export const POST: APIRoute = async ({ request }) => {
 **Nível:** ${cargo}
 **Data da vaga:** ${vagaData}
 **Status:** A avaliar
-**Candidatura:** ${vagaCandidatura}
 
 ---
 
@@ -97,7 +95,7 @@ export const POST: APIRoute = async ({ request }) => {
         interpretacao: scoreLabel(scoreNum),
         interpretacaoTexto: vagaInterpretacao,
         status: 'A avaliar',
-        candidatura: vagaCandidatura,
+        candidatura: 'Não',
         data: vagaData,
         tags: [],
       }),

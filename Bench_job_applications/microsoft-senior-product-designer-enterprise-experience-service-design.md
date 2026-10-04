@@ -5,7 +5,6 @@
 **Nível:** Senior
 **Data da vaga:** 2026-08-17
 **Status:** Candidatura enviada
-**Candidatura:** Sim
 
 ---
 

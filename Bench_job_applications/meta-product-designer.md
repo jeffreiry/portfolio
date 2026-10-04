@@ -5,7 +5,6 @@
 **Nível:** Não especificado (escopo e responsabilidades apontam para Sênior)
 **Data da vaga:** 2026-07-11
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

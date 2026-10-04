@@ -5,7 +5,6 @@
 **Nível:** Staff IC7
 **Data da vaga:** 2026-09-01
 **Status:** Candidatura enviada
-**Candidatura:** Sim
 
 ---
 

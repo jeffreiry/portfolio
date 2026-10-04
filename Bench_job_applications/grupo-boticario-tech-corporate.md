@@ -5,7 +5,6 @@
 **Nível:** Product Designer III  
 **Data da vaga:** 2026-06-12  
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

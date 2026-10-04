@@ -7,7 +7,6 @@
 **Link da vaga:** https://capitani.azurewebsites.net/Vagas/VagaSite/1526
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-28
-**Candidatura:** Não
 
 ---
 

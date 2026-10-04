@@ -7,7 +7,6 @@
 **Link da vaga:** https://avenue.inhire.app/vagas/c6330207-e91e-46e4-9bce-bdd3bc1d4aa6/product-designer-senior?source=linkedin
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-27
-**Candidatura:** Não
 
 ---
 

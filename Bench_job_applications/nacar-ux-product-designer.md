@@ -8,7 +8,6 @@
 **Status atualizado em:** 2026-09-18
 **Score anterior:** 79% (2026-09-12)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com um board de síntese de pesquisa real que inclui exatamente um formato de "insights → oportunidades" (equivalente a opportunity mapping) — a linha de "strong research capability" deixou de citar ausência de artefatos. Métricas de impacto pós-lançamento continuam ausentes, então o "track record" via resultados numéricos ainda é o gap central.
-**Candidatura:** Sim
 
 ---
 

@@ -5,7 +5,6 @@
 **Nível:** Especialista
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

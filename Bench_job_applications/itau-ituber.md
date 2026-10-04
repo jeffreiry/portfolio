@@ -6,9 +6,8 @@
 **Data da vaga:** 2025-04-07
 **Link da vaga:** https://vemproitau.gupy.io/job/eyJqb2JJZCI6ODg2MTAwMiwic291cmNlIjoibWNwX2NhbmRpZGF0ZSJ9?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

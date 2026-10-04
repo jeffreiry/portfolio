@@ -7,7 +7,6 @@
 **Link da vaga:** https://www.linkedin.com/jobs/view/4471622999/
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-27
-**Candidatura:** Não
 
 ---
 

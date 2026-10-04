@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-09-21
 **Link da vaga:** https://job-boards.greenhouse.io/affirm/jobs/7990774003
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

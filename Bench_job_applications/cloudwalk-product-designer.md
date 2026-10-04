@@ -5,7 +5,6 @@
 **Nível:** Não especificado (JD sugere pleno-sênior pelo escopo end-to-end e autonomia esperada)
 **Data da vaga:** 2026-08-20
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

@@ -5,7 +5,6 @@
 **Nível:** Product Designer Pleno/Sênior
 **Data da vaga:** ⬜
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

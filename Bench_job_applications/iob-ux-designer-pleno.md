@@ -7,7 +7,6 @@
 **Link da vaga:** https://jobs.quickin.io/iob/jobs/6ab2d12ce0ec8b0013225252
 **Status:** A avaliar
 **Status atualizado em:** 2026-09-27
-**Candidatura:** Não
 
 ---
 

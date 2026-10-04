@@ -6,10 +6,10 @@ import { join } from 'path';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { slug, candidatura, status, link } = await request.json();
+    const { slug, status, link } = await request.json();
 
-    if (!slug || !candidatura) {
-      return new Response(JSON.stringify({ error: 'slug e candidatura são obrigatórios' }), {
+    if (!slug) {
+      return new Response(JSON.stringify({ error: 'slug é obrigatório' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
@@ -35,12 +35,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     let content = readFileSync(filePath, 'utf-8');
 
-    if (content.includes('**Candidatura:**')) {
-      content = content.replace(/\*\*Candidatura:\*\* .+/, `**Candidatura:** ${candidatura}`);
-    } else {
-      content = content.replace(/(\*\*Status:\*\* .+)/, `$1\n**Candidatura:** ${candidatura}`);
-    }
-
     // "Status atualizado em" alimenta o indicador de "dias parado" no painel — sem
     // isso, a única data disponível é a de mudança de status, que não temos como
     // registrar sem esse campo. Carimbado sempre que este endpoint grava, não só
@@ -63,7 +57,8 @@ export const POST: APIRoute = async ({ request }) => {
     // em" (que é sobrescrito a cada mudança), este é o único jeito de calcular
     // "quanto tempo até a resposta" mais tarde — sem ele, a data de envio se
     // perde assim que o status avança de novo.
-    if (status === 'Candidatura enviada' && !content.includes('**Candidatura enviada em:**')) {
+    const POS_CANDIDATURA = ['Candidatura enviada', 'Entrevista agendada', 'Em processo', 'Proposta recebida', 'Recusado'];
+    if (POS_CANDIDATURA.includes(status) && !content.includes('**Candidatura enviada em:**')) {
       content = content.replace(/(\*\*Status:\*\* .+)/, `$1\n**Candidatura enviada em:** ${hoje}`);
     }
 

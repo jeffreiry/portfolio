@@ -5,7 +5,6 @@
 **Nível:** Pleno
 **Data da vaga:** 2026-06-19
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

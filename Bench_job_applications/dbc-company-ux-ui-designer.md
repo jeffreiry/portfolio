@@ -5,7 +5,6 @@
 **Nível:** Não especificado (responsabilidades apontam para Sênior)
 **Data da vaga:** 2026-08-20
 **Status:** Candidatura enviada
-**Candidatura:** Sim
 
 ---
 

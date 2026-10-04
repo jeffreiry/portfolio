@@ -5,7 +5,6 @@
 **Nível:** Pleno/Sênior
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
-**Candidatura:** Não
 **Status atualizado em:** 2026-09-18
 **Score anterior:** 38% (2026-06-27)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, wireframes) e um board de síntese de pesquisa real + teste de usabilidade no Maze — as linhas de prototipagem/Figma e de pesquisa com usuários deixaram de citar "sem protótipos expostos" e "sem roteiro/síntese formal". Notas ajustadas em 1 linha obrigatória e 1 diferencial. Os gaps estruturais (IA como ferramenta do designer, Espanhol, setor financeiro) permanecem intactos — vaga está Arquivada, tratada como registro histórico.

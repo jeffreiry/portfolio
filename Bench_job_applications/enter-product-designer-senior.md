@@ -10,7 +10,6 @@
 **Modalidade:** Presencial
 **Status:** A avaliar
 **Status atualizado em:** 2026-10-02
-**Candidatura:** Não
 
 ---
 

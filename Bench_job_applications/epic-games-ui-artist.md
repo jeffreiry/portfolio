@@ -6,7 +6,6 @@
 **Nível:** Não especificado
 **Data da vaga:** 2026-08-25
 **Status:** Arquivado
-**Candidatura:** Não
 
 ---
 

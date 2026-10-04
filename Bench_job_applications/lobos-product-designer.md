@@ -6,9 +6,8 @@
 **Data da vaga:** 2022-08-14
 **Link da vaga:** https://redelobos.gupy.io/job/eyJqb2JJZCI6MjgxMjM4Miwic291cmNlIjoibWNwX2NhbmRpZGF0ZSJ9?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

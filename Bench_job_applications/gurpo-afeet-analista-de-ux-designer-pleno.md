@@ -8,7 +8,6 @@
 **Origem:** Ingestão automática (Gupy)
 **Status:** Arquivado
 **Status atualizado em:** 2026-09-30
-**Candidatura:** Não
 
 ---
 

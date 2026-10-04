@@ -8,7 +8,6 @@
 **Status atualizado em:** 2026-09-18
 **Score anterior:** 57% (2026-08-20)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais e publicados (screenshots, board de síntese, VP Canvas, JTBD, wireframes de handoff) e um teste de usabilidade real no Maze — as evidências de "sem artefatos visuais públicos" e "sem testes de usabilidade formais em nenhum case" deixaram de refletir a realidade. Notas ajustadas em 3 linhas obrigatórias. Métricas de impacto pós-lançamento continuam ausentes — esse bloqueador permanece.
-**Candidatura:** Sim
 
 ---
 

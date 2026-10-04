@@ -6,9 +6,8 @@
 **Data da vaga:** 2026-09-28
 **Link da vaga:** https://job-boards.greenhouse.io/anthropic/jobs/5397654008
 **Origem:** Ingestão automática (Greenhouse)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-30
-**Candidatura:** Não
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-03
 
 ---
 

@@ -5,7 +5,6 @@
 **Nível:** Pleno
 **Data da vaga:** 2026-06-24
 **Status:** Arquivado
-**Candidatura:** Não
 **Score anterior:** 56% (2026-09-12) → 49% (2026-06-27)
 **Motivo da mudança de score:** o case Arezzo Ad Management foi reconstruído com artefatos visuais reais (screenshots) e um board de síntese de pesquisa real (2 entrevistas + 2 painéis) — as duas linhas que citavam "artefatos não expostos publicamente" e "sem roteiro/síntese formal" deixaram de refletir a realidade. Notas ajustadas em 2 linhas obrigatórias. (Histórico anterior preservado: a mudança de 49%→56% em 2026-06-27 já estava registrada por uma correção de nota de inglês.)
 
