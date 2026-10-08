@@ -56,3 +56,8 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Brand Designer | Match Group | 35% | 2026-10-08 | [link](https://4dayweek.io/job/brand-designer-at-match-group-3715f5f1) |
 | Designer, Motion & Brand | PagerDuty | 24% | 2026-10-08 | [link](https://4dayweek.io/job/designer-motion-and-brand-at-pagerduty-8e9ff65f) |
 | Product Design Engineer | Adams Thermal Systems | 8% | 2026-10-08 | [link](https://www.adzuna.com/land/ad/5797699892) |
+| Course Writer and Editor: UX, UI, and AI | IxDF - Interaction Design Foundation | 8% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-course-writer-and-editor-ux-ui-and-ai-1) |
+| Education Designer: UX, UI, and AI | IxDF - Interaction Design Foundation | 13% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-education-designer-ux-ui-and-ai-1) |
+| Course Director: UX, UI, and AI | IxDF - Interaction Design Foundation | 17% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-course-director-ux-ui-and-ai) |
+| Product Designer - Content Design | Experian | 33% | 2026-10-08 | [link](https://4dayweek.io/job/product-designer-content-design-at-experian-9f279148) |
+| Shopify UX Designer – Customizer Specialist | Jobgether | 36% | 2026-10-08 | [link](https://4dayweek.io/job/shopify-ux-designer-customizer-specialist-at-jobgether-f8b7121c) |

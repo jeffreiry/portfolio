@@ -928,5 +928,55 @@
     "status": "reprovada",
     "score": 8,
     "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5917820090": {
+    "status": "promovida",
+    "score": 70,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a11823-443a-7a19-accf-56396c514308": {
+    "status": "promovida",
+    "score": 74,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f855-eafd-78c4-b65f-41555eeb51af": {
+    "status": "promovida",
+    "score": 87,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f855-eb25-75a1-ab26-a5d64b0c2463": {
+    "status": "promovida",
+    "score": 60,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10a3e-2586-7678-8a59-00570ec62597": {
+    "status": "promovida",
+    "score": 79,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-course-writer-and-editor-ux-ui-and-ai-1": {
+    "status": "reprovada",
+    "score": 8,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-education-designer-ux-ui-and-ai-1": {
+    "status": "reprovada",
+    "score": 13,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-course-director-ux-ui-and-ai": {
+    "status": "reprovada",
+    "score": 17,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f855-eb30-7403-b5ac-dc9c88b6fa5b": {
+    "status": "reprovada",
+    "score": 33,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10f7f-44f8-79f9-adff-386db8547c61": {
+    "status": "reprovada",
+    "score": 36,
+    "evaluatedAt": "2026-10-08"
   }
 }

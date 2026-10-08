@@ -211,8 +211,13 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Founding Product Designer](clera-founding-product-designer.md) | Clera · Plataforma agêntica de integração B2B SaaS | **67%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Sr. UX Designer, Security](cribl-sr-ux-designer-security.md) | Cribl · Plataforma de telemetria pra times de Segurança e TI | **62%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Freelance Designer](control-shift-video-freelance-designer.md) | Control Shift Video · Estúdio criativo freelance (vídeo, motion, visuais web) | **42%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Product Designer](quadcode-product-designer.md) | Quadcode · Plataforma de trading SaaS pra brokers | **70%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [UI Designer](experian-ui-designer.md) | Experian · Páginas e experiências digitais de Marketing (CMS) | **74%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Product Designer - Visual Design](experian-product-designer-visual-design.md) | Experian · Experian Consumer Services (ECS) — Design Ops | **87%** | Alta aderência | A avaliar | 2026-10-08 |
+| [Product Designer - UX Research](experian-product-designer-ux-research.md) | Experian · Experian Consumer Services (ECS) — pesquisa com consumidores | **60%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Visual Designer](jobgether-visual-designer.md) | Jobgether · Materiais visuais de vendas pra plataformas de mídia digital | **79%** | Aderência parcial | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (171 vagas)
+**Média geral: 61%** · Aderência parcial (176 vagas)
 
 ---
 
