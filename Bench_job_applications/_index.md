@@ -183,8 +183,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Analista Designer UX / Produto – Pleno](geopixel-analista-designer-ux-produto-pleno.md) | Geopixel · Soluções georreferenciadas (GovTech) | **63%** | Aderência parcial | A avaliar | 2026-10-07 |
 | [Analista Designer UX / Produto – Júnior](geopixel-analista-designer-ux-produto-junior.md) | Geopixel · Soluções georreferenciadas (GovTech) | **73%** | Aderência parcial | A avaliar | 2026-10-07 |
 | [Sr. Staff Product Designer](quintoandar-sr-staff-product-designer.md) | QuintoAndar · Plataforma de moradia (aluguel, compra e venda de imóveis) | **49%** | Aderência baixa | A avaliar | 2026-10-07 |
+| [Senior Product Designer, Design Systems](discord-senior-product-designer-design-systems.md) | Discord · Mana (Design System) — plataforma social para comunidades de jogos | **52%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Staff Product Designer, Growth](checkr-staff-product-designer-growth.md) | Checkr · Plataforma de verificação de antecedentes com IA (growth self-serve) | **52%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior Product Designer - Okta for AI Agents](okta-senior-product-designer-okta-for-ai-agents.md) | Okta · Okta for AI Agents (identidade e governança para agentes de IA) | **67%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Senior Product Designer](calm-com-senior-product-designer.md) | Calm.com · App de mindfulness/sono/saúde mental (consumer, 180M+ downloads) | **49%** | Aderência baixa | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (143 vagas)
+**Média geral: 61%** · Aderência parcial (147 vagas)
 
 ---
 

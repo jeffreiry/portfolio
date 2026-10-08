@@ -703,5 +703,30 @@
     "status": "promovida",
     "score": 49,
     "evaluatedAt": "2026-10-07"
+  },
+  "fourdayweek:01a0f4c4-e88c-718d-9ee2-6f9e16a18e31": {
+    "status": "promovida",
+    "score": 52,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10dbd-cafd-7107-8175-d18abac0f1d4": {
+    "status": "promovida",
+    "score": 52,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0fe3b-9d1f-71b5-ada7-cae553a0ab96": {
+    "status": "promovida",
+    "score": 67,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/calm-com-senior-product-designer": {
+    "status": "promovida",
+    "score": 49,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0fe50-0a0d-772b-afb5-b43cae398048": {
+    "status": "reprovada",
+    "score": 38,
+    "evaluatedAt": "2026-10-08"
   }
 }
