@@ -47,3 +47,5 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Lead Brand Designer, Web | Checkr | 35% | 2026-10-08 | [link](https://4dayweek.io/job/lead-brand-designer-web-at-checkr-16376463) |
 | Staff Brand Designer | Webflow | 21% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/webflow-staff-brand-designer) |
 | Learning & Development Designer/Developer | Merck | 10% | 2026-10-08 | [link](https://4dayweek.io/job/learning-and-development-designer-developer-at-merck-572f85e5) |
+| Designer, Creative Services | Abnormal | 39% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/abnormal-designer-creative-services) |
+| Technical UI Designer | Frima Studio | 22% | 2026-10-08 | [link](https://4dayweek.io/job/technical-ui-designer-at-frima-studio-c11f9fae) |

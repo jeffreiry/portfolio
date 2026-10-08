@@ -198,8 +198,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Senior Product Designer - Okta Privileged Access](okta-senior-product-designer-okta-privileged-access.md) | Okta · Okta Privileged Access (governança de acesso privilegiado) | **58%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [Senior Product Designer](greenlight-senior-product-designer.md) | Greenlight · App financeiro familiar (cartão débito, GPS familiar, Family Hub) | **43%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [UX Designer](nutanix-ux-designer.md) | Nutanix · Infraestrutura cloud híbrida enterprise | **63%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Founding Product Designer](lassie-founding-product-designer.md) | Lassie · Controle de agentes de IA autônomos pra consultórios médicos | **53%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Product Designer](thunkable-product-designer.md) | Thunkable · Plataforma no-code pra criação de apps mobile | **82%** | Alta aderência | A avaliar | 2026-10-08 |
+| [Product Designer](robinhood-product-designer.md) | Robinhood · Plataforma de investimentos e finanças pessoais | **58%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Product Designer](paramount-product-designer.md) | Paramount · Plataformas digitais de mídia/streaming | **57%** | Aderência baixa | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (158 vagas)
+**Média geral: 61%** · Aderência parcial (162 vagas)
 
 ---
 

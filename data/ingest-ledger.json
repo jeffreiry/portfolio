@@ -813,5 +813,35 @@
     "status": "reprovada",
     "score": 10,
     "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5915292504": {
+    "status": "promovida",
+    "score": 53,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5915293946": {
+    "status": "promovida",
+    "score": 82,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5915291398": {
+    "status": "promovida",
+    "score": 58,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5915018782": {
+    "status": "promovida",
+    "score": 57,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/abnormal-designer-creative-services": {
+    "status": "reprovada",
+    "score": 39,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a113b0-8742-7453-9311-7c7ac21ea719": {
+    "status": "reprovada",
+    "score": 22,
+    "evaluatedAt": "2026-10-08"
   }
 }
