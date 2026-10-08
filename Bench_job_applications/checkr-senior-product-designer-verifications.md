@@ -4,7 +4,7 @@
 **Produto:** Verificações de antecedentes (emprego, educação, criminal, saúde ocupacional)
 **Nível:** Sênior
 **Data da vaga:** 2026-10-07
-**Link da vaga:** https://4dayweek.io/job/senior-product-designer-verifications-at-checkr
+**Link da vaga:** https://4dayweek.io/job/senior-product-designer-verifications-at-checkr-975bb792
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** San Francisco, United States
 **Modalidade:** Híbrido

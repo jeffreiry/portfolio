@@ -734,31 +734,6 @@
     "score": 56,
     "evaluatedAt": "2026-10-08"
   },
-  "fourdayweek:01a10dbd-cafd-7107-8175-d18abac0f1d4-verifications": {
-    "status": "promovida",
-    "score": 70,
-    "evaluatedAt": "2026-10-08"
-  },
-  "fourdayweek:01a0f84d-c4e9-7db5-8c1d-3ebc7bdc267d-evolutioniq": {
-    "status": "promovida",
-    "score": 71,
-    "evaluatedAt": "2026-10-08"
-  },
-  "fourdayweek:okta-identity-governance": {
-    "status": "promovida",
-    "score": 55,
-    "evaluatedAt": "2026-10-08"
-  },
-  "fourdayweek:contentsquare-staff-ai": {
-    "status": "promovida",
-    "score": 49,
-    "evaluatedAt": "2026-10-08"
-  },
-  "fourdayweek:tails-senior-creative-designer": {
-    "status": "reprovada",
-    "score": 16,
-    "evaluatedAt": "2026-10-08"
-  },
   "fourdayweek:01a0f413-b666-7982-b069-5107fdb18b4a": {
     "status": "promovida",
     "score": 80,
@@ -787,6 +762,31 @@
   "fourdayweek:01a0f324-56ad-732f-8faf-b3af4e646280": {
     "status": "reprovada",
     "score": 33,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10dbd-cab8-7c2c-b36b-c631b2aecf48": {
+    "status": "promovida",
+    "score": 70,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10cf8-6159-7947-ad36-8217c4921b9c": {
+    "status": "promovida",
+    "score": 71,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f919-19b3-7d3a-b79b-a8e25918f063": {
+    "status": "promovida",
+    "score": 55,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f84d-c4e9-7db5-8c1d-3ebc7bdc267d": {
+    "status": "promovida",
+    "score": 49,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0fc8c-04c7-7818-b271-a7e7c5b59d6e": {
+    "status": "reprovada",
+    "score": 16,
     "evaluatedAt": "2026-10-08"
   }
 }

@@ -4,7 +4,7 @@
 **Produto:** Plataforma agêntica de IA para gestão de sinistros de seguros
 **Nível:** Staff
 **Data da vaga:** 2026-10-05
-**Link da vaga:** https://4dayweek.io/job/staff-product-designer-agentic-platform-at-evolutioniq
+**Link da vaga:** https://4dayweek.io/job/staff-product-designer-agentic-platform-at-evolutioniq-504c81fc
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** New York, United States
 **Modalidade:** Híbrido

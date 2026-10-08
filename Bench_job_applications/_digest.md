@@ -41,6 +41,6 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Product Designer | Cerity Partners | 0% | 2026-09-30 | [link](https://www.adzuna.com/land/ad/5904211049?se=7r-yGRa98RGwgaviw0YlUg&utm_medium=api&utm_source=36995d42&v=A7A5AD1EC3558D8DDF7AF3241D5A29B81A4BDC33) |
 | Consultor(a) Product Designer com IA | B3 | 0% | 2026-09-30 | [link](https://www.adzuna.com.br/land/ad/5903288983?se=Ig10GBa98RG154oS1PvO9A&utm_medium=api&utm_source=36995d42&v=3DAB9D6B7916FD416FCCD96988A06F787429EC1E) |
 | Staff Content Designer, UX Platform | Etsy | 38% | 2026-10-08 | [link](https://4dayweek.io/job/staff-content-designer-ux-platform-at-etsy-699bf62a) |
-| Senior Creative Designer | Tails.com | 16% | 2026-10-08 | [link](https://4dayweek.io/job/senior-creative-designer-at-tails-com) |
+| Senior Creative Designer | Tails.com | 16% | 2026-10-08 | [link](https://4dayweek.io/job/senior-creative-designer-at-tails-com-9b0e0be5) |
 | Staff Product Designer | carwow | 27% | 2026-10-08 | [link](https://4dayweek.io/job/staff-product-designer-at-carwow-7b381c60) |
 | Senior Web Designer, Growth | Fin | 33% | 2026-10-08 | [link](https://4dayweek.io/job/senior-web-designer-growth-at-fin-ecb47e4c) |

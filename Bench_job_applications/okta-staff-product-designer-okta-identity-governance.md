@@ -4,7 +4,7 @@
 **Produto:** Okta Identity Governance (gestão de acesso e auditoria corporativa)
 **Nível:** Staff
 **Data da vaga:** 2026-10-02
-**Link da vaga:** https://4dayweek.io/job/staff-product-designer-okta-identity-governance
+**Link da vaga:** https://4dayweek.io/job/staff-product-designer-okta-identity-governance-at-okta-77a9134f
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** Bellevue, United States
 **Modalidade:** Híbrido

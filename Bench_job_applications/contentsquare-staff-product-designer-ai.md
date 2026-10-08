@@ -4,7 +4,7 @@
 **Produto:** Sense (camada agêntica de IA sobre plataforma de experience analytics)
 **Nível:** Staff
 **Data da vaga:** 2026-10-01
-**Link da vaga:** https://4dayweek.io/job/staff-product-designer-ai-at-contentsquare
+**Link da vaga:** https://4dayweek.io/job/staff-product-designer-ai-at-contentsquare-846764d1
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** New York, United States
 **Modalidade:** Híbrido
