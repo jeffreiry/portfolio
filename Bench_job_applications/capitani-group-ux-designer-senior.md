@@ -5,8 +5,9 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-09-28
 **Link da vaga:** https://capitani.azurewebsites.net/Vagas/VagaSite/1526
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-08
+**Status atualizado em:** 2026-10-08
 
 ---
 

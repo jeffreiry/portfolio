@@ -5,8 +5,8 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-09-27
 **Link da vaga:** https://carreira.impulso.team/profissionais/oportunidade/2871-pessoa-product-designer-senior-ux-e-inteligencia-artificial?tc=e28e43de-5f68-4aab-aaf1-dd18d886b82c
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-27
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-08
 
 ---
 
