@@ -678,5 +678,30 @@
     "status": "reprovada",
     "score": 0,
     "evaluatedAt": "2026-10-04"
+  },
+  "gupy:12533444": {
+    "status": "promovida",
+    "score": 75,
+    "evaluatedAt": "2026-10-07"
+  },
+  "gupy:12570181": {
+    "status": "promovida",
+    "score": 79,
+    "evaluatedAt": "2026-10-07"
+  },
+  "gupy:12674681": {
+    "status": "promovida",
+    "score": 63,
+    "evaluatedAt": "2026-10-07"
+  },
+  "gupy:12666435": {
+    "status": "promovida",
+    "score": 73,
+    "evaluatedAt": "2026-10-07"
+  },
+  "greenhouse:4393062009": {
+    "status": "promovida",
+    "score": 49,
+    "evaluatedAt": "2026-10-07"
   }
 }

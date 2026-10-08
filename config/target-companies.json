@@ -10,5 +10,6 @@
   { "name": "Discord", "ats": "greenhouse", "slug": "discord", "origin": "intl" },
   { "name": "Coinbase", "ats": "greenhouse", "slug": "coinbase", "origin": "intl" },
   { "name": "Vercel", "ats": "greenhouse", "slug": "vercel", "origin": "intl" },
-  { "name": "Webflow", "ats": "greenhouse", "slug": "webflow", "origin": "intl" }
+  { "name": "Webflow", "ats": "greenhouse", "slug": "webflow", "origin": "intl" },
+  { "name": "QuintoAndar", "ats": "greenhouse", "slug": "quintoandar", "origin": "br" }
 ]

@@ -178,8 +178,13 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Design (IA First, IC3)](sanar-product-design-ia-first.md) | Sanar · Plataforma educacional de Medicina | **63%** | Aderência parcial | A avaliar | 2026-08-21 |
 | [Product Designer Especialista](rock-encantech-product-designer-especialista.md) | Rock Encantech · SuperApp de varejo | **67%** | Aderência parcial | A avaliar | 2026-10-02 |
 | [PRODUCT DESIGNER](dynamox-product-designer.md) | Dynamox · Monitoramento industrial | **90%** | Alta aderência | A avaliar | 2026-08-27 |
+| [Analista Senior de Design de Produto](caju-analista-senior-de-design-de-produto.md) | Caju · Benefícios corporativos (Cartão Multi Benefícios, Despesas Corporativas, Premiações) | **75%** | Aderência parcial | A avaliar | 2026-10-07 |
+| [Analista Pleno de Design de Produto](caju-analista-pleno-de-design-de-produto.md) | Caju · Benefícios corporativos (Cartão Multi Benefícios, Despesas Corporativas, Premiações) | **79%** | Aderência parcial | A avaliar | 2026-10-07 |
+| [Analista Designer UX / Produto – Pleno](geopixel-analista-designer-ux-produto-pleno.md) | Geopixel · Soluções georreferenciadas (GovTech) | **63%** | Aderência parcial | A avaliar | 2026-10-07 |
+| [Analista Designer UX / Produto – Júnior](geopixel-analista-designer-ux-produto-junior.md) | Geopixel · Soluções georreferenciadas (GovTech) | **73%** | Aderência parcial | A avaliar | 2026-10-07 |
+| [Sr. Staff Product Designer](quintoandar-sr-staff-product-designer.md) | QuintoAndar · Plataforma de moradia (aluguel, compra e venda de imóveis) | **49%** | Aderência baixa | A avaliar | 2026-10-07 |
 
-**Média geral: 61%** · Aderência parcial (138 vagas)
+**Média geral: 61%** · Aderência parcial (143 vagas)
 
 ---
 

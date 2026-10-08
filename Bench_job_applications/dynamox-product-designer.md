@@ -8,8 +8,9 @@
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Florianópolis, SC
 **Modalidade:** Presencial
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-03
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-08
+**Status atualizado em:** 2026-10-08
 
 ---
 
