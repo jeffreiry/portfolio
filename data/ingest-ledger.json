@@ -728,5 +728,35 @@
     "status": "reprovada",
     "score": 38,
     "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a1181a-a04d-7037-8aa9-8ba5cb3acb54": {
+    "status": "promovida",
+    "score": 56,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10dbd-cafd-7107-8175-d18abac0f1d4-verifications": {
+    "status": "promovida",
+    "score": 70,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f84d-c4e9-7db5-8c1d-3ebc7bdc267d-evolutioniq": {
+    "status": "promovida",
+    "score": 71,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:okta-identity-governance": {
+    "status": "promovida",
+    "score": 55,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:contentsquare-staff-ai": {
+    "status": "promovida",
+    "score": 49,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:tails-senior-creative-designer": {
+    "status": "reprovada",
+    "score": 16,
+    "evaluatedAt": "2026-10-08"
   }
 }

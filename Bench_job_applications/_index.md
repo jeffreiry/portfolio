@@ -187,8 +187,13 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Staff Product Designer, Growth](checkr-staff-product-designer-growth.md) | Checkr · Plataforma de verificação de antecedentes com IA (growth self-serve) | **52%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [Senior Product Designer - Okta for AI Agents](okta-senior-product-designer-okta-for-ai-agents.md) | Okta · Okta for AI Agents (identidade e governança para agentes de IA) | **67%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Senior Product Designer](calm-com-senior-product-designer.md) | Calm.com · App de mindfulness/sono/saúde mental (consumer, 180M+ downloads) | **49%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior Demo Designer](servicenow-senior-demo-designer.md) | ServiceNow · Spark Team — protótipos de demo e storytelling de produto (plataforma de IA corporativa) | **56%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior Product Designer, Verifications](checkr-senior-product-designer-verifications.md) | Checkr · Verificações de antecedentes (emprego, educação, criminal, saúde ocupacional) | **70%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Staff Product Designer- Agentic Platform](evolutioniq-staff-product-designer-agentic-platform.md) | EvolutionIQ · Plataforma agêntica de IA para gestão de sinistros de seguros | **71%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Staff Product Designer - Okta Identity Governance](okta-staff-product-designer-okta-identity-governance.md) | Okta · Okta Identity Governance (gestão de acesso e auditoria corporativa) | **55%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Staff Product Designer, AI](contentsquare-staff-product-designer-ai.md) | Contentsquare · Sense (camada agêntica de IA sobre plataforma de experience analytics) | **49%** | Aderência baixa | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (147 vagas)
+**Média geral: 61%** · Aderência parcial (152 vagas)
 
 ---
 
