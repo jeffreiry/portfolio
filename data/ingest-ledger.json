@@ -788,5 +788,30 @@
     "status": "reprovada",
     "score": 16,
     "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0eec4-ef06-77b0-80c0-09fdb3c05029": {
+    "status": "promovida",
+    "score": 43,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a11ab3-920f-7a0b-9609-0bc675b6f3e5": {
+    "status": "promovida",
+    "score": 63,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0eee6-9873-7c91-9d89-bd9077ed78c0": {
+    "status": "reprovada",
+    "score": 35,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/webflow-staff-brand-designer": {
+    "status": "reprovada",
+    "score": 21,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a11aa2-7ee1-7ec2-ab52-4eab76a58202": {
+    "status": "reprovada",
+    "score": 10,
+    "evaluatedAt": "2026-10-08"
   }
 }

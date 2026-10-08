@@ -44,3 +44,6 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Senior Creative Designer | Tails.com | 16% | 2026-10-08 | [link](https://4dayweek.io/job/senior-creative-designer-at-tails-com-9b0e0be5) |
 | Staff Product Designer | carwow | 27% | 2026-10-08 | [link](https://4dayweek.io/job/staff-product-designer-at-carwow-7b381c60) |
 | Senior Web Designer, Growth | Fin | 33% | 2026-10-08 | [link](https://4dayweek.io/job/senior-web-designer-growth-at-fin-ecb47e4c) |
+| Lead Brand Designer, Web | Checkr | 35% | 2026-10-08 | [link](https://4dayweek.io/job/lead-brand-designer-web-at-checkr-16376463) |
+| Staff Brand Designer | Webflow | 21% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/webflow-staff-brand-designer) |
+| Learning & Development Designer/Developer | Merck | 10% | 2026-10-08 | [link](https://4dayweek.io/job/learning-and-development-designer-developer-at-merck-572f85e5) |

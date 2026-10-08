@@ -196,8 +196,10 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Staff Product Designer, Design Systems](etsy-staff-product-designer-design-systems.md) | Etsy · Collage (Design System) — marketplace multi-plataforma | **40%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [Senior UX Designer](seat-geek-senior-ux-designer.md) | Seat Geek · Marketplace de ingressos para eventos ao vivo | **62%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Senior Product Designer - Okta Privileged Access](okta-senior-product-designer-okta-privileged-access.md) | Okta · Okta Privileged Access (governança de acesso privilegiado) | **58%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior Product Designer](greenlight-senior-product-designer.md) | Greenlight · App financeiro familiar (cartão débito, GPS familiar, Family Hub) | **43%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [UX Designer](nutanix-ux-designer.md) | Nutanix · Infraestrutura cloud híbrida enterprise | **63%** | Aderência parcial | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (156 vagas)
+**Média geral: 61%** · Aderência parcial (158 vagas)
 
 ---
 
