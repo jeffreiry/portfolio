@@ -758,5 +758,35 @@
     "status": "reprovada",
     "score": 16,
     "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f413-b666-7982-b069-5107fdb18b4a": {
+    "status": "promovida",
+    "score": 80,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f332-b305-7d9a-909d-66acf8458bc5": {
+    "status": "promovida",
+    "score": 40,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/seat-geek-senior-ux-designer": {
+    "status": "promovida",
+    "score": 62,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f0a6-0a43-7d59-8a01-a6dce2d830bc": {
+    "status": "promovida",
+    "score": 58,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f786-caaf-7c7a-b01b-db968cd36155": {
+    "status": "reprovada",
+    "score": 27,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f324-56ad-732f-8faf-b3af4e646280": {
+    "status": "reprovada",
+    "score": 33,
+    "evaluatedAt": "2026-10-08"
   }
 }

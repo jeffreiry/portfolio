@@ -192,8 +192,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Staff Product Designer- Agentic Platform](evolutioniq-staff-product-designer-agentic-platform.md) | EvolutionIQ · Plataforma agêntica de IA para gestão de sinistros de seguros | **71%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Staff Product Designer - Okta Identity Governance](okta-staff-product-designer-okta-identity-governance.md) | Okta · Okta Identity Governance (gestão de acesso e auditoria corporativa) | **55%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [Staff Product Designer, AI](contentsquare-staff-product-designer-ai.md) | Contentsquare · Sense (camada agêntica de IA sobre plataforma de experience analytics) | **49%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior Product Designer](logicgate-senior-product-designer.md) | LogicGate · Risk Cloud® — plataforma de GRC com IA | **80%** | Alta aderência | A avaliar | 2026-10-08 |
+| [Staff Product Designer, Design Systems](etsy-staff-product-designer-design-systems.md) | Etsy · Collage (Design System) — marketplace multi-plataforma | **40%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior UX Designer](seat-geek-senior-ux-designer.md) | Seat Geek · Marketplace de ingressos para eventos ao vivo | **62%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Senior Product Designer - Okta Privileged Access](okta-senior-product-designer-okta-privileged-access.md) | Okta · Okta Privileged Access (governança de acesso privilegiado) | **58%** | Aderência baixa | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (152 vagas)
+**Média geral: 61%** · Aderência parcial (156 vagas)
 
 ---
 
