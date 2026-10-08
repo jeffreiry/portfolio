@@ -206,8 +206,11 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Staff Product Designer](understood-staff-product-designer.md) | Understood · Plataforma de apoio à neurodivergência (TDAH, dislexia, discalculia) | **73%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Product Designer, ICHRA](oscar-health-product-designer-ichra.md) | Oscar Health · Lucie Marketplace — contribuições de plano de saúde pra empregadores | **76%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Product Designer](best-buy-canada-product-designer.md) | Best Buy Canada · One Best Buy Pursuit Group — experiências digitais e físicas de varejo | **56%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Software Product Designer](fidelity-canada-software-product-designer.md) | Fidelity Canada · Suíte de aplicações de software pra investidores | **52%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Sr. Web UX Designer I](smartsheet-sr-web-ux-designer-i.md) | Smartsheet · Site de marketing (Web UX Design) | **61%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Founding Product Designer](clera-founding-product-designer.md) | Clera · Plataforma agêntica de integração B2B SaaS | **67%** | Aderência parcial | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (166 vagas)
+**Média geral: 61%** · Aderência parcial (169 vagas)
 
 ---
 

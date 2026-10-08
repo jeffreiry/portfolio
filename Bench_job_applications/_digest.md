@@ -49,3 +49,6 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Learning & Development Designer/Developer | Merck | 10% | 2026-10-08 | [link](https://4dayweek.io/job/learning-and-development-designer-developer-at-merck-572f85e5) |
 | Designer, Creative Services | Abnormal | 39% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/abnormal-designer-creative-services) |
 | Technical UI Designer | Frima Studio | 22% | 2026-10-08 | [link](https://4dayweek.io/job/technical-ui-designer-at-frima-studio-c11f9fae) |
+| Learning Designer | Arden University | 30% | 2026-10-08 | [link](https://4dayweek.io/job/learning-designer-at-arden-university-4a3aba10) |
+| Sr. Motion Designer (EMEA) | Zapier | 21% | 2026-10-08 | [link](https://4dayweek.io/job/sr-motion-designer-emea-at-zapier-228d8643) |
+| Integrated Designer | University of Manchester | 29% | 2026-10-08 | [link](https://4dayweek.io/job/integrated-designer-at-university-of-manchester-5b3fef22) |

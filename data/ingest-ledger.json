@@ -868,5 +868,35 @@
     "status": "promovida",
     "score": 76,
     "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a1121d-0d24-75be-9872-d0e0deb98926": {
+    "status": "promovida",
+    "score": 52,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a10dab-1cfd-7d9e-8b02-963a41d6eaed": {
+    "status": "promovida",
+    "score": 61,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5910864156": {
+    "status": "promovida",
+    "score": 67,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0fe4f-e1fc-70e7-ab09-316e958d6c76": {
+    "status": "reprovada",
+    "score": 30,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0fe4a-79c2-75f0-a256-726cc0e33e3c": {
+    "status": "reprovada",
+    "score": 21,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f761-dbbe-72c5-986f-7b722cef6b8a": {
+    "status": "reprovada",
+    "score": 29,
+    "evaluatedAt": "2026-10-08"
   }
 }
