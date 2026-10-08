@@ -843,5 +843,25 @@
     "status": "reprovada",
     "score": 22,
     "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5914388541": {
+    "status": "promovida",
+    "score": 78,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5910966905": {
+    "status": "promovida",
+    "score": 73,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5915315130": {
+    "status": "promovida",
+    "score": 76,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5914454671": {
+    "status": "promovida",
+    "score": 56,
+    "evaluatedAt": "2026-10-08"
   }
 }

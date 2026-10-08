@@ -202,8 +202,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer](thunkable-product-designer.md) | Thunkable · Plataforma no-code pra criação de apps mobile | **82%** | Alta aderência | A avaliar | 2026-10-08 |
 | [Product Designer](robinhood-product-designer.md) | Robinhood · Plataforma de investimentos e finanças pessoais | **58%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [Product Designer](paramount-product-designer.md) | Paramount · Plataformas digitais de mídia/streaming | **57%** | Aderência baixa | A avaliar | 2026-10-08 |
+| [Senior Product Designer](gifthealth-senior-product-designer.md) | giftHEALTH · Gestão simplificada de prescrições e serviços de saúde | **78%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Staff Product Designer](understood-staff-product-designer.md) | Understood · Plataforma de apoio à neurodivergência (TDAH, dislexia, discalculia) | **73%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Product Designer, ICHRA](oscar-health-product-designer-ichra.md) | Oscar Health · Lucie Marketplace — contribuições de plano de saúde pra empregadores | **76%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Product Designer](best-buy-canada-product-designer.md) | Best Buy Canada · One Best Buy Pursuit Group — experiências digitais e físicas de varejo | **56%** | Aderência baixa | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (162 vagas)
+**Média geral: 61%** · Aderência parcial (166 vagas)
 
 ---
 
