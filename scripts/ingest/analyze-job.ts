@@ -26,6 +26,8 @@ const SOURCE_LABELS: Record<RawJob['source'], string> = {
   remotive: 'Remotive',
   remoteok: 'RemoteOK',
   adzuna: 'Adzuna',
+  fourdayweek: '4 Day Week',
+  weworkremotely: 'We Work Remotely',
 };
 
 // Mesmo pipeline de jobanalysis-analyze.ts (Groq extrai → Claude analisa →

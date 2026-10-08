@@ -33,7 +33,7 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Rodar ingest (Greenhouse + Remotive + Adzuna — Gupy é manual, ver ingest-plan.md)
+      - name: Rodar ingest (Greenhouse + Remotive + 4 Day Week + We Work Remotely + RemoteOK + Adzuna — Gupy é manual, ver ingest-plan.md)
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

@@ -2,7 +2,7 @@
 // retorna RawJob[], independente de como a fonte original representa os dados.
 // Ver ingest-plan.md § "Schema comum" para o racional de cada campo.
 
-export type JobSource = 'gupy' | 'greenhouse' | 'lever' | 'ashby' | 'remotive' | 'remoteok' | 'adzuna';
+export type JobSource = 'gupy' | 'greenhouse' | 'lever' | 'ashby' | 'remotive' | 'remoteok' | 'adzuna' | 'fourdayweek' | 'weworkremotely';
 
 export type Workplace = 'remote' | 'hybrid' | 'onsite';
 

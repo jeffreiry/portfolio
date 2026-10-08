@@ -1,8 +1,9 @@
 // Runner diário da camada de ingestão (ingest-plan.md).
 //
-// Estado atual (passo 6 da implementação incremental): 4 fontes — Greenhouse
-// (config/target-companies.json), Gupy (JSON pré-buscado pelo run agêntico,
-// --gupy-json), Remotive (sem chave, sempre roda) e Adzuna (roda só se
+// Estado atual (2026-10-08): 7 fontes — Greenhouse (config/target-companies.json),
+// Gupy (JSON pré-buscado pelo run agêntico, --gupy-json), Remotive, 4 Day Week
+// e We Work Remotely (todas sem chave, sempre rodam), RemoteOK (sem chave,
+// yield baixo — ver comentário em sources/remoteok.ts) e Adzuna (roda só se
 // ADZUNA_APP_ID/ADZUNA_APP_KEY estiverem no ambiente) — → dedup (dentro do
 // lote + contra bench/ledger) → classificação/priorização → análise real
 // (Groq+Claude via core.ts) → gate por score → escreve ficha ou digest →
@@ -11,8 +12,8 @@
 // Por padrão continua em modo dry-run (só mostra a fila, não gasta API nem
 // escreve nada). Use --live pra rodar de verdade, e --limit N pra controlar
 // quantas vagas analisar numa passada (a fila já vem ordenada por prioridade).
-// --skip-remotive pula essa fonte (ex.: pra não estourar o limite de chamadas/dia
-// da API deles enquanto testa outra coisa repetidamente).
+// --skip-remotive / --skip-4dayweek / --skip-wwr / --skip-remoteok pulam a
+// fonte respectiva (ex.: pra não estourar fair-use enquanto testa algo repetidamente).
 //
 // Rodar (dry-run):
 //   node --env-file=.env --experimental-strip-types scripts/ingest/orchestrate.ts [--gupy-json <path>]
@@ -27,6 +28,9 @@ import { fetchGreenhouseJobs } from './sources/greenhouse.ts';
 import { normalizeGupyJob, type GupySearchResult } from './sources/gupy.ts';
 import { fetchRemotiveJobs } from './sources/remotive.ts';
 import { fetchAdzunaJobs } from './sources/adzuna.ts';
+import { fetchFourDayWeekJobs } from './sources/fourdayweek.ts';
+import { fetchWeWorkRemotelyJobs } from './sources/weworkremotely.ts';
+import { fetchRemoteOkJobs } from './sources/remoteok.ts';
 import { prioritizeJobs, type ClassifiedJob } from './prioritize.ts';
 import { loadBenchKeys, loadLedger, saveLedger, dedupJobs, dedupByUrl, ledgerKey, type Ledger } from './dedup.ts';
 import { analyzeJob } from './analyze-job.ts';
@@ -88,6 +92,43 @@ const ADZUNA_SEARCHES: Array<{ country: string; term: string; origin: RawJob['or
   { country: 'br', term: 'product designer', origin: 'br' },
   { country: 'us', term: 'product designer', origin: 'intl' },
 ];
+
+// Fontes de mercado geral sem busca por termo real (2026-10-08, ver
+// Tier 1 do levantamento de fontes) — mesmo padrão do Remotive: sempre
+// rodam, sem chave, com flag --skip-* própria pra não estourar fair-use
+// durante testes manuais repetidos.
+async function collectFourDayWeek(): Promise<RawJob[]> {
+  try {
+    const jobs = await fetchFourDayWeekJobs();
+    console.log(`[4dayweek] ${jobs.length} vagas de design (filtradas no cliente)`);
+    return jobs;
+  } catch (e) {
+    console.error('[4dayweek] Falha:', e instanceof Error ? e.message : e);
+    return [];
+  }
+}
+
+async function collectWeWorkRemotely(): Promise<RawJob[]> {
+  try {
+    const jobs = await fetchWeWorkRemotelyJobs();
+    console.log(`[weworkremotely] ${jobs.length} vagas de design (filtradas no cliente)`);
+    return jobs;
+  } catch (e) {
+    console.error('[weworkremotely] Falha:', e instanceof Error ? e.message : e);
+    return [];
+  }
+}
+
+async function collectRemoteOk(): Promise<RawJob[]> {
+  try {
+    const jobs = await fetchRemoteOkJobs();
+    console.log(`[remoteok] ${jobs.length} vagas de design (filtradas no cliente, yield baixo é esperado)`);
+    return jobs;
+  } catch (e) {
+    console.error('[remoteok] Falha:', e instanceof Error ? e.message : e);
+    return [];
+  }
+}
 
 async function collectAdzuna(appId: string, appKey: string): Promise<RawJob[]> {
   const results: RawJob[] = [];
@@ -199,6 +240,18 @@ async function main() {
 
   if (!args.includes('--skip-remotive')) {
     jobs.push(...(await collectRemotive()));
+  }
+
+  if (!args.includes('--skip-4dayweek')) {
+    jobs.push(...(await collectFourDayWeek()));
+  }
+
+  if (!args.includes('--skip-wwr')) {
+    jobs.push(...(await collectWeWorkRemotely()));
+  }
+
+  if (!args.includes('--skip-remoteok')) {
+    jobs.push(...(await collectRemoteOk()));
   }
 
   const adzunaAppId  = process.env['ADZUNA_APP_ID'];
