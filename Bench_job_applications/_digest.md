@@ -52,3 +52,7 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Learning Designer | Arden University | 30% | 2026-10-08 | [link](https://4dayweek.io/job/learning-designer-at-arden-university-4a3aba10) |
 | Sr. Motion Designer (EMEA) | Zapier | 21% | 2026-10-08 | [link](https://4dayweek.io/job/sr-motion-designer-emea-at-zapier-228d8643) |
 | Integrated Designer | University of Manchester | 29% | 2026-10-08 | [link](https://4dayweek.io/job/integrated-designer-at-university-of-manchester-5b3fef22) |
+| Content Designer II, Personalization | Pinterest | 17% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/pinterest-content-designer-ii-personalization) |
+| Brand Designer | Match Group | 35% | 2026-10-08 | [link](https://4dayweek.io/job/brand-designer-at-match-group-3715f5f1) |
+| Designer, Motion & Brand | PagerDuty | 24% | 2026-10-08 | [link](https://4dayweek.io/job/designer-motion-and-brand-at-pagerduty-8e9ff65f) |
+| Product Design Engineer | Adams Thermal Systems | 8% | 2026-10-08 | [link](https://www.adzuna.com/land/ad/5797699892) |

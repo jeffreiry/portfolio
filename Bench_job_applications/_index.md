@@ -209,8 +209,10 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Software Product Designer](fidelity-canada-software-product-designer.md) | Fidelity Canada · Suíte de aplicações de software pra investidores | **52%** | Aderência baixa | A avaliar | 2026-10-08 |
 | [Sr. Web UX Designer I](smartsheet-sr-web-ux-designer-i.md) | Smartsheet · Site de marketing (Web UX Design) | **61%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Founding Product Designer](clera-founding-product-designer.md) | Clera · Plataforma agêntica de integração B2B SaaS | **67%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Sr. UX Designer, Security](cribl-sr-ux-designer-security.md) | Cribl · Plataforma de telemetria pra times de Segurança e TI | **62%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Freelance Designer](control-shift-video-freelance-designer.md) | Control Shift Video · Estúdio criativo freelance (vídeo, motion, visuais web) | **42%** | Aderência baixa | A avaliar | 2026-10-08 |
 
-**Média geral: 61%** · Aderência parcial (169 vagas)
+**Média geral: 61%** · Aderência parcial (171 vagas)
 
 ---
 

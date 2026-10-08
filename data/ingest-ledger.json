@@ -898,5 +898,35 @@
     "status": "reprovada",
     "score": 29,
     "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/cribl-sr-ux-designer-security": {
+    "status": "promovida",
+    "score": 62,
+    "evaluatedAt": "2026-10-08"
+  },
+  "remoteok:1136213": {
+    "status": "promovida",
+    "score": 42,
+    "evaluatedAt": "2026-10-08"
+  },
+  "weworkremotely:https://weworkremotely.com/remote-jobs/pinterest-content-designer-ii-personalization": {
+    "status": "reprovada",
+    "score": 17,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f4f1-2053-72c1-9cd0-513bfffa0d04": {
+    "status": "reprovada",
+    "score": 35,
+    "evaluatedAt": "2026-10-08"
+  },
+  "fourdayweek:01a0f328-ea19-777b-839c-235cc3407d1c": {
+    "status": "reprovada",
+    "score": 24,
+    "evaluatedAt": "2026-10-08"
+  },
+  "adzuna:5797699892": {
+    "status": "reprovada",
+    "score": 8,
+    "evaluatedAt": "2026-10-08"
   }
 }
