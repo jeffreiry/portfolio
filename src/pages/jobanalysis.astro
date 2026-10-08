@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.svelte';
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
-import { canonicalizeSkill, ELIGIBILITY_PATTERN, calcAtsMatch } from '../lib/jobanalysis/core';
+import { canonicalizeSkill, ELIGIBILITY_PATTERN, calcAtsMatch, classifySenioridade } from '../lib/jobanalysis/core';
 import { getResumeText } from '../lib/jobanalysis/resume-text';
 
 // Nova Vaga / Editar / Candidatura escrevem no filesystem (Bench_job_applications/*.md)
@@ -36,6 +36,9 @@ interface VagaParsed {
   origemAutomatica: string;
   salario: string;
   motivoRecusa: string;
+  modalidade: string;
+  localizacao: string;
+  senioridade: string;
   scoreAnterior: number | null;
   motivoMudancaScore: string;
   prazoCandidatura: string;
@@ -95,6 +98,17 @@ function scoreLabel(score: number): string {
   return 'Desalinhamento estrutural';
 }
 
+// Ícone + rótulo pra modalidade de trabalho — "presencial" = prédio, "remoto" =
+// casa, "híbrido" mostra os dois. Emoji (não SVG) pra bater com a convenção já
+// usada no footer do card (📅 data, 💰 salário).
+function modalidadeIcon(modalidade: string): string {
+  const m = modalidade.toLowerCase();
+  if (m === 'remoto') return '🏠';
+  if (m === 'híbrido' || m === 'hibrido') return '🏢🏠';
+  if (m === 'presencial') return '🏢';
+  return '';
+}
+
 function parseVagaFile(filename: string, dir: string): VagaParsed | null {
   try {
     const content = readFileSync(join(dir, filename), 'utf-8');
@@ -143,6 +157,14 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
 
     const motivoMatch = content.match(/\*\*Motivo da recusa:\*\*\s*(.+)/);
     const motivoRecusa = motivoMatch?.[1]?.trim() ?? '';
+
+    // Preenchidos só pela ingestão automática (analyze-job.ts) — fichas manuais
+    // (modal "Nova Vaga") não têm esses campos, então os badges somem sozinhos.
+    const modalidadeMatch = content.match(/\*\*Modalidade:\*\*\s*(.+)/);
+    const modalidade = modalidadeMatch?.[1]?.trim() ?? '';
+    const localizacaoMatch = content.match(/\*\*Localização:\*\*\s*(.+)/);
+    const localizacao = localizacaoMatch?.[1]?.trim() ?? '';
+    const senioridade = classifySenioridade(nivelRaw);
 
     // Campo opcional "**Score anterior:**" — preenchido só quando uma reanálise
     // muda o score de uma vaga já validada (convenção 2026-09-13). Extrai só o
@@ -239,6 +261,9 @@ function parseVagaFile(filename: string, dir: string): VagaParsed | null {
       origemAutomatica,
       salario,
       motivoRecusa,
+      modalidade,
+      localizacao,
+      senioridade,
       scoreAnterior,
       motivoMudancaScore,
       prazoCandidatura,
@@ -661,6 +686,18 @@ for (const opt of statusOptions) {
                     {v.diasParado >= 0 ? ` · sem atualização há ${v.diasParado} dia${v.diasParado === 1 ? '' : 's'}` : ''}
                   </span>
                 </div>
+                {(v.modalidade || v.senioridade) && (
+                  <div class="hidden sm:flex flex-col items-end gap-1 shrink-0">
+                    {v.modalidade && (
+                      <span class="text-[15px] leading-none" aria-hidden="true" title={v.localizacao || v.modalidade}>{modalidadeIcon(v.modalidade)}</span>
+                    )}
+                    {v.senioridade && (
+                      <span class="rounded-full px-2 py-0.5 text-[10px] font-medium whitespace-nowrap" style="background: var(--color-tag-personal-bg); color: var(--color-tag-personal-text);">
+                        {v.senioridade}
+                      </span>
+                    )}
+                  </div>
+                )}
               </button>
             );
           })}
@@ -868,6 +905,23 @@ for (const opt of statusOptions) {
                 {v.produto && <span class="text-sm" style="color: var(--color-faint);">· {v.produto}</span>}
               </div>
               <span class="text-sm" style="color: var(--color-muted);">{v.cargo}</span>
+
+              <!-- Modalidade (ícone prédio/casa) + senioridade — só aparece quando a ficha tem o dado (ingestão automática) -->
+              {(v.modalidade || v.senioridade) && (
+                <div class="flex flex-wrap items-center gap-1.5">
+                  {v.modalidade && (
+                    <span class="rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);" title={v.localizacao || v.modalidade}>
+                      <span aria-hidden="true">{modalidadeIcon(v.modalidade)}</span> {v.modalidade}{v.localizacao ? ` · ${v.localizacao}` : ''}
+                    </span>
+                  )}
+                  {v.senioridade && (
+                    <span class="rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: var(--color-tag-personal-bg); color: var(--color-tag-personal-text);">
+                      {v.senioridade}
+                    </span>
+                  )}
+                </div>
+              )}
+
               <div class="vaga-link-wrap" hidden={!v.link}>
               <a
                 class="vaga-link inline-flex w-fit max-w-full items-center gap-1.5 text-[13px] font-medium underline underline-offset-2 transition-opacity hover:opacity-70"
@@ -1671,6 +1725,17 @@ for (const opt of statusOptions) {
     return 'muito-baixa';
   }
 
+  // Duplicado do frontmatter (modalidadeIcon) — este script roda no browser,
+  // sem acesso às consts do componente Astro server-side (mesmo princípio de
+  // banda()/scoreLabel() logo acima).
+  function modalidadeIcon(modalidade: string): string {
+    const m = modalidade.toLowerCase();
+    if (m === 'remoto') return '🏠';
+    if (m === 'híbrido' || m === 'hibrido') return '🏢🏠';
+    if (m === 'presencial') return '🏢';
+    return '';
+  }
+
   function scoreLabel(score: number) {
     if (score >= 80) return 'Alta aderência';
     if (score >= 60) return 'Aderência parcial';
@@ -2224,6 +2289,7 @@ for (const opt of statusOptions) {
     slug: string; empresa: string; produto: string; cargo: string;
     score: number; interpretacao: string; interpretacaoTexto: string;
     status: string; candidatura: string; motivoRecusa?: string; scoreAnterior?: number | null; motivoMudancaScore?: string; origemAutomatica?: string; salario?: string;
+    modalidade?: string; localizacao?: string; senioridade?: string;
     diasParado?: number; prazoCandidatura?: string; diasAteResposta?: number | null; data: string; tags: string[];
     bloqueadores?: string[]; ausentes?: string[]; boaAderencia?: string[];
     obtObrig?: number; maxObrigW?: number; obtPref?: number; maxPrefW?: number;
@@ -2266,6 +2332,15 @@ for (const opt of statusOptions) {
       : '';
     const salaryHTML = v.salario
       ? `<span class="text-[12px]" style="color: var(--color-faint);"><span aria-hidden="true">💰</span> ${v.salario}</span>`
+      : '';
+    const modalidade  = v.modalidade  ?? '';
+    const localizacao = v.localizacao ?? '';
+    const senioridade = v.senioridade ?? '';
+    const modalSenioHTML = (modalidade || senioridade)
+      ? `<div class="flex flex-wrap items-center gap-1.5">
+          ${modalidade ? `<span class="rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: var(--color-surface-2); color: var(--color-muted);" title="${localizacao || modalidade}"><span aria-hidden="true">${modalidadeIcon(modalidade)}</span> ${modalidade}${localizacao ? ` · ${localizacao}` : ''}</span>` : ''}
+          ${senioridade ? `<span class="rounded-full px-2.5 py-1 text-[11px] font-medium" style="background: var(--color-tag-personal-bg); color: var(--color-tag-personal-text);">${senioridade}</span>` : ''}
+        </div>`
       : '';
 
     // Mesma lista de "funil ativo" do servidor (astro frontmatter) — duplicada aqui
@@ -2323,6 +2398,7 @@ for (const opt of statusOptions) {
           ${v.produto ? `<span class="text-sm" style="color: var(--color-faint);">· ${v.produto}</span>` : ''}
         </div>
         <span class="text-sm" style="color: var(--color-muted);">${v.cargo}</span>
+        ${modalSenioHTML}
         <div class="flex items-center gap-3">
           <div class="relative h-2 flex-1 overflow-hidden rounded-full" style="background: var(--color-surface-2);">
             <div class="score-fill absolute inset-y-0 left-0 rounded-full" style="width: ${v.score}%; background: ${b.fill};"></div>

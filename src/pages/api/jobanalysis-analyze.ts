@@ -8,6 +8,7 @@ import {
   calcScore,
   rewriteScoreSection,
   scoreLabel,
+  classifySenioridade,
   extractWithGroq,
   analyzeWithClaude,
   type JdExtracted,
@@ -158,6 +159,9 @@ if (!groqKey) {
     const boaAderencia = gapItems(/### 🟢 Boa ader[eê]ncia[^\n]*\n\n([\s\S]*?)(?=\n###|$)/, /^[-*]\s*/);
     const origemAutomatica = finalMd.match(/\*\*Origem:\*\*\s*(.+)/)?.[1]?.trim() ?? '';
     const salario = finalMd.match(/\*\*Salário:\*\*\s*(.+)/)?.[1]?.trim() ?? '';
+    const modalidade = finalMd.match(/\*\*Modalidade:\*\*\s*(.+)/)?.[1]?.trim() ?? '';
+    const localizacao = finalMd.match(/\*\*Localização:\*\*\s*(.+)/)?.[1]?.trim() ?? '';
+    const senioridade = classifySenioridade(extracted.nivel ?? '');
 
     return new Response(
       JSON.stringify({
@@ -178,6 +182,9 @@ if (!groqKey) {
         atsMissing:         [],
         origemAutomatica,
         salario,
+        modalidade,
+        localizacao,
+        senioridade,
         bloqueadores,
         ausentes,
         boaAderencia,

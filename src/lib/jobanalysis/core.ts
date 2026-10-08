@@ -203,6 +203,22 @@ export function calcAtsMatch(requirementTexts: string[], resumeText: string): At
   return { pct: Math.round((matched.length / canonSet.size) * 100), matched, missing };
 }
 
+// Classificação de senioridade a partir de texto livre (campo "**Nível:**" da
+// ficha, ou `nivel` extraído pelo Groq) — mesma família de regex do
+// classificador usado na ingestão (scripts/ingest/classify.ts), centralizada
+// aqui pra servir tanto a página (/jobanalysis, badge do card) quanto a API de
+// análise (resposta usada pra reconstruir o card sem reload). Ordem importa:
+// "Especialista Sênior" bate em Sênior primeiro.
+const SENIORIDADE_SR_PATTERN     = /s[eê]nior|especialista|staff|lead|principal/i;
+const SENIORIDADE_PLENO_PATTERN  = /\bpleno\b|\bmid[- ]?level\b|\bmid\b|intermediate/i;
+const SENIORIDADE_JUNIOR_PATTERN = /j[uú]nior|trainee/i;
+export function classifySenioridade(nivelRaw: string): string {
+  if (SENIORIDADE_SR_PATTERN.test(nivelRaw)) return 'Sênior';
+  if (SENIORIDADE_PLENO_PATTERN.test(nivelRaw)) return 'Pleno';
+  if (SENIORIDADE_JUNIOR_PATTERN.test(nivelRaw)) return 'Júnior';
+  return '';
+}
+
 export function scoreLabel(s: number): string {
   if (s >= 80) return 'Alta aderência';
   if (s >= 60) return 'Aderência parcial';
