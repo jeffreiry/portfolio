@@ -6,8 +6,8 @@
 **Data da vaga:** 2026-09-28
 **Link da vaga:** https://cnaidiomas.gupy.io/job/eyJqb2JJZCI6MTI2MTI3OTAsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-08
 
 ---
 

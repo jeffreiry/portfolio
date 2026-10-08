@@ -4,9 +4,9 @@
 **Produto:** Sienge (SaaS para Indústria da Construção)
 **Nível:** Pleno
 **Data da vaga:** 2026-08-25
-**Status:** Candidatura enviada
+**Status:** Recusado
 **Candidatura enviada em:** 2026-09-23
-**Status atualizado em:** 2026-09-23
+**Status atualizado em:** 2026-10-08
 
 ---
 

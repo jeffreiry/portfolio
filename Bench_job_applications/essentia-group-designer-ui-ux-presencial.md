@@ -6,8 +6,9 @@
 **Data da vaga:** 2026-08-12
 **Link da vaga:** https://essentiagroup.gupy.io/job/eyJqb2JJZCI6MTE4Nzk3NjEsInNvdXJjZSI6Im1jcF9jYW5kaWRhdGUifQ==?jobBoardSource=mcp_candidate
 **Origem:** Ingestão automática (Gupy)
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-28
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-08
+**Status atualizado em:** 2026-10-08
 
 ---
 

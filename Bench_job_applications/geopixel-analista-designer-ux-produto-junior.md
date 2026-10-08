@@ -8,8 +8,8 @@
 **Origem:** Ingestão automática (Gupy)
 **Localização:** Brasil
 **Modalidade:** Remoto
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-07
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-08
 
 ---
 

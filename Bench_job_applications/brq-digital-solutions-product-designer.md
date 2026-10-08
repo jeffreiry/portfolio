@@ -5,8 +5,9 @@
 **Nível:** Não especificado
 **Data da vaga:** 2026-09-27
 **Link da vaga:** https://brq.inhire.app/vagas/4a48f71e-883b-4dd3-a1f9-9168f7f91048/product-designer-
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-27
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-08
+**Status atualizado em:** 2026-10-08
 
 ---
 

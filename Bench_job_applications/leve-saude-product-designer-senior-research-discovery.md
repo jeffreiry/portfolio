@@ -8,8 +8,8 @@
 **Origem:** Ingestão automática (Gupy)
 **Localização:** Rio de Janeiro, RJ
 **Modalidade:** Híbrido
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-02
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-08
 
 ---
 

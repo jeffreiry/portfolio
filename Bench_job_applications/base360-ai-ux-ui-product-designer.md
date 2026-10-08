@@ -5,8 +5,8 @@
 **Nível:** Não especificado (contexto de startup early-stage, trabalho direto com founders)
 **Data da vaga:** 2026-09-27
 **Link da vaga:** https://jobs.ashbyhq.com/The-Flex/6a0c4b4e-7090-4dcc-a4eb-28fed5d76e62
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-27
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-08
 
 ---
 

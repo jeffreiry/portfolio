@@ -8,8 +8,9 @@
 **Origem:** Ingestão automática (Greenhouse)
 **Localização:** Brasil
 **Modalidade:** Remoto
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-07
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-08
+**Status atualizado em:** 2026-10-08
 
 ---
 

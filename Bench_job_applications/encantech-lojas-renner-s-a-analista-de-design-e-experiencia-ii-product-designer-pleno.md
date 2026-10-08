@@ -8,8 +8,9 @@
 **Origem:** Ingestão automática (Gupy)
 **Localização:** Porto Alegre, Rio Grande do Sul
 **Modalidade:** Híbrido
-**Status:** A avaliar
-**Status atualizado em:** 2026-09-30
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-08
+**Status atualizado em:** 2026-10-08
 
 ---
 
