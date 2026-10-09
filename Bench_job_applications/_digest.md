@@ -61,3 +61,5 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Course Director: UX, UI, and AI | IxDF - Interaction Design Foundation | 17% | 2026-10-08 | [link](https://weworkremotely.com/remote-jobs/ixdf-interaction-design-foundation-course-director-ux-ui-and-ai) |
 | Product Designer - Content Design | Experian | 33% | 2026-10-08 | [link](https://4dayweek.io/job/product-designer-content-design-at-experian-9f279148) |
 | Shopify UX Designer – Customizer Specialist | Jobgether | 36% | 2026-10-08 | [link](https://4dayweek.io/job/shopify-ux-designer-customizer-specialist-at-jobgether-f8b7121c) |
+| Product Designer | Good Sportsman Marketing LLC | 7% | 2026-10-09 | [link](https://www.adzuna.com/land/ad/5914354135) |
+| Product Designer | Mondo | 25% | 2026-10-09 | [link](https://www.adzuna.com/land/ad/5914894529) |

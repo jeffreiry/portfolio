@@ -220,8 +220,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Designer UX/UI - Sênior](fcamara-designer-ux-ui-senior.md) | FCamara · Parceria com grande banco de investimentos da América Latina | **57%** | Aderência baixa | A avaliar | 2026-10-09 |
 | [Product Designer AI - Híbrido](verity-product-designer-ai-hibrido.md) | Verity · Capacidade de design assistido por IA pra grande operação financeira | **41%** | Aderência baixa | A avaliar | 2026-10-09 |
 | [Product Designer (foco em IA e Inovação)](clicksign-product-designer-foco-em-ia-e-inovacao.md) | Clicksign · Plataforma de assinaturas eletrônicas | **47%** | Aderência baixa | A avaliar | 2026-10-09 |
+| [Product Designer](two-leopard-product-designer.md) | Two Leopard · Plataformas de vida e anuidades (insurtech) | **72%** | Aderência parcial | A avaliar | 2026-10-09 |
+| [Product Designer (via Apexcare Talent Solutions)](experian-product-designer-via-apexcare-talent-solutions.md) | Experian · Bem-estar financeiro e proteção de identidade (consumer) | **50%** | Aderência baixa | A avaliar | 2026-10-09 |
+| [Product Designer](sidecar-product-designer.md) | Sidecar · Marketplace de caronas (mobilidade compartilhada) | **47%** | Aderência baixa | A avaliar | 2026-10-09 |
+| [Product Designer](fanatics-collectibles-product-designer.md) | Fanatics Collectibles · Plataforma global de esportes digitais (colecionáveis, e-commerce) | **46%** | Aderência baixa | A avaliar | 2026-10-09 |
 
-**Média geral: 61%** · Aderência parcial (180 vagas)
+**Média geral: 61%** · Aderência parcial (184 vagas)
 
 ---
 

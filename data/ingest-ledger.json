@@ -1003,5 +1003,35 @@
     "status": "promovida",
     "score": 47,
     "evaluatedAt": "2026-10-09"
+  },
+  "adzuna:5914884762": {
+    "status": "promovida",
+    "score": 72,
+    "evaluatedAt": "2026-10-09"
+  },
+  "adzuna:5917116082": {
+    "status": "promovida",
+    "score": 50,
+    "evaluatedAt": "2026-10-09"
+  },
+  "adzuna:5915844482": {
+    "status": "promovida",
+    "score": 47,
+    "evaluatedAt": "2026-10-09"
+  },
+  "adzuna:5915473403": {
+    "status": "promovida",
+    "score": 46,
+    "evaluatedAt": "2026-10-09"
+  },
+  "adzuna:5914354135": {
+    "status": "reprovada",
+    "score": 7,
+    "evaluatedAt": "2026-10-09"
+  },
+  "adzuna:5914894529": {
+    "status": "reprovada",
+    "score": 25,
+    "evaluatedAt": "2026-10-09"
   }
 }
