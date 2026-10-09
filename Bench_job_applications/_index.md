@@ -224,8 +224,9 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer (via Apexcare Talent Solutions)](experian-product-designer-via-apexcare-talent-solutions.md) | Experian · Bem-estar financeiro e proteção de identidade (consumer) | **50%** | Aderência baixa | A avaliar | 2026-10-09 |
 | [Product Designer](sidecar-product-designer.md) | Sidecar · Marketplace de caronas (mobilidade compartilhada) | **47%** | Aderência baixa | A avaliar | 2026-10-09 |
 | [Product Designer](fanatics-collectibles-product-designer.md) | Fanatics Collectibles · Plataforma global de esportes digitais (colecionáveis, e-commerce) | **46%** | Aderência baixa | A avaliar | 2026-10-09 |
+| [Senior Product Designer](gong-senior-product-designer.md) | Gong · Revenue AI Operating System | **63%** | Aderência parcial | A avaliar | 2026-09-27 |
 
-**Média geral: 61%** · Aderência parcial (184 vagas)
+**Média geral: 61%** · Aderência parcial (185 vagas)
 
 ---
 

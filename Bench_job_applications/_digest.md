@@ -63,3 +63,4 @@ Vagas analisadas automaticamente pela ingestão que não bateram o score mínimo
 | Shopify UX Designer – Customizer Specialist | Jobgether | 36% | 2026-10-08 | [link](https://4dayweek.io/job/shopify-ux-designer-customizer-specialist-at-jobgether-f8b7121c) |
 | Product Designer | Good Sportsman Marketing LLC | 7% | 2026-10-09 | [link](https://www.adzuna.com/land/ad/5914354135) |
 | Product Designer | Mondo | 25% | 2026-10-09 | [link](https://www.adzuna.com/land/ad/5914894529) |
+| Marketing Designer (fora de escopo) | Anchour | 0% | 2026-09-27 | [link](https://4dayweek.io/job/marketing-designer-at-anchour-210aab0f) |

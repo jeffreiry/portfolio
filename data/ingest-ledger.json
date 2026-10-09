@@ -1033,5 +1033,16 @@
     "status": "reprovada",
     "score": 25,
     "evaluatedAt": "2026-10-09"
+  },
+  "fourdayweek:01a0e3ac-dc44-7fe3-9694-081e8a4fa8cb": {
+    "status": "promovida",
+    "score": 63,
+    "evaluatedAt": "2026-10-09"
+  },
+  "fourdayweek:01a0e049-b8f1-71cb-867f-9f41b5f0b1c7": {
+    "status": "reprovada",
+    "score": 0,
+    "evaluatedAt": "2026-10-09",
+    "nota": "fora de escopo (marketing/ads designer, nao product design)"
   }
 }

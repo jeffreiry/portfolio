@@ -13,7 +13,7 @@
 // Product/UX/UI Designer. Heurística, não garantida (mesmo princípio dos
 // outros filtros de texto livre do pipeline): "Learning & Development
 // Designer" ou títulos sem essas palavras-chave continuam passando.
-const EXCLUDED_DESIGN_SUBTYPE = /\b(3d|game|level|graphic|packaging|interior|industrial|instructional|fashion|jewelry|jewellery|architectural|set|exhibit|costume|sound|lighting|textile|floral|landscape|automotive)\s+designers?\b/i;
+const EXCLUDED_DESIGN_SUBTYPE = /\b(3d|game|level|graphic|packaging|interior|industrial|instructional|fashion|jewelry|jewellery|architectural|set|exhibit|costume|sound|lighting|textile|floral|landscape|automotive|marketing|brand|ad|print)\s+designers?\b/i;
 
 export function isDesignRole(title: string): boolean {
   if (EXCLUDED_DESIGN_SUBTYPE.test(title)) return false;
