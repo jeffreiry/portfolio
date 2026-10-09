@@ -5,6 +5,7 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-08-27
 **Link da vaga:** https://www.adzuna.com.br/details/5858346992?utm_medium=api&utm_source=36995d42
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Mjv Innovation" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** São Paulo, SP
 **Modalidade:** Híbrido

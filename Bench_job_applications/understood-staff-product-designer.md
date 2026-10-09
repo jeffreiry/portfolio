@@ -5,6 +5,7 @@
 **Nível:** Staff
 **Data da vaga:** 2026-10 (JD reconstruída via busca — posting original expirou no board da empresa)
 **Link da vaga:** https://www.adzuna.com/land/ad/5910966905
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Staff Product Designer Understood" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** New York, NY
 **Modalidade:** Presencial

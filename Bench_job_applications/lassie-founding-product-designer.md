@@ -5,6 +5,7 @@
 **Nível:** Fundador/Sênior
 **Data da vaga:** 2026-06 (recuperada via busca — Adzuna truncou a descrição original)
 **Link da vaga:** https://www.adzuna.com/land/ad/5915292504
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Founding Product Designer Lassie" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Hayes Valley, San Francisco
 **Modalidade:** Presencial

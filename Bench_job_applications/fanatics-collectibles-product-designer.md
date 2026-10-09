@@ -4,7 +4,8 @@
 **Produto:** Plataforma global de esportes digitais (colecionáveis, e-commerce, live selling)
 **Nível:** Pleno
 **Data da vaga:** 2026-10-06 (JD reconstruída via busca — Adzuna truncou a descrição original)
-**Link da vaga:** https://www.adzuna.com/land/ad/5915473403
+**Link da vaga:** https://www.adzuna.com/land/ad/5915473403?se=mmzcANPD8RG0_tWctQPvdg&utm_medium=api&utm_source=36995d42&v=ACF916E70E44770FEB94CF642604AD95FC47EF79
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Fanatics Collectibles" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Delaware, Delaware County
 **Modalidade:** Remoto

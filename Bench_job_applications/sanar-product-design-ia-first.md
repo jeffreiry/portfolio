@@ -5,6 +5,7 @@
 **Nível:** Sênior (IC3)
 **Data da vaga:** 2026-08-21
 **Link da vaga:** https://www.adzuna.com.br/details/5851129141?utm_medium=api&utm_source=36995d42
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Design (IA First, IC3) Sanar" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** São Paulo ou Salvador
 **Modalidade:** Híbrido

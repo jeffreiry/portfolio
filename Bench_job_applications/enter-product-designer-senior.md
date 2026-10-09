@@ -5,6 +5,7 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-08-12
 **Link da vaga:** https://www.adzuna.com.br/details/5838436891?utm_medium=api&utm_source=36995d42
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Sênior Enter" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** São Paulo, SP (Pinheiros)
 **Modalidade:** Presencial

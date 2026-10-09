@@ -5,6 +5,7 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-10-06 (JD reconstruída via busca — Adzuna truncou a descrição original)
 **Link da vaga:** https://www.adzuna.com/land/ad/5914388541
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Senior Product Designer giftHEALTH" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Columbus, OH
 **Modalidade:** Presencial

@@ -8,7 +8,8 @@
 **Origem:** Ingestão automática (Gupy)
 **Localização:** Brasil
 **Modalidade:** Remoto
-**Status:** A avaliar
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-09
 **Status atualizado em:** 2026-10-09
 
 ---

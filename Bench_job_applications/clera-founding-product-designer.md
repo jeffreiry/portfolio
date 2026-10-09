@@ -5,6 +5,7 @@
 **Nível:** Fundador/Sênior
 **Data da vaga:** 2026-10-04 (JD reconstruída via busca — Adzuna truncou a descrição original)
 **Link da vaga:** https://www.adzuna.com/land/ad/5910864156
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Founding Product Designer Clera" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** San Francisco, CA
 **Modalidade:** Presencial

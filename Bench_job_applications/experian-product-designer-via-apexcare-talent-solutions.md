@@ -4,7 +4,8 @@
 **Produto:** Produtos consumer-facing de bem-estar financeiro e proteção de identidade + ferramentas pra desenvolvedores
 **Nível:** Pleno
 **Data da vaga:** 2026-10-07 (JD reconstruída via busca — Adzuna truncou a descrição original; vaga intermediada por agência de recrutamento)
-**Link da vaga:** https://www.adzuna.com/land/ad/5917116082
+**Link da vaga:** https://www.adzuna.com/land/ad/5917116082?se=mmzcANPD8RG0_tWctQPvdg&utm_medium=api&utm_source=36995d42&v=BC936522E673D66F593C8E95081DA54CE9DC5D92
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Experian (via Apexcare Talent Solutions)" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Fair Oaks, Sacramento County
 **Modalidade:** Remoto

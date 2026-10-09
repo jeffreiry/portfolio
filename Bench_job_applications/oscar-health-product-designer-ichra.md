@@ -5,6 +5,7 @@
 **Nível:** Sênior
 **Data da vaga:** 2026-10-07 (JD reconstruída via busca — Adzuna truncou a descrição original)
 **Link da vaga:** https://www.adzuna.com/land/ad/5915315130
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer, ICHRA Oscar Health" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** San Francisco, CA
 **Modalidade:** Híbrido

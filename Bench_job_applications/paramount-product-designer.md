@@ -5,6 +5,7 @@
 **Nível:** Pleno
 **Data da vaga:** 2026-10-05 (JD reconstruída via busca — posting original da Adzuna expirou)
 **Link da vaga:** https://www.adzuna.com/land/ad/5915018782
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Paramount" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** New York, NY
 **Modalidade:** Híbrido

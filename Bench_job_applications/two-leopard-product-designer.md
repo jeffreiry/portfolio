@@ -4,7 +4,8 @@
 **Produto:** Plataformas de vida e anuidades — ferramentas internas B2B e plataforma consumer B2C
 **Nível:** Pleno/Sênior
 **Data da vaga:** 2026-10-06 (JD reconstruída via busca — Adzuna truncou a descrição original)
-**Link da vaga:** https://www.adzuna.com/land/ad/5914884762
+**Link da vaga:** https://www.adzuna.com/land/ad/5914884762?se=mmzcANPD8RG0_tWctQPvdg&utm_medium=api&utm_source=36995d42&v=05CB17E2D74BF2579858341A8769E4322B9631A7
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Two Leopard" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Canton, Van Zandt County
 **Modalidade:** Remoto

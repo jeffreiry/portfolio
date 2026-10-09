@@ -5,6 +5,7 @@
 **Nível:** Pleno/Sênior
 **Data da vaga:** 2026-10-06
 **Link da vaga:** https://www.adzuna.com/land/ad/5914454671
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Best Buy Canada" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Vancouver, BC
 **Modalidade:** Remoto

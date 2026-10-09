@@ -5,6 +5,7 @@
 **Nível:** Pleno/Sênior
 **Data da vaga:** 2026-10-07
 **Link da vaga:** https://www.adzuna.com/land/ad/5915291398
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Robinhood" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Grand Central, Manhattan
 **Modalidade:** Híbrido

@@ -4,7 +4,8 @@
 **Produto:** Marketplace de caronas (mobilidade compartilhada)
 **Nível:** Sênior
 **Data da vaga:** 2026-10-06 (JD reconstruída via busca — Adzuna truncou a descrição original)
-**Link da vaga:** https://www.adzuna.com/land/ad/5915844482
+**Link da vaga:** https://www.adzuna.com/land/ad/5915844482?se=mmzcANPD8RG0_tWctQPvdg&utm_medium=api&utm_source=36995d42&v=0A83519E7DDF5BB6F5E19014C1BD1BA2216DBA21
+**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "Product Designer Sidecar" diretamente.
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Hayes Valley, San Francisco
 **Modalidade:** Remoto

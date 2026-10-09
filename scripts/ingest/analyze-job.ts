@@ -83,6 +83,19 @@ export async function analyzeJob(job: RawJob, groqKey: string, claudeKey: string
     finalMd = finalMd.replace(/(\*\*Data da vaga:\*\*[^\n]*)/, (m) => `${m}\n**Link da vaga:** ${job.url}`);
   }
 
+  // Achado real (2026-10-09): o link "land/ad/..." da Adzuna carrega um token
+  // de sessão (`se=`) atrelado à chamada da API que o gerou — some tempo depois
+  // (às vezes já no dia seguinte), clicar nele mostra "página não encontrada"
+  // mesmo a vaga ainda existindo, porque o redirecionamento em si expira, não
+  // o anúncio original. Não tem como contornar isso no adapter (é assim que a
+  // infraestrutura de redirecionamento deles funciona) — só avisar.
+  if (job.source === 'adzuna' && !finalMd.includes('Nota do link')) {
+    finalMd = finalMd.replace(
+      /(\*\*Link da vaga:\*\*[^\n]*)/,
+      (m) => `${m}\n**Nota do link:** links da Adzuna usam um token de sessão que expira — se não abrir, busque "${job.title} ${job.company}" diretamente.`,
+    );
+  }
+
   // Marca a ficha como gerada pela ingestão automática, não pelo modal manual —
   // fica visível na UI (badge) pra diferenciar do que o autor colou à mão.
   if (!finalMd.includes('**Origem:**')) {
