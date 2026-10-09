@@ -216,8 +216,12 @@ A ponderação reflete a criticidade de cada tipo: requisitos obrigatórios são
 | [Product Designer - Visual Design](experian-product-designer-visual-design.md) | Experian · Experian Consumer Services (ECS) — Design Ops | **87%** | Alta aderência | A avaliar | 2026-10-08 |
 | [Product Designer - UX Research](experian-product-designer-ux-research.md) | Experian · Experian Consumer Services (ECS) — pesquisa com consumidores | **60%** | Aderência parcial | A avaliar | 2026-10-08 |
 | [Visual Designer](jobgether-visual-designer.md) | Jobgether · Materiais visuais de vendas pra plataformas de mídia digital | **79%** | Aderência parcial | A avaliar | 2026-10-08 |
+| [Analista de UX/UI](montreal-analista-de-ux-ui.md) | Montreal · Squads de desenvolvimento pra clientes (prestação de serviços de tecnologia) | **69%** | Aderência parcial | A avaliar | 2026-10-09 |
+| [Designer UX/UI - Sênior](fcamara-designer-ux-ui-senior.md) | FCamara · Parceria com grande banco de investimentos da América Latina | **57%** | Aderência baixa | A avaliar | 2026-10-09 |
+| [Product Designer AI - Híbrido](verity-product-designer-ai-hibrido.md) | Verity · Capacidade de design assistido por IA pra grande operação financeira | **41%** | Aderência baixa | A avaliar | 2026-10-09 |
+| [Product Designer (foco em IA e Inovação)](clicksign-product-designer-foco-em-ia-e-inovacao.md) | Clicksign · Plataforma de assinaturas eletrônicas | **47%** | Aderência baixa | A avaliar | 2026-10-09 |
 
-**Média geral: 61%** · Aderência parcial (176 vagas)
+**Média geral: 61%** · Aderência parcial (180 vagas)
 
 ---
 

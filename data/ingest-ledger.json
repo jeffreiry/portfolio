@@ -983,5 +983,25 @@
     "status": "reprovada",
     "score": 36,
     "evaluatedAt": "2026-10-08"
+  },
+  "gupy:12682495": {
+    "status": "promovida",
+    "score": 69,
+    "evaluatedAt": "2026-10-09"
+  },
+  "gupy:12701649": {
+    "status": "promovida",
+    "score": 57,
+    "evaluatedAt": "2026-10-09"
+  },
+  "gupy:12702641": {
+    "status": "promovida",
+    "score": 41,
+    "evaluatedAt": "2026-10-09"
+  },
+  "gupy:12695467": {
+    "status": "promovida",
+    "score": 47,
+    "evaluatedAt": "2026-10-09"
   }
 }

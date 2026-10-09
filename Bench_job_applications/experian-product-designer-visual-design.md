@@ -8,8 +8,8 @@
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** São Paulo, Brazil
 **Modalidade:** Híbrido
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-08
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-09
 
 ---
 

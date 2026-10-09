@@ -8,8 +8,8 @@
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Hayes Valley, San Francisco
 **Modalidade:** Híbrido
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-08
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-09
 
 ---
 

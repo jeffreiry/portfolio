@@ -8,8 +8,9 @@
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** Bellevue, United States
 **Modalidade:** Híbrido
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-08
+**Status:** Arquivado
+**Candidatura enviada em:** 2026-10-09
+**Status atualizado em:** 2026-10-09
 
 ---
 

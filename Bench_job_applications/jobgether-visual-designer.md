@@ -8,8 +8,9 @@
 **Origem:** Ingestão automática (4 Day Week)
 **Localização:** Brazil
 **Modalidade:** Remoto
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-08
+**Status:** Candidatura enviada
+**Candidatura enviada em:** 2026-10-09
+**Status atualizado em:** 2026-10-09
 
 ---
 

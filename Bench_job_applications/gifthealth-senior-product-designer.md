@@ -8,8 +8,8 @@
 **Origem:** Ingestão automática (Adzuna)
 **Localização:** Columbus, OH
 **Modalidade:** Presencial
-**Status:** A avaliar
-**Status atualizado em:** 2026-10-08
+**Status:** Arquivado
+**Status atualizado em:** 2026-10-09
 
 ---
 
