@@ -33,7 +33,7 @@ Princípio central: **um cérebro, dois consumidores.** A lógica de análise n�
 ## Schema comum (o que cola tudo)
 ```ts
 type RawJob = {
-  source: 'gupy' | 'greenhouse' | 'lever' | 'ashby' | 'remotive' | 'remoteok' | 'adzuna';
+  source: 'gupy' | 'greenhouse' | 'lever' | 'ashby' | 'remotive' | 'remoteok' | 'adzuna' | 'fourdayweek' | 'weworkremotely';
   externalId: string;      // id da vaga na fonte
   title: string;
   company: string;
@@ -65,8 +65,11 @@ type RawJob = {
 - **Greenhouse** — `https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true` (sem chave). Roda sobre `config/target-companies.json`.
 - **Remotive** — `https://remotive.com/api/remote-jobs?search=designer` (sem chave; bucket internacional).
 - **Adzuna** — `https://api.adzuna.com/v1/api/jobs/{pais}/search/1?app_id=...&app_key=...&what=product+designer` (chave grátis). País `br` + mercados de fora.
+- **4 Day Week** — `https://4dayweek.io/api/v2/jobs?category=design&limit=100&sort=date` (sem chave). `externalId` = `id` da resposta (UUID), não o slug.
+- **We Work Remotely** — RSS (`weworkremotely.com`, sem chave), parse via regex de `<item>`. Título vem como `"Empresa: Cargo"`.
+- **RemoteOK** — `https://remoteok.com/api` (sem chave). Primeiro item do array é aviso legal, não vaga — descartado por índice. Filtro usa `isDesignRole(job.position)`, nunca o array `tags` (ruidoso demais).
 
-**Depois:** Lever, Ashby, RemoteOK, Jobicy, Himalayas.
+**Depois:** Lever, Ashby, Jobicy, Himalayas.
 
 > Observação: Gupy + Remotive + Adzuna já entregam valor **sem** a lista de empresas-alvo pronta. O adapter de Greenhouse pode começar com poucas empresas (ex.: iFood — verificar o slug canônico do board) e crescer conforme a lista de alvos for montada.
 
@@ -95,6 +98,7 @@ type RawJob = {
 5. ✅ Analisador real + escrita de fichas + reconciliação do `_index.md` — testado com ~100 vagas reais (Gupy + Greenhouse).
 6. ✅ Adapters de **Adzuna** e **Remotive** — ambos com bugs reais corrigidos após teste (Remotive: parâmetro `search` da API grátis não filtra nada, filtro movido pro cliente; Adzuna: parâmetro `content_type` quebrava com 400).
 7. ✅ Workflow `.github/workflows/ingest.yml` — cron diário 08:00 BRT + `workflow_dispatch` manual. GitHub Secrets configurados (`GROQ_API_KEY`, `ANTHROPIC_API_KEY`, `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`) — cron rodando em produção desde 2026-09-30.
+8. ✅ Adapters **4 Day Week**, **We Work Remotely** e **RemoteOK** (2026-10-09) — Tier 1 de uma lista de 12 sites externos revisada por feasibilidade; os 3 são REST/RSS públicos sem chave. `QuintoAndar` (Greenhouse, slug `quintoandar`) adicionado a `config/target-companies.json` na mesma sessão.
 
 **Extras implementados fora da ordem original, a pedido do autor:**
 - Gate ajustado de 60% pra 40% (2026-09-28).
@@ -110,3 +114,5 @@ type RawJob = {
 - **Job Analysis (2026-10-03):** a fila "Prioridade agora" só mostra vagas não candidatadas, e clicar num item abre o card completo num modal. Controle de ordenação por score ou data na seção Vagas. Matriz FOFA recalculada a partir das fichas. Campo `**Candidatura:**` removido (derivado do Status).
 - **Análise manual via Claude Code, sem gastar a Anthropic API (2026-10-02):** com o saldo da conta Anthropic zerado (ver incidente 2026-09-30), 3 vagas do Adzuna falharam na análise automática e ficaram pendentes: Ademicon, Tensec, TOTVS. Como falha não grava nada no ledger nem em arquivo (não-destrutivo por design), elas não ficam "na fila" em lugar nenhum — só reaparecem se a mesma busca da Adzuna ainda as trouxer na janela atual de resultados. Rodando o dry-run de novo em 2026-10-02: **só a Tensec ainda estava disponível** (Ademicon e TOTVS saíram da janela de resultados da API, que não pagina pra buscar um anúncio específico antigo — ficaram irrecuperáveis). Pra Tensec, a descrição da API da Adzuna também estava truncada (limitação conhecida) — JD completa recuperada direto da página pública da Adzuna via fetch de URL. Análise feita manualmente pelo Claude Code (mesma sessão interativa), seguindo a mesma rubrica/prompt do pipeline (`CLAUDE_SYSTEM_PROMPT` em `core.ts`), com o score recalculado pela mesma função determinística (`calcScore`) e a ficha/ledger/índice escritos reaproveitando as funções reais do pipeline (`writeFicha`, `reconcileIndex`) — não um processo paralelo inventado. **Padrão pra repetir:** quando a API falhar e a vaga ainda estiver disponível na fonte, Claude Code pode analisar direto na sessão (sem custo de API) desde que sempre recalcule o score com `calcScore`, nunca aceite a própria conta de cabeça.
 - Mitigação de duplicata cross-fonte (2026-10-01): `loadBenchKeys`/`dedupJobs` (`scripts/ingest/dedup.ts`) agora também comparam o **slug canônico** — palavras do slug ordenadas alfabeticamente (`canonicalizeSlug`) — contra todo o bench, além da URL e do slug exato. Pega o caso real que motivou isso: `contabilizei-senior-product-designer` (Adzuna) vs. `contabilizei-product-designer-senior` (LinkedIn), mesmas 4 palavras em ordem diferente. Verificado contra as 132 vagas do bench atual: zero colisões falsas (nenhuma vaga genuinamente distinta da mesma empresa compartilha o mesmo conjunto de palavras). **Ainda não coberto:** título reescrito de verdade (ex. "UX Designer" vs "UX/UI Designer") não gera o mesmo conjunto de palavras — nesse caso só uma comparação de conteúdo da JD pegaria, e não foi implementada (risco de falso positivo mais alto, ex. FCamara/Brex postam vagas genuinamente diferentes com título quase idêntico).
+- **Links da Adzuna "quebrados" (2026-10-09) — causa raiz não era expiração de token.** O autor reportou vagas com link "página não encontrada" ao clicar, incluindo uma analisada no mesmo dia (descartando hipótese de expiração por tempo). Investigação: o parâmetro `se=` (token de sessão) na `redirect_url` da Adzuna não é um acréscimo opcional que expira — é **obrigatório** pro redirecionador resolver; uma URL `land/ad/{id}` sem ele nunca funciona. O adapter real (`adzuna.ts`) sempre preservou a `redirect_url` completa sem alteração — o bug só existia num script avulso usado pra escrever 20 fichas manualmente numa sessão sem crédito de API, que "limpava" a URL achando que `se=`/`utm_*` era só tracking. 4 fichas recuperaram a URL completa a partir do dump bruto daquela busca; 9 vieram de uma busca anterior sem dump salvo e ficaram irrecuperáveis (a API de detalhe da Adzuna exige o adref completo, não o ID numérico) — essas mantêm só a nota de fallback ("busque cargo+empresa diretamente"). **Nada a corrigir no pipeline de ingestão em si** — o bug nunca existiu no caminho automático.
+- **Filtro de subtipo de design estendido (2026-10-09):** `EXCLUDED_DESIGN_SUBTYPE` em `design-role-filter.ts` ganhou `marketing|brand|ad|print` — "Marketing Designer" (ads/email/Meta campaigns) passava pelo filtro antigo e virava sobrevivente na fila, apesar de não ser product/UX design. Achado ao analisar a fila do 4 Day Week manualmente (vaga da Anchour, descartada e registrada no digest).
